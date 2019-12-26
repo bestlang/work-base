@@ -1,0 +1,27 @@
+---
+<?php echo $frontmatter; ?>
+
+---
+<!-- START_INFO -->
+<?php echo $infoText; ?>
+
+<!-- END_INFO -->
+<?php echo $prependMd; ?>
+
+<?php $__currentLoopData = $parsedRoutes; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $group => $routes): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+<?php if($group): ?>
+#<?php echo $group; ?>
+
+<?php endif; ?>
+<?php $__currentLoopData = $routes; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $parsedRoute): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+<?php if($writeCompareFile === true): ?>
+<?php echo $parsedRoute['output']; ?>
+
+<?php else: ?>
+<?php echo isset($parsedRoute['modified_output']) ? $parsedRoute['modified_output'] : $parsedRoute['output']; ?>
+
+<?php endif; ?>
+<?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+<?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?><?php echo $appendMd; ?>
+
+<?php /**PATH /Users/lu/PhpstormProjects/jet-api/vendor/mpociot/laravel-apidoc-generator/src/../resources/views//documentarian.blade.php ENDPATH**/ ?>

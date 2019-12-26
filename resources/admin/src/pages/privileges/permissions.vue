@@ -1,0 +1,194 @@
+<template>
+  <div>
+    <div style="width:50%;">
+      <el-tree
+        :data="treeData"
+        default-expand-all
+        show-checkbox
+        :check-strictly="false"
+        node-key="id"
+        :props="customProps"
+        :default-checked-keys="[14,11]"
+        :expand-on-click-node="false">
+        <span class="custom-tree-node" slot-scope="{ node, data }">
+          <span>{{ data.id }}-{{ node.label }}</span>
+          <span>
+            <el-button
+              type="text"
+              size="mini"
+              @click="() => edit(data)">
+              编辑
+            </el-button>
+            <el-button
+              type="text"
+              size="mini"
+              @click="() => add(data)">
+              新增
+            </el-button>
+            <el-button
+              type="text"
+              size="mini"
+              @click="() => remove(node, data)">
+              删除
+            </el-button>
+          </span>
+        </span>
+      </el-tree>
+    </div>
+    <el-dialog :title="title" :visible.sync="dialogFormVisible">
+      <el-form :model="form" label-width="100px">
+        <el-form-item label="权限显示名">
+          <el-input v-model="form.show_name" autocomplete="off"></el-input>
+        </el-form-item>
+        <el-form-item label="权限字符串">
+          <el-input v-model="form.name" autocomplete="off"></el-input>
+        </el-form-item>
+      </el-form>
+      <div slot="footer" class="dialog-footer">
+        <el-button @click="dialogFormVisible = false">取 消</el-button>
+        <el-button type="primary" @click="doSubmit">确 定</el-button>
+      </div>
+    </el-dialog>
+  </div>
+</template>
+<script>
+  let id = 1000;
+  export default {
+    data() {
+      return {
+        customProps: {
+          children: 'children',
+          label: 'show_name'
+        },
+        treeData:[],
+
+        current:null,
+        dialogFormVisible: false,
+        title: '添加子权限',
+        form:{
+          id: '',
+          parent_id: '',
+          name: '',
+          show_name: ''
+        }
+      }
+    },
+    methods: {
+      edit(data){
+        this.current = data
+        let id = data.id;
+        let parent_id = data.parent_id;
+        let name = data.name;
+        let show_name = data.show_name;
+        this.form = {
+          id,
+          parent_id,
+          name,
+          show_name
+        }
+        this.dialogFormVisible = true;
+        this.title = '编辑权限';
+      },
+      recovery(){
+        this.current = null;
+        this.form = {
+          id: '',
+          parent_id: '',
+          name: '',
+          show_name: ''
+        }
+      },
+      add(data) {
+        this.recovery()
+        this.current = data;
+        this.dialogFormVisible = true;
+      },
+      doSubmit(){
+        if(!this.form.id){
+          this.doAdd()
+        }else{
+          this.doEdit()
+        }
+      },
+      doAdd(){
+        const newChild = { id: id++, show_name: this.form.show_name, name: this.form.name,  children: [] };
+        if (!this.current.children) {
+          this.$set(this.current, 'children', []);
+        }
+        this.$http
+          .post("/admin/privileges/add/permission", {parent_id: this.current.id, name: this.form.name, show_name: this.form.show_name})
+          .then(res => {
+            this.$message({
+              type: 'success',
+              message: '添加成功!'
+            });
+            this.recovery()
+          });
+        this.current.children.push(newChild);
+        this.dialogFormVisible = false
+      },
+      doEdit(){
+        this.$http
+          .post("/admin/privileges/edit/permission", {id: this.form.id, name: this.form.name, show_name: this.form.show_name})
+          .then(res => {
+            this.$message({
+              type: 'success',
+              message: '修改成功!'
+            });
+            this.current.name = this.form.name
+            this.current.show_name = this.form.show_name
+            this.recovery()
+          });
+        this.dialogFormVisible = false
+      },
+      remove(node, data) {
+        this.$confirm('删除权限存在风险,是否继续?', '提示', {
+          confirmButtonText: '确定',
+          cancelButtonText: '取消',
+          type: 'warning'
+        }).then(() => {
+          this.$http
+            .post("/admin/privileges/delete/permission", {id: data.id})
+            .then(res => {
+              const parent = node.parent;
+              const children = parent.data.children || parent.data;
+              const index = children.findIndex(d => d.id === data.id);
+              children.splice(index, 1);
+              this.$message({
+                type: 'success',
+                message: '删除成功!'
+              });
+            }).catch(()=>{});
+        });
+      },
+      handleNodeClick(data) {
+        console.log(data);
+      },
+      loadPermissionsTree(){
+        this.$http
+        .get("/admin/privileges/permissions/tree")
+        .then(res => {
+          this.treeData = [res.data[Object.keys(res.data)[0]]];
+        });
+      }
+    },
+    mounted() {
+      this.loadPermissionsTree()
+    }
+  }
+</script>
+<style>
+  .custom-tree-node {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 14px;
+    padding-right: 8px;
+  }
+  .el-tree-node__content{
+    border-bottom: 1px solid #f4f4f4;
+    height: 32px;
+    line-height: 32px;
+  }
+</style>
