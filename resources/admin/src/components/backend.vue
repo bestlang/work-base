@@ -76,7 +76,7 @@ export default {
         background: #f4f4f4;
         overflow-y: scroll;
         height: calc(100vh - 49px);
-        padding: 20px;
+        padding: 10px;
     }
     /*.ls-main-collapse{*/
         /*width: 100%;*/

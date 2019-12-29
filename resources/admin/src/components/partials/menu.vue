@@ -16,19 +16,25 @@
                 @close="handleClose"
                 router
                 :collapse="isCollapse">
-              <template  v-for="(item , index) in $router.options.routes" v-if="true">
-                <el-submenu :index="item.path" v-if="item.children && item.children.length > 1">
-                  <template slot="title">
-                    <i class="iconfont" v-html="item.meta.font"></i>
-                    <span slot="title">{{item.meta.name}}</span>
-                  </template>
-                  <el-menu-item v-for="(itemChild , index) in item.children" :index="itemChild.path" :key="index" v-if="itemChild.meta.show">
-                    <i class="iconfont" v-html="itemChild.meta.font"></i>
-                    <span slot="title">{{itemChild.meta.name}}</span>
-                  </el-menu-item>
-                </el-submenu>
+              <template  v-for="(item , index) in router.options.routes">
+                <template v-if="item.children && item.children.filter(x=>x.meta.show).length > 0">
+                  <el-submenu :index="item.path">
+                    <template slot="title">
+                      <i class="iconfont" v-html="item.meta.font"></i>
+                      <span slot="title">
+                        {{item.meta.name}}
+                      </span>
+                    </template>
+                    <template v-for="(itemChild , index) in item.children">
+                      <el-menu-item v-if="itemChild.meta.show" :index="itemChild.path" :key="index">
+                          <i class="iconfont" v-html="itemChild.meta.font"></i>
+                          <span slot="title">{{itemChild.meta.name}}</span>
+                      </el-menu-item>
+                    </template>
+                  </el-submenu>
+                </template>
                 <template v-else>
-                  <el-menu-item v-if="item.children" :index="item.children[0].path">
+                  <el-menu-item v-if="item.children && item.children[0].meta.show" :index="item.children[0].path">
                     <template slot="title">
                       <i class="iconfont" v-html="item.meta.font"></i>
                       <span slot="title">{{item.children[0].meta.name}}</span>
@@ -57,7 +63,10 @@
     import $router from "@/router"
     export default {
         data() {
-            return {};
+            return {
+              router: $router,
+              privileges: []
+            };
         },
         computed:{
             isCollapse(){
@@ -70,10 +79,33 @@
             },
             handleClose(key, keyPath) {
                 console.log(key, keyPath);
+            },
+            loadUserPermissions(){
+              this.$http
+                .get("/admin/privileges/user/permissions")
+                .then(res => {
+                  this.privileges = res.data
+                  localStorage.setItem(`privileges`, JSON.stringify(res.data));
+                  //查询出用户的权限列表,根据权限列表过滤路由生成菜单
+                  let routes = this.router.options.routes;
+                  routes.map((route, index) => {
+                    if(!route.hasOwnProperty('children')){
+                      if(this.privileges.indexOf(route.meta.can) === -1){
+                        route.meta.show = false
+                      }
+                    }else{
+                      route.children.map((child, idx) => {
+                        if(this.privileges.indexOf(route.children[idx].meta.can) === -1){
+                          route.children[idx].meta.show = false
+                        }
+                      });
+                    }
+                  });
+                });
             }
         },
         created() {
-          console.log(`ddddd:`,$router)
+          this.loadUserPermissions();
         }
     }
 </script>

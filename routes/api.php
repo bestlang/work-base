@@ -138,12 +138,16 @@ Route::group(['middleware' => 'auth.jwt', 'prefix'=>'admin', 'namespace'=>'Admin
     Route::post('/file/upload', 'UploadController@index');
 
     Route::any('/privileges/roles', 'PrivilegesController@roles');
-    Route::any('/privileges/add/role', 'PrivilegesController@addRole');
+    Route::any('/privileges/save/role', 'PrivilegesController@saveRole');
     Route::any('/privileges/delete/role/{id}', 'PrivilegesController@deleteRole');
     Route::any('/privileges/role/users/{id}', 'PrivilegesController@roleUsers');
     Route::any('/privileges/permissions/tree', 'PrivilegesController@permissionsTree');
+    Route::any('/privileges/role/permissions', 'PrivilegesController@rolePermissions');
     Route::post('/privileges/add/permission', 'PrivilegesController@addPermission');
     Route::post('/privileges/edit/permission', 'PrivilegesController@editPermission');
     Route::post('/privileges/delete/permission', 'PrivilegesController@deletePermission');
+    Route::post('/privileges/delete/role/model', 'PrivilegesController@deleteRoleModel');
+    Route::post('/privileges/give/permissions/to', 'PrivilegesController@givePermissionsTo');
+    Route::any('/privileges/user/permissions', 'PrivilegesController@userPermissions');
 
 });

@@ -40,7 +40,7 @@ axios.interceptors.response.use(response => {
         let code = parseInt(res.code)
         let error = res.error;
         // 伪状态码
-        switch (res.code) {
+        switch (code) {
             case 200:
                 break;
             case 301:
@@ -50,9 +50,9 @@ axios.interceptors.response.use(response => {
             case 401:
                 //showMessage(error ? error : "用户名或密码错误,请重新登录");
 
-                //window.location = '/login';
+                window.location = '/login';
                 localStorage.setItem('accessToken', '');
-                return Promise.reject(response);
+                //return Promise.reject(response);
                 // if(app.$route.path != '/login'){
                 //     app.$router.push('/login');
                 // }

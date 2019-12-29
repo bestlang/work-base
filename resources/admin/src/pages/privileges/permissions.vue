@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div style="width:50%;">
+    <div style="width:60%;">
       <el-tree
         :data="treeData"
         default-expand-all
@@ -9,6 +9,7 @@
         node-key="id"
         :props="customProps"
         :default-checked-keys="[14,11]"
+        :indent="30"
         :expand-on-click-node="false">
         <span class="custom-tree-node" slot-scope="{ node, data }">
           <span>{{ data.id }}-{{ node.label }}</span>
@@ -52,7 +53,6 @@
   </div>
 </template>
 <script>
-  let id = 1000;
   export default {
     data() {
       return {
@@ -111,21 +111,22 @@
         }
       },
       doAdd(){
-        const newChild = { id: id++, show_name: this.form.show_name, name: this.form.name,  children: [] };
+        const newChild = {show_name: this.form.show_name, name: this.form.name,  children: [] };
         if (!this.current.children) {
           this.$set(this.current, 'children', []);
         }
         this.$http
           .post("/admin/privileges/add/permission", {parent_id: this.current.id, name: this.form.name, show_name: this.form.show_name})
           .then(res => {
+            newChild.id = res.data.id;
+            this.current.children.push(newChild);
+            this.dialogFormVisible = false
             this.$message({
               type: 'success',
               message: '添加成功!'
             });
             this.recovery()
           });
-        this.current.children.push(newChild);
-        this.dialogFormVisible = false
       },
       doEdit(){
         this.$http
@@ -177,7 +178,7 @@
     }
   }
 </script>
-<style>
+<style scoped>
   .custom-tree-node {
     flex: 1;
     display: flex;

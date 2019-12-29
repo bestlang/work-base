@@ -20,12 +20,12 @@
             </el-table-column>
             <el-table-column
                     fixed="right"
-                    label="操作"
-                    width="180">
+                    label="操作">
                 <template slot-scope="scope">
-                    <el-button class="l-inline-btn" @click="viewRoleMembers(scope.row)" type="text" size="small">角色成员</el-button>
-                    <el-button class="l-inline-btn" type="text" size="small" @click="editRolePermissions(scope.row)">权限管理</el-button>
-                    <el-button class="l-inline-btn" type="text" size="small" @click="handleDelete(scope.row)">删除</el-button>
+                  <el-button class="l-inline-btn" @click="editRole(scope.row)" type="text" size="small"><i class="iconfont">&#xe618;</i> 编辑</el-button>
+                  <el-button class="l-inline-btn" type="text" size="small" @click="handleDelete(scope.row)"><i class="iconfont">&#xe620;</i> 删除</el-button>
+                  <el-button class="l-inline-btn" type="text" size="small" @click="editRolePermissions(scope.row)"><i class="iconfont">&#xe64a;</i>权限管理</el-button>
+                  <el-button class="l-inline-btn" @click="viewRoleMembers(scope.row)" type="text" size="small"><i class="iconfont">&#xe6b0;</i>角色成员</el-button>
                 </template>
             </el-table-column>
         </el-table>
@@ -69,8 +69,12 @@
             }
         },
         methods: {
+            editRole(row){
+              this.formVisible = true;
+              this.form = Object.assign(this.form, {id: row.id, name: row.name})
+            },
             handleSubmit(){
-                this.$http.post('/admin/privileges/add/role', this.form)
+                this.$http.post('/admin/privileges/save/role', this.form)
                     .then(res => {
                         if(res.success){
                             this.formVisible = false;
@@ -82,15 +86,30 @@
                 this.$router.push('/privileges/role/users/'+row.id)
             },
             editRolePermissions(row){
-                this.$router.push('/privileges/role/permissions/'+row.id)
+                this.$router.push('/privileges/role/permissions/'+row.id+'/'+row.name)
             },
             handleDelete(row){
+              this.$confirm('确认删除该角色?', '提示', {
+                confirmButtonText: '确定',
+                cancelButtonText: '取消',
+                type: 'warning'
+              }).then(() => {
                 this.$http.post('/admin/privileges/delete/role/'+row.id)
-                    .then(res => {
-                        if(res.success){
-                            this.loadRoles();
-                        }
-                    });
+                  .then(res => {
+                    if(res.success){
+                      this.$message({
+                        type: 'success',
+                        message: '删除成功!'
+                      });
+                      this.loadRoles();
+                    }else{
+                      this.$message({
+                        type: 'info',
+                        message: res.error
+                      });
+                    }
+                  });
+              }).catch(() => {});
             },
             addActivity(){
             },
