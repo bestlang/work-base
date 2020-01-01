@@ -1,13 +1,11 @@
-*{
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: Helvetica Neue,Helvetica,PingFang SC,Hiragino Sans GB,Microsoft YaHei,SimSun,sans-serif;
+  font-family: Helvetica Neue, Helvetica, PingFang SC, Hiragino Sans GB, Microsoft YaHei, SimSun, sans-serif;
   outline: none;
   list-style: none;
 }
-.el-menu-item i{color: darkblue;}
-.el-submenu__title i{color: darkblue;}
 .top-buttons{
   margin-bottom: 20px;
 }
@@ -21,14 +19,4 @@
 }
 .l-delimiter{
   height: 18px;
-}
-.el-form-item__label{
-  line-height: 32px;
-}
-.el-menu-item i{color: darkblue;}
-.el-submenu__title i{color: darkblue;}
-.el-button--text{color: darkblue;font-weight: 500;}
-.el-button--primary{background: darkblue;border-color: darkblue;}
-.el-pagination.is-background .el-pager li:not(.disabled).active{
-  background-color: darkblue;
 }

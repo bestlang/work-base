@@ -38,8 +38,8 @@ class PrivilegesController extends Controller
         $role = Role::find($role_id);
         return response()->ajax($role->permissions()->pluck('id')->toArray());
     }
-    // delete a user from role user list
-    public function deleteRoleModel(Request $request)
+    // remove a user from role user list
+    public function removeRoleModel(Request $request)
     {
         $params = $request->all();
 
@@ -49,6 +49,12 @@ class PrivilegesController extends Controller
 
         $user = User::find($model_id);
         $role = Role::find($role_id);
+        $login_user = Auth::user();
+        if(get_class($user) === get_class($login_user)){
+            if($user->id === $login_user->id){
+                return response()->error('不可删除当前用户!');
+            }
+        }
         $user->removeRole($role);
         return response()->ajax();
     }
@@ -61,8 +67,8 @@ class PrivilegesController extends Controller
     {
         $params = $request->all();
         if($id){
-            $users = Role::find($id)->users;
-            return response()->ajax($users);
+            $role = Role::with(['users'])->find($id);
+            return response()->ajax($role);
         }
         return response()->ajax([]);
     }

@@ -1,8 +1,11 @@
 <template>
     <div>
         <div class="top-buttons" style="display: flex;flex-flow: row nowrap;justify-content: space-between;">
-            <el-button type="primary"><i class="iconfont">&#xe641;</i> 添加</el-button>
+          <div style="line-height: 36px;">{{roleName}}用户</div>
+          <div>
+            <el-button type="primary" @click="addNewUser"><i class="iconfont">&#xe641;</i> 添加</el-button>
             <el-button @click="$router.push({path: '/privileges/roles'})"><span class="iconfont">&#xe665;</span></el-button>
+          </div>
         </div>
         <el-table
                 border
@@ -12,7 +15,11 @@
                 style="width: 100%">
             <el-table-column
                     prop="name"
-                    label="名字">
+                    label="昵称">
+            </el-table-column>
+            <el-table-column
+              prop="mobile"
+              label="手机号">
             </el-table-column>
             <el-table-column
                     prop="id"
@@ -23,21 +30,54 @@
                     fixed="right"
                     label="操作">
                 <template slot-scope="scope">
-                    <el-button class="l-inline-btn" type="text" size="small" @click="handleDelete(scope.row)">删除</el-button>
+                    <el-button class="l-inline-btn" type="text" size="small" @click="handleRemove(scope.row)">移出</el-button>
                 </template>
             </el-table-column>
         </el-table>
         <div class="l-delimiter"></div>
+        <el-dialog title="添加用户" :visible.sync="showForm">
+          <el-form :model="form" label-width="80px">
+            <el-form-item label="手机号">
+              <el-input v-model="form.mobile" autocomplete="off" class="l-w-200"></el-input>
+            </el-form-item>
+            <el-form-item label="密码">
+              <el-input v-model="form.password" autocomplete="off" class="l-w-200"></el-input>
+            </el-form-item>
+            <el-form-item label="确认密码">
+              <el-input v-model="form.confirm_password" autocomplete="off" class="l-w-200"></el-input>
+            </el-form-item>
+            <el-form-item label="昵称">
+              <el-input v-model="form.name" autocomplete="off" class="l-w-200"></el-input>
+            </el-form-item>
+          </el-form>
+          <div slot="footer" class="dialog-footer">
+            <el-button @click="showForm = false">取 消</el-button>
+            <el-button type="primary" @click="doAddNewUser">确 定</el-button>
+          </div>
+        </el-dialog>
     </div>
 
 </template>
-
+<style lang="less" scoped>
+  .l-w-200{
+    /*width: 280px;*/
+  }
+</style>
 <script>
     export default {
         data() {
             return {
+                showForm: false,
                 total: 0,
-                tableData: []
+                tableData: [],
+                roleName: '',
+                form: {
+                  role_id: this.$route.params.id,
+                  mobile: '',
+                  password: '',
+                  confirm_password: '',
+                  name: ''
+                }
             }
         },
         computed:{
@@ -46,16 +86,41 @@
             }
         },
         methods: {
-            handleDelete(row){
-              this.$confirm('确认删除该用户?', '提示', {
+          addNewUser(){
+            this.showForm = true;
+            Object.assign(this.form, {
+              mobile: '',
+              password: '',
+              confirm_password: '',
+              name: ''
+            });
+          },
+          doAddNewUser(){
+            this.$http
+              .post(`/admin/user/create/role/user`, this.form)
+              .then(res => {
+                if(res.success){
+                  this.loadRoleUsers()
+                  this.showForm = false;
+                }else{
+                  this.$message({type:'error', message: res.error});
+                }
+              });
+          },
+          handleRemove(row){
+              this.$confirm('确认移出该用户?', '提示', {
                 confirmButtonText: '确定',
                 cancelButtonText: '取消',
                 type: 'warning'
               }).then(() => {
                 this.$http
-                  .post(`/admin/privileges/delete/role/model`, row.pivot)
+                  .post(`/admin/privileges/remove/role/model`, row.pivot)
                   .then(res => {
-                    this.loadRoleUsers()
+                    if(res.success){
+                      this.loadRoleUsers()
+                    }else{
+                      this.$message({type:'error', message: res.error});
+                    }
                   });
               }).catch(() => {});
             },
@@ -63,7 +128,8 @@
                 this.$http
                     .get(`/admin/privileges/role/users/${this.$route.params.id}`)
                     .then(res => {
-                        this.tableData = res.data;
+                      this.roleName = res.data.name;
+                        this.tableData = res.data.users;
                     });
             }
         },

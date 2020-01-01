@@ -1,5 +1,5 @@
 <template>
-    <div class="flex-wrap">
+    <div class="l-flex-wrap">
         <div class="left-tree" :class="{ active: isActive }">
             <div class="search-wrap">
                 <el-input placeholder="请输入内容" v-model="params.keyword" @keyup.native.enter="searchClick" :autofoucs="true">
@@ -189,22 +189,21 @@
         }
 
     }
-    .flex-wrap{
+    .l-flex-wrap{
         position: relative;
         .left-tree{
+            /*height: calc(100vh - 109px);*/
             &.active{
                  width: 240px;
                  display: block;
              }
-            display:none;
-            overflow:hidden;
             border-right: solid 1px #e6e6e6;
-            overflow-y: scroll;
-            position: absolute;
-            top:0;
-            left:0;
-            bottom: 0;
-            min-height: calc(100vh - 69px);
+            /*overflow-y: scroll;*/
+            /*position: absolute;*/
+            /*top:0;*/
+            /*left:0;*/
+            /*bottom: 0;*/
+            /*min-height: calc(100vh - 69px);*/
             .search-btn{
                 z-index:9999;
                 margin-left:-32px;

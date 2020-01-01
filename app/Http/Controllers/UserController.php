@@ -17,7 +17,6 @@ class UserController extends Controller
 {
     //
     public $loginAfterSignUp = true;
-
     public function whiteList()
     {
         $whiteList = User::where('white', 1)->pluck('id')->toArray();

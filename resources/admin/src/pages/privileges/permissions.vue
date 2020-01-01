@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div style="width:60%;">
+    <div style="width:50%;">
       <el-tree
         :data="treeData"
         default-expand-all
@@ -12,7 +12,7 @@
         :indent="30"
         :expand-on-click-node="false">
         <span class="custom-tree-node" slot-scope="{ node, data }">
-          <span>{{ data.id }}-{{ node.label }}</span>
+          <span>{{ node.label }}</span>
           <span>
             <el-button
               type="text"
@@ -42,7 +42,7 @@
           <el-input v-model="form.show_name" autocomplete="off"></el-input>
         </el-form-item>
         <el-form-item label="权限字符串">
-          <el-input v-model="form.name" autocomplete="off"></el-input>
+          <el-input v-model="form.name" autocomplete="off" :disabled="form.id>0"></el-input>
         </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
@@ -115,17 +115,23 @@
         if (!this.current.children) {
           this.$set(this.current, 'children', []);
         }
+        this.dialogFormVisible = false
         this.$http
           .post("/admin/privileges/add/permission", {parent_id: this.current.id, name: this.form.name, show_name: this.form.show_name})
           .then(res => {
             newChild.id = res.data.id;
             this.current.children.push(newChild);
-            this.dialogFormVisible = false
-            this.$message({
-              type: 'success',
-              message: '添加成功!'
-            });
-            this.recovery()
+            // this.dialogFormVisible = false
+            if(res.success){
+              this.$message({
+                type: 'success',
+                message: '添加成功!'
+              });
+              this.recovery()
+            }else{
+              this.dialogFormVisible = true
+            }
+
           });
       },
       doEdit(){

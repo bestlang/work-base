@@ -16,7 +16,7 @@
             <!--</div>-->
             <!--:class="{'ls-main-collapse': isCollapse}"-->
             <div class="ls-main">
-                <div style="box-sizing: border-box;background: #fff;padding: 20px;box-sizing: border-box;">
+                <div style="box-sizing: border-box;background: #fff;padding: 20px;box-sizing: border-box;min-height: 100%;">
                     <router-view></router-view>
                 </div>
             </div>
@@ -61,11 +61,11 @@ export default {
     .ls-content{
         width: 100%;
         flex-basis: auto;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
+        /*display: flex;*/
+        /*flex-direction: column;*/
+        /*justify-content: space-between;*/
         overflow-x: hidden;
-        overflow-y: scroll;
+        /*overflow-y: scroll;*/
     }
     .ls-left{
         text-align: left;
@@ -73,10 +73,10 @@ export default {
     }
 
     .ls-main{
-        background: #f4f4f4;
-        overflow-y: scroll;
         height: calc(100vh - 49px);
         padding: 10px;
+        overflow-y: scroll;
+        background: rgb(244, 244, 244);
     }
     /*.ls-main-collapse{*/
         /*width: 100%;*/

@@ -2,7 +2,7 @@
     <div class="ls-top-wrap">
         <div class="ls-top-left">
             <div class="ls-icon-collapse" @click="toggleCollapse">
-                <i class="iconfont">&#xe954;</i>
+                <i class="iconfont l-color">&#xe954;</i>
             </div>
         </div>
         <div class="ls-top-right"><div @click="logout" class="logout"><i class="iconfont">&#xe84b; </i>登出</div></div>
@@ -30,6 +30,9 @@ export default {
 }
 </script>
 <style scoped lang="less">
+    .l-color{
+      color:#4949BB;
+    }
     .ls-top-wrap{
         padding: 0;
     }

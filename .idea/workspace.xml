@@ -2,19 +2,45 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="aef91878-d985-49b4-be16-6bb2c8017b08" name="Default" comment="#">
-      <change afterPath="$PROJECT_DIR$/database/migrations/2019_12_29_214739_modify_users_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/larashop.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/larashop.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/UserController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/admin/src/css/ele-custom-theme/config.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/admin/src/css/ele-custom-theme/theme/fonts/element-icons.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/admin/src/css/ele-custom-theme/theme/fonts/element-icons.woff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/admin/src/css/ele-custom-theme/theme/index.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/admin/src/css/ele-custom-theme/theme/readMe.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/PrivilegesController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/PrivilegesController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/admin/src/api/fetch.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/admin/src/api/fetch.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/UserController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/User.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/admin/dist/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/resources/admin/dist/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/admin/dist/static/css/app.76732fe7faeb60c8d8eb6e8050c0d554.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/admin/dist/static/css/app.76732fe7faeb60c8d8eb6e8050c0d554.css.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/admin/dist/static/js/0.216c8c2495b54f819c99.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/admin/dist/static/js/0.216c8c2495b54f819c99.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/admin/dist/static/js/1.f2a80e508e00d6debfa5.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/admin/dist/static/js/1.f2a80e508e00d6debfa5.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/admin/dist/static/js/2.8d63f5bc0dd0db882202.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/admin/dist/static/js/2.8d63f5bc0dd0db882202.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/admin/dist/static/js/3.32bb7565506c894916d0.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/admin/dist/static/js/3.32bb7565506c894916d0.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/admin/dist/static/js/4.66a99cb18d3699fc423c.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/admin/dist/static/js/4.66a99cb18d3699fc423c.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/admin/dist/static/js/5.d571e0e6c371e3cfd145.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/admin/dist/static/js/5.d571e0e6c371e3cfd145.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/admin/dist/static/js/app.e69c598872461ea96149.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/admin/dist/static/js/app.e69c598872461ea96149.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/admin/dist/static/js/manifest.e89d808800c1c3c82bb8.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/admin/dist/static/js/manifest.e89d808800c1c3c82bb8.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/admin/dist/static/js/vendor.f7f2104e7f8e6e9cb2a0.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/admin/dist/static/js/vendor.f7f2104e7f8e6e9cb2a0.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/admin/src/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/admin/src/App.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/admin/src/components/backend.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/admin/src/components/backend.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/admin/src/components/partials/menu.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/admin/src/components/partials/menu.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/admin/src/components/partials/top.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/admin/src/components/partials/top.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/admin/src/css/common.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/admin/src/css/common.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/admin/src/css/iconfont.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/admin/src/css/iconfont.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/admin/src/pages/activity/list.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/admin/src/pages/activity/list.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/admin/src/pages/pdd/orders.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/admin/src/pages/pdd/orders.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/admin/src/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/admin/src/main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/admin/src/pages/pdd/catGoods.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/admin/src/pages/pdd/catGoods.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/admin/src/pages/privileges/permissions.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/admin/src/pages/privileges/permissions.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/admin/src/pages/privileges/role_permissions.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/admin/src/pages/privileges/role_permissions.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/admin/src/pages/privileges/role_users.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/admin/src/pages/privileges/role_users.vue" afterDir="false" />
@@ -26,10 +52,6 @@
       <change beforePath="$PROJECT_DIR$/storage/framework/cache/data/b8/55/b85503ed5c2bc216ecbc86c82005e92d6a01c97f" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/cache/data/b8/55/b85503ed5c2bc216ecbc86c82005e92d6a01c97f" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/storage/framework/cache/data/c2/4f/c24f92750673b2169c8cb7bfbc999cfa8457dc7c" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/cache/data/c2/4f/c24f92750673b2169c8cb7bfbc999cfa8457dc7c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/storage/logs/laravel.log" beforeDir="false" afterPath="$PROJECT_DIR$/storage/logs/laravel.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_classmap.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_classmap.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_psr4.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_psr4.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_static.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_static.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/composer/installed.json" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/installed.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -209,19 +231,21 @@
     <property name="JavaScriptWeakerCompletionTypeGuess" value="true" />
     <property name="SearchEverywhereHistoryKey" value="login&#9;FILE&#9;file:///Users/lu/PhpstormProjects/larashop/resources/admin/src/pages/login.vue&#10;iconfont&#9;FILE&#9;file:///Users/lu/PhpstormProjects/larashop/resources/admin/src/css/iconfont.scss&#10;Migrator&#9;null&#9;null&#10;User&#9;FILE&#9;file:///Users/lu/PhpstormProjects/larashop/app/User.php&#10;SessionGuard&#9;null&#9;null&#10;JWTAuth&#9;null&#9;null" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/admin/src/css/ele-custom-theme/theme" />
     <property name="nodejs_interpreter_path" value="/usr/local/bin/node" />
     <property name="nodejs_package_manager_path" value="yarn" />
     <property name="settings.editor.selected.configurable" value="Settings.JavaScript" />
     <property name="ts.external.directory.path" value="$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/app/Models" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/resources/admin/src/css/ele-custom-theme/theme" />
+      <recent name="$PROJECT_DIR$/resources/admin/src/css" />
       <recent name="$PROJECT_DIR$/resources/admin" />
       <recent name="$PROJECT_DIR$" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/app/Models" />
     </key>
   </component>
   <component name="RunManager">
@@ -296,7 +320,16 @@
       <workItem from="1577324002738" duration="380000" />
       <workItem from="1577324393137" duration="1313000" />
       <workItem from="1577455573441" duration="22530000" />
-      <workItem from="1577601513724" duration="9204000" />
+      <workItem from="1577601513724" duration="10856000" />
+      <workItem from="1577708728103" duration="8505000" />
+      <workItem from="1577718709873" duration="1202000" />
+      <workItem from="1577720473675" duration="791000" />
+      <workItem from="1577757558485" duration="27000" />
+      <workItem from="1577760650373" duration="624000" />
+      <workItem from="1577801499518" duration="974000" />
+      <workItem from="1577802831401" duration="7295000" />
+      <workItem from="1577883964463" duration="117000" />
+      <workItem from="1577884092111" duration="2444000" />
     </task>
     <task id="LOCAL-00001" summary="#">
       <created>1572615180702</created>
@@ -319,7 +352,21 @@
       <option name="project" value="LOCAL" />
       <updated>1577325579936</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="#">
+      <created>1577628038553</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1577628038553</updated>
+    </task>
+    <task id="LOCAL-00005" summary="#">
+      <created>1577628075587</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1577628075587</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -330,10 +377,14 @@
     <option name="LAST_COMMIT_MESSAGE" value="#" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="451" y="24" key="CommitChangelistDialog2" timestamp="1577628037243">
+    <state x="461" y="183" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1577628921516">
       <screen x="0" y="23" width="1440" height="794" />
     </state>
-    <state x="451" y="24" key="CommitChangelistDialog2/0.23.1440.794@0.23.1440.794" timestamp="1577628037243" />
+    <state x="461" y="183" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.23.1440.794@0.23.1440.794" timestamp="1577628921516" />
+    <state x="451" y="24" key="CommitChangelistDialog2" timestamp="1577628126696">
+      <screen x="0" y="23" width="1440" height="794" />
+    </state>
+    <state x="451" y="24" key="CommitChangelistDialog2/0.23.1440.794@0.23.1440.794" timestamp="1577628126696" />
     <state x="601" y="84" key="CommitChangelistDialog2/1920.469.1440.877/0.23.1920.974@0.23.1920.974" timestamp="1577325498230" />
     <state x="193" y="109" key="DiffContextDialog" timestamp="1576809818097">
       <screen x="0" y="23" width="1920" height="974" />
@@ -347,26 +398,31 @@
       <screen x="0" y="23" width="1440" height="877" />
     </state>
     <state x="262" y="146" key="SettingsEditor/0.23.1440.877@0.23.1440.877" timestamp="1576844648980" />
-    <state width="500" height="400" key="SwitcherDM" timestamp="1577625249775">
+    <state width="500" height="400" key="SwitcherDM" timestamp="1577886490684">
       <screen x="0" y="23" width="1440" height="794" />
     </state>
-    <state width="500" height="400" key="SwitcherDM/0.23.1440.794@0.23.1440.794" timestamp="1577625249775" />
+    <state width="500" height="400" key="SwitcherDM/0.23.1440.794@0.23.1440.794" timestamp="1577886490683" />
     <state width="500" height="401" key="SwitcherDM/0.23.1440.877@0.23.1440.877" timestamp="1576853757463" />
     <state width="500" height="445" key="SwitcherDM/1920.469.1440.877/0.23.1920.974@0.23.1920.974" timestamp="1576809984444" />
     <state width="500" height="401" key="SwitcherDM/1920.469.1440.877/0.23.1920.974@1920.469.1440.877" timestamp="1576674397976" />
-    <state x="548" y="211" key="Vcs.Push.Dialog.v2" timestamp="1577325595713">
-      <screen x="0" y="23" width="1920" height="974" />
+    <state x="401" y="170" key="Vcs.Push.Dialog.v2" timestamp="1577628078776">
+      <screen x="0" y="23" width="1440" height="794" />
     </state>
+    <state x="401" y="170" key="Vcs.Push.Dialog.v2/0.23.1440.794@0.23.1440.794" timestamp="1577628078776" />
     <state x="548" y="211" key="Vcs.Push.Dialog.v2/1920.469.1440.877/0.23.1920.974@0.23.1920.974" timestamp="1577325595713" />
-    <state x="514" y="23" width="699" height="701" key="find.popup" timestamp="1577540642733">
+    <state x="514" y="23" width="699" height="701" key="find.popup" timestamp="1577883862133">
       <screen x="0" y="23" width="1440" height="794" />
     </state>
-    <state x="514" y="23" width="699" height="701" key="find.popup/0.23.1440.794@0.23.1440.794" timestamp="1577540642733" />
+    <state x="514" y="23" width="699" height="701" key="find.popup/0.23.1440.794@0.23.1440.794" timestamp="1577883862133" />
     <state x="628" y="95" width="824" height="859" key="find.popup/1920.469.1440.877/0.23.1920.974@0.23.1920.974" timestamp="1577323196757" />
-    <state x="469" y="198" width="671" height="552" key="search.everywhere.popup" timestamp="1577627155385">
+    <state x="443" y="220" key="git4idea.merge.GitPullDialog" timestamp="1577628088214">
       <screen x="0" y="23" width="1440" height="794" />
     </state>
-    <state x="469" y="198" width="671" height="552" key="search.everywhere.popup/0.23.1440.794@0.23.1440.794" timestamp="1577627155385" />
+    <state x="443" y="220" key="git4idea.merge.GitPullDialog/0.23.1440.794@0.23.1440.794" timestamp="1577628088214" />
+    <state x="469" y="198" width="671" height="552" key="search.everywhere.popup" timestamp="1577884694713">
+      <screen x="0" y="23" width="1440" height="794" />
+    </state>
+    <state x="469" y="198" width="671" height="552" key="search.everywhere.popup/0.23.1440.794@0.23.1440.794" timestamp="1577884694713" />
     <state x="469" y="216" width="670" height="609" key="search.everywhere.popup/0.23.1440.877@0.23.1440.877" timestamp="1576846141354" />
     <state x="625" y="256" width="894" height="734" key="search.everywhere.popup/1920.469.1440.794/0.23.1920.1057@0.23.1920.1057" timestamp="1576894568525" />
     <state x="625" y="237" width="670" height="676" key="search.everywhere.popup/1920.469.1440.877/0.23.1920.974@0.23.1920.974" timestamp="1576806642948" />

@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="top-buttons" style="display: flex;flex-flow: row nowrap; justify-content: space-between;">
-            <div><b>{{role_name}}</b></div>
+            <div>{{role_name}}权限</div>
             <el-button @click="$router.push({path: '/privileges/roles'})"><span class="iconfont">&#xe665;</span></el-button>
         </div>
         <div>
@@ -63,7 +63,8 @@
       methods: {
         saveRolePermissions(){
           let nodes = this.$refs['role-permission-tree'].getCheckedNodes();
-          let permissions = nodes.filter((n) => !n.children.length).map((n) => n.id);
+          let permissions = nodes.map((n) => n.id);//.filter((n) => !n.children.length)
+
           let role_id = this.role_id
           this.$http
             .post("/admin/privileges/give/permissions/to", {permissions, role_id})

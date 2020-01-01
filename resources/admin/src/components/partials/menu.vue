@@ -9,7 +9,7 @@
 <template>
     <div>
         <div class="ls-top-logo" v-show="!isCollapse">路章's博客</div>
-        <div class="ls-top-logo-narrow" v-show="isCollapse">路's</div>
+        <div class="ls-top-logo-narrow" v-show="isCollapse">路</div>
         <el-menu
                 class="el-menu-vertical"
                 @open="handleOpen"
@@ -17,13 +17,11 @@
                 router
                 :collapse="isCollapse">
               <template  v-for="(item , index) in router.options.routes">
-                <template v-if="item.children && item.children.filter(x=>x.meta.show).length > 0">
-                  <el-submenu :index="item.path">
+                <template v-if="item.children && item.children.filter(x=>x.meta.show).length > 1">
+                  <el-submenu :index="item.path" class="unselectable">
                     <template slot="title">
                       <i class="iconfont" v-html="item.meta.font"></i>
-                      <span slot="title">
-                        {{item.meta.name}}
-                      </span>
+                      <span slot="title">{{item.meta.name}}</span>
                     </template>
                     <template v-for="(itemChild , index) in item.children">
                       <el-menu-item v-if="itemChild.meta.show" :index="itemChild.path" :key="index">
@@ -34,12 +32,11 @@
                   </el-submenu>
                 </template>
                 <template v-else>
-                  <el-menu-item v-if="item.children && item.children[0].meta.show" :index="item.children[0].path">
-                    <template slot="title">
-                      <i class="iconfont" v-html="item.meta.font"></i>
-                      <span slot="title">{{item.children[0].meta.name}}</span>
-                    </template>
+                  <el-menu-item class="unselectable" v-if="item.children && item.children[0].meta.show" :index="item.children[0].path">
+                    <i class="iconfont" v-html="item.children[0].meta.font"></i>
+                    <span slot="title">{{item.children[0].meta.name}}</span>
                   </el-menu-item>
+
                 </template>
               </template>
         </el-menu>
@@ -89,11 +86,7 @@
                   //查询出用户的权限列表,根据权限列表过滤路由生成菜单
                   let routes = this.router.options.routes;
                   routes.map((route, index) => {
-                    if(!route.hasOwnProperty('children')){
-                      if(this.privileges.indexOf(route.meta.can) === -1){
-                        route.meta.show = false
-                      }
-                    }else{
+                    if(route.hasOwnProperty('children')){
                       route.children.map((child, idx) => {
                         if(this.privileges.indexOf(route.children[idx].meta.can) === -1){
                           route.children[idx].meta.show = false

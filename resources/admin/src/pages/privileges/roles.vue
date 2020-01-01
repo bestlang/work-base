@@ -22,10 +22,10 @@
                     fixed="right"
                     label="操作">
                 <template slot-scope="scope">
-                  <el-button class="l-inline-btn" @click="editRole(scope.row)" type="text" size="small"><i class="iconfont">&#xe618;</i> 编辑</el-button>
-                  <el-button class="l-inline-btn" type="text" size="small" @click="handleDelete(scope.row)"><i class="iconfont">&#xe620;</i> 删除</el-button>
-                  <el-button class="l-inline-btn" type="text" size="small" @click="editRolePermissions(scope.row)"><i class="iconfont">&#xe64a;</i>权限管理</el-button>
-                  <el-button class="l-inline-btn" @click="viewRoleMembers(scope.row)" type="text" size="small"><i class="iconfont">&#xe6b0;</i>角色成员</el-button>
+                  <el-button class="l-inline-btn" @click="editRole(scope.row)" type="text" size="medium"><i class="iconfont">&#xe618;</i>编辑</el-button>
+                  <el-button class="l-inline-btn" type="text" size="medium" @click="handleDelete(scope.row)"><i class="iconfont">&#xe620;</i>删除</el-button>
+                  <el-button class="l-inline-btn" type="text" size="medium" @click="editRolePermissions(scope.row)"><i class="iconfont">&#xe64a;</i>权限</el-button>
+                  <el-button class="l-inline-btn" @click="viewRoleMembers(scope.row)" type="text" size="medium"><i class="iconfont">&#xe6b0;</i>成员</el-button>
                 </template>
             </el-table-column>
         </el-table>
