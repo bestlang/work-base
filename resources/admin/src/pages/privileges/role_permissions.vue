@@ -11,14 +11,12 @@
               :data="treeData"
               default-expand-all
               show-checkbox
-              :check-strictly="false"
               node-key="id"
               :props="customProps"
               :default-checked-keys="defaultCheckedKeys"
               :expand-on-click-node="false"
               :check-on-click-node="true"
-              :indent="30"
-              @check-change="handleCheckChange">
+              :indent="30">
               <span class="custom-tree-node" slot-scope="{ node, data }">
                 <span>{{ data.id }}-{{ node.label }}</span>
               </span>
@@ -74,10 +72,6 @@
                 message: '设置成功!'
               });
             }).catch(err => {});
-        },
-        handleCheckChange(data, checked, indeterminate) {
-          // console.log(data, checked, indeterminate);
-          // console.log(data,`.............`, checked, `.............`);
         },
         loadPermissionsTree(){
           this.$http

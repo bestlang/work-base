@@ -16,8 +16,20 @@ class PrivilegesController extends Controller
     public function userPermissions()
     {
         $user = Auth::user();
-        $permissions = $user->getPermissionsViaRoles()->map(function ($item){ return $item->name;});
-        return response()->ajax($permissions);
+        $userPermissions = $user->getPermissionsViaRoles();//->map(function ($item){ return $item->name;});
+        $permissionIds = $userPermissions->map(function ($item){ return $item->id;})->toArray();
+        $permissions = $userPermissions->map(function ($item){ return $item->name;})->toArray();
+        $map = [];
+        $allPermissions = Permission::all();
+        foreach ($allPermissions as $permission){
+            $children_permissions = Permission::whereBetween('id', [$permission->left, $permission->right])->get();
+            $children_permissions->each(function ($item)use($permission, $permissionIds, &$permissions){
+                if(in_array($item->id, $permissionIds)){
+                    array_push($permissions, $permission->name);
+                }
+            });
+        }
+        return response()->ajax(collect($permissions)->unique()->values()->all());
     }
     // assign permissions to a specific role
     public function givePermissionsTo(Request $request)
@@ -75,13 +87,19 @@ class PrivilegesController extends Controller
 
     public function saveRole(Request $request)
     {
+        $user = Auth::user();
         $params = $request->all();
         $id = Arr::get($params, 'id', '');
         $name = Arr::get($params, 'name', '');
         if($id){
-            $role = Role::find($id);
-            $role->name = $name;
-            $role->save();
+            if($user::can('privileges edit roles')){
+                $role = Role::find($id);
+                $role->name = $name;
+                $role->save();
+            }else{
+                return response()->error('无权限!');
+            }
+
         }else{
             $role = new Role();
             $role->name = $name;

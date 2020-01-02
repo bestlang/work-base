@@ -2,51 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="aef91878-d985-49b4-be16-6bb2c8017b08" name="Default" comment="#">
-      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/UserController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/admin/src/css/ele-custom-theme/config.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/admin/src/css/ele-custom-theme/theme/fonts/element-icons.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/admin/src/css/ele-custom-theme/theme/fonts/element-icons.woff" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/admin/src/css/ele-custom-theme/theme/index.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/admin/src/css/ele-custom-theme/theme/readMe.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/PrivilegesController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/PrivilegesController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/UserController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/admin/dist/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/resources/admin/dist/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/admin/dist/static/css/app.76732fe7faeb60c8d8eb6e8050c0d554.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/admin/dist/static/css/app.76732fe7faeb60c8d8eb6e8050c0d554.css.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/admin/dist/static/js/0.216c8c2495b54f819c99.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/admin/dist/static/js/0.216c8c2495b54f819c99.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/admin/dist/static/js/1.f2a80e508e00d6debfa5.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/admin/dist/static/js/1.f2a80e508e00d6debfa5.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/admin/dist/static/js/2.8d63f5bc0dd0db882202.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/admin/dist/static/js/2.8d63f5bc0dd0db882202.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/admin/dist/static/js/3.32bb7565506c894916d0.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/admin/dist/static/js/3.32bb7565506c894916d0.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/admin/dist/static/js/4.66a99cb18d3699fc423c.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/admin/dist/static/js/4.66a99cb18d3699fc423c.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/admin/dist/static/js/5.d571e0e6c371e3cfd145.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/admin/dist/static/js/5.d571e0e6c371e3cfd145.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/admin/dist/static/js/app.e69c598872461ea96149.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/admin/dist/static/js/app.e69c598872461ea96149.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/admin/dist/static/js/manifest.e89d808800c1c3c82bb8.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/admin/dist/static/js/manifest.e89d808800c1c3c82bb8.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/admin/dist/static/js/vendor.f7f2104e7f8e6e9cb2a0.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/admin/dist/static/js/vendor.f7f2104e7f8e6e9cb2a0.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/admin/src/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/admin/src/App.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/admin/src/components/backend.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/admin/src/components/backend.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/admin/src/components/partials/menu.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/admin/src/components/partials/menu.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/admin/src/components/partials/top.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/admin/src/components/partials/top.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/admin/src/css/common.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/admin/src/css/common.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/admin/src/css/iconfont.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/admin/src/css/iconfont.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/admin/src/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/admin/src/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/admin/src/pages/pdd/catGoods.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/admin/src/pages/pdd/catGoods.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/admin/src/pages/privileges/permissions.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/admin/src/pages/privileges/permissions.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/admin/src/pages/privileges/role_permissions.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/admin/src/pages/privileges/role_permissions.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/admin/src/pages/privileges/role_users.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/admin/src/pages/privileges/role_users.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/admin/src/pages/privileges/roles.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/admin/src/pages/privileges/roles.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/admin/src/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/admin/src/router/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/storage/framework/cache/data/08/74/08743582456b52abe1182f5a5a3e12b457ba28b8" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/cache/data/08/74/08743582456b52abe1182f5a5a3e12b457ba28b8" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/storage/framework/cache/data/44/d1/44d142505dd1a3b497197e2f459d2aec779e9ed6" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/cache/data/44/d1/44d142505dd1a3b497197e2f459d2aec779e9ed6" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/storage/framework/cache/data/b8/55/b85503ed5c2bc216ecbc86c82005e92d6a01c97f" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/cache/data/b8/55/b85503ed5c2bc216ecbc86c82005e92d6a01c97f" afterDir="false" />
@@ -234,7 +194,7 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/admin/src/css/ele-custom-theme/theme" />
     <property name="nodejs_interpreter_path" value="/usr/local/bin/node" />
     <property name="nodejs_package_manager_path" value="yarn" />
-    <property name="settings.editor.selected.configurable" value="Settings.JavaScript" />
+    <property name="settings.editor.selected.configurable" value="reference.webide.settings.project.settings.php" />
     <property name="ts.external.directory.path" value="$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external" />
   </component>
   <component name="RecentsManager">
@@ -329,7 +289,8 @@
       <workItem from="1577801499518" duration="974000" />
       <workItem from="1577802831401" duration="7295000" />
       <workItem from="1577883964463" duration="117000" />
-      <workItem from="1577884092111" duration="2444000" />
+      <workItem from="1577884092111" duration="6044000" />
+      <workItem from="1577956803514" duration="6614000" />
     </task>
     <task id="LOCAL-00001" summary="#">
       <created>1572615180702</created>
@@ -366,11 +327,28 @@
       <option name="project" value="LOCAL" />
       <updated>1577628075587</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="#">
+      <created>1577887074805</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1577887074805</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.History.Properties">
+    <option name="COLUMN_ORDER">
+      <list>
+        <option value="0" />
+        <option value="2" />
+        <option value="3" />
+        <option value="1" />
+      </list>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="#" />
@@ -381,47 +359,52 @@
       <screen x="0" y="23" width="1440" height="794" />
     </state>
     <state x="461" y="183" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.23.1440.794@0.23.1440.794" timestamp="1577628921516" />
-    <state x="451" y="24" key="CommitChangelistDialog2" timestamp="1577628126696">
+    <state x="451" y="24" key="CommitChangelistDialog2" timestamp="1577887073360">
       <screen x="0" y="23" width="1440" height="794" />
     </state>
-    <state x="451" y="24" key="CommitChangelistDialog2/0.23.1440.794@0.23.1440.794" timestamp="1577628126696" />
+    <state x="451" y="24" key="CommitChangelistDialog2/0.23.1440.794@0.23.1440.794" timestamp="1577887073360" />
     <state x="601" y="84" key="CommitChangelistDialog2/1920.469.1440.877/0.23.1920.974@0.23.1920.974" timestamp="1577325498230" />
-    <state x="193" y="109" key="DiffContextDialog" timestamp="1576809818097">
-      <screen x="0" y="23" width="1920" height="974" />
+    <state x="145" y="93" width="1152" height="635" key="DiffContextDialog" timestamp="1577890516934">
+      <screen x="0" y="23" width="1440" height="794" />
     </state>
+    <state x="145" y="93" width="1152" height="635" key="DiffContextDialog/0.23.1440.794@0.23.1440.794" timestamp="1577890516934" />
     <state x="193" y="109" key="DiffContextDialog/1920.469.1440.877/0.23.1920.974@0.23.1920.974" timestamp="1576809818097" />
     <state x="718" y="227" key="RollbackChangesDialog" timestamp="1577324659199">
       <screen x="0" y="23" width="1920" height="974" />
     </state>
     <state x="718" y="227" key="RollbackChangesDialog/1920.469.1440.877/0.23.1920.974@0.23.1920.974" timestamp="1577324659199" />
-    <state x="262" y="146" key="SettingsEditor" timestamp="1576844648980">
-      <screen x="0" y="23" width="1440" height="877" />
+    <state x="262" y="126" key="SettingsEditor" timestamp="1577974461301">
+      <screen x="0" y="0" width="1440" height="900" />
     </state>
+    <state x="262" y="126" key="SettingsEditor/0.0.1440.900@0.0.1440.900" timestamp="1577974461301" />
     <state x="262" y="146" key="SettingsEditor/0.23.1440.877@0.23.1440.877" timestamp="1576844648980" />
-    <state width="500" height="400" key="SwitcherDM" timestamp="1577886490684">
-      <screen x="0" y="23" width="1440" height="794" />
+    <state width="500" height="454" key="SwitcherDM" timestamp="1577975991867">
+      <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="500" height="400" key="SwitcherDM/0.23.1440.794@0.23.1440.794" timestamp="1577886490683" />
+    <state width="500" height="454" key="SwitcherDM/0.0.1440.900@0.0.1440.900" timestamp="1577975991867" />
+    <state width="500" height="400" key="SwitcherDM/0.23.1440.794@0.23.1440.794" timestamp="1577888776290" />
     <state width="500" height="401" key="SwitcherDM/0.23.1440.877@0.23.1440.877" timestamp="1576853757463" />
     <state width="500" height="445" key="SwitcherDM/1920.469.1440.877/0.23.1920.974@0.23.1920.974" timestamp="1576809984444" />
     <state width="500" height="401" key="SwitcherDM/1920.469.1440.877/0.23.1920.974@1920.469.1440.877" timestamp="1576674397976" />
-    <state x="401" y="170" key="Vcs.Push.Dialog.v2" timestamp="1577628078776">
+    <state x="401" y="170" key="Vcs.Push.Dialog.v2" timestamp="1577887130384">
       <screen x="0" y="23" width="1440" height="794" />
     </state>
-    <state x="401" y="170" key="Vcs.Push.Dialog.v2/0.23.1440.794@0.23.1440.794" timestamp="1577628078776" />
+    <state x="401" y="170" key="Vcs.Push.Dialog.v2/0.23.1440.794@0.23.1440.794" timestamp="1577887130383" />
     <state x="548" y="211" key="Vcs.Push.Dialog.v2/1920.469.1440.877/0.23.1920.974@0.23.1920.974" timestamp="1577325595713" />
-    <state x="514" y="23" width="699" height="701" key="find.popup" timestamp="1577883862133">
-      <screen x="0" y="23" width="1440" height="794" />
+    <state x="514" y="0" width="701" height="795" key="find.popup" timestamp="1577974341423">
+      <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state x="514" y="23" width="699" height="701" key="find.popup/0.23.1440.794@0.23.1440.794" timestamp="1577883862133" />
+    <state x="514" y="0" width="701" height="795" key="find.popup/0.0.1440.900@0.0.1440.900" timestamp="1577974341423" />
+    <state x="514" y="23" width="699" height="701" key="find.popup/0.23.1440.794@0.23.1440.794" timestamp="1577887800752" />
     <state x="628" y="95" width="824" height="859" key="find.popup/1920.469.1440.877/0.23.1920.974@0.23.1920.974" timestamp="1577323196757" />
     <state x="443" y="220" key="git4idea.merge.GitPullDialog" timestamp="1577628088214">
       <screen x="0" y="23" width="1440" height="794" />
     </state>
     <state x="443" y="220" key="git4idea.merge.GitPullDialog/0.23.1440.794@0.23.1440.794" timestamp="1577628088214" />
-    <state x="469" y="198" width="671" height="552" key="search.everywhere.popup" timestamp="1577884694713">
-      <screen x="0" y="23" width="1440" height="794" />
+    <state x="469" y="198" width="671" height="626" key="search.everywhere.popup" timestamp="1577974278977">
+      <screen x="0" y="0" width="1440" height="900" />
     </state>
+    <state x="469" y="198" width="671" height="626" key="search.everywhere.popup/0.0.1440.900@0.0.1440.900" timestamp="1577974278977" />
     <state x="469" y="198" width="671" height="552" key="search.everywhere.popup/0.23.1440.794@0.23.1440.794" timestamp="1577884694713" />
     <state x="469" y="216" width="670" height="609" key="search.everywhere.popup/0.23.1440.877@0.23.1440.877" timestamp="1576846141354" />
     <state x="625" y="256" width="894" height="734" key="search.everywhere.popup/1920.469.1440.794/0.23.1920.1057@0.23.1920.1057" timestamp="1576894568525" />

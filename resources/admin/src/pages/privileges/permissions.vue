@@ -2,17 +2,17 @@
   <div>
     <div style="width:50%;">
       <el-tree
+        ref="tree"
         :data="treeData"
         default-expand-all
-        show-checkbox
-        :check-strictly="false"
         node-key="id"
         :props="customProps"
-        :default-checked-keys="[14,11]"
+        :default-checked-keys="[]"
         :indent="30"
+        @check="handleCheckChange"
         :expand-on-click-node="false">
         <span class="custom-tree-node" slot-scope="{ node, data }">
-          <span>{{ node.label }}</span>
+          <span>{{ node.label }}<!--{{ data.id }}--></span>
           <span>
             <el-button
               type="text"
@@ -168,8 +168,23 @@
             }).catch(()=>{});
         });
       },
-      handleNodeClick(data) {
-        console.log(data);
+      handleCheckChange(data, checked, indeterminate) {
+        /**
+        setCheckedNodes() {
+        this.$refs.tree.setCheckedNodes([{
+          id: 5,
+          label: '二级 2-1'
+        }, {
+          id: 9,
+          label: '三级 1-1-1'
+        }]);
+      },
+      */
+        // console.log(data, checked, indeterminate);
+        //this.$refs.tree.setCheckedKeys([23]);
+        //this.$refs.tree.setCheckedKeys([data.id]);
+        console.log(data,`.............`, checked, `.............`, indeterminate);
+        return true;
       },
       loadPermissionsTree(){
         this.$http
