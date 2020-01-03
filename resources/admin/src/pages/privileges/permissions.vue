@@ -1,14 +1,18 @@
 <template>
   <div>
+    <div class="top-buttons" style="display: flex;flex-flow: row nowrap; justify-content: space-between;">
+      <div>所有权限</div>
+    </div>
     <div style="width:50%;">
       <el-tree
+        show-checkbox
         ref="tree"
         :data="treeData"
         default-expand-all
         node-key="id"
         :props="customProps"
         :default-checked-keys="[]"
-        :indent="30"
+        :indent="40"
         @check="handleCheckChange"
         :expand-on-click-node="false">
         <span class="custom-tree-node" slot-scope="{ node, data }">
@@ -188,7 +192,7 @@
       },
       loadPermissionsTree(){
         this.$http
-        .get("/admin/privileges/permissions/tree")
+        .get("/admin/privileges/permissions/tree", {params:{disabled: true}})
         .then(res => {
           this.treeData = [res.data[Object.keys(res.data)[0]]];
         });

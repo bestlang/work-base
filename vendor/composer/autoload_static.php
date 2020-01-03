@@ -612,6 +612,7 @@ class ComposerStaticInitf3c7adb5ea48bb42df4a643c07fc525e
         'App\\Http\\Controllers\\Admin\\ActivityController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/ActivityController.php',
         'App\\Http\\Controllers\\Admin\\PrivilegesController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/PrivilegesController.php',
         'App\\Http\\Controllers\\Admin\\UploadController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/UploadController.php',
+        'App\\Http\\Controllers\\Admin\\UserController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/UserController.php',
         'App\\Http\\Controllers\\AuthController' => __DIR__ . '/../..' . '/app/Http/Controllers/AuthController.php',
         'App\\Http\\Controllers\\Auth\\ForgotPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ForgotPasswordController.php',
         'App\\Http\\Controllers\\Auth\\LoginController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/LoginController.php',

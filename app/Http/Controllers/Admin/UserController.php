@@ -16,7 +16,7 @@ class UserController extends Controller
     {
         $user = new User;
         $role_id = $request->input('role_id', '');
-        $user->name = '花花';
+        $user->name = 'sampleuser';
         $user->password = bcrypt('123456');
         $user->save();
         return response()->ajax($user);
@@ -56,6 +56,7 @@ class UserController extends Controller
         }
         $arr = Arr::only($params, ['name', 'mobile', 'password']);
         $arr['password'] = bcrypt($arr['password']);
+        $arr['type'] = 1;
         DB::beginTransaction();
         try{
             $user = User::create($arr);

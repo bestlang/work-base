@@ -20,6 +20,7 @@ return array(
     'App\\Http\\Controllers\\Admin\\ActivityController' => $baseDir . '/app/Http/Controllers/Admin/ActivityController.php',
     'App\\Http\\Controllers\\Admin\\PrivilegesController' => $baseDir . '/app/Http/Controllers/Admin/PrivilegesController.php',
     'App\\Http\\Controllers\\Admin\\UploadController' => $baseDir . '/app/Http/Controllers/Admin/UploadController.php',
+    'App\\Http\\Controllers\\Admin\\UserController' => $baseDir . '/app/Http/Controllers/Admin/UserController.php',
     'App\\Http\\Controllers\\AuthController' => $baseDir . '/app/Http/Controllers/AuthController.php',
     'App\\Http\\Controllers\\Auth\\ForgotPasswordController' => $baseDir . '/app/Http/Controllers/Auth/ForgotPasswordController.php',
     'App\\Http\\Controllers\\Auth\\LoginController' => $baseDir . '/app/Http/Controllers/Auth/LoginController.php',

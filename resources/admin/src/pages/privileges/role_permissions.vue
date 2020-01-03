@@ -16,9 +16,9 @@
               :default-checked-keys="defaultCheckedKeys"
               :expand-on-click-node="false"
               :check-on-click-node="true"
-              :indent="30">
+              :indent="40">
               <span class="custom-tree-node" slot-scope="{ node, data }">
-                <span>{{ data.id }}-{{ node.label }}</span>
+                <span><!--{{ data.id }}--->{{ node.label }}</span>
               </span>
             </el-tree>
           </div>

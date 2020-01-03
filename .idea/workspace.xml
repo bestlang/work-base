@@ -2,16 +2,21 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="aef91878-d985-49b4-be16-6bb2c8017b08" name="Default" comment="#">
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/database/migrations/2020_01_03_100452_add_type_to_users_table.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/PrivilegesController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/PrivilegesController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/UserController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/User.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/admin/src/pages/privileges/permissions.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/admin/src/pages/privileges/permissions.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/admin/src/pages/privileges/role_permissions.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/admin/src/pages/privileges/role_permissions.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/admin/src/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/admin/src/router/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/storage/framework/cache/data/08/74/08743582456b52abe1182f5a5a3e12b457ba28b8" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/cache/data/08/74/08743582456b52abe1182f5a5a3e12b457ba28b8" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/storage/framework/cache/data/44/d1/44d142505dd1a3b497197e2f459d2aec779e9ed6" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/cache/data/44/d1/44d142505dd1a3b497197e2f459d2aec779e9ed6" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/storage/framework/cache/data/b8/55/b85503ed5c2bc216ecbc86c82005e92d6a01c97f" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/cache/data/b8/55/b85503ed5c2bc216ecbc86c82005e92d6a01c97f" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/storage/framework/cache/data/c2/4f/c24f92750673b2169c8cb7bfbc999cfa8457dc7c" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/cache/data/c2/4f/c24f92750673b2169c8cb7bfbc999cfa8457dc7c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/storage/logs/laravel.log" beforeDir="false" afterPath="$PROJECT_DIR$/storage/logs/laravel.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_classmap.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_classmap.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_static.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_static.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -290,7 +295,7 @@
       <workItem from="1577802831401" duration="7295000" />
       <workItem from="1577883964463" duration="117000" />
       <workItem from="1577884092111" duration="6044000" />
-      <workItem from="1577956803514" duration="6614000" />
+      <workItem from="1577956803514" duration="9847000" />
     </task>
     <task id="LOCAL-00001" summary="#">
       <created>1572615180702</created>
@@ -334,7 +339,14 @@
       <option name="project" value="LOCAL" />
       <updated>1577887074805</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="#">
+      <created>1577977498716</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1577977498716</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -359,10 +371,12 @@
       <screen x="0" y="23" width="1440" height="794" />
     </state>
     <state x="461" y="183" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.23.1440.794@0.23.1440.794" timestamp="1577628921516" />
-    <state x="451" y="24" key="CommitChangelistDialog2" timestamp="1577887073360">
-      <screen x="0" y="23" width="1440" height="794" />
+    <state x="2371" y="447" key="CommitChangelistDialog2" timestamp="1578018523886">
+      <screen x="1920" y="446" width="1440" height="900" />
     </state>
+    <state x="451" y="1" key="CommitChangelistDialog2/0.0.1440.900@0.0.1440.900" timestamp="1577977497731" />
     <state x="451" y="24" key="CommitChangelistDialog2/0.23.1440.794@0.23.1440.794" timestamp="1577887073360" />
+    <state x="2371" y="447" key="CommitChangelistDialog2/1920.446.1440.900/0.0.1920.1080@1920.446.1440.900" timestamp="1578018523886" />
     <state x="601" y="84" key="CommitChangelistDialog2/1920.469.1440.877/0.23.1920.974@0.23.1920.974" timestamp="1577325498230" />
     <state x="145" y="93" width="1152" height="635" key="DiffContextDialog" timestamp="1577890516934">
       <screen x="0" y="23" width="1440" height="794" />
@@ -378,17 +392,19 @@
     </state>
     <state x="262" y="126" key="SettingsEditor/0.0.1440.900@0.0.1440.900" timestamp="1577974461301" />
     <state x="262" y="146" key="SettingsEditor/0.23.1440.877@0.23.1440.877" timestamp="1576844648980" />
-    <state width="500" height="454" key="SwitcherDM" timestamp="1577975991867">
-      <screen x="0" y="0" width="1440" height="900" />
+    <state width="500" height="454" key="SwitcherDM" timestamp="1578018451158">
+      <screen x="1920" y="446" width="1440" height="900" />
     </state>
     <state width="500" height="454" key="SwitcherDM/0.0.1440.900@0.0.1440.900" timestamp="1577975991867" />
     <state width="500" height="400" key="SwitcherDM/0.23.1440.794@0.23.1440.794" timestamp="1577888776290" />
     <state width="500" height="401" key="SwitcherDM/0.23.1440.877@0.23.1440.877" timestamp="1576853757463" />
+    <state width="500" height="454" key="SwitcherDM/1920.446.1440.900/0.0.1920.1080@1920.446.1440.900" timestamp="1578018451158" />
     <state width="500" height="445" key="SwitcherDM/1920.469.1440.877/0.23.1920.974@0.23.1920.974" timestamp="1576809984444" />
     <state width="500" height="401" key="SwitcherDM/1920.469.1440.877/0.23.1920.974@1920.469.1440.877" timestamp="1576674397976" />
-    <state x="401" y="170" key="Vcs.Push.Dialog.v2" timestamp="1577887130384">
-      <screen x="0" y="23" width="1440" height="794" />
+    <state x="401" y="167" key="Vcs.Push.Dialog.v2" timestamp="1577977500157">
+      <screen x="0" y="0" width="1440" height="900" />
     </state>
+    <state x="401" y="167" key="Vcs.Push.Dialog.v2/0.0.1440.900@0.0.1440.900" timestamp="1577977500157" />
     <state x="401" y="170" key="Vcs.Push.Dialog.v2/0.23.1440.794@0.23.1440.794" timestamp="1577887130383" />
     <state x="548" y="211" key="Vcs.Push.Dialog.v2/1920.469.1440.877/0.23.1920.974@0.23.1920.974" timestamp="1577325595713" />
     <state x="514" y="0" width="701" height="795" key="find.popup" timestamp="1577974341423">
@@ -401,12 +417,13 @@
       <screen x="0" y="23" width="1440" height="794" />
     </state>
     <state x="443" y="220" key="git4idea.merge.GitPullDialog/0.23.1440.794@0.23.1440.794" timestamp="1577628088214" />
-    <state x="469" y="198" width="671" height="626" key="search.everywhere.popup" timestamp="1577974278977">
-      <screen x="0" y="0" width="1440" height="900" />
+    <state x="2389" y="644" width="671" height="626" key="search.everywhere.popup" timestamp="1578016560451">
+      <screen x="1920" y="446" width="1440" height="900" />
     </state>
     <state x="469" y="198" width="671" height="626" key="search.everywhere.popup/0.0.1440.900@0.0.1440.900" timestamp="1577974278977" />
     <state x="469" y="198" width="671" height="552" key="search.everywhere.popup/0.23.1440.794@0.23.1440.794" timestamp="1577884694713" />
     <state x="469" y="216" width="670" height="609" key="search.everywhere.popup/0.23.1440.877@0.23.1440.877" timestamp="1576846141354" />
+    <state x="2389" y="644" width="671" height="626" key="search.everywhere.popup/1920.446.1440.900/0.0.1920.1080@1920.446.1440.900" timestamp="1578016560451" />
     <state x="625" y="256" width="894" height="734" key="search.everywhere.popup/1920.469.1440.794/0.23.1920.1057@0.23.1920.1057" timestamp="1576894568525" />
     <state x="625" y="237" width="670" height="676" key="search.everywhere.popup/1920.469.1440.877/0.23.1920.974@0.23.1920.974" timestamp="1576806642948" />
     <state x="2389" y="662" width="670" height="609" key="search.everywhere.popup/1920.469.1440.877/0.23.1920.974@1920.469.1440.877" timestamp="1576733592961" />

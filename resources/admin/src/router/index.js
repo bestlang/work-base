@@ -116,7 +116,7 @@ export default new VueRouter({
       component: backend,
       meta: {
         can: 'privileges',
-        name: '权限管理',
+        name: '权限系统',
         font: '&#xe70b;'
       },
       children: [

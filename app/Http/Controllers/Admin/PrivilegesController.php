@@ -16,13 +16,12 @@ class PrivilegesController extends Controller
     public function userPermissions()
     {
         $user = Auth::user();
-        $userPermissions = $user->getPermissionsViaRoles();//->map(function ($item){ return $item->name;});
+        $userPermissions = $user->getPermissionsViaRoles();
         $permissionIds = $userPermissions->map(function ($item){ return $item->id;})->toArray();
         $permissions = $userPermissions->map(function ($item){ return $item->name;})->toArray();
-        $map = [];
         $allPermissions = Permission::all();
         foreach ($allPermissions as $permission){
-            $children_permissions = Permission::whereBetween('id', [$permission->left, $permission->right])->get();
+            $children_permissions = Permission::whereBetween('left', [$permission->left, $permission->right])->get();
             $children_permissions->each(function ($item)use($permission, $permissionIds, &$permissions){
                 if(in_array($item->id, $permissionIds)){
                     array_push($permissions, $permission->name);
@@ -123,11 +122,19 @@ class PrivilegesController extends Controller
     /*
      * get permissions in tree format
      */
-    public function permissionsTree()
+    public function permissionsTree(Request $request)
     {
-        $tree = Permission::all()->toHierarchy();
+        $params = $request->all();
+        $disabled = Arr::get($params, 'disabled', false);
+        $tree = Permission::all()->map(function($item)use($disabled){
+            if($disabled){
+                $item->disabled=true;
+            }
+            return $item;
+        })->toHierarchy();
         return response()->ajax($tree);
     }
+
 
     public function addPermission(Request $request)
     {
