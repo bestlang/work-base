@@ -12,4 +12,5 @@ storage/*.key
 Homestead.yaml
 Homestead.json
 /.vagrant
+/resources/admin/dist/
 
