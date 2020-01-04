@@ -5,6 +5,7 @@
     </div>
     <div style="width:50%;">
       <el-tree
+        :empty-text="emptyText"
         show-checkbox
         ref="tree"
         :data="treeData"
@@ -16,7 +17,7 @@
         @check="handleCheckChange"
         :expand-on-click-node="false">
         <span class="custom-tree-node" slot-scope="{ node, data }">
-          <span>{{ node.label }}<!--{{ data.id }}--></span>
+          <span>{{ node.label }}-{{ data.id }}</span>
           <span>
             <el-button
               type="text"
@@ -60,6 +61,7 @@
   export default {
     data() {
       return {
+        emptyText: '数据准备中...',
         customProps: {
           children: 'children',
           label: 'show_name'
@@ -115,7 +117,7 @@
         }
       },
       doAdd(){
-        const newChild = {show_name: this.form.show_name, name: this.form.name,  children: [] };
+        const newChild = {show_name: this.form.show_name, disabled: true, name: this.form.name,  children: [] };
         if (!this.current.children) {
           this.$set(this.current, 'children', []);
         }

@@ -176,6 +176,8 @@ return [
         App\Providers\RouteServiceProvider::class,
         Tymon\JWTAuth\Providers\LaravelServiceProvider::class,
         App\Providers\ResponseServiceProvider::class,
+        Spatie\Permission\PermissionServiceProvider::class,
+        Jacobcyl\AliOSS\AliOssServiceProvider::class,
     ],
 
     /*

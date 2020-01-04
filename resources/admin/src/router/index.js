@@ -124,7 +124,8 @@ export default new VueRouter({
             path: "/privileges/roles",
             component: (resolve) => require(["../pages/privileges/roles.vue"], resolve),
             meta: {
-              can: 'privileges roles',
+              //can: 'privileges roles',
+              can: 'privileges list roles',
               show: true,
               name: '角色管理',
               font: '&#xe612;'
@@ -134,7 +135,8 @@ export default new VueRouter({
           path: "/privileges/permissions",
           component: (resolve) => require(["../pages/privileges/permissions.vue"], resolve),
           meta: {
-            can: 'privileges permissions',
+            //can: 'privileges permissions',
+            can: 'privileges list permissions',
             show: true,
             name: '权限管理',
             font: '&#xe70b;'
@@ -144,7 +146,8 @@ export default new VueRouter({
             path: "/privileges/role/users/:id",
             component: (resolve) => require(["../pages/privileges/role_users.vue"], resolve),
             meta: {
-              can: 'privileges role users',
+              // can: 'privileges role users',
+              can: 'privileges list role users',
               show: false,
               name: '角色用户',
               font: ''

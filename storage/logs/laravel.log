@@ -4109,3 +4109,5 @@ Did you mean one of these?
 #52 /Users/lu/PhpstormProjects/larashop/server.php(21): require_once('/Users/lu/Phpst...')
 #53 {main}
 "} 
+[2020-01-04 15:41:19] local.DEBUG: OSS config: {"driver":"oss","access_id":"IsdaxhlR9kzdnGMQ","access_key":"BTNu7FgrQImHLhtMsVjm4J30Ttwmk2","bucket":"zuizan","endpoint":"oss-cn-hangzhou.aliyuncs.com","cdnDomain":"","ssl":true,"isCName":false,"debug":true} 
+[2020-01-04 15:46:00] local.DEBUG: OSS config: {"driver":"oss","access_id":"IsdaxhlR9kzdnGMQ","access_key":"BTNu7FgrQImHLhtMsVjm4J30Ttwmk2","bucket":"zuizan","endpoint":"oss-cn-hangzhou.aliyuncs.com","cdnDomain":"","ssl":true,"isCName":false,"debug":true} 

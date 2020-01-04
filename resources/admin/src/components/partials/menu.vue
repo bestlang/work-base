@@ -32,11 +32,12 @@
                   </el-submenu>
                 </template>
                 <template v-else>
-                  <el-menu-item class="unselectable" v-if="item.children && item.children[0].meta.show" :index="item.children[0].path">
-                    <i class="iconfont" v-html="item.children[0].meta.font"></i>
-                    <span slot="title">{{item.children[0].meta.name}}</span>
-                  </el-menu-item>
-
+                  <template v-for="(child , idx) in item.children">
+                    <el-menu-item class="unselectable" v-if="child.meta.show" :index="child.path">
+                      <i class="iconfont" v-html="child.meta.font"></i>
+                      <span slot="title">{{child.meta.name}}</span>
+                    </el-menu-item>
+                  </template>
                 </template>
               </template>
         </el-menu>
@@ -77,6 +78,8 @@
             handleClose(key, keyPath) {
                 console.log(key, keyPath);
             },
+            //@todo
+            // make privileges global awared: vuex
             loadUserPermissions(){
               this.$http
                 .get("/admin/privileges/user/permissions")

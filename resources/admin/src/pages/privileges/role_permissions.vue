@@ -7,6 +7,7 @@
         <div>
           <div style="width:60%;">
             <el-tree
+              :empty-text="emptyText"
               ref="role-permission-tree"
               :data="treeData"
               default-expand-all
@@ -15,10 +16,10 @@
               :props="customProps"
               :default-checked-keys="defaultCheckedKeys"
               :expand-on-click-node="false"
-              :check-on-click-node="true"
+              :check-on-click-node="false"
               :indent="40">
               <span class="custom-tree-node" slot-scope="{ node, data }">
-                <span><!--{{ data.id }}--->{{ node.label }}</span>
+                <span>{{ node.label }}-{{ data.id }}</span>
               </span>
             </el-tree>
           </div>
@@ -31,6 +32,7 @@
     export default {
       data() {
         return {
+          emptyText: '数据准备中...',
           role_id: null,
           role_name: null,
           defaultCheckedKeys: [],
@@ -61,8 +63,9 @@
       methods: {
         saveRolePermissions(){
           let nodes = this.$refs['role-permission-tree'].getCheckedNodes();
-          let permissions = nodes.map((n) => n.id);//.filter((n) => !n.children.length)
-
+          let permissions = nodes.filter((n)=>n.children.length == 0).map((n) => n.id);//.filter((n) => !n.children.length)
+          // console.log(`---------------->:`, permissions)
+          // return;
           let role_id = this.role_id
           this.$http
             .post("/admin/privileges/give/permissions/to", {permissions, role_id})

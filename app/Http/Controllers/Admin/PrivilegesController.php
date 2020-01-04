@@ -19,15 +19,16 @@ class PrivilegesController extends Controller
         $userPermissions = $user->getPermissionsViaRoles();
         $permissionIds = $userPermissions->map(function ($item){ return $item->id;})->toArray();
         $permissions = $userPermissions->map(function ($item){ return $item->name;})->toArray();
-        $allPermissions = Permission::all();
-        foreach ($allPermissions as $permission){
-            $children_permissions = Permission::whereBetween('left', [$permission->left, $permission->right])->get();
-            $children_permissions->each(function ($item)use($permission, $permissionIds, &$permissions){
-                if(in_array($item->id, $permissionIds)){
-                    array_push($permissions, $permission->name);
-                }
-            });
-        }
+//        $allPermissions = Permission::all();
+//        //make sure one has the parent permission if one has a leaf permission of it, for the menu
+//        foreach ($allPermissions as $permission){
+//            $children_permissions = Permission::whereBetween('left', [$permission->left, $permission->right])->get();
+//            $children_permissions->each(function ($item)use($permission, $permissionIds, &$permissions){
+//                if(in_array($item->id, $permissionIds)){
+//                    array_push($permissions, $permission->name);
+//                }
+//            });
+//        }
         return response()->ajax(collect($permissions)->unique()->values()->all());
     }
     // assign permissions to a specific role

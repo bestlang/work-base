@@ -27,6 +27,13 @@
       0 => 'Fideloper\\Proxy\\TrustedProxyServiceProvider',
     ),
   ),
+  'jacobcyl/ali-oss-storage' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Jacobcyl\\AliOSS\\AliOssServiceProvider',
+    ),
+  ),
   'laravel/tinker' => 
   array (
     'providers' => 

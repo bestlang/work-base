@@ -63,7 +63,17 @@ return [
             'bucket' => env('AWS_BUCKET'),
             'url' => env('AWS_URL'),
         ],
-
+        'oss' => [
+                'driver'        => 'oss',
+                'access_id'     => env('OSS_ACCESS_ID',''),
+                'access_key'    => env('OSS_ACCESS_KEY',''),
+                'bucket'        => env('OSS_BUCKET',''),
+                'endpoint'      => env('OSS_ENDPOINT',''),
+                'cdnDomain'     => '',
+                'ssl'           => true,
+                'isCName'       => false,
+                'debug'         => true
+        ],
     ],
 
 ];
