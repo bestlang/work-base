@@ -1,53 +1,64 @@
 <template>
-  <div>
-    <div class="top-buttons" style="display: flex;flex-flow: row nowrap; justify-content: space-between;">
-      <div>所有权限</div>
-    </div>
-    <div style="width:50%;">
-      <el-tree
-        :empty-text="emptyText"
-        ref="tree"
-        :data="treeData"
-        :default-expanded-keys="[]"
-        :default-expand-all="true"
-        node-key="id"
-        :props="customProps"
-        :default-checked-keys="[]"
-        @check="handleCheckChange"
-        :expand-on-click-node="false">
-        <span class="custom-tree-node" slot-scope="{ node, data }">
-          <span><span v-if="!data.children.length" class="iconfont">&#xe92a;</span>{{ node.label }}</span>
-<!--          -{{ data.id }}-->
-          <span>
-            <el-button
-              type="text"
-              size="mini"
-              @click="() => edit(data)">
-              编辑
-            </el-button>
-            <el-button
-              type="text"
-              size="mini"
-              @click="() => add(data)">
-              新增
-            </el-button>
-            <el-button
-              type="text"
-              size="mini"
-              @click="() => remove(node, data)">
-              删除
-            </el-button>
+  <div class="l-channel-list">
+      <div class="l-tree-containner">
+        <el-tree
+          @node-click="handleNodeClick"
+          icon-class="el-icon-caret-right"
+          :default-expand-all="true"
+          :empty-text="emptyText"
+          ref="tree"
+          :data="treeData"
+          node-key="id"
+          :props="customProps"
+          :default-checked-keys="[]"
+          @check="handleCheckChange"
+          :expand-on-click-node="false">
+          <span class="custom-tree-node" slot-scope="{ node, data }">
+            <span><span v-if="!data.children.length" class="iconfont">&#xe92a;</span>{{ node.label }}</span>
+<!--            -{{ data.id }}-->
+            <span>
+<!--              <el-button-->
+<!--                type="text"-->
+<!--                size="mini"-->
+<!--                @click="() => edit(data)">-->
+<!--                编辑-->
+<!--              </el-button>-->
+<!--              <el-button-->
+<!--                type="text"-->
+<!--                size="mini"-->
+<!--                @click="() => add(data)">-->
+<!--                新增-->
+<!--              </el-button>-->
+<!--              <el-button-->
+<!--                type="text"-->
+<!--                size="mini"-->
+<!--                @click="() => remove(node, data)">-->
+<!--                删除-->
+<!--              </el-button>-->
+            </span>
           </span>
-        </span>
-      </el-tree>
-    </div>
+        </el-tree>
+      </div>
+      <div class="l-tree-content">
+        <el-form :model="form" label-width="100px">
+          <el-form-item label="栏目名">
+            <el-input v-model="form.name" autocomplete="off"></el-input>
+          </el-form-item>
+          <el-form-item label="标题">
+            <el-input v-model="form.title" autocomplete="off"></el-input>
+          </el-form-item>
+          <el-form-item label="关键词">
+            <el-input v-model="form.keywords" autocomplete="off"></el-input>
+          </el-form-item>
+          <el-form-item label="描述">
+            <el-input v-model="form.description" autocomplete="off"></el-input>
+          </el-form-item>
+        </el-form>
+      </div>
     <el-dialog :title="title" :visible.sync="dialogFormVisible">
       <el-form :model="form" label-width="100px">
-        <el-form-item label="权限显示名">
-          <el-input v-model="form.show_name" autocomplete="off"></el-input>
-        </el-form-item>
-        <el-form-item label="权限字符串">
-          <el-input v-model="form.name" autocomplete="off" :disabled="form.id>0"></el-input>
+        <el-form-item label="栏目名">
+          <el-input v-model="form.name" autocomplete="off"></el-input>
         </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
@@ -64,22 +75,27 @@
         emptyText: 'loading...',
         customProps: {
           children: 'children',
-          label: 'show_name'
+          label: 'name'
         },
         treeData:[],
 
         current:null,
         dialogFormVisible: false,
-        title: '添加子权限',
+        title: '添加子栏目',
         form:{
           id: '',
           parent_id: '',
           name: '',
-          show_name: ''
+          title: '',
+          keywords: '',
+          description: '',
         }
       }
     },
     methods: {
+      handleNodeClick(node, ...$params){
+        Object.assign(this.form, node)
+      },
       edit(data){
         this.current = data
         let id = data.id;
@@ -100,8 +116,7 @@
         this.form = {
           id: '',
           parent_id: '',
-          name: '',
-          show_name: ''
+          name: ''
         }
       },
       add(data) {
@@ -117,13 +132,13 @@
         }
       },
       doAdd(){
-        const newChild = {show_name: this.form.show_name, disabled: true, name: this.form.name,  children: [] };
+        const newChild = {name: this.form.name,  children: [] };
         if (!this.current.children) {
           this.$set(this.current, 'children', []);
         }
         this.dialogFormVisible = false
         this.$http
-          .post("/admin/privileges/add/permission", {parent_id: this.current.id, name: this.form.name, show_name: this.form.show_name})
+          .post("/admin/cms/channel/add", {parent_id: this.current.id, name: this.form.name})
           .then(res => {
             newChild.id = res.data.id;
             this.current.children.push(newChild);
@@ -176,7 +191,7 @@
       },
       handleCheckChange(data, checked, indeterminate) {
         /**
-        setCheckedNodes() {
+         setCheckedNodes() {
         this.$refs.tree.setCheckedNodes([{
           id: 5,
           label: '二级 2-1'
@@ -185,7 +200,7 @@
           label: '三级 1-1-1'
         }]);
       },
-      */
+         */
         // console.log(data, checked, indeterminate);
         //this.$refs.tree.setCheckedKeys([23]);
         //this.$refs.tree.setCheckedKeys([data.id]);
@@ -194,18 +209,36 @@
       },
       loadPermissionsTree(){
         this.$http
-        .get("/admin/privileges/permissions/tree", {params:{disabled: true}})
-        .then(res => {
-          this.treeData = [res.data[Object.keys(res.data)[0]]];
-        });
+          .get("/admin/cms/channel/tree", {params:{disabled: true}})
+          .then(res => {
+            console.log(`------------------>`,res)
+            this.treeData = [res.data[Object.keys(res.data)[0]]];
+          });
       }
     },
     mounted() {
+      this.$store.dispatch('toggleState');
       this.loadPermissionsTree()
     }
   }
 </script>
-<style scoped>
+<style lang="less" scoped>
+  .l-channel-list{
+    display: flex;
+    flex-flow: row nowrap;
+    min-height: calc(100vh - 50px - 20px);
+    margin:-20px;
+    .l-tree-containner{
+      min-width: 200px;
+      padding: 20px;
+      border-right: 1px solid #f4f4f4;
+      flex-shrink: 0;
+    }
+    .l-tree-content{
+      padding: 20px;
+      flex-grow: 1;
+    }
+  }
   .custom-tree-node {
     flex: 1;
     display: flex;

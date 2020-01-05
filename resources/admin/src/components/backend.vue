@@ -47,12 +47,12 @@ export default {
         display: flex;
         flex-flow: row nowrap;
     }
-    .ls-aside{
+    .ls-aside, .ls-aside2{
         flex-shrink: 0;
         border-right: 1px solid #e6e6e6;
     }
     .ls-top{
-        height: 49px;
+        height: 50px;
         background: #fff;
         width: 100%;
         border-bottom:1px solid #e0e4e9;
@@ -73,7 +73,7 @@ export default {
     }
 
     .ls-main{
-        height: calc(100vh - 49px);
+        height: calc(100vh - 50px);
         padding: 10px;
         overflow-y: scroll;
         background: rgb(244, 244, 244);

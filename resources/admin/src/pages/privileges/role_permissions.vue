@@ -15,11 +15,12 @@
               node-key="id"
               :props="customProps"
               :default-checked-keys="defaultCheckedKeys"
-              :expand-on-click-node="false"
-              :check-on-click-node="false"
-              :indent="40">
+              :expand-on-click-node="true"
+              :check-on-click-node="false">
               <span class="custom-tree-node" slot-scope="{ node, data }">
-                <span>{{ node.label }}-{{ data.id }}</span>
+                <span>{{ node.label }}</span>
+<!--                <span v-if="!data.children.length" class="iconfont">&#xe92a;</span>-->
+<!--                -{{ data.id }}-->
               </span>
             </el-tree>
           </div>
@@ -32,7 +33,7 @@
     export default {
       data() {
         return {
-          emptyText: '数据准备中...',
+          emptyText: 'loading...',
           role_id: null,
           role_name: null,
           defaultCheckedKeys: [],

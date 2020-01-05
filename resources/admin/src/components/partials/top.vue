@@ -43,7 +43,7 @@ export default {
     }
     .ls-top-right{
         float: right;
-        line-height: 49px;
+        line-height: 50px;
         cursor: pointer;
         font-size:14px;
         color:darkblue;
@@ -54,7 +54,7 @@ export default {
     .ls-top-logo{
         float: left;
         text-align: left;
-        line-height: 49px;
+        line-height: 50px;
         letter-spacing: .05em;
         padding-left: 30px;
         color:darkblue;
@@ -63,7 +63,7 @@ export default {
     }
     .ls-icon-collapse{
         cursor: pointer;
-        line-height: 49px;
+        line-height: 50px;
         padding: 0 16px;
         font-size: 22px;
     }

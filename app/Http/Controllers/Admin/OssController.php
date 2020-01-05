@@ -11,6 +11,7 @@ class OssController extends Controller
     public function index()
     {
         $storage = Storage::disk('oss');
-        $storage->putRemoteFile('some/new/place/home-select-fill.png', '/Users/lu/Desktop/home-select-fill.png');
+        $res = $storage->putRemoteFile('some/new/place/home-select-fill.png', '/Users/lu/Desktop/home-select-fill.png');
+        dd($res);
     }
 }

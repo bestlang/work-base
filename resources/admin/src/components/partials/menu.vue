@@ -1,6 +1,6 @@
 <style scoped lang="less">
     .ls-top-logo, .ls-top-logo-narrow{
-        line-height: 49px;
+        line-height: 50px;
         font-size: 18px;
         padding: 0 20px;
     }
@@ -49,7 +49,7 @@
         border-right: 1px solid transparent;
     }
     .el-menu-vertical{
-        /*height: calc(100vh - 49px);*/
+        /*height: calc(100vh - 50px);*/
     }
     .el-menu-vertical:not(.el-menu--collapse) {
         width: 200px;

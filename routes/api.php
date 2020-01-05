@@ -153,4 +153,8 @@ Route::group(['middleware' => 'auth.jwt', 'prefix'=>'admin', 'namespace'=>'Admin
     Route::post('/user/create', 'UserController@create');
     Route::post('/user/create/role/user', 'UserController@createRoleUser');
 
+    Route::group(['namespace'=>'Cms'], function(){
+        Route::any('/cms/channel/tree', 'ChannelController@tree');
+        Route::any('/cms/channel/add', 'ChannelController@add');
+    });
 });

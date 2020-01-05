@@ -40,6 +40,38 @@ export default new VueRouter({
       ]
     },
     {
+      path: "/cms",
+      redirect: "/cms/channel",
+      component: backend,
+      meta: {
+        can: '',
+        name: '内容管理',
+        font: '&#xe764;'
+      },
+      children: [
+        {
+          path: "/cms/channel",
+          component: (resolve) => require(["../pages/cms/channel.vue"], resolve),
+          meta: {
+            can: 'dashboard',
+            show: true,
+            name: '栏目管理',
+            font: '&#xe764;'
+          },
+        },
+        {
+          path: "/cms/content",
+          component: (resolve) => require(["../pages/cms/content.vue"], resolve),
+          meta: {
+            can: 'dashboard',
+            show: true,
+            name: '内容管理',
+            font: '&#xe764;'
+          },
+        }
+      ]
+    },
+    {
       path: "/activity",
       component: backend,
       meta: {
