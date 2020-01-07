@@ -10,12 +10,9 @@
           :data="treeData"
           node-key="id"
           :props="customProps"
-          :default-checked-keys="[]"
-          @check="handleCheckChange"
           :expand-on-click-node="false">
           <span class="custom-tree-node" slot-scope="{ node, data }">
             <span><span v-if="!data.children.length" class="iconfont">&#xe92a;</span>{{ node.label }}</span>
-<!--            -{{ data.id }}-->
             <span>
 <!--              <el-button-->
 <!--                type="text"-->
@@ -40,20 +37,49 @@
         </el-tree>
       </div>
       <div class="l-tree-content">
-        <el-form :model="form" label-width="100px">
-          <el-form-item label="栏目名">
-            <el-input v-model="form.name" autocomplete="off"></el-input>
-          </el-form-item>
-          <el-form-item label="标题">
-            <el-input v-model="form.title" autocomplete="off"></el-input>
-          </el-form-item>
-          <el-form-item label="关键词">
-            <el-input v-model="form.keywords" autocomplete="off"></el-input>
-          </el-form-item>
-          <el-form-item label="描述">
-            <el-input v-model="form.description" autocomplete="off"></el-input>
-          </el-form-item>
-        </el-form>
+        <el-table
+          v-if="children.length"
+          :data="children"
+          style="width: 100%">
+          <el-table-column
+            prop="id"
+            label="ID"
+            width="100">
+          </el-table-column>
+          <el-table-column
+            prop="name"
+            label="栏目名">
+          </el-table-column>
+          <el-table-column
+            width="300"
+            label="操作">
+            <template slot-scope="scope">
+              <el-button type="text">编辑</el-button>
+              <el-button type="text">新增</el-button>
+              <el-button type="text">删除</el-button>
+            </template>
+          </el-table-column>
+        </el-table>
+        <div class="l-channel-form" v-else>
+          <el-form :model="form" label-width="100px">
+            <el-form-item label="栏目名">
+              <el-input v-model="form.name" autocomplete="off"></el-input>
+            </el-form-item>
+            <el-form-item label="标题">
+              <el-input v-model="form.title" autocomplete="off"></el-input>
+            </el-form-item>
+            <el-form-item label="关键词">
+              <el-input v-model="form.keywords" autocomplete="off"></el-input>
+            </el-form-item>
+            <el-form-item label="描述">
+              <el-input v-model="form.description" autocomplete="off"></el-input>
+            </el-form-item>
+            <el-form-item>
+              <el-button type="primary" @click="doSubmit">确 定</el-button>
+              <el-button @click="dialogFormVisible = false">取 消</el-button>
+            </el-form-item>
+          </el-form>
+        </div>
       </div>
     <el-dialog :title="title" :visible.sync="dialogFormVisible">
       <el-form :model="form" label-width="100px">
@@ -62,7 +88,7 @@
         </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
-        <el-button @click="dialogFormVisible = false">取 消</el-button>
+        <el-button>取 消</el-button>
         <el-button type="primary" @click="doSubmit">确 定</el-button>
       </div>
     </el-dialog>
@@ -78,7 +104,7 @@
           label: 'name'
         },
         treeData:[],
-
+        children:[],
         current:null,
         dialogFormVisible: false,
         title: '添加子栏目',
@@ -93,7 +119,20 @@
       }
     },
     methods: {
+      loadChildren(node){
+        this.$http
+          .post("/admin/cms/channel/children", {parent_id: node.id})
+          .then(res => {
+            this.children = res.data
+          });
+      },
       handleNodeClick(node, ...$params){
+        console.log(`****************node:`, node)
+        if(node.children.length>0){
+          this.loadChildren(node);
+        }else{
+          this.children = [];
+        }
         Object.assign(this.form, node)
       },
       edit(data){
@@ -111,16 +150,13 @@
         this.dialogFormVisible = true;
         this.title = '编辑权限';
       },
-      recovery(){
+      add(data) {
         this.current = null;
         this.form = {
           id: '',
           parent_id: '',
           name: ''
         }
-      },
-      add(data) {
-        this.recovery()
         this.current = data;
         this.dialogFormVisible = true;
       },
@@ -157,17 +193,14 @@
       },
       doEdit(){
         this.$http
-          .post("/admin/privileges/edit/permission", {id: this.form.id, name: this.form.name, show_name: this.form.show_name})
+          .post("/admin/cms/channel/update", this.form)
           .then(res => {
             this.$message({
               type: 'success',
               message: '修改成功!'
             });
-            this.current.name = this.form.name
-            this.current.show_name = this.form.show_name
-            this.recovery()
+            this.loadChildren({id:this.form.parent_id});
           });
-        this.dialogFormVisible = false
       },
       remove(node, data) {
         this.$confirm('删除权限存在风险,是否继续?', '提示', {
@@ -189,36 +222,19 @@
             }).catch(()=>{});
         });
       },
-      handleCheckChange(data, checked, indeterminate) {
-        /**
-         setCheckedNodes() {
-        this.$refs.tree.setCheckedNodes([{
-          id: 5,
-          label: '二级 2-1'
-        }, {
-          id: 9,
-          label: '三级 1-1-1'
-        }]);
-      },
-         */
-        // console.log(data, checked, indeterminate);
-        //this.$refs.tree.setCheckedKeys([23]);
-        //this.$refs.tree.setCheckedKeys([data.id]);
-        console.log(data,`.............`, checked, `.............`, indeterminate);
-        return true;
-      },
-      loadPermissionsTree(){
+      loadChannelsTree(){
         this.$http
           .get("/admin/cms/channel/tree", {params:{disabled: true}})
           .then(res => {
             console.log(`------------------>`,res)
             this.treeData = [res.data[Object.keys(res.data)[0]]];
+            this.loadChildren(res.data[Object.keys(res.data)[0]])
           });
       }
     },
     mounted() {
       this.$store.dispatch('toggleState');
-      this.loadPermissionsTree()
+      this.loadChannelsTree()
     }
   }
 </script>
@@ -227,7 +243,8 @@
     display: flex;
     flex-flow: row nowrap;
     min-height: calc(100vh - 50px - 20px);
-    margin:-20px;
+    margin:-20px 0 -20px -20px;
+    overflow-x: hidden;
     .l-tree-containner{
       min-width: 200px;
       padding: 20px;
@@ -237,6 +254,9 @@
     .l-tree-content{
       padding: 20px;
       flex-grow: 1;
+      display: flex;
+      flex-flow: row nowrap;
+      box-sizing: border-box;
     }
   }
   .custom-tree-node {

@@ -8,13 +8,15 @@
 
 <template>
     <div>
-        <div class="ls-top-logo" v-show="!isCollapse">路章's博客</div>
+        <div class="ls-top-logo" v-show="!isCollapse">路章の博客</div>
         <div class="ls-top-logo-narrow" v-show="isCollapse">路</div>
         <el-menu
+                ref="sidemenu"
                 class="el-menu-vertical"
                 @open="handleOpen"
                 @close="handleClose"
                 router
+                :default-active="defaultActive"
                 :collapse="isCollapse">
               <template  v-for="(item , index) in router.options.routes">
                 <template v-if="item.children && item.children.filter(x=>x.meta.show).length > 1">
@@ -62,6 +64,7 @@
     export default {
         data() {
             return {
+              defaultActive:'',
               router: $router,
               privileges: []
             };
@@ -100,7 +103,15 @@
                 });
             }
         },
-        created() {
+      // mounted() {
+      //   console.log(`-------------->route path:`,this.$route.path);
+      // },
+      created() {
+          this.defaultActive = this.$route.path;
+        // console.log(`-------------->route path:`,this.$route.path);
+        // this.$nextTick(function(){
+        //   this.$refs.sidemenu.open('/dashboard/home');
+        // })
           this.loadUserPermissions();
         }
     }
