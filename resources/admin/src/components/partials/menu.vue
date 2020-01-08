@@ -19,26 +19,10 @@
                 :default-active="defaultActive"
                 :collapse="isCollapse">
               <template  v-for="(item , index) in router.options.routes">
-                <template v-if="item.children && item.children.filter(x=>x.meta.show).length > 1">
-                  <el-submenu :index="item.path" class="unselectable">
-                    <template slot="title">
-                      <i class="iconfont" v-html="item.meta.font"></i>
-                      <span slot="title">{{item.meta.name}}</span>
-                    </template>
-                    <template v-for="(itemChild , index) in item.children">
-                      <el-menu-item v-if="itemChild.meta.show" :index="itemChild.path" :key="index">
-                          <i class="iconfont" v-html="itemChild.meta.font"></i>
-                          <span slot="title">{{itemChild.meta.name}}</span>
-                      </el-menu-item>
-                    </template>
-                  </el-submenu>
-                </template>
-                <template v-else>
-                  <template v-for="(child , idx) in item.children">
-                    <el-menu-item class="unselectable" v-if="child.meta.show" :index="child.path">
-                      <i class="iconfont" v-html="child.meta.font"></i>
-                      <span slot="title">{{child.meta.name}}</span>
-                    </el-menu-item>
+<!--                <template v-if="item.children && item.children.filter(x=>x.meta.show).length > 1"> &lt;!&ndash; 子栏目数量大于1 &ndash;&gt;-->
+                <template  v-if="item.children">
+                  <template v-for="child in item.children">
+                    <cell :item="child"  :type="child.children && child.children.length ? 'el-submenu':'el-menu-item'"></cell>
                   </template>
                 </template>
               </template>
@@ -61,58 +45,62 @@
 
 <script>
     import $router from "@/router"
+    import cell from "./cell"
     export default {
-        data() {
-            return {
-              defaultActive:'',
-              router: $router,
-              privileges: []
-            };
-        },
-        computed:{
-            isCollapse(){
-                return this.$store.state.system.isCollapse;
-            }
-        },
-        methods: {
-            handleOpen(key, keyPath) {
-                console.log(key, keyPath);
-            },
-            handleClose(key, keyPath) {
-                console.log(key, keyPath);
-            },
-            //@todo
-            // make privileges global awared: vuex
-            loadUserPermissions(){
-              this.$http
-                .get("/admin/privileges/user/permissions")
-                .then(res => {
-                  this.privileges = res.data
-                  localStorage.setItem(`privileges`, JSON.stringify(res.data));
-                  //查询出用户的权限列表,根据权限列表过滤路由生成菜单
-                  let routes = this.router.options.routes;
-                  routes.map((route, index) => {
-                    if(route.hasOwnProperty('children')){
-                      route.children.map((child, idx) => {
-                        if(this.privileges.indexOf(route.children[idx].meta.can) === -1){
-                          route.children[idx].meta.show = false
-                        }
-                      });
-                    }
-                  });
+      components:{
+        cell
+      },
+      data() {
+          return {
+            defaultActive:'',
+            router: $router,
+            privileges: []
+          };
+      },
+      computed:{
+          isCollapse(){
+              return this.$store.state.system.isCollapse;
+          }
+      },
+      methods: {
+          handleOpen(key, keyPath) {
+              console.log(key, keyPath);
+          },
+          handleClose(key, keyPath) {
+              console.log(key, keyPath);
+          },
+          //@todo
+          // make privileges global awared: vuex
+          loadUserPermissions(){
+            this.$http
+              .get("/admin/privileges/user/permissions")
+              .then(res => {
+                this.privileges = res.data
+                localStorage.setItem(`privileges`, JSON.stringify(res.data));
+                //查询出用户的权限列表,根据权限列表过滤路由生成菜单
+                let routes = this.router.options.routes;
+                routes.map((route, index) => {
+                  if(route.hasOwnProperty('children')){
+                    route.children.map((child, idx) => {
+                      if(this.privileges.indexOf(route.children[idx].meta.can) === -1){
+                        route.children[idx].meta.show = false
+                      }
+                    });
+                  }
                 });
-            }
-        },
-      // mounted() {
-      //   console.log(`-------------->route path:`,this.$route.path);
-      // },
-      created() {
-          this.defaultActive = this.$route.path;
-        // console.log(`-------------->route path:`,this.$route.path);
-        // this.$nextTick(function(){
-        //   this.$refs.sidemenu.open('/dashboard/home');
-        // })
-          this.loadUserPermissions();
-        }
+              });
+          }
+      },
+    // mounted() {
+    //   console.log(`-------------->route path:`,this.$route.path);
+    // },
+    created() {
+        this.defaultActive = this.$route.path;
+      // console.log(`-------------->route path:`,this.$route.path);
+      // this.$nextTick(function(){
+      //   this.$refs.sidemenu.open('/dashboard/home');
+      // })
+        this.loadUserPermissions();
+      }
     }
 </script>

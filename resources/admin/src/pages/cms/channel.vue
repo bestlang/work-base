@@ -60,7 +60,7 @@
             </template>
           </el-table-column>
         </el-table>
-        <div class="l-channel-form" v-else>
+        <div class="l-channel-form" v-if="showForm">
           <el-form :model="form" label-width="100px">
             <el-form-item label="栏目名">
               <el-input v-model="form.name" autocomplete="off"></el-input>
@@ -76,22 +76,11 @@
             </el-form-item>
             <el-form-item>
               <el-button type="primary" @click="doSubmit">确 定</el-button>
-              <el-button @click="dialogFormVisible = false">取 消</el-button>
+              <el-button @click="doCancel">取 消</el-button>
             </el-form-item>
           </el-form>
         </div>
       </div>
-    <el-dialog :title="title" :visible.sync="dialogFormVisible">
-      <el-form :model="form" label-width="100px">
-        <el-form-item label="栏目名">
-          <el-input v-model="form.name" autocomplete="off"></el-input>
-        </el-form-item>
-      </el-form>
-      <div slot="footer" class="dialog-footer">
-        <el-button>取 消</el-button>
-        <el-button type="primary" @click="doSubmit">确 定</el-button>
-      </div>
-    </el-dialog>
   </div>
 </template>
 <script>
@@ -106,8 +95,8 @@
         treeData:[],
         children:[],
         current:null,
-        dialogFormVisible: false,
         title: '添加子栏目',
+        showForm: false,
         form:{
           id: '',
           parent_id: '',
@@ -127,11 +116,12 @@
           });
       },
       handleNodeClick(node, ...$params){
-        console.log(`****************node:`, node)
         if(node.children.length>0){
           this.loadChildren(node);
+          this.showForm = false;
         }else{
           this.children = [];
+          this.showForm = true;
         }
         Object.assign(this.form, node)
       },
@@ -167,18 +157,21 @@
           this.doEdit()
         }
       },
+      doCancel(){
+        this.showForm = false;
+        this.loadChildren({id:this.form.parent_id});
+      },
       doAdd(){
         const newChild = {name: this.form.name,  children: [] };
         if (!this.current.children) {
           this.$set(this.current, 'children', []);
         }
-        this.dialogFormVisible = false
+        this.showForm = false
         this.$http
           .post("/admin/cms/channel/add", {parent_id: this.current.id, name: this.form.name})
           .then(res => {
             newChild.id = res.data.id;
             this.current.children.push(newChild);
-            // this.dialogFormVisible = false
             if(res.success){
               this.$message({
                 type: 'success',
@@ -186,7 +179,7 @@
               });
               this.recovery()
             }else{
-              this.dialogFormVisible = true
+              this.showForm = true
             }
 
           });
@@ -200,6 +193,7 @@
               message: '修改成功!'
             });
             this.loadChildren({id:this.form.parent_id});
+            this.showForm = false;
           });
       },
       remove(node, data) {
