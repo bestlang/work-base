@@ -5,7 +5,6 @@
           @node-click="handleNodeClick"
           icon-class="el-icon-caret-right"
           :default-expand-all="true"
-          :empty-text="emptyText"
           ref="tree"
           :data="treeData"
           node-key="id"
@@ -38,7 +37,8 @@
       </div>
       <div class="l-tree-content">
         <el-table
-          v-if="children.length"
+          v-if="!showForm"
+          v-loading="loading"
           :data="children"
           style="width: 100%">
           <el-table-column
@@ -87,7 +87,7 @@
   export default {
     data() {
       return {
-        emptyText: 'loading...',
+        loading: true,
         customProps: {
           children: 'children',
           label: 'name'
@@ -109,10 +109,12 @@
     },
     methods: {
       loadChildren(node){
+        this.loading = true;
         this.$http
           .post("/admin/cms/channel/children", {parent_id: node.id})
           .then(res => {
             this.children = res.data
+            this.loading = false
           });
       },
       handleNodeClick(node, ...$params){

@@ -24,7 +24,7 @@ class CreateCmsModelFieldsTable extends Migration
             $table->tinyInteger('is_custom')->comment('是否自定义:0否1是');
             $table->tinyInteger('is_display')->comment('是否显示在表单:1显示0不显示');
             $table->tinyInteger('is_required')->comment('是否表单必填项:1是0否');
-            $table->string('type')->comment('字段类型,text,select,txt, image ....');
+            $table->string('type')->comment('字段类型,text,select,txt, image ....自定义类型...');
             $table->timestamps();
         });
     }

@@ -1,15 +1,15 @@
 <template>
-      <div :is="type" :index="item.path" class="unselectable">
+      <div :is="type" :index="item.path" class="unselectable" v-if="item.meta.show">
           <template v-if="type==='el-submenu'">
               <template slot="title">
                 <i class="iconfont" v-html="item.meta.font"></i>
                 <span slot="title">{{item.meta.name}}</span>
               </template>
               <template v-for="child in item.children">
-                <cell :item="child" :type="child.children ? 'el-submenu':'el-menu-item'"></cell>
+                <cell :item="child" :type="child.children && child.children.filter(x=>x.meta.show).length? 'el-submenu':'el-menu-item'"></cell>
               </template>
           </template>
-          <template v-if="type==='el-menu-item' && item.meta.show" :index="item.path">
+          <template v-if="type==='el-menu-item'" :index="item.path">
               <i class="iconfont" v-html="item.meta.font"></i>
               <span slot="title">{{item.meta.name}}</span>
           </template>

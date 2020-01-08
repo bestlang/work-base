@@ -30,7 +30,7 @@ export default new VueRouter({
           path: "/cms",
           component: (resolve) => require(["../pages/cms/cms.vue"], resolve),
           meta: {
-            can: '',
+            can: 'cms',
             show:true,
             name: '内容管理',
             font: '&#xe764;'
@@ -58,6 +58,7 @@ export default new VueRouter({
             },
             {
               path: "/cms/setting",
+              component: (resolve) => require(["../pages/cms/setting/setting.vue"], resolve),
               meta: {
                 can: 'cms list contents',
                 show: true,
@@ -67,7 +68,7 @@ export default new VueRouter({
               children: [
                 {
                   path: "/cms/setting/model",
-                  component: (resolve) => require(["../pages/dashboard.vue"], resolve),
+                  component: (resolve) => require(["../pages/cms/setting/model.vue"], resolve),
                   meta: {
                     can: 'dashboard',
                     show: true,
@@ -76,14 +77,14 @@ export default new VueRouter({
                   },
                 },
                 {
-                  path: "/cms/setting/fields",
-                  component: (resolve) => require(["../pages/dashboard.vue"], resolve),
+                  path: "/cms/setting/fieldTypes",
+                  component: (resolve) => require(["../pages/cms/setting/fieldTypes.vue"], resolve),
                   meta: {
                     can: 'dashboard',
                     show: true,
-                    name: '字段管理',
+                    name: '字段类型',
                     font: '&#xe764;'
-                  },
+                  }
                 }
               ]
             }
@@ -94,6 +95,7 @@ export default new VueRouter({
           component: (resolve) => require(["../pages/activity/activity.vue"], resolve),
           meta: {
             can: 'activity',
+            show: true,
             name: '活动管理',
             font: '&#xe6c5;'
           },
@@ -116,7 +118,7 @@ export default new VueRouter({
                 show: true,
                 name: '添加活动',
                 font: '&#xe663;'
-              },
+              }
             },
             {
               path: "/activity/edit",
@@ -126,7 +128,7 @@ export default new VueRouter({
                 show: false,
                 name: '编辑活动',
                 font: ''
-              },
+              }
             },
           ]
         },
@@ -166,6 +168,7 @@ export default new VueRouter({
           component: (resolve) => require(["../pages/privileges/privileges.vue"], resolve),
           meta: {
             can: 'privileges',
+            show: true,
             name: '权限系统',
             font: '&#xe70b;'
           },
@@ -208,6 +211,7 @@ export default new VueRouter({
                 can: 'privileges role permissions',
                 show: false,
                 name: '角色权限',
+                font: ''
               },
             }
           ]

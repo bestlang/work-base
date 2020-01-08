@@ -18,6 +18,7 @@ return array(
     'App\\Exceptions\\Handler' => $baseDir . '/app/Exceptions/Handler.php',
     'App\\Http\\Controllers\\ActivityController' => $baseDir . '/app/Http/Controllers/ActivityController.php',
     'App\\Http\\Controllers\\Admin\\ActivityController' => $baseDir . '/app/Http/Controllers/Admin/ActivityController.php',
+    'App\\Http\\Controllers\\Admin\\Cms\\ChannelController' => $baseDir . '/app/Http/Controllers/Admin/Cms/ChannelController.php',
     'App\\Http\\Controllers\\Admin\\OssController' => $baseDir . '/app/Http/Controllers/Admin/OssController.php',
     'App\\Http\\Controllers\\Admin\\PrivilegesController' => $baseDir . '/app/Http/Controllers/Admin/PrivilegesController.php',
     'App\\Http\\Controllers\\Admin\\UploadController' => $baseDir . '/app/Http/Controllers/Admin/UploadController.php',

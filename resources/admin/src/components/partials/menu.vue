@@ -11,6 +11,7 @@
         <div class="ls-top-logo" v-show="!isCollapse">路章の博客</div>
         <div class="ls-top-logo-narrow" v-show="isCollapse">路</div>
         <el-menu
+                :unique-opened="true"
                 ref="sidemenu"
                 class="el-menu-vertical"
                 @open="handleOpen"
@@ -19,10 +20,9 @@
                 :default-active="defaultActive"
                 :collapse="isCollapse">
               <template  v-for="(item , index) in router.options.routes">
-<!--                <template v-if="item.children && item.children.filter(x=>x.meta.show).length > 1"> &lt;!&ndash; 子栏目数量大于1 &ndash;&gt;-->
-                <template  v-if="item.children">
+                <template  v-if="item.children  && item.children.filter(x=>x.meta.show).length">
                   <template v-for="child in item.children">
-                    <cell :item="child"  :type="child.children && child.children.length ? 'el-submenu':'el-menu-item'"></cell>
+                    <cell :item="child"  :type="child.children && item.children.filter(x=>x.meta.show).length ? 'el-submenu':'el-menu-item'"></cell>
                   </template>
                 </template>
               </template>
@@ -69,6 +69,18 @@
           handleClose(key, keyPath) {
               console.log(key, keyPath);
           },
+          resetVisible(routes, privileges){
+            routes.map((route, index) => {
+              if(route.hasOwnProperty('children')){
+                route.children.map((child, idx) => {
+                  if(privileges.indexOf(route.children[idx].meta.can) === -1){
+                    route.children[idx].meta.show = false
+                  }
+                });
+                this.resetVisible(route.children, privileges)
+              }
+            });
+          },
           //@todo
           // make privileges global awared: vuex
           loadUserPermissions(){
@@ -79,15 +91,16 @@
                 localStorage.setItem(`privileges`, JSON.stringify(res.data));
                 //查询出用户的权限列表,根据权限列表过滤路由生成菜单
                 let routes = this.router.options.routes;
-                routes.map((route, index) => {
-                  if(route.hasOwnProperty('children')){
-                    route.children.map((child, idx) => {
-                      if(this.privileges.indexOf(route.children[idx].meta.can) === -1){
-                        route.children[idx].meta.show = false
-                      }
-                    });
-                  }
-                });
+                this.resetVisible(routes, this.privileges)
+                // routes.map((route, index) => {
+                //   if(route.hasOwnProperty('children')){
+                //     route.children.map((child, idx) => {
+                //       if(this.privileges.indexOf(route.children[idx].meta.can) === -1){
+                //         //route.children[idx].meta.show = false
+                //       }
+                //     });
+                //   }
+                // });
               });
           }
       },

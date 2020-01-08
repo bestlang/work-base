@@ -158,5 +158,6 @@ Route::group(['middleware' => 'auth.jwt', 'prefix'=>'admin', 'namespace'=>'Admin
         Route::any('/cms/channel/add', 'ChannelController@add');
         Route::any('/cms/channel/update', 'ChannelController@update');
         Route::any('/cms/channel/children', 'ChannelController@children');
+        Route::any('/cms/model/field/types', 'ModelController@fieldTypes');
     });
 });

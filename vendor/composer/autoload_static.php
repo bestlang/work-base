@@ -620,6 +620,7 @@ class ComposerStaticInitf3c7adb5ea48bb42df4a643c07fc525e
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
         'App\\Http\\Controllers\\ActivityController' => __DIR__ . '/../..' . '/app/Http/Controllers/ActivityController.php',
         'App\\Http\\Controllers\\Admin\\ActivityController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/ActivityController.php',
+        'App\\Http\\Controllers\\Admin\\Cms\\ChannelController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/Cms/ChannelController.php',
         'App\\Http\\Controllers\\Admin\\OssController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/OssController.php',
         'App\\Http\\Controllers\\Admin\\PrivilegesController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/PrivilegesController.php',
         'App\\Http\\Controllers\\Admin\\UploadController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/UploadController.php',
