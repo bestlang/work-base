@@ -83,10 +83,10 @@
                     });
             },
             viewRoleMembers(row){
-                this.$router.push('/privileges/role/users/'+row.id)
+                this.$router.push('/privileges/roles/users/'+row.id)
             },
             editRolePermissions(row){
-                this.$router.push('/privileges/role/permissions/'+row.id+'/'+row.name)
+                this.$router.push('/privileges/roles/permissions/'+row.id)
             },
             handleDelete(row){
               this.$confirm('确认删除该角色?', '提示', {

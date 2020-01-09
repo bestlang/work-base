@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="top-buttons" style="display: flex;flex-flow: row nowrap; justify-content: space-between;">
-      <div>所有权限</div>
+<!--      <div>所有权限</div>-->
     </div>
     <div style="width:50%;">
       <el-tree

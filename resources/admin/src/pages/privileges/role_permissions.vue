@@ -2,9 +2,9 @@
     <div>
         <div class="top-buttons" style="display: flex;flex-flow: row nowrap; justify-content: space-between;">
             <div>{{role_name}}权限</div>
-            <el-button @click="$router.push({path: '/privileges/roles'})"><span class="iconfont">&#xe665;</span></el-button>
+            <el-button @click="$router.push({path: '/privileges/roles'})"><span class="iconfont">&#xe617;</span></el-button>
         </div>
-        <div>
+      <div>
           <div style="width:60%;">
             <el-tree
               :empty-text="emptyText"

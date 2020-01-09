@@ -194,7 +194,7 @@ export default new VueRouter({
               },
             },
             {
-              path: "/privileges/role/users/:id",
+              path: "/privileges/roles/users/:id",
               component: (resolve) => require(["../pages/privileges/role_users.vue"], resolve),
               meta: {
                 // can: 'privileges role users',
@@ -205,7 +205,7 @@ export default new VueRouter({
               },
             },
             {
-              path: "/privileges/role/permissions/:id/:name",
+              path: "/privileges/roles/permissions/:id",
               component: (resolve) => require(["../pages/privileges/role_permissions.vue"], resolve),
               meta: {
                 can: 'privileges role permissions',
