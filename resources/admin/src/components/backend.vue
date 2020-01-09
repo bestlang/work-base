@@ -1,5 +1,5 @@
 <template>
-    <div class="ls-container">
+    <el-container class="ls-container">
         <div class="ls-aside">
             <div class="ls-left">
                 <backend-menu></backend-menu>
@@ -21,7 +21,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </el-container>
 </template>
 <script>
 import top from "@/components/partials/top.vue"

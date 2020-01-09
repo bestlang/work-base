@@ -77,7 +77,7 @@ export default new VueRouter({
                   },
                 },
                 {
-                  path: "/cms/setting/fieldTypes",
+                  path: "/cms/setting/field/types",
                   component: (resolve) => require(["../pages/cms/setting/fieldTypes.vue"], resolve),
                   meta: {
                     can: 'dashboard',
