@@ -47,7 +47,7 @@ export default {
         display: flex;
         flex-flow: row nowrap;
     }
-    .ls-aside, .ls-aside2{
+    .ls-aside{
         flex-shrink: 0;
         border-right: 1px solid #e6e6e6;
     }

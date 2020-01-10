@@ -4,14 +4,7 @@
       <div>
         <el-button type="primary" @click="add">新增</el-button>
       </div>
-      <el-form :inline="true">
-        <el-form-item label="审批人">
-          <el-input placeholder="审批人"></el-input>
-        </el-form-item>
-        <el-form-item>
-          <el-button type="primary">查询</el-button>
-        </el-form-item>
-      </el-form>
+      <div></div>
     </div>
     <el-table
       v-loading="loading"

@@ -77,6 +77,16 @@ export default new VueRouter({
                   },
                 },
                 {
+                  path: "/cms/setting/model/add",
+                  component: (resolve) => require(["../pages/cms/setting/modelAdd.vue"], resolve),
+                  meta: {
+                    can: 'dashboard',
+                    show: false,
+                    name: '添加模型',
+                    font: '&#xe764;'
+                  }
+                },
+                {
                   path: "/cms/setting/field/types",
                   component: (resolve) => require(["../pages/cms/setting/fieldTypes.vue"], resolve),
                   meta: {
@@ -195,7 +205,7 @@ export default new VueRouter({
             },
             {
               path: "/privileges/roles/users/:id",
-              component: (resolve) => require(["../pages/privileges/role_users.vue"], resolve),
+              component: (resolve) => require(["../pages/privileges/roleUsers.vue"], resolve),
               meta: {
                 // can: 'privileges role users',
                 can: 'privileges list role users',
@@ -206,7 +216,7 @@ export default new VueRouter({
             },
             {
               path: "/privileges/roles/permissions/:id",
-              component: (resolve) => require(["../pages/privileges/role_permissions.vue"], resolve),
+              component: (resolve) => require(["../pages/privileges/rolePermissions.vue"], resolve),
               meta: {
                 can: 'privileges role permissions',
                 show: false,
