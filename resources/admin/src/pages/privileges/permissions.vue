@@ -211,7 +211,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    font-size: 14px;
+    font-size: 16px;
     padding-right: 8px;
   }
   .el-tree-node__content{
