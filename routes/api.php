@@ -127,7 +127,7 @@ Route::group(['middleware' => 'auth.jwt', 'prefix'=>'admin', 'namespace'=>'Admin
     Route::get('/activity/activity', 'ActivityController@activity');
     Route::post('/activity/gallery/delete', 'ActivityController@galleryDelete');
     Route::get('/activity/types', 'ActivityController@types');
-    Route::get('/activity/applicables', 'ActivityController@applicables');
+    Route::any('/activity/applicables', 'ActivityController@applicables');
     Route::get('/activity/status', 'ActivityController@status');
     Route::post('/activity/delete', 'ActivityController@delete');
     Route::post('/attach/goods', 'ActivityController@attachGoods');

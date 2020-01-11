@@ -1,5 +1,5 @@
 import * as types from "./types"
-import fetch from "@/api/fetch"
+import fetch from "../api/fetch"
 
 const activityConfig = {
     state: {

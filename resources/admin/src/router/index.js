@@ -28,7 +28,7 @@ export default new VueRouter({
         },
         {
           path: "/cms",
-          component: (resolve) => require(["../components/pass.vue"], resolve),
+          component: (resolve) => require(["../components/via.vue"], resolve),
           meta: {
             can: 'cms',
             show:true,
@@ -58,7 +58,7 @@ export default new VueRouter({
             },
             {
               path: "/cms/setting",
-              component: (resolve) => require(["../components/pass.vue"], resolve),
+              component: (resolve) => require(["../components/via.vue"], resolve),
               meta: {
                 can: 'cms list contents',
                 show: true,
@@ -102,7 +102,7 @@ export default new VueRouter({
         },
         {
           path: "/activity",
-          component: (resolve) => require(["../components/pass.vue"], resolve),
+          component: (resolve) => require(["../components/via.vue"], resolve),
           meta: {
             can: 'activity',
             show: true,
@@ -144,7 +144,7 @@ export default new VueRouter({
         },
         {
           path: "/pdd",
-          component: (resolve) => require(["../components/pass.vue"], resolve),
+          component: (resolve) => require(["../components/via.vue"], resolve),
           meta: {
             can: 'pdd',
             name: '拼多多',
@@ -175,7 +175,7 @@ export default new VueRouter({
         },
         {
           path: "/privileges",
-          component: (resolve) => require(["../components/pass.vue"], resolve),
+          component: (resolve) => require(["../components/via.vue"], resolve),
           meta: {
             can: 'privileges',
             show: true,

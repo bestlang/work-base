@@ -5,16 +5,10 @@
                 <backend-menu></backend-menu>
             </div>
         </div>
-        <!--命名视图-->
-
         <div class="ls-content">
             <div class="ls-top">
                 <backend-top></backend-top>
             </div>
-            <!--<div class="ls-left">-->
-                <!--<backend-menu></backend-menu>-->
-            <!--</div>-->
-            <!--:class="{'ls-main-collapse': isCollapse}"-->
             <div class="ls-main">
                 <div style="box-sizing: border-box;background: #fff;padding: 20px;box-sizing: border-box;min-height: 100%;">
                     <router-view></router-view>
@@ -24,8 +18,8 @@
     </el-container>
 </template>
 <script>
-import top from "@/components/partials/top.vue"
-import menu from "@/components/partials/menu.vue"
+import top from "./partials/top.vue"
+import menu from "./partials/menu.vue"
 
 export default {
     components: {
@@ -61,11 +55,7 @@ export default {
     .ls-content{
         width: 100%;
         flex-basis: auto;
-        /*display: flex;*/
-        /*flex-direction: column;*/
-        /*justify-content: space-between;*/
         overflow-x: hidden;
-        /*overflow-y: scroll;*/
     }
     .ls-left{
         text-align: left;
@@ -78,8 +68,4 @@ export default {
         overflow-y: scroll;
         background: rgb(244, 244, 244);
     }
-    /*.ls-main-collapse{*/
-        /*width: 100%;*/
-        /*left: 0;*/
-    /*}*/
 </style>

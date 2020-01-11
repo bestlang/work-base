@@ -2,12 +2,11 @@
   <div>
     <div class="top-buttons" style="display: flex;flex-flow: row nowrap; justify-content: space-between;">
       <div>新增模型</div>
-      <el-button @click="$router.push({path: '/cms/setting/model'})"><span class="iconfont">&#xe617;</span></el-button>
+      <router-link to="/cms/setting/model"><el-button><span class="iconfont">&#xe617;</span></el-button></router-link>
     </div>
     <div>
       <div class="l-form-block">
-        模型信息
-        <el-divider></el-divider>
+        <el-divider content-position="left">模型信息</el-divider>
         <el-form ref="form" :model="form" label-width="120px">
           <el-form-item label="模型名">
             <el-input v-model="form.name"></el-input>
@@ -21,8 +20,8 @@
         </el-form>
       </div>
       <div class="l-form-block">
+        <el-divider content-position="left">模型字段</el-divider>
         <div class="l-flex-row">
-          <div>模型字段</div>
           <el-button type="primary">新增</el-button>
         </div>
         <el-divider></el-divider>

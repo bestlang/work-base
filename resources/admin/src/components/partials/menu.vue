@@ -81,38 +81,19 @@
               }
             });
           },
-          //@todo
-          // make privileges global awared: vuex
           loadUserPermissions(){
             this.$http
               .get("/admin/privileges/user/permissions")
               .then(res => {
                 this.privileges = res.data
-                localStorage.setItem(`privileges`, JSON.stringify(res.data));
-                //查询出用户的权限列表,根据权限列表过滤路由生成菜单
+                this.$store.commit(this.$types.PRIVILEGES, res.data)
                 let routes = this.router.options.routes;
                 this.resetVisible(routes, this.privileges)
-                // routes.map((route, index) => {
-                //   if(route.hasOwnProperty('children')){
-                //     route.children.map((child, idx) => {
-                //       if(this.privileges.indexOf(route.children[idx].meta.can) === -1){
-                //         //route.children[idx].meta.show = false
-                //       }
-                //     });
-                //   }
-                // });
               });
           }
       },
-    // mounted() {
-    //   console.log(`-------------->route path:`,this.$route.path);
-    // },
     created() {
         this.defaultActive = this.$route.path;
-      // console.log(`-------------->route path:`,this.$route.path);
-      // this.$nextTick(function(){
-      //   this.$refs.sidemenu.open('/dashboard/home');
-      // })
         this.loadUserPermissions();
       }
     }
