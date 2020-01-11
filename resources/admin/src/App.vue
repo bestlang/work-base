@@ -5,6 +5,10 @@
 export default {}
 </script>
 <style>
+  .iconfont{
+    font-family: iconfont;
+    font-style: normal;
+  }
   .el-button{
     padding: 10px 20px;
   }
@@ -23,5 +27,8 @@ export default {}
   }
   .el-submenu__title, .el-menu-item{
     font-size: 16px;
+  }
+  .router-link-active{
+    cursor: pointer;
   }
 </style>
