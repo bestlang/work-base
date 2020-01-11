@@ -1,10 +1,13 @@
 <template>
     <div>
         <div class="top-buttons" style="display: flex;flex-flow: row nowrap;justify-content: space-between;">
-          <div style="line-height: 36px;">{{roleName}}用户</div>
+          <div style="display: flex;flex-flow: row nowrap;">
+            <router-link to="/privileges/roles" tag="div"><span class="iconfont">&#xe601;</span>返回</router-link>
+            <el-divider direction="vertical"></el-divider>
+            <div>{{roleName}}用户</div>
+          </div>
           <div>
             <el-button type="primary" @click="addNewUser"><i class="iconfont">&#xe641;</i> 添加</el-button>
-            <el-button @click="$router.push({path: '/privileges/roles'})"><span class="iconfont">&#xe665;</span></el-button>
           </div>
         </div>
         <el-table

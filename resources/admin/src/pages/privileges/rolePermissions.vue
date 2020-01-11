@@ -1,8 +1,9 @@
 <template>
     <div>
-        <div class="top-buttons" style="display: flex;flex-flow: row nowrap; justify-content: space-between;">
-            <div>{{role_name}}权限</div>
-            <el-button @click="$router.push({path: '/privileges/roles'})"><span class="iconfont">&#xe617;</span></el-button>
+        <div class="top-buttons" style="display: flex;flex-flow: row nowrap;">
+          <router-link to="/privileges/roles" tag="div"><span class="iconfont">&#xe601;</span>返回</router-link>
+          <el-divider direction="vertical"></el-divider>
+          <div>{{role_name}}权限</div>
         </div>
       <div>
           <div style="width:60%;">

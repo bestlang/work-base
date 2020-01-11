@@ -66,6 +66,7 @@ export default {
         height: calc(100vh - 50px);
         padding: 10px;
         overflow-y: scroll;
-        background: rgb(244, 244, 244);
+        /*background: rgb(244, 244, 244);*/
+        background-color: #F5F7FA;
     }
 </style>

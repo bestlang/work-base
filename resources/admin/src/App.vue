@@ -26,9 +26,15 @@ export default {}
     justify-content: space-between;
   }
   .el-submenu__title, .el-menu-item{
-    font-size: 16px;
+    font-size: 15px;
   }
   .router-link-active{
     cursor: pointer;
+  }
+  .el-table .category-row {
+    background: oldlace;
+  }
+  .el-table .content-row {
+    background: #f0f9eb;
   }
 </style>

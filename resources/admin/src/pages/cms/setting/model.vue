@@ -33,6 +33,13 @@
       label="内容模板前缀">
       </el-table-column>
 
+      <el-table-column
+      label="操作">
+        <template slot-scope="scope">
+          <el-button type="text" @click="handleEdit(scope.row)">编辑</el-button>
+        </template>
+      </el-table-column>
+
     </el-table>
     <el-dialog title="添加类型" :visible.sync="dialogFormVisible">
       <el-form :model="form">
@@ -65,6 +72,9 @@
       }
     },
     methods:{
+      handleEdit(row){
+        this.$router.push('/cms/setting/model/edit/'+row.id);
+      },
       add(){
         this.$router.push('/cms/setting/model/add');
       },

@@ -88,6 +88,16 @@ export default new VueRouter({
                   }
                 },
                 {
+                  path: "/cms/setting/model/edit/:id",
+                  component: (resolve) => require(["../pages/cms/setting/modelAdd.vue"], resolve),
+                  meta: {
+                    can: 'dashboard',
+                    show: false,
+                    name: '编辑模型',
+                    font: '&#xe764;'
+                  }
+                },
+                {
                   path: "/cms/setting/field/types",
                   component: (resolve) => require(["../pages/cms/setting/fieldTypes.vue"], resolve),
                   meta: {
