@@ -37,4 +37,8 @@ export default {}
   .el-table .content-row {
     background: #f0f9eb;
   }
+  .el-tabs__item {
+    font-size: 16px;
+    font-weight: 500;
+  }
 </style>

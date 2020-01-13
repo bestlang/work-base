@@ -162,7 +162,7 @@ Route::group(['middleware' => 'auth.jwt', 'prefix'=>'admin', 'namespace'=>'Admin
         Route::any('/cms/model/field/type/add', 'FieldTypeController@add');
 
         Route::any('/cms/model', 'ModelController@index');
-        Route::any('/cms/model/add', 'ModelController@add');
+        Route::any('/cms/model/save', 'ModelController@save');
         Route::any('/cms/model/get', 'ModelController@get');
     });
 });

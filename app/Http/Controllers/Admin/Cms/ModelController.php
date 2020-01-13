@@ -16,11 +16,16 @@ class ModelController extends Controller
         return response()->ajax($models);
     }
 
-    public function add(Request $request)
+    public function save(Request $request)
     {
         $params = $request->all();
         $data = Arr::only($params, ['name', 'channel_template_prefix', 'content_template_prefix']);
-        $model = Model::create($data);
+        $id = Arr::get($params, 'id', 0);
+        if($id){
+            $model = Model::find($id)->update($data);
+        }else{
+            $model = Model::create($data);
+        }
         return response()->ajax($model);
     }
 
