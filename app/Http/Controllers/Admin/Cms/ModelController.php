@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin\Cms;
 
 use App\Models\Cms\Model;
+use App\Models\Cms\ModelField;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Cms\FieldType;
@@ -33,10 +34,25 @@ class ModelController extends Controller
     {
         $id = $request->input('id', 0);
         if($id){
-            $model = Model::find($id);
+            $model = Model::with('fields')->find($id);
             return response()->ajax($model);
         }else{
             return response()->error('参数不合法!');
         }
+    }
+
+    public function saveField(Request $request)
+    {
+        $params = $request->all();
+        $rules = [
+            'model_id' => 'required',
+            'field' => 'required',
+            'label' => 'required',
+            'type' => 'required',
+        ];
+        $data = Arr::only($params, ['type','field','label', 'extra', 'is_channel']);
+        $model = Model::find($params['model_id']);
+        $model->fields()->create($data);
+        return response()->ajax($params);
     }
 }

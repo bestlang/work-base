@@ -30,7 +30,7 @@
           <el-table
             border
             v-loading="loading"
-            :data="tableData"
+            :data="channelFields"
             style="width: 100%">
             <el-table-column
               prop="id"
@@ -38,7 +38,7 @@
               width="180">
             </el-table-column>
             <el-table-column
-              prop="name"
+              prop="field"
               label="字段名">
             </el-table-column>
             <el-table-column
@@ -60,7 +60,7 @@
           <el-table
             border
             v-loading="loading"
-            :data="tableData"
+            :data="contentFields"
             style="width: 100%">
             <el-table-column
               prop="id"
@@ -68,7 +68,7 @@
               width="180">
             </el-table-column>
             <el-table-column
-              prop="name"
+              prop="field"
               label="字段名">
             </el-table-column>
             <el-table-column
@@ -85,16 +85,19 @@
         </el-tab-pane>
       </el-tabs>
     </div>
-    <el-dialog :title="column._title" :visible.sync="column._dialogFormVisible">
-      <el-form :model="column" label-width="100px">
+    <el-dialog :title="fieldTitle" :visible.sync="fieldVisible">
+      <el-form :model="fieldForm" label-width="100px">
+        <el-form-item label="栏目字段">
+          <el-input v-model="fieldForm.is_channel" autocomplete="off"></el-input>
+        </el-form-item>
         <el-form-item label="字段">
-          <el-input v-model="column.field" autocomplete="off"></el-input>
+          <el-input v-model="fieldForm.field" autocomplete="off"></el-input>
         </el-form-item>
         <el-form-item label="标签">
-          <el-input v-model="column.label" autocomplete="off"></el-input>
+          <el-input v-model="fieldForm.label" autocomplete="off"></el-input>
         </el-form-item>
         <el-form-item label="类型">
-          <el-select v-model="column.type" placeholder="请选择">
+          <el-select v-model="fieldForm.type" placeholder="请选择">
             <el-option
               v-for="item in options"
               :key="item.value"
@@ -105,8 +108,8 @@
         </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
-        <el-button>取 消</el-button>
-        <el-button type="primary">确 定</el-button>
+        <el-button type="primary">取消</el-button>
+        <el-button type="primary" @click="doSaveField">确定</el-button>
       </div>
     </el-dialog>
   </div>
@@ -115,23 +118,25 @@
   export default {
     data(){
       return {
+        id:null,
         loading: false,
         activeName: 'basic',
-        tableData:[],
+        fields:[],
         form:{
           id: null,
           name: '',
           channel_template_prefix: '',
           content_template_prefix: ''
         },
-        column:{
-          _title: '添加字段',
-          _dialogFormVisible: false,
+        fieldTitle:'添加字段',
+        fieldVisible: false,
+        fieldForm:{
+          id: '',
+          model_id: null,
           type: '',// text, select ...
           field: '',
           label: '',
-          default_value: '',
-          default_options: '',
+          extra: '',
           is_channel: 0, // 1-channel | 0-content
           is_custom: 1,
           is_display: 1,
@@ -139,28 +144,28 @@
         },
         options:[
           {
-            value: '1',
+            value: 'text',
+            label: '文本框'
+          },
+          {
+            value: 'select',
             label: '单选'
           },
           {
-            value: '2',
+            value: 'checkbox',
             label: '多选'
-          },
-          {
-            value: '3',
-            label: '文本框'
-          },
+          }
         ]
       }
     },
     computed:{
       channelFields(){
-        this.tableData.filter(function(item){
+        return this.fields.filter(function(item){
           return item.is_channel === 1;
         })
       },
       contentFields(){
-        this.tableData.filter(function(item){
+        return this.fields.filter(function(item){
           return item.is_channel === 0;
         })
       }
@@ -179,17 +184,20 @@
           return;
         }
         if(type == 'channel'){
-          this.column.is_channel = 1;
+          this.fieldForm.is_channel = 1;
         }else if(type == 'content'){
-          this.column.is_channel = 0;
+          this.fieldForm.is_channel = 0;
         }
-        this.column._dialogFormVisible = true;
+        this.fieldVisible = true;
       },
       loadModel(id){
         this.$http
           .get("/admin/cms/model/get", {params: {id}})
           .then(res => {
+            this.fields = res.data.fields;
+            console.log(`.............this.fields:`, this.fields)
             Object.assign(this.form, res.data)
+            this.fieldForm.model_id = res.data.id;
           });
       },
       save(){
@@ -214,12 +222,35 @@
             }
           });
       },
+      doSaveField(){
+        this.$http
+          .post("/admin/cms/model/save/field", this.fieldForm)
+          .then(res => {
+            if(res.success){
+              this.fieldVisible = false;
+              let message = '添加成功!'
+              if(this.fieldForm.id)
+                message = '更新成功!';
+              this.$message({
+                message: message,
+                type: 'success'
+              });
+              this.loadModel(this.id);
+            }else{
+              this.$message({
+                message: '出错了!请联系管理员',
+                type: 'warning'
+              });
+            }
+          });
+      },
       handleClick(tab, event) {
         console.log(tab, event);
       },
     },
     mounted() {
       let id = this.$route.params.id;
+      this.id = id;
       if(id){
         this.loadModel(id);
       }

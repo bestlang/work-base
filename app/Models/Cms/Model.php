@@ -13,4 +13,9 @@ class Model extends BaseModel
         'channel_template_prefix',
         'content_template_prefix'
     ];
+
+    public function fields()
+    {
+        return $this->hasMany(ModelField::class);
+    }
 }
