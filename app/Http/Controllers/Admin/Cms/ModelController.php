@@ -50,9 +50,16 @@ class ModelController extends Controller
             'label' => 'required',
             'type' => 'required',
         ];
+        $id = Arr::get($params, 'id', 0);
         $data = Arr::only($params, ['type','field','label', 'extra', 'is_channel']);
         $model = Model::find($params['model_id']);
-        $model->fields()->create($data);
+        if($id){
+            $field = $model->fields()->find($id);
+            $field->update($data);
+        }else{
+            $model->fields()->create($data);
+        }
+
         return response()->ajax($params);
     }
 }

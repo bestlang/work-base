@@ -3,20 +3,20 @@
     <div class="top-buttons" style="display: flex;flex-flow: row nowrap;">
       <router-link to="/cms/setting/model" tag="div"><span class="iconfont">&#xe601;</span>返回</router-link>
       <el-divider direction="vertical"></el-divider>
-      <div>{{form.id ? '编辑':'新增'}}模型</div>
+      <div>{{modelForm.id ? '编辑':'新增'}}模型</div>
     </div>
     <div>
       <el-tabs tab-position="left" v-model="activeName" @tab-click="handleClick">
         <el-tab-pane label="基本信息" name="basic">
-          <el-form ref="form" :model="form" label-width="120px">
+          <el-form ref="form" :model="modelForm" label-width="120px">
             <el-form-item label="模型名">
-              <el-input v-model="form.name"></el-input>
+              <el-input v-model="modelForm.name"></el-input>
             </el-form-item>
             <el-form-item label="栏目模板前缀">
-              <el-input v-model="form.channel_template_prefix"></el-input>
+              <el-input v-model="modelForm.channel_template_prefix"></el-input>
             </el-form-item>
             <el-form-item label="内容模板前缀">
-              <el-input v-model="form.content_template_prefix"></el-input>
+              <el-input v-model="modelForm.content_template_prefix"></el-input>
             </el-form-item>
             <el-form-item>
               <el-button type="primary" @click="save">保存</el-button>
@@ -30,16 +30,18 @@
           <el-table
             border
             v-loading="loading"
-            :data="channelFields"
-            style="width: 100%">
+            :data="channelFields">
             <el-table-column
               prop="id"
-              label="ID"
-              width="180">
+              label="ID">
             </el-table-column>
             <el-table-column
               prop="field"
-              label="字段名">
+              label="字段">
+            </el-table-column>
+            <el-table-column
+              prop="label"
+              label="标签">
             </el-table-column>
             <el-table-column
               prop="type"
@@ -60,16 +62,18 @@
           <el-table
             border
             v-loading="loading"
-            :data="contentFields"
-            style="width: 100%">
+            :data="contentFields">
             <el-table-column
               prop="id"
-              label="ID"
-              width="180">
+              label="ID">
             </el-table-column>
             <el-table-column
               prop="field"
-              label="字段名">
+              label="字段">
+            </el-table-column>
+            <el-table-column
+              prop="label"
+              label="标签">
             </el-table-column>
             <el-table-column
               prop="type"
@@ -87,47 +91,55 @@
     </div>
     <el-dialog :title="fieldTitle" :visible.sync="fieldVisible">
       <el-form :model="fieldForm" label-width="100px">
-        <el-form-item label="栏目字段">
-          <el-input v-model="fieldForm.is_channel" autocomplete="off"></el-input>
+        <el-form-item label="标签">
+          <el-input v-model="fieldForm.label" autocomplete="off"></el-input>
         </el-form-item>
         <el-form-item label="字段">
           <el-input v-model="fieldForm.field" autocomplete="off"></el-input>
         </el-form-item>
-        <el-form-item label="标签">
-          <el-input v-model="fieldForm.label" autocomplete="off"></el-input>
-        </el-form-item>
+
         <el-form-item label="类型">
           <el-select v-model="fieldForm.type" placeholder="请选择">
             <el-option
-              v-for="item in options"
-              :key="item.value"
-              :label="item.label"
-              :value="item.value">
+              v-for="option in options"
+              :key="option.value"
+              :label="option.name"
+              :value="option.type">
             </el-option>
           </el-select>
         </el-form-item>
+
+        <el-form-item label="选项" v-if="showOptions">
+            <add-options @optionsChange="handleOptionsChange"></add-options>
+        </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
-        <el-button type="primary">取消</el-button>
+        <el-button type="primary" @click="fieldVisible = false">取消</el-button>
         <el-button type="primary" @click="doSaveField">确定</el-button>
       </div>
     </el-dialog>
   </div>
 </template>
 <script>
+  import addOptions from "../components/addOptions";
   export default {
+    components:{
+      'add-options': addOptions
+    },
     data(){
       return {
         id:null,
         loading: false,
         activeName: 'basic',
         fields:[],
-        form:{
+
+        modelForm:{
           id: null,
           name: '',
           channel_template_prefix: '',
           content_template_prefix: ''
         },
+
         fieldTitle:'添加字段',
         fieldVisible: false,
         fieldForm:{
@@ -142,20 +154,21 @@
           is_display: 1,
           is_required: 0,
         },
-        options:[
-          {
-            value: 'text',
-            label: '文本框'
-          },
-          {
-            value: 'select',
-            label: '单选'
-          },
-          {
-            value: 'checkbox',
-            label: '多选'
+        showOptions: false,
+        options:[]
+      }
+    },
+    watch:{
+      ['fieldForm.type'](newValue, oldValue){
+        this.options.forEach((item) => {
+          if(item.type == newValue){
+            if(item.extra.options){
+              this.showOptions = true;
+            }else{
+              this.showOptions = false;
+            }
           }
-        ]
+        });
       }
     },
     computed:{
@@ -171,11 +184,15 @@
       }
     },
     methods:{
+      handleEdit(row){
+        this.fieldVisible = true
+        Object.assign(this.fieldForm, row);
+      },
       beforeLeave(activeName, oldActiveName){
         return true;
       },
       add(type){
-        if(!this.form.id){
+        if(!this.modelForm.id){
           this.$message({
             message: '请先提交基本信息!',
             type: 'warning'
@@ -189,31 +206,50 @@
           this.fieldForm.is_channel = 0;
         }
         this.fieldVisible = true;
+        Object.assign(this.fieldForm, {
+          id: '',
+          model_id: null,
+          type: '',// text, select ...
+          field: '',
+          label: '',
+          extra: '',
+          is_channel: 0, // 1-channel | 0-content
+          is_custom: 1,
+          is_display: 1,
+          is_required: 0,
+        })
+      },
+      loadFieldTypes(){
+        this.$http
+          .get("/admin/cms/model/field/types")
+          .then(res => {
+            this.options = res.data;
+            console.log(JSON.stringify(this.options))
+          });
       },
       loadModel(id){
         this.$http
           .get("/admin/cms/model/get", {params: {id}})
           .then(res => {
             this.fields = res.data.fields;
-            console.log(`.............this.fields:`, this.fields)
-            Object.assign(this.form, res.data)
+            Object.assign(this.modelForm, res.data)
             this.fieldForm.model_id = res.data.id;
           });
       },
       save(){
         this.$http
-          .post("/admin/cms/model/save", this.form)
+          .post("/admin/cms/model/save", this.modelForm)
           .then(res => {
             if(res.success){
               let message = '添加成功!'
-              if(this.form.id){
+              if(this.modelForm.id){
                 message = '更新成功!';
               }
               this.$message({
                 message: message,
                 type: 'success'
               });
-              Object.assign(this.form, res.data);
+              Object.assign(this.modelForm, res.data);
             }else{
               this.$message({
                 message: '出错了!请联系管理员',
@@ -247,6 +283,9 @@
       handleClick(tab, event) {
         console.log(tab, event);
       },
+      handleOptionsChange(val){
+        this.fieldForm.extra = val;
+      }
     },
     mounted() {
       let id = this.$route.params.id;
@@ -254,6 +293,7 @@
       if(id){
         this.loadModel(id);
       }
+      this.loadFieldTypes();
     }
   }
 </script>

@@ -13,28 +13,39 @@
       <el-table-column
         prop="id"
         label="ID"
-        width="180">
+        width="100">
       </el-table-column>
       <el-table-column
         prop="type"
-        label="类型">
+        label="字段">
       </el-table-column>
       <el-table-column
         prop="name"
         label="名称">
       </el-table-column>
+      <el-table-column
+        label="操作">
+        <template slot-scope="scope">
+          <el-button type="text" size="small" @click="handleEdit(scope.row)">编辑</el-button>
+          <el-button type="text" size="small" @click="handleDelete(scope.row)">删除</el-button>
+        </template>
+      </el-table-column>
     </el-table>
-    <el-dialog title="添加类型" :visible.sync="dialogFormVisible">
+    <el-dialog title="添加类型" :visible.sync="formVisible">
       <el-form :model="form">
-        <el-form-item label="类型" label-width="100px">
+        <el-form-item label="名称" :label-width="w">
+          <el-input v-model="form.name" autocomplete="off"></el-input>
+        </el-form-item>
+        <el-form-item label="字段" :label-width="w">
           <el-input v-model="form.type" autocomplete="off"></el-input>
         </el-form-item>
-        <el-form-item label="名称" label-width="100px">
-          <el-input v-model="form.name" autocomplete="off"></el-input>
+        <el-form-item label="带选项" :label-width="w">
+          <el-radio v-model="form.extra.options" :label="false">否</el-radio>
+          <el-radio v-model="form.extra.options" :label="true">是</el-radio>
         </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
-        <el-button @click="dialogFormVisible = false">取 消</el-button>
+        <el-button @click="formVisible = false">取 消</el-button>
         <el-button type="primary" @click="submit">确 定</el-button>
       </div>
     </el-dialog>
@@ -45,18 +56,30 @@
   export default {
     data(){
       return {
+        w: '80px',
         loading: true,
         tableData: [],
-        dialogFormVisible: false,
+        formVisible: false,
         form: {
+          id: '',
+          type: '',
           name: '',
-          type: ''
+          extra: {
+            options: false
+          }
         },
       }
     },
     methods:{
+      handleEdit(row){
+        this.formVisible = true;
+        Object.assign(this.form, row);
+      },
+      handleDelete(row){
+        alert(JSON.stringify(row));
+      },
       add(){
-        this.dialogFormVisible = true;
+        this.formVisible = true;
         Object.assign(this.form, {
           name: '',
           type: ''
@@ -64,15 +87,19 @@
       },
       submit(){
         this.$http
-          .post("/admin/cms/model/field/type/add", this.form)
+          .post("/admin/cms/model/field/type/save", this.form)
           .then(res => {
             // alert(JSON.stringify(res))
             if(res.success) {
               this.loading = true;
               this.loadTypes();
-              this.dialogFormVisible = false;
+              this.formVisible = false;
+              let successMsg = '添加成功!';
+              if(this.form.id){
+                successMsg = '编辑成功!';
+              }
               this.$message({
-                message: '添加成功!',
+                message: successMsg,
                 type: 'success'
               });
             }else{

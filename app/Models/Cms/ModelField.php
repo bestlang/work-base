@@ -7,5 +7,14 @@ use Illuminate\Database\Eloquent\Model;
 class ModelField extends Model
 {
     protected $table = 'cms_model_fields';
-    protected $fillable = ['type', 'field', 'label', 'extra', 'is_channel'];
+    protected $guarded = [];
+
+    public function setExtraAttribute($value)
+    {
+        $this->attributes['extra'] = json_encode($value);
+    }
+
+    public function getExtraAttribute($value){
+        return json_decode($value);
+    }
 }

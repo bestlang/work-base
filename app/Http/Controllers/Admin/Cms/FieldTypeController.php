@@ -15,28 +15,47 @@ class FieldTypeController extends Controller
         return response()->ajax($fieldTypes);
     }
 
-    public function add(Request $request)
+    public function save(Request $request)
     {
         $params = $request->all();
         $rules = [
-            'type' => 'required|alpha_dash',
-            'name' => 'required'
+            'type' => 'required|alpha_dash|unique:cms_field_types',
+            'name' => 'required',
+            'extra' => 'required'
         ];
+        if(Arr::get($params, 'id', false)){
+            $rules['type'] = 'required|alpha_dash|unique:cms_field_types,type,'.$params['id'];
+        }
         $infos = [
-            'type.required' => '类型不能为空',
-            'type.alpha_dash' => '类型只能为字母下划线组成',
-            'name.required' => '名称不能为空'
+            'type.unique' => '字段名字已存在',
+            'type.required' => '字段不能为空',
+            'type.alpha_dash' => '字段只能为字母下划线组成',
+            'name.required' => '名称不能为空',
+            'extra.required' => '附加信息不能为空'
         ];
         $names = [
             'type' => '类型',
-            'name' => '名称'
+            'name' => '名称',
+            'extra' => '附加信息'
         ];
         $validator = Validator::make($params, $rules, $infos, $names);
         if($validator->fails()){
             return response()->error($validator->errors()->first());
         }
-        $data = Arr::only($params, ['type', 'name']);
-        FieldType::create($data);
+        $data = Arr::only($params, ['type', 'name', 'extra']);
+        $id = Arr::get($params, 'id', 0);
+        if($id){
+            $fieldType = FieldType::find($id);
+            if($fieldType){
+                $fieldType->update($data);
+            }
+        }else{
+            try{
+                FieldType::create($data);
+            }catch (\Exception $e){
+                return response()->error($e->getMessage());
+            }
+        }
         return response()->ajax();
     }
 }
