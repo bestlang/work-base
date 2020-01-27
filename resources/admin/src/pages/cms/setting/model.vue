@@ -104,7 +104,6 @@
           .get("/admin/cms/model")
           .then(res => {
             this.loading = false;
-            console.log(`............`,res.data)
             this.tableData = res.data;
           });
       }

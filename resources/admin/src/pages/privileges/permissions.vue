@@ -97,12 +97,12 @@
       },
       recovery(){
         this.current = null;
-        this.form = {
+        Object.assign(this.form, {
           id: '',
           parent_id: '',
           name: '',
           show_name: ''
-        }
+        })
       },
       add(data) {
         this.recovery()

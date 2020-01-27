@@ -13,7 +13,7 @@
 <script>
   export default {
     props:{
-      initOptions:{
+      options:{
         type: Array,
         default:function(){
           return [{name: '', value: ''}]
@@ -21,12 +21,7 @@
       }
     },
     data(){
-      return {
-        options: [
-          {name: '', value:''},
-          {name: '', value:''},
-        ]
-      }
+      return {}
     },
     methods:{
       plus(){
@@ -44,9 +39,13 @@
         }
       }
     },
-    mounted() {
-      this.options = this.initOptions
-    }
+    // created() {
+    //   if(this.initOptions.length>0){
+    //     this.options = this.initOptions
+    //   }else{
+    //     this.options = [{name: '', value:''}]
+    //   }
+    // }
   }
 </script>
 <style lang="less" scoped>

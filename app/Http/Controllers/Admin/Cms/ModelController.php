@@ -62,4 +62,17 @@ class ModelController extends Controller
 
         return response()->ajax($params);
     }
+
+    public function deleteField(Request $request)
+    {
+        $params = $request->all();
+        $model_id = Arr::get($params, 'model_id', 0);
+        $id = Arr::get($params, 'id', 0);
+        if(!$model_id || !$id){
+            return response()->error('参数不合法');
+        }
+        $model = Model::find($model_id);
+        $model->fields()->find($id)->delete();
+        return response()->ajax();
+    }
 }

@@ -12,32 +12,12 @@
           :expand-on-click-node="false">
           <span class="custom-tree-node" slot-scope="{ node, data }">
             <span><span v-if="!data.children.length" class="iconfont">&#xe92a;</span>{{ node.label }}</span>
-            <span>
-<!--              <el-button-->
-<!--                type="text"-->
-<!--                size="mini"-->
-<!--                @click="() => edit(data)">-->
-<!--                编辑-->
-<!--              </el-button>-->
-<!--              <el-button-->
-<!--                type="text"-->
-<!--                size="mini"-->
-<!--                @click="() => add(data)">-->
-<!--                新增-->
-<!--              </el-button>-->
-<!--              <el-button-->
-<!--                type="text"-->
-<!--                size="mini"-->
-<!--                @click="() => remove(node, data)">-->
-<!--                删除-->
-<!--              </el-button>-->
-            </span>
           </span>
         </el-tree>
       </div>
       <div class="l-tree-content">
         <el-table
-          v-if="!showForm"
+          v-if="!showChannelForm"
           v-loading="loading"
           :data="children"
           style="width: 100%">
@@ -55,24 +35,34 @@
             label="操作">
             <template slot-scope="scope">
               <el-button type="text">编辑</el-button>
-              <el-button type="text">新增</el-button>
+              <el-button type="text" @click="addChannel(scope.row)">新增</el-button>
               <el-button type="text">删除</el-button>
             </template>
           </el-table-column>
         </el-table>
-        <div class="l-channel-form" v-if="showForm">
-          <el-form :model="form" label-width="100px">
+        <div class="l-channel-form" v-if="showChannelForm">
+          <el-form :model="channelForm" label-width="100px">
             <el-form-item label="栏目名">
-              <el-input v-model="form.name" autocomplete="off"></el-input>
+              <el-input v-model="channelForm.name" autocomplete="off"></el-input>
+            </el-form-item>
+            <el-form-item label="模型">
+              <el-select v-model="channelForm.model_id" placeholder="请选择">
+                <el-option
+                  v-for="m in models"
+                  :key="m.name"
+                  :label="m.name"
+                  :value="m.id">
+                </el-option>
+              </el-select>
             </el-form-item>
             <el-form-item label="标题">
-              <el-input v-model="form.title" autocomplete="off"></el-input>
+              <el-input v-model="channelForm.title" autocomplete="off"></el-input>
             </el-form-item>
             <el-form-item label="关键词">
-              <el-input v-model="form.keywords" autocomplete="off"></el-input>
+              <el-input v-model="channelForm.keywords" autocomplete="off"></el-input>
             </el-form-item>
             <el-form-item label="描述">
-              <el-input v-model="form.description" autocomplete="off"></el-input>
+              <el-input v-model="channelForm.description" autocomplete="off"></el-input>
             </el-form-item>
             <el-form-item>
               <el-button type="primary" @click="doSubmit">确 定</el-button>
@@ -87,45 +77,59 @@
   export default {
     data() {
       return {
-        loading: true,
         customProps: {
           children: 'children',
           label: 'name'
         },
-        treeData:[],
-        children:[],
         current:null,
         title: '添加子栏目',
-        showForm: false,
-        form:{
+        showChannelForm: false,
+        channelForm:{
           id: '',
           parent_id: '',
           name: '',
+          model_id: '',
           title: '',
           keywords: '',
           description: '',
         }
       }
     },
+    computed:{
+      loading(){
+        return this.$store.getters.loading;
+      },
+      treeData(){
+        return this.$store.getters.channels;
+      },
+      children(){
+        return this.$store.getters.channelChildren;
+      },
+      models(){
+        return this.$store.getters.models;
+      }
+    },
     methods: {
-      loadChildren(node){
-        this.loading = true;
-        this.$http
-          .post("/admin/cms/channel/children", {parent_id: node.id})
-          .then(res => {
-            this.children = res.data
-            this.loading = false
-          });
+      addChannel(row){
+        this.showChannelForm = true;
+        Object.assign(this.channelForm, {
+          id: '',
+          parent_id: row.id,
+          name: '',
+          title: '',
+          keywords: '',
+          description: '',
+        })
       },
       handleNodeClick(node, ...$params){
         if(node.children.length>0){
-          this.loadChildren(node);
-          this.showForm = false;
+          this.$store.dispatch(this.$types.CMS_CHANNEL_CHILDREN, node);
+          this.showChannelForm = false;
         }else{
-          this.children = [];
-          this.showForm = true;
+          this.$store.commit(this.$types.CMS_CHANNEL_CHILDREN, [])
+          this.showChannelForm = true;
+          Object.assign(this.channelForm, node)
         }
-        Object.assign(this.form, node)
       },
       edit(data){
         this.current = data
@@ -133,7 +137,7 @@
         let parent_id = data.parent_id;
         let name = data.name;
         let show_name = data.show_name;
-        this.form = {
+        this.channelForm = {
           id,
           parent_id,
           name,
@@ -144,7 +148,7 @@
       },
       add(data) {
         this.current = null;
-        this.form = {
+        this.channelForm = {
           id: '',
           parent_id: '',
           name: ''
@@ -153,24 +157,24 @@
         this.dialogFormVisible = true;
       },
       doSubmit(){
-        if(!this.form.id){
+        if(!this.channelForm.id){
           this.doAdd()
         }else{
           this.doEdit()
         }
       },
       doCancel(){
-        this.showForm = false;
-        this.loadChildren({id:this.form.parent_id});
+        this.showChannelForm = false;
+        this.$store.dispatch(this.$types.CMS_CHANNEL_CHILDREN, {id:this.channelForm.parent_id});
       },
       doAdd(){
-        const newChild = {name: this.form.name,  children: [] };
+        const newChild = {name: this.channelForm.name,  children: [] };
         if (!this.current.children) {
           this.$set(this.current, 'children', []);
         }
-        this.showForm = false
+        this.showChannelForm = false
         this.$http
-          .post("/admin/cms/channel/add", {parent_id: this.current.id, name: this.form.name})
+          .post("/admin/cms/channel/add", {parent_id: this.current.id, name: this.channelForm.name})
           .then(res => {
             newChild.id = res.data.id;
             this.current.children.push(newChild);
@@ -181,21 +185,21 @@
               });
               this.recovery()
             }else{
-              this.showForm = true
+              this.showChannelForm = true
             }
-
           });
       },
       doEdit(){
         this.$http
-          .post("/admin/cms/channel/update", this.form)
+          .post("/admin/cms/channel/update", this.channelForm)
           .then(res => {
             this.$message({
               type: 'success',
               message: '修改成功!'
             });
-            this.loadChildren({id:this.form.parent_id});
-            this.showForm = false;
+            // this.loadChildren({id:this.channelForm.parent_id});
+            this.$store.dispatch(this.$types.CMS_CHANNEL_CHILDREN, {id:this.channelForm.parent_id});
+            this.showChannelForm = false;
           });
       },
       remove(node, data) {
@@ -218,19 +222,11 @@
             }).catch(()=>{});
         });
       },
-      loadChannelsTree(){
-        this.$http
-          .get("/admin/cms/channel/tree", {params:{disabled: true}})
-          .then(res => {
-            console.log(`------------------>`,res)
-            this.treeData = [res.data[Object.keys(res.data)[0]]];
-            this.loadChildren(res.data[Object.keys(res.data)[0]])
-          });
-      }
     },
     mounted() {
       this.$store.dispatch('toggleState');
-      this.loadChannelsTree()
+      this.$store.dispatch(this.$types.CMS_CHANNELS);
+      this.$store.dispatch(this.$types.CMS_MODELS);
     }
   }
 </script>

@@ -2,6 +2,7 @@ import Vue from "vue"
 import Vuex from "vuex"
 import system from "./system"
 import activity from "./activity"
+import cms from "./cms"
 import * as types from "./types"
 
 Vue.use(Vuex)
@@ -23,7 +24,8 @@ const store = new Vuex.Store({
   },
   modules: {
     system,
-    activity
+    activity,
+    cms
   }
 })
 

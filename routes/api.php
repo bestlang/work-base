@@ -164,6 +164,7 @@ Route::group(['middleware' => 'auth.jwt', 'prefix'=>'admin', 'namespace'=>'Admin
         Route::any('/cms/model', 'ModelController@index');
         Route::any('/cms/model/save', 'ModelController@save');
         Route::any('/cms/model/save/field', 'ModelController@saveField');
+        Route::any('/cms/model/delete/field', 'ModelController@deleteField');
         Route::any('/cms/model/get', 'ModelController@get');
     });
 });

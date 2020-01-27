@@ -51,6 +51,7 @@
               label="操作">
               <template slot-scope="scope">
                 <el-button type="text" @click="handleEdit(scope.row)">编辑</el-button>
+                <el-button type="text" @click="handleDelete(scope.row)">删除</el-button>
               </template>
             </el-table-column>
           </el-table>
@@ -83,6 +84,7 @@
               label="操作">
               <template slot-scope="scope">
                 <el-button type="text" @click="handleEdit(scope.row)">编辑</el-button>
+                <el-button type="text" @click="handleDelete(scope.row)">删除</el-button>
               </template>
             </el-table-column>
           </el-table>
@@ -110,7 +112,7 @@
         </el-form-item>
 
         <el-form-item label="选项" v-if="showOptions">
-            <add-options @optionsChange="handleOptionsChange"></add-options>
+            <add-options :options="fieldForm.extra" @optionsChange="handleOptionsChange"></add-options>
         </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
@@ -148,7 +150,7 @@
           type: '',// text, select ...
           field: '',
           label: '',
-          extra: '',
+          extra: [],
           is_channel: 0, // 1-channel | 0-content
           is_custom: 1,
           is_display: 1,
@@ -188,6 +190,25 @@
         this.fieldVisible = true
         Object.assign(this.fieldForm, row);
       },
+      handleDelete(row){
+        this.$confirm('确定删除字段?', '提示', {
+          confirmButtonText: '确定',
+          cancelButtonText: '取消',
+          type: 'warning'
+        }).then(() => {
+          let model_id = this.fieldForm.model_id
+          this.$http
+            .post("/admin/cms/model/delete/field", {model_id: model_id, id: row.id})
+            .then(res => {
+              ///
+              this.loadModel(model_id);
+              this.$message({
+                type: 'success',
+                message: '删除成功!'
+              });
+            }).catch(()=>{});
+        });
+      },
       beforeLeave(activeName, oldActiveName){
         return true;
       },
@@ -208,23 +229,21 @@
         this.fieldVisible = true;
         Object.assign(this.fieldForm, {
           id: '',
-          model_id: null,
-          type: '',// text, select ...
+          type: '', // text, select ...
           field: '',
           label: '',
-          extra: '',
-          is_channel: 0, // 1-channel | 0-content
+          extra: [{name: '', value: ''}],
           is_custom: 1,
           is_display: 1,
           is_required: 0,
-        })
+        });
+        this.showOptions = false;
       },
       loadFieldTypes(){
         this.$http
           .get("/admin/cms/model/field/types")
           .then(res => {
             this.options = res.data;
-            console.log(JSON.stringify(this.options))
           });
       },
       loadModel(id){

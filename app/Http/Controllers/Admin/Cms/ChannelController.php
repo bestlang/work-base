@@ -43,6 +43,10 @@ class ChannelController extends Controller
                 $child->makeChildOf($parent);
                 return response()->ajax($child);
             }
+        }else{
+            if($name){
+                $channel = Channel::create(['name' => $name]);
+            }
         }
         return response()->ajax();
     }
@@ -63,7 +67,7 @@ class ChannelController extends Controller
             return response()->error($validator->errors()->first());
         }
         $id = Arr::get($params, 'id', 0);
-        $updated = Arr::only($params, ['name', 'title', 'keywords', 'description']);
+        $updated = Arr::only($params, ['name', 'title', 'keywords', 'description', 'model_id']);
         $channel = Channel::find($id);
         $channel->update($updated);
         return response()->ajax();

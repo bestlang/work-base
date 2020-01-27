@@ -11,7 +11,7 @@ class ModelField extends Model
 
     public function setExtraAttribute($value)
     {
-        $this->attributes['extra'] = json_encode($value);
+        $this->attributes['extra'] = json_encode($value, JSON_UNESCAPED_UNICODE);
     }
 
     public function getExtraAttribute($value){
