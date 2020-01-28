@@ -1,10 +1,4 @@
-<template>
-  <router-view></router-view>
-</template>
-<script>
-export default {}
-</script>
-<style>
+<style lang="less">
   .iconfont{
     font-family: iconfont;
     font-style: normal;
@@ -41,4 +35,32 @@ export default {}
     font-size: 16px;
     font-weight: 500;
   }
+  .l-block{
+    width: 100%;
+    overflow: hidden;
+    background: #FFF;
+    /*border: 1px solid #EBEEF5;*/
+    /*border-radius: 4px;*/
+    overflow: hidden;
+    color: #303133;
+    box-sizing: border-box;
+    .l-block-header{
+      padding: 18px 20px;
+      border-bottom: 1px solid #EBEEF5;
+      box-sizing: border-box;
+      display: flex;
+      flex-flow: row nowrap;
+      justify-content: space-between;
+      box-sizing: border-box;
+    }
+    .l-block-body{
+      padding: 20px;
+    }
+  }
 </style>
+<template>
+  <router-view></router-view>
+</template>
+<script>
+export default {}
+</script>

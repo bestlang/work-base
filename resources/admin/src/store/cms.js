@@ -45,14 +45,19 @@ const cmsConfig = {
           commit(types.LOADING, false)
         });
     },
-    [types.CMS_CHANNELS] ({commit, dispatch}) {
+    [types.CMS_CHANNELS] ({commit, dispatch} , parent) {
       commit(types.LOADING, true)
       fetch.get("/admin/cms/channel/tree", {params:{disabled: true}})
         .then(res => {
           let node = [res.data[Object.keys(res.data)[0]]]
           commit(types.CMS_CHANNELS, node);
           commit(types.LOADING, false)
-          dispatch(types.CMS_CHANNEL_CHILDREN, node);
+          if(parent){
+            dispatch(types.CMS_CHANNEL_CHILDREN, parent);
+          }else{
+            dispatch(types.CMS_CHANNEL_CHILDREN, node[0]);
+          }
+
         });
     },
     [types.CMS_CHANNEL_CHILDREN] ({commit}, node) {

@@ -5,29 +5,29 @@
           <el-divider direction="vertical"></el-divider>
           <div>{{role_name}}权限</div>
         </div>
-      <div>
-          <div style="width:60%;">
-            <el-tree
-              :empty-text="emptyText"
-              ref="role-permission-tree"
-              :data="treeData"
-              default-expand-all
-              show-checkbox
-              node-key="id"
-              :props="customProps"
-              :default-checked-keys="defaultCheckedKeys"
-              :expand-on-click-node="true"
-              :check-on-click-node="false">
-              <span class="custom-tree-node" slot-scope="{ node, data }">
-                <span>{{ node.label }}</span>
-<!--                <span v-if="!data.children.length" class="iconfont">&#xe92a;</span>-->
-<!--                -{{ data.id }}-->
-              </span>
-            </el-tree>
+        <div>
+            <div style="width:60%;">
+              <el-tree
+                :empty-text="emptyText"
+                ref="role-permission-tree"
+                :data="treeData"
+                default-expand-all
+                show-checkbox
+                node-key="id"
+                :props="customProps"
+                :default-checked-keys="defaultCheckedKeys"
+                :expand-on-click-node="true"
+                :check-on-click-node="false">
+                <span class="custom-tree-node" slot-scope="{ node, data }">
+                  <span>{{ node.label }}</span>
+  <!--                <span v-if="!data.children.length" class="iconfont">&#xe92a;</span>-->
+  <!--                -{{ data.id }}-->
+                </span>
+              </el-tree>
+            </div>
+            <div class="l-delimiter"></div>
+            <el-button @click="saveRolePermissions">保存</el-button>
           </div>
-          <div class="l-delimiter"></div>
-          <el-button @click="saveRolePermissions">保存</el-button>
-        </div>
     </div>
 </template>
 <script>
