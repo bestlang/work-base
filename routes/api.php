@@ -135,7 +135,7 @@ Route::group(['middleware' => 'auth.jwt', 'prefix'=>'admin', 'namespace'=>'Admin
     Route::get('/pdd/orders', 'ActivityController@types');
 
 
-    Route::post('/file/upload', 'UploadController@index');
+    Route::any('/file/upload', 'UploadController@index');
 
     Route::any('/privileges/roles', 'PrivilegesController@roles');
     Route::any('/privileges/save/role', 'PrivilegesController@saveRole');
@@ -159,13 +159,18 @@ Route::group(['middleware' => 'auth.jwt', 'prefix'=>'admin', 'namespace'=>'Admin
         Route::any('/cms/channel/update', 'ChannelController@update');
         Route::any('/cms/channel/delete', 'ChannelController@delete');
         Route::any('/cms/channel/children', 'ChannelController@children');
+
         Route::any('/cms/model/field/types', 'FieldTypeController@index');
         Route::any('/cms/model/field/type/save', 'FieldTypeController@save');
-
         Route::any('/cms/model', 'ModelController@index');
         Route::any('/cms/model/save', 'ModelController@save');
         Route::any('/cms/model/save/field', 'ModelController@saveField');
         Route::any('/cms/model/delete/field', 'ModelController@deleteField');
         Route::any('/cms/model/get', 'ModelController@get');
+
+        Route::any('/cms/contents', 'ContentController@index');
     });
+});
+Route::group(['prefix'=>'admin', 'namespace'=>'Admin'], function(){
+    Route::any('/file/upload/ueditor', 'UploadController@ueditor');
 });

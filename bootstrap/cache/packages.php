@@ -62,6 +62,13 @@
       0 => 'NunoMaduro\\Collision\\Adapters\\Laravel\\CollisionServiceProvider',
     ),
   ),
+  'overtrue/laravel-ueditor' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Overtrue\\LaravelUEditor\\UEditorServiceProvider',
+    ),
+  ),
   'overtrue/laravel-wechat' => 
   array (
     'providers' => 

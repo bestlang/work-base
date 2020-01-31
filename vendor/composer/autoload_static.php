@@ -119,6 +119,7 @@ class ComposerStaticInitf3c7adb5ea48bb42df4a643c07fc525e
         array (
             'Overtrue\\Socialite\\' => 19,
             'Overtrue\\LaravelWeChat\\' => 23,
+            'Overtrue\\LaravelUEditor\\' => 24,
             'Opis\\Closure\\' => 13,
             'OSS\\' => 4,
         ),
@@ -424,6 +425,10 @@ class ComposerStaticInitf3c7adb5ea48bb42df4a643c07fc525e
         array (
             0 => __DIR__ . '/..' . '/overtrue/laravel-wechat/src',
         ),
+        'Overtrue\\LaravelUEditor\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/overtrue/laravel-ueditor/src',
+        ),
         'Opis\\Closure\\' => 
         array (
             0 => __DIR__ . '/..' . '/opis/closure/src',
@@ -621,6 +626,7 @@ class ComposerStaticInitf3c7adb5ea48bb42df4a643c07fc525e
         'App\\Http\\Controllers\\ActivityController' => __DIR__ . '/../..' . '/app/Http/Controllers/ActivityController.php',
         'App\\Http\\Controllers\\Admin\\ActivityController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/ActivityController.php',
         'App\\Http\\Controllers\\Admin\\Cms\\ChannelController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/Cms/ChannelController.php',
+        'App\\Http\\Controllers\\Admin\\Cms\\ContentController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/Cms/ContentController.php',
         'App\\Http\\Controllers\\Admin\\Cms\\FieldTypeController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/Cms/FieldTypeController.php',
         'App\\Http\\Controllers\\Admin\\Cms\\ModelController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/Cms/ModelController.php',
         'App\\Http\\Controllers\\Admin\\OssController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/OssController.php',
@@ -663,6 +669,7 @@ class ComposerStaticInitf3c7adb5ea48bb42df4a643c07fc525e
         'App\\Models\\ActivityTuanOrderVote' => __DIR__ . '/../..' . '/app/Models/ActivityTuanOrderVote.php',
         'App\\Models\\ActivityType' => __DIR__ . '/../..' . '/app/Models/ActivityType.php',
         'App\\Models\\Cms\\Channel' => __DIR__ . '/../..' . '/app/Models/Cms/Channel.php',
+        'App\\Models\\Cms\\Content' => __DIR__ . '/../..' . '/app/Models/Cms/Content.php',
         'App\\Models\\Cms\\FieldType' => __DIR__ . '/../..' . '/app/Models/Cms/FieldType.php',
         'App\\Models\\Cms\\Model' => __DIR__ . '/../..' . '/app/Models/Cms/Model.php',
         'App\\Models\\Cms\\ModelField' => __DIR__ . '/../..' . '/app/Models/Cms/ModelField.php',
@@ -3426,6 +3433,13 @@ class ComposerStaticInitf3c7adb5ea48bb42df4a643c07fc525e
         'Opis\\Closure\\SecurityProvider' => __DIR__ . '/..' . '/opis/closure/src/SecurityProvider.php',
         'Opis\\Closure\\SelfReference' => __DIR__ . '/..' . '/opis/closure/src/SelfReference.php',
         'Opis\\Closure\\SerializableClosure' => __DIR__ . '/..' . '/opis/closure/src/SerializableClosure.php',
+        'Overtrue\\LaravelUEditor\\Events\\Catched' => __DIR__ . '/..' . '/overtrue/laravel-ueditor/src/Events/Catched.php',
+        'Overtrue\\LaravelUEditor\\Events\\Uploaded' => __DIR__ . '/..' . '/overtrue/laravel-ueditor/src/Events/Uploaded.php',
+        'Overtrue\\LaravelUEditor\\Events\\Uploading' => __DIR__ . '/..' . '/overtrue/laravel-ueditor/src/Events/Uploading.php',
+        'Overtrue\\LaravelUEditor\\StorageManager' => __DIR__ . '/..' . '/overtrue/laravel-ueditor/src/StorageManager.php',
+        'Overtrue\\LaravelUEditor\\UEditorController' => __DIR__ . '/..' . '/overtrue/laravel-ueditor/src/UEditorController.php',
+        'Overtrue\\LaravelUEditor\\UEditorServiceProvider' => __DIR__ . '/..' . '/overtrue/laravel-ueditor/src/UEditorServiceProvider.php',
+        'Overtrue\\LaravelUEditor\\UrlResolverTrait' => __DIR__ . '/..' . '/overtrue/laravel-ueditor/src/UrlResolverTrait.php',
         'Overtrue\\LaravelWeChat\\Controllers\\Controller' => __DIR__ . '/..' . '/overtrue/laravel-wechat/src/Controllers/Controller.php',
         'Overtrue\\LaravelWeChat\\Controllers\\OpenPlatformController' => __DIR__ . '/..' . '/overtrue/laravel-wechat/src/Controllers/OpenPlatformController.php',
         'Overtrue\\LaravelWeChat\\Events\\OpenPlatform\\Authorized' => __DIR__ . '/..' . '/overtrue/laravel-wechat/src/Events/OpenPlatform/Authorized.php',

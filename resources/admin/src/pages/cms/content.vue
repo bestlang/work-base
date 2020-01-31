@@ -1,46 +1,54 @@
+<style lang="less" scoped>
+  .l-content-list{
+    display: flex;
+    flex-flow: row nowrap;
+    min-height: calc(100vh - 50px - 20px);
+    margin:-20px 0 -20px -20px;
+    overflow-x: hidden;
+    .l-tree-content{
+      padding: 20px;
+      flex-grow: 1;
+      display: flex;
+      flex-flow: row nowrap;
+      box-sizing: border-box;
+      width: calc(100% - 240px);
+    }
+  }
+</style>
 <template>
-  <div>
-    <div class="l-top-menu">
-      <div>
-        <el-button type="primary">新增</el-button>
-      </div>
-      <el-form :inline="true">
-        <el-form-item label="标题">
-          <el-input placeholder="关键词"></el-input>
-        </el-form-item>
-        <el-form-item>
-          <el-button type="primary">查询</el-button>
-        </el-form-item>
-      </el-form>
+  <div class="l-content-list">
+    <channel-tree @nodeClick="handleNodeClick"></channel-tree>
+    <div class="l-tree-content">
+      fuck
     </div>
   </div>
 </template>
-
 <script>
+  import channelTree from "./components/channelTree";
   export default {
-    data(){
+    data() {
       return {
-        loading: true,
-        tableData: [],
-        dialogFormVisible: false,
-        form: {
-          name: '',
-          type: ''
-        },
       }
     },
-    methods:{
-      add(){},
-      submit(){},
-      loadTypes(){}
+    components:{
+      'channel-tree': channelTree
     },
-    created() {}
+    computed:{
+      contents(){
+
+      }
+    },
+    methods: {
+      handleNodeClick(...params){
+        let channelId = params[0][0].id;
+        let channelName = params[0][0].name;
+        let channelModelId = params[0][0].model_id;
+        let channelTitle = params[0][0].title;
+        // emit get contents action
+      },
+    },
+    mounted() {
+    }
   }
 </script>
-<style lang="less" scoped>
-  .l-top-menu {
-    display: flex;
-    flex-flow: row nowrap;
-    justify-content: space-between;
-  }
-</style>
+

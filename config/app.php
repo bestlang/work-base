@@ -178,6 +178,7 @@ return [
         App\Providers\ResponseServiceProvider::class,
         Spatie\Permission\PermissionServiceProvider::class,
         Jacobcyl\AliOSS\AliOssServiceProvider::class,
+        Overtrue\LaravelUEditor\UEditorServiceProvider::class,
     ],
 
     /*
