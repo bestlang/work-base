@@ -20,6 +20,7 @@
      * window.UEDITOR_HOME_URL = "/xxxx/xxxx/";
      */
     window.UEDITOR_HOME_URL = '/vendor/ueditor/';
+    window.UEDITOR_SERVER_URL = 'http://127.0.0.1:8000';
     var URL = window.UEDITOR_HOME_URL || getUEBasePath();
 
     /**
@@ -32,7 +33,7 @@
 
         // 服务器统一请求接口路径
         //, serverUrl: URL + "php/controller.php"
-        , serverUrl: '/ueditor/server'
+        , serverUrl: window.UEDITOR_SERVER_URL + '/ueditor/server'
 
         //工具栏上的所有的功能按钮和下拉框，可以在new编辑器的实例时选择自己需要的从新定义
         , toolbars: [[

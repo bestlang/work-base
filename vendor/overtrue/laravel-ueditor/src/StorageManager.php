@@ -83,8 +83,7 @@ class StorageManager
         if ($this->eventSupport()) {
             event(new Uploaded($file, $response));
         }
-        return response($response)->header('Content-Type', 'text/plain');
-        //return response()->json($response);
+        return response()->json($response);
     }
 
     /**

@@ -245,7 +245,7 @@ export default new VueRouter({
       meta: {
         name: '登录',
       },
-    },
+    }
 
   ]
 })

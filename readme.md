@@ -6,3 +6,6 @@
 #### https://jinbao.pinduoduo.com/message/detail?crumbs=broadcast&id=186598
 
 ### 如果使用config:cache 那么就不能从.env里面使用env()函数取值了
+
+### ueditor跨域上传的问题
+https://blog.csdn.net/lnktoking/article/details/79091753

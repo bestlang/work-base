@@ -24,8 +24,13 @@ class UEditorController extends Controller
         $upload = config('ueditor.upload');
         $storage = app('ueditor.storage');
 
+        $callback = $request->input('callback', null);
+
         switch ($request->get('action')) {
             case 'config':
+                if($callback){
+                    return response()->jsonp('callback', config('ueditor.upload'))->setCallback($callback);
+                }
                 return config('ueditor.upload');
 
             // lists

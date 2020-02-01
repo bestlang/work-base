@@ -16,8 +16,10 @@ use Illuminate\Support\Facades\Cache;
 
 class IndexController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
+        echo '123';
+
 //        echo "heated welcome->".Cache::get('access_token');
 //        echo "\nheated welcome->".Cache::get('xzs_access_token');
 //        echo "\nheated welcome_>".Cache::get('fwh_access_token');
@@ -205,12 +207,12 @@ class IndexController extends Controller
 
     }
 
-    public function test()
+    public function test(Request $request)
     {
-        $pdd = new Pdd();
-        $imageUrl = 'https://t00img.yangkeduo.com/goods/images/2019-07-07/ade48f55-fd34-40a6-928a-3151b39086c8.jpg';
-        $goodsId = '22222';
-        $userId = '11111';
-        echo $pdd->downloadImage($goodsId, $userId, $imageUrl, $force=false);
+//        $pdd = new Pdd();
+//        $imageUrl = 'https://t00img.yangkeduo.com/goods/images/2019-07-07/ade48f55-fd34-40a6-928a-3151b39086c8.jpg';
+//        $goodsId = '22222';
+//        $userId = '11111';
+//        echo $pdd->downloadImage($goodsId, $userId, $imageUrl, $force=false);
     }
 }
