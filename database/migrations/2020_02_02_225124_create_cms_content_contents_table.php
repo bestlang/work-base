@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCmsContentTextsTable extends Migration
+class CreateCmsContentContentsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,10 @@ class CreateCmsContentTextsTable extends Migration
      */
     public function up()
     {
-        Schema::create('cms_content_texts', function (Blueprint $table) {
-            $table->unsignedInteger('content_id')->primary();
-            $table->text('text');
+        Schema::create('cms_content_contents', function (Blueprint $table) {
+            $table->unsignedInteger('content_id');
+            $table->text('content')->nullable();
+            $table->string('field')->comment('字段名');
         });
     }
 
@@ -26,6 +27,6 @@ class CreateCmsContentTextsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('cms_content_texts');
+        Schema::dropIfExists('cms_content_contents');
     }
 }

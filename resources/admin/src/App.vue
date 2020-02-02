@@ -39,8 +39,6 @@
     width: 100%;
     overflow: hidden;
     background: #FFF;
-    /*border: 1px solid #EBEEF5;*/
-    /*border-radius: 4px;*/
     overflow: hidden;
     color: #303133;
     box-sizing: border-box;
@@ -56,6 +54,23 @@
     .l-block-body{
       padding: 20px;
     }
+  }
+  .top-buttons{
+    margin-bottom: 20px;
+  }
+  .text-center{
+    text-align: center;
+  }
+  .l-inline-btn{
+    display: inline-block;
+    min-width: 1px;
+    padding: 0!important;
+  }
+  .l-delimiter{
+    height: 18px;
+  }
+  .l-mb-22{
+    margin-bottom: 22px;
   }
 </style>
 <template>

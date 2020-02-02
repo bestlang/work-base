@@ -17,6 +17,7 @@
     </div>
 </template>
 <script>
+  import custom from '../../../config/custom'
 export default {
   methods: {
     toggleCollapse() {
@@ -28,9 +29,9 @@ export default {
             .then(res => {
                 if (res.code == 200) {
                     this.$store.commit(this.$types.ACCESS_TOKEN, '');
-                    this.$router.push("/login");
+                    this.$router.push(custom.ADMIN_URI + "/login");
                 }else if(res.code == 401){
-                    this.$router.push("/login");
+                    this.$router.push(custom.ADMIN_URI + "/login");
                 }
             });
     }

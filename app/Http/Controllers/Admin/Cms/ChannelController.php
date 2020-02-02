@@ -15,7 +15,7 @@ class ChannelController extends Controller
     {
         $params = $request->all();
         $disabled = Arr::get($params, 'disabled', false);
-        $tree = Channel::all()->map(function($item)use($disabled){
+        $tree = Channel::with('model')->get()->map(function($item)use($disabled){
             if($disabled){
                 $item->disabled=true;
             }

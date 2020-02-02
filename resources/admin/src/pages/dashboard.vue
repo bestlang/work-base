@@ -1,7 +1,7 @@
 <template>
   <div>
     <p>welcome,dashboard.</p>
-    <ueditor :config="config" :default-content="content" @ready="setUeditor"></ueditor>
+    <ueditor :config="config" :default-content="content" @ready="setUeditor" :index="index"></ueditor>
     <el-button @click="getContent">获取内容</el-button>
   </div>
 
@@ -12,6 +12,7 @@
   export default {
     data(){
       return {
+        index: 'some_random_string',
         content: '这是我设置的默认文本...',
         config: {
           initialFrameWidth: 1038,

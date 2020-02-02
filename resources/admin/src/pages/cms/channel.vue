@@ -103,6 +103,7 @@
             <ul>
               <li>编号: <span>{{channelForm.id}}</span></li>
               <li>栏目名: <span>{{channelForm.name}}</span></li>
+              <li>模型: <span>{{channelForm.model.name}}</span></li>
               <li>标题: <span>{{channelForm.title}}</span></li>
               <li>关键词: <span>{{channelForm.keywords}}</span></li>
               <li>描述: <span>{{channelForm.description}}</span></li>
@@ -240,6 +241,7 @@
         }else{
           ///this.$store.commit(this.$types.CMS_CHANNEL_CHILDREN, [])
           this.showChannelChildren = false;
+          console.log(`--------------node:`,node);
           Object.assign(this.channelForm, node)
         }
       },

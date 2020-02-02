@@ -1,3 +1,7 @@
+<style lang="less">
+  .edui-editor div{
+  }
+</style>
 <template>
   <div id="ueditor-wrap">
     <script :id="dynamicId" type="text/plain" style="width:1024px;height:500px;"></script>
@@ -18,14 +22,25 @@
       },
       config: {
         type: Object
+      },
+      index: {
+        type: String,
+        default: 0
       }
     },
     mounted() {
       this.$nextTick(() => {
         this.ueditor = window.UE.getEditor(this.dynamicId, this.config);
+
         this.ueditor.ready(() => {
-          this.$emit('ready', this.ueditor, 0);
           this.ueditor.setContent(this.defaultContent);
+          //输入大写字母不能触发contentChange事件,使用keyup作为补充
+          this.ueditor.addListener('keyup', () => {
+            this.$emit('contentChange', this.ueditor, this.index)
+          });
+          this.ueditor.addListener('contentChange', () => {
+            this.$emit('contentChange', this.ueditor, this.index)
+          })
         });
       });
     },

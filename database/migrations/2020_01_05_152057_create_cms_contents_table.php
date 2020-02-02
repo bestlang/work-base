@@ -21,8 +21,8 @@ class CreateCmsContentsTable extends Migration
             $table->string('title')->nullable()->comment('标题');
             $table->string('keywords')->nullable()->comment('关键字');
             $table->string('description')->nullable()->comment('描述');
-            $table->tinyInteger('status')->comment('状态:0草稿1审核通过');
-            $table->integer('top_factor')->comment('置顶值');
+            $table->tinyInteger('status')->default(1)->comment('状态:0草稿1审核通过');
+            $table->integer('top_factor')->default(0)->comment('置顶值');
             $table->string('author')->nullable()->comment('作者');
             $table->string('origin')->nullable()->comment('来源');
             $table->string('origin_url')->nullable()->comment('来源链接');

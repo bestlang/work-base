@@ -14,4 +14,9 @@ class Channel extends Node
     {
         return $this->hasMany(Content::class);
     }
+
+    public function model()
+    {
+        return $this->belongsTo(Model::class)->select(['id', 'name']);
+    }
 }

@@ -50,7 +50,7 @@ axios.interceptors.response.use(response => {
             case 401:
                 //showMessage(error ? error : "用户名或密码错误,请重新登录");
 
-                window.location = '/login';
+                window.location = custom.ADMIN_URI + '/login';
                 localStorage.setItem('accessToken', '');
                 //return Promise.reject(response);
                 // if(app.$route.path != '/login'){
@@ -65,10 +65,10 @@ axios.interceptors.response.use(response => {
     },
     // 少量非200状态码会进入这里
     error => {
-        if(app.$route.path != '/login'){
+        if(app.$route.path != custom.ADMIN_URI + '/login'){
             localStorage.setItem('accessToken', '');
             showMessage('服务器响应失败');
-            app.$router.push('/login');
+            app.$router.push( custom.ADMIN_URI + '/login');
         }
         return Promise.reject(error)
     }
