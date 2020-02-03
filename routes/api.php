@@ -170,6 +170,7 @@ Route::group(['middleware' => 'auth.jwt', 'prefix'=>'admin', 'namespace'=>'Admin
 
         Route::any('/cms/contents', 'ContentController@index');
         Route::any('/cms/content/save', 'ContentController@save');
+        Route::any('/cms/content/whole', 'ContentController@whole');
     });
 });
 Route::group(['prefix'=>'admin', 'namespace'=>'Admin'], function(){

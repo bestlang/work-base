@@ -39,7 +39,7 @@ const devWebpackConfig = merge(baseWebpackConfig, {
       : false,
     publicPath: config.dev.assetsPublicPath,
     proxy: config.dev.proxyTable,
-    quiet: true, // necessary for FriendlyErrorsPlugin
+    quiet: false, // necessary for FriendlyErrorsPlugin
     watchOptions: {
       poll: config.dev.poll,
     }
@@ -60,8 +60,8 @@ const devWebpackConfig = merge(baseWebpackConfig, {
     // copy custom static assets
     new CopyWebpackPlugin([
       {
-        //from: path.resolve(__dirname, '../static'),
-        from: path.resolve(__dirname, '../../../public/vendor/'),
+        from: path.resolve(__dirname, '../static'),
+        //from: path.resolve(__dirname, '../../../public/vendor/'),
         to: config.dev.assetsSubDirectory,
         ignore: ['.*']
       }

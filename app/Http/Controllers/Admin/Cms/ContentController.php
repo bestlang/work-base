@@ -13,11 +13,13 @@ class ContentController extends Controller
 {
     public function index(Request $request)
     {
-        $channelId = $request->input('channelId', 0);
-        if(!$channelId){
-            return response()->error('参数错误');
+        $channel_id = $request->input('channel_id', 0);
+        if(!$channel_id){
+            $contents = Content::with('channel')->orderBy('id', 'desc')->get();
+            return response()->ajax($contents);
         }else{
-            return response()->ajax([]);
+            $contents = Channel::find($channel_id)->contents()->with('channel')->orderBy('id', 'desc')->get();
+            return response()->ajax($contents);
         }
     }
 
@@ -42,10 +44,20 @@ class ContentController extends Controller
         // 保存富文本字段
         $contentFileds = $model->fields->filter(function($item){return $item->type == 'content';})->map(function($item){ return $item->field;})->toArray();
         foreach ($contentFileds as $filed){
-            $content = ['field' => $filed, 'content' => Arr::get($params, $filed)];
+            $content = ['field' => $filed, 'value' => Arr::get($params, $filed)];
             $contentModel->contents()->create($content);
         }
 
         return response()->ajax();
+    }
+
+    public function whole(Request $request)
+    {
+        $content_id = $request->input('content_id', 0);
+        if(!$content_id){
+            return response()->error('参数错误!');
+        }
+        $model = Content::with(['contents', 'metas'])->find($content_id);
+        return response()->ajax($model);
     }
 }

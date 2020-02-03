@@ -26,6 +26,9 @@ const systemConfig = {
   actions: {
     toggleState ({commit}) {
       commit("toggleState")
+    },
+    collapse({state}){
+      state.isCollapse = true;
     }
   }
 }

@@ -19,9 +19,36 @@
   <div class="l-content-list">
     <channel-tree @nodeClick="handleNodeClick"></channel-tree>
     <div class="l-tree-content">
-      <div v-if="!showForm">
-        <el-button type="primary" size="small" @click="addContent">添加</el-button>
-      </div>
+        <div class="l-block" v-if="!showForm">
+          <div class="l-block-header">
+            <el-button type="primary" size="small" @click="addContent">添加</el-button>
+          </div>
+          <div class="l-block-body">
+            <el-table
+              :data="contents"
+              style="width: 100%">
+              <el-table-column
+                prop="id"
+                label="ID">
+              </el-table-column>
+              <el-table-column
+                prop="title"
+                label="标题">
+              </el-table-column>
+              <el-table-column
+                prop="channel.name"
+                label="栏目">
+              </el-table-column>
+              <el-table-column
+                label="操作">
+                <template slot-scope="scope">
+                  <el-button type="text" @click="editContent(scope.row)">编辑</el-button>
+                  <el-button type="text" @click="deleteContent(scope.row)">删除</el-button>
+                </template>
+              </el-table-column>
+            </el-table>
+          </div>
+        </div>
       <div v-if="showForm && selectedModel">
         <el-form>
           <template v-for="(item, index) in selectedModel.fields">
@@ -32,7 +59,7 @@
               </div>
           </template>
           <el-form-item>
-            <el-button @click="handleSubmit">提交</el-button>
+            <el-button @click="saveContent">提交</el-button>
           </el-form-item>
         </el-form>
       </div>
@@ -47,6 +74,9 @@
       return {
         selectedChannel: null,
         selectedModel: null,
+
+        contents: [],
+
         showForm: false,
         config: {
           // initialFrameWidth: 1038,
@@ -61,18 +91,43 @@
       ueditor: ueditor
     },
     computed:{
-      contents(){
+
+    },
+    watch:{
+      selectedChannel(val, oldVal){
+        this.loadContents()
+      },
+      showForm(){
+        this.$store.dispatch('collapse');
       }
     },
     methods: {
-      handleSubmit(){
+      editContent(row){
+        console.log(`>>>>>>>>>>>>>>>>>..`,row)
+        this.selectedChannel = row.channel;
+        this.loadModel(this.selectedChannel.model_id)
+        this.showForm = true;
+        this.loadWholeContent(row.id)
+      },
+      deleteContent(row){
+
+      },
+      saveContent(){
         this.$set(this.form, 'model_id', this.selectedModel.id);
         this.$set(this.form, 'channel_id', this.selectedChannel.id)
         //alert(JSON.stringify(this.form));
         this.$http
           .post("/admin/cms/content/save", this.form)
           .then(res => {
-            alert(JSON.stringify(res));
+            if(res.success){
+              this.$message({
+                type: 'success',
+                message: '添加成功!'
+              });
+              this.showForm = false;
+              this.loadContents();
+              this.form = {}
+            }
           });
       },
 
@@ -101,12 +156,50 @@
             this.selectedModel = res.data;
             for(let idx in this.selectedModel.fields){
               let item = this.selectedModel.fields[idx];
+              // 重置表单
               this.$set(this.form, item.field, '');
             }
           });
       },
+      loadContents(){
+        let channel_id = 0;
+        if(this.selectedChannel){
+          channel_id = this.selectedChannel.id
+        }
+        this.$http
+          .get("/admin/cms/contents", {params: {channel_id}})
+          .then(res => {
+            this.contents = res.data;
+          });
+      },
+      loadWholeContent(content_id){
+        this.$http
+          .get("/admin/cms/content/whole", {params: {content_id}})
+          .then(res => {
+            let model = res.data;
+
+            let contentFields = ['channel_id', 'model_id', 'title', 'keywords', 'description'];
+            let contentContentFields = [];
+            let metaFields = [];
+
+            contentFields.forEach( field => {this.$set(this.form, field, model[field])});
+
+            if(model.contents && model.contents.length){
+              model.contents.forEach( item => {this.$set(this.form, item.field, item.value)});
+            }
+
+            if(model.metas && model.metas.length){
+              model.metas.forEach( item => {this.$set(this.form, item.field, item.value)});
+            }
+
+            console.log(`&&&&&&&&&&&&&&&&&:`, JSON.stringify(this.form));
+            console.log(`<<<<<<<<<<<<<<<<<<<:`, JSON.stringify(res));
+          });
+      }
     },
     mounted() {
+      this.loadContents()
+      this.$store.dispatch('collapse');
     }
   }
 </script>
