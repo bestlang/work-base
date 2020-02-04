@@ -43,7 +43,7 @@
     color: #303133;
     box-sizing: border-box;
     .l-block-header{
-      padding: 18px 20px;
+      padding: 0 20px 20px 0;
       border-bottom: 1px solid #EBEEF5;
       box-sizing: border-box;
       display: flex;
@@ -52,7 +52,10 @@
       box-sizing: border-box;
     }
     .l-block-body{
-      padding: 20px;
+      padding: 20px 0 20px 0;
+    }
+    .l-block-bottom{
+      padding-top: 20px;
     }
   }
   .top-buttons{
@@ -71,6 +74,12 @@
   }
   .l-mb-22{
     margin-bottom: 22px;
+  }
+  .l-w-50{
+    width: 50px;
+  }
+  .l-w-60{
+    width: 60px;
   }
 </style>
 <template>

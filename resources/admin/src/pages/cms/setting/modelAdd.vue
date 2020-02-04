@@ -24,70 +24,93 @@
           </el-form>
         </el-tab-pane>
         <el-tab-pane label="栏目字段" name="channel">
-          <div style="text-align: left;margin-bottom: 20px;">
-            <el-button type="primary" @click="add('channel')">添加</el-button>
+          <div class="l-block">
+            <div class="l-block-header">
+              <el-button type="primary" @click="add('channel')">添加</el-button>
+            </div>
+            <div class="l-block-body">
+              <el-table
+              border
+              v-loading="loading"
+              :data="channelFields">
+              <el-table-column
+                prop="id"
+                label="ID">
+              </el-table-column>
+              <el-table-column
+                prop="field"
+                label="字段">
+              </el-table-column>
+              <el-table-column
+                prop="label"
+                label="标签">
+              </el-table-column>
+              <el-table-column
+                label="排序值">
+                <template slot-scope="scope">
+                  <el-input v-model="scope.row.order_factor" class="l-w-60"></el-input>
+                </template>
+              </el-table-column>
+              <el-table-column
+                prop="type"
+                label="字段类型">
+              </el-table-column>
+              <el-table-column
+                label="操作">
+                <template slot-scope="scope">
+                  <el-button type="text" @click="handleEdit(scope.row)">编辑</el-button>
+                  <el-button type="text" @click="handleDelete(scope.row)">删除</el-button>
+                </template>
+              </el-table-column>
+            </el-table>
+            </div>
           </div>
-          <el-table
-            border
-            v-loading="loading"
-            :data="channelFields">
-            <el-table-column
-              prop="id"
-              label="ID">
-            </el-table-column>
-            <el-table-column
-              prop="field"
-              label="字段">
-            </el-table-column>
-            <el-table-column
-              prop="label"
-              label="标签">
-            </el-table-column>
-            <el-table-column
-              prop="type"
-              label="字段类型">
-            </el-table-column>
-            <el-table-column
-              label="操作">
-              <template slot-scope="scope">
-                <el-button type="text" @click="handleEdit(scope.row)">编辑</el-button>
-                <el-button type="text" @click="handleDelete(scope.row)">删除</el-button>
-              </template>
-            </el-table-column>
-          </el-table>
         </el-tab-pane>
         <el-tab-pane label="内容字段" name="content">
-          <div style="text-align: left;margin-bottom: 20px;">
-            <el-button type="primary" @click="add('content')">添加</el-button>
+          <div class="l-block">
+            <div class="l-block-header">
+              <el-button type="primary" @click="add('content')">添加</el-button>
+            </div>
+            <div class="l-block-body">
+              <el-table
+                border
+                v-loading="loading"
+                :data="contentFields">
+                <el-table-column
+                  prop="id"
+                  label="ID">
+                </el-table-column>
+                <el-table-column
+                  prop="field"
+                  label="字段">
+                </el-table-column>
+                <el-table-column
+                  prop="label"
+                  label="标签">
+                </el-table-column>
+                <el-table-column
+                  label="排序值">
+                  <template slot-scope="scope">
+                    <el-input v-model="scope.row.order_factor" class="l-w-60"></el-input>
+                  </template>
+                </el-table-column>
+                <el-table-column
+                  prop="type"
+                  label="字段类型">
+                </el-table-column>
+                <el-table-column
+                  label="操作">
+                  <template slot-scope="scope">
+                    <el-button type="text" @click="handleEdit(scope.row)">编辑</el-button>
+                    <el-button type="text" @click="handleDelete(scope.row)">删除</el-button>
+                  </template>
+                </el-table-column>
+              </el-table>
+              <div class="l-block-bottom">
+                <el-button @click="saveOrderFactor">保存排序</el-button>
+              </div>
+            </div>
           </div>
-          <el-table
-            border
-            v-loading="loading"
-            :data="contentFields">
-            <el-table-column
-              prop="id"
-              label="ID">
-            </el-table-column>
-            <el-table-column
-              prop="field"
-              label="字段">
-            </el-table-column>
-            <el-table-column
-              prop="label"
-              label="标签">
-            </el-table-column>
-            <el-table-column
-              prop="type"
-              label="字段类型">
-            </el-table-column>
-            <el-table-column
-              label="操作">
-              <template slot-scope="scope">
-                <el-button type="text" @click="handleEdit(scope.row)">编辑</el-button>
-                <el-button type="text" @click="handleDelete(scope.row)">删除</el-button>
-              </template>
-            </el-table-column>
-          </el-table>
         </el-tab-pane>
       </el-tabs>
     </div>
@@ -186,6 +209,25 @@
       }
     },
     methods:{
+      saveOrderFactor(){
+        let ids = [];
+        let orders = [];
+        this.contentFields.forEach( item => {
+          ids.push(item.id)
+          orders.push(item.order_factor)
+        });
+        this.$http
+          .post("/admin/cms/model/save/field/order", {ids, orders})
+          .then(res => {
+            ///
+            console.log(`-----0-----0-----0:`, JSON.stringify(res))
+            this.$message({
+              type: 'success',
+              message: '保存成功!'
+            });
+          }).catch(()=>{});
+        //
+      },
       handleEdit(row){
         this.fieldVisible = true
         Object.assign(this.fieldForm, row);
@@ -270,14 +312,18 @@
               });
               Object.assign(this.modelForm, res.data);
             }else{
+              let message = '出错了!请联系管理员';
               this.$message({
-                message: '出错了!请联系管理员',
+                message: message,
                 type: 'warning'
               });
             }
           });
       },
       doSaveField(){
+        if(!this.fieldForm.model_id){
+          this.fieldForm.model_id = this.modelForm.id;
+        }
         this.$http
           .post("/admin/cms/model/save/field", this.fieldForm)
           .then(res => {

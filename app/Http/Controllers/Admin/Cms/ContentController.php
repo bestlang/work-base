@@ -36,28 +36,47 @@ class ContentController extends Controller
         $channel = Channel::find($channel_id);
         $model = Model::find($model_id);
 
+
+        $contentFileds = $model->fields->filter(function($item){return $item->type == 'content';})->map(function($item){ return $item->field;})->toArray();
         $arr = Arr::only($params, ['channel_id', 'model_id', 'title', 'keywords', 'description']);
+
+        //执行更新逻辑
+        $id = $request->input('id', 0);
+        if($id){
+            $contentModel = Content::find($id);
+
+            $contentModel->update($arr);
+            // 更新富文本字段
+            foreach ($contentFileds as $filed){
+                $contentModel->contents()->updateOrInsert(['content_id' => $id, 'field' => $filed], ['value' => Arr::get($params, $filed)]);
+            }
+            // @todo 更新自定义字段
+
+            return response()->ajax();
+        }
+
         $arr['user_id'] = auth()->user()->id;
         $arr['status'] = 1;
         $contentModel = Content::create($arr);
 
         // 保存富文本字段
-        $contentFileds = $model->fields->filter(function($item){return $item->type == 'content';})->map(function($item){ return $item->field;})->toArray();
+
         foreach ($contentFileds as $filed){
             $content = ['field' => $filed, 'value' => Arr::get($params, $filed)];
             $contentModel->contents()->create($content);
         }
+        // @todo 保存自定义字段
 
         return response()->ajax();
     }
 
     public function whole(Request $request)
     {
-        $content_id = $request->input('content_id', 0);
-        if(!$content_id){
+        $id = $request->input('id', 0);
+        if(!$id){
             return response()->error('参数错误!');
         }
-        $model = Content::with(['contents', 'metas'])->find($content_id);
+        $model = Content::with(['contents', 'metas'])->find($id);
         return response()->ajax($model);
     }
 }

@@ -75,4 +75,14 @@ class ModelController extends Controller
         $model->fields()->find($id)->delete();
         return response()->ajax();
     }
+
+    public function saveFieldOrder(Request $request)
+    {
+        $ids = $request->input('ids', []);
+        $orders = $request->input('orders', []);
+        foreach ($ids as $index => $id){
+            ModelField::find($id)->update(['order_factor' => $orders[$index]]);
+        }
+        return response()->ajax([$ids, $orders]);
+    }
 }

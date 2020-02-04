@@ -49,20 +49,27 @@
             </el-table>
           </div>
         </div>
-      <div v-if="showForm && selectedModel">
-        <el-form>
-          <template v-for="(item, index) in selectedModel.fields">
-              <el-form-item v-if="item.type=='text'" :label="item.label"><el-input :key="index" :name="item.field" v-model="form[item.field]"></el-input></el-form-item>
+      <div class="l-block" v-if="showForm && selectedModel">
+        <div class="l-block-header">添加表单</div>
+        <div class="l-block-body">
+          <el-form>
+            <template v-for="(item, index) in selectedModel.fields">
+              <el-form-item v-if="item.type=='text'" :label="item.label">
+                <el-input :key="index" :name="item.field" v-model="form[item.field]"></el-input>
+              </el-form-item>
+              <el-form-item v-if="item.type=='textarea'" :label="item.label">
+                <el-input type="textarea" v-model="form[item.field]"></el-input>
+              </el-form-item>
               <div v-if="item.type=='content'" class="l-mb-22">
-                  <label>{{item.label}}</label>
-<!--                  <ueditor :config="config" :key="index" :default-content="form[item.field]" @contentChange="handleContentChange" :index="item.field"></ueditor>-->
-                  <vue-ueditor-wrap v-model="form[item.field]" :config="ueditorConfig"></vue-ueditor-wrap>
+                <label>{{item.label}}</label>
+                <vue-ueditor-wrap v-model="form[item.field]" :config="ueditorConfig"></vue-ueditor-wrap>
               </div>
-          </template>
-          <el-form-item>
-            <el-button @click="saveContent">提交</el-button>
-          </el-form-item>
-        </el-form>
+            </template>
+            <el-form-item>
+              <el-button @click="saveContent">提交</el-button>
+            </el-form-item>
+          </el-form>
+        </div>
       </div>
     </div>
   </div>
@@ -101,19 +108,20 @@
     },
     methods: {
       editContent(row){
-        console.log(`>>>>>>>>>>>>>>>>>..`,row)
+        console.log(`>>>>>>>>>>>>>>>>>..`,JSON.stringify(row))
         this.selectedChannel = row.channel;
         this.loadModel(this.selectedChannel.model_id)
         this.showForm = true;
-        this.loadWholeContent(row.id)
+        this.loadWholeContent(row)
       },
       deleteContent(row){
 
       },
       saveContent(){
-        this.$set(this.form, 'model_id', this.selectedModel.id);
-        this.$set(this.form, 'channel_id', this.selectedChannel.id)
-        //alert(JSON.stringify(this.form));
+        if(!this.form.channel_id && !this.form.model_id){
+          this.$set(this.form, 'model_id', this.selectedModel.id);
+          this.$set(this.form, 'channel_id', this.selectedChannel.id)
+        }
         this.$http
           .post("/admin/cms/content/save", this.form)
           .then(res => {
@@ -170,9 +178,9 @@
             this.contents = res.data;
           });
       },
-      loadWholeContent(content_id){
+      loadWholeContent({id}){
         this.$http
-          .get("/admin/cms/content/whole", {params: {content_id}})
+          .get("/admin/cms/content/whole", {params: {id}})
           .then(res => {
             let model = res.data;
 
@@ -180,17 +188,19 @@
             let contentContentFields = [];
             let metaFields = [];
 
-            contentFields.forEach( field => {this.$set(this.form, field, model[field])});
+            this.$set(this.form, 'id', id);
+
+            contentFields.forEach( field => {this.$set(this.form, field, model[field])} );
 
             if(model.contents && model.contents.length){
-              model.contents.forEach( item => {this.$set(this.form, item.field, item.value)});
+              model.contents.forEach( item => {this.$set(this.form, item.field, item.value)} );
             }
 
             if(model.metas && model.metas.length){
               model.metas.forEach( item => {this.$set(this.form, item.field, item.value)});
             }
 
-            console.log(`&&&&&&&&&&&&&&&&&:`, JSON.stringify(this.form));
+            console.log(`********************____>`, JSON.stringify(this.form));
             console.log(`<<<<<<<<<<<<<<<<<<<:`, JSON.stringify(res));
           });
       }
