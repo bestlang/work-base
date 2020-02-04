@@ -38,22 +38,22 @@ export default new VueRouter({
           },
           children: [
             {
-              path: "/cms/channel",
-              component: (resolve) => require(["../pages/cms/channel.vue"], resolve),
-              meta: {
-                can: 'cms list channels',
-                show: true,
-                name: '栏目管理',
-                font: '&#xe764;'
-              },
-            },
-            {
               path: "/cms/content",
               component: (resolve) => require(["../pages/cms/content.vue"], resolve),
               meta: {
                 can: 'cms list contents',
                 show: true,
                 name: '内容管理',
+                font: '&#xe764;'
+              },
+            },
+            {
+              path: "/cms/channel",
+              component: (resolve) => require(["../pages/cms/channel.vue"], resolve),
+              meta: {
+                can: 'cms list channels',
+                show: true,
+                name: '栏目管理',
                 font: '&#xe764;'
               },
             },
