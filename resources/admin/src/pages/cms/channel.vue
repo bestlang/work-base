@@ -237,6 +237,7 @@
         });
       },
       handleNodeClick(node, ...$params){
+        console.log(`--------------node:`,node);
         if(node.children.length>0){
           this.$store.dispatch(this.$types.CMS_CHANNEL_CHILDREN, node);
           this.showChannelChildren = true;
@@ -245,7 +246,6 @@
         }else{
           ///this.$store.commit(this.$types.CMS_CHANNEL_CHILDREN, [])
           this.showChannelChildren = false;
-          console.log(`--------------node:`,node);
           Object.assign(this.channelForm, node)
         }
       },

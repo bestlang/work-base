@@ -13,12 +13,19 @@ class ContentController extends Controller
 {
     public function index(Request $request)
     {
-        $channel_id = $request->input('channel_id', 0);
-        if(!$channel_id){
+        $channelId = $request->input('channel_id', 0);
+        $channelId = intval($channelId);
+        if(!$channelId){
             $contents = Content::with('channel')->orderBy('id', 'desc')->get();
             return response()->ajax($contents);
         }else{
-            $contents = Channel::find($channel_id)->contents()->with('channel')->orderBy('id', 'desc')->get();
+            $channelIdArr = [];
+            $childrenIdArr = Channel::find($channelId)->getDescendants()->map(function($item){return $item->id;})->toArray();
+            if(count($childrenIdArr)){
+                array_push($channelIdArr, ...$childrenIdArr);
+            }
+            array_push($channelIdArr, $channelId);
+            $contents = Content::whereIn('channel_id', $channelIdArr)->with('channel')->orderByRaw("case when `channel_id`=$channelId then 1 end desc")->orderBy('id', 'desc')->get();
             return response()->ajax($contents);
         }
     }
@@ -30,10 +37,10 @@ class ContentController extends Controller
             'channel_id' => 'required',
             'model_id' => 'required',
         ];
-        $channel_id = Arr::get($params, 'channel_id', 0);
+        $channelId = Arr::get($params, 'channel_id', 0);
         $model_id = Arr::get($params, 'model_id', 0);
 
-        $channel = Channel::find($channel_id);
+        $channel = Channel::find($channelId);
         $model = Model::find($model_id);
 
 

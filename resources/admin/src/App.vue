@@ -50,6 +50,7 @@
       flex-flow: row nowrap;
       justify-content: space-between;
       box-sizing: border-box;
+      line-height: 34px;
     }
     .l-block-body{
       padding: 20px 0 20px 0;
@@ -83,6 +84,10 @@
   }
   // 修复.el-form-item__content{line-height: 40px;}导致编辑器按钮高度过高
   .edui-editor-toolbarbox{line-height: 20px;}
+  .l-go-back{
+    display: inline-block;
+    cursor: pointer;
+  }
 </style>
 <template>
   <router-view></router-view>

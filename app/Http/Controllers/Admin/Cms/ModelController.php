@@ -57,6 +57,7 @@ class ModelController extends Controller
             $field = $model->fields()->find($id);
             $field->update($data);
         }else{
+            $data['is_custom'] = '1';
             $model->fields()->create($data);
         }
 

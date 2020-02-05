@@ -21,6 +21,7 @@
     <div class="l-tree-content">
         <div class="l-block" v-if="!showForm">
           <div class="l-block-header">
+            <div><i class="iconfont">&#xe64c;</i>  {{parentChannel.name}}</div>
             <el-button type="primary" size="small" @click="addContent">添加</el-button>
           </div>
           <div class="l-block-body">
@@ -50,7 +51,13 @@
           </div>
         </div>
       <div class="l-block" v-if="showForm && selectedModel">
-        <div class="l-block-header">添加表单</div>
+        <div class="l-block-header">
+          <div>
+            <span class="l-go-back" @click="goback"><span class="iconfont">&#xe601;</span>返回</span>
+            <el-divider direction="vertical"></el-divider>
+            <span>{{formTitle}}</span>
+          </div>
+        </div>
         <div class="l-block-body">
           <el-form label-width="100px">
             <template v-for="(item, index) in selectedModel.fields">
@@ -61,7 +68,6 @@
                 <el-input type="textarea" v-model="form[item.field]"></el-input>
               </el-form-item>
               <el-form-item v-if="item.type=='content'" class="l-mb-22" :label="item.label">
-<!--                <label>{{item.label}}</label>-->
                 <div>
                   <vue-ueditor-wrap v-model="form[item.field]" :config="ueditorConfig"></vue-ueditor-wrap>
                 </div>
@@ -88,6 +94,7 @@
         selectedModel: null,
         contents: [],
         showForm: false,
+        formTitle: '添加文章',
         form:{}
       }
     },
@@ -98,6 +105,9 @@
     computed:{
       ueditorConfig(){
         return ueditorConfig
+      },
+      parentChannel(){
+        return this.$store.getters.parentChannel;
       }
     },
     watch:{
@@ -109,8 +119,11 @@
       }
     },
     methods: {
+      goback(){
+        this.showForm = false;
+      },
       editContent(row){
-        console.log(`>>>>>>>>>>>>>>>>>..`,JSON.stringify(row))
+        this.formTitle = '编辑文章';
         this.selectedChannel = row.channel;
         this.loadModel(this.selectedChannel.model_id)
         this.showForm = true;
@@ -139,14 +152,11 @@
           });
       },
 
-      handleContentChange(instance, index){
-        this.form[index] = instance.getContent()
-        console.log(`------------------:`, JSON.stringify(this.form));
-      },
-      handleNodeClick(...params){
+      handleNodeClick(node, ...params){
         this.showForm = false;
-        let channel = params[0][0];
+        let channel = node[0]
         this.selectedChannel = channel;
+        this.$store.dispatch(this.$types.CMS_PARENT_CHANNEL, node[0])
         // let channelId = channel.id;
         // let channelName = channel.name;
         // let channelModelId = channel.model_id;
@@ -155,6 +165,7 @@
       },
       addContent(){
         this.showForm = true;
+        this.formTitle = '添加文章';
         this.loadModel(this.selectedChannel.model_id)
       },
       loadModel(id){
