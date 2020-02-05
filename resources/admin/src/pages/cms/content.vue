@@ -213,8 +213,6 @@
               model.metas.forEach( item => {this.$set(this.form, item.field, item.value)});
             }
 
-            console.log(`********************____>`, JSON.stringify(this.form));
-            console.log(`<<<<<<<<<<<<<<<<<<<:`, JSON.stringify(res));
           });
       }
     },

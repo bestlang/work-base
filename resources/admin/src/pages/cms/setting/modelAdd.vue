@@ -158,7 +158,7 @@
         activeName: 'basic',
         fields:[],
 
-        modelForm:{
+        modelForm: {
           id: null,
           name: '',
           channel_template_prefix: '',
@@ -219,14 +219,12 @@
         this.$http
           .post("/admin/cms/model/save/field/order", {ids, orders})
           .then(res => {
-            ///
-            console.log(`-----0-----0-----0:`, JSON.stringify(res))
+            this.loadModel(this.modelForm.id)
             this.$message({
               type: 'success',
               message: '保存成功!'
             });
           }).catch(()=>{});
-        //
       },
       handleEdit(row){
         this.fieldVisible = true
@@ -251,9 +249,9 @@
             }).catch(()=>{});
         });
       },
-      beforeLeave(activeName, oldActiveName){
-        return true;
-      },
+      // beforeLeave(activeName, oldActiveName){
+      //   return true;
+      // },
       add(type){
         if(!this.modelForm.id){
           this.$message({

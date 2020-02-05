@@ -24,7 +24,7 @@ class CreateCmsModelFieldsTable extends Migration
             $table->tinyInteger('is_custom')->default(0)->comment('是否自定义:0否1是');
             $table->tinyInteger('is_display')->default(1)->comment('是否显示在表单:1显示0不显示');
             $table->tinyInteger('is_required')->default(0)->comment('是否表单必填项:1是0否');
-            $table->integer('order_factor')->default(0)->comment('越大越靠前');
+            $table->integer('order_factor')->default(100)->comment('越小越靠前');
             $table->nullableTimestamps();
         });
     }

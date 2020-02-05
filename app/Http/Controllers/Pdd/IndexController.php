@@ -18,7 +18,6 @@ class IndexController extends Controller
 {
     public function index(Request $request)
     {
-        echo '123';
 
 //        echo "heated welcome->".Cache::get('access_token');
 //        echo "\nheated welcome->".Cache::get('xzs_access_token');

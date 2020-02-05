@@ -14,7 +14,7 @@ class CreateCmsContentMetasTable extends Migration
     public function up()
     {
         Schema::create('cms_content_metas', function (Blueprint $table) {
-            $table->unsignedInteger('content_id')->primary();
+            $table->unsignedInteger('content_id');
             $table->string('field')->comment('字段名');
             $table->string('value', 10000)->comment('字段值');
         });

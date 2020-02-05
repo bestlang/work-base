@@ -16,6 +16,6 @@ class Model extends BaseModel
 
     public function fields()
     {
-        return $this->hasMany(ModelField::class)->orderBy('order_factor', 'desc');
+        return $this->hasMany(ModelField::class)->orderBy('order_factor', 'asc');
     }
 }

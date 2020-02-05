@@ -45,6 +45,7 @@ class ContentController extends Controller
 
 
         $contentFileds = $model->fields->filter(function($item){return $item->type == 'content';})->map(function($item){ return $item->field;})->toArray();
+        $metaFileds = $model->fields->filter(function($item){return $item->is_custom == 1;})->map(function($item){ return $item->field;})->toArray();
         $arr = Arr::only($params, ['channel_id', 'model_id', 'title', 'keywords', 'description']);
 
         //执行更新逻辑
@@ -53,12 +54,15 @@ class ContentController extends Controller
             $contentModel = Content::find($id);
 
             $contentModel->update($arr);
+
             // 更新富文本字段
             foreach ($contentFileds as $filed){
                 $contentModel->contents()->updateOrInsert(['content_id' => $id, 'field' => $filed], ['value' => Arr::get($params, $filed)]);
             }
-            // @todo 更新自定义字段
-
+            // 更新自定义字段
+            foreach ($metaFileds as $filed){
+                $contentModel->metas()->updateOrInsert(['content_id' => $id, 'field' => $filed], ['value' => Arr::get($params, $filed)]);
+            }
             return response()->ajax();
         }
 
@@ -67,13 +71,15 @@ class ContentController extends Controller
         $contentModel = Content::create($arr);
 
         // 保存富文本字段
-
         foreach ($contentFileds as $filed){
             $content = ['field' => $filed, 'value' => Arr::get($params, $filed)];
             $contentModel->contents()->create($content);
         }
-        // @todo 保存自定义字段
-
+        // 保存自定义字段
+        foreach ($metaFileds as $filed){
+            $meta = ['field' => $filed, 'value' => Arr::get($params, $filed)];
+            $contentModel->metas()->create($meta);
+        }
         return response()->ajax();
     }
 
