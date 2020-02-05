@@ -58,10 +58,10 @@
       <div class="l-tree-content">
         <div class="l-block" v-if="showChannelChildren">
           <div class="l-block-header">
-            <span>{{parentChanel.name}}</span>
+            <span><i class="iconfont">&#xe64c;</i> {{parentChannel.name}}</span>
             <el-button-group>
-              <el-button style="padding: 3px 10px" type="text" @click="editChannel(parentChanel)">编辑</el-button>
-              <el-button style="padding: 3px 10px" type="text" @click="addChannel(parentChanel)">新增子栏目</el-button>
+              <el-button style="padding: 3px 10px" type="text" @click="editChannel(parentChannel)">编辑</el-button>
+              <el-button style="padding: 3px 10px" type="text" @click="addChannel(parentChannel)">新增子栏目</el-button>
             </el-button-group>
           </div>
           <div class="l-block-body">
@@ -93,7 +93,7 @@
 
         <div class="l-block l-channel-info" v-if="!showChannelChildren">
           <div class="l-block-header">
-            <span>{{channelForm.name}}</span>
+            <span><i class="iconfont">&#xe92a;</i>{{channelForm.name}}</span>
             <el-button-group>
               <el-button style="padding: 3px 10px" type="text" @click="editChannel(channelForm)">编辑</el-button>
               <el-button style="padding: 3px 10px" type="text" @click="deleteChannel(channelForm)">删除</el-button>
@@ -155,15 +155,15 @@
         showChannelChildren: true,
         showChannelForm: false,
         // 暂存父栏目
-        parentChanel: {
-          id: '',
-          parent_id: '',
-          name: '',
-          model_id: '',
-          title: '',
-          keywords: '',
-          description: '',
-        },
+        // parentChannel: {
+        //   id: '',
+        //   parent_id: '',
+        //   name: '',
+        //   model_id: '',
+        //   title: '',
+        //   keywords: '',
+        //   description: '',
+        // },
         channelForm:{
           id: '',
           parent_id: '',
@@ -187,6 +187,9 @@
       },
       models(){
         return this.$store.getters.models;
+      },
+      parentChannel(){
+        return this.$store.getters.parentChannel;
       }
     },
     methods: {
@@ -237,7 +240,8 @@
         if(node.children.length>0){
           this.$store.dispatch(this.$types.CMS_CHANNEL_CHILDREN, node);
           this.showChannelChildren = true;
-          Object.assign(this.parentChanel, node);
+          //Object.assign(this.parentChannel, node);
+          this.$store.dispatch(this.$types.CMS_PARENT_CHANNEL, node)
         }else{
           ///this.$store.commit(this.$types.CMS_CHANNEL_CHILDREN, [])
           this.showChannelChildren = false;

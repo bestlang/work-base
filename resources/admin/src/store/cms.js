@@ -6,7 +6,16 @@ const cmsConfig = {
     loading: false,
     models: [],
     channels: [],
-    channelChildren: []
+    channelChildren: [],
+    parentChannel: {
+      id: '',
+      parent_id: '',
+      name: '',
+      model_id: '',
+      title: '',
+      keywords: '',
+      description: '',
+    },
   },
   getters:{
     loading(state){
@@ -20,6 +29,9 @@ const cmsConfig = {
     },
     channelChildren(state){
       return state.channelChildren
+    },
+    parentChannel(state){
+      return state.parentChannel
     }
   },
   mutations: {
@@ -34,6 +46,9 @@ const cmsConfig = {
     },
     [types.CMS_CHANNEL_CHILDREN] (state, payload) {
       state.channelChildren = payload
+    },
+    [types.CMS_PARENT_CHANNEL] (state, payload) {
+      state.parentChannel = payload
     }
   },
   actions: {
@@ -50,7 +65,9 @@ const cmsConfig = {
       fetch.get("/admin/cms/channel/tree", {params:{disabled: true}})
         .then(res => {
           let node = [res.data[Object.keys(res.data)[0]]]
+          console.log(`////////////////////`, node)
           commit(types.CMS_CHANNELS, node);
+          dispatch(types.CMS_PARENT_CHANNEL, node[0])
           commit(types.LOADING, false)
           if(parent){
             dispatch(types.CMS_CHANNEL_CHILDREN, parent);
@@ -67,6 +84,9 @@ const cmsConfig = {
           commit(types.CMS_CHANNEL_CHILDREN, res.data)
           commit(types.LOADING, false)
         });
+    },
+    [types.CMS_PARENT_CHANNEL] ({commit}, node) {
+      commit(types.CMS_PARENT_CHANNEL, node);
     }
   }
 }
