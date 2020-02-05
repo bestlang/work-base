@@ -2,7 +2,7 @@
   <div>
     <div class="l-top-menu">
       <div>
-        <el-button type="primary" @click="add">新增</el-button>
+        <el-button type="primary" @click="add" size="small">新增</el-button>
       </div>
       <div></div>
     </div>

@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="top-buttons">
-            <el-button type="primary" @click="addActivity"><i class="iconfont">&#xe641;</i> 添加</el-button>
+            <el-button type="primary" @click="addActivity" size="small"><i class="iconfont">&#xe641;</i> 添加</el-button>
         </div>
         <!--<el-card class="box-card">-->
         <el-table

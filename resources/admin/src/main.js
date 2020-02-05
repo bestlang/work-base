@@ -5,7 +5,7 @@
 import Vue from "vue"
 import ElementUI from "element-ui"
 // import "element-ui/lib/theme-chalk/index.css"
-import "./css/ele-custom-theme/theme/index.css"
+import "./css/ele-default-theme/theme/index.css"
 import "@/css/index.scss"
 import Vuex from "vuex"
 import router from "./router"

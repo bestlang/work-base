@@ -40,7 +40,7 @@ export default {
 </script>
 <style scoped lang="less">
     .l-color{
-      color:#4949BB;
+      color:#409EFF;
     }
     .ls-top-wrap{
         display: flex;
@@ -64,7 +64,7 @@ export default {
         line-height: 50px;
         cursor: pointer;
         font-size:14px;
-        color:darkblue;
+        color:#409EFF;
         .logout{
             padding-right: 20px;
         }
@@ -75,7 +75,7 @@ export default {
         line-height: 50px;
         letter-spacing: .05em;
         padding-left: 30px;
-        color:darkblue;
+        color:#409EFF;
         letter-spacing: 1.5px;
         font-size: 20px;
     }

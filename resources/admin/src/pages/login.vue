@@ -27,7 +27,7 @@
                            class="login-input user">
                     <label id="password"></label>
                 </div>
-                <el-button :loading="loading"  class="login-input login-btn" @click="login" id="login">{{loginFont}}</el-button>
+                <el-button :loading="loading"  class="login-input login-btn" type="primary" @click="login" id="login">{{loginFont}}</el-button>
 
             </div>
 
@@ -127,6 +127,9 @@ export default {
 </script>
 
 <style lang="less" scoped>
+    .login-input{
+      text-indent: 15px;
+    }
     .login-img{max-height: 50px;}
     .val {
         width: 320px;
@@ -137,7 +140,7 @@ export default {
     .user-after::after {
         position: absolute;
         top: 8px;
-        right: 15px;
+        left: 15px;
         color: #8ba6ba;
         font-family: "iconfont";
         font-size: 24px;
@@ -146,7 +149,7 @@ export default {
     .password-after::after {
         position: absolute;
         top: 10px;
-        right: 16px;
+        left: 16px;
         color: #8ba6ba;
         font-family: "iconfont";
         font-size: 24px;

@@ -3,7 +3,7 @@
     <div class="l-top-menu">
       <div>
 <!--        <el-button type="primary" @click="add">新增</el-button>-->
-        <router-link to="/cms/setting/model/add"><el-button type="primary">新增</el-button></router-link>
+        <router-link to="/cms/setting/model/add"><el-button type="primary" size="small">新增</el-button></router-link>
       </div>
       <div></div>
     </div>

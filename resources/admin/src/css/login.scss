@@ -6,7 +6,8 @@
   //background: #188ae2;
   //background: url('/static/images/auth-page-bg.jpg') no-repeat scroll center/cover;
   //background-image: linear-gradient(45deg,#6e436c 25%,#2a4584 75%);
-  background-image: linear-gradient(45deg,#2a4584 25%,#6e436c 75%);
+  //background-image: linear-gradient(45deg,#2a4584 25%,#6e436c 75%);
+  background-image: linear-gradient(45deg,#FF2D20 25%,#409EFF 75%);
 
 }
 .login-inner-box{
@@ -52,16 +53,16 @@
 .login-btn{
   line-height: 1;
   padding: 0;
-  background: #ebcd41;
-  color: #2a4584;
+  //background: #ebcd41;
+  //color: #2d2d2d;
 }
 .login-btn:hover{
-  background: #fee300 !important;
-  color: #000 !important;
+  //background: #38c172 !important;
+  //color: #000 !important;
 }
 .login-btn:focus{
-  background: #fee300 !important;
-  color: #000 !important;
+  //background: #fee300 !important;
+  //color: #000 !important;
 }
 
 

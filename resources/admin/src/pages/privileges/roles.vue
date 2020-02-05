@@ -1,9 +1,10 @@
 <template>
-    <div>
-        <div class="top-buttons">
-            <el-button type="primary" @click="formVisible=true"><i class="iconfont">&#xe641;</i> 添加</el-button>
+    <div class="l-block">
+        <div class="l-block-header">
+            <el-button type="primary" size="small" @click="formVisible=true"><i class="iconfont">&#xe641;</i> 添加</el-button>
         </div>
-        <el-table
+        <div class="l-block-body">
+          <el-table
                 border
                 :data="tableData"
                 cell-class-name="cell-class"
@@ -29,6 +30,7 @@
                 </template>
             </el-table-column>
         </el-table>
+        </div>
         <div class="l-delimiter"></div>
         <el-dialog :title="formTitle" :visible.sync="formVisible">
             <el-form :model="form" label-width="80px">

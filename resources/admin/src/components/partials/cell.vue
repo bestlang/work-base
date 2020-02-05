@@ -6,7 +6,7 @@
                 <span slot="title">{{item.meta.name}}</span>
               </template>
               <template v-for="child in item.children">
-                <cell :item="child" :type="child.children && child.children.filter(x=>x.meta.show).length? 'el-submenu':'el-menu-item'"></cell>
+                <cell :item="child" :type="child.children && child.children.filter(x=>x.meta.show).length? 'el-submenu':'el-menu-item'" @mouseenter="handleMouseEnter"></cell>
               </template>
           </template>
           <template v-if="type==='el-menu-item'" :index="item.path">
@@ -28,6 +28,11 @@
       type: {
         type: String,
         // default: 'el-submenu'
+      }
+    },
+    methods:{
+      handleMouseEnter(el){
+        el.target.stopPropagation()
       }
     }
   }

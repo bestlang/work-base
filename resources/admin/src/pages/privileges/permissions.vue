@@ -4,7 +4,10 @@
 <!--      <div>所有权限</div>-->
     </div>
     <div style="width:50%;">
-      <el-tree
+      <div class="l-block">
+        <div class="l-block-header">所有权限</div>
+        <div class="l-block-body">
+          <el-tree
         :empty-text="emptyText"
         ref="tree"
         :data="treeData"
@@ -40,6 +43,8 @@
           </span>
         </span>
       </el-tree>
+        </div>
+      </div>
     </div>
     <el-dialog :title="title" :visible.sync="dialogFormVisible">
       <el-form :model="form" label-width="100px">

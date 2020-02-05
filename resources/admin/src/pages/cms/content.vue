@@ -52,7 +52,7 @@
       <div class="l-block" v-if="showForm && selectedModel">
         <div class="l-block-header">添加表单</div>
         <div class="l-block-body">
-          <el-form>
+          <el-form label-width="100px">
             <template v-for="(item, index) in selectedModel.fields">
               <el-form-item v-if="item.type=='text'" :label="item.label">
                 <el-input :key="index" :name="item.field" v-model="form[item.field]"></el-input>
@@ -60,10 +60,12 @@
               <el-form-item v-if="item.type=='textarea'" :label="item.label">
                 <el-input type="textarea" v-model="form[item.field]"></el-input>
               </el-form-item>
-              <div v-if="item.type=='content'" class="l-mb-22">
-                <label>{{item.label}}</label>
-                <vue-ueditor-wrap v-model="form[item.field]" :config="ueditorConfig"></vue-ueditor-wrap>
-              </div>
+              <el-form-item v-if="item.type=='content'" class="l-mb-22" :label="item.label">
+<!--                <label>{{item.label}}</label>-->
+                <div>
+                  <vue-ueditor-wrap v-model="form[item.field]" :config="ueditorConfig"></vue-ueditor-wrap>
+                </div>
+              </el-form-item>
             </template>
             <el-form-item>
               <el-button @click="saveContent">提交</el-button>

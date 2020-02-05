@@ -270,6 +270,7 @@
                 type: 'success',
                 message: '添加成功!'
               });
+              this.showChannelForm = false
             }else{
               this.$message({
                 type: 'error',
