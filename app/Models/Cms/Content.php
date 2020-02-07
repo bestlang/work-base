@@ -13,6 +13,7 @@ class Content extends Model
     {
         return $this->belongsTo(Channel::class);
     }
+
     public function contents()
     {
         return $this->hasMany(ContentContent::class);

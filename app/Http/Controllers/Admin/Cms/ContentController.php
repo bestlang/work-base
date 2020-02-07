@@ -40,11 +40,10 @@ class ContentController extends Controller
         $channelId = Arr::get($params, 'channel_id', 0);
         $model_id = Arr::get($params, 'model_id', 0);
 
-        $channel = Channel::find($channelId);
         $model = Model::find($model_id);
 
-
         $contentFileds = $model->fields->filter(function($item){return $item->type == 'content';})->map(function($item){ return $item->field;})->toArray();
+        // 自定义字段 不包含TDK
         $metaFileds = $model->fields->filter(function($item){return $item->is_custom == 1;})->map(function($item){ return $item->field;})->toArray();
         $arr = Arr::only($params, ['channel_id', 'model_id', 'title', 'keywords', 'description']);
 
@@ -91,5 +90,12 @@ class ContentController extends Controller
         }
         $model = Content::with(['contents', 'metas'])->find($id);
         return response()->ajax($model);
+    }
+
+    public function delete(Request $request)
+    {
+        $id = $request->input('id', 0);
+        Content::destroy($id);
+        return response()->ajax();
     }
 }

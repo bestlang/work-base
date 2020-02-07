@@ -670,6 +670,8 @@ class ComposerStaticInitf3c7adb5ea48bb42df4a643c07fc525e
         'App\\Models\\ActivityType' => __DIR__ . '/../..' . '/app/Models/ActivityType.php',
         'App\\Models\\Cms\\Channel' => __DIR__ . '/../..' . '/app/Models/Cms/Channel.php',
         'App\\Models\\Cms\\Content' => __DIR__ . '/../..' . '/app/Models/Cms/Content.php',
+        'App\\Models\\Cms\\ContentContent' => __DIR__ . '/../..' . '/app/Models/Cms/ContentContent.php',
+        'App\\Models\\Cms\\ContentMeta' => __DIR__ . '/../..' . '/app/Models/Cms/ContentMeta.php',
         'App\\Models\\Cms\\FieldType' => __DIR__ . '/../..' . '/app/Models/Cms/FieldType.php',
         'App\\Models\\Cms\\Model' => __DIR__ . '/../..' . '/app/Models/Cms/Model.php',
         'App\\Models\\Cms\\ModelField' => __DIR__ . '/../..' . '/app/Models/Cms/ModelField.php',

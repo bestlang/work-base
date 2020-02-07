@@ -63,6 +63,8 @@ return array(
     'App\\Models\\ActivityType' => $baseDir . '/app/Models/ActivityType.php',
     'App\\Models\\Cms\\Channel' => $baseDir . '/app/Models/Cms/Channel.php',
     'App\\Models\\Cms\\Content' => $baseDir . '/app/Models/Cms/Content.php',
+    'App\\Models\\Cms\\ContentContent' => $baseDir . '/app/Models/Cms/ContentContent.php',
+    'App\\Models\\Cms\\ContentMeta' => $baseDir . '/app/Models/Cms/ContentMeta.php',
     'App\\Models\\Cms\\FieldType' => $baseDir . '/app/Models/Cms/FieldType.php',
     'App\\Models\\Cms\\Model' => $baseDir . '/app/Models/Cms/Model.php',
     'App\\Models\\Cms\\ModelField' => $baseDir . '/app/Models/Cms/ModelField.php',

@@ -13,7 +13,7 @@ class ModelController extends Controller
 {
     public function index()
     {
-        $models = Model::all();
+        $models = Model::with('fields')->get();
         return response()->ajax($models);
     }
 
@@ -26,6 +26,23 @@ class ModelController extends Controller
             $model = Model::find($id)->update($data);
         }else{
             $model = Model::create($data);
+            // 同时创建模型系统字段(栏目,内容)
+            $channelFields = [
+                ['field' => 'title', 'type' => 'text', 'label' => '标题', 'is_required' => '1', 'is_channel' => '1', 'order_factor' => '1'],
+                ['field' => 'keywords', 'type' => 'text', 'label' => '关键字', 'is_required' => '1', 'is_channel' => '1', 'order_factor' => '2'],
+                ['field' => 'description', 'type' => 'textarea', 'label' => '描述', 'is_required' => '1', 'is_channel' => '1', 'order_factor' => '3'],
+            ];
+            $contentFields = [
+                ['field' => 'title', 'type' => 'text', 'label' => '标题', 'is_required' => '1', 'is_channel' => '0', 'order_factor' => '1'],
+                ['field' => 'keywords', 'type' => 'text', 'label' => '关键字', 'is_required' => '1', 'is_channel' => '0', 'order_factor' => '2'],
+                ['field' => 'description', 'type' => 'textarea', 'label' => '描述', 'is_required' => '1', 'is_channel' => '0', 'order_factor' => '3'],
+            ];
+            foreach ($channelFields as $field){
+                $model->fields()->create($field);
+            }
+            foreach ($contentFields as $field){
+                $model->fields()->create($field);
+            }
         }
         return response()->ajax($model);
     }
@@ -62,6 +79,19 @@ class ModelController extends Controller
         }
 
         return response()->ajax($params);
+    }
+
+    public function delete(Request $request)
+    {
+        $id = $request->input('id', 0);
+        $model = Model::find($id);
+        // 如果模型被使用 禁止删除
+        if(count($model->channels)){
+            return response()->error('删除失败!模型被引用中');
+        }
+        $model->fields()->delete();
+        $model->delete(); // Model::destroy($id);
+        return response()->ajax();
     }
 
     public function deleteField(Request $request)

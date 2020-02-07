@@ -18,4 +18,9 @@ class Model extends BaseModel
     {
         return $this->hasMany(ModelField::class)->orderBy('order_factor', 'asc');
     }
+
+    public function channels()
+    {
+        return $this->hasMany(Channel::class)->orderBy('order_factor', 'asc');
+    }
 }

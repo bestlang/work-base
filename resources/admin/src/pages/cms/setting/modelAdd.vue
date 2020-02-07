@@ -1,11 +1,11 @@
 <template>
-  <div class="l-model-add">
-    <div class="top-buttons" style="display: flex;flex-flow: row nowrap;">
+  <div class="l-block">
+    <div class="l-block-header">
       <router-link to="/cms/setting/model" tag="div"><span class="iconfont">&#xe601;</span>返回</router-link>
       <el-divider direction="vertical"></el-divider>
-      <div>{{modelForm.id ? '编辑':'新增'}}模型</div>
+      <div>{{modelForm.id ? '编辑':'新增'}}模型{{modelForm.name ? '"' + modelForm.name + '"' : ''}}</div>
     </div>
-    <div>
+    <div class="l-block-body">
       <el-tabs tab-position="left" v-model="activeName" @tab-click="handleClick">
         <el-tab-pane label="基本信息" name="basic">
           <el-form ref="form" :model="modelForm" label-width="120px">
@@ -46,7 +46,7 @@
                 label="标签">
               </el-table-column>
               <el-table-column
-                label="排序值">
+                label="排序值(升序)">
                 <template slot-scope="scope">
                   <el-input v-model="scope.row.order_factor" class="l-w-60"></el-input>
                 </template>
@@ -63,6 +63,9 @@
                 </template>
               </el-table-column>
             </el-table>
+            </div>
+            <div class="l-block-bottom">
+              <el-button @click="saveOrderFactor">保存排序</el-button>
             </div>
           </div>
         </el-tab-pane>
@@ -89,7 +92,7 @@
                   label="标签">
                 </el-table-column>
                 <el-table-column
-                  label="排序值">
+                  label="排序值(升序)">
                   <template slot-scope="scope">
                     <el-input v-model="scope.row.order_factor" class="l-w-60"></el-input>
                   </template>
@@ -106,9 +109,9 @@
                   </template>
                 </el-table-column>
               </el-table>
-              <div class="l-block-bottom">
-                <el-button @click="saveOrderFactor">保存排序</el-button>
-              </div>
+            </div>
+            <div class="l-block-bottom">
+              <el-button @click="saveOrderFactor">保存排序</el-button>
             </div>
           </div>
         </el-tab-pane>
@@ -209,10 +212,16 @@
       }
     },
     methods:{
-      saveOrderFactor(){
+      saveOrderFactor(isChannel = 0){
         let ids = [];
         let orders = [];
-        this.contentFields.forEach( item => {
+        let fields = [];
+        if(isChannel){
+          fields = this.channelFields;
+        }else{
+          fields = this.contentFields;
+        }
+        this.fields.forEach( item => {
           ids.push(item.id)
           orders.push(item.order_factor)
         });
@@ -309,6 +318,8 @@
                 type: 'success'
               });
               Object.assign(this.modelForm, res.data);
+              this.id = res.data.id;
+              this.loadModel(this.id);
             }else{
               let message = '出错了!请联系管理员';
               this.$message({

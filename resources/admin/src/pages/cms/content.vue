@@ -21,7 +21,7 @@
     <div class="l-tree-content">
         <div class="l-block" v-if="!showForm">
           <div class="l-block-header">
-            <div><i class="iconfont">&#xe64c;</i>  {{parentChannel.name}}</div>
+            <div><i class="iconfont">&#xe64c;</i> {{parentChannel&&parentChannel.hasOwnProperty('name') ? parentChannel.name : ''}}</div>
             <el-button type="primary" size="small" @click="addContent">添加</el-button>
           </div>
           <div class="l-block-body">
@@ -55,7 +55,7 @@
           <div>
             <span class="l-go-back" @click="goback"><span class="iconfont">&#xe601;</span>返回</span>
             <el-divider direction="vertical"></el-divider>
-            <span>{{formTitle}}</span>
+            <span>在"<i class="iconfont">&#xe64c;</i>{{selectedChannel.name}}"下{{formTitle}}</span>
           </div>
         </div>
         <div class="l-block-body">
@@ -130,7 +130,21 @@
         this.loadWholeContent(row)
       },
       deleteContent(row){
-
+        this.$confirm('确定删除文章?', '提示', {
+          confirmButtonText: '确定',
+          cancelButtonText: '取消',
+          type: 'warning'
+        }).then(() => {
+          this.$http
+            .post("/admin/cms/content/delete", {id: row.id})
+            .then(res => {
+              this.$message({
+                type: 'success',
+                message: '删除成功!'
+              });
+              this.loadContents()
+            }).catch(()=>{});
+        });
       },
       saveContent(){
         if(!this.form.channel_id && !this.form.model_id){
@@ -157,11 +171,6 @@
         let channel = node[0]
         this.selectedChannel = channel;
         this.$store.dispatch(this.$types.CMS_PARENT_CHANNEL, node[0])
-        // let channelId = channel.id;
-        // let channelName = channel.name;
-        // let channelModelId = channel.model_id;
-        // let channelTitle = channel.title;
-        // emit get contents action
       },
       addContent(){
         this.showForm = true;
@@ -173,10 +182,12 @@
           .get("/admin/cms/model/get", {params: {id}})
           .then(res => {
             this.selectedModel = res.data;
+            // 过滤掉模型中属于栏目的字段
+            this.selectedModel.fields = this.selectedModel.fields.filter(item => { return !item.is_channel })
             for(let idx in this.selectedModel.fields){
               let item = this.selectedModel.fields[idx];
-              // 重置表单
-              this.$set(this.form, item.field, '');
+                // 重置表单
+                this.$set(this.form, item.field, '');
             }
           });
       },
@@ -198,8 +209,6 @@
             let model = res.data;
 
             let contentFields = ['channel_id', 'model_id', 'title', 'keywords', 'description'];
-            let contentContentFields = [];
-            let metaFields = [];
 
             this.$set(this.form, 'id', id);
 

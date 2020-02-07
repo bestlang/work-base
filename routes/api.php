@@ -157,13 +157,16 @@ Route::group(['middleware' => 'auth.jwt', 'prefix'=>'admin', 'namespace'=>'Admin
         Route::any('/cms/channel/tree', 'ChannelController@tree');
         Route::any('/cms/channel/add', 'ChannelController@add');
         Route::any('/cms/channel/update', 'ChannelController@update');
+        Route::any('/cms/channel/save', 'ChannelController@save');
         Route::any('/cms/channel/delete', 'ChannelController@delete');
         Route::any('/cms/channel/children', 'ChannelController@children');
+        Route::any('/cms/channel/whole', 'ChannelController@whole');
 
         Route::any('/cms/model/field/types', 'FieldTypeController@index');
         Route::any('/cms/model/field/type/save', 'FieldTypeController@save');
         Route::any('/cms/model', 'ModelController@index');
         Route::any('/cms/model/save', 'ModelController@save');
+        Route::any('/cms/model/delete', 'ModelController@delete');
         Route::any('/cms/model/save/field', 'ModelController@saveField');
         Route::any('/cms/model/save/field/order', 'ModelController@saveFieldOrder');
         Route::any('/cms/model/delete/field', 'ModelController@deleteField');
@@ -171,6 +174,7 @@ Route::group(['middleware' => 'auth.jwt', 'prefix'=>'admin', 'namespace'=>'Admin
 
         Route::any('/cms/contents', 'ContentController@index');
         Route::any('/cms/content/save', 'ContentController@save');
+        Route::any('/cms/content/delete', 'ContentController@delete');
         Route::any('/cms/content/whole', 'ContentController@whole');
     });
 });

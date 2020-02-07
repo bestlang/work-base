@@ -55,7 +55,7 @@ export default new VueRouter({
                 show: true,
                 name: '栏目管理',
                 font: '&#xe764;'
-              },
+              }
             },
             {
               path: "/cms/setting",

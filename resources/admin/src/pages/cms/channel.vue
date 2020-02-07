@@ -58,7 +58,7 @@
       <div class="l-tree-content">
         <div class="l-block" v-if="showChannelChildren">
           <div class="l-block-header">
-            <span><i class="iconfont">&#xe64c;</i> {{parentChannel.name}}</span>
+            <span><i class="iconfont">&#xe64c;</i> {{parentChannel&&parentChannel.hasOwnProperty('name') ? parentChannel.name : ''}}</span>
             <el-button-group>
               <el-button style="padding: 3px 10px" type="text" @click="editChannel(parentChannel)">编辑</el-button>
               <el-button style="padding: 3px 10px" type="text" @click="addChannel(parentChannel)">新增子栏目</el-button>
@@ -84,7 +84,7 @@
                 <template slot-scope="scope">
                   <el-button type="text" @click="editChannel(scope.row)">编辑</el-button>
                   <el-button type="text" @click="addChannel(scope.row)">新增子栏目</el-button>
-                  <el-button type="text">删除</el-button>
+                  <el-button type="text" @click="deleteChannel(scope.row)">删除</el-button>
                 </template>
               </el-table-column>
             </el-table>
@@ -93,57 +93,94 @@
 
         <div class="l-block l-channel-info" v-if="!showChannelChildren">
           <div class="l-block-header">
-            <span><i class="iconfont">&#xe92a;</i>{{channelForm.name}}</span>
+            <span><i class="iconfont">&#xe64c;</i> {{channelForm.name}}</span>
             <el-button-group>
               <el-button style="padding: 3px 10px" type="text" @click="editChannel(channelForm)">编辑</el-button>
               <el-button style="padding: 3px 10px" type="text" @click="deleteChannel(channelForm)">删除</el-button>
             </el-button-group>
           </div>
           <div class="l-block-body">
-            <ul>
-              <li>编号: <span>{{channelForm.id}}</span></li>
-              <li>栏目名: <span>{{channelForm.name}}</span></li>
-              <li>模型: <span>{{channelForm.model.name}}</span></li>
-              <li>标题: <span>{{channelForm.title}}</span></li>
-              <li>关键词: <span>{{channelForm.keywords}}</span></li>
-              <li>描述: <span>{{channelForm.description}}</span></li>
-            </ul>
+            <el-form :model="channelForm" label-width="100px">
+              <el-form-item label="模型">
+                <el-select v-model="channelForm.model_id" placeholder="请选择">
+                  <el-option
+                    v-for="m in models"
+                    :key="m.name"
+                    :label="m.name"
+                    :value="m.id">
+                  </el-option>
+                </el-select>
+              </el-form-item>
+              <el-form-item label="栏目名">
+                <el-input v-model="channelForm.name" autocomplete="off"></el-input>
+              </el-form-item>
+<!--              <el-form-item label="标题">-->
+<!--                <el-input v-model="channelForm.title" autocomplete="off"></el-input>-->
+<!--              </el-form-item>-->
+<!--              <el-form-item label="关键词">-->
+<!--                <el-input v-model="channelForm.keywords" autocomplete="off"></el-input>-->
+<!--              </el-form-item>-->
+<!--              <el-form-item label="描述">-->
+<!--                <el-input type="textarea" v-model="channelForm.description" autocomplete="off"></el-input>-->
+<!--              </el-form-item>-->
+              <template v-for="(item, index) in channelFields">
+                <el-form-item v-if="item.type=='text'" :label="item.label">
+                  <el-input :key="index" :name="item.field" v-model="channelForm[item.field]"></el-input>
+                </el-form-item>
+                <el-form-item v-if="item.type=='textarea'" :label="item.label">
+                  <el-input type="textarea" v-model="channelForm[item.field]"></el-input>
+                </el-form-item>
+                <el-form-item v-if="item.type=='content'" class="l-mb-22" :label="item.label">
+                  <div>
+                    <vue-ueditor-wrap v-model="channelForm[item.field]" :config="ueditorConfig"></vue-ueditor-wrap>
+                  </div>
+                </el-form-item>
+              </template>
+              <el-form-item>
+                <el-button type="primary" @click="doSubmit">确 定</el-button>
+                <el-button @click="doCancel">取 消</el-button>
+              </el-form-item>
+            </el-form>
           </div>
         </div>
       </div>
-    <el-dialog :title="title" :visible.sync="showChannelForm">
-      <el-form :model="channelForm" label-width="100px">
-        <el-form-item label="栏目名">
-          <el-input v-model="channelForm.name" autocomplete="off"></el-input>
-        </el-form-item>
-        <el-form-item label="模型">
-          <el-select v-model="channelForm.model_id" placeholder="请选择">
-            <el-option
-              v-for="m in models"
-              :key="m.name"
-              :label="m.name"
-              :value="m.id">
-            </el-option>
-          </el-select>
-        </el-form-item>
-        <el-form-item label="标题">
-          <el-input v-model="channelForm.title" autocomplete="off"></el-input>
-        </el-form-item>
-        <el-form-item label="关键词">
-          <el-input v-model="channelForm.keywords" autocomplete="off"></el-input>
-        </el-form-item>
-        <el-form-item label="描述">
-          <el-input v-model="channelForm.description" autocomplete="off"></el-input>
-        </el-form-item>
-        <el-form-item>
-          <el-button type="primary" @click="doSubmit">确 定</el-button>
-          <el-button @click="doCancel">取 消</el-button>
-        </el-form-item>
-      </el-form>
-    </el-dialog>
+<!--    <el-dialog :title="title" :visible.sync="showChannelForm">-->
+<!--      <el-form :model="channelForm" label-width="100px">-->
+<!--        <el-form-item label="模型">-->
+<!--          <el-select v-model="channelForm.model_id" placeholder="请选择">-->
+<!--            <el-option-->
+<!--              v-for="m in models"-->
+<!--              :key="m.name"-->
+<!--              :label="m.name"-->
+<!--              :value="m.id">-->
+<!--            </el-option>-->
+<!--          </el-select>-->
+<!--        </el-form-item>-->
+<!--        <el-form-item label="栏目名">-->
+<!--          <el-input v-model="channelForm.name" autocomplete="off"></el-input>-->
+<!--        </el-form-item>-->
+<!--        <el-form-item label="标题">-->
+<!--          <el-input v-model="channelForm.title" autocomplete="off"></el-input>-->
+<!--        </el-form-item>-->
+<!--        <el-form-item label="关键词">-->
+<!--          <el-input v-model="channelForm.keywords" autocomplete="off"></el-input>-->
+<!--        </el-form-item>-->
+<!--        <el-form-item label="描述">-->
+<!--          <el-input v-model="channelForm.description" autocomplete="off"></el-input>-->
+<!--        </el-form-item>-->
+<!--        <el-form-item>-->
+<!--          <el-button type="primary" @click="doSubmit">确 定</el-button>-->
+<!--          <el-button @click="doCancel">取 消</el-button>-->
+<!--        </el-form-item>-->
+<!--      </el-form>-->
+<!--    </el-dialog>-->
   </div>
 </template>
 <script>
+  import ueditorConfig from "../../store/ueditor";
+  import VueUeditorWrap from 'vue-ueditor-wrap';
+
+
   export default {
     data() {
       return {
@@ -154,26 +191,17 @@
         title: '添加子栏目',
         showChannelChildren: true,
         showChannelForm: false,
-        // 暂存父栏目
-        // parentChannel: {
-        //   id: '',
-        //   parent_id: '',
-        //   name: '',
-        //   model_id: '',
-        //   title: '',
-        //   keywords: '',
-        //   description: '',
-        // },
         channelForm:{
           id: '',
           parent_id: '',
           name: '',
-          model_id: '',
-          title: '',
-          keywords: '',
-          description: '',
-        }
+          model_id: ''
+        },
+        channelFields: []
       }
+    },
+    components:{
+      VueUeditorWrap
     },
     computed:{
       loading(){
@@ -190,6 +218,9 @@
       },
       parentChannel(){
         return this.$store.getters.parentChannel;
+      },
+      ueditorConfig(){
+        return ueditorConfig
       }
     },
     methods: {
@@ -198,16 +229,14 @@
         Object.assign(this.channelForm, {
           id: '',
           parent_id: row.id,
-          name: '',
-          title: '',
-          keywords: '',
-          description: '',
+          name: ''
         });
       },
       editChannel(row){
-        this.showChannelForm = true;
-        this.title = '编辑栏目';
-        Object.assign(this.channelForm, row);
+        this.loadWholeChannel(row)
+        this.showChannelChildren = false;
+
+        this.$store.dispatch(this.$types.CMS_CURRENT_CHANNEL, row)
       },
       deleteChannel(row){
         this.$confirm('确定删除本栏目?', '提示', {
@@ -220,7 +249,6 @@
             .then(res => {
               if(res.success){
                 this.$store.dispatch(this.$types.CMS_CHANNELS, {id: row.parent_id});
-                ///this.$store.dispatch(this.$types.CMS_CHANNEL_CHILDREN, {id: row.parent_id});
                 this.showChannelChildren = true;
                 this.$message({
                   type: 'success',
@@ -234,19 +262,17 @@
               }
 
             }).catch(()=>{});
-        });
+        }).catch(()=>{});
       },
       handleNodeClick(node, ...$params){
-        console.log(`--------------node:`,node);
         if(node.children.length>0){
           this.$store.dispatch(this.$types.CMS_CHANNEL_CHILDREN, node);
           this.showChannelChildren = true;
-          //Object.assign(this.parentChannel, node);
           this.$store.dispatch(this.$types.CMS_PARENT_CHANNEL, node)
         }else{
-          ///this.$store.commit(this.$types.CMS_CHANNEL_CHILDREN, [])
           this.showChannelChildren = false;
-          Object.assign(this.channelForm, node)
+          console.log(`+++++++++++++++++++`, JSON.stringify(node))
+          this.loadWholeChannel(node)
         }
       },
       doSubmit(){
@@ -258,7 +284,6 @@
       },
       doCancel(){
         this.showChannelForm = false;
-        // this.$store.dispatch(this.$types.CMS_CHANNEL_CHILDREN, {id:this.channelForm.parent_id});
       },
       doAdd(){
         this.showChannelChildren = false
@@ -269,7 +294,6 @@
               this.showChannelForm = false;
               this.showChannelChildren = true;
               this.$store.dispatch(this.$types.CMS_CHANNELS, {id: this.channelForm.parent_id});
-              ///this.$store.dispatch(this.$types.CMS_CHANNEL_CHILDREN, {id:this.channelForm.parent_id});
               this.$message({
                 type: 'success',
                 message: '添加成功!'
@@ -286,7 +310,7 @@
       },
       doEdit(){
         this.$http
-          .post("/admin/cms/channel/update", this.channelForm)
+          .post("/admin/cms/channel/save", this.channelForm)
           .then(res => {
             if(res.success){
               this.$message({
@@ -297,15 +321,60 @@
               this.showChannelChildren = false;
               this.showChannelForm = false
             }else{
-
+              this.$message({
+                type: 'warning',
+                message: '修改失败!'
+              });
             }
           });
       },
+      loadWholeChannel({id}){
+        this.$http
+          .get("/admin/cms/channel/whole", {params: {id}})
+          .then(res => {
+            let model = res.data;
+            this.channelForm = {}
+            let channelFields = ['id', 'model_id', 'parent_id', 'name', 'title', 'keywords', 'description'];
+
+            this.$set(this.channelForm, 'id', id);
+
+            channelFields.forEach( field => {this.$set(this.channelForm, field, model[field])} );
+
+            if(model.contents && model.contents.length){
+              model.contents.forEach( item => {this.$set(this.channelForm, item.field, item.value)} );
+            }
+
+            if(model.metas && model.metas.length){
+              model.metas.forEach( item => {this.$set(this.channelForm, item.field, item.value)});
+            }
+
+          });
+      }
     },
     mounted() {
       this.$store.dispatch('toggleState');
       this.$store.dispatch(this.$types.CMS_CHANNELS);
       this.$store.dispatch(this.$types.CMS_MODELS);
+    },
+    watch:{
+      ['channelForm.model_id'](){
+        console.log(this.channelForm.model_id, '------------------', JSON.stringify(this.models.length));
+        if(this.models.length > 0){
+          this.models.forEach( model => {
+            if(model.id == this.channelForm.model_id){
+              this.channelFields = model.fields.filter( field => {
+                if(field.is_channel){
+                  // 不覆盖主表中存储的字段
+                  if(!this.channelForm.hasOwnProperty(field.field)){
+                    this.$set(this.channelForm, field.field, '')
+                  }
+                }
+                return field.is_channel;
+              })
+            }
+          });
+        }
+      }
     }
   }
 </script>

@@ -7,15 +7,8 @@ const cmsConfig = {
     models: [],
     channels: [],
     channelChildren: [],
-    parentChannel: {
-      id: '',
-      parent_id: '',
-      name: '',
-      model_id: '',
-      title: '',
-      keywords: '',
-      description: '',
-    },
+    parentChannel: null,
+    currentChannel: null
   },
   getters:{
     loading(state){
@@ -32,6 +25,9 @@ const cmsConfig = {
     },
     parentChannel(state){
       return state.parentChannel
+    },
+    currentChannel(state){
+      return state.currentChannel
     }
   },
   mutations: {
@@ -49,7 +45,10 @@ const cmsConfig = {
     },
     [types.CMS_PARENT_CHANNEL] (state, payload) {
       state.parentChannel = payload
-    }
+    },
+    [types.CMS_CURRENT_CHANNEL] (state, payload) {
+      state.currentChannel = payload
+    },
   },
   actions: {
     [types.CMS_MODELS] ({commit}) {
@@ -74,7 +73,6 @@ const cmsConfig = {
           }else{
             dispatch(types.CMS_CHANNEL_CHILDREN, node[0]);
           }
-
         });
     },
     [types.CMS_CHANNEL_CHILDREN] ({commit}, node) {
@@ -87,6 +85,9 @@ const cmsConfig = {
     },
     [types.CMS_PARENT_CHANNEL] ({commit}, node) {
       commit(types.CMS_PARENT_CHANNEL, node);
+    },
+    [types.CMS_CURRENT_CHANNEL] ({commit}, node) {
+      commit(types.CMS_CURRENT_CHANNEL, node);
     }
   }
 }
