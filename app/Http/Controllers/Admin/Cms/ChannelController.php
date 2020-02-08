@@ -43,6 +43,13 @@ class ChannelController extends Controller
 
         $id = Arr::get($params, 'id', 0);
 
+        if(!$name){
+            return response()->error('栏目名不能为空');
+        }
+        if(!$model_id){
+            return response()->error('请选择一个模型');
+        }
+
         if($id){
             $channel = Channel::find($id);
             if($parent_id){
@@ -70,9 +77,9 @@ class ChannelController extends Controller
         }
 
         $model = Model::find($model_id);
-        $contentFileds = $model->fields->filter(function($item){return $item->type == 'content';})->map(function($item){ return $item->field;})->toArray();
+        $contentFileds = $model->fields->filter(function($item){return $item->type == 'content' && $item->is_custom == '1';})->map(function($item){ return $item->field;})->toArray();
         // 自定义字段 不包含TDK
-        $metaFileds = $model->fields->filter(function($item){return $item->is_custom == 1;})->map(function($item){ return $item->field;})->toArray();
+        $metaFileds = $model->fields->filter(function($item){return $item->type != 'content' && $item->is_custom == '1';})->map(function($item){ return $item->field;})->toArray();
 
         if($id){
             // 更新富文本字段
@@ -132,7 +139,7 @@ class ChannelController extends Controller
             if($childrenCount>0){
                 return response()->error('栏目包含子栏目,无法删除!');
             }
-            if($model->contents->count()>0){
+            if(count($model->articles)>0){
                 return response()->error('栏目包含内容,无法删除!');
             }
             $model->delete();

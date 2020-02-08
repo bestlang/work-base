@@ -225,10 +225,19 @@
           ids.push(item.id)
           orders.push(item.order_factor)
         });
+        if(!ids.length){
+          this.$message({
+            type: 'warning',
+            message: '无内容!'
+          });
+          return false;
+        }
         this.$http
           .post("/admin/cms/model/save/field/order", {ids, orders})
           .then(res => {
-            this.loadModel(this.modelForm.id)
+            if(this.modelForm.id){
+              this.loadModel(this.modelForm.id)
+            }
             this.$message({
               type: 'success',
               message: '保存成功!'

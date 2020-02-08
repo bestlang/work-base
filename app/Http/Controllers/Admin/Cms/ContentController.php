@@ -42,9 +42,9 @@ class ContentController extends Controller
 
         $model = Model::find($model_id);
 
-        $contentFileds = $model->fields->filter(function($item){return $item->type == 'content';})->map(function($item){ return $item->field;})->toArray();
+        $contentFileds = $model->fields->filter(function($item){return $item->type == 'content' && $item->is_custom == '1';})->map(function($item){ return $item->field;})->toArray();
         // 自定义字段 不包含TDK
-        $metaFileds = $model->fields->filter(function($item){return $item->is_custom == 1;})->map(function($item){ return $item->field;})->toArray();
+        $metaFileds = $model->fields->filter(function($item){return $item->type != 'content' && $item->is_custom == '1';})->map(function($item){ return $item->field;})->toArray();
         $arr = Arr::only($params, ['channel_id', 'model_id', 'title', 'keywords', 'description']);
 
         //执行更新逻辑

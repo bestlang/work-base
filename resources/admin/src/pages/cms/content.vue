@@ -20,8 +20,8 @@
     <channel-tree @nodeClick="handleNodeClick"></channel-tree>
     <div class="l-tree-content">
         <div class="l-block" v-if="!showForm">
-          <div class="l-block-header">
-            <div><i class="iconfont">&#xe64c;</i> {{parentChannel&&parentChannel.hasOwnProperty('name') ? parentChannel.name : ''}}</div>
+          <div class="l-block-header" v-if="parentChannel">
+            <div><i class="iconfont">&#xe64c;</i> {{parentChannel.hasOwnProperty('name') ? parentChannel.name : ''}}</div>
             <el-button type="primary" size="small" @click="addContent">添加</el-button>
           </div>
           <div class="l-block-body">

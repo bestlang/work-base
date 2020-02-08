@@ -11,6 +11,11 @@ class Channel extends Node
     protected $table = 'cms_channels';
     protected $guarded = [];
 
+    public function articles()
+    {
+        return $this->hasMany(Content::class);
+    }
+
     public function contents()
     {
         return $this->hasMany(ChannelContent::class);

@@ -63,16 +63,21 @@ const cmsConfig = {
       commit(types.LOADING, true)
       fetch.get("/admin/cms/channel/tree", {params:{disabled: true}})
         .then(res => {
-          let node = [res.data[Object.keys(res.data)[0]]]
-          console.log(`////////////////////`, node)
-          commit(types.CMS_CHANNELS, node);
-          dispatch(types.CMS_PARENT_CHANNEL, node[0])
-          commit(types.LOADING, false)
-          if(parent){
-            dispatch(types.CMS_CHANNEL_CHILDREN, parent);
-          }else{
+          // 取到了数据
+          if(Object.keys(res.data).length > 0){
+            let node = [ res.data[Object.keys(res.data)[0]] ]
+            commit(types.CMS_CHANNELS, node);
+            // 设置第一个元素为父栏目 && 取得第一个元素的子栏目列表
             dispatch(types.CMS_CHANNEL_CHILDREN, node[0]);
+            dispatch(types.CMS_PARENT_CHANNEL, node[0])
           }
+          // 设置父栏目 以及 父栏目的子栏目列表
+          if(parent){
+            dispatch(types.CMS_PARENT_CHANNEL, parent)
+            dispatch(types.CMS_CHANNEL_CHILDREN, parent);
+          }
+
+          commit(types.LOADING, false)
         });
     },
     [types.CMS_CHANNEL_CHILDREN] ({commit}, node) {
