@@ -65,11 +65,15 @@ const cmsConfig = {
         .then(res => {
           // 取到了数据
           if(Object.keys(res.data).length > 0){
-            let node = [ res.data[Object.keys(res.data)[0]] ]
-            commit(types.CMS_CHANNELS, node);
+            let node = res.data[Object.keys(res.data)[0]]
+            commit(types.CMS_CHANNELS, [node]);
             // 设置第一个元素为父栏目 && 取得第一个元素的子栏目列表
-            dispatch(types.CMS_CHANNEL_CHILDREN, node[0]);
-            dispatch(types.CMS_PARENT_CHANNEL, node[0])
+            dispatch(types.CMS_CHANNEL_CHILDREN, node);
+            dispatch(types.CMS_PARENT_CHANNEL, node)
+            if(!parent){
+                // 默认设置根节点为当前选中栏目
+                dispatch(types.CMS_CURRENT_CHANNEL, node)
+            }
           }
           // 设置父栏目 以及 父栏目的子栏目列表
           if(parent){

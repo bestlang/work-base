@@ -55,7 +55,7 @@
           <div>
             <span class="l-go-back" @click="goback"><span class="iconfont">&#xe601;</span>返回</span>
             <el-divider direction="vertical"></el-divider>
-            <span>在「<i class="iconfont">&#xe64c;</i>{{selectedChannel.name}}」下{{formTitle}}</span>
+            <span>在「<i class="iconfont">&#xe64c;</i>{{currentChannel.name}}」下{{formTitle}}</span>
           </div>
         </div>
         <div class="l-block-body">
@@ -90,7 +90,6 @@
   export default {
     data() {
       return {
-        selectedChannel: null,
         selectedModel: null,
         contents: [],
         showForm: false,
@@ -108,10 +107,13 @@
       },
       parentChannel(){
         return this.$store.getters.parentChannel;
+      },
+      currentChannel(){
+        return this.$store.getters.currentChannel
       }
     },
     watch:{
-      selectedChannel(val, oldVal){
+      currentChannel(val, oldVal){
         this.loadContents()
       },
       showForm(){
@@ -124,8 +126,8 @@
       },
       editContent(row){
         this.formTitle = '编辑文章';
-        this.selectedChannel = row.channel;
-        this.loadModel(this.selectedChannel.model_id)
+        this.$store.dispatch(this.$types.CMS_CURRENT_CHANNEL, row.channel);
+        this.loadModel(row.channel.model_id)
         this.showForm = true;
         this.loadWholeContent(row)
       },
@@ -149,7 +151,7 @@
       saveContent(){
         if(!this.form.channel_id && !this.form.model_id){
           this.$set(this.form, 'model_id', this.selectedModel.id);
-          this.$set(this.form, 'channel_id', this.selectedChannel.id)
+          this.$set(this.form, 'channel_id', this.currentChannel.id)
         }
         this.$http
           .post("/admin/cms/content/save", this.form)
@@ -169,13 +171,13 @@
       handleNodeClick(node, ...params){
         this.showForm = false;
         let channel = node[0]
-        this.selectedChannel = channel;
+        this.$store.dispatch(this.$types.CMS_CURRENT_CHANNEL, channel);
         this.$store.dispatch(this.$types.CMS_PARENT_CHANNEL, node[0])
       },
       addContent(){
         this.showForm = true;
         this.formTitle = '添加文章';
-        this.loadModel(this.selectedChannel.model_id)
+        this.loadModel(this.currentChannel.model_id)
       },
       loadModel(id){
         this.$http
@@ -193,8 +195,8 @@
       },
       loadContents(){
         let channel_id = 0;
-        if(this.selectedChannel){
-          channel_id = this.selectedChannel.id
+        if(this.currentChannel){
+          channel_id = this.currentChannel.id
         }
         this.$http
           .get("/admin/cms/contents", {params: {channel_id}})
