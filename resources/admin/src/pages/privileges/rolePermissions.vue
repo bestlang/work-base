@@ -60,14 +60,15 @@
       computed:{
         types(){
           return this.$store.getters.activityTypes;
+        },
+        currentRole(){
+          return this.$store.getters.currentRole;
         }
       },
       methods: {
         saveRolePermissions(){
           let nodes = this.$refs['role-permission-tree'].getCheckedNodes();
-          let permissions = nodes.filter((n)=>n.children.length == 0).map((n) => n.id);//.filter((n) => !n.children.length)
-          // console.log(`---------------->:`, permissions)
-          // return;
+          let permissions = nodes.filter((n)=>n.children.length == 0).map((n) => n.id);
           let role_id = this.role_id
           this.$http
             .post("/admin/privileges/give/permissions/to", {permissions, role_id})
@@ -86,7 +87,7 @@
             });
         },
         loadRolePermissions(){
-          let role_id = this.role_id;
+          let role_id = this.currentRole.id;
           this.$http
             .get("/admin/privileges/role/permissions", {params: {role_id}})
             .then(res => {
@@ -103,8 +104,6 @@
         }
       },
       mounted() {
-        this.role_id = this.$route.params.id;
-        this.role_name = this.$route.params.name;
         this.loadRolePermissions();
         this.loadPermissionsTree();
       }

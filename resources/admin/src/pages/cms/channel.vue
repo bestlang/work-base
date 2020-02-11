@@ -100,7 +100,7 @@
               <span>
                 <span v-if="channelForm.id"><i class="iconfont">&#xe64c;</i> {{channelForm.name}}</span>
                 <span v-else>
-                  在"<i class="iconfont">&#xe64c;</i> {{parentChannel.name}}"下新增栏目
+                  在「<i class="iconfont">&#xe64c;</i> {{parentChannel.name}}」下新增栏目
                 </span>
               </span>
               <el-button-group>

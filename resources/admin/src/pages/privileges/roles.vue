@@ -26,7 +26,7 @@
                   <el-button class="l-inline-btn" @click="editRole(scope.row)" type="text" size="medium"><i class="iconfont">&#xe618;</i>编辑</el-button>
                   <el-button class="l-inline-btn" type="text" size="medium" @click="handleDelete(scope.row)"><i class="iconfont">&#xe620;</i>删除</el-button>
                   <el-button class="l-inline-btn" type="text" size="medium" @click="editRolePermissions(scope.row)"><i class="iconfont">&#xe64a;</i>权限</el-button>
-                  <el-button class="l-inline-btn" @click="viewRoleMembers(scope.row)" type="text" size="medium"><i class="iconfont">&#xe6b0;</i>成员</el-button>
+                  <el-button class="l-inline-btn" @click="viewRoleUsers(scope.row)" type="text" size="medium"><i class="iconfont">&#xe6b0;</i>成员</el-button>
                 </template>
             </el-table-column>
         </el-table>
@@ -84,11 +84,13 @@
                         }
                     });
             },
-            viewRoleMembers(row){
-                this.$router.push('/privileges/roles/users/'+row.id)
+            viewRoleUsers(row){
+              this.$store.dispatch(this.$types.PRIVILEGE_CURRENT_ROLE, row)
+              this.$router.push('/privileges/roles/users')
             },
             editRolePermissions(row){
-                this.$router.push('/privileges/roles/permissions/'+row.id)
+              this.$store.dispatch(this.$types.PRIVILEGE_CURRENT_ROLE, row)
+              this.$router.push('/privileges/roles/permissions')
             },
             handleDelete(row){
               this.$confirm('确认删除该角色?', '提示', {

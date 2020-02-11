@@ -55,7 +55,7 @@
           <div>
             <span class="l-go-back" @click="goback"><span class="iconfont">&#xe601;</span>返回</span>
             <el-divider direction="vertical"></el-divider>
-            <span>在"<i class="iconfont">&#xe64c;</i>{{selectedChannel.name}}"下{{formTitle}}</span>
+            <span>在「<i class="iconfont">&#xe64c;</i>{{selectedChannel.name}}」下{{formTitle}}</span>
           </div>
         </div>
         <div class="l-block-body">

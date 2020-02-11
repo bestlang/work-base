@@ -1,13 +1,12 @@
 <template>
   <div>
     <p>welcome,dashboard.</p>
-<!--    <ueditor :config="config" :default-content="content" @ready="setUeditor" :index="index"></ueditor>-->
-    <el-button @click="getContent">获取内容</el-button>
-    <p></p>
-    <p></p>
-    <vue-ueditor-wrap v-model="content" :config="ueditorConfig"></vue-ueditor-wrap>
-    <p></p>
-    <p></p>
+<!--    <el-button @click="getContent">获取内容</el-button>-->
+<!--    <p></p>-->
+<!--    <p></p>-->
+<!--    <vue-ueditor-wrap v-model="content" :config="ueditorConfig"></vue-ueditor-wrap>-->
+<!--    <p></p>-->
+<!--    <p></p>-->
   </div>
 
 </template>

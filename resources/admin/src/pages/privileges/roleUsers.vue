@@ -4,7 +4,7 @@
           <div style="display: flex;flex-flow: row nowrap;">
             <router-link to="/privileges/roles" tag="div"><span class="iconfont">&#xe601;</span>返回</router-link>
             <el-divider direction="vertical"></el-divider>
-            <div>{{roleName}}用户</div>
+            <div>所属「{{roleName}}」用户列表</div>
           </div>
           <div>
             <el-button type="primary" @click="addNewUser"><i class="iconfont">&#xe641;</i> 添加</el-button>
@@ -86,6 +86,9 @@
         computed:{
             types(){
                 return this.$store.getters.activityTypes;
+            },
+            currentRole(){
+              return this.$store.getters.currentRole;
             }
         },
         methods: {
@@ -129,7 +132,7 @@
             },
             loadRoleUsers(){
                 this.$http
-                    .get(`/admin/privileges/role/users/${this.$route.params.id}`)
+                    .get(`/admin/privileges/role/users/${this.currentRole.id}`)
                     .then(res => {
                       this.roleName = res.data.name;
                         this.tableData = res.data.users;
