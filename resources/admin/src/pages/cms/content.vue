@@ -50,7 +50,7 @@
             </el-table>
           </div>
         </div>
-      <div class="l-block" v-if="showForm && selectedModel">
+      <div class="l-block" v-if="showForm && currentModel">
         <div class="l-block-header">
           <div>
             <span class="l-go-back" @click="goback"><span class="iconfont">&#xe601;</span>返回</span>
@@ -60,7 +60,7 @@
         </div>
         <div class="l-block-body">
           <el-form label-width="100px">
-            <template v-for="(item, index) in selectedModel.fields">
+            <template v-for="(item, index) in currentModel.fields">
               <el-form-item v-if="item.type=='text'" :label="item.label">
                 <el-input :key="index" :name="item.field" v-model="form[item.field]"></el-input>
               </el-form-item>
@@ -90,7 +90,6 @@
   export default {
     data() {
       return {
-        selectedModel: null,
         contents: [],
         showForm: false,
         formTitle: '添加文章',
@@ -110,6 +109,9 @@
       },
       currentChannel(){
         return this.$store.getters.currentChannel
+      },
+      currentModel(){
+        return this.$store.getters.currentModel
       }
     },
     watch:{
@@ -150,7 +152,7 @@
       },
       saveContent(){
         if(!this.form.channel_id && !this.form.model_id){
-          this.$set(this.form, 'model_id', this.selectedModel.id);
+          this.$set(this.form, 'model_id', this.currentModel.id);
           this.$set(this.form, 'channel_id', this.currentChannel.id)
         }
         this.$http
@@ -183,11 +185,12 @@
         this.$http
           .get("/admin/cms/model/get", {params: {id}})
           .then(res => {
-            this.selectedModel = res.data;
+            let currentModel = res.data;
             // 过滤掉模型中属于栏目的字段
-            this.selectedModel.fields = this.selectedModel.fields.filter(item => { return !item.is_channel })
-            for(let idx in this.selectedModel.fields){
-              let item = this.selectedModel.fields[idx];
+            currentModel.fields = currentModel.fields.filter(item => { return !item.is_channel })
+            this.$store.dispatch(this.$types.CMS_CURRENT_MODEL, currentModel)
+            for(let idx in this.currentModel.fields){
+              let item = this.currentModel.fields[idx];
                 // 重置表单
                 this.$set(this.form, item.field, '');
             }

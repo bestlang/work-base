@@ -6,9 +6,10 @@ const cmsConfig = {
     loading: false,
     models: [],
     channels: [],
-    channelChildren: [],
     parentChannel: null,
-    currentChannel: null
+    channelChildren: [],
+    currentChannel: null,
+    currentModel: null
   },
   getters:{
     loading(state){
@@ -28,6 +29,9 @@ const cmsConfig = {
     },
     currentChannel(state){
       return state.currentChannel
+    },
+    currentModel(state){
+      return state.currentModel
     }
   },
   mutations: {
@@ -48,6 +52,9 @@ const cmsConfig = {
     },
     [types.CMS_CURRENT_CHANNEL] (state, payload) {
       state.currentChannel = payload
+    },
+    [types.CMS_CURRENT_MODEL] (state, payload) {
+      state.currentModel = payload
     },
   },
   actions: {
@@ -97,6 +104,9 @@ const cmsConfig = {
     },
     [types.CMS_CURRENT_CHANNEL] ({commit}, node) {
       commit(types.CMS_CURRENT_CHANNEL, node);
+    },
+    [types.CMS_CURRENT_MODEL] ({commit}, node) {
+      commit(types.CMS_CURRENT_MODEL, node);
     }
   }
 }
