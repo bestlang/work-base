@@ -28,6 +28,6 @@ class Channel extends Node
 
     public function model()
     {
-        return $this->belongsTo(Model::class)->select(['id', 'name']);
+        return $this->belongsTo(Model::class);
     }
 }

@@ -77,28 +77,38 @@ class ChannelController extends Controller
         }
 
         $model = Model::find($model_id);
-        $contentFileds = $model->fields->filter(function($item){return $item->type == 'content' && $item->is_custom == '1';})->map(function($item){ return $item->field;})->toArray();
+        $contentFileds = $model->fields->filter(function($item){return $item->is_channel == '1' && $item->type == 'content' && $item->is_custom == '1';})->map(function($item){ return $item->field;})->toArray();
         // 自定义字段 不包含TDK
-        $metaFileds = $model->fields->filter(function($item){return $item->type != 'content' && $item->is_custom == '1';})->map(function($item){ return $item->field;})->toArray();
+        $metaFileds = $model->fields->filter(function($item){return $item->is_channel == '1' && $item->type != 'content' && $item->is_custom == '1';})->map(function($item){ return $item->field;})->toArray();
 
         if($id){
             // 更新富文本字段
             foreach ($contentFileds as $filed){
-                $channel->contents()->updateOrInsert(['channel_id' => $id, 'field' => $filed], ['value' => Arr::get($params, $filed)]);
+                $channel->contents()->updateOrInsert(['channel_id' => $id, 'field' => $filed->field], ['value' => Arr::get($params, $filed->field)]);
             }
             // 更新自定义字段
             foreach ($metaFileds as $filed){
-                $channel->metas()->updateOrInsert(['channel_id' => $id, 'field' => $filed], ['value' => Arr::get($params, $filed)]);
+                $value = Arr::get($params, $filed->field);
+                // 对checkbox特殊处理
+                if($filed->type === 'checkbox'){
+                    $value = implode(',', $value);
+                }
+                $channel->metas()->updateOrInsert(['channel_id' => $id, 'field' => $filed->field], ['value' => $value]);
             }
         }else{
             // 保存富文本字段
             foreach ($contentFileds as $filed){
-                $content = ['field' => $filed, 'value' => Arr::get($params, $filed)];
+                $content = ['field' => $filed->field, 'value' => Arr::get($params, $filed->field)];
                 $channel->contents()->create($content);
             }
             // 保存自定义字段
             foreach ($metaFileds as $filed){
-                $meta = ['field' => $filed, 'value' => Arr::get($params, $filed)];
+                $value = Arr::get($params, $filed->field);
+                // 对checkbox特殊处理
+                if($filed->type === 'checkbox'){
+                    $value = implode(',', $value);
+                }
+                $meta = ['field' => $filed->field, 'value' => $value];
                 $channel->metas()->create($meta);
             }
         }
@@ -156,7 +166,21 @@ class ChannelController extends Controller
         if(!$id){
             return response()->error('参数错误!');
         }
-        $model = Channel::with(['contents', 'metas'])->find($id);
-        return response()->ajax($model);
+        $channel = Channel::with(['contents', 'metas'])->find($id);
+        // checkbox特殊处理,数据库中1,2,3取出之后封装成[1,2,3]
+        $filedTypeMap = [];
+        $channel->model->fields->filter(function($item){
+            return $item->is_channel;
+        })->each(function($item)use(&$filedTypeMap){
+            if($item->is_custom){
+                $filedTypeMap[$item->field] = $item->type;
+            }
+        });
+        $channel->metas->map(function($meta)use($filedTypeMap){
+            if($filedTypeMap[$meta->field] == 'checkbox'){
+                $meta->value = explode(',', $meta->value);
+            }
+        });
+        return response()->ajax($channel);
     }
 }

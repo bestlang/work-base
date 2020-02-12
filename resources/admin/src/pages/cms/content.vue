@@ -64,6 +64,11 @@
               <el-form-item v-if="item.type=='text'" :label="item.label">
                 <el-input :key="index" :name="item.field" v-model="form[item.field]"></el-input>
               </el-form-item>
+              <el-form-item v-if="item.type=='checkbox'" :label="item.label">
+                <el-checkbox-group v-model="form[item.field]">
+                  <el-checkbox :label="option.value" v-for="option in item.extra">{{option.name}}</el-checkbox>
+                </el-checkbox-group>
+              </el-form-item>
               <el-form-item v-if="item.type=='textarea'" :label="item.label">
                 <el-input type="textarea" v-model="form[item.field]"></el-input>
               </el-form-item>
@@ -211,20 +216,23 @@
         this.$http
           .get("/admin/cms/content/whole", {params: {id}})
           .then(res => {
-            let model = res.data;
+            let content = res.data;
 
             let contentFields = ['channel_id', 'model_id', 'title', 'keywords', 'description'];
 
             this.$set(this.form, 'id', id);
 
-            contentFields.forEach( field => {this.$set(this.form, field, model[field])} );
+            contentFields.forEach( field => {this.$set(this.form, field, content[field])} );
 
-            if(model.contents && model.contents.length){
-              model.contents.forEach( item => {this.$set(this.form, item.field, item.value)} );
+            if(content.contents && content.contents.length){
+              content.contents.forEach( item => {this.$set(this.form, item.field, item.value)} );
             }
 
-            if(model.metas && model.metas.length){
-              model.metas.forEach( item => {this.$set(this.form, item.field, item.value)});
+            if(content.metas && content.metas.length){
+              content.metas.forEach(
+                item => {
+                  this.$set(this.form, item.field, item.value);
+                });
             }
 
           });

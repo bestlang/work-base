@@ -3,6 +3,7 @@
 namespace App\Models\Cms;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Cms\Model as CmsModel;
 
 class Content extends Model
 {
@@ -22,5 +23,10 @@ class Content extends Model
     public function metas()
     {
         return $this->hasMany(ContentMeta::class);
+    }
+
+    public function model()
+    {
+        return $this->belongsTo(CmsModel::class);
     }
 }
