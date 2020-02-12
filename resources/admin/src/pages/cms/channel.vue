@@ -127,6 +127,11 @@
                 <el-form-item v-if="item.type=='text'" :label="item.label">
                   <el-input :key="index" :name="item.field" v-model="channelForm[item.field]"></el-input>
                 </el-form-item>
+                <el-form-item v-if="item.type=='checkbox'" :label="item.label">
+                  <el-checkbox-group v-model="channelForm[item.field]">
+                      <el-checkbox :label="option.value" v-for="option in item.extra">{{option.name}}</el-checkbox>
+                  </el-checkbox-group>
+                </el-form-item>
                 <el-form-item v-if="item.type=='textarea'" :label="item.label">
                   <el-input type="textarea" v-model="channelForm[item.field]"></el-input>
                 </el-form-item>
@@ -312,7 +317,7 @@
             if(whole.metas && whole.metas.length){
               whole.metas.forEach( item => {this.$set(this.channelForm, item.field, item.value)});
             }
-
+            // alert(JSON.stringify(this.channelForm))
           });
       }
     },
@@ -331,7 +336,10 @@
                   if(field.is_channel){
                     // 不覆盖主表中存储的字段
                     if(!this.channelForm.hasOwnProperty(field.field)){
-                      this.$set(this.channelForm, field.field, '')
+                        this.$set(this.channelForm, field.field, '')
+                        if(field.type == 'checkbox'){
+                            this.$set(this.channelForm, field.field, [])
+                        }
                     }
                   }
                   return field.is_channel;

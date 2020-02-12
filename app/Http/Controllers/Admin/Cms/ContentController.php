@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin\Cms;
 
 use App\Models\Cms\Channel;
+use App\Models\Cms\ContentContent;
+use App\Models\Cms\ContentMeta;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Cms\Content;
@@ -97,21 +99,49 @@ class ContentController extends Controller
             return response()->error('参数错误!');
         }
         $content = Content::with(['contents', 'metas'])->find($id);
-        // checkbox特殊处理,数据库中1,2,3取出之后封装成[1,2,3]
+
         $filedTypeMap = [];
         $content->model->fields->filter(function($item){
             return !$item->is_channel;
-        })->each(function($item)use(&$filedTypeMap){
-            if($item->is_custom){
-                $filedTypeMap[$item->field] = $item->type;
+        })->each(function($modelField)use(&$filedTypeMap, &$content){
+            if($modelField->is_custom){
+                if($modelField->type == 'content'){
+                    //确保$content->contents里面包含此值
+                    $has = $content->contents->search(function($cc)use($modelField){
+                        return $cc->field == $modelField->field;
+                    });
+                    if($has === false){
+                        $cc = new ContentContent();
+                        $cc->content_id = $content->id;
+                        $cc->field = $modelField->field;
+                        $cc->value = '';
+                        $content->contents->push($cc);
+                    }
+                }else{
+                    //确保$content->metas里面此值存在,至少为空
+                    $has = $content->metas->search(function($cc)use($modelField){
+                        return $cc->field == $modelField->field;
+                    });
+                    if($has === false){
+                        $cm = new ContentMeta();
+                        $cm->content_id = $content->id;
+                        $cm->field = $modelField->field;
+                        $cm->value = '';
+                        $content->metas->push($cm);
+                    }
+                }
+                //
+                $filedTypeMap[$modelField->field] = $modelField->type;
             }
         });
+        /// checkbox特殊处理,数据库中1,2,3取出之后封装成[1,2,3]
         $content->metas->map(function($meta)use($filedTypeMap){
-            if($filedTypeMap[$meta->field] == 'checkbox'){
-                $meta->value = explode(',', $meta->value);
+            $type = Arr::get($filedTypeMap, $meta->field, null);
+            if($type == 'checkbox'){
+                $meta->value = array_values(array_filter(explode(',', $meta->value)));
             }
         });
-
+        ///
         return response()->ajax($content);
     }
 

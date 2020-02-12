@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Admin\Cms;
 
+use App\Models\Cms\ChannelContent;
+use App\Models\Cms\ChannelMeta;
 use App\Models\Cms\Model;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -77,9 +79,9 @@ class ChannelController extends Controller
         }
 
         $model = Model::find($model_id);
-        $contentFileds = $model->fields->filter(function($item){return $item->is_channel == '1' && $item->type == 'content' && $item->is_custom == '1';})->map(function($item){ return $item->field;})->toArray();
+        $contentFileds = $model->fields->filter(function($item){return $item->is_channel == '1' && $item->type == 'content' && $item->is_custom == '1';});//->map(function($item){ return $item->field;})->toArray();
         // 自定义字段 不包含TDK
-        $metaFileds = $model->fields->filter(function($item){return $item->is_channel == '1' && $item->type != 'content' && $item->is_custom == '1';})->map(function($item){ return $item->field;})->toArray();
+        $metaFileds = $model->fields->filter(function($item){return $item->is_channel == '1' && $item->type != 'content' && $item->is_custom == '1';});//->map(function($item){ return $item->field;})->toArray();
 
         if($id){
             // 更新富文本字段
@@ -169,16 +171,42 @@ class ChannelController extends Controller
         $channel = Channel::with(['contents', 'metas'])->find($id);
         // checkbox特殊处理,数据库中1,2,3取出之后封装成[1,2,3]
         $filedTypeMap = [];
-        $channel->model->fields->filter(function($item){
-            return $item->is_channel;
-        })->each(function($item)use(&$filedTypeMap){
-            if($item->is_custom){
-                $filedTypeMap[$item->field] = $item->type;
+        $channel->model->fields->filter(function($modelField){
+            return $modelField->is_channel;
+        })->each(function($modelField)use(&$filedTypeMap, &$channel){
+            if($modelField->is_custom){
+                if($modelField->type == 'content'){
+                    //确保$content->contents里面包含此值
+                    $has = $channel->contents->search(function($cc)use($modelField){
+                        return $cc->field == $modelField->field;
+                    });
+                    if($has === false){
+                        $cc = new ChannelContent();
+                        $cc->content_id = $channel->id;
+                        $cc->field = $modelField->field;
+                        $cc->value = '';
+                        $channel->contents->push($cc);
+                    }
+                }else{
+                    //确保$content->metas里面此值存在,至少为空
+                    $has = $channel->metas->search(function($cc)use($modelField){
+                        return $cc->field == $modelField->field;
+                    });
+                    if($has === false){
+                        $cm = new ChannelMeta();
+                        $cm->content_id = $channel->id;
+                        $cm->field = $modelField->field;
+                        $cm->value = '';
+                        $channel->metas->push($cm);
+                    }
+                }
+                $filedTypeMap[$modelField->field] = $modelField->type;
             }
         });
         $channel->metas->map(function($meta)use($filedTypeMap){
-            if($filedTypeMap[$meta->field] == 'checkbox'){
-                $meta->value = explode(',', $meta->value);
+            $type = Arr::get($filedTypeMap, $meta->field, null);
+            if($type == 'checkbox'){
+                $meta->value = array_values(array_filter(explode(',', $meta->value)));
             }
         });
         return response()->ajax($channel);
