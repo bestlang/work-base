@@ -1,22 +1,14 @@
 <template>
     <div class="login-container">
         <div class="login-inner-box">
-            <canvas id="root" width="1000" height="560" class="art-canvas"></canvas>
             <div class="login-form">
                 <div style="text-align: center;color: #fff;font-size: 36px;padding-bottom: 40px;">路章's博客</div>
                 <div class="val user-after">
-                    <!--<input type="text" autocomplete="off" placeholder="email"-->
-                           <!--v-model="params.email"-->
-                           <!--@blur="requireEmail"-->
-                           <!--@keydown="requireEmail"-->
-                           <!--@keyup.enter="login"-->
-                           <!--class="login-input user">-->
-                    <!--<label id="email"></label>-->
                     <input type="text" autocomplete="off" placeholder="mobile"
                            v-model="params.mobile"
                            @keyup.enter="login"
                            class="login-input user">
-                    <label id="email"></label>
+                    <label id="mobile"></label>
                 </div>
                 <div class="val password-after">
                     <input type="password" autocomplete="new-password" placeholder="password"
@@ -45,11 +37,12 @@ export default {
     data() {
         return {
             loading: false,
-            loginFont: "登 录",
+            loginFont: "登录",
             params: {
-//                email: "luzhang@larashop.com",
                 mobile: '18625072568',
                 password: "111111"
+//                mobile: '',
+//                password: ""
             }
         }
     },
@@ -64,13 +57,13 @@ export default {
         }
     },
     methods: {
-        requireEmail() {
-            if (this.params.email == "") {
-                $("#email")
+        requireMobile() {
+            if (this.params.mobile == "") {
+                $("#mobile")
                     .addClass("error")
                     .text("请填写用户名");
             } else {
-                $("#email")
+                $("#mobile")
                     .removeClass("error")
                     .text(" ");
             }
@@ -94,9 +87,8 @@ export default {
                 .text("");
         },
         login() {
-            console.log(this.params)
-            if (this.params.email == "" || this.params.password == "") {
-                this.requireEmail();
+            if (!this.params.mobile || !this.params.password) {
+                this.requireMobile();
                 this.requirePassword();
             } else {
                 this.loading = true;
@@ -104,11 +96,10 @@ export default {
                 this.$http
                     .post("auth/login", this.params)
                     .then(res => {
+                        alert(JSON.stringify(res))
                         if (res.code == 200) {
                             this.$store.commit(this.$types.ACCESS_TOKEN, res.data.access_token);
                             this.$router.push("/dashboard");
-                        }else if(res.code == 401){
-                            this.restInfo();
                         }
                     })
                     .catch(error => {
@@ -119,7 +110,7 @@ export default {
         },
         restInfo() {
             this.loading = false;
-            this.loginFont = "login";
+            this.loginFont = "登录";
             this.params.password = "";
         }
     }

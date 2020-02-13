@@ -38,7 +38,6 @@ axios.interceptors.request.use(config => {//在此处统一配置公共参数
 axios.interceptors.response.use(response => {
         let res = response.data;
         let code = parseInt(res.code)
-        let error = res.error;
         // 伪状态码
         switch (code) {
             case 200:
@@ -48,14 +47,11 @@ axios.interceptors.response.use(response => {
             case 304:
                 break;
             case 401:
-                //showMessage(error ? error : "用户名或密码错误,请重新登录");
-
                 window.location = custom.ADMIN_URI + '/login';
                 localStorage.setItem('accessToken', '');
-                //return Promise.reject(response);
-                // if(app.$route.path != '/login'){
-                //     app.$router.push('/login');
-                // }
+                break;
+            case 402:
+                showMessage(res.error);
                 break;
             default:
                 showMessage(res.code + ':' + res.error);

@@ -82,7 +82,7 @@
   .l-w-60{
     width: 60px;
   }
-  // 修复.el-form-item__content{line-height: 40px;}导致编辑器按钮高度过高
+  /*修复.el-form-item__content{line-height: 40px;}导致编辑器按钮高度过高*/
   .edui-editor-toolbarbox{line-height: 20px;}
   .l-go-back{
     display: inline-block;

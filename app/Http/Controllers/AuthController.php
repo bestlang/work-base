@@ -40,7 +40,7 @@ class AuthController extends Controller
                 throw new \Exception($e->getMessage());
             }
         }catch (\Exception $e){
-            return response()->error($e->getMessage(), 401);
+            return response()->error($e->getMessage(), 402);//使用402作为登录失败代码, 区别于登录信息失效401
         }
         return $this->respondWithToken($token);
     }
