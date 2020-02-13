@@ -209,6 +209,9 @@
         return this.fields.filter(function(item){
           return item.is_channel === 0;
         })
+      },
+      currentModel(){
+          return this.$store.getters.currentModel;
       }
     },
     methods:{
@@ -371,7 +374,7 @@
       }
     },
     mounted() {
-      let id = this.$route.params.id;
+      let id = this.currentModel.id;
       this.id = id;
       if(id){
         this.loadModel(id);

@@ -127,7 +127,7 @@
                 <el-form-item v-if="item.type=='text'" :label="item.label">
                   <el-input :key="index" :name="item.field" v-model="channelForm[item.field]"></el-input>
                 </el-form-item>
-                <el-form-item v-if="item.type=='checkbox'" :label="item.label">
+                <el-form-item v-if="item.type=='checkbox' && Array.isArray(channelForm[item.field])" :label="item.label">
                   <el-checkbox-group v-model="channelForm[item.field]">
                       <el-checkbox :label="option.value" v-for="option in item.extra">{{option.name}}</el-checkbox>
                   </el-checkbox-group>
@@ -317,7 +317,6 @@
             if(whole.metas && whole.metas.length){
               whole.metas.forEach( item => {this.$set(this.channelForm, item.field, item.value)});
             }
-            // alert(JSON.stringify(this.channelForm))
           });
       }
     },

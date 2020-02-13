@@ -79,7 +79,7 @@ export default new VueRouter({
                 },
                 {
                   path: "/cms/setting/model/add",
-                  component: (resolve) => require(["../pages/cms/setting/modelAdd.vue"], resolve),
+                  component: (resolve) => require(["../pages/cms/setting/modelEdit.vue"], resolve),
                   meta: {
                     can: 'dashboard',
                     show: false,
@@ -88,8 +88,8 @@ export default new VueRouter({
                   }
                 },
                 {
-                  path: "/cms/setting/model/edit/:id",
-                  component: (resolve) => require(["../pages/cms/setting/modelAdd.vue"], resolve),
+                  path: "/cms/setting/model/edit",
+                  component: (resolve) => require(["../pages/cms/setting/modelEdit.vue"], resolve),
                   meta: {
                     can: 'dashboard',
                     show: false,

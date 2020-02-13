@@ -71,7 +71,8 @@
     },
     methods:{
       handleEdit(row){
-        this.$router.push('/cms/setting/model/edit/'+row.id);
+        this.$store.dispatch(this.$types.CMS_CURRENT_MODEL, row);
+        this.$router.push('/cms/setting/model/edit');
       },
       handleDelete(row){
         this.$confirm('确定删除模型?', '提示', {
