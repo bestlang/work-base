@@ -61,22 +61,35 @@
         <div class="l-block-body">
           <el-form label-width="100px">
             <template v-for="(item, index) in currentModel.fields">
+
               <el-form-item v-if="item.type=='text'" :label="item.label">
                 <el-input :key="index" :name="item.field" v-model="form[item.field]"></el-input>
               </el-form-item>
+
               <el-form-item v-if="item.type=='checkbox' && Array.isArray(form[item.field])" :label="item.label">
                 <el-checkbox-group v-model="form[item.field]">
                   <el-checkbox :label="option.value" v-for="option in item.extra">{{option.name}}</el-checkbox>
                 </el-checkbox-group>
               </el-form-item>
+
+              <el-form-item v-if="item.type=='image'" :label="item.label">
+                <image-upload v-model="form[item.field]"></image-upload>
+              </el-form-item>
+
+              <el-form-item v-if="item.type=='multiple-image'" :label="item.label">
+                <multiple-image-upload v-model="form[item.field]"></multiple-image-upload>
+              </el-form-item>
+
               <el-form-item v-if="item.type=='textarea'" :label="item.label">
                 <el-input type="textarea" v-model="form[item.field]"></el-input>
               </el-form-item>
+
               <el-form-item v-if="item.type=='content'" class="l-mb-22" :label="item.label">
                 <div>
                   <vue-ueditor-wrap v-model="form[item.field]" :config="ueditorConfig"></vue-ueditor-wrap>
                 </div>
               </el-form-item>
+
             </template>
             <el-form-item>
               <el-button @click="saveContent">提交</el-button>
@@ -91,6 +104,8 @@
   import channelTree from "./components/channelTree";
   import VueUeditorWrap from 'vue-ueditor-wrap';
   import ueditorConfig from "../../store/ueditor";
+  import imageUpload from "@/components/imageUpload"
+  import multipleImageUpload from "@/components/multipleImageUpload"
 
   export default {
     data() {
@@ -103,7 +118,9 @@
     },
     components:{
       'channel-tree': channelTree,
-      VueUeditorWrap
+      VueUeditorWrap,
+      imageUpload,
+      multipleImageUpload
     },
     computed:{
       ueditorConfig(){
@@ -134,7 +151,8 @@
       editContent(row){
         this.formTitle = '编辑文章';
         this.$store.dispatch(this.$types.CMS_CURRENT_CHANNEL, row.channel);
-        this.loadModel(row.channel.model_id)
+        this.$store.dispatch(this.$types.CMS_PARENT_CHANNEL, row.channel)
+        // this.loadModel(row.channel.model_id)
         this.showForm = true;
         this.loadWholeContent(row)
       },
@@ -156,30 +174,31 @@
         });
       },
       saveContent(){
-        if(!this.form.channel_id && !this.form.model_id){
-          this.$set(this.form, 'model_id', this.currentModel.id);
-          this.$set(this.form, 'channel_id', this.currentChannel.id)
-        }
-        this.$http
-          .post("/admin/cms/content/save", this.form)
-          .then(res => {
-            if(res.success){
-              this.$message({
-                type: 'success',
-                message: '添加成功!'
-              });
-              this.showForm = false;
-              this.loadContents();
-              this.form = {}
-            }
-          });
+          alert(JSON.stringify(this.form))
+          if(!this.form.channel_id && !this.form.model_id){
+            this.$set(this.form, 'model_id', this.currentModel.id);
+            this.$set(this.form, 'channel_id', this.currentChannel.id)
+          }
+          this.$http
+            .post("/admin/cms/content/save", this.form)
+            .then(res => {
+              if(res.success){
+                this.$message({
+                  type: 'success',
+                  message: '添加成功!'
+                });
+                this.showForm = false;
+                this.loadContents();
+                this.form = {}
+              }
+            });
       },
 
       handleNodeClick(node, ...params){
         this.showForm = false;
         let channel = node[0]
         this.$store.dispatch(this.$types.CMS_CURRENT_CHANNEL, channel);
-        this.$store.dispatch(this.$types.CMS_PARENT_CHANNEL, node[0])
+        this.$store.dispatch(this.$types.CMS_PARENT_CHANNEL, channel)
       },
       addContent(){
         this.showForm = true;
@@ -198,8 +217,10 @@
               let item = this.currentModel.fields[idx];
                 // 重置表单
                 this.$set(this.form, item.field, '');
-                if(item.type == 'checkbox'){
-                    this.$set(this.form, item.field, []);
+                if(!Array.isArray(this.form[item.field])){
+                  if(item.type == 'checkbox' || item.type == 'multiple-image'){
+                      this.$set(this.form, item.field, []);
+                  }
                 }
             }
           });
@@ -221,7 +242,9 @@
           .get("/admin/cms/content/whole", {params: {id}})
           .then(res => {
             let content = res.data;
-
+            let currentModel = res.data.model;
+            currentModel.fields = currentModel.fields.filter(item => { return !item.is_channel })
+            this.$store.dispatch(this.$types.CMS_CURRENT_MODEL, currentModel)
             let contentFields = ['channel_id', 'model_id', 'title', 'keywords', 'description'];
 
             this.$set(this.form, 'id', id);

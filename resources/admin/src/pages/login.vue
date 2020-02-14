@@ -96,7 +96,6 @@ export default {
                 this.$http
                     .post("auth/login", this.params)
                     .then(res => {
-                        alert(JSON.stringify(res))
                         if (res.code == 200) {
                             this.$store.commit(this.$types.ACCESS_TOKEN, res.data.access_token);
                             this.$router.push("/dashboard");

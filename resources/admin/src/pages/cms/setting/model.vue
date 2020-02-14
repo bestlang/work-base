@@ -3,7 +3,9 @@
     <div class="l-block">
     <div class="l-block-header">
       <div>
-        <router-link to="/cms/setting/model/add"><el-button type="primary" size="small">新增</el-button></router-link>
+        <!--<router-link to="/cms/setting/model/add">-->
+          <el-button @click="handleAdd" type="primary" size="small">新增</el-button>
+        <!--</router-link>-->
       </div>
       <div></div>
     </div>
@@ -70,6 +72,10 @@
       }
     },
     methods:{
+      handleAdd(){
+          this.$store.dispatch(this.$types.CMS_CURRENT_MODEL, {});
+          this.$router.push('/cms/setting/model/add')
+      },
       handleEdit(row){
         this.$store.dispatch(this.$types.CMS_CURRENT_MODEL, row);
         this.$router.push('/cms/setting/model/edit');

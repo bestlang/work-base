@@ -47,7 +47,7 @@ class ContentController extends Controller
         $metaFileds = $model->fields->filter(function($item){return $item->is_channel == '0' && $item->type != 'content' && $item->is_custom == '1';});
         $arr = Arr::only($params, ['channel_id', 'model_id', 'title', 'keywords', 'description']);
 
-        //执行更新逻辑
+        // 执行更新逻辑
         $id = $request->input('id', 0);
         if($id){
             $contentModel = Content::find($id);
@@ -61,15 +61,20 @@ class ContentController extends Controller
             // 更新自定义字段
             foreach ($metaFileds as $filed){
                 $value =  Arr::get($params, $filed->field, '');
-                // 对checkbox特殊处理
-                if($filed->type === 'checkbox'){
-                    $value = implode(',', $value);
+                if($value){
+                    // 对checkbox特殊处理
+                    if($filed->type === 'checkbox'){
+                        $value = implode(',', $value);
+                    }
+                    if($filed->type === 'multiple-image'){
+                        $value = json_encode($value);
+                    }
                 }
                 $contentModel->metas()->updateOrInsert(['content_id' => $id, 'field' => $filed->field], ['value' => $value]);
             }
             return response()->ajax();
         }
-
+        // 执行插入逻辑
         $arr['user_id'] = auth()->user()->id;
         $arr['status'] = 1;
         $contentModel = Content::create($arr);
@@ -82,9 +87,14 @@ class ContentController extends Controller
         // 保存自定义字段
         foreach ($metaFileds as $filed){
             $value =  Arr::get($params, $filed->field, '');
-            // 对checkbox特殊处理
-            if($filed->type === 'checkbox'){
-                $value = implode(',', $value);
+            if($value){
+                // 对checkbox特殊处理
+                if($filed->type === 'checkbox'){
+                    $value = implode(',', $value);
+                }
+                if($filed->type === 'multiple-image'){
+                    $value = json_encode($value);
+                }
             }
             $meta = ['field' => $filed->field, 'value' => $value];
             $contentModel->metas()->create($meta);
@@ -135,10 +145,14 @@ class ContentController extends Controller
             }
         });
         /// checkbox特殊处理,数据库中1,2,3取出之后封装成[1,2,3]
+        /// 多图特殊处理,以json根式存储
         $content->metas->map(function($meta)use($filedTypeMap){
             $type = Arr::get($filedTypeMap, $meta->field, null);
-            if($type == 'checkbox'){
+            if($type == 'checkbox' && $meta->value){
                 $meta->value = array_values(array_filter(explode(',', $meta->value)));
+            }
+            if($type == 'multiple-image' && $meta->value){
+                $meta->value = json_decode($meta->value);
             }
         });
         ///

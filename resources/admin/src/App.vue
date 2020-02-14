@@ -43,7 +43,7 @@
     color: #303133;
     box-sizing: border-box;
     .l-block-header{
-      padding: 0 20px 10px 0;
+      padding: 0 0 10px 0;
       border-bottom: 1px solid #EBEEF5;
       box-sizing: border-box;
       display: flex;
