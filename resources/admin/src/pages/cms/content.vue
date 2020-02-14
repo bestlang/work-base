@@ -174,7 +174,6 @@
         });
       },
       saveContent(){
-          alert(JSON.stringify(this.form))
           if(!this.form.channel_id && !this.form.model_id){
             this.$set(this.form, 'model_id', this.currentModel.id);
             this.$set(this.form, 'channel_id', this.currentChannel.id)
