@@ -1,0 +1,64 @@
+@import "app";
+
+.l-header{
+  color: #b9c8e0;
+  width: 100%;
+  background: $gray-800;
+}
+
+.l-foot{
+  padding: 20px 0;
+  color: #b9c8e0;
+  background: $gray-800;
+  .l-special-remark{
+    .l-remark-title {
+      font-size: 20px;
+    }
+    .l-remark-content{
+
+    }
+  }
+}
+.l-row{
+  max-width: 1200px;
+  margin: 0 auto;
+  overflow: hidden;
+}
+.l-relative{
+  position: relative;
+}
+.l-content{
+  height: calc(100vh - 173px);
+  background: url('https://clubimg.club.vmall.com/data/attachment/forum/201904/14/191355agxsmq149gpvdczc.jpg') no-repeat scroll center / cover;
+  .l-content-inner{
+    background: rgba(255,255, 255, .7);
+    height: calc(100vh - 173px);
+    .l-block-one{
+      .l-words{
+        margin: 0 auto;
+        height: 100%;
+        text-align: center;
+        .l-title{
+          color: $gray-800;
+          font-size: 30px;
+          padding-top:30vh;
+        }
+        .l-sub-title{
+          padding: 10px;
+          //background: rgba(255,255,255, .8);
+          display: inline-block;
+          margin: 50px auto 0;
+          color: $gray-900;
+        }
+      }
+    }
+    .l-pure-words{
+      color: $gray-800;
+      width: 100%;
+      margin-top: 50px;
+      padding: 30px 20px;
+      font-size: 30px;
+      background: rgba(255, 255, 255, .2);
+    }
+  }
+}

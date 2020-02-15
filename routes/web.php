@@ -10,8 +10,17 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+// cms
+Route::group(['prefix' => 'cms', 'namespace'=>'Cms'], function ($router) {
+    Route::get('/', 'IndexController@index');
+    Route::get('/about', 'IndexController@about');
+    Route::get('/contact', 'IndexController@contact');
+});
 
-Route::get('/', 'Pdd\IndexController@index');
+//Route::get('/', 'Pdd\IndexController@index');
+Route::get('/', function (){
+    return redirect('/cms');
+});
 Route::get('/info', function(){echo phpinfo();});
 //测试微信支付
 Route::get('/pay', 'Pdd\IndexController@wePay');
