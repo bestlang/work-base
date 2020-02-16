@@ -12,7 +12,6 @@ return [
     | as required, but they're a perfect start for most applications.
     |
     */
-    // change guard's value from 'web' to 'api', then we can now use Laravel's built in Auth system(i.e. auth() etc.), with jwt-auth doing the work behind the scenes!
 
     'defaults' => [
         'guard' => 'web',
