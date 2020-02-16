@@ -10,8 +10,12 @@ const systemConfig = {
       return state.isCollapse
     },
     [types.USER](state){
-      return state.user
-    },
+      if(state.user){
+          return state.user;
+      }
+      let user = localStorage.getItem(types.USER)
+      return JSON.parse(user)
+    }
 
   },
   mutations: {
@@ -19,7 +23,8 @@ const systemConfig = {
       state.isCollapse = !state.isCollapse
     },
     [types.USER](state, payload) {
-      state.user = payload
+      state.user = payload;
+      localStorage.setItem(types.USER, JSON.stringify(payload));
     }
   },
   actions: {

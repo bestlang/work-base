@@ -4,6 +4,7 @@ import custom from '@/../config/custom'
 import app from '../main.js'
 
 function showMessage(value) {
+    //this.$message.close();
     return Message({
         showClose: true,
         message: value,
@@ -47,6 +48,7 @@ axios.interceptors.response.use(response => {
             case 304:
                 break;
             case 401:
+                showMessage(res.error);
                 window.location = custom.ADMIN_URI + '/login';
                 localStorage.setItem('accessToken', '');
                 break;

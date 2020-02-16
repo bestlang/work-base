@@ -33,10 +33,11 @@ export default {
             .post("auth/logout")
             .then(res => {
                 if (res.code == 200) {
-                    this.$store.commit(this.$types.ACCESS_TOKEN, '');
-                    this.$router.push(custom.ADMIN_URI + "/login");
+                    localStorage.removeItem(this.$types.USER)
+                    this.$store.commit(this.$types.ACCESS_TOKEN, null);
+                    this.$router.push("/login");//custom.ADMIN_URI +
                 }else if(res.code == 401){
-                    this.$router.push(custom.ADMIN_URI + "/login");
+                    this.$router.push("/login");//custom.ADMIN_URI +
                 }
             });
     }

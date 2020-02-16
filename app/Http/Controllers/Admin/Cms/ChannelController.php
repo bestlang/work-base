@@ -13,6 +13,7 @@ use Validator;
 
 class ChannelController extends Controller
 {
+
     // get channels in tree format
     public function tree(Request $request)
     {

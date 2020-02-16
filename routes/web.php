@@ -13,6 +13,7 @@
 // cms
 Route::group(['prefix' => 'cms', 'namespace'=>'Cms'], function ($router) {
     Route::get('/', 'IndexController@index');
+    Route::get('/home', 'IndexController@home');
     Route::get('/about', 'IndexController@about');
     Route::get('/contact', 'IndexController@contact');
 });
