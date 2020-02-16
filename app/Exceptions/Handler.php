@@ -50,7 +50,6 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $e)
     {
-        // return parent::render($request, $exception);
         $statusCode = 200;
         $errMessage = '';
         if($e instanceof HttpExceptionInterface){
@@ -62,6 +61,10 @@ class Handler extends ExceptionHandler
             $statusCode = $e->getCode();
             $errMessage = $e->getMessage();
         }
-        return response()->error($errMessage, $statusCode);
+        if($request->expectsJson()){
+            return response()->error($errMessage, $statusCode);
+        }else{
+            return parent::render($request, $e);
+        }
     }
 }

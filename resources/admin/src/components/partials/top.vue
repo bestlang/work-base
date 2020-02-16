@@ -7,7 +7,7 @@
         </div>
         <div class="ls-top-right">
           <el-dropdown>
-            <div class="logout"><i class="iconfont">&#xe60d; </i>个人</div>
+            <div class="logout"><i class="iconfont">&#xe60d; </i>{{user.name}}</div>
             <el-dropdown-menu slot="dropdown">
               <el-dropdown-item><div @click="logout"><i class="iconfont">&#xe84b; </i>登出</div></el-dropdown-item>
               <el-dropdown-item><i class="iconfont">&#xe618; </i>修改密码</el-dropdown-item>
@@ -19,6 +19,11 @@
 <script>
   import custom from '../../../config/custom'
 export default {
+  computed: {
+      user(){
+          return this.$store.getters[this.$types.USER]
+      }
+  },
   methods: {
     toggleCollapse() {
       this.$store.dispatch("toggleState")

@@ -98,6 +98,7 @@ export default {
                     .then(res => {
                         if (res.code == 200) {
                             this.$store.commit(this.$types.ACCESS_TOKEN, res.data.access_token);
+                            this.$store.commit(this.$types.USER, res.data.user);
                             this.$router.push("/dashboard");
                         }
                     })

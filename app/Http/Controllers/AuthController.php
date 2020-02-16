@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 
 use App\Models\User;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
-use Illuminate\Support\Facades\Hash;
+use JWTAuth;
+
 
 class AuthController extends Controller
 {
@@ -27,33 +27,17 @@ class AuthController extends Controller
     public function login()
     {
         try{
-            try{
-                $mobile = request()->input('mobile');
-                $password = request()->input('password');
-                $user = User::where('mobile', $mobile)->firstOrFail();
-                if($user && Hash::check($password, $user->password)){
-                    $token = auth()->login($user);
-                }else{
-                    throw new \Exception('手机号或者密码错误,请重试!');
-                }
-            }catch (ModelNotFoundException $e){
-                throw new \Exception($e->getMessage());
+            $mobile = request()->input('mobile');
+            $password = request()->input('password');
+            $token = JWTAuth::attempt(['mobile' => $mobile, 'password' => $password]);
+            if(!$token){
+                throw new \Exception('手机号或者密码错误,请重试!');
             }
         }catch (\Exception $e){
-            return response()->error($e->getMessage(), 402);//使用402作为登录失败代码, 区别于登录信息失效401
+            return response()->error($e->getMessage(), 402);//暂时使用402作为登录失败代码, 区别于登录信息失效401
         }
         return $this->respondWithToken($token);
     }
-//    public function login()
-//    {
-//        $credentials = request(['email', 'password']);
-//
-//        if (! $token = auth()->attempt($credentials)) {
-//            return response()->json(['error' => 'Unauthorized'], 401);
-//        }
-//
-//        return $this->respondWithToken($token);
-//    }
 
     /**
      * Get the authenticated User.
@@ -99,7 +83,8 @@ class AuthController extends Controller
         return response()->ajax([
             'access_token' => $token,
             'token_type' => 'bearer',
-            'expires_in' => auth()->factory()->getTTL() * 60
+            'expires_in' => JWTAuth::factory()->getTTL() * 60,
+            'user' => JWTAuth::user()
         ]);
     }
 }
