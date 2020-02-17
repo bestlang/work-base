@@ -30,13 +30,22 @@ class ChannelController extends Controller
     // get direct children channel
     public function children(Request $request)
     {
-        $parent_id = $request->input('parent_id', 0);
+        $params = $request->validate([
+            'parent_id' => 'nullable|numeric',
+        ]);
+        $parent_id = Arr::get($params, 'parent_id', 0);
         $children = Channel::where('parent_id', $parent_id)->get();
         return response()->ajax($children);
     }
 
     public function save(Request $request)
     {
+        $request->validate([
+            'parent_id' => 'nullable|numeric',
+            'name' => 'required',
+            'model_id' => 'required',
+            'id' => 'nullable|numeric'
+        ]);
         $params = $request->all();
         $parent_id = Arr::get($params, 'parent_id', 0);
         $name = Arr::get($params, 'name', '');

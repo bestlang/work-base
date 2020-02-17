@@ -142,8 +142,8 @@
                 </el-form-item>
               </template>
               <el-form-item>
-                <el-button type="primary" @click="doSubmit">确 定</el-button>
-                <el-button @click="doCancel">取 消</el-button>
+                <el-button type="primary" @click="doSubmit">确定</el-button>
+                <el-button @click="doCancel">取消</el-button>
               </el-form-item>
             </el-form>
           </div>
