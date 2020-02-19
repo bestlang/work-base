@@ -43,7 +43,7 @@
     color: #303133;
     box-sizing: border-box;
     .l-block-header{
-      padding: 0 0 10px 0;
+      padding: 0 0 10px;
       border-bottom: 1px solid #EBEEF5;
       box-sizing: border-box;
       display: flex;
@@ -87,6 +87,9 @@
   .l-go-back{
     display: inline-block;
     cursor: pointer;
+  }
+  .l-channel-color{
+    color: orange;
   }
 </style>
 <template>

@@ -1,8 +1,9 @@
 <template>
     <div class="login-container">
-        <div class="login-inner-box">
-            <div class="login-form">
-                <div style="text-align: center;color: #fff;font-size: 36px;padding-bottom: 40px;">路章's博客</div>
+        <div style="width: 100vw; height: 100vh;background: rgba(0, 0, 0, .4)">
+            <el-row class="login-inner-box">
+            <el-col class="login-form" :span="8" :offset="8">
+                <div style="text-align: center;font-size: 36px;padding-bottom: 40px;">路章's博客</div>
                 <div class="val user-after">
                     <input type="text" autocomplete="off" placeholder="mobile"
                            v-model="params.mobile"
@@ -21,8 +22,9 @@
                 </div>
                 <el-button :loading="loading"  class="login-input login-btn" type="primary" @click="login" id="login">{{loginFont}}</el-button>
 
-            </div>
+            </el-col>
 
+        </el-row>
         </div>
         <!--<div class="fixed-bar">-->
             <!--<p>请使用谷歌浏览器(chrome)访问系统</p>-->
@@ -73,12 +75,12 @@ export default {
                 $("#password")
                     .addClass("error")
                     .text("请填写密码");
-                $("#login").css("background", "#ebcd41");
+//                $("#login").css("background", "#ebcd41");
             } else {
                 $("#password")
                     .removeClass("error")
                     .text(" ");
-                $("#login").css("background", "#fee300");
+//                $("#login").css("background", "#fee300");
             }
         },
         changePassword() {
@@ -160,5 +162,8 @@ export default {
     .val label.error {
         right: 48px;
         transition: 0.5s right;
+    }
+    #login{
+        text-indent: 0;
     }
 </style>

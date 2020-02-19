@@ -32,7 +32,7 @@
         </el-table>
         </div>
         <div class="l-delimiter"></div>
-        <el-dialog :title="formTitle" :visible.sync="formVisible">
+        <el-dialog :title="formTitle" :visible.sync="formVisible" :close-on-click-modal="false">
             <el-form :model="form" label-width="80px">
                 <el-form-item label="角色名称">
                     <el-input v-model="form.name" autocomplete="off"></el-input>

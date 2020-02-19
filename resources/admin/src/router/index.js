@@ -58,6 +58,38 @@ export default new VueRouter({
               }
             },
             {
+              path: "/cms/position",
+              component: (resolve) => require(["../components/via.vue"], resolve),
+                meta: {
+                    can: 'cms list contents',
+                    show: true,
+                    name: '推荐管理',
+                    font: '&#xe764;'
+                },
+                children:[
+                    {
+                        path: "/cms/position/position",
+                        component: (resolve) => require(["../pages/cms/position/position.vue"], resolve),
+                        meta: {
+                            can: 'dashboard',
+                            show: true,
+                            name: '推荐位',
+                            font: '&#xe764;'
+                        },
+                    },
+                    {
+                        path: "/cms/position/content",
+                        component: (resolve) => require(["../pages/cms/position/content.vue"], resolve),
+                        meta: {
+                            can: 'dashboard',
+                            show: true,
+                            name: '内容管理',
+                            font: '&#xe764;'
+                        },
+                    }
+                ]
+            },
+            {
               path: "/cms/setting",
               component: (resolve) => require(["../components/via.vue"], resolve),
               meta: {

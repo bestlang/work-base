@@ -33,8 +33,15 @@
     background: url('https://uploadbeta.com/api/pictures/random/') no-repeat scroll center / cover;
   }
   .l-content-inner{
+    font-size: 16px;
+    line-height: 30px;
     background: rgba(255,255, 255, .7);
-    height: calc(100vh - 173px);
+    img {
+      width: 100%!important;
+    }
+    &.l-fixed-height{
+      height: calc(100vh - 173px);
+    }
     .l-block-index{
       //display: none;
       .l-words{
@@ -48,15 +55,20 @@
         }
         .l-sub-title{
           padding: 10px;
-          //background: rgba(255,255,255, .8);
           display: inline-block;
           margin: 50px auto 0;
           color: $gray-900;
         }
       }
     }
-    .l-block-home{
-
+    .l-block-content{
+      padding-top: 20px;
+      .l-content-title{
+        font-size: 30px;
+        color: #262626;
+        text-align: justify;
+        line-height: 42px;
+      }
     }
 
   }

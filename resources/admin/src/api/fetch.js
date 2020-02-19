@@ -26,7 +26,8 @@ axios.interceptors.request.use(config => {//在此处统一配置公共参数
     if (accessToken) {
         config.headers = {
             'Authorization': 'Bearer ' + accessToken,
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
         }
     }
     return config
@@ -48,15 +49,15 @@ axios.interceptors.response.use(response => {
             case 304:
                 break;
             case 401:
-                showMessage(res.error);
+                showMessage(res.code + res.error);
                 window.location = custom.ADMIN_URI + '/login';
                 localStorage.setItem('accessToken', '');
                 break;
             case 402:
-                showMessage(res.error);
+                showMessage(res.code + res.error);
                 break;
             default:
-                showMessage(res.code + ':' + res.error);
+                showMessage(res.code + res.error);
                 break;
         }
         return response.data;
@@ -64,8 +65,9 @@ axios.interceptors.response.use(response => {
     // 少量非200状态码会进入这里
     error => {
         if(app.$route.path != custom.ADMIN_URI + '/login'){
+            this.$message.close();
             localStorage.setItem('accessToken', '');
-            showMessage('服务器响应失败');
+            showMessage('请重新登录');
             app.$router.push( custom.ADMIN_URI + '/login');
         }
         return Promise.reject(error)

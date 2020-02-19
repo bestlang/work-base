@@ -10,12 +10,11 @@
 <body>
 @include('cms.dark.common.head')
 <div class="l-content">
-    <div class="l-content-inner l-fixed-height">
+    <div class="l-content-inner">
         <div class="l-row">
             <div class="col-md-12 l-block-content">
-                @foreach(position('HOME_INDEX') as $content)
-                    <p><a href="/cms/content/{{$content->id}}">{{$content->title}}</a></p>
-                @endforeach
+                <h1 class="l-content-title">{{$content->title}}</h1>
+                <div>{!!  $content->contents[0]['value'] !!}</div>
             </div>
         </div>
     </div>

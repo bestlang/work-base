@@ -31,7 +31,7 @@
         </template>
       </el-table-column>
     </el-table>
-    <el-dialog title="添加类型" :visible.sync="formVisible">
+    <el-dialog title="添加类型" :visible.sync="formVisible" :close-on-click-modal="false">
       <el-form :model="form">
         <el-form-item label="名称" :label-width="w">
           <el-input v-model="form.name" autocomplete="off"></el-input>

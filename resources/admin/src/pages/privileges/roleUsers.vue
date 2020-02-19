@@ -38,7 +38,7 @@
             </el-table-column>
         </el-table>
         <div class="l-delimiter"></div>
-        <el-dialog title="添加用户" :visible.sync="showForm">
+        <el-dialog title="添加用户" :visible.sync="showForm" :close-on-click-modal="false">
           <el-form :model="form" label-width="80px">
             <el-form-item label="手机号">
               <el-input v-model="form.mobile" autocomplete="off" class="l-w-200"></el-input>

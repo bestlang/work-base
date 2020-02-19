@@ -10,12 +10,14 @@
 <body>
     @include('cms.dark.common.head')
     <div class="l-content l-content-bg">
-        <div class="l-content-inner">
+        <div class="l-content-inner l-fixed-height">
             <div class="l-row">
                 <div class="col-md-12 l-block-index">
                     <div class="l-words">
                         <div class="l-title animated bounceInUp text-center">基于Laravel和VueJs的内容管理系统</div>
-                        <div class="l-sub-title animated fadeInUp text-center">体验前台 | 体验后台</div>
+                        <div class="l-sub-title animated fadeInUp text-center">
+                            体验前台 | 体验后台
+                        </div>
                     </div>
                 </div>
             </div>

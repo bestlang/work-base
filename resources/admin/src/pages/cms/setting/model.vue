@@ -143,10 +143,3 @@
     }
   }
 </script>
-<style lang="less" scoped>
-  .l-top-menu {
-    display: flex;
-    flex-flow: row nowrap;
-    justify-content: space-between;
-  }
-</style>

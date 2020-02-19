@@ -46,7 +46,7 @@
         </div>
       </div>
     </div>
-    <el-dialog :title="title" :visible.sync="dialogFormVisible">
+    <el-dialog :title="title" :visible.sync="formVisible"  :close-on-click-modal="false">
       <el-form :model="form" label-width="100px">
         <el-form-item label="权限显示名">
           <el-input v-model="form.show_name" autocomplete="off"></el-input>
@@ -56,7 +56,7 @@
         </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
-        <el-button @click="dialogFormVisible = false">取 消</el-button>
+        <el-button @click="formVisible = false">取 消</el-button>
         <el-button type="primary" @click="doSubmit">确 定</el-button>
       </div>
     </el-dialog>
@@ -74,7 +74,7 @@
         treeData:[],
 
         current:null,
-        dialogFormVisible: false,
+        formVisible: false,
         title: '添加子权限',
         form:{
           id: '',
@@ -97,7 +97,7 @@
           name,
           show_name
         }
-        this.dialogFormVisible = true;
+        this.formVisible = true;
         this.title = '编辑权限';
       },
       recovery(){
@@ -112,7 +112,7 @@
       add(data) {
         this.recovery()
         this.current = data;
-        this.dialogFormVisible = true;
+        this.formVisible = true;
       },
       doSubmit(){
         if(!this.form.id){
@@ -126,13 +126,13 @@
         if (!this.current.children) {
           this.$set(this.current, 'children', []);
         }
-        this.dialogFormVisible = false
+        this.formVisible = false
         this.$http
           .post("/admin/privileges/add/permission", {parent_id: this.current.id, name: this.form.name, show_name: this.form.show_name})
           .then(res => {
             newChild.id = res.data.id;
             this.current.children.push(newChild);
-            // this.dialogFormVisible = false
+            // this.formVisible = false
             if(res.success){
               this.$message({
                 type: 'success',
@@ -140,7 +140,7 @@
               });
               this.recovery()
             }else{
-              this.dialogFormVisible = true
+              this.formVisible = true
             }
 
           });
@@ -157,7 +157,7 @@
             this.current.show_name = this.form.show_name
             this.recovery()
           });
-        this.dialogFormVisible = false
+        this.formVisible = false
       },
       remove(node, data) {
         this.$confirm('删除权限存在风险,是否继续?', '提示', {

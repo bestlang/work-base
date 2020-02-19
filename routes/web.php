@@ -16,6 +16,8 @@ Route::group(['prefix' => 'cms', 'namespace'=>'Cms'], function ($router) {
     Route::get('/home', 'IndexController@home');
     Route::get('/about', 'IndexController@about');
     Route::get('/contact', 'IndexController@contact');
+
+    Route::get('/content/{id}', 'ContentController@index');
 });
 
 //Route::get('/', 'Pdd\IndexController@index');
