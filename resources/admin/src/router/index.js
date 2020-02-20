@@ -86,6 +86,16 @@ export default new VueRouter({
                             name: '内容管理',
                             font: '&#xe764;'
                         },
+                    },
+                    {
+                        path: "/cms/position/subs",
+                        component: (resolve) => require(["../pages/cms/position/subs.vue"], resolve),
+                        meta: {
+                            can: 'dashboard',
+                            show: false,
+                            name: '内容推荐位',
+                            font: '&#xe764;'
+                        },
                     }
                 ]
             },
@@ -191,7 +201,8 @@ export default new VueRouter({
           meta: {
             can: 'pdd',
             name: '拼多多',
-            font: '&#xe711;'
+            font: '&#xe711;',
+            show: true
           },
           children: [
             {

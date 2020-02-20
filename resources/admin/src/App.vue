@@ -91,6 +91,9 @@
   .l-channel-color{
     color: orange;
   }
+  .l-cursor{
+    cursor: pointer;
+  }
 </style>
 <template>
   <router-view></router-view>

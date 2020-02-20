@@ -1,6 +1,7 @@
 <template>
     <div class="login-container">
-        <div style="width: 100vw; height: 100vh;background: rgba(0, 0, 0, .4)">
+        <div class="login-inner">
+            <div style="width: 100vw; height: 100vh;">
             <el-row class="login-inner-box">
             <el-col class="login-form" :span="8" :offset="8">
                 <div style="text-align: center;font-size: 36px;padding-bottom: 40px;">路章's博客</div>
@@ -26,11 +27,7 @@
 
         </el-row>
         </div>
-        <!--<div class="fixed-bar">-->
-            <!--<p>请使用谷歌浏览器(chrome)访问系统</p>-->
-            <!--<p>ICP备案号</p>-->
-            <!--<p>Copyright © 2007-2017 All Rights Reserved</p>-->
-        <!--</div>-->
+        </div>
     </div>
 </template>
 

@@ -30,7 +30,8 @@
   &.l-content-bg{
     height: calc(100vh - 173px);
     //background: url('https://clubimg.club.vmall.com/data/attachment/forum/201904/14/191355agxsmq149gpvdczc.jpg') no-repeat scroll center / cover;
-    background: url('https://uploadbeta.com/api/pictures/random/') no-repeat scroll center / cover;
+    //background: url('https://uploadbeta.com/api/pictures/random/') no-repeat scroll center / cover;
+    background: linear-gradient(45deg,#6e436c 25%,#2a4584 75%);
   }
   .l-content-inner{
     font-size: 16px;

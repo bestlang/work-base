@@ -69,7 +69,7 @@
         saveRolePermissions(){
           let nodes = this.$refs['role-permission-tree'].getCheckedNodes();
           let permissions = nodes.filter((n)=>n.children.length == 0).map((n) => n.id);
-          let role_id = this.role_id
+          let role_id = this.currentRole.id
           this.$http
             .post("/admin/privileges/give/permissions/to", {permissions, role_id})
             .then(res => {

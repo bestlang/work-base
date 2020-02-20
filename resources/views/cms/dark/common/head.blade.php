@@ -12,13 +12,13 @@
             <!-- Navbar links -->
             <div class="collapse navbar-collapse" id="collapsibleNavbar">
                 <ul class="navbar-nav">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="/cms/about">简介</a>
-                    </li>
+                    {{--<li class="nav-item active">--}}
+                        {{--<a class="nav-link" href="/cms/about">简介</a>--}}
+                    {{--</li>--}}
                     {{--<li class="nav-item">--}}
                         {{--<a class="nav-link" href="/cms/contact">联系</a>--}}
                     {{--</li>--}}
-                    <li class="nav-item">
+                    <li class="nav-item active">
                         <a class="nav-link" href="/cms/home">前端演示</a>
                     </li>
                     <li class="nav-item">

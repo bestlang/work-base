@@ -9,7 +9,8 @@ const cmsConfig = {
     parentChannel: null,
     channelChildren: [],
     currentChannel: null,
-    currentModel: null
+    currentModel: null,
+    currentChannelPosition: null
   },
   getters:{
     loading(state){
@@ -32,8 +33,12 @@ const cmsConfig = {
     },
     currentModel(state){
       return state.currentModel
+    },
+    currentChannelPosition(state){
+      return state.currentChannelPosition
     }
-  },
+  }
+  ,
   mutations: {
     [types.LOADING] (state, payload) {
       state.loading = payload;
@@ -55,6 +60,9 @@ const cmsConfig = {
     },
     [types.CMS_CURRENT_MODEL] (state, payload) {
       state.currentModel = payload
+    },
+    [types.CMS_CURRENT_CHANNEL_POSITION] (state, payload) {
+        state.currentChannelPosition = payload
     },
   },
   actions: {

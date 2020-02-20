@@ -1,8 +1,10 @@
 <template>
   <div class="l-block">
     <div class="l-block-header">
-      <router-link to="/cms/setting/model" tag="div"><span class="iconfont">&#xe601;</span>返回</router-link>
-      <el-divider direction="vertical"></el-divider>
+      <div>
+        <router-link to="/cms/setting/model" tag="div"><span class="iconfont">&#xe601;</span>返回</router-link>
+        <!--<el-divider direction="vertical" style="display: inline"></el-divider>-->
+      </div>
       <div>{{modelForm.id ? '编辑':'新增'}}模型{{modelForm.name ? '"' + modelForm.name + '"' : ''}}</div>
     </div>
     <div class="l-block-body">

@@ -35,7 +35,8 @@
                         <template slot-scope="scope">
                             <el-button type="text" @click="handleEdit(scope.row)">编辑</el-button>
                             <el-button type="text" @click="handleDelete(scope.row)">删除</el-button>
-                            <el-button v-if="scope.row.is_channel" type="text" @click="handleAddChild(scope.row)">内容推荐位</el-button>
+                            <el-button type="text" @click="viewContents(scope.row)">内容管理</el-button>
+                            <el-button v-if="scope.row.is_channel" type="text" @click="viewSubPositions(scope.row)">内容推荐位</el-button>
                         </template>
                     </el-table-column>
                 </el-table>
@@ -47,7 +48,7 @@
                     <el-input v-model="form.name" autocomplete="off"></el-input>
                 </el-form-item>
                 <el-form-item label="类型" label-width="100px">
-                    <el-radio-group v-model="form.is_channel">
+                    <el-radio-group v-model="form.is_channel" :disabled="form.id">
                         <el-radio :label="1" :key="1">栏目</el-radio>
                         <el-radio :label="0" :key="0">内容</el-radio>
                     </el-radio-group>
@@ -89,12 +90,13 @@
                 })
                 this.formVisible = true;
             },
-            handleAddChild(row){
-
-            },
             handleEdit(row){
                 Object.assign(this.form, row)
                 this.formVisible = true;
+            },
+            viewSubPositions(row){
+                this.$store.commit(this.$types.CMS_CURRENT_CHANNEL_POSITION, row)
+                this.$router.push('/cms/position/subs')
             },
             handleDelete(row){
 //                this.$confirm('确定删除模型?', '提示', {

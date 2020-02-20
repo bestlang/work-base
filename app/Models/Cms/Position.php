@@ -8,4 +8,9 @@ class Position extends Model
 {
     protected $table = 'cms_positions';
     protected $guarded = [];
+
+    public function subs()
+    {
+        return $this->hasMany(static::class, 'parent_id', 'id');
+    }
 }
