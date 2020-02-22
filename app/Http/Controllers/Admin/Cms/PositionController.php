@@ -2,17 +2,43 @@
 
 namespace App\Http\Controllers\Admin\Cms;
 
+use App\Models\Cms\Channel;
 use App\Models\Cms\Position;
+use App\Models\Cms\PositionContent;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Arr;
 
 class PositionController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $positions = Position::all();
+        $is_channel = $request->input('is_channel', -1);
+        $is_channel = intval($is_channel);
+        $query = Position::query();
+        if($is_channel !== -1){
+            $query->where('is_channel', $is_channel);
+        }
+        $positions = $query->orderBy('is_channel', 'desc')->orderBy('id', 'desc')->get();
         return response()->ajax($positions);
+    }
+
+    public function contentPositions(Request $request)
+    {
+        // 栏目推荐位 + 通用内容推荐位
+
+        $params = $request->validate([
+            'channel_id' => 'required|numeric',
+        ]);
+        try{
+            $channel = Channel::findOrFail($params['channel_id']);
+            $subs = $channel->positions()->with('subs')->get()->each(function($sub)use($channel){
+                $sub->name = $channel->name.'-'.$sub->name;
+            });
+            return response()->ajax($subs);
+        }catch (\Exception $e){
+            return response()->error($e->getMessage());
+        }
     }
 
     public function save(Request $request)
@@ -26,9 +52,12 @@ class PositionController extends Controller
         $id = Arr::get($params, 'id', 0);
         // update logic
         if($id){
-
+            $position = Position::find($id);
+            $data = Arr::only($params, ['name', 'order_factor']);
+            $position->update($data);
+            return response()->ajax($position);
         }else{
-            $data = Arr::only($params, ['name', 'is_channel', 'parent_id']);
+            $data = Arr::only($params, ['name', 'is_channel', 'order_factor', 'parent_id']);
             $position = Position::create($data);
             return response()->ajax($position);
         }
@@ -44,6 +73,31 @@ class PositionController extends Controller
         if($position){
             $subs = $position->subs;
             return response()->ajax($subs);
+        }
+    }
+
+    public function delete(Request $request)
+    {
+        // 检查是否被使用
+    }
+
+    // 所属推荐位的内容
+    public function contents(Request $request)
+    {
+        $params = $request->validate([
+            'id' => 'numeric'
+        ]);
+        $id = $params['id'];
+        if($id){
+            $position = Position::find($id);
+            if($position->is_channel){
+                $subIds = $position->subs->map(function($item){return $item->id;})->toArray();
+                $contents = PositionContent::with('content')->whereIn('position_id', $subIds)->get();
+                return response()->ajax($contents);
+            }else{
+                $contents = PositionContent::with('content')->where('position_id', $id)->get();
+                return response()->ajax($contents);
+            }
         }
     }
 }

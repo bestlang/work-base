@@ -94,6 +94,10 @@
                 Object.assign(this.form, row)
                 this.formVisible = true;
             },
+            viewContents(row){
+                this.$store.commit(this.$types.CMS_CURRENT_POSITION, row)
+                this.$router.push('/cms/position/content');
+            },
             viewSubPositions(row){
                 this.$store.commit(this.$types.CMS_CURRENT_CHANNEL_POSITION, row)
                 this.$router.push('/cms/position/subs')

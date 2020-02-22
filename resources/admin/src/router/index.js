@@ -82,7 +82,7 @@ export default new VueRouter({
                         component: (resolve) => require(["../pages/cms/position/content.vue"], resolve),
                         meta: {
                             can: 'dashboard',
-                            show: true,
+                            show: false,
                             name: '内容管理',
                             font: '&#xe764;'
                         },

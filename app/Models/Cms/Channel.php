@@ -30,4 +30,9 @@ class Channel extends Node
     {
         return $this->belongsTo(Model::class);
     }
+
+    public function positions()
+    {
+        return $this->belongsToMany(Position::class, 'cms_position_channels', 'channel_id', 'position_id');
+    }
 }

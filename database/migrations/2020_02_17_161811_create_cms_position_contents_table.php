@@ -14,7 +14,7 @@ class CreateCmsPositionContentsTable extends Migration
     public function up()
     {
         Schema::create('cms_position_contents', function (Blueprint $table) {
-            $table->bigIncrements('content_id');
+            $table->bigInteger('content_id');
             $table->integer('position_id');
             $table->integer('order_factor')->default(100)->comment('排序字段');
             $table->nullableTimestamps();

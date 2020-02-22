@@ -40,6 +40,8 @@ class ChannelController extends Controller
 
     public function save(Request $request)
     {
+        $channel = null;
+
         $request->validate([
             'parent_id' => 'nullable|numeric',
             'name' => 'required',
@@ -81,6 +83,12 @@ class ChannelController extends Controller
                 }
             }
             $channel = Channel::create($data);
+        }
+
+        if($positions = $request->input('positions')){
+            if(is_array($positions)){
+                $channel->positions()->sync($positions);
+            }
         }
 
         if($parent_id){
@@ -212,6 +220,9 @@ class ChannelController extends Controller
                 }
                 $filedTypeMap[$modelField->field] = $modelField->type;
             }
+        });
+        $channel->positions = $channel->positions()->get()->map(function($position){
+            return $position->id;
         });
         $channel->metas->map(function($meta)use($filedTypeMap){
             $type = Arr::get($filedTypeMap, $meta->field, null);

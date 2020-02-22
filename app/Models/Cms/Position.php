@@ -13,4 +13,9 @@ class Position extends Model
     {
         return $this->hasMany(static::class, 'parent_id', 'id');
     }
+
+    public function channels()
+    {
+        return $this->belongsToMany(Channel::class, 'cms_position_channels', 'position_id', 'channel_id');
+    }
 }

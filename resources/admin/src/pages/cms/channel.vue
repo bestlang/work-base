@@ -141,9 +141,25 @@
                   </div>
                 </el-form-item>
               </template>
+                <el-form-item label="栏目推荐位" v-if="channelPositions.length">
+                    <!--<el-switch-->
+                            <!--v-model="showSwitch"-->
+                            <!--active-color="#13ce66"-->
+                            <!--inactive-color="#cccccc">-->
+                    <!--</el-switch>-->
+                    <el-checkbox-group v-model="channelForm['positions']">
+                        <el-checkbox :label="option.id" v-for="option in channelPositions">{{option.name}}</el-checkbox>
+                        <!--<el-checkbox label="复选框 A"></el-checkbox>-->
+                        <!--<el-checkbox label="复选框 B"></el-checkbox>-->
+                        <!--<el-checkbox label="复选框 C"></el-checkbox>-->
+                        <!--<el-checkbox label="复选框 D"></el-checkbox>-->
+                        <!--<el-checkbox label="复选框 E"></el-checkbox>-->
+                    </el-checkbox-group>
+                </el-form-item>
+
               <el-form-item>
                 <el-button type="primary" @click="doSubmit">确定</el-button>
-                <el-button @click="doCancel">取消</el-button>
+                <!--<el-button @click="doCancel">取消</el-button>-->
               </el-form-item>
             </el-form>
           </div>
@@ -159,6 +175,9 @@
   export default {
     data() {
       return {
+        checkList:[],
+        //showSwitch: true,
+        channelPositions: [],
         customProps: {
           children: 'children',
           label: 'name'
@@ -170,6 +189,7 @@
           model_id: '',
           parent_id: null,
           name: null,
+          positions:[]
         },
         customChannelFields: []
       }
@@ -205,7 +225,8 @@
           parent_id: row.id,
           model_id: '',
           channel_id: null,
-          name: null
+          name: null,
+          positions: []
         });
         this.$store.dispatch(this.$types.CMS_PARENT_CHANNEL, row)
         this.customChannelFields = []
@@ -277,7 +298,7 @@
             }else{
               this.$message({
                 type: 'error',
-                message: res.error
+                message: '添加失败!'+res.error
               });
             }
           });
@@ -317,13 +338,27 @@
             if(whole.metas && whole.metas.length){
               whole.metas.forEach( item => {this.$set(this.channelForm, item.field, item.value)});
             }
+
+            if(whole.positions){
+                this.$set(this.channelForm, 'positions', whole.positions)
+            }
           });
+      },
+      loadChannelPositions(){
+        // /cms/positions
+          this.$http
+              .get("/admin/cms/positions", {params: {is_channel: 1}})
+              .then(res => {
+                  this.channelPositions = res.data
+              });
       }
+
     },
     mounted() {
       this.$store.dispatch('toggleState');
       this.$store.dispatch(this.$types.CMS_CHANNELS);
       this.$store.dispatch(this.$types.CMS_MODELS);
+      this.loadChannelPositions()
     },
     watch:{
       ['channelForm.model_id'](val, oldVal){

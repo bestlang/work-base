@@ -5,7 +5,7 @@
                 <div>
                     <router-link class="l-cursor" to="/cms/position/position" tag="span"><span class="iconfont">&#xe601;</span> 返回</router-link>
                     <el-divider direction="vertical"></el-divider>
-                    <span>内容推荐位</span>
+                    <span>「{{currentChannelPosition.name}}」内容推荐位</span>
                 </div>
                 <el-button type="primary" size="small" @click="handleAdd">新增</el-button>
             </div>
@@ -30,9 +30,8 @@
                             width="300"
                             label="操作">
                         <template slot-scope="scope">
-                            <!--<el-button type="text" @click="editChannel(scope.row)">编辑</el-button>-->
-                            <!--<el-button type="text" @click="addChannel(scope.row)">新增子栏目</el-button>-->
-                            <!--<el-button type="text" @click="deleteChannel(scope.row)">删除</el-button>-->
+                            <el-button type="text" @click="editChannel(scope.row)">编辑</el-button>
+                            <el-button type="text" @click="deleteChannel(scope.row)">删除</el-button>
                         </template>
                     </el-table-column>
                 </el-table>
@@ -75,6 +74,13 @@
             }
         },
         methods:{
+            editChannel(row){
+                Object.assign(this.form, row)
+                this.formVisible = true;
+            },
+            deleteChannel(){
+
+            },
             handleAdd(){
                 Object.assign(this.form, {
                     id: null,
@@ -101,8 +107,12 @@
                         if(res.success) {
                             this.getSubPositions(this.currentChannelPosition)
                             this.formVisible = false;
+                            let message = '添加成功!';
+                            if(this.form.id){
+                                message = '更新成功!';
+                            }
                             this.$message({
-                                message: '添加成功!',
+                                message: message,
                                 type: 'success'
                             });
                         }

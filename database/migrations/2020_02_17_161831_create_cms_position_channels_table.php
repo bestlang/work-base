@@ -14,7 +14,7 @@ class CreateCmsPositionChannelsTable extends Migration
     public function up()
     {
         Schema::create('cms_position_channels', function (Blueprint $table) {
-            $table->bigIncrements('channel_id');
+            $table->bigInteger('channel_id');
             $table->integer('position_id');
             $table->integer('order_factor')->default(100)->comment('排序字段');
             $table->nullableTimestamps();
