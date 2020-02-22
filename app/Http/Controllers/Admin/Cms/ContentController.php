@@ -34,6 +34,7 @@ class ContentController extends Controller
 
     public function save(Request $request)
     {
+        $content = null;
         $params = $request->all();
         $rules = [
             'channel_id' => 'required',
@@ -50,13 +51,13 @@ class ContentController extends Controller
         // 执行更新逻辑
         $id = $request->input('id', 0);
         if($id){
-            $contentModel = Content::find($id);
+            $content = Content::find($id);
 
-            $contentModel->update($arr);
+            $content->update($arr);
 
             // 更新富文本字段
             foreach ($contentFileds as $filed){
-                $contentModel->contents()->updateOrInsert(['content_id' => $id, 'field' => $filed->field], ['value' => Arr::get($params, $filed->field)]);
+                $content->contents()->updateOrInsert(['content_id' => $id, 'field' => $filed->field], ['value' => Arr::get($params, $filed->field)]);
             }
             // 更新自定义字段
             foreach ($metaFileds as $filed){
@@ -70,35 +71,41 @@ class ContentController extends Controller
                         $value = json_encode($value);
                     }
                 }
-                $contentModel->metas()->updateOrInsert(['content_id' => $id, 'field' => $filed->field], ['value' => $value]);
+                $content->metas()->updateOrInsert(['content_id' => $id, 'field' => $filed->field], ['value' => $value]);
             }
-            return response()->ajax();
-        }
-        // 执行插入逻辑
-        $arr['user_id'] = auth()->user()->id;
-        $arr['status'] = 1;
-        $contentModel = Content::create($arr);
+        }else{
+            // 执行插入逻辑
+            $arr['user_id'] = auth()->user()->id;
+            $arr['status'] = 1;
+            $content = Content::create($arr);
 
-        // 保存富文本字段
-        foreach ($contentFileds as $filed){
-            $content = ['field' => $filed->field, 'value' => Arr::get($params, $filed->field)];
-            $contentModel->contents()->create($content);
-        }
-        // 保存自定义字段
-        foreach ($metaFileds as $filed){
-            $value =  Arr::get($params, $filed->field, '');
-            if($value){
-                // 对checkbox特殊处理
-                if($filed->type === 'checkbox'){
-                    $value = implode(',', $value);
-                }
-                if($filed->type === 'multiple-image'){
-                    $value = json_encode($value);
-                }
+            // 保存富文本字段
+            foreach ($contentFileds as $filed){
+                $contentArr = ['field' => $filed->field, 'value' => Arr::get($params, $filed->field)];
+                $content->contents()->create($contentArr);
             }
-            $meta = ['field' => $filed->field, 'value' => $value];
-            $contentModel->metas()->create($meta);
+            // 保存自定义字段
+            foreach ($metaFileds as $filed){
+                $value =  Arr::get($params, $filed->field, '');
+                if($value){
+                    // 对checkbox特殊处理
+                    if($filed->type === 'checkbox'){
+                        $value = implode(',', $value);
+                    }
+                    if($filed->type === 'multiple-image'){
+                        $value = json_encode($value);
+                    }
+                }
+                $meta = ['field' => $filed->field, 'value' => $value];
+                $content->metas()->create($meta);
+            }
         }
+        if($positions = $request->input('positions')){
+            if(is_array($positions)){
+                $content->positions()->sync($positions);
+            }
+        }
+
         return response()->ajax();
     }
 
@@ -143,6 +150,9 @@ class ContentController extends Controller
                 //
                 $filedTypeMap[$modelField->field] = $modelField->type;
             }
+        });
+        $content->positions = $content->positions()->get()->map(function($position){
+            return $position->id;
         });
         /// checkbox特殊处理,数据库中1,2,3取出之后封装成[1,2,3]
         /// 多图特殊处理,以json根式存储

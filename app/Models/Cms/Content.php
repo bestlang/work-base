@@ -29,4 +29,9 @@ class Content extends Model
     {
         return $this->belongsTo(CmsModel::class);
     }
+
+    public function positions()
+    {
+        return $this->belongsToMany(Position::class, 'cms_position_contents', 'content_id', 'position_id');
+    }
 }

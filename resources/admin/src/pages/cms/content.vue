@@ -92,21 +92,9 @@
 
             </template>
             <el-form-item label="编辑推荐位" v-if="contentPositions.length">
-              <el-switch
-                      v-model="showSwitch"
-                      active-color="#13ce66"
-                      inactive-color="#cccccc">
-              </el-switch>
-              <div v-if="showSwitch">
-                <el-checkbox-group v-model="checkList">
+                <el-checkbox-group  v-model="form['positions']">
                   <el-checkbox :label="option.id" v-for="option in contentPositions">{{option.name}}</el-checkbox>
-                  <!--<el-checkbox label="复选框 A"></el-checkbox>-->
-                  <!--<el-checkbox label="复选框 B"></el-checkbox>-->
-                  <!--<el-checkbox label="复选框 C"></el-checkbox>-->
-                  <!--<el-checkbox label="复选框 D"></el-checkbox>-->
-                  <!--<el-checkbox label="复选框 E"></el-checkbox>-->
                 </el-checkbox-group>
-              </div>
             </el-form-item>
             <el-form-item>
               <el-button type="primary" size="small" @click="saveContent">提交</el-button>
@@ -132,7 +120,9 @@
         contents: [],
         showForm: false,
         formTitle: '添加文章',
-        form:{},
+        form:{
+            positions:[]
+        },
         contentPositions: []
       }
     },
@@ -244,6 +234,7 @@
                   }
                 }
             }
+            this.$set(this.form, 'positions', [])
           });
 
       },
@@ -283,6 +274,9 @@
                 });
             }
 
+            if(content.positions){
+                this.$set(this.form, 'positions', content.positions)
+            }
             this.showSwitch = false
 
           });
@@ -291,7 +285,6 @@
           this.$http
               .get("/admin/cms/content/positions", {params: {channel_id: this.currentChannel.id}})
               .then(res => {
-                  // alert(JSON.stringify(res.data))
                   this.contentPositions = res.data
               });
       }

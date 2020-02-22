@@ -18,4 +18,9 @@ class Position extends Model
     {
         return $this->belongsToMany(Channel::class, 'cms_position_channels', 'position_id', 'channel_id');
     }
+
+    public function contents()
+    {
+        return $this->belongsToMany(Content::class, 'cms_position_contents', 'position_id', 'content_id');
+    }
 }

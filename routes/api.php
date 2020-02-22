@@ -156,7 +156,7 @@ Route::group(['middleware' => 'auth.jwt', 'prefix'=>'admin', 'namespace'=>'Admin
     Route::group(['namespace'=>'Cms'], function(){
         Route::any('/cms/channel/tree', 'ChannelController@tree');
         Route::any('/cms/channel/add', 'ChannelController@add');
-        Route::any('/cms/channel/update', 'ChannelController@update');
+//        Route::any('/cms/channel/update', 'ChannelController@update');
         Route::any('/cms/channel/save', 'ChannelController@save');
         Route::any('/cms/channel/delete', 'ChannelController@delete');
         Route::any('/cms/channel/children', 'ChannelController@children');

@@ -31,11 +31,18 @@ class PositionController extends Controller
             'channel_id' => 'required|numeric',
         ]);
         try{
+            $showPositions = [];
             $channel = Channel::findOrFail($params['channel_id']);
-            $subs = $channel->positions()->with('subs')->get()->each(function($sub)use($channel){
-                $sub->name = $channel->name.'-'.$sub->name;
+            $positions = $channel->positions;
+            $positions->each(function($position)use($channel, &$showPositions){
+                $position->subs->each(function($sub)use($position, $channel, &$showPositions){
+                    $sub->name = $position->name.'-'.$channel->name.'-'.$sub->name;
+                    array_push($showPositions, $sub);
+                });
+
             });
-            return response()->ajax($subs);
+            $contentPositions = Position::where('is_channel', 0)->where('parent_id', 0)->get();
+            return response()->ajax(collect($showPositions)->merge($contentPositions));
         }catch (\Exception $e){
             return response()->error($e->getMessage());
         }
