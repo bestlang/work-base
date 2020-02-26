@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin\Cms;
 use App\Models\Cms\Channel;
 use App\Models\Cms\Position;
 use App\Models\Cms\PositionContent;
+use function foo\func;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Arr;
@@ -99,11 +100,19 @@ class PositionController extends Controller
             $position = Position::find($id);
             if($position->is_channel){
                 $subIds = $position->subs->map(function($item){return $item->id;})->toArray();
-                $contents = PositionContent::with('content')->whereIn('position_id', $subIds)->get();
-                return response()->ajax($contents);
+                $contents = Position::whereIn('id', $subIds)->with('contents')->get()->map(function($item){
+                    return $item->contents;
+                });
+                return response()->ajax(array_values(Arr::sort(Arr::flatten($contents), function($item){
+                    return $item->pivot->order_factor;
+                })));
             }else{
-                $contents = PositionContent::with('content')->where('position_id', $id)->get();
-                return response()->ajax($contents);
+                $contents = Position::where('id', $id)->with('contents')->get()->map(function($item){
+                    return $item->contents;
+                });
+                return response()->ajax(array_values(Arr::sort(Arr::flatten($contents), function($item){
+                    return $item->pivot->order_factor;
+                })));
             }
         }
     }

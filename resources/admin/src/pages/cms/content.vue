@@ -30,7 +30,8 @@
               style="width: 100%">
               <el-table-column
                 prop="id"
-                label="ID">
+                label="ID"
+                width="80">
               </el-table-column>
               <el-table-column
                 prop="title"
@@ -158,13 +159,14 @@
       goback(){
         this.showForm = false;
       },
-      editContent(row){
+      async editContent(row){
         this.formTitle = '编辑文章';
         this.$store.dispatch(this.$types.CMS_CURRENT_CHANNEL, row.channel);
         this.$store.dispatch(this.$types.CMS_PARENT_CHANNEL, row.channel)
         // this.loadModel(row.channel.model_id)
         this.showForm = true;
-        this.loadWholeContent(row)
+        await this.loadContentPositions(row.channel_id)
+        await this.loadWholeContent(row)
       },
       deleteContent(row){
         this.$confirm('确定删除文章?', '提示', {
@@ -203,12 +205,12 @@
             });
       },
 
-      handleNodeClick(node, ...params){
+      async handleNodeClick(node, ...params){
         this.showForm = false;
         let channel = node[0]
         this.$store.dispatch(this.$types.CMS_CURRENT_CHANNEL, channel);
         this.$store.dispatch(this.$types.CMS_PARENT_CHANNEL, channel)
-        this.loadContentPositions();
+        await this.loadContentPositions()
       },
       addContent(){
         this.showForm = true;
@@ -249,10 +251,10 @@
             this.contents = res.data;
           });
       },
-      loadWholeContent({id}){
-        this.$http
-          .get("/admin/cms/content/whole", {params: {id}})
-          .then(res => {
+      async loadWholeContent({id}){
+        let res = await this.$http
+          .get("/admin/cms/content/whole", {params: {id}});
+
             let content = res.data;
             let currentModel = res.data.model;
             currentModel.fields = currentModel.fields.filter(item => { return !item.is_channel })
@@ -279,14 +281,14 @@
             }
             this.showSwitch = false
 
-          });
       },
-      loadContentPositions(){
-          this.$http
-              .get("/admin/cms/content/positions", {params: {channel_id: this.currentChannel.id}})
-              .then(res => {
-                  this.contentPositions = res.data
-              });
+      async loadContentPositions(channel_id=0){
+          if(!channel_id){
+              channel_id = this.currentChannel.id;
+          }
+          let res = await this.$http
+              .get("/admin/cms/content/positions", {params: {channel_id}})
+          this.contentPositions = res.data
       }
     },
     mounted() {

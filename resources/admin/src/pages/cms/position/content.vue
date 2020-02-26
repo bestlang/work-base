@@ -5,7 +5,7 @@
                 <div>
                     <router-link class="l-cursor" to="/cms/position/position" tag="span"><span class="iconfont">&#xe601;</span> 返回</router-link>
                     <el-divider direction="vertical"></el-divider>
-                    <span>「{{currentPosition.name}}」内容管理</span>
+                    <span>推荐位「{{currentPosition.name}}」下属内容</span>
                 </div>
                 <!--<el-button type="primary" size="small" @click="handleAdd">新增</el-button>-->
             </div>
@@ -18,17 +18,14 @@
                             label="ID"
                             width="180">
                     </el-table-column>
-                    <!--<el-table-column-->
-                            <!--prop="name"-->
-                            <!--label="名称">-->
-                    <!--</el-table-column>-->
-                    <!--<el-table-column-->
-                            <!--label="分类">-->
-                        <!--<template slot-scope="scope">-->
-                            <!--<span v-if="scope.row.is_channel" class="l-channel-color">栏目</span>-->
-                            <!--<span v-else>内容</span>-->
-                        <!--</template>-->
-                    <!--</el-table-column>-->
+                    <el-table-column
+                            prop="title"
+                            label="标题">
+                    </el-table-column>
+                    <el-table-column
+                            prop="pivot.order_factor"
+                            label="排序值">
+                    </el-table-column>
                     <!--<el-table-column-->
                             <!--label="操作">-->
                         <!--<template slot-scope="scope">-->

@@ -17,14 +17,15 @@
                     <el-table-column
                             prop="id"
                             label="ID"
-                            width="180">
+                            width="80">
                     </el-table-column>
                     <el-table-column
                             prop="name"
                             label="名称">
                     </el-table-column>
                     <el-table-column
-                            label="分类">
+                            label="分类"
+                            width="80">
                         <template slot-scope="scope">
                             <span v-if="scope.row.is_channel" class="l-channel-color">栏目</span>
                             <span v-else>内容</span>

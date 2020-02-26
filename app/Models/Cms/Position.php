@@ -16,11 +16,11 @@ class Position extends Model
 
     public function channels()
     {
-        return $this->belongsToMany(Channel::class, 'cms_position_channels', 'position_id', 'channel_id');
+        return $this->belongsToMany(Channel::class, 'cms_position_channels', 'position_id', 'channel_id')->withPivot(['order_factor']);
     }
 
     public function contents()
     {
-        return $this->belongsToMany(Content::class, 'cms_position_contents', 'position_id', 'content_id');
+        return $this->belongsToMany(Content::class, 'cms_position_contents', 'position_id', 'content_id')->withPivot(['order_factor']);
     }
 }

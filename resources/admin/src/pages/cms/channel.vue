@@ -75,14 +75,13 @@
                 <el-table-column
                   prop="id"
                   label="ID"
-                  width="100">
+                  width="80">
                 </el-table-column>
                 <el-table-column
                   prop="name"
                   label="栏目名">
                 </el-table-column>
                 <el-table-column
-                  width="300"
                   label="操作">
                   <template slot-scope="scope">
                     <el-button type="text" @click="editChannel(scope.row)">编辑</el-button>

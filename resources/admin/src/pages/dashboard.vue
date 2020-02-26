@@ -1,12 +1,28 @@
 <template>
   <div>
-    <p>welcome,dashboard.</p>
-<!--    <el-button @click="getContent">获取内容</el-button>-->
-<!--    <p></p>-->
-<!--    <p></p>-->
-<!--    <vue-ueditor-wrap v-model="content" :config="ueditorConfig"></vue-ueditor-wrap>-->
-<!--    <p></p>-->
-<!--    <p></p>-->
+    <!--<el-alert-->
+            <!--title="提个醒"-->
+            <!--type="warning"-->
+            <!--style="margin-bottom: 20px;">-->
+      <!--<div slot="default">-->
+            <!--<p>无情残忍</p>-->
+            <!--<p>无情残忍</p>-->
+            <!--<p>无情残忍</p>-->
+      <!--</div>-->
+    <!--</el-alert>-->
+    <el-card class="row-20" shadow="hover">
+      <div slot="header" class="clearfix">
+        <span>活动效果</span>
+      </div>
+      <div>
+        <el-row :gutter="20">
+          <el-col :span="6"><div class="grid-content" style="background: #4fa8ed">1</div></el-col>
+          <el-col :span="6"><div class="grid-content" style="background: #ad97da">2</div></el-col>
+          <el-col :span="6"><div class="grid-content" style="background: #3fc0c2">3</div></el-col>
+          <el-col :span="6"><div class="grid-content" style="background: #f6d33a">4</div></el-col>
+        </el-row>
+      </div>
+    </el-card>
   </div>
 
 </template>
@@ -41,3 +57,10 @@
     created() {}
   }
 </script>
+<style lang="less" scoped>
+  .grid-content{
+    color: #fff;
+    border-radius: 6px;
+    padding: 20px 30px;
+  }
+</style>
