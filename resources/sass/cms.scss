@@ -38,7 +38,7 @@
     line-height: 30px;
     background: rgba(255,255, 255, .7);
     img {
-      width: 100%!important;
+      max-width: 100%!important;
     }
     &.l-fixed-height{
       height: calc(100vh - 173px);

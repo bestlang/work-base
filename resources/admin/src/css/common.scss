@@ -6,3 +6,120 @@
   outline: none;
   list-style: none;
 }
+
+.iconfont{
+  font-family: iconfont;
+  font-style: normal;
+}
+
+.el-button{
+  padding: 10px 20px;
+}
+
+.unselectable {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.l-flex-row{
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+}
+
+.el-submenu__title, .el-menu-item{
+  font-size: 15px;
+}
+
+.router-link-active{
+  cursor: pointer;
+}
+
+.el-table .category-row {
+  background: oldlace;
+}
+
+.el-table .content-row {
+  background: #f0f9eb;
+}
+
+.el-tabs__item {
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.l-block{
+  width: 100%;
+  overflow: hidden;
+  background: #FFF;
+  overflow: hidden;
+  color: #303133;
+  box-sizing: border-box;
+
+  .l-block-header{
+    padding: 0 0 10px;
+    border-bottom: 1px solid #EBEEF5;
+    box-sizing: border-box;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    box-sizing: border-box;
+    line-height: 34px;
+  }
+  .l-block-body{
+    padding: 20px 0 20px 0;
+  }
+  .l-block-bottom{
+    /**/
+  }
+}
+
+.top-buttons{
+  margin-bottom: 20px;
+}
+
+.text-center{
+  text-align: center;
+}
+
+.l-inline-btn{
+  display: inline-block;
+  min-width: 1px;
+  padding: 0!important;
+}
+
+.l-delimiter{
+  height: 18px;
+}
+
+.l-mb-22{
+  margin-bottom: 22px;
+}
+
+.l-w-50{
+  width: 50px;
+}
+
+.l-w-60{
+  width: 60px;
+}
+
+/*修复.el-form-item__content{line-height: 40px;}导致编辑器按钮高度过高*/
+.edui-editor-toolbarbox{line-height: 20px;}
+
+.l-go-back{
+  display: inline-block;
+  cursor: pointer;
+}
+
+.l-channel-color{
+  color: orange;
+}
+
+.l-cursor{
+  cursor: pointer;
+}

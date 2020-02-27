@@ -284,7 +284,13 @@
       },
       async loadContentPositions(channel_id=0){
           if(!channel_id){
-              channel_id = this.currentChannel.id;
+              if(this.currentChannel && this.currentChannel.id){
+                  channel_id = this.currentChannel.id;
+              }
+          }
+          // 没有选定的栏目, 不进行[可选推荐位]的加载
+          if(!channel_id){
+              return;
           }
           let res = await this.$http
               .get("/admin/cms/content/positions", {params: {channel_id}})

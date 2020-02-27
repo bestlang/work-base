@@ -14,6 +14,8 @@
         <div class="l-row">
             <div class="col-md-12 l-block-content">
                 @foreach(position('HOME_INDEX') as $content)
+                    {{$content}}
+                    <div><img src="{{$content->thumb}}" alt="" style="width: 100px;height: 100px;"></div>
                     <p><a href="/cms/content/{{$content->id}}">{{$content->title}}</a></p>
                 @endforeach
             </div>

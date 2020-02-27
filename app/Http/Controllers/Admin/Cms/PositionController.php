@@ -12,11 +12,13 @@ use Arr;
 
 class PositionController extends Controller
 {
+    // 获取一级推荐位(排除子推荐位)
     public function index(Request $request)
     {
         $is_channel = $request->input('is_channel', -1);
         $is_channel = intval($is_channel);
         $query = Position::query();
+        $query->where('parent_id', 0);
         if($is_channel !== -1){
             $query->where('is_channel', $is_channel);
         }
@@ -101,18 +103,30 @@ class PositionController extends Controller
             if($position->is_channel){
                 $subIds = $position->subs->map(function($item){return $item->id;})->toArray();
                 $contents = Position::whereIn('id', $subIds)->with('contents')->get()->map(function($item){
+                    $item->contents->map(function ($content)use($item){
+                        $content->position = ['id' => $item->id, 'name' => $item->name];
+                    });
                     return $item->contents;
                 });
-                return response()->ajax(array_values(Arr::sort(Arr::flatten($contents), function($item){
+                $contents = Arr::flatten($contents);
+                $contents = Arr::sort($contents, function($item){
                     return $item->pivot->order_factor;
-                })));
+                });
+                $contents = array_values($contents);
+                return response()->ajax($contents);
             }else{
                 $contents = Position::where('id', $id)->with('contents')->get()->map(function($item){
+                    $item->contents->map(function ($content)use($item){
+                        $content->position = ['id' => $item->id, 'name' => $item->name];
+                    });
                     return $item->contents;
                 });
-                return response()->ajax(array_values(Arr::sort(Arr::flatten($contents), function($item){
+                $contents = Arr::flatten($contents);
+                $contents = Arr::sort($contents, function($item){
                     return $item->pivot->order_factor;
-                })));
+                });
+                $contents = array_values($contents);
+                return response()->ajax($contents);
             }
         }
     }

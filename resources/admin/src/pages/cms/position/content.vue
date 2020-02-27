@@ -23,6 +23,10 @@
                             label="标题">
                     </el-table-column>
                     <el-table-column
+                            prop="position.name"
+                            label="推荐位">
+                    </el-table-column>
+                    <el-table-column
                             prop="pivot.order_factor"
                             label="排序值">
                     </el-table-column>
