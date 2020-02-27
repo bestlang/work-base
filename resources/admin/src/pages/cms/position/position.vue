@@ -24,7 +24,7 @@
                             label="名称">
                     </el-table-column>
                     <el-table-column
-                            label="分类"
+                            label="类型"
                             width="80">
                         <template slot-scope="scope">
                             <span v-if="scope.row.is_channel" class="l-channel-color">栏目</span>

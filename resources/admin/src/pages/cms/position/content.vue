@@ -23,6 +23,10 @@
                             label="标题">
                     </el-table-column>
                     <el-table-column
+                            prop="channel.name"
+                            label="栏目">
+                    </el-table-column>
+                    <el-table-column
                             prop="position.name"
                             label="推荐位">
                     </el-table-column>

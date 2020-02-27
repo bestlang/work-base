@@ -101,16 +101,16 @@ class PositionController extends Controller
         if($id){
             $position = Position::find($id);
             if($position->is_channel){
-                $subIds = $position->subs->map(function($item){return $item->id;})->toArray();
-                $contents = Position::whereIn('id', $subIds)->with('contents')->get()->map(function($item){
-                    $item->contents->map(function ($content)use($item){
-                        $content->position = ['id' => $item->id, 'name' => $item->name];
+                $subIds = $position->subs->map(function($sub){return $sub->id;})->toArray();
+                $contents = Position::whereIn('id', $subIds)->with('contents')->get()->map(function($position){
+                    $position->contents->map(function ($content)use($position){
+                        $content->position = ['id' => $position->id, 'name' => $position->name];
                     });
-                    return $item->contents;
+                    return $position->contents;
                 });
                 $contents = Arr::flatten($contents);
-                $contents = Arr::sort($contents, function($item){
-                    return $item->pivot->order_factor;
+                $contents = Arr::sort($contents, function($content){
+                    return $content->pivot->order_factor;
                 });
                 $contents = array_values($contents);
                 return response()->ajax($contents);
@@ -122,8 +122,8 @@ class PositionController extends Controller
                     return $item->contents;
                 });
                 $contents = Arr::flatten($contents);
-                $contents = Arr::sort($contents, function($item){
-                    return $item->pivot->order_factor;
+                $contents = Arr::sort($contents, function($content){
+                    return $content->pivot->order_factor;
                 });
                 $contents = array_values($contents);
                 return response()->ajax($contents);

@@ -21,6 +21,6 @@ class Position extends Model
 
     public function contents()
     {
-        return $this->belongsToMany(Content::class, 'cms_position_contents', 'position_id', 'content_id')->withPivot(['order_factor']);
+        return $this->belongsToMany(Content::class, 'cms_position_contents', 'position_id', 'content_id')->withPivot(['order_factor'])->with('channel');
     }
 }

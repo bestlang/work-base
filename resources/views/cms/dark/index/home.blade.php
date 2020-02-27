@@ -10,13 +10,34 @@
 <body>
 @include('cms.dark.common.head')
 <div class="l-content">
-    <div class="l-content-inner l-fixed-height">
+    <div class="l-content-inner l-min-height">
         <div class="l-row">
             <div class="col-md-12 l-block-content">
-                @foreach(position('HOME_INDEX') as $content)
-                    {{$content}}
-                    <div><img src="{{$content->thumb}}" alt="" style="width: 100px;height: 100px;"></div>
-                    <p><a href="/cms/content/{{$content->id}}">{{$content->title}}</a></p>
+                <div class="col-md-6 l-position-block">
+                    <div class="l-position-title">热点文章推荐</div>
+                    @foreach(position('热点文章推荐') as $content)
+                    @if($content->thumb)
+                        <div><img src="{{$content->thumb}}" alt="" style="width: 100px;height: 100px;"></div>
+                    @endif
+                        <p><a target="_blank" href="/cms/content/{{$content->id}}">{{$content->title}}</a></p>
+                    @endforeach
+                </div>
+            </div>
+            <p></p>
+            <p></p>
+            <p></p>
+            <p></p>
+            <div class="col-md-12">
+                @foreach(channel_position('首页栏目推荐') as $channel)
+                    @if(count($channel->contents)>0)
+                        <div class="l-position-block">
+                            <div class="l-position-title">热点文章推荐❤{{$channel->name}}</div>
+                            @foreach($channel->contents as $content)
+                                <p>{{$content->title}}</p>
+                            @endforeach
+                        </div>
+                        <p></p>
+                    @endif
                 @endforeach
             </div>
         </div>
