@@ -34,4 +34,9 @@ class Content extends Model
     {
         return $this->belongsToMany(Position::class, 'cms_position_contents', 'content_id', 'position_id');
     }
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
 }
