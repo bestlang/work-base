@@ -2,6 +2,7 @@
 
 namespace App\Models\Cms;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
 
 class Comment extends Model
@@ -11,5 +12,10 @@ class Comment extends Model
     public function content()
     {
         return $this->belongsTo(Content::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class)->select('id', 'name');
     }
 }

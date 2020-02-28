@@ -3,7 +3,7 @@
 namespace App\Models\Cms;
 
 use Baum\Node;
-use App\Models\Cms\ChannelContent;
+use App\Models\Cms\Content;
 use App\Models\Cms\ChannelMeta;
 
 class Channel extends Node
@@ -18,7 +18,7 @@ class Channel extends Node
 
     public function contents()
     {
-        return $this->hasMany(ChannelContent::class);
+        return $this->hasMany(Content::class);
     }
 
     public function metas()

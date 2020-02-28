@@ -10,12 +10,15 @@
 <body>
 @include('cms.dark.common.head')
 <div class="l-content">
-    <div class="l-content-inner">
+    <div class="l-content-inner l-min-height">
         <div class="l-row">
             <div class="col-md-12 l-block-content">
-                <h1 class="l-content-title">{{$content->title}}</h1>
-                <div>{!!  $content->contents[0]['value'] !!}</div>
+                <h1 class="l-content-title">{{$channel->name}}</h1>
+                @foreach($channel->contents as $content)
+                    <p><a target="_self" href="/cms/content/{{$content->id}}">{{$content->title}}</a></p>
+                @endforeach
             </div>
+
         </div>
     </div>
 </div>

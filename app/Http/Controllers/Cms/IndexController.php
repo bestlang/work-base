@@ -13,11 +13,11 @@ class IndexController extends Controller
         return view('cms.'.config('cms.theme').'.index.index');
     }
 
-    public function home()
+    public function cms()
     {
         // 获取首页推荐的栏目
         // 取得栏目里面的文章
-        return view('cms.'.config('cms.theme').'.index.home');
+        return view('cms.'.config('cms.theme').'.index.cms');
     }
 
     public function about()

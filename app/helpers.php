@@ -30,6 +30,9 @@ if(!function_exists('channel_position')){
         $groupContents = [];
         $positionContents = Arr::flatten($positionContents);
         foreach ($positionContents as $content){
+            foreach ($content->metas as $meta){
+                $content->{$meta->field} = $meta->value;
+            }
             $groupContents[$content->channel_id][] = $content;
         }
         //return $groupContents;//array_values($groupContents);
