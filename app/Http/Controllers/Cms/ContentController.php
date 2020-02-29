@@ -15,6 +15,7 @@ class ContentController extends Controller
         $comments = $content->comments;
 //        print_r($comments->toArray());
         //在这里判断渲染哪个模板
+//        print_r(json_encode($content, JSON_UNESCAPED_UNICODE));return;
         return view('cms.'.config('cms.theme').'.content.content', compact(['content', 'comments']));
     }
 }
