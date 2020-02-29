@@ -13,6 +13,13 @@
       0 => 'Baum\\BaumServiceProvider',
     ),
   ),
+  'bestlang/laravel-ueditor' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Overtrue\\LaravelUEditor\\UEditorServiceProvider',
+    ),
+  ),
   'beyondcode/laravel-dump-server' => 
   array (
     'providers' => 
@@ -60,13 +67,6 @@
     'providers' => 
     array (
       0 => 'NunoMaduro\\Collision\\Adapters\\Laravel\\CollisionServiceProvider',
-    ),
-  ),
-  'overtrue/laravel-ueditor' => 
-  array (
-    'providers' => 
-    array (
-      0 => 'Overtrue\\LaravelUEditor\\UEditorServiceProvider',
     ),
   ),
   'overtrue/laravel-wechat' => 
