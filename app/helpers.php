@@ -7,7 +7,7 @@ if(!function_exists('metas_get')){
         $metas = $content->metas;
         foreach ($metas as $meta){
             if($meta->field == $field){
-                return $meta;
+                return $meta->value;
             }
         }
         return false;

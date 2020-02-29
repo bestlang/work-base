@@ -18,7 +18,7 @@
                     @foreach(position('热点文章推荐') as $content)
                         <div style="display: flex;flex-flow: row nowrap;">
                             @if($thumb = metas_get($content, 'thumb'))
-                                <div><img src="{{$thumb->value}}" alt="" style="width: 100px;height: 100px;"></div>
+                                <div><img src="{{$thumb}}" alt="" style="width: 100px;height: 100px;"></div>
                             @endif
                             <div style="display: flex;flex-flow: column;">
                                 <p><a target="_self" href="/cms/content/{{$content->id}}">{{$content->title}}</a></p>
@@ -36,7 +36,7 @@
                 @foreach(position('第一个推荐位') as $content)
                     <div style="display: flex;flex-flow: row nowrap;">
                         @if($thumb = metas_get($content, 'thumb'))
-                            <div><img src="{{$thumb->value}}" alt="" style="width: 100px;height: 100px;"></div>
+                            <div><img src="{{$thumb}}" alt="" style="width: 100px;height: 100px;"></div>
                         @endif
                         <div style="display: flex;flex-flow: column;">
                             <p><a target="_self" href="/cms/content/{{$content->id}}">{{$content->title}}</a></p>

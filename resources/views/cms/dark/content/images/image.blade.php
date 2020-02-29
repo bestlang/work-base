@@ -10,11 +10,16 @@
 <body>
 @include('cms.dark.common.head')
 <div class="l-content">
-    <div class="l-content-inner">
+    <div class="l-content-inner l-min-height">
         <div class="l-row">
             <div class="col-md-12 l-block-content">
                 <h1 class="l-content-title">{{$content->title}}</h1>
-                <div>{!!  contents_get($content, 'content') !!}</div>
+                @if($album = metas_get($content, 'album'))
+                    @foreach($album as $ab)
+                        <img src="{{$ab->url}}" alt="">
+                    @endforeach
+                @endif
+                {{--<div>{!!  contents_get($content, 'content') !!}</div>--}}
             </div>
             <div><h2>评论区:</h2></div>
             <div>
