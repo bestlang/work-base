@@ -39,7 +39,7 @@ export default {
             loginFont: "登录",
             params: {
                 mobile: '18625072568',
-                password: "111111"
+                password: ""
 //                mobile: '',
 //                password: ""
             }

@@ -22,7 +22,7 @@
                         <a class="nav-link" href="/cms/cms">前端演示</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="http://127.0.0.1:8080/admin">后端演示</a>
+                        <a class="nav-link" href="/admin">后端演示</a>
                     </li>
                     {{--<li class="nav-item">--}}
                         {{--<a class="nav-link" href="#">LARASHOP</a>--}}
