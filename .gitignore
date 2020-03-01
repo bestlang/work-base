@@ -8,10 +8,5 @@ storage/framework/cache/data
 
 # Laravel 5 & Lumen specific
 public/storage
-storage/*.key
 .env
-Homestead.yaml
-Homestead.json
-/.vagrant
 /resources/admin/dist/
-
