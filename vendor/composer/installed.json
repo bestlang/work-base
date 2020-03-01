@@ -254,12 +254,12 @@
         "source": {
             "type": "git",
             "url": "https://github.com/bestlang/laravel-ueditor.git",
-            "reference": "a4081efbccce8dddd656d1bd3e489e505605999d"
+            "reference": "443057bdb9aee4bd35c7ba8290f0ab5600764291"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/bestlang/laravel-ueditor/zipball/a4081efbccce8dddd656d1bd3e489e505605999d",
-            "reference": "a4081efbccce8dddd656d1bd3e489e505605999d",
+            "url": "https://api.github.com/repos/bestlang/laravel-ueditor/zipball/443057bdb9aee4bd35c7ba8290f0ab5600764291",
+            "reference": "443057bdb9aee4bd35c7ba8290f0ab5600764291",
             "shasum": "",
             "mirrors": [
                 {
@@ -274,7 +274,7 @@
         "suggest": {
             "overtrue/laravel-filesystem-qiniu": "如果你想要使用七牛云存储，也许你需要安装它哦~"
         },
-        "time": "2020-02-29T15:22:36+00:00",
+        "time": "2020-03-01T07:10:08+00:00",
         "type": "library",
         "extra": {
             "laravel": {

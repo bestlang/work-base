@@ -100,6 +100,16 @@ export default new VueRouter({
                 ]
             },
             {
+              path: "/cms/comment",
+              component: (resolve) => require(["../pages/cms/comment.vue"], resolve),
+              meta: {
+                  can: 'cms list contents',
+                  show: true,
+                  name: '评论管理',
+                  font: '&#xe764;'
+              }
+            },
+            {
               path: "/cms/setting",
               component: (resolve) => require(["../components/via.vue"], resolve),
               meta: {
