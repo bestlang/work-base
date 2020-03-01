@@ -9,4 +9,3 @@ storage/framework/cache/data
 # Laravel 5 & Lumen specific
 public/storage
 .env
-/resources/admin/dist/
