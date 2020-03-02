@@ -18,8 +18,7 @@ function showMessage(value) {
  */
 axios.interceptors.request.use(config => {//在此处统一配置公共参数
 
-
-    config.baseURL = custom.SITE_URL+'/api/'
+    config.baseURL = app.SITE_URL + '/api/'
     config.withCredentials = true // 允许携带token ,这个是解决跨域产生的相关问题
     config.timeout = 6000
     let accessToken = localStorage.getItem('accessToken')

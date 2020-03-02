@@ -28,6 +28,7 @@ Vue.use(Vuex)
 Vue.use(Utils)
 Vue.prototype.$http = fetch
 Vue.prototype.$types = types
+Vue.prototype.SITE_URL = process.env.SITE_URL
 
 export default new Vue({
   el: "#app",
