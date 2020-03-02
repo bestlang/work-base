@@ -17,7 +17,7 @@
     </div>
 </template>
 <script>
-  import custom from '../../../config/custom'
+  //import custom from '../../../config/custom'
 export default {
   computed: {
       user(){

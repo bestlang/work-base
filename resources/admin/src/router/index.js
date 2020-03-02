@@ -4,7 +4,7 @@ import backend from "@/components/backend"
 Vue.use(VueRouter)
 
 export default new VueRouter({
-  mode: "history",// "hash" | "history" | "abstract"
+  mode: "hash",// "hash" | "history" | "abstract"
   base: "/admin/",
   saveScrollPosition: "true",
   routes: [

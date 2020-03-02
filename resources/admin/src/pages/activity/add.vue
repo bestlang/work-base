@@ -90,12 +90,12 @@
     </el-row>
 </template>
 <script>
-    import custom from '@/../config/custom'
+    //import custom from '@/../config/custom'
 
     export default {
         data() {
             return {
-                uploadUrl: custom.SITE_URL + '/api/admin/file/upload',
+                uploadUrl: this.SITE_URL + '/api/admin/file/upload',
                 headers: {
                     'Authorization': 'Bearer ' + localStorage.getItem('accessToken')
                 },

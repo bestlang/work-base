@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { Message } from 'element-ui'
-import custom from '@/../config/custom'
+//import custom from '@/../config/custom'
 import app from '../main.js'
 
 function showMessage(value) {
