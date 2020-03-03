@@ -22,7 +22,7 @@
                         <a class="nav-link" href="/cms/cms">前端演示</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/admin/index.html">后端演示</a>
+                        <a class="nav-link" href="/admin/#/">后端演示</a>
                     </li>
                     {{--<li class="nav-item">--}}
                         {{--<a class="nav-link" href="#">LARASHOP</a>--}}
