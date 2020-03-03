@@ -4,7 +4,7 @@ import { Message } from 'element-ui'
 import app from '../main.js'
 
 function showMessage(value) {
-    //this.$message.close();
+    //app.$message.close();
     return Message({
         showClose: true,
         message: value,
@@ -64,7 +64,7 @@ axios.interceptors.response.use(response => {
     // 少量非200状态码会进入这里
     error => {
         if(app.$route.path != app.ADMIN_URI + '/login'){
-            this.$message.close();
+            app.$message.close();
             localStorage.setItem('accessToken', '');
             showMessage('请重新登录');
             app.$router.push( app.ADMIN_URI + '/login');
