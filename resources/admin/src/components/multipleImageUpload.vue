@@ -39,7 +39,9 @@
             },
             uploadSuccess(response, file, fileList){
                 const item = {description: '', url: response.data.file}
+                console.log(JSON.stringify(item));
                 this.vals.push(item);
+                console.log(JSON.stringify(this.vals));
                 this.$emit('input', this.vals)
             }
         },

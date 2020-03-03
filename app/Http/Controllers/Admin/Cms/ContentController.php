@@ -161,9 +161,9 @@ class ContentController extends Controller
             if($type == 'checkbox' && $meta->value){
                 $meta->value = array_values(array_filter(explode(',', $meta->value)));
             }
-            if($type == 'multiple-image' && $meta->value){
-                $meta->value = json_decode($meta->value);
-            }
+//            if($type == 'multiple-image' && $meta->value){
+//                $meta->value = json_decode($meta->value);
+//            }
         });
         ///
         return response()->ajax($content);
