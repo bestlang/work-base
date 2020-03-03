@@ -4,7 +4,7 @@
             <div style="width: 100vw; height: 100vh;">
             <el-row class="login-inner-box">
             <el-col class="login-form" :span="8" :offset="8">
-                <div style="text-align: center;font-size: 36px;padding-bottom: 40px;">路章's博客</div>
+                <div style="text-align: center;font-size: 36px;padding-bottom: 40px;">{{appName}}</div>
                 <div class="val user-after">
                     <input type="text" autocomplete="off" placeholder="mobile"
                            v-model="params.mobile"
@@ -46,6 +46,9 @@ export default {
         }
     },
     computed:{
+        appName(){
+            return this.$store.getters.appName
+        },
         accessToken(){
             return this.$store.getters.accessToken
         }

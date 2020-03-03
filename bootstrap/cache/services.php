@@ -45,7 +45,8 @@
     41 => 'App\\Providers\\ResponseServiceProvider',
     42 => 'Spatie\\Permission\\PermissionServiceProvider',
     43 => 'Jacobcyl\\AliOSS\\AliOssServiceProvider',
-    44 => 'Overtrue\\LaravelUEditor\\UEditorServiceProvider',
+    44 => 'Overtrue\\LaravelWeChat\\ServiceProvider',
+    45 => 'Overtrue\\LaravelUEditor\\UEditorServiceProvider',
   ),
   'eager' => 
   array (
@@ -78,7 +79,8 @@
     26 => 'App\\Providers\\ResponseServiceProvider',
     27 => 'Spatie\\Permission\\PermissionServiceProvider',
     28 => 'Jacobcyl\\AliOSS\\AliOssServiceProvider',
-    29 => 'Overtrue\\LaravelUEditor\\UEditorServiceProvider',
+    29 => 'Overtrue\\LaravelWeChat\\ServiceProvider',
+    30 => 'Overtrue\\LaravelUEditor\\UEditorServiceProvider',
   ),
   'deferred' => 
   array (

@@ -8,8 +8,8 @@
 
 <template>
     <div>
-        <div class="ls-top-logo" v-show="!isCollapse">路章の博客</div>
-        <div class="ls-top-logo-narrow" v-show="isCollapse">路</div>
+        <div class="ls-top-logo" v-show="!isCollapse">{{appName}}</div>
+        <div class="ls-top-logo-narrow" v-show="isCollapse">{{appShortName}}</div>
         <el-menu
                 :unique-opened="true"
                 ref="sidemenu"
@@ -58,6 +58,12 @@
           };
       },
       computed:{
+          appName(){
+              return this.$store.getters.appName
+          },
+          appShortName(){
+              return this.$store.getters.appShortName
+          },
           isCollapse(){
               return this.$store.state.system.isCollapse;
           }

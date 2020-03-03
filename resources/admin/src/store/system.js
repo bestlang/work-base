@@ -2,10 +2,18 @@ import * as types from './types'
 
 const systemConfig = {
   state: {
+    appName: 'LARACMS',
+    appShortName: 'LA',
     user: null,
     isCollapse: false
   },
   getters:{
+    appName(state){
+        return state.appName
+    },
+    appShortName(state){
+      return state.appShortName
+    },
     isCollapse(state){
       return state.isCollapse
     },
