@@ -14,9 +14,9 @@
             <div class="l-row">
                 <div class="col-md-12 l-block-index">
                     <div class="l-words">
-                        <div class="l-title animated bounceInUp text-center">一款基于Laravel和VueJs的内容管理系统</div>
+                        <div class="l-title animated bounceInUp text-center">A CMS based on Laravel and VueJs</div>
                         <div class="l-sub-title animated fadeInUp text-center">
-                            体验前台 | 体验后台
+                            view front | view backend
                         </div>
                     </div>
                 </div>

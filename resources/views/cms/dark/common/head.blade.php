@@ -19,10 +19,10 @@
                         {{--<a class="nav-link" href="/cms/contact">联系</a>--}}
                     {{--</li>--}}
                     <li class="nav-item active">
-                        <a class="nav-link" href="/cms/cms">前端演示</a>
+                        <a class="nav-link" href="/cms/cms">front</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/admin/#/">后端演示</a>
+                        <a class="nav-link" href="/admin/#/">backend</a>
                     </li>
                     {{--<li class="nav-item">--}}
                         {{--<a class="nav-link" href="#">LARASHOP</a>--}}
