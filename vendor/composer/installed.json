@@ -1738,6 +1738,69 @@
         "description": "Highlight PHP code in terminal"
     },
     {
+        "name": "jellybool/flysystem-upyun",
+        "version": "1.0.5",
+        "version_normalized": "1.0.5.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/JellyBool/flysystem-upyun.git",
+            "reference": "5a60ef34cd42b1cebfad7fdb39b7bc5ccc550fff"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/JellyBool/flysystem-upyun/zipball/5a60ef34cd42b1cebfad7fdb39b7bc5ccc550fff",
+            "reference": "5a60ef34cd42b1cebfad7fdb39b7bc5ccc550fff",
+            "shasum": "",
+            "mirrors": [
+                {
+                    "url": "https://mirrors.aliyun.com/composer/dists/%package%/%reference%.%type%",
+                    "preferred": true
+                }
+            ]
+        },
+        "require": {
+            "league/flysystem": "^1.0",
+            "php": ">=5.5.9",
+            "upyun/sdk": "^3.0"
+        },
+        "require-dev": {
+            "php": ">=5.6.0",
+            "phpunit/phpunit": "~5.7"
+        },
+        "time": "2017-08-24T06:24:56+00:00",
+        "type": "library",
+        "extra": {
+            "laravel": {
+                "providers": [
+                    "JellyBool\\Flysystem\\Upyun\\UpyunServiceProvider"
+                ]
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "JellyBool\\Flysystem\\Upyun\\": "src/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "JellyBool",
+                "email": "jellybool@outlook.com"
+            }
+        ],
+        "description": "Flysystem and Laravel adapter for the Upyun storage.",
+        "keywords": [
+            "laravel",
+            "upyun",
+            "又拍",
+            "又拍云"
+        ]
+    },
+    {
         "name": "laravel/framework",
         "version": "v5.8.37",
         "version_normalized": "5.8.37.0",

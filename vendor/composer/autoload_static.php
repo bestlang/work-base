@@ -16,8 +16,8 @@ class ComposerStaticInitd018b3e43616cccb2461352cf4782150
         '7b11c4dc42b3b3023073cb14e519683c' => __DIR__ . '/..' . '/ralouphie/getallheaders/src/getallheaders.php',
         'c964ee0ededf28c96ebd9db5099ef910' => __DIR__ . '/..' . '/guzzlehttp/promises/src/functions_include.php',
         'a0edc8309cc5e1d60e3047b5df6b7052' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/functions_include.php',
-        'def43f6c87e4f8dfd0c9e1b1bab14fe8' => __DIR__ . '/..' . '/symfony/polyfill-iconv/bootstrap.php',
         '37a3dc5111fe8f707ab4c132ef1dbc62' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/functions_include.php',
+        'def43f6c87e4f8dfd0c9e1b1bab14fe8' => __DIR__ . '/..' . '/symfony/polyfill-iconv/bootstrap.php',
         '2c102faa651ef8ea5874edb585946bce' => __DIR__ . '/..' . '/swiftmailer/swiftmailer/lib/swift_required.php',
         'e39a8b23c42d4e1452234d762b03835a' => __DIR__ . '/..' . '/ramsey/uuid/src/functions.php',
         '538ca81a9a966a6716601ecf48f4eaef' => __DIR__ . '/..' . '/opis/closure/functions.php',
@@ -144,6 +144,7 @@ class ComposerStaticInitd018b3e43616cccb2461352cf4782150
         ),
         'J' => 
         array (
+            'JellyBool\\Flysystem\\Upyun\\' => 26,
             'JakubOnderka\\PhpConsoleHighlighter\\' => 35,
             'JakubOnderka\\PhpConsoleColor\\' => 29,
             'Jacobcyl\\AliOSS\\' => 16,
@@ -473,6 +474,10 @@ class ComposerStaticInitd018b3e43616cccb2461352cf4782150
         'Laravel\\Tinker\\' => 
         array (
             0 => __DIR__ . '/..' . '/laravel/tinker/src',
+        ),
+        'JellyBool\\Flysystem\\Upyun\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/jellybool/flysystem-upyun/src',
         ),
         'JakubOnderka\\PhpConsoleHighlighter\\' => 
         array (
@@ -3010,6 +3015,9 @@ class ComposerStaticInitd018b3e43616cccb2461352cf4782150
         'JakubOnderka\\PhpConsoleColor\\ConsoleColor' => __DIR__ . '/..' . '/jakub-onderka/php-console-color/src/ConsoleColor.php',
         'JakubOnderka\\PhpConsoleColor\\InvalidStyleException' => __DIR__ . '/..' . '/jakub-onderka/php-console-color/src/InvalidStyleException.php',
         'JakubOnderka\\PhpConsoleHighlighter\\Highlighter' => __DIR__ . '/..' . '/jakub-onderka/php-console-highlighter/src/Highlighter.php',
+        'JellyBool\\Flysystem\\Upyun\\Plugins\\ImagePreviewUrl' => __DIR__ . '/..' . '/jellybool/flysystem-upyun/src/Plugins/ImagePreviewUrl.php',
+        'JellyBool\\Flysystem\\Upyun\\UpyunAdapter' => __DIR__ . '/..' . '/jellybool/flysystem-upyun/src/UpyunAdapter.php',
+        'JellyBool\\Flysystem\\Upyun\\UpyunServiceProvider' => __DIR__ . '/..' . '/jellybool/flysystem-upyun/src/UpyunServiceProvider.php',
         'JsonException' => __DIR__ . '/..' . '/symfony/polyfill-php73/Resources/stubs/JsonException.php',
         'Laravel\\Tinker\\ClassAliasAutoloader' => __DIR__ . '/..' . '/laravel/tinker/src/ClassAliasAutoloader.php',
         'Laravel\\Tinker\\Console\\TinkerCommand' => __DIR__ . '/..' . '/laravel/tinker/src/Console/TinkerCommand.php',
