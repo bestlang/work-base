@@ -3,7 +3,7 @@ import store from './store/index'//路由
 //import custom from '../config/custom'
 
 router.beforeEach((to, from, next) => {
-  let loginPath = '/login';//custom.ADMIN_URI +
+  let loginPath = '/login';
     let accessToken = localStorage.getItem('accessToken');//登录标示
     //let perms = store.state.perms.perms;//登录状态
     if (!accessToken && to.path != loginPath) {

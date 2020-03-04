@@ -49,7 +49,7 @@ axios.interceptors.response.use(response => {
                 break;
             case 401:
                 showMessage(res.code + res.error);
-                window.location = app.ADMIN_URI + '/login';
+                window.location = app.ADMIN_URL + '/login';
                 localStorage.setItem('accessToken', '');
                 break;
             case 402:
@@ -63,11 +63,11 @@ axios.interceptors.response.use(response => {
     },
     // 少量非200状态码会进入这里
     error => {
-        if(app.$route.path != app.ADMIN_URI + '/login'){
+        if(app.$route.path != app.ADMIN_URL + '/login'){
             app.$message.close();
             localStorage.setItem('accessToken', '');
             showMessage('请重新登录');
-            app.$router.push( app.ADMIN_URI + '/login');
+            app.$router.push( app.ADMIN_URL + '/login');
         }
         return Promise.reject(error)
     }

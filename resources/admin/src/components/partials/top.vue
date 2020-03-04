@@ -35,9 +35,9 @@ export default {
                 if (res.code == 200) {
                     localStorage.removeItem(this.$types.USER)
                     this.$store.commit(this.$types.ACCESS_TOKEN, null);
-                    this.$router.push("/login");//custom.ADMIN_URI +
+                    this.$router.push("/login");
                 }else if(res.code == 401){
-                    this.$router.push("/login");//custom.ADMIN_URI +
+                    this.$router.push("/login");
                 }
             });
     }
