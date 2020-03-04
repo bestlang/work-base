@@ -1,5 +1,6 @@
 <template>
   <div>
+    <div v-title="'方向盘'"></div>
     <!--<el-alert-->
             <!--title="提个醒"-->
             <!--type="warning"-->
