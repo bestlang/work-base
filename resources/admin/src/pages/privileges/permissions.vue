@@ -1,5 +1,6 @@
 <template>
   <div>
+    <div v-title="'权限管理'"></div>
     <div class="top-buttons" style="display: flex;flex-flow: row nowrap; justify-content: space-between;">
 <!--      <div>所有权限</div>-->
     </div>

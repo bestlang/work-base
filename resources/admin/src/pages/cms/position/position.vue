@@ -1,5 +1,6 @@
 <template>
     <div>
+        <div v-title="'推荐位'"></div>
         <div class="l-block">
             <div class="l-block-header">
                 <div>

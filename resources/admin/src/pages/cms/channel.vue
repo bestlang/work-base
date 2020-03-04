@@ -40,13 +40,14 @@
 </style>
 <template>
   <div class="l-channel-list">
+      <div v-title="'栏目管理'"></div>
       <div class="l-tree-containner">
         <el-tree
           @node-click="handleNodeClick"
           icon-class="el-icon-caret-right"
           :default-expand-all="true"
           ref="tree"
-          :data="treeData"
+          :data="channels"
           node-key="id"
           :props="customProps"
           :expand-on-click-node="false">
@@ -70,7 +71,7 @@
             <div class="l-block-body">
               <el-table
                 v-loading="loading"
-                :data="children"
+                :data="channelChildren"
                 style="width: 100%">
                 <el-table-column
                   prop="id"

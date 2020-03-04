@@ -1,5 +1,6 @@
 <template>
   <div>
+    <div v-title="'模型管理'"></div>
     <div class="l-block">
     <div class="l-block-header">
       <div>

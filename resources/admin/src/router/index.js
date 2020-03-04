@@ -5,7 +5,7 @@ Vue.use(VueRouter)
 
 export default new VueRouter({
   mode: "hash",// "hash" | "history" | "abstract"
-  base: "/admin/",
+  base: "/",
   saveScrollPosition: "true",
   routes: [
     {

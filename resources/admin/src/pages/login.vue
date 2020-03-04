@@ -1,5 +1,6 @@
 <template>
     <div class="login-container">
+        <div v-title="'登录'"></div>
         <div class="login-inner">
             <div style="width: 100vw; height: 100vh;">
             <el-row class="login-inner-box">

@@ -1,5 +1,6 @@
 <template>
     <div class="l-block">
+        <div v-title="'角色管理'"></div>
         <div class="l-block-header">
             <el-button type="primary" size="small" @click="formVisible=true"><i class="iconfont">&#xe641;</i> 添加</el-button>
         </div>

@@ -1,5 +1,6 @@
 <template>
   <div>
+    <div v-title="'字段类型'"></div>
     <div class="l-top-menu">
       <div>
         <el-button type="primary" @click="add" size="small">新增</el-button>

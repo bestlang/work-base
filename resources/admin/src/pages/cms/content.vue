@@ -17,6 +17,7 @@
 </style>
 <template>
   <div class="l-content-list">
+    <div v-title="'内容管理'"></div>
     <channel-tree @nodeClick="handleNodeClick"></channel-tree>
     <div class="l-tree-content">
         <div class="l-block" v-if="!showForm">
@@ -309,7 +310,6 @@
       this.loadContentPositions();
       this.loadContents()
       this.$store.dispatch('collapse');
-      console.log(`,,,,,,,,,,,,,,,,,,,`, this.SITE_URL, this.ADMIN_URL)
     }
   }
 </script>
