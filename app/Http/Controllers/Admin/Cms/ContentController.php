@@ -67,9 +67,9 @@ class ContentController extends Controller
                     if($filed->type === 'checkbox'){
                         $value = implode(',', $value);
                     }
-                    if($filed->type === 'multiple-image'){
-                        $value = json_encode($value);
-                    }
+//                    if($filed->type === 'multiple-image'){
+//                        $value = json_encode($value);
+//                    }
                 }
                 $content->metas()->updateOrInsert(['content_id' => $id, 'field' => $filed->field], ['value' => $value]);
             }
@@ -92,9 +92,9 @@ class ContentController extends Controller
                     if($filed->type === 'checkbox'){
                         $value = implode(',', $value);
                     }
-                    if($filed->type === 'multiple-image'){
-                        $value = json_encode($value);
-                    }
+//                    if($filed->type === 'multiple-image'){
+//                        $value = json_encode($value);
+//                    }
                 }
                 $meta = ['field' => $filed->field, 'value' => $value];
                 $content->metas()->create($meta);
@@ -161,9 +161,6 @@ class ContentController extends Controller
             if($type == 'checkbox' && $meta->value){
                 $meta->value = array_values(array_filter(explode(',', $meta->value)));
             }
-//            if($type == 'multiple-image' && $meta->value){
-//                $meta->value = json_decode($meta->value);
-//            }
         });
         ///
         return response()->ajax($content);

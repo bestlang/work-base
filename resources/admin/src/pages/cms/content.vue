@@ -112,6 +112,7 @@
   import ueditorConfig from "../../store/ueditor";
   import imageUpload from "@/components/imageUpload"
   import multipleImageUpload from "@/components/multipleImageUpload"
+  import {mapState, mapGetters} from 'vuex'
 
   export default {
     data() {
@@ -124,6 +125,7 @@
         form:{
             positions:[]
         },
+        ueditorConfig: ueditorConfig,
         contentPositions: []
       }
     },
@@ -134,18 +136,25 @@
       multipleImageUpload
     },
     computed:{
-      ueditorConfig(){
-        return ueditorConfig
-      },
-      parentChannel(){
-        return this.$store.getters.parentChannel;
-      },
-      currentChannel(){
-        return this.$store.getters.currentChannel
-      },
-      currentModel(){
-        return this.$store.getters.currentModel
-      }
+//      ...mapState({
+//          parentChannel: state => state.cms.parentChannel,
+//          currentChannel: state => state.cms.currentChannel,
+//          currentModel: state => state.cms.currentModel,
+//      }),
+      ...mapGetters([
+          'parentChannel',
+          'currentChannel',
+          'currentModel',
+      ]),
+//      parentChannel(){
+//        return this.$store.getters.parentChannel;
+//      },
+//      currentChannel(){
+//        return this.$store.getters.currentChannel
+//      },
+//      currentModel(){
+//        return this.$store.getters.currentModel
+//      }
     },
     watch:{
       currentChannel(val, oldVal){
@@ -163,7 +172,6 @@
         this.formTitle = '编辑文章';
         this.$store.dispatch(this.$types.CMS_CURRENT_CHANNEL, row.channel);
         this.$store.dispatch(this.$types.CMS_PARENT_CHANNEL, row.channel)
-        // this.loadModel(row.channel.model_id)
         this.showForm = true;
         await this.loadContentPositions(row.channel_id)
         await this.loadWholeContent(row)
@@ -230,11 +238,11 @@
               let item = this.currentModel.fields[idx];
                 // 重置表单
                 this.$set(this.form, item.field, '');
-                if(!Array.isArray(this.form[item.field])){
+//                if(!Array.isArray(this.form[item.field])){
                   if(item.type == 'checkbox' || item.type == 'multiple-image'){
                       this.$set(this.form, item.field, []);
                   }
-                }
+//                }
             }
             this.$set(this.form, 'positions', [])
           });
@@ -301,6 +309,7 @@
       this.loadContentPositions();
       this.loadContents()
       this.$store.dispatch('collapse');
+      console.log(`,,,,,,,,,,,,,,,,,,,`, this.SITE_URL, this.ADMIN_URL)
     }
   }
 </script>

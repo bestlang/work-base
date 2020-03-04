@@ -169,7 +169,7 @@
 <script>
   import ueditorConfig from "../../store/ueditor";
   import VueUeditorWrap from 'vue-ueditor-wrap';
-
+  import {mapState, mapGetters} from 'vuex'
 
   export default {
     data() {
@@ -190,31 +190,36 @@
           name: null,
           positions:[]
         },
-        customChannelFields: []
+        customChannelFields: [],
+        ueditorConfig: ueditorConfig
       }
     },
     components:{
       VueUeditorWrap
     },
     computed:{
-      loading(){
-        return this.$store.getters.loading;
-      },
-      treeData(){
-        return this.$store.getters.channels;
-      },
-      children(){
-        return this.$store.getters.channelChildren;
-      },
-      models(){
-        return this.$store.getters.models;
-      },
-      parentChannel(){
-        return this.$store.getters.parentChannel;
-      },
-      ueditorConfig(){
-        return ueditorConfig
-      }
+        ...mapGetters([
+            'loading',
+            'channels',
+            'channelChildren',
+            'models',
+            'parentChannel',
+        ]),
+//      loading(){
+//        return this.$store.getters.loading;
+//      },
+//      treeData(){
+//        return this.$store.getters.channels;
+//      },
+//      children(){
+//        return this.$store.getters.channelChildren;
+//      },
+//      models(){
+//        return this.$store.getters.models;
+//      },
+//      parentChannel(){
+//        return this.$store.getters.parentChannel;
+//      },
     },
     methods: {
       addChannel(row){

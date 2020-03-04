@@ -31,6 +31,7 @@ Vue.prototype.$types = types
 Vue.prototype.SITE_URL = process.env.SITE_URL
 Vue.prototype.ADMIN_URL = process.env.ADMIN_URL
 
+
 export default new Vue({
   el: "#app",
   router,

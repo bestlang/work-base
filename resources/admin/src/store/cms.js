@@ -11,7 +11,7 @@ const cmsConfig = {
       currentChannel: null,
       currentModel: null,
       currentChannelPosition: null,
-      currentPosition: null
+      currentPosition: null,
   },
   getters:{
       loading(state){
@@ -40,7 +40,7 @@ const cmsConfig = {
       },
       currentPosition(state){
         return state.currentPosition
-      }
+      },
   }
   ,
   mutations: {
