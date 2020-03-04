@@ -36,7 +36,7 @@ export default {
     data() {
         return {
             loading: false,
-            loginFont: "登录",
+            loginFont: "Login",
             params: {
                 mobile: '18625072568',
                 password: ""
@@ -63,7 +63,7 @@ export default {
             if (this.params.mobile == "") {
                 $("#mobile")
                     .addClass("error")
-                    .text("请填写用户名");
+                    .text("input mobile");
             } else {
                 $("#mobile")
                     .removeClass("error")
@@ -74,7 +74,7 @@ export default {
             if (this.params.password == "") {
                 $("#password")
                     .addClass("error")
-                    .text("请填写密码");
+                    .text("input password");
 //                $("#login").css("background", "#ebcd41");
             } else {
                 $("#password")
@@ -94,7 +94,7 @@ export default {
                 this.requirePassword();
             } else {
                 this.loading = true;
-                this.loginFont = "正在登录...";
+                this.loginFont = "logining...";
                 this.$http
                     .post("auth/login", this.params)
                     .then(res => {
@@ -112,7 +112,7 @@ export default {
         },
         restInfo() {
             this.loading = false;
-            this.loginFont = "登录";
+            this.loginFont = "Login";
             this.params.password = "";
         }
     }
