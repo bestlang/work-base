@@ -16,7 +16,7 @@
                     <div class="l-words">
                         <div class="l-title animated bounceInUp text-center">A CMS based on Laravel and VueJs</div>
                         <div class="l-sub-title animated fadeInUp text-center">
-                            view front | view backend
+                            <a class="nav-link" href="/cms/cms">view front</a> | <a class="nav-link" href="/admin/#/">view backend</a>
                         </div>
                     </div>
                 </div>
