@@ -48,7 +48,7 @@ axios.interceptors.response.use(response => {
             case 304:
                 break;
             case 401:
-                showMessage(res.code + res.error);
+                showMessage(res.code + res.error + '重新登录!');
                 _this.$router.push( '/login');
                 //window.location =  '/login';
                 localStorage.setItem('accessToken', '');
