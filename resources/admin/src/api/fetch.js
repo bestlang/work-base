@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { Message } from 'element-ui'
 //import custom from '@/../config/custom'
-import _this from '../main.js'
+import app from '../main.js'
 
 function showMessage(value) {
     //app.$message.close();
@@ -18,7 +18,7 @@ function showMessage(value) {
  */
 axios.interceptors.request.use(config => {//在此处统一配置公共参数
 
-    config.baseURL = _this.SITE_URL + '/api/'
+    config.baseURL = app.SITE_URL + '/api/'
     config.withCredentials = true // 允许携带token ,这个是解决跨域产生的相关问题
     config.timeout = 6000
     let accessToken = localStorage.getItem('accessToken')
@@ -31,7 +31,6 @@ axios.interceptors.request.use(config => {//在此处统一配置公共参数
     }
     return config
 }, error => {
-
     Promise.reject(error);// 错误提示
 })
 
@@ -48,11 +47,17 @@ axios.interceptors.response.use(response => {
             case 304:
                 break;
             case 401:
-                _this.$message.close();
-                showMessage(res.code + res.error + '重新登录!');
-                _this.$router.push( '/login');
-                //window.location =  '/login';
-                localStorage.setItem('accessToken', '');
+                try{
+                    let accessToken = localStorage.getItem('accessToken');
+                    if(accessToken){
+                        showMessage('请重新登录!');
+                        localStorage.setItem('accessToken', '');
+                        app.$router.push( '/login');
+                    }
+                }catch(e){
+
+                }
+
                 break;
             case 402:
                 showMessage(res.code + res.error);
@@ -65,14 +70,7 @@ axios.interceptors.response.use(response => {
     },
     // 少量非200状态码会进入这里
     error => {
-    alert(_this.$router.path)
-        // if(_this.$route.path != _this.ADMIN_URL + '/login'){
-        //     _this.$message.close();
-        //     localStorage.setItem('accessToken', '');
-        //     showMessage('请重新登录');
-        //     _this.$router.push( _this.ADMIN_URL + '/login');
-        // }
-        //return Promise.reject(error)
+
     }
 );
 
