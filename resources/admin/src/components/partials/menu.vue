@@ -87,15 +87,12 @@
               }
             });
           },
-          loadUserPermissions(){
-            this.$http
-              .get("/admin/privileges/user/permissions")
-              .then(res => {
-                this.privileges = res.data
-                this.$store.commit(this.$types.PRIVILEGES, res.data)
-                let routes = this.router.options.routes;
-                this.resetVisible(routes, this.privileges)
-              });
+          async loadUserPermissions(){
+            let res = await this.$http.get("/admin/privileges/user/permissions")
+            this.privileges = res.data
+            this.$store.commit(this.$types.PRIVILEGES, res.data)
+            let routes = this.router.options.routes;
+            this.resetVisible(routes, this.privileges)
           }
       },
     created() {

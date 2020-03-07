@@ -98,10 +98,11 @@ export default {
                 this.loginFont = "logining...";
                 this.$http
                     .post("auth/login", this.params)
-                    .then(res => {
+                    .then(async res => {
                         if (res.code == 200) {
                             this.$store.commit(this.$types.ACCESS_TOKEN, res.data.access_token);
                             this.$store.commit(this.$types.USER, res.data.user);
+                            let sb = await this.$http.get("/admin/privileges/user/permissions");
                             this.$router.push("/dashboard");
                         }
                     })

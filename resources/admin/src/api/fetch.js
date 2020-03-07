@@ -55,7 +55,7 @@ axios.interceptors.response.use(response => {
                         app.$router.push( '/login');
                     }
                 }catch(e){
-
+                    app.$router.push( '/login');
                 }
 
                 break;
