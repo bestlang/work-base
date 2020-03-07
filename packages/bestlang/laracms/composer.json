@@ -1,0 +1,24 @@
+{
+  "name": "bestlang/laracms",
+  "description": "a laravel based cms",
+  "type": "project",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "bestlang",
+      "email": "295322133@qq.com"
+    }
+  ],
+  "minimum-stability": "dev",
+  "require": {},
+  "extra": {
+    "laravel": {
+      "providers": [
+        "Bestlang\\Laracms\\Providers\\AppServiceProvider",
+        "Bestlang\\Laracms\\Providers\\RouteServiceProvider"
+      ],
+      "aliases": {
+      }
+    }
+  }
+}

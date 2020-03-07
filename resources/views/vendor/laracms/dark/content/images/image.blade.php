@@ -6,18 +6,20 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>{{ config('app.name') }}</title>
     <script type="text/javascript" src="/js/app.js"></script>
-    <link rel="stylesheet"
-          href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/styles/default.min.css">
-    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/highlight.min.js"></script>
 </head>
 <body>
-@include('cms.dark.common.head')
+@include('laracms::dark.common.head')
 <div class="l-content">
     <div class="l-content-inner l-min-height">
         <div class="l-row">
             <div class="col-md-12 l-block-content">
                 <h1 class="l-content-title">{{$content->title}}</h1>
-                <div>{!!  contents_get($content, 'content') !!}</div>
+                @if($album = metas_get($content, 'album'))
+                    @foreach($album as $ab)
+                        <img src="{{$ab->url}}" alt="">
+                    @endforeach
+                @endif
+                {{--<div>{!!  contents_get($content, 'content') !!}</div>--}}
             </div>
             <div><h2>评论区:</h2></div>
             <div>
@@ -43,7 +45,7 @@
         </div>
     </div>
 </div>
-@include('cms.dark.common.foot')
+@include('laracms::dark.common.foot')
 <script type="text/javascript">
     $(function(){
         $('#comment_submit').click(function(){

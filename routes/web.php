@@ -11,16 +11,16 @@
 |
 */
 // cms
-Route::group(['prefix' => 'cms', 'namespace'=>'Cms'], function ($router) {
-    Route::get('/', 'IndexController@index');
-    Route::get('/cms', 'IndexController@cms');
-    Route::get('/about', 'IndexController@about');
-    Route::get('/contact', 'IndexController@contact');
-
-    Route::get('/content/{id}', 'ContentController@index');
-    Route::get('/channel/{id}', 'ChannelController@index');
-    Route::any('/comment/save', 'CommentController@save');
-});
+//Route::group(['prefix' => 'cms', 'namespace'=>'Cms'], function ($router) {
+//    Route::get('/', 'IndexController@index');
+//    Route::get('/cms', 'IndexController@cms');
+//    Route::get('/about', 'IndexController@about');
+//    Route::get('/contact', 'IndexController@contact');
+//
+//    Route::get('/content/{id}', 'ContentController@index');
+//    Route::get('/channel/{id}', 'ChannelController@index');
+//    Route::any('/comment/save', 'CommentController@save');
+//});
 
 //Route::get('/', 'Pdd\IndexController@index');
 Route::get('/', function (){

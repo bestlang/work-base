@@ -8,16 +8,17 @@
     <script type="text/javascript" src="/js/app.js"></script>
 </head>
 <body>
-    @include('cms.dark.common.head')
-    <div class="l-content">
-        <div class="l-content-inner">
-            <div class="l-row row">
-                <div>
-                    <div class="animated fadeInDown">本系统采用PHP+Laravel+Vuejs开发</div>
-                </div>
+@include('laracms::dark.common.head')
+<div class="l-content">
+    <div class="l-content-inner">
+        <div class="l-row row">
+            <div>
+                <div class="animated fadeInDown">email: laracms@163.com</div>
             </div>
         </div>
     </div>
-    @include('cms.dark.common.foot')
+</div>
+@include('laracms::dark.common.foot')
+
 </body>
 </html>

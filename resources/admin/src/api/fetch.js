@@ -49,11 +49,9 @@ axios.interceptors.response.use(response => {
             case 401:
                 try{
                     let accessToken = localStorage.getItem('accessToken');
-                    if(accessToken){
-                        showMessage('请重新登录!');
-                        localStorage.setItem('accessToken', '');
-                        app.$router.push( '/login');
-                    }
+                    showMessage('请重新登录!');
+                    localStorage.setItem('accessToken', '');
+                    app.$router.push( '/login');
                 }catch(e){
                     app.$router.push( '/login');
                 }

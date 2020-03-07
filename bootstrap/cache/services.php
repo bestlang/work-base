@@ -49,6 +49,8 @@
     45 => 'JellyBool\\Flysystem\\Upyun\\UpyunServiceProvider',
     46 => 'Overtrue\\LaravelWeChat\\ServiceProvider',
     47 => 'Overtrue\\LaravelUEditor\\UEditorServiceProvider',
+    48 => 'Bestlang\\Laracms\\Providers\\AppServiceProvider',
+    49 => 'Bestlang\\Laracms\\Providers\\RouteServiceProvider',
   ),
   'eager' => 
   array (
@@ -85,6 +87,8 @@
     30 => 'JellyBool\\Flysystem\\Upyun\\UpyunServiceProvider',
     31 => 'Overtrue\\LaravelWeChat\\ServiceProvider',
     32 => 'Overtrue\\LaravelUEditor\\UEditorServiceProvider',
+    33 => 'Bestlang\\Laracms\\Providers\\AppServiceProvider',
+    34 => 'Bestlang\\Laracms\\Providers\\RouteServiceProvider',
   ),
   'deferred' => 
   array (

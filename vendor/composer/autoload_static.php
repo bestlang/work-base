@@ -190,6 +190,7 @@ class ComposerStaticInitd018b3e43616cccb2461352cf4782150
         'B' => 
         array (
             'BeyondCode\\DumpServer\\' => 22,
+            'Bestlang\\Laracms\\' => 17,
             'Baum\\' => 5,
             'Barryvdh\\Cors\\' => 14,
         ),
@@ -575,6 +576,10 @@ class ComposerStaticInitd018b3e43616cccb2461352cf4782150
         array (
             0 => __DIR__ . '/..' . '/beyondcode/laravel-dump-server/src',
         ),
+        'Bestlang\\Laracms\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/packages/bestlang/laracms/src',
+        ),
         'Baum\\' => 
         array (
             0 => __DIR__ . '/..' . '/baum/baum/src',
@@ -753,6 +758,24 @@ class ComposerStaticInitd018b3e43616cccb2461352cf4782150
         'Baum\\Node' => __DIR__ . '/..' . '/baum/baum/src/Node.php',
         'Baum\\Playground\\Caster' => __DIR__ . '/..' . '/baum/baum/src/Playground/Caster.php',
         'Baum\\Playground\\Console' => __DIR__ . '/..' . '/baum/baum/src/Playground/Console.php',
+        'Bestlang\\Laracms\\Http\\Controllers\\ChannelController' => __DIR__ . '/../..' . '/packages/bestlang/laracms/src/Http/Controllers/ChannelController.php',
+        'Bestlang\\Laracms\\Http\\Controllers\\CommentController' => __DIR__ . '/../..' . '/packages/bestlang/laracms/src/Http/Controllers/CommentController.php',
+        'Bestlang\\Laracms\\Http\\Controllers\\ContentController' => __DIR__ . '/../..' . '/packages/bestlang/laracms/src/Http/Controllers/ContentController.php',
+        'Bestlang\\Laracms\\Http\\Controllers\\IndexController' => __DIR__ . '/../..' . '/packages/bestlang/laracms/src/Http/Controllers/IndexController.php',
+        'Bestlang\\Laracms\\Models\\Cms\\Channel' => __DIR__ . '/../..' . '/packages/bestlang/laracms/src/Models/Cms/Channel.php',
+        'Bestlang\\Laracms\\Models\\Cms\\ChannelContent' => __DIR__ . '/../..' . '/packages/bestlang/laracms/src/Models/Cms/ChannelContent.php',
+        'Bestlang\\Laracms\\Models\\Cms\\ChannelMeta' => __DIR__ . '/../..' . '/packages/bestlang/laracms/src/Models/Cms/ChannelMeta.php',
+        'Bestlang\\Laracms\\Models\\Cms\\Comment' => __DIR__ . '/../..' . '/packages/bestlang/laracms/src/Models/Cms/Comment.php',
+        'Bestlang\\Laracms\\Models\\Cms\\Content' => __DIR__ . '/../..' . '/packages/bestlang/laracms/src/Models/Cms/Content.php',
+        'Bestlang\\Laracms\\Models\\Cms\\ContentContent' => __DIR__ . '/../..' . '/packages/bestlang/laracms/src/Models/Cms/ContentContent.php',
+        'Bestlang\\Laracms\\Models\\Cms\\ContentMeta' => __DIR__ . '/../..' . '/packages/bestlang/laracms/src/Models/Cms/ContentMeta.php',
+        'Bestlang\\Laracms\\Models\\Cms\\FieldType' => __DIR__ . '/../..' . '/packages/bestlang/laracms/src/Models/Cms/FieldType.php',
+        'Bestlang\\Laracms\\Models\\Cms\\Model' => __DIR__ . '/../..' . '/packages/bestlang/laracms/src/Models/Cms/Model.php',
+        'Bestlang\\Laracms\\Models\\Cms\\ModelField' => __DIR__ . '/../..' . '/packages/bestlang/laracms/src/Models/Cms/ModelField.php',
+        'Bestlang\\Laracms\\Models\\Cms\\Position' => __DIR__ . '/../..' . '/packages/bestlang/laracms/src/Models/Cms/Position.php',
+        'Bestlang\\Laracms\\Models\\Cms\\PositionChannel' => __DIR__ . '/../..' . '/packages/bestlang/laracms/src/Models/Cms/PositionChannel.php',
+        'Bestlang\\Laracms\\Models\\Cms\\PositionContent' => __DIR__ . '/../..' . '/packages/bestlang/laracms/src/Models/Cms/PositionContent.php',
+        'Bestlang\\Laracms\\Providers\\RouteServiceProvider' => __DIR__ . '/../..' . '/packages/bestlang/laracms/src/Providers/RouteServiceProvider.php',
         'BeyondCode\\DumpServer\\DumpServerCommand' => __DIR__ . '/..' . '/beyondcode/laravel-dump-server/src/DumpServerCommand.php',
         'BeyondCode\\DumpServer\\DumpServerServiceProvider' => __DIR__ . '/..' . '/beyondcode/laravel-dump-server/src/DumpServerServiceProvider.php',
         'BeyondCode\\DumpServer\\Dumper' => __DIR__ . '/..' . '/beyondcode/laravel-dump-server/src/Dumper.php',
