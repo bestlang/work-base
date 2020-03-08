@@ -15,7 +15,8 @@
     "laravel": {
       "providers": [
         "Bestlang\\Laracms\\Providers\\AppServiceProvider",
-        "Bestlang\\Laracms\\Providers\\RouteServiceProvider"
+        "Bestlang\\Laracms\\Providers\\RouteServiceProvider",
+        "Bestlang\\Laracms\\Providers\\ResponseServiceProvider"
       ],
       "aliases": {
       }

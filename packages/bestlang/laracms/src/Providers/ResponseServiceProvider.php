@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Providers;
+namespace Bestlang\Laracms\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use Response;
+use Illuminate\Support\Facades\Response;
+//use Response;
 
 class ResponseServiceProvider extends ServiceProvider
 {

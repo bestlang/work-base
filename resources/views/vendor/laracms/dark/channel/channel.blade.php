@@ -8,7 +8,7 @@
     <script type="text/javascript" src="/js/app.js"></script>
 </head>
 <body>
-@include('cms.dark.common.head')
+@include('laracms::dark.common.head')
 <div class="l-content">
     <div class="l-content-inner l-min-height">
         <div class="l-row">
@@ -22,6 +22,6 @@
         </div>
     </div>
 </div>
-@include('cms.dark.common.foot')
+@include('laracms::dark.common.foot')
 </body>
 </html>

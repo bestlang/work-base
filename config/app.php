@@ -176,7 +176,6 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         Tymon\JWTAuth\Providers\LaravelServiceProvider::class,
-        App\Providers\ResponseServiceProvider::class,
         Spatie\Permission\PermissionServiceProvider::class,
         Jacobcyl\AliOSS\AliOssServiceProvider::class,
         JellyBool\Flysystem\Upyun\UpyunServiceProvider::class,
@@ -184,7 +183,8 @@ return [
         Overtrue\LaravelUEditor\UEditorServiceProvider::class,
 
         Bestlang\Laracms\Providers\AppServiceProvider::class,
-        Bestlang\Laracms\Providers\RouteServiceProvider::class
+        Bestlang\Laracms\Providers\RouteServiceProvider::class,
+        Bestlang\Laracms\Providers\ResponseServiceProvider::class
     ],
 
     /*

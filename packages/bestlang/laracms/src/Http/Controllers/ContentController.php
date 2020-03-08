@@ -3,7 +3,6 @@
 namespace Bestlang\Laracms\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 use Bestlang\Laracms\Models\Cms\Content;
 
 class ContentController extends Controller
@@ -19,6 +18,5 @@ class ContentController extends Controller
         $content_template_prefix = $content->model->content_template_prefix;
         $content_template = $content->channel->content_template;
         return view('laracms::dark.content.'.$content_template_prefix.'.'.$content_template, compact(['content', 'comments']));
-        //return view('cms.'.config('cms.theme').'.content.'.$content_template_prefix.'.'.$content_template, compact(['content', 'comments']));
     }
 }

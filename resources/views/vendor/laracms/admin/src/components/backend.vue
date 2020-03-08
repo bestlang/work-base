@@ -30,8 +30,7 @@ export default {
         isCollapse() {return this.$store.state.system.isCollapse}
     },
     mounted(){
-        this.$store.dispatch(this.$types.ACTIVITY_TYPES)
-        this.$store.dispatch(this.$types.ACTIVITY_APPLICABLES)
+
     }
 }
 </script>

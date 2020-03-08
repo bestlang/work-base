@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace Bestlang\Laracms\Http\Controllers;
 
-use App\Http\Controllers\Controller;
+use Bestlang\Laracms\Http\Controllers\Controller;
 
-use App\Models\User;
+use Bestlang\Laracms\Models\User;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use JWTAuth;
 
