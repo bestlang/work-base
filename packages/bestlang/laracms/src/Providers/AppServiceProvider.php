@@ -23,6 +23,16 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->loadViewsFrom(__DIR__.'../../resources/views/dark', 'laracms');
+        $this->publishes([
+            __DIR__.'/../../config/jwt.php' => config_path('jwt.php'),
+            __DIR__.'/../../config/ueditor.php' => config_path('ueditor.php'),
+        ], 'config');
+
+        // vue 后台代码
+        $this->publishes([
+            __DIR__.'/../../resources/admin/' => resource_path('vendor/laracms/admin/')
+        ], 'admin');
+
+        $this->loadViewsFrom(__DIR__.'../../resources/views/laracms', 'laracms');
     }
 }
