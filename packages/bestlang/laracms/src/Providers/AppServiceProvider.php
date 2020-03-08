@@ -23,6 +23,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        // config
         $this->publishes([
             __DIR__.'/../../config/jwt.php' => config_path('jwt.php'),
             __DIR__.'/../../config/ueditor.php' => config_path('ueditor.php'),
@@ -32,6 +33,11 @@ class AppServiceProvider extends ServiceProvider
         $this->publishes([
             __DIR__.'/../../resources/admin/' => resource_path('vendor/laracms/admin/')
         ], 'admin');
+
+        // migrations
+        $this->publishes([
+            __DIR__.'/../database/migrations/' => database_path('migrations')
+        ], 'migrations');
 
         $this->loadViewsFrom(__DIR__.'../../resources/views/laracms', 'laracms');
     }
