@@ -1,7 +1,6 @@
 {
   "name": "bestlang/laracms",
   "description": "a laravel based cms",
-  "type": "project",
   "license": "MIT",
   "authors": [
     {
@@ -11,6 +10,15 @@
   ],
   "minimum-stability": "dev",
   "require": {},
+  "autoload": {
+    "psr-4": {
+      "Bestlang\\Laracms\\": "src/"
+    },
+    "classmap": [
+      "database/seeds",
+      "database/factories"
+    ]
+  },
   "extra": {
     "laravel": {
       "providers": [
