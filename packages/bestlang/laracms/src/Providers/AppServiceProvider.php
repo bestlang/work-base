@@ -37,11 +37,18 @@ class AppServiceProvider extends ServiceProvider
             __DIR__.'/../../resources/admin/' => resource_path('admin')
         ], 'admin');
 
+        $this->loadMigrationsFrom(__DIR__.'/../../database/migrations');
+
         // migrations
         $this->publishes([
             __DIR__.'/../database/migrations/' => database_path('migrations')
         ], 'migrations');
 
-        $this->loadViewsFrom(__DIR__.'../../resources/views/laracms', 'laracms');
+        $this->loadViewsFrom(__DIR__.'/../../resources/views/laracms', 'laracms');
+
+        // views
+        $this->publishes([
+            __DIR__.'/../../resources/views/laracms' => resource_path('views/vendor/laracms')
+        ], 'views');
     }
 }
