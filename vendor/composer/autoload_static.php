@@ -39,6 +39,10 @@ class ComposerStaticInitd018b3e43616cccb2461352cf4782150
         array (
             'phpDocumentor\\Reflection\\' => 25,
         ),
+        'b' => 
+        array (
+            'bestlang\\page\\' => 14,
+        ),
         'Y' => 
         array (
             'Yansongda\\Supports\\' => 19,
@@ -144,6 +148,7 @@ class ComposerStaticInitd018b3e43616cccb2461352cf4782150
         ),
         'J' => 
         array (
+            'JeroenG\\Packager\\' => 17,
             'JellyBool\\Flysystem\\Upyun\\' => 26,
             'JakubOnderka\\PhpConsoleHighlighter\\' => 35,
             'JakubOnderka\\PhpConsoleColor\\' => 29,
@@ -207,6 +212,10 @@ class ComposerStaticInitd018b3e43616cccb2461352cf4782150
             0 => __DIR__ . '/..' . '/phpdocumentor/reflection-common/src',
             1 => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src',
             2 => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src',
+        ),
+        'bestlang\\page\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/bestlang/page/src',
         ),
         'Yansongda\\Supports\\' => 
         array (
@@ -476,6 +485,10 @@ class ComposerStaticInitd018b3e43616cccb2461352cf4782150
         array (
             0 => __DIR__ . '/..' . '/laravel/tinker/src',
         ),
+        'JeroenG\\Packager\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/jeroen-g/laravel-packager/src',
+        ),
         'JellyBool\\Flysystem\\Upyun\\' => 
         array (
             0 => __DIR__ . '/..' . '/jellybool/flysystem-upyun/src',
@@ -645,7 +658,6 @@ class ComposerStaticInitd018b3e43616cccb2461352cf4782150
         'App\\Http\\Controllers\\Admin\\PrivilegesController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/PrivilegesController.php',
         'App\\Http\\Controllers\\Admin\\UploadController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/UploadController.php',
         'App\\Http\\Controllers\\Admin\\UserController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/UserController.php',
-        'App\\Http\\Controllers\\AuthController' => __DIR__ . '/../..' . '/app/Http/Controllers/AuthController.php',
         'App\\Http\\Controllers\\Auth\\ForgotPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ForgotPasswordController.php',
         'App\\Http\\Controllers\\Auth\\LoginController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/LoginController.php',
         'App\\Http\\Controllers\\Auth\\RegisterController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/RegisterController.php',
@@ -717,7 +729,6 @@ class ComposerStaticInitd018b3e43616cccb2461352cf4782150
         'App\\Providers\\AuthServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AuthServiceProvider.php',
         'App\\Providers\\BroadcastServiceProvider' => __DIR__ . '/../..' . '/app/Providers/BroadcastServiceProvider.php',
         'App\\Providers\\EventServiceProvider' => __DIR__ . '/../..' . '/app/Providers/EventServiceProvider.php',
-        'App\\Providers\\ResponseServiceProvider' => __DIR__ . '/../..' . '/app/Providers/ResponseServiceProvider.php',
         'App\\Providers\\RouteServiceProvider' => __DIR__ . '/../..' . '/app/Providers/RouteServiceProvider.php',
         'App\\Services\\UserService' => __DIR__ . '/../..' . '/app/Services/UserService.php',
         'App\\Services\\WalletService' => __DIR__ . '/../..' . '/app/Services/WalletService.php',
@@ -758,9 +769,20 @@ class ComposerStaticInitd018b3e43616cccb2461352cf4782150
         'Baum\\Node' => __DIR__ . '/..' . '/baum/baum/src/Node.php',
         'Baum\\Playground\\Caster' => __DIR__ . '/..' . '/baum/baum/src/Playground/Caster.php',
         'Baum\\Playground\\Console' => __DIR__ . '/..' . '/baum/baum/src/Playground/Console.php',
+        'Bestlang\\Laracms\\Http\\Controllers\\Admin\\Cms\\ChannelController' => __DIR__ . '/../..' . '/packages/bestlang/laracms/src/Http/Controllers/Admin/Cms/ChannelController.php',
+        'Bestlang\\Laracms\\Http\\Controllers\\Admin\\Cms\\ContentController' => __DIR__ . '/../..' . '/packages/bestlang/laracms/src/Http/Controllers/Admin/Cms/ContentController.php',
+        'Bestlang\\Laracms\\Http\\Controllers\\Admin\\Cms\\FieldTypeController' => __DIR__ . '/../..' . '/packages/bestlang/laracms/src/Http/Controllers/Admin/Cms/FieldTypeController.php',
+        'Bestlang\\Laracms\\Http\\Controllers\\Admin\\Cms\\ModelController' => __DIR__ . '/../..' . '/packages/bestlang/laracms/src/Http/Controllers/Admin/Cms/ModelController.php',
+        'Bestlang\\Laracms\\Http\\Controllers\\Admin\\Cms\\PositionController' => __DIR__ . '/../..' . '/packages/bestlang/laracms/src/Http/Controllers/Admin/Cms/PositionController.php',
+        'Bestlang\\Laracms\\Http\\Controllers\\Admin\\OssController' => __DIR__ . '/../..' . '/packages/bestlang/laracms/src/Http/Controllers/Admin/OssController.php',
+        'Bestlang\\Laracms\\Http\\Controllers\\Admin\\PrivilegesController' => __DIR__ . '/../..' . '/packages/bestlang/laracms/src/Http/Controllers/Admin/PrivilegesController.php',
+        'Bestlang\\Laracms\\Http\\Controllers\\Admin\\UploadController' => __DIR__ . '/../..' . '/packages/bestlang/laracms/src/Http/Controllers/Admin/UploadController.php',
+        'Bestlang\\Laracms\\Http\\Controllers\\Admin\\UserController' => __DIR__ . '/../..' . '/packages/bestlang/laracms/src/Http/Controllers/Admin/UserController.php',
+        'Bestlang\\Laracms\\Http\\Controllers\\AuthController' => __DIR__ . '/../..' . '/packages/bestlang/laracms/src/Http/Controllers/AuthController.php',
         'Bestlang\\Laracms\\Http\\Controllers\\ChannelController' => __DIR__ . '/../..' . '/packages/bestlang/laracms/src/Http/Controllers/ChannelController.php',
         'Bestlang\\Laracms\\Http\\Controllers\\CommentController' => __DIR__ . '/../..' . '/packages/bestlang/laracms/src/Http/Controllers/CommentController.php',
         'Bestlang\\Laracms\\Http\\Controllers\\ContentController' => __DIR__ . '/../..' . '/packages/bestlang/laracms/src/Http/Controllers/ContentController.php',
+        'Bestlang\\Laracms\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/packages/bestlang/laracms/src/Http/Controllers/Controller.php',
         'Bestlang\\Laracms\\Http\\Controllers\\IndexController' => __DIR__ . '/../..' . '/packages/bestlang/laracms/src/Http/Controllers/IndexController.php',
         'Bestlang\\Laracms\\Models\\Cms\\Channel' => __DIR__ . '/../..' . '/packages/bestlang/laracms/src/Models/Cms/Channel.php',
         'Bestlang\\Laracms\\Models\\Cms\\ChannelContent' => __DIR__ . '/../..' . '/packages/bestlang/laracms/src/Models/Cms/ChannelContent.php',
@@ -775,6 +797,10 @@ class ComposerStaticInitd018b3e43616cccb2461352cf4782150
         'Bestlang\\Laracms\\Models\\Cms\\Position' => __DIR__ . '/../..' . '/packages/bestlang/laracms/src/Models/Cms/Position.php',
         'Bestlang\\Laracms\\Models\\Cms\\PositionChannel' => __DIR__ . '/../..' . '/packages/bestlang/laracms/src/Models/Cms/PositionChannel.php',
         'Bestlang\\Laracms\\Models\\Cms\\PositionContent' => __DIR__ . '/../..' . '/packages/bestlang/laracms/src/Models/Cms/PositionContent.php',
+        'Bestlang\\Laracms\\Models\\Permission' => __DIR__ . '/../..' . '/packages/bestlang/laracms/src/Models/Permission.php',
+        'Bestlang\\Laracms\\Models\\User' => __DIR__ . '/../..' . '/packages/bestlang/laracms/src/Models/User.php',
+        'Bestlang\\Laracms\\Providers\\AppServiceProvider' => __DIR__ . '/../..' . '/packages/bestlang/laracms/src/Providers/AppServiceProvider.php',
+        'Bestlang\\Laracms\\Providers\\ResponseServiceProvider' => __DIR__ . '/../..' . '/packages/bestlang/laracms/src/Providers/ResponseServiceProvider.php',
         'Bestlang\\Laracms\\Providers\\RouteServiceProvider' => __DIR__ . '/../..' . '/packages/bestlang/laracms/src/Providers/RouteServiceProvider.php',
         'BeyondCode\\DumpServer\\DumpServerCommand' => __DIR__ . '/..' . '/beyondcode/laravel-dump-server/src/DumpServerCommand.php',
         'BeyondCode\\DumpServer\\DumpServerServiceProvider' => __DIR__ . '/..' . '/beyondcode/laravel-dump-server/src/DumpServerServiceProvider.php',
@@ -3041,6 +3067,26 @@ class ComposerStaticInitd018b3e43616cccb2461352cf4782150
         'JellyBool\\Flysystem\\Upyun\\Plugins\\ImagePreviewUrl' => __DIR__ . '/..' . '/jellybool/flysystem-upyun/src/Plugins/ImagePreviewUrl.php',
         'JellyBool\\Flysystem\\Upyun\\UpyunAdapter' => __DIR__ . '/..' . '/jellybool/flysystem-upyun/src/UpyunAdapter.php',
         'JellyBool\\Flysystem\\Upyun\\UpyunServiceProvider' => __DIR__ . '/..' . '/jellybool/flysystem-upyun/src/UpyunServiceProvider.php',
+        'JeroenG\\Packager\\ArchiveExtractors\\Extractor' => __DIR__ . '/..' . '/jeroen-g/laravel-packager/src/ArchiveExtractors/Extractor.php',
+        'JeroenG\\Packager\\ArchiveExtractors\\Manager' => __DIR__ . '/..' . '/jeroen-g/laravel-packager/src/ArchiveExtractors/Manager.php',
+        'JeroenG\\Packager\\ArchiveExtractors\\Tar' => __DIR__ . '/..' . '/jeroen-g/laravel-packager/src/ArchiveExtractors/Tar.php',
+        'JeroenG\\Packager\\ArchiveExtractors\\TarGz' => __DIR__ . '/..' . '/jeroen-g/laravel-packager/src/ArchiveExtractors/TarGz.php',
+        'JeroenG\\Packager\\ArchiveExtractors\\Zip' => __DIR__ . '/..' . '/jeroen-g/laravel-packager/src/ArchiveExtractors/Zip.php',
+        'JeroenG\\Packager\\Commands\\CheckPackage' => __DIR__ . '/..' . '/jeroen-g/laravel-packager/src/Commands/CheckPackage.php',
+        'JeroenG\\Packager\\Commands\\DisablePackage' => __DIR__ . '/..' . '/jeroen-g/laravel-packager/src/Commands/DisablePackage.php',
+        'JeroenG\\Packager\\Commands\\EnablePackage' => __DIR__ . '/..' . '/jeroen-g/laravel-packager/src/Commands/EnablePackage.php',
+        'JeroenG\\Packager\\Commands\\GetPackage' => __DIR__ . '/..' . '/jeroen-g/laravel-packager/src/Commands/GetPackage.php',
+        'JeroenG\\Packager\\Commands\\GitPackage' => __DIR__ . '/..' . '/jeroen-g/laravel-packager/src/Commands/GitPackage.php',
+        'JeroenG\\Packager\\Commands\\ListPackages' => __DIR__ . '/..' . '/jeroen-g/laravel-packager/src/Commands/ListPackages.php',
+        'JeroenG\\Packager\\Commands\\MoveTests' => __DIR__ . '/..' . '/jeroen-g/laravel-packager/src/Commands/MoveTests.php',
+        'JeroenG\\Packager\\Commands\\NewPackage' => __DIR__ . '/..' . '/jeroen-g/laravel-packager/src/Commands/NewPackage.php',
+        'JeroenG\\Packager\\Commands\\PublishPackage' => __DIR__ . '/..' . '/jeroen-g/laravel-packager/src/Commands/PublishPackage.php',
+        'JeroenG\\Packager\\Commands\\RemovePackage' => __DIR__ . '/..' . '/jeroen-g/laravel-packager/src/Commands/RemovePackage.php',
+        'JeroenG\\Packager\\Conveyor' => __DIR__ . '/..' . '/jeroen-g/laravel-packager/src/Conveyor.php',
+        'JeroenG\\Packager\\FileHandler' => __DIR__ . '/..' . '/jeroen-g/laravel-packager/src/FileHandler.php',
+        'JeroenG\\Packager\\PackagerServiceProvider' => __DIR__ . '/..' . '/jeroen-g/laravel-packager/src/PackagerServiceProvider.php',
+        'JeroenG\\Packager\\ProgressBar' => __DIR__ . '/..' . '/jeroen-g/laravel-packager/src/ProgressBar.php',
+        'JeroenG\\Packager\\Wrapping' => __DIR__ . '/..' . '/jeroen-g/laravel-packager/src/Wrapping.php',
         'JsonException' => __DIR__ . '/..' . '/symfony/polyfill-php73/Resources/stubs/JsonException.php',
         'Laravel\\Tinker\\ClassAliasAutoloader' => __DIR__ . '/..' . '/laravel/tinker/src/ClassAliasAutoloader.php',
         'Laravel\\Tinker\\Console\\TinkerCommand' => __DIR__ . '/..' . '/laravel/tinker/src/Console/TinkerCommand.php',
@@ -5701,6 +5747,9 @@ class ComposerStaticInitd018b3e43616cccb2461352cf4782150
         'Yansongda\\Supports\\Traits\\HasHttpRequest' => __DIR__ . '/..' . '/yansongda/supports/src/Traits/HasHttpRequest.php',
         'Yansongda\\Supports\\Traits\\Serializable' => __DIR__ . '/..' . '/yansongda/supports/src/Traits/Serializable.php',
         'Yansongda\\Supports\\Traits\\ShouldThrottle' => __DIR__ . '/..' . '/yansongda/supports/src/Traits/ShouldThrottle.php',
+        'bestlang\\page\\Facades\\page' => __DIR__ . '/..' . '/bestlang/page/src/Facades/page.php',
+        'bestlang\\page\\page' => __DIR__ . '/..' . '/bestlang/page/src/page.php',
+        'bestlang\\page\\pageServiceProvider' => __DIR__ . '/..' . '/bestlang/page/src/pageServiceProvider.php',
         'phpDocumentor\\Reflection\\DocBlock' => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src/DocBlock.php',
         'phpDocumentor\\Reflection\\DocBlockFactory' => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src/DocBlockFactory.php',
         'phpDocumentor\\Reflection\\DocBlockFactoryInterface' => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src/DocBlockFactoryInterface.php',

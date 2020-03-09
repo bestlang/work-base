@@ -20,6 +20,17 @@
       0 => 'Overtrue\\LaravelUEditor\\UEditorServiceProvider',
     ),
   ),
+  'bestlang/page' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'bestlang\\page\\pageServiceProvider',
+    ),
+    'aliases' => 
+    array (
+      'page' => 'bestlang\\page\\Facades\\page',
+    ),
+  ),
   'beyondcode/laravel-dump-server' => 
   array (
     'providers' => 
@@ -46,6 +57,13 @@
     'providers' => 
     array (
       0 => 'JellyBool\\Flysystem\\Upyun\\UpyunServiceProvider',
+    ),
+  ),
+  'jeroen-g/laravel-packager' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'JeroenG\\Packager\\PackagerServiceProvider',
     ),
   ),
   'laravel/tinker' => 
