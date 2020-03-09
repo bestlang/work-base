@@ -34,7 +34,7 @@ class AppServiceProvider extends ServiceProvider
 
         // vue 后台代码
         $this->publishes([
-            __DIR__.'/../../resources/admin/' => resource_path('vendor/laracms/admin/')
+            __DIR__.'/../../resources/admin/' => resource_path('admin')
         ], 'admin');
 
         // migrations

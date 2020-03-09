@@ -39,10 +39,6 @@ class ComposerStaticInitd018b3e43616cccb2461352cf4782150
         array (
             'phpDocumentor\\Reflection\\' => 25,
         ),
-        'b' => 
-        array (
-            'bestlang\\page\\' => 14,
-        ),
         'Y' => 
         array (
             'Yansongda\\Supports\\' => 19,
@@ -212,10 +208,6 @@ class ComposerStaticInitd018b3e43616cccb2461352cf4782150
             0 => __DIR__ . '/..' . '/phpdocumentor/reflection-common/src',
             1 => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src',
             2 => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src',
-        ),
-        'bestlang\\page\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/bestlang/page/src',
         ),
         'Yansongda\\Supports\\' => 
         array (
@@ -784,6 +776,7 @@ class ComposerStaticInitd018b3e43616cccb2461352cf4782150
         'Bestlang\\Laracms\\Http\\Controllers\\ContentController' => __DIR__ . '/../..' . '/packages/bestlang/laracms/src/Http/Controllers/ContentController.php',
         'Bestlang\\Laracms\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/packages/bestlang/laracms/src/Http/Controllers/Controller.php',
         'Bestlang\\Laracms\\Http\\Controllers\\IndexController' => __DIR__ . '/../..' . '/packages/bestlang/laracms/src/Http/Controllers/IndexController.php',
+        'Bestlang\\Laracms\\Laracms' => __DIR__ . '/../..' . '/packages/bestlang/laracms/src/Laracms.php',
         'Bestlang\\Laracms\\Models\\Cms\\Channel' => __DIR__ . '/../..' . '/packages/bestlang/laracms/src/Models/Cms/Channel.php',
         'Bestlang\\Laracms\\Models\\Cms\\ChannelContent' => __DIR__ . '/../..' . '/packages/bestlang/laracms/src/Models/Cms/ChannelContent.php',
         'Bestlang\\Laracms\\Models\\Cms\\ChannelMeta' => __DIR__ . '/../..' . '/packages/bestlang/laracms/src/Models/Cms/ChannelMeta.php',
@@ -5747,9 +5740,6 @@ class ComposerStaticInitd018b3e43616cccb2461352cf4782150
         'Yansongda\\Supports\\Traits\\HasHttpRequest' => __DIR__ . '/..' . '/yansongda/supports/src/Traits/HasHttpRequest.php',
         'Yansongda\\Supports\\Traits\\Serializable' => __DIR__ . '/..' . '/yansongda/supports/src/Traits/Serializable.php',
         'Yansongda\\Supports\\Traits\\ShouldThrottle' => __DIR__ . '/..' . '/yansongda/supports/src/Traits/ShouldThrottle.php',
-        'bestlang\\page\\Facades\\page' => __DIR__ . '/..' . '/bestlang/page/src/Facades/page.php',
-        'bestlang\\page\\page' => __DIR__ . '/..' . '/bestlang/page/src/page.php',
-        'bestlang\\page\\pageServiceProvider' => __DIR__ . '/..' . '/bestlang/page/src/pageServiceProvider.php',
         'phpDocumentor\\Reflection\\DocBlock' => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src/DocBlock.php',
         'phpDocumentor\\Reflection\\DocBlockFactory' => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src/DocBlockFactory.php',
         'phpDocumentor\\Reflection\\DocBlockFactoryInterface' => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src/DocBlockFactoryInterface.php',

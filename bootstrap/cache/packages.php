@@ -20,17 +20,6 @@
       0 => 'Overtrue\\LaravelUEditor\\UEditorServiceProvider',
     ),
   ),
-  'bestlang/page' => 
-  array (
-    'providers' => 
-    array (
-      0 => 'bestlang\\page\\pageServiceProvider',
-    ),
-    'aliases' => 
-    array (
-      'page' => 'bestlang\\page\\Facades\\page',
-    ),
-  ),
   'beyondcode/laravel-dump-server' => 
   array (
     'providers' => 
