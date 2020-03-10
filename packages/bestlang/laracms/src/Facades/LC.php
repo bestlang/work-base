@@ -1,10 +1,10 @@
 <?php
 
-namespace bestlang\page\Facades;
+namespace Bestlang\Laracms\Facades;
 
 use Illuminate\Support\Facades\Facade;
 
-class Laracms extends Facade
+class LC extends Facade
 {
     /**
      * Get the registered name of the component.
@@ -13,6 +13,6 @@ class Laracms extends Facade
      */
     protected static function getFacadeAccessor()
     {
-        return 'laracms';
+        return 'lc';
     }
 }

@@ -17,7 +17,7 @@
         <div class="l-row">
             <div class="col-md-12 l-block-content">
                 <h1 class="l-content-title">{{$content->title}}</h1>
-                <div>{!!  contents_get($content, 'content') !!}</div>
+                <div>{!!  LC::contents_get($content, 'content') !!}</div>
             </div>
             <div><h2>评论区:</h2></div>
             <div>

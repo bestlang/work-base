@@ -238,6 +238,7 @@ return [
         'EasyWeChat' => Overtrue\LaravelWeChat\Facade::class,
         'JWTAuth' => Tymon\JWTAuth\Facades\JWTAuth::class,
         'JWTFactory' => Tymon\JWTAuth\Facades\JWTFactory::class,
+        'LC' => Bestlang\Laracms\Facades\LC::class
     ],
 
 ];

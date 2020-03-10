@@ -1,11 +1,12 @@
 <?php
 namespace Bestlang\Laracms;
 
-use Bestlang\Laracms\Models\Cms\Content;
-use BestLang\Laracms\Models\Cms\Position;
+use Bestlang\Laracms\Models\Cms\Position;
+use Arr;
 
-if(!function_exists('metas_get')){
-    function metas_get($content, $field){
+class LC
+{
+    public function metas_get($content, $field){
         $metas = $content->metas;
         foreach ($metas as $meta){
             if($meta->field == $field){
@@ -14,10 +15,8 @@ if(!function_exists('metas_get')){
         }
         return false;
     }
-}
 
-if(!function_exists( 'contents_get')){
-    function contents_get($content, $field){
+    public function contents_get($content, $field){
         $contents = $content->contents;
         foreach ($contents as $content){
             if($content->field == $field){
@@ -26,11 +25,7 @@ if(!function_exists( 'contents_get')){
         }
         return false;
     }
-}
-
-// 推荐位函数
-if(!function_exists('position')){
-    function position($name){
+    public function position($name){
         $position = Position::where('name', $name)->first();
         if(!$position){
             return [];
@@ -45,10 +40,7 @@ if(!function_exists('position')){
 //        print_r($contents->toArray());
         return $contents;
     }
-}
-
-if(!function_exists('channel_position')){
-    function channel_position($name){
+    public function channel_position($name){
         $position = Position::where('name', $name)->where('is_channel', 1)->first();
         if(!$position){
             return [];

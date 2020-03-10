@@ -15,9 +15,9 @@
             <div class="col-md-12 l-block-content">
                 <div class="col-md-6 l-position-block">
                     <div class="l-position-title">热点文章推荐</div>
-                    @foreach(position('热点文章推荐') as $content)
+                    @foreach(LC::position('热点文章推荐') as $content)
                         <div style="display: flex;flex-flow: row nowrap;">
-                            @if($thumb = metas_get($content, 'thumb'))
+                            @if($thumb = LC::metas_get($content, 'thumb'))
                                 <div><img src="{{$thumb}}" alt="" style="width: 100px;height: 100px;"></div>
                             @endif
                             <div style="display: flex;flex-flow: column;">
@@ -33,9 +33,9 @@
             <div class="col-md-12 l-block-content">
             <div class="col-md-6 l-position-block">
                 <div class="l-position-title">第一个推荐位</div>
-                @foreach(position('第一个推荐位') as $content)
+                @foreach(LC::position('第一个推荐位') as $content)
                     <div style="display: flex;flex-flow: row nowrap;">
-                        @if($thumb = metas_get($content, 'thumb'))
+                        @if($thumb = LC::metas_get($content, 'thumb'))
                             <div><img src="{{$thumb}}" alt="" style="width: 100px;height: 100px;"></div>
                         @endif
                         <div style="display: flex;flex-flow: column;">
@@ -49,7 +49,7 @@
             <p></p>
             <p></p>
             <div class="col-md-12">
-                @foreach(channel_position('首页栏目推荐') as $channel)
+                @foreach(LC::channel_position('首页栏目推荐') as $channel)
                     <div class="l-position-block">
                         <div class="l-position-title">
                             <div>❤{{$channel->name}}</div>

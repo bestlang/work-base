@@ -14,12 +14,12 @@
         <div class="l-row">
             <div class="col-md-12 l-block-content">
                 <h1 class="l-content-title">{{$content->title}}</h1>
-                @if($album = metas_get($content, 'album'))
+                @if($album = LC::metas_get($content, 'album'))
                     @foreach($album as $ab)
                         <img src="{{$ab->url}}" alt="">
                     @endforeach
                 @endif
-                {{--<div>{!!  contents_get($content, 'content') !!}</div>--}}
+                {{--<div>{!!  LC::contents_get($content, 'content') !!}</div>--}}
             </div>
             <div><h2>评论区:</h2></div>
             <div>

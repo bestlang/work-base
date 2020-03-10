@@ -153,7 +153,7 @@ return array(
     'Bestlang\\Laracms\\Http\\Controllers\\ContentController' => $baseDir . '/packages/bestlang/laracms/src/Http/Controllers/ContentController.php',
     'Bestlang\\Laracms\\Http\\Controllers\\Controller' => $baseDir . '/packages/bestlang/laracms/src/Http/Controllers/Controller.php',
     'Bestlang\\Laracms\\Http\\Controllers\\IndexController' => $baseDir . '/packages/bestlang/laracms/src/Http/Controllers/IndexController.php',
-    'Bestlang\\Laracms\\Laracms' => $baseDir . '/packages/bestlang/laracms/src/Laracms.php',
+    'Bestlang\\Laracms\\LC' => $baseDir . '/packages/bestlang/laracms/src/LC.php',
     'Bestlang\\Laracms\\Models\\Cms\\Channel' => $baseDir . '/packages/bestlang/laracms/src/Models/Cms/Channel.php',
     'Bestlang\\Laracms\\Models\\Cms\\ChannelContent' => $baseDir . '/packages/bestlang/laracms/src/Models/Cms/ChannelContent.php',
     'Bestlang\\Laracms\\Models\\Cms\\ChannelMeta' => $baseDir . '/packages/bestlang/laracms/src/Models/Cms/ChannelMeta.php',

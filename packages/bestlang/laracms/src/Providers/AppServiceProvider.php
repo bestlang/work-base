@@ -3,7 +3,7 @@
 namespace Bestlang\Laracms\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use Bestlang\Laracms\Laracms;
+//use Bestlang\Laracms\LC;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -14,9 +14,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->singleton('laracms', function ($app) {
-            return new Laracms();
-        });
+        $this->app->bind('lc', 'Bestlang\Laracms\LC');
     }
 
     /**

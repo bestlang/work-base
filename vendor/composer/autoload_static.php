@@ -776,7 +776,7 @@ class ComposerStaticInitd018b3e43616cccb2461352cf4782150
         'Bestlang\\Laracms\\Http\\Controllers\\ContentController' => __DIR__ . '/../..' . '/packages/bestlang/laracms/src/Http/Controllers/ContentController.php',
         'Bestlang\\Laracms\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/packages/bestlang/laracms/src/Http/Controllers/Controller.php',
         'Bestlang\\Laracms\\Http\\Controllers\\IndexController' => __DIR__ . '/../..' . '/packages/bestlang/laracms/src/Http/Controllers/IndexController.php',
-        'Bestlang\\Laracms\\Laracms' => __DIR__ . '/../..' . '/packages/bestlang/laracms/src/Laracms.php',
+        'Bestlang\\Laracms\\LC' => __DIR__ . '/../..' . '/packages/bestlang/laracms/src/LC.php',
         'Bestlang\\Laracms\\Models\\Cms\\Channel' => __DIR__ . '/../..' . '/packages/bestlang/laracms/src/Models/Cms/Channel.php',
         'Bestlang\\Laracms\\Models\\Cms\\ChannelContent' => __DIR__ . '/../..' . '/packages/bestlang/laracms/src/Models/Cms/ChannelContent.php',
         'Bestlang\\Laracms\\Models\\Cms\\ChannelMeta' => __DIR__ . '/../..' . '/packages/bestlang/laracms/src/Models/Cms/ChannelMeta.php',

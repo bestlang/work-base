@@ -29,7 +29,6 @@
       "Bestlang\\Laracms\\": "src/"
     },
     "files": [
-      "src/helpers.php"
     ],
     "classmap": [
       "database/seeds",
@@ -44,6 +43,7 @@
         "Bestlang\\Laracms\\Providers\\ResponseServiceProvider"
       ],
       "aliases": {
+        "LC": "Bestlang\\Laracms\\Facades\\LC"
       }
     }
   }
