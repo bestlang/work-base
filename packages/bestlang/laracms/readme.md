@@ -44,14 +44,14 @@ If you discover any security related issues, please email author email instead o
 
 license. Please see the [license file](license.md) for more information.
 
-[ico-version]: https://img.shields.io/packagist/v/bestlang/page.svg?style=flat-square
-[ico-downloads]: https://img.shields.io/packagist/dt/bestlang/page.svg?style=flat-square
-[ico-travis]: https://img.shields.io/travis/bestlang/page/master.svg?style=flat-square
+[ico-version]: https://img.shields.io/packagist/v/bestlang/laracms.svg?style=flat-square
+[ico-downloads]: https://img.shields.io/packagist/dt/bestlang/laracms.svg?style=flat-square
+[ico-travis]: https://img.shields.io/travis/bestlang/laracms/master.svg?style=flat-square
 [ico-styleci]: https://styleci.io/repos/12345678/shield
 
-[link-packagist]: https://packagist.org/packages/bestlang/page
-[link-downloads]: https://packagist.org/packages/bestlang/page
-[link-travis]: https://travis-ci.org/bestlang/page
+[link-packagist]: https://packagist.org/packages/bestlang/laracms
+[link-downloads]: https://packagist.org/packages/bestlang/laracms
+[link-travis]: https://travis-ci.org/bestlang/laracms
 [link-styleci]: https://styleci.io/repos/12345678
 [link-author]: https://github.com/bestlang
 [link-contributors]: ../../contributors

@@ -11,7 +11,12 @@
   "homepage": "https://github.com/bestlang/laracms",
   "keywords": ["Laravel", "laracms"],
   "require": {
-    "illuminate/support": "~5|~6"
+    "illuminate/support": "~5|~6",
+    "baum/baum": "v2.x-dev",
+    "bestlang/laravel-ueditor": "dev-master",
+    "spatie/laravel-permission": "^2.38",
+    "tymon/jwt-auth": "1.0.*",
+    "upyun/sdk": "^3.3"
   },
   "require-dev": {
     "phpunit/phpunit": "^8.0",
@@ -19,12 +24,13 @@
     "orchestra/testbench": "~3|~4",
     "sempro/phpunit-pretty-print": "^1.0"
   },
-  "minimum-stability": "dev",
-  "require": {},
   "autoload": {
     "psr-4": {
       "Bestlang\\Laracms\\": "src/"
     },
+    "files": [
+      "src/helpers.php"
+    ],
     "classmap": [
       "database/seeds",
       "database/factories"
