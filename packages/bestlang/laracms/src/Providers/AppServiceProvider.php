@@ -37,6 +37,11 @@ class AppServiceProvider extends ServiceProvider
             __DIR__.'/../../resources/admin/' => resource_path('admin')
         ], 'admin');
 
+        // static file
+        $this->publishes([
+            __DIR__ . '/../../resources/laracms_static/' => public_path('laracms_static')
+        ], 'static');
+
         $this->loadMigrationsFrom(__DIR__.'/../../database/migrations');
 
         // migrations

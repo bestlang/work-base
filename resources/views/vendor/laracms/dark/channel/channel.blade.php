@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>{{ config('app.name') }}</title>
-    <script type="text/javascript" src="/js/app.js"></script>
+    <script type="text/javascript" src="/laracms_static/app.js"></script>
 </head>
 <body>
 @include('laracms::dark.common.head')

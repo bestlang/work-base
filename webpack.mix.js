@@ -11,7 +11,7 @@ const mix = require('laravel-mix');
  |
  */
 
-mix.js('resources/js/app.js', 'public/js')
-    .sass('resources/sass/app.scss', 'public/css');
+mix.js('resources/js/app.js', 'public/laracms_static')
+    .sass('resources/sass/app.scss', 'public/laracms_static');
 
 // mix.less('resources/less/cms.less', 'public/css');

@@ -1,4 +1,4 @@
 {
-    "/js/app.js": "/js/app.js",
-    "/css/app.css": "/css/app.css"
+    "/laracms_static/app.js": "/laracms_static/app.js",
+    "/laracms_static/app.css": "/laracms_static/app.css"
 }

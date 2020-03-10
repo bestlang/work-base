@@ -2,7 +2,7 @@
 
 namespace Bestlang\Laracms\Models\Cms;
 
-use App\Models\User;
+use Bestlang\Laracms\Models\User;
 use Illuminate\Database\Eloquent\Model;
 
 class Comment extends Model
