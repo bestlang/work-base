@@ -1,3 +1,5 @@
+open /Users/lu/PhpstormProjects/bestlang/laracms
+
 ### JWT 配置参考
 #### https://tutsforweb.com/restful-api-in-laravel-56-using-jwt-authentication/
 
@@ -19,4 +21,4 @@ Uncaught RangeError: Maximum call stack size exceeded. at VueComponent.handleMou
 https://blog.csdn.net/hunkcai/article/details/51362073
 https://blog.csdn.net/xy707707/article/details/81219756
 
-package位置:/Users/lu/PhpstormProjects/bestlang/laracms
+

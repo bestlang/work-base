@@ -14,7 +14,7 @@ return [
          */
 
         // 'permission' => Spatie\Permission\Models\Permission::class,
-        'permission' => Bestlang\Laracms\Models\Permission::class,
+        'permission' => App\Models\Permission::class,
 
         /*
          * When using the "HasRoles" trait from this package, we need to know which

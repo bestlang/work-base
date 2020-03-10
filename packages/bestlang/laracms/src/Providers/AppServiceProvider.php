@@ -30,6 +30,7 @@ class AppServiceProvider extends ServiceProvider
         $this->publishes([
             __DIR__.'/../../config/jwt.php' => config_path('jwt.php'),
             __DIR__.'/../../config/ueditor.php' => config_path('ueditor.php'),
+            __DIR__.'/../../config/permission.php' => config_path('permission.php'),
         ], 'config');
 
         // vue 后台代码
