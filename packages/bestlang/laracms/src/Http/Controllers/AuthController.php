@@ -31,10 +31,15 @@ class AuthController extends Controller
             $password = request()->input('password');
             $token = JWTAuth::attempt(['mobile' => $mobile, 'password' => $password]);
             if(!$token){
-                throw new \Exception('手机号或者密码错误,请重试!');
+                $exists = User::where('mobile', $mobile)->first();
+                if($exists){
+                    throw new \Exception('密码错误,请重试!');
+                }else{
+                    throw new \Exception('手机号不存在,请重试!');
+                }
             }
         }catch (\Exception $e){
-            return response()->error($e->getMessage(), 402);//暂时使用402作为登录失败代码, 区别于登录信息失效401
+            return response()->error($e->getMessage(), 4011);//暂时使用4011作为登录失败代码, 区别于登录信息失效401
         }
         return $this->respondWithToken($token);
     }

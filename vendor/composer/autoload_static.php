@@ -761,6 +761,8 @@ class ComposerStaticInitd018b3e43616cccb2461352cf4782150
         'Baum\\Node' => __DIR__ . '/..' . '/baum/baum/src/Node.php',
         'Baum\\Playground\\Caster' => __DIR__ . '/..' . '/baum/baum/src/Playground/Caster.php',
         'Baum\\Playground\\Console' => __DIR__ . '/..' . '/baum/baum/src/Playground/Console.php',
+        'Bestlang\\Laracms\\Exceptions\\Handler' => __DIR__ . '/../..' . '/packages/bestlang/laracms/src/Exceptions/Handler.php',
+        'Bestlang\\Laracms\\Facades\\LC' => __DIR__ . '/../..' . '/packages/bestlang/laracms/src/Facades/LC.php',
         'Bestlang\\Laracms\\Http\\Controllers\\Admin\\Cms\\ChannelController' => __DIR__ . '/../..' . '/packages/bestlang/laracms/src/Http/Controllers/Admin/Cms/ChannelController.php',
         'Bestlang\\Laracms\\Http\\Controllers\\Admin\\Cms\\ContentController' => __DIR__ . '/../..' . '/packages/bestlang/laracms/src/Http/Controllers/Admin/Cms/ContentController.php',
         'Bestlang\\Laracms\\Http\\Controllers\\Admin\\Cms\\FieldTypeController' => __DIR__ . '/../..' . '/packages/bestlang/laracms/src/Http/Controllers/Admin/Cms/FieldTypeController.php',

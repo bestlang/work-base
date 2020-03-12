@@ -104,6 +104,9 @@ export default {
                             this.$store.commit(this.$types.USER, res.data.user);
                             let sb = await this.$http.get("/admin/privileges/user/permissions");
                             this.$router.push("/dashboard");
+                        }else if(res.code == 4011){
+                           this.restInfo()
+
                         }
                     })
                     .catch(error => {

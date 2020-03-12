@@ -138,6 +138,8 @@ return array(
     'Baum\\Node' => $vendorDir . '/baum/baum/src/Node.php',
     'Baum\\Playground\\Caster' => $vendorDir . '/baum/baum/src/Playground/Caster.php',
     'Baum\\Playground\\Console' => $vendorDir . '/baum/baum/src/Playground/Console.php',
+    'Bestlang\\Laracms\\Exceptions\\Handler' => $baseDir . '/packages/bestlang/laracms/src/Exceptions/Handler.php',
+    'Bestlang\\Laracms\\Facades\\LC' => $baseDir . '/packages/bestlang/laracms/src/Facades/LC.php',
     'Bestlang\\Laracms\\Http\\Controllers\\Admin\\Cms\\ChannelController' => $baseDir . '/packages/bestlang/laracms/src/Http/Controllers/Admin/Cms/ChannelController.php',
     'Bestlang\\Laracms\\Http\\Controllers\\Admin\\Cms\\ContentController' => $baseDir . '/packages/bestlang/laracms/src/Http/Controllers/Admin/Cms/ContentController.php',
     'Bestlang\\Laracms\\Http\\Controllers\\Admin\\Cms\\FieldTypeController' => $baseDir . '/packages/bestlang/laracms/src/Http/Controllers/Admin/Cms/FieldTypeController.php',
