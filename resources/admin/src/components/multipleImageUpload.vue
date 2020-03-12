@@ -15,7 +15,6 @@
     </el-upload>
 </template>
 <script>
-    //import custom from '@/../config/custom'
 
     export default {
         props:['value'],

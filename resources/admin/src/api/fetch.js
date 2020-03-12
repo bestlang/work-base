@@ -1,6 +1,5 @@
 import axios from 'axios'
-import { Message } from 'element-ui'
-//import custom from '@/../config/custom'
+import { Message} from 'element-ui'
 import app from '../main.js'
 
 function showMessage(value) {
@@ -17,7 +16,6 @@ function showMessage(value) {
  *
  */
 axios.interceptors.request.use(config => {//在此处统一配置公共参数
-
     config.baseURL = app.SITE_URL + '/api/'
     config.withCredentials = true // 允许携带token ,这个是解决跨域产生的相关问题
     config.timeout = 6000
@@ -51,9 +49,9 @@ axios.interceptors.response.use(response => {
                     let accessToken = localStorage.getItem('accessToken');
                     showMessage('请重新登录!');
                     localStorage.setItem('accessToken', '');
-                    app.$router.push( '/login');
+                    app.$router.push('/login');
                 }catch(e){
-                    app.$router.push( '/login');
+                    app.$router.push('/login');
                 }
 
                 break;
@@ -68,7 +66,11 @@ axios.interceptors.response.use(response => {
     },
     // 少量非200状态码会进入这里
     error => {
-
+        if (error.response.status === 401) {
+            showMessage('请重新登录');
+            app.$router.replace('/login');
+        }
+        return error;
     }
 );
 

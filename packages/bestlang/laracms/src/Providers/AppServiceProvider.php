@@ -15,6 +15,7 @@ class AppServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->bind('lc', 'Bestlang\Laracms\LC');
+        $this->app['router']->aliasMiddleware('auth.jwt', \Tymon\JWTAuth\Http\Middleware\Authenticate::class);
     }
 
     /**
@@ -32,8 +33,12 @@ class AppServiceProvider extends ServiceProvider
         ], 'config');
 
         // vue 后台代码
+//        $this->publishes([
+//            __DIR__.'/../../resources/admin/' => resource_path('admin')
+//        ], 'admin');
+
         $this->publishes([
-            __DIR__.'/../../resources/admin/' => resource_path('admin')
+            __DIR__.'/../../resources/admin/' => public_path('admin')
         ], 'admin');
 
         // static file

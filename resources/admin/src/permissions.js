@@ -1,6 +1,5 @@
 import router from './router/index'//路由
 import store from './store/index'//路由
-//import custom from '../config/custom'
 
 router.beforeEach((to, from, next) => {
   let loginPath = '/login';

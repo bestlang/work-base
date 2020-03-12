@@ -1,5 +1,25 @@
 open /Users/lu/PhpstormProjects/bestlang/laracms
 
+composer require bestlang/laracms
+
+php artisan vendor:publish
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ### JWT 配置参考
 #### https://tutsforweb.com/restful-api-in-laravel-56-using-jwt-authentication/
 

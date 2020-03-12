@@ -90,8 +90,6 @@
     </el-row>
 </template>
 <script>
-    //import custom from '@/../config/custom'
-
     export default {
         data() {
             return {
