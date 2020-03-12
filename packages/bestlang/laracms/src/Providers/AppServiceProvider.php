@@ -16,6 +16,10 @@ class AppServiceProvider extends ServiceProvider
     {
         $this->app->bind('lc', 'Bestlang\Laracms\LC');
         $this->app['router']->aliasMiddleware('auth.jwt', \Tymon\JWTAuth\Http\Middleware\Authenticate::class);
+        $this->app->singleton(
+            Illuminate\Contracts\Debug\ExceptionHandler::class,
+            Bestlang\Laracms\Exceptions\Handler::class
+        );
     }
 
     /**

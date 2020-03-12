@@ -70,7 +70,7 @@ axios.interceptors.response.use(response => {
             showMessage('请重新登录');
             app.$router.replace('/login');
         }
-        return error;
+        Promise.reject(error);// 错误提示
     }
 );
 
