@@ -5619,6 +5619,7 @@ class ComposerStaticInitd018b3e43616cccb2461352cf4782150
         'Upyun\\Uploader' => __DIR__ . '/..' . '/upyun/sdk/src/Upyun/Uploader.php',
         'Upyun\\Upyun' => __DIR__ . '/..' . '/upyun/sdk/src/Upyun/Upyun.php',
         'Upyun\\Util' => __DIR__ . '/..' . '/upyun/sdk/src/Upyun/Util.php',
+        'UsersTableSeeder' => __DIR__ . '/../..' . '/database/seeds/UsersTableSeeder.php',
         'Webmozart\\Assert\\Assert' => __DIR__ . '/..' . '/webmozart/assert/src/Assert.php',
         'Whoops\\Exception\\ErrorException' => __DIR__ . '/..' . '/filp/whoops/src/Whoops/Exception/ErrorException.php',
         'Whoops\\Exception\\Formatter' => __DIR__ . '/..' . '/filp/whoops/src/Whoops/Exception/Formatter.php',

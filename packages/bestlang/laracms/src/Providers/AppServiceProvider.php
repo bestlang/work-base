@@ -27,6 +27,7 @@ class AppServiceProvider extends ServiceProvider
     {
         // config
         $this->publishes([
+            __DIR__.'/../../config/auth.php' => config_path('auth.php'),
             __DIR__.'/../../config/jwt.php' => config_path('jwt.php'),
             __DIR__.'/../../config/ueditor.php' => config_path('ueditor.php'),
             __DIR__.'/../../config/permission.php' => config_path('permission.php'),
@@ -44,6 +45,10 @@ class AppServiceProvider extends ServiceProvider
 
         // migrations
         $this->loadMigrationsFrom(__DIR__.'/../../database/migrations');
+        // seeder
+        $this->publishes([
+            __DIR__ . '/../../database/seeds' => database_path('seeds')
+        ], 'laracms-seeds');
 
         $this->loadViewsFrom(__DIR__.'/../../resources/views/laracms', 'laracms');
 
