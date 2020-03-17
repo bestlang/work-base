@@ -8,7 +8,7 @@ use Bestlang\Laracms\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Spatie\Permission\Models\Role;
 use Illuminate\Support\Arr;
-use App\Models\Permission;
+use Bestlang\Laracms\Models\Permission;
 
 class PrivilegesController extends Controller
 {
@@ -17,10 +17,16 @@ class PrivilegesController extends Controller
     {
         $user = Auth::user();
         $userPermissions = $user->getPermissionsViaRoles();
+
+        $allPermissions = Permission::all();
+
+        if($user->hasRole('administrator')){
+            $userPermissions = $allPermissions;
+        }
         $permissionIds = $userPermissions->map(function ($item){ return $item->id;})->toArray();
         $permissions = $userPermissions->map(function ($item){ return $item->name;})->toArray();
 
-        $allPermissions = Permission::all();
+
         //make sure one has the parent permission if one has a leaf permission of it, for the menu
         foreach ($allPermissions as $permission){
             $children_permissions = Permission::whereBetween('left', [$permission->left, $permission->right])->get();

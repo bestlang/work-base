@@ -15,6 +15,7 @@ class ModifyUsersTable extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->string('mobile', 255)->nullable()->after('password');
+            $table->tinyInteger('type')->default(0)->comment('user type: 0 normal user 1 administrator user');
         });
     }
 
@@ -27,6 +28,7 @@ class ModifyUsersTable extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->dropColumn('mobile');
+            $table->dropColumn('type');
         });
     }
 }

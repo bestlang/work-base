@@ -11,6 +11,7 @@ Controller中的action里面
 出错了请手工调用 Illuminate\Contracts\Debug\ExceptionHandler::class -> render方法
 
 
+使用Route macro来避免api方式和session方式造成的路由定义重复
 
 
 

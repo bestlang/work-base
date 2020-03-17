@@ -4,6 +4,7 @@ namespace Bestlang\Laracms\Providers;
 
 use Illuminate\Support\ServiceProvider;
 //use Bestlang\Laracms\LC;
+use Illuminate\Support\Facades\Gate;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -25,6 +26,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        Gate::before(function ($user, $ability) {
+            return $user->hasRole('administrator') ? true : null;
+        });
         // config
         $this->publishes([
             __DIR__.'/../../config/auth.php' => config_path('auth.php'),
@@ -47,7 +51,7 @@ class AppServiceProvider extends ServiceProvider
         $this->loadMigrationsFrom(__DIR__.'/../../database/migrations');
         // seeder
         $this->publishes([
-            __DIR__ . '/../../database/seeds' => database_path('seeds')
+            __DIR__ . '/../../database/seeds/UsersTableSeeder.php' => database_path('seeds/UsersTableSeeder.php')
         ], 'laracms-seeds');
 
         $this->loadViewsFrom(__DIR__.'/../../resources/views/laracms', 'laracms');
