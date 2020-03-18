@@ -4,6 +4,7 @@ use Illuminate\Database\Seeder;
 use Bestlang\Laracms\Models\User;
 use Spatie\Permission\Models\Role;
 use Bestlang\Laracms\Models\Permission;
+use App\Models\Cms\FieldType;
 
 class InitTableSeeder extends Seeder
 {
@@ -14,7 +15,16 @@ class InitTableSeeder extends Seeder
      */
     public function run()
     {
-        //
+        /*-
+        tables coverd:
+            - users
+            - roles
+            - role_has_permissions
+            - model_has_roles
+            - cms_field_types
+            - permissions
+        -*/
+        /*-开始用户与权限-*/
         $user = User::create([
             'name' => 'admin',
             'email' => 'admin@larashop.com',
@@ -115,5 +125,16 @@ class InitTableSeeder extends Seeder
         $permissions->each(function($permission)use($role){
             $role->givePermissionTo($permission);
         });
+        /*-结束用户与权限-*/
+
+        /*-开始预设字段类型-*/
+        FieldType::create(['type' => 'select', 'name' => '单选列表', 'extra' => ['options' => true]]);
+        FieldType::create(['type' => 'radio', 'name' => '单选按钮', 'extra' => ['options' => true]]);
+        FieldType::create(['type' => 'text', 'name' => '单行文本', 'extra' => ['options' => false]]);
+        FieldType::create(['type' => 'text', 'name' => '单行文本', 'extra' => ['options' => false]]);
+        FieldType::create(['type' => 'checkbox', 'name' => '多选', 'extra' => ['options' => true]]);
+        FieldType::create(['type' => 'image', 'name' => '单图', 'extra' => ['options' => false]]);
+        FieldType::create(['type' => 'multiple-image', 'name' => '图集', 'extra' => ['options' => false]]);
+        /*-结束预设字段类型-*/
     }
 }
