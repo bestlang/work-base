@@ -23,6 +23,11 @@ class InitTableSeeder extends Seeder
             delete from cms_field_types;
             delete from permissions;
             delete from permissions;
+            delete from cms_field_types;
+            delete from cms_model_fields;
+            delete from cms_models;
+            delete from cms_channels;
+            delete from cms_contents;
         -*/
         /*-开始用户与权限-*/
         $user = User::create([
@@ -131,7 +136,7 @@ class InitTableSeeder extends Seeder
         FieldType::create(['type' => 'select', 'name' => '单选列表', 'extra' => ['options' => true]]);
         FieldType::create(['type' => 'radio', 'name' => '单选按钮', 'extra' => ['options' => true]]);
         FieldType::create(['type' => 'text', 'name' => '单行文本', 'extra' => ['options' => false]]);
-        FieldType::create(['type' => 'text', 'name' => '单行文本', 'extra' => ['options' => false]]);
+        FieldType::create(['type' => 'content', 'name' => '内容', 'extra' => ['options' => false]]);
         FieldType::create(['type' => 'checkbox', 'name' => '多选', 'extra' => ['options' => true]]);
         FieldType::create(['type' => 'image', 'name' => '单图', 'extra' => ['options' => false]]);
         FieldType::create(['type' => 'multiple-image', 'name' => '图集', 'extra' => ['options' => false]]);

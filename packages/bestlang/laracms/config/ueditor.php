@@ -11,7 +11,8 @@
 
 return [
     // 存储引擎: config/filesystem.php 中 disks， public 或 qiniu
-    'disk' => 'upyun',
+    //'disk' => 'upyun',
+    'disk' => 'public',
     'route' => [
         'name' => '/ueditor/server',
         'options' => [
