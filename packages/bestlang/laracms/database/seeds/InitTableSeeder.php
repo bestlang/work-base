@@ -4,7 +4,7 @@ use Illuminate\Database\Seeder;
 use Bestlang\Laracms\Models\User;
 use Spatie\Permission\Models\Role;
 use Bestlang\Laracms\Models\Permission;
-use App\Models\Cms\FieldType;
+use Bestlang\Laracms\Models\Cms\FieldType;
 
 class InitTableSeeder extends Seeder
 {
@@ -16,13 +16,13 @@ class InitTableSeeder extends Seeder
     public function run()
     {
         /*-
-        tables coverd:
-            - users
-            - roles
-            - role_has_permissions
-            - model_has_roles
-            - cms_field_types
-            - permissions
+            delete from users;
+            delete from roles;
+            delete from role_has_permissions;
+            delete from model_has_roles;
+            delete from cms_field_types;
+            delete from permissions;
+            delete from permissions;
         -*/
         /*-开始用户与权限-*/
         $user = User::create([
