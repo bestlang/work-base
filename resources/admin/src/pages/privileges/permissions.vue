@@ -1,9 +1,9 @@
 <template>
   <div>
     <div v-title="'权限管理'"></div>
-    <div class="top-buttons" style="display: flex;flex-flow: row nowrap; justify-content: space-between;">
+    <!--<div class="top-buttons" style="display: flex;flex-flow: row nowrap; justify-content: space-between;">-->
 <!--      <div>所有权限</div>-->
-    </div>
+    <!--</div>-->
     <div style="width:50%;">
       <div class="l-block">
         <div class="l-block-header">所有权限</div>
@@ -101,7 +101,7 @@
         this.formVisible = true;
         this.title = '编辑权限';
       },
-      recovery(){
+      reset(){
         this.current = null;
         Object.assign(this.form, {
           id: '',
@@ -111,7 +111,7 @@
         })
       },
       add(data) {
-        this.recovery()
+        this.reset()
         this.current = data;
         this.formVisible = true;
       },
@@ -122,42 +122,34 @@
           this.doEdit()
         }
       },
-      doAdd(){
+      async doAdd(){
         const newChild = {show_name: this.form.show_name, disabled: true, name: this.form.name,  children: [] };
         if (!this.current.children) {
           this.$set(this.current, 'children', []);
         }
         this.formVisible = false
-        this.$http
-          .post("/admin/privileges/add/permission", {parent_id: this.current.id, name: this.form.name, show_name: this.form.show_name})
-          .then(res => {
-            newChild.id = res.data.id;
-            this.current.children.push(newChild);
-            // this.formVisible = false
-            if(res.success){
-              this.$message({
-                type: 'success',
-                message: '添加成功!'
-              });
-              this.recovery()
-            }else{
-              this.formVisible = true
-            }
-
+        let res = await this.fetch("/admin/privileges/add/permission", {parent_id: this.current.id, name: this.form.name, show_name: this.form.show_name}, 'post')
+        newChild.id = res.data.id;
+        this.current.children.push(newChild);
+        if(res.success){
+          this.$message({
+            type: 'success',
+            message: '添加成功!'
           });
+          this.reset()
+        }else{
+          this.formVisible = true
+        }
       },
-      doEdit(){
-        this.$http
-          .post("/admin/privileges/edit/permission", {id: this.form.id, name: this.form.name, show_name: this.form.show_name})
-          .then(res => {
-            this.$message({
-              type: 'success',
-              message: '修改成功!'
-            });
-            this.current.name = this.form.name
-            this.current.show_name = this.form.show_name
-            this.recovery()
-          });
+      async doEdit(){
+        let res = await this.fetch("/admin/privileges/edit/permission", {id: this.form.id, name: this.form.name, show_name: this.form.show_name}, 'post')
+        this.$message({
+          type: 'success',
+          message: '修改成功!'
+        });
+        this.current.name = this.form.name
+        this.current.show_name = this.form.show_name
+        this.reset()
         this.formVisible = false
       },
       remove(node, data) {
@@ -165,49 +157,29 @@
           confirmButtonText: '确定',
           cancelButtonText: '取消',
           type: 'warning'
-        }).then(() => {
-          this.$http
-            .post("/admin/privileges/delete/permission", {id: data.id})
-            .then(res => {
-              const parent = node.parent;
-              const children = parent.data.children || parent.data;
-              const index = children.findIndex(d => d.id === data.id);
-              children.splice(index, 1);
-              this.$message({
-                type: 'success',
-                message: '删除成功!'
-              });
-            }).catch(()=>{});
+        }).then(async () => {
+          let res = await this.fetch("/admin/privileges/delete/permission", {id: data.id}, 'post')
+          const parent = node.parent;
+          const children = parent.data.children || parent.data;
+          const index = children.findIndex(d => d.id === data.id);
+          children.splice(index, 1);
+          this.$message({
+            type: 'success',
+            message: '删除成功!'
+          });
         });
       },
       handleCheckChange(data, checked, indeterminate) {
-        /**
-        setCheckedNodes() {
-        this.$refs.tree.setCheckedNodes([{
-          id: 5,
-          label: '二级 2-1'
-        }, {
-          id: 9,
-          label: '三级 1-1-1'
-        }]);
-      },
-      */
-        // console.log(data, checked, indeterminate);
-        //this.$refs.tree.setCheckedKeys([23]);
-        //this.$refs.tree.setCheckedKeys([data.id]);
         console.log(data,`.............`, checked, `.............`, indeterminate);
         return true;
       },
-      loadPermissionsTree(){
-        this.$http
-        .get("/admin/privileges/permissions/tree", {params:{disabled: true}})
-        .then(res => {
-          this.treeData = [res.data[Object.keys(res.data)[0]]];
-        });
+      async loadPermissionsTree(){
+        let res = await this.fetch("/admin/privileges/permissions/tree", {disabled: true})
+        this.treeData = [res.data[Object.keys(res.data)[0]]];
       }
     },
-    mounted() {
-      this.loadPermissionsTree()
+    async mounted() {
+      await this.loadPermissionsTree()
     }
   }
 </script>

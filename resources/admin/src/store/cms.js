@@ -1,5 +1,5 @@
 import * as types from './types'
-import fetch from "../api/fetch"
+import {fetch} from "../api/fetch"
 
 const cmsConfig = {
   state: {
@@ -73,46 +73,39 @@ const cmsConfig = {
       }
   },
   actions: {
-      [types.CMS_MODELS] ({commit}) {
+      async [types.CMS_MODELS] ({commit}) {
         commit(types.LOADING, true)
-        fetch.get("/admin/cms/model")
-          .then(res => {
-            commit(types.CMS_MODELS, res.data);
-            commit(types.LOADING, false)
-          });
+        let res = await fetch("/admin/cms/model")
+        commit(types.CMS_MODELS, res.data);
+        commit(types.LOADING, false)
       },
-      [types.CMS_CHANNELS] ({commit, dispatch} , parent) {
+      async [types.CMS_CHANNELS] ({commit, dispatch} , parent) {
         commit(types.LOADING, true)
-        fetch.get("/admin/cms/channel/tree", {params:{disabled: true}})
-          .then(res => {
-            // 取到了数据
-            if(Object.keys(res.data).length > 0){
-              let node = res.data[Object.keys(res.data)[0]]
-              commit(types.CMS_CHANNELS, [node]);
-              // 设置第一个元素为父栏目 && 取得第一个元素的子栏目列表
-              dispatch(types.CMS_CHANNEL_CHILDREN, node);
-              dispatch(types.CMS_PARENT_CHANNEL, node)
-              if(!parent){
-                  // 默认设置根节点为当前选中栏目
-                  dispatch(types.CMS_CURRENT_CHANNEL, node)
-              }
-            }
-            // 设置父栏目 以及 父栏目的子栏目列表
-            if(parent){
-              dispatch(types.CMS_PARENT_CHANNEL, parent)
-              dispatch(types.CMS_CHANNEL_CHILDREN, parent);
-            }
-
-            commit(types.LOADING, false)
-          });
+        let res = await fetch("/admin/cms/channel/tree", {disabled: true})
+        // 取到了数据
+        if(Object.keys(res.data).length > 0){
+          let node = res.data[Object.keys(res.data)[0]]
+          commit(types.CMS_CHANNELS, [node]);
+          // 设置第一个元素为父栏目 && 取得第一个元素的子栏目列表
+          dispatch(types.CMS_CHANNEL_CHILDREN, node);
+          dispatch(types.CMS_PARENT_CHANNEL, node)
+          if(!parent){
+              // 默认设置根节点为当前选中栏目
+              dispatch(types.CMS_CURRENT_CHANNEL, node)
+          }
+        }
+        // 设置父栏目 以及 父栏目的子栏目列表
+        if(parent){
+          dispatch(types.CMS_PARENT_CHANNEL, parent)
+          dispatch(types.CMS_CHANNEL_CHILDREN, parent);
+        }
+        commit(types.LOADING, false);
       },
-      [types.CMS_CHANNEL_CHILDREN] ({commit}, node) {
+      async [types.CMS_CHANNEL_CHILDREN] ({commit}, node) {
         commit(types.LOADING, true)
-        fetch.post("/admin/cms/channel/children", {parent_id: node.id})
-          .then(res => {
-            commit(types.CMS_CHANNEL_CHILDREN, res.data)
-            commit(types.LOADING, false)
-          });
+        let res = await fetch("/admin/cms/channel/children", {parent_id: node.id})
+        commit(types.CMS_CHANNEL_CHILDREN, res.data)
+        commit(types.LOADING, false)
       },
       [types.CMS_PARENT_CHANNEL] ({commit}, node) {
         commit(types.CMS_PARENT_CHANNEL, node);

@@ -217,7 +217,7 @@
       }
     },
     methods:{
-      saveOrderFactor(isChannel = 0){
+      async saveOrderFactor(isChannel = 0){
         let ids = [];
         let orders = [];
         let fields = [];
@@ -237,17 +237,14 @@
           });
           return false;
         }
-        this.$http
-          .post("/admin/cms/model/save/field/order", {ids, orders})
-          .then(res => {
-            if(this.modelForm.id){
-              this.loadModel(this.modelForm.id)
-            }
-            this.$message({
-              type: 'success',
-              message: '保存成功!'
-            });
-          }).catch(()=>{});
+        let res = await this.fetch("/admin/cms/model/save/field/order", {ids, orders}, 'post')
+        if(this.modelForm.id){
+          await this.loadModel(this.modelForm.id)
+        }
+        this.$message({
+          type: 'success',
+          message: '保存成功!'
+        });
       },
       handleEdit(row){
         this.fieldVisible = true
@@ -258,18 +255,14 @@
           confirmButtonText: '确定',
           cancelButtonText: '取消',
           type: 'warning'
-        }).then(() => {
+        }).then(async () => {
           let model_id = this.fieldForm.model_id
-          this.$http
-            .post("/admin/cms/model/delete/field", {model_id: model_id, id: row.id})
-            .then(res => {
-              ///
-              this.loadModel(model_id);
-              this.$message({
-                type: 'success',
-                message: '删除成功!'
-              });
-            }).catch(()=>{});
+          let res = await this.fetch("/admin/cms/model/delete/field", {model_id: model_id, id: row.id}, 'post')
+          await this.loadModel(model_id);
+          this.$message({
+            type: 'success',
+            message: '删除成功!'
+          });
         });
       },
       // beforeLeave(activeName, oldActiveName){
@@ -302,71 +295,59 @@
         });
         this.showOptions = false;
       },
-      loadFieldTypes(){
-        this.$http
-          .get("/admin/cms/model/field/types")
-          .then(res => {
-            this.options = res.data;
-          });
+      async loadFieldTypes(){
+        let res = await this.fetch("/admin/cms/model/field/types")
+        this.options = res.data;
       },
-      loadModel(id){
-        this.$http
-          .get("/admin/cms/model/get", {params: {id}})
-          .then(res => {
-            this.fields = res.data.fields;
-            Object.assign(this.modelForm, res.data)
-            this.fieldForm.model_id = res.data.id;
-          });
+      async loadModel(id){
+        let res = await this.fetch("/admin/cms/model/get", {id})
+        this.fields = res.data.fields;
+        Object.assign(this.modelForm, res.data)
+        this.fieldForm.model_id = res.data.id;
       },
-      save(){
-        this.$http
-          .post("/admin/cms/model/save", this.modelForm)
-          .then(res => {
-            if(res.success){
-              let message = '添加成功!'
-              if(this.modelForm.id){
-                message = '更新成功!';
-              }
-              this.$message({
-                message: message,
-                type: 'success'
-              });
-              Object.assign(this.modelForm, res.data);
-              this.id = res.data.id;
-              this.loadModel(this.id);
-            }else{
-              let message = '出错了!请联系管理员';
-              this.$message({
-                message: message,
-                type: 'warning'
-              });
-            }
+      async save(){
+        let res = await this.fetch("/admin/cms/model/save", this.modelForm, 'post')
+        if(res.success){
+          let message = '添加成功!'
+          if(this.modelForm.id){
+            message = '更新成功!';
+          }
+          this.$message({
+            message: message,
+            type: 'success'
           });
+          Object.assign(this.modelForm, res.data);
+          this.id = res.data.id;
+          await this.loadModel(this.id);
+        }else{
+          let message = '出错了!请联系管理员';
+          this.$message({
+            message: message,
+            type: 'warning'
+          });
+        }
       },
-      doSaveField(){
+      async doSaveField(){
         if(!this.fieldForm.model_id){
           this.fieldForm.model_id = this.modelForm.id;
         }
-        this.$http
-          .post("/admin/cms/model/save/field", this.fieldForm)
-          .then(res => {
-            if(res.success){
-              this.fieldVisible = false;
-              let message = '添加成功!'
-              if(this.fieldForm.id)
-                message = '更新成功!';
-              this.$message({
-                message: message,
-                type: 'success'
-              });
-              this.loadModel(this.id);
-            }else{
-              this.$message({
-                message: '出错了!请联系管理员',
-                type: 'warning'
-              });
-            }
+        let res = await this.fetch("/admin/cms/model/save/field", this.fieldForm, 'post')
+        if(res.success){
+          this.fieldVisible = false;
+          let message = '添加成功!'
+          if(this.fieldForm.id)
+            message = '更新成功!';
+          this.$message({
+            message: message,
+            type: 'success'
           });
+          await this.loadModel(this.id);
+        }else{
+          this.$message({
+            message: '出错了!请联系管理员',
+            type: 'warning'
+          });
+        }
       },
       handleClick(tab, event) {
         console.log(tab, event);
@@ -375,13 +356,13 @@
         this.fieldForm.extra = val;
       }
     },
-    mounted() {
+    async mounted() {
       let id = this.currentModel.id;
       this.id = id;
       if(id){
-        this.loadModel(id);
+        await this.loadModel(id);
       }
-      this.loadFieldTypes();
+      await this.loadFieldTypes();
     }
   }
 </script>

@@ -101,46 +101,37 @@
               name: ''
             });
           },
-          doAddNewUser(){
-            this.$http
-              .post(`/admin/user/create/role/user`, this.form)
-              .then(res => {
-                if(res.success){
-                  this.loadRoleUsers()
-                  this.showForm = false;
-                }else{
-                  this.$message({type:'error', message: res.error});
-                }
-              });
+          async doAddNewUser(){
+            let res = await this.fetch(`/admin/user/create/role/user`, this.form, 'post')
+            if(res.success){
+              await this.loadRoleUsers()
+              this.showForm = false;
+            }else{
+              this.$message({type:'error', message: res.error});
+            }
           },
           handleRemove(row){
               this.$confirm('确认移出该用户?', '提示', {
                 confirmButtonText: '确定',
                 cancelButtonText: '取消',
                 type: 'warning'
-              }).then(() => {
-                this.$http
-                  .post(`/admin/privileges/remove/role/model`, row.pivot)
-                  .then(res => {
-                    if(res.success){
-                      this.loadRoleUsers()
-                    }else{
-                      this.$message({type:'error', message: res.error});
-                    }
-                  });
+              }).then(async () => {
+                let res = await this.fetch(`/admin/privileges/remove/role/model`, row.pivot, 'post')
+                if(res.success){
+                  await this.loadRoleUsers()
+                }else{
+                  this.$message({type:'error', message: res.error});
+                }
               }).catch(() => {});
             },
-            loadRoleUsers(){
-                this.$http
-                    .get(`/admin/privileges/role/users/${this.currentRole.id}`)
-                    .then(res => {
-                      this.roleName = res.data.name;
-                        this.tableData = res.data.users;
-                    });
+            async loadRoleUsers(){
+                let res = await this.fetch(`/admin/privileges/role/users/${this.currentRole.id}`)
+                this.roleName = res.data.name;
+                this.tableData = res.data.users;
             }
         },
-        mounted() {
-            this.loadRoleUsers()
+        async mounted() {
+            await this.loadRoleUsers()
         }
     }
 </script>

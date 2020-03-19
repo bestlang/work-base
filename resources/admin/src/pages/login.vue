@@ -40,9 +40,7 @@ export default {
             loginFont: "Login",
             params: {
                 mobile: '18625072568',
-                password: ""
-//                mobile: '',
-//                password: ""
+                password: ''
             }
         }
     },
@@ -60,59 +58,43 @@ export default {
         }
     },
     methods: {
-        requireMobile() {
-            if (this.params.mobile == "") {
-                $("#mobile")
-                    .addClass("error")
-                    .text("input mobile");
-            } else {
-                $("#mobile")
-                    .removeClass("error")
-                    .text(" ");
+        requireMobile(){
+            if(this.params.mobile == ""){
+                $("#mobile").addClass("error").text("input mobile");
+            }else{
+                $("#mobile").removeClass("error").text(" ");
             }
         },
-        requirePassword() {
-            if (this.params.password == "") {
-                $("#password")
-                    .addClass("error")
-                    .text("input password");
-//                $("#login").css("background", "#ebcd41");
-            } else {
-                $("#password")
-                    .removeClass("error")
-                    .text(" ");
-//                $("#login").css("background", "#fee300");
+        requirePassword(){
+            if(this.params.password == ""){
+                $("#password").addClass("error").text("input password");
+            }else{
+                $("#password").removeClass("error").text(" ");
             }
         },
-        changePassword() {
-            $("#password")
-                .removeClass("error")
-                .text("");
+        changePassword(){
+            $("#password").removeClass("error").text("");
         },
-        login() {
-            if (!this.params.mobile || !this.params.password) {
+        async login() {
+            if(!this.params.mobile || !this.params.password){
                 this.requireMobile();
                 this.requirePassword();
-            } else {
+            }else{
                 this.loading = true;
                 this.loginFont = "logining...";
-                this.$http
-                    .post("auth/login", this.params)
-                    .then(async res => {
-                        if (res.code == 200) {
-                            this.$store.commit(this.$types.ACCESS_TOKEN, res.data.access_token);
-                            this.$store.commit(this.$types.USER, res.data.user);
-                            let sb = await this.$http.get("/admin/privileges/user/permissions");
-                            this.$router.push("/dashboard");
-                        }else if(res.code == 4011){
-                           this.restInfo()
-
-                        }
-                    })
-                    .catch(error => {
-                        console.log(error)
-                        this.restInfo();
-                    });
+                let res = await this.fetch("auth/login", this.params, 'post')
+                if (res.code == 200) {
+                    this.$store.commit(this.$types.ACCESS_TOKEN, res.data.access_token);
+                    this.$store.commit(this.$types.USER, res.data.user);
+                    let perm = await this.fetch("/admin/privileges/user/permissions")
+                    if(perm && perm.data){
+                        this.$store.commit(this.$types.PRIVILEGES, res.data)
+                    }
+                    this.$router.push("/dashboard");
+                }else if(res.code == 4011){
+                   this.restInfo()
+                }
+                this.restInfo();
             }
         },
         restInfo() {

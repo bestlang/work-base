@@ -247,25 +247,21 @@
           confirmButtonText: '确定',
           cancelButtonText: '取消',
           type: 'warning'
-        }).then(() => {
-          this.$http
-            .post("/admin/cms/channel/delete", {id: row.id})
-            .then(res => {
-              if(res.success){
-                this.$store.dispatch(this.$types.CMS_CHANNELS, {id: row.parent_id});
-                this.showChannelChildren = true;
-                this.$message({
-                  type: 'success',
-                  message: '删除成功!'
-                });
-              }else{
-                this.$message({
-                  type: 'error',
-                  message: res.error
-                });
-              }
-
-            }).catch(()=>{});
+        }).then(async () => {
+          let res = await this.fetch("/admin/cms/channel/delete", {id: row.id}, 'post')
+          if(res.success){
+            this.$store.dispatch(this.$types.CMS_CHANNELS, {id: row.parent_id});
+            this.showChannelChildren = true;
+            this.$message({
+              type: 'success',
+              message: '删除成功!'
+            });
+          }else{
+            this.$message({
+              type: 'error',
+              message: res.error
+            });
+          }
         }).catch(()=>{});
       },
       handleNodeClick(node, ...$params){
@@ -288,74 +284,61 @@
       doCancel(){
         this.showChannelChildren = true;
       },
-      doAdd(){
+      async doAdd(){
         this.showChannelChildren = false
-        this.$http
-          .post("/admin/cms/channel/save", this.channelForm)
-          .then(res => {
-            if(res.success){
-              this.showChannelChildren = true;
-              this.$store.dispatch(this.$types.CMS_CHANNELS, this.parentChannel);
-              this.$message({
-                type: 'success',
-                message: '添加成功!'
-              });
-            }else{
-              this.$message({
-                type: 'error',
-                message: '添加失败!'+res.error
-              });
-            }
+        let res = await this.fetch("/admin/cms/channel/save", this.channelForm, 'post')
+        if(res.success){
+          this.showChannelChildren = true;
+          this.$store.dispatch(this.$types.CMS_CHANNELS, this.parentChannel);
+          this.$message({
+            type: 'success',
+            message: '添加成功!'
           });
-      },
-      doEdit(){
-        this.$http
-          .post("/admin/cms/channel/save", this.channelForm)
-          .then(res => {
-            if(res.success){
-              this.$message({
-                type: 'success',
-                message: '修改成功!'
-              });
-              this.$store.dispatch(this.$types.CMS_CHANNELS, {id: this.channelForm.parent_id});
-            }else{
-              this.$message({
-                type: 'warning',
-                message: '修改失败!'+res.error
-              });
-            }
+        }else{
+          this.$message({
+            type: 'error',
+            message: '添加失败!'+res.error
           });
+        }
       },
-      loadWholeChannel({id}){
-        this.$http
-          .get("/admin/cms/channel/whole", {params: {id}})
-          .then(res => {
-            let whole = res.data;
-            this.channelForm = {}
-            let baseFields = ['id', 'model_id', 'parent_id', 'name', 'title', 'keywords', 'description'];
-
-            baseFields.forEach( field => {this.$set(this.channelForm, field, whole[field])} );
-
-            if(whole.contents && whole.contents.length){
-              whole.contents.forEach( item => {this.$set(this.channelForm, item.field, item.value)} );
-            }
-
-            if(whole.metas && whole.metas.length){
-              whole.metas.forEach( item => {this.$set(this.channelForm, item.field, item.value)});
-            }
-
-            if(whole.positions){
-                this.$set(this.channelForm, 'positions', whole.positions)
-            }
+      async doEdit(){
+        let res = await this.fetch("/admin/cms/channel/save", this.channelForm, 'post')
+        if(res.success){
+          this.$message({
+            type: 'success',
+            message: '修改成功!'
           });
+          this.$store.dispatch(this.$types.CMS_CHANNELS, {id: this.channelForm.parent_id});
+        }else{
+          this.$message({
+            type: 'warning',
+            message: '修改失败!'+res.error
+          });
+        }
       },
-      loadChannelPositions(){
-        // /cms/positions
-          this.$http
-              .get("/admin/cms/positions", {params: {is_channel: 1}})
-              .then(res => {
-                  this.channelPositions = res.data
-              });
+      async loadWholeChannel({id}){
+        let res = await this.fetch("/admin/cms/channel/whole", {id})
+        let whole = res.data;
+        this.channelForm = {}
+        let baseFields = ['id', 'model_id', 'parent_id', 'name', 'title', 'keywords', 'description'];
+
+        baseFields.forEach( field => {this.$set(this.channelForm, field, whole[field])} );
+
+        if(whole.contents && whole.contents.length){
+          whole.contents.forEach( item => {this.$set(this.channelForm, item.field, item.value)} );
+        }
+
+        if(whole.metas && whole.metas.length){
+          whole.metas.forEach( item => {this.$set(this.channelForm, item.field, item.value)});
+        }
+
+        if(whole.positions){
+            this.$set(this.channelForm, 'positions', whole.positions)
+        }
+      },
+      async loadChannelPositions(){
+          let res = await this.fetch("/admin/cms/positions", {is_channel: 1})
+          this.channelPositions = res.data
       }
 
     },

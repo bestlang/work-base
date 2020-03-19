@@ -105,25 +105,21 @@ export default {
         handleEdit(row){
             this.$router.push('/activity/edit?activityId='+row.id)
         },
-        handleDelete(row){
+        async handleDelete(row){
             this.$confirm('是否删除?', '提示', {
                 confirmButtonText: '确定',
                 cancelButtonText: '取消',
                 type: 'warning',
                 center: true
-            }).then(() => {
-                this.$http
-                .post("/admin/activity/delete", {activityId: row.id})
-                .then(res => {
-                    if(res.statusCode == "200"){
-                        //this.successMessage(`删除成功`);
-                        this.$message({
-                            type: 'success',
-                            message: '删除成功!'
-                        });
-                        this.loadActivities();
-                    }
-                });
+            }).then(async () => {
+                let res = await this.fetch("/admin/activity/delete", {activityId: row.id}, 'post')
+                if(res.code == 200){
+                    this.$message({
+                        type: 'success',
+                        message: '删除成功!'
+                    });
+                    await this.loadActivities();
+                }
 
             }).catch(() => {
                 this.$message({
@@ -141,20 +137,14 @@ export default {
             this.params.page = val;
             this.loadActivities();
         },
-        loadActivities(){
-            this.$http
-                .get("/admin/activity/list", {params: this.params})
-                .then(res => {
-                    this.tableData = res.data.activities;
-                });
+        async loadActivities(){
+            let res = await this.fetch("/admin/activity/list", this.params)
+            this.tableData = res.data.activities;
         },
-        loadPage(){
-            this.$http
-                .get("/admin/activity/page", {params: this.params})
-                .then(res => {
-                    this.total =  res.data.total;
-                    console.log(`this.total`,this.total)
-                });
+        async loadPage(){
+            let res = await this.fetch("/admin/activity/page", this.params)
+            this.total =  res.data.total;
+            console.log(`this.total`,this.total)
         }
     },
     mounted() {

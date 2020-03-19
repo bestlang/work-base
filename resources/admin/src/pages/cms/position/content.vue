@@ -59,12 +59,9 @@
             }
         },
         methods:{
-            loadContents(){
-                this.$http
-                    .get("/admin/cms/position/contents", {params: {id: this.currentPosition.id}})
-                    .then(res => {
-                        this.tableData = res.data;
-                    });
+            async loadContents(){
+                let res = await this.fetch("/admin/cms/position/contents", {id: this.currentPosition.id})
+                this.tableData = res.data;
             }
         },
         mounted(){

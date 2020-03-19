@@ -86,57 +86,47 @@
           confirmButtonText: '确定',
           cancelButtonText: '取消',
           type: 'warning'
-        }).then(() => {
-          this.$http
-            .post("/admin/cms/model/delete", {id: row.id})
-            .then(res => {
-              if(res.success){
-                this.loadModels()
-                this.$message({
-                  type: 'success',
-                  message: '删除成功!'
-                });
-              }else{
-                this.$message({
-                  type: 'error',
-                  message: res.error
-                });
-              }
+        }).then(async () => {
+          let res = await this.fetch("/admin/cms/model/delete", {id: row.id}, 'post')
+          if(res.success){
+            await this.loadModels()
+            this.$message({
+              type: 'success',
+              message: '删除成功!'
+            });
+          }else{
+            this.$message({
+              type: 'error',
+              message: res.error
+            });
+          }
 
-            }).catch(()=>{});
         });
       },
       add(){
         this.$router.push('/cms/setting/model/add');
       },
-      submit(){
-        this.$http
-          .post("/admin/cms/model/field/type/add", this.form)
-          .then(res => {
-            // alert(JSON.stringify(res))
-            if(res.success) {
-              this.loading = true;
-              this.loadModels();
-              this.dialogFormVisible = false;
-              this.$message({
-                message: '添加成功!',
-                type: 'success'
-              });
-            }else{
-              this.$message({
-                message: res.error,
-                type: 'warning'
-              });
-            }
+      async submit(){
+        let res = await this.fetch("/admin/cms/model/field/type/add", this.form, 'post')
+        if(res.success){
+          this.loading = true;
+          await this.loadModels();
+          this.dialogFormVisible = false;
+          this.$message({
+            message: '添加成功!',
+            type: 'success'
           });
+        }else{
+          this.$message({
+            message: res.error,
+            type: 'warning'
+          });
+        }
       },
-      loadModels(){
-        this.$http
-          .get("/admin/cms/model")
-          .then(res => {
-            this.loading = false;
-            this.tableData = res.data;
-          });
+      async loadModels(){
+        let res = await this.fetch("/admin/cms/model")
+        this.loading = false;
+        this.tableData = res.data;
       }
     },
     created() {

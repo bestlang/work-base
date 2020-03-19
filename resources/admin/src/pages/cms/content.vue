@@ -183,8 +183,7 @@
           cancelButtonText: '取消',
           type: 'warning'
         }).then(() => {
-          this.$http
-            .post("/admin/cms/content/delete", {id: row.id})
+          this.fetch("/admin/cms/content/delete", {id: row.id}, 'post')
             .then(res => {
               this.$message({
                 type: 'success',
@@ -199,8 +198,7 @@
             this.$set(this.form, 'model_id', this.currentModel.id);
             this.$set(this.form, 'channel_id', this.currentChannel.id)
           }
-          this.$http
-            .post("/admin/cms/content/save", this.form)
+          this.fetch("/admin/cms/content/save", this.form, 'post')
             .then(res => {
               if(res.success){
                 this.$message({
@@ -227,68 +225,58 @@
         this.showSwitch = false;
         this.loadModel(this.currentChannel.model_id)
       },
-      loadModel(id){
-        this.$http
-          .get("/admin/cms/model/get", {params: {id}})
-          .then(res => {
-            let currentModel = res.data;
-            // 过滤掉模型中属于栏目的字段
-            currentModel.fields = currentModel.fields.filter(item => { return !item.is_channel })
-            this.$store.dispatch(this.$types.CMS_CURRENT_MODEL, currentModel)
-            for(let idx in this.currentModel.fields){
-              let item = this.currentModel.fields[idx];
-                // 重置表单
-                this.$set(this.form, item.field, '');
-//                if(!Array.isArray(this.form[item.field])){
-                  if(item.type == 'checkbox' || item.type == 'multiple-image'){
-                      this.$set(this.form, item.field, []);
-                  }
-//                }
-            }
-            this.$set(this.form, 'positions', [])
-          });
-
+      async loadModel(id){
+        let res = await this.fetch("/admin/cms/model/get", {id})
+        let currentModel = res.data;
+        // 过滤掉模型中属于栏目的字段
+        currentModel.fields = currentModel.fields.filter(item => { return !item.is_channel })
+        this.$store.dispatch(this.$types.CMS_CURRENT_MODEL, currentModel)
+        for(let idx in this.currentModel.fields){
+          let item = this.currentModel.fields[idx];
+            // 重置表单
+            this.$set(this.form, item.field, '');
+              if(item.type == 'checkbox' || item.type == 'multiple-image'){
+                  this.$set(this.form, item.field, []);
+              }
+        }
+        this.$set(this.form, 'positions', [])
       },
-      loadContents(){
+      async loadContents(){
         let channel_id = 0;
         if(this.currentChannel){
           channel_id = this.currentChannel.id
         }
-        this.$http
-          .get("/admin/cms/contents", {params: {channel_id}})
-          .then(res => {
-            this.contents = res.data;
-          });
+        let res = await this.fetch("/admin/cms/contents", {channel_id})
+        this.contents = res.data;
       },
       async loadWholeContent({id}){
-        let res = await this.$http
-          .get("/admin/cms/content/whole", {params: {id}});
+        let res = await this.fetch("/admin/cms/content/whole", {id});
 
-            let content = res.data;
-            let currentModel = res.data.model;
-            currentModel.fields = currentModel.fields.filter(item => { return !item.is_channel })
-            this.$store.dispatch(this.$types.CMS_CURRENT_MODEL, currentModel)
-            let contentFields = ['channel_id', 'model_id', 'title', 'keywords', 'description'];
+        let content = res.data;
+        let currentModel = res.data.model;
+        currentModel.fields = currentModel.fields.filter(item => { return !item.is_channel })
+        this.$store.dispatch(this.$types.CMS_CURRENT_MODEL, currentModel)
+        let contentFields = ['channel_id', 'model_id', 'title', 'keywords', 'description'];
 
-            this.$set(this.form, 'id', id);
+        this.$set(this.form, 'id', id);
 
-            contentFields.forEach( field => {this.$set(this.form, field, content[field])} );
+        contentFields.forEach( field => {this.$set(this.form, field, content[field])} );
 
-            if(content.contents && content.contents.length){
-              content.contents.forEach( item => {this.$set(this.form, item.field, item.value)} );
-            }
+        if(content.contents && content.contents.length){
+          content.contents.forEach( item => {this.$set(this.form, item.field, item.value)} );
+        }
 
-            if(content.metas && content.metas.length){
-              content.metas.forEach(
-                item => {
-                  this.$set(this.form, item.field, item.value);
-                });
-            }
+        if(content.metas && content.metas.length){
+          content.metas.forEach(
+            item => {
+              this.$set(this.form, item.field, item.value);
+            });
+        }
 
-            if(content.positions){
-                this.$set(this.form, 'positions', content.positions)
-            }
-            this.showSwitch = false
+        if(content.positions){
+            this.$set(this.form, 'positions', content.positions)
+        }
+        this.showSwitch = false
 
       },
       async loadContentPositions(channel_id=0){
@@ -301,8 +289,7 @@
           if(!channel_id){
               return;
           }
-          let res = await this.$http
-              .get("/admin/cms/content/positions", {params: {channel_id}})
+          let res = await this.fetch("/admin/cms/content/positions", {channel_id})
           this.contentPositions = res.data
       }
     },

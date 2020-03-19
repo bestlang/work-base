@@ -86,43 +86,35 @@
           type: ''
         })
       },
-      submit(){
-        this.$http
-          .post("/admin/cms/model/field/type/save", this.form)
-          .then(res => {
-            // alert(JSON.stringify(res))
-            if(res.success) {
-              this.loading = true;
-              this.loadTypes();
-              this.formVisible = false;
-              let successMsg = '添加成功!';
-              if(this.form.id){
-                successMsg = '编辑成功!';
-              }
-              this.$message({
-                message: successMsg,
-                type: 'success'
-              });
-            }else{
-              this.$message({
-                message: res.error,
-                type: 'warning'
-              });
-            }
+      async submit(){
+        let res = await this.fetch("/admin/cms/model/field/type/save", this.form, 'post')
+        if(res.success) {
+          this.loading = true;
+          this.loadTypes();
+          this.formVisible = false;
+          let successMsg = '添加成功!';
+          if(this.form.id){
+            successMsg = '编辑成功!';
+          }
+          this.$message({
+            message: successMsg,
+            type: 'success'
           });
+        }else{
+          this.$message({
+            message: res.error,
+            type: 'warning'
+          });
+        }
       },
-      loadTypes(){
-        this.$http
-          .get("/admin/cms/model/field/types")
-          .then(res => {
-            this.loading = false;
-            console.log(`............`,res.data)
-            this.tableData = res.data;
-          });
+      async loadTypes(){
+        let res = await this.fetch("/admin/cms/model/field/types")
+        this.loading = false;
+        this.tableData = res.data;
       }
     },
-    created() {
-      this.loadTypes();
+    async created() {
+      await this.loadTypes();
     }
   }
 </script>

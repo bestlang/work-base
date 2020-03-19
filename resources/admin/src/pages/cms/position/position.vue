@@ -129,33 +129,26 @@
 //                        }).catch(()=>{});
 //                });
             },
-            submit(){
-                this.$http
-                    .post("/admin/cms/position/save", this.form)
-                    .then(res => {
-                        // alert(JSON.stringify(res))
-                        if(res.success) {
-                            this.loading = true;
-                            this.loadPositions();
-                            this.formVisible = false;
-                            this.$message({
-                                message: '添加成功!',
-                                type: 'success'
-                            });
-                        }
+            async submit(){
+                let res = await this.fetch("/admin/cms/position/save", this.form, 'post')
+                if(res.success) {
+                    this.loading = true;
+                    await this.loadPositions();
+                    this.formVisible = false;
+                    this.$message({
+                        message: '添加成功!',
+                        type: 'success'
                     });
+                }
             },
-            loadPositions(){
-                this.$http
-                    .get("/admin/cms/positions")
-                    .then(res => {
-                        this.loading = false;
-                        this.tableData = res.data;
-                    });
+            async loadPositions(){
+                let res = await this.fetch("/admin/cms/positions")
+                this.loading = false;
+                this.tableData = res.data;
             }
         },
-        created() {
-            this.loadPositions();
+        async created() {
+            await this.loadPositions();
         }
     }
 </script>

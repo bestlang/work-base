@@ -1,26 +1,24 @@
 <template>
   <div>
     <div v-title="'面板'"></div>
-    <!--<el-alert-->
-            <!--title="提个醒"-->
-            <!--type="warning"-->
-            <!--style="margin-bottom: 20px;">-->
-      <!--<div slot="default">-->
-            <!--<p>无情残忍</p>-->
-            <!--<p>无情残忍</p>-->
-            <!--<p>无情残忍</p>-->
-      <!--</div>-->
-    <!--</el-alert>-->
+    <el-alert
+            title="提个醒"
+            type="warning"
+            style="margin-bottom: 20px;">
+      <div slot="default">
+            <p>看天上这朵云像不像你欠我的200块钱</p>
+      </div>
+    </el-alert>
     <el-card class="row-20" shadow="hover">
       <div slot="header" class="clearfix">
-        <span>活动效果</span>
+        <span>我的技术栈</span>
       </div>
       <div>
         <el-row :gutter="20">
-          <el-col :span="6"><div class="grid-content" style="background: #4fa8ed">1</div></el-col>
-          <el-col :span="6"><div class="grid-content" style="background: #ad97da">2</div></el-col>
-          <el-col :span="6"><div class="grid-content" style="background: #3fc0c2">3</div></el-col>
-          <el-col :span="6"><div class="grid-content" style="background: #f6d33a">4</div></el-col>
+          <el-col :span="6"><div class="grid-content" style="background: #4fa8ed">PHP</div></el-col>
+          <el-col :span="6"><div class="grid-content" style="background: #ad97da">Javascript</div></el-col>
+          <el-col :span="6"><div class="grid-content" style="background: #3fc0c2">Python</div></el-col>
+          <el-col :span="6"><div class="grid-content" style="background: #f6d33a">CSS</div></el-col>
         </el-row>
       </div>
     </el-card>

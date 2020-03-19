@@ -28,8 +28,7 @@ export default {
       this.$store.dispatch("toggleState")
     },
     logout(){
-        this.$http
-            .post("auth/logout")
+        this.fetch("auth/logout", {}, 'post')
             .then(res => {
                 if (res.code == 200) {
                     localStorage.removeItem(this.$types.USER)

@@ -66,46 +66,33 @@
         }
       },
       methods: {
-        saveRolePermissions(){
+        async saveRolePermissions(){
           let nodes = this.$refs['role-permission-tree'].getCheckedNodes();
           let permissions = nodes.filter((n)=>n.children.length == 0).map((n) => n.id);
           let role_id = this.currentRole.id
-          this.$http
-            .post("/admin/privileges/give/permissions/to", {permissions, role_id})
-            .then(res => {
-              this.$message({
-                type: 'success',
-                message: '设置成功!'
-              });
-            }).catch(err => {});
+          let res = await this.fetch("/admin/privileges/give/permissions/to", {permissions, role_id}, 'post')
+          this.$message({
+            type: 'success',
+            message: '设置成功!'
+          });
         },
-        loadPermissionsTree(){
-          this.$http
-            .get("/admin/privileges/permissions/tree")
-            .then(res => {
-              this.treeData = [res.data[Object.keys(res.data)[0]]];
-            });
+        async loadPermissionsTree(){
+          let res = await this.fetch("/admin/privileges/permissions/tree")
+          this.treeData = [res.data[Object.keys(res.data)[0]]];
         },
-        loadRolePermissions(){
+        async loadRolePermissions(){
           let role_id = this.currentRole.id;
-          this.$http
-            .get("/admin/privileges/role/permissions", {params: {role_id}})
-            .then(res => {
-              this.defaultCheckedKeys = res.data;
-            });
+          let res = await this.fetch("/admin/privileges/role/permissions", {role_id})
+          this.defaultCheckedKeys = res.data;
         },
-        loadUserPermissions(){
-          this.$http
-            .get("/admin/privileges/user/permissions")
-            .then(res => {
-              console.log(`:::>>>`, JSON.stringify(res))
-              localStorage.setItem(`privileges`, JSON.stringify(res));
-            });
+        async loadUserPermissions(){
+          let res = await this.fetch("/admin/privileges/user/permissions")
+          localStorage.setItem(`privileges`, JSON.stringify(res));
         }
       },
-      mounted() {
-        this.loadRolePermissions();
-        this.loadPermissionsTree();
+      async mounted() {
+        await this.loadRolePermissions();
+        await this.loadPermissionsTree();
       }
     }
 </script>

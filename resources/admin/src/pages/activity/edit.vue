@@ -126,8 +126,7 @@
         },
         watch: {
             activityId(newVal){
-                this.$http
-                    .get("/admin/activity/activity", {params: {activityId: newVal}})
+                this.fetch("/admin/activity/activity", {activityId: newVal})
                     .then(res => {
                         if(res.code == 200){
                             let newFormData = {}
@@ -170,26 +169,19 @@
             gallerySuccess(response, file, fileList){
                 this.form.galleries.push(response.data.file)
             },
-            galleryRemove(file, fileList){
+            async galleryRemove(file, fileList){
                 this.form.galleries = this.form.galleries.filter(x => x != file.url)
                 let params = {activityId: this.activityId, thumbnail:file.url}
-                this.$http
-                    .post("/admin/activity/gallery/delete", params)
-                    .then()
-                    .catch()
+                await this.fetch("/admin/activity/gallery/delete", params, 'post')
             },
-            onSubmit() {
-                let that = this;
-                this.$http
-                    .post("/admin/activity/save", this.form)
-                    .then(res => {
-                        if(res.code == 200){
-                            that.successMessage('更新成功');
-                            that.$router.push('/activity/list');
-                        }else{
-                            that.errorMessage("出错了");
-                        }
-                    });
+            async onSubmit() {
+                let res = await this.fetch("/admin/activity/save", this.form, 'post')
+                if(res.code == 200){
+                    this.successMessage('更新成功');
+                    this.$router.push('/activity/list');
+                }else{
+                    this.errorMessage("出错了");
+                }
             }
         }
     }

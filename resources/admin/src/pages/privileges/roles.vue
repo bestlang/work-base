@@ -76,14 +76,12 @@
               this.formVisible = true;
               this.form = Object.assign(this.form, {id: row.id, name: row.name})
             },
-            handleSubmit(){
-                this.$http.post('/admin/privileges/save/role', this.form)
-                    .then(res => {
-                        if(res.success){
-                            this.formVisible = false;
-                            this.loadRoles();
-                        }
-                    });
+            async handleSubmit(){
+                let res = await this.fetch('/admin/privileges/save/role', this.form, 'post')
+                if(res.success){
+                    this.formVisible = false;
+                    await this.loadRoles();
+                }
             },
             viewRoleUsers(row){
               this.$store.dispatch(this.$types.PRIVILEGE_CURRENT_ROLE, row)
@@ -98,36 +96,29 @@
                 confirmButtonText: '确定',
                 cancelButtonText: '取消',
                 type: 'warning'
-              }).then(() => {
-                this.$http.post('/admin/privileges/delete/role/'+row.id)
-                  .then(res => {
-                    if(res.success){
-                      this.$message({
-                        type: 'success',
-                        message: '删除成功!'
-                      });
-                      this.loadRoles();
-                    }else{
-                      this.$message({
-                        type: 'info',
-                        message: res.error
-                      });
-                    }
+              }).then(async () => {
+                let res = await this.fetch('/admin/privileges/delete/role/'+row.id, {}, 'post')
+                if(res.success){
+                  this.$message({
+                    type: 'success',
+                    message: '删除成功!'
                   });
+                  await this.loadRoles();
+                }else{
+                  this.$message({
+                    type: 'info',
+                    message: res.error
+                  });
+                }
               }).catch(() => {});
             },
-            addActivity(){
-            },
-            loadRoles(){
-                this.$http
-                    .get("/admin/privileges/roles", {params: this.params})
-                    .then(res => {
-                        this.tableData = res.data;
-                    });
+            async loadRoles(){
+                let res = await this.fetch("/admin/privileges/roles", this.params)
+                this.tableData = res.data;
             }
         },
-        mounted() {
-            this.loadRoles()
+        async mounted() {
+            await this.loadRoles()
         }
     }
 </script>

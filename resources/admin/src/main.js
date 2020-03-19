@@ -6,7 +6,7 @@ import router from "./router"
 import store from "./store"
 import * as types from "./store/types"
 import App from "./App"
-import fetch from "@/api/fetch"
+import {fetch} from "@/api/fetch"
 
 window.$ = require("jquery")
 
@@ -15,7 +15,7 @@ Vue.config.productionTip = false
 
 Vue.use(ElementUI)
 
-Vue.prototype.$http = fetch
+Vue.prototype.fetch = fetch
 Vue.prototype.$types = types
 Vue.prototype.SITE_URL = process.env.SITE_URL
 Vue.prototype.ADMIN_URL = process.env.ADMIN_URL

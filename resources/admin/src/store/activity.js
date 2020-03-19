@@ -1,5 +1,5 @@
 import * as types from "./types"
-import fetch from "../api/fetch"
+import {fetch} from "../api/fetch"
 
 const activityConfig = {
     state: {
@@ -23,23 +23,13 @@ const activityConfig = {
         }
     },
     actions: {
-        [types.ACTIVITY_TYPES] ({commit}) {
-            fetch
-                .get("/admin/activity/types")
-                .then(res => {
-                    console.log(`types:`, res)
-                    commit(types.ACTIVITY_TYPES, res.data.types)
-                })
-                .catch(error => {console.log(error)});
+        async [types.ACTIVITY_TYPES] ({commit}) {
+            let res = await fetch("/admin/activity/types")
+            commit(types.ACTIVITY_TYPES, res.data.types)
         },
-        [types.ACTIVITY_APPLICABLES] ({commit}) {
-            fetch
-                .get("/admin/activity/applicables")
-                .then(res => {
-                    console.log(`types:`, res)
-                    commit(types.ACTIVITY_APPLICABLES, res.data.applicables)
-                })
-                .catch(error => {console.log(error)});
+        async [types.ACTIVITY_APPLICABLES] ({commit}) {
+            let res = await fetch("/admin/activity/applicables")
+            commit(types.ACTIVITY_APPLICABLES, res.data.applicables)
         }
     }
 }

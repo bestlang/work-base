@@ -54,7 +54,7 @@
           return {
             defaultActive:'',
             router: $router,
-            privileges: []
+//            privileges: []
           };
       },
       computed:{
@@ -66,6 +66,9 @@
           },
           isCollapse(){
               return this.$store.state.system.isCollapse;
+          },
+          privileges(){
+              return this.$store.state.privilege.privileges
           }
       },
       methods: {
@@ -86,20 +89,12 @@
                 this.resetVisible(route.children, privileges)
               }
             });
-          },
-          async loadUserPermissions(){
-            let res = await this.$http.get("/admin/privileges/user/permissions")
-            if(res && res.data){
-                this.privileges = res.data
-                this.$store.commit(this.$types.PRIVILEGES, res.data)
-                let routes = this.router.options.routes;
-                this.resetVisible(routes, this.privileges)
-            }
           }
       },
-    created() {
+    async created() {
         this.defaultActive = this.$route.path;
-        this.loadUserPermissions();
+        let routes = this.router.options.routes;
+        this.resetVisible(routes, this.privileges)
       }
     }
 </script>

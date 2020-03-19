@@ -91,36 +91,28 @@
                 })
                 this.formVisible = true;
             },
-            getSubPositions({id}){
-                this.$http
-                    .post("/admin/cms/position/subs", {id})
-                    .then(res => {
-                        this.subPositions = res.data;
-                        // alert(JSON.stringify(res))
-                    });
+            async getSubPositions({id}){
+                let res = await this.fetch("/admin/cms/position/subs", {id}, 'post')
+                this.subPositions = res.data;
             },
-            submit(){
-                this.$http
-                    .post("/admin/cms/position/save", this.form)
-                    .then(res => {
-                        // alert(JSON.stringify(res))
-                        if(res.success) {
-                            this.getSubPositions(this.currentChannelPosition)
-                            this.formVisible = false;
-                            let message = '添加成功!';
-                            if(this.form.id){
-                                message = '更新成功!';
-                            }
-                            this.$message({
-                                message: message,
-                                type: 'success'
-                            });
-                        }
+            async submit(){
+                let res = await this.fetch("/admin/cms/position/save", this.form, 'post')
+                if(res.success) {
+                    await this.getSubPositions(this.currentChannelPosition)
+                    this.formVisible = false;
+                    let message = '添加成功!';
+                    if(this.form.id){
+                        message = '更新成功!';
+                    }
+                    this.$message({
+                        message: message,
+                        type: 'success'
                     });
+                }
             },
         },
-        mounted(){
-            this.getSubPositions(this.currentChannelPosition)
+        async mounted(){
+            await this.getSubPositions(this.currentChannelPosition)
         }
     }
 </script>

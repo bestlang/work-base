@@ -11,13 +11,10 @@ function showMessage(value) {
         duration: 3500
     });
 }
-/**
- * 请求拦截器
- *
- */
-axios.interceptors.request.use(config => {//在此处统一配置公共参数
+
+axios.interceptors.request.use(config => {
     config.baseURL = app.SITE_URL + '/api/'
-    config.withCredentials = true // 允许携带token ,这个是解决跨域产生的相关问题
+    config.withCredentials = true
     config.timeout = 6000
     let accessToken = localStorage.getItem('accessToken')
     if (accessToken) {
@@ -30,10 +27,11 @@ axios.interceptors.request.use(config => {//在此处统一配置公共参数
     return config
 }, error => {
     Promise.reject(error);// 错误提示
-})
+});
 
 /**响应拦截器 */
 axios.interceptors.response.use(response => {
+        console.log('@@@@@@@@@@@@@@@@@@@@@@', JSON.stringify(response))
         let res = response.data;
         let code = parseInt(res.code)
         // 伪状态码
@@ -53,7 +51,6 @@ axios.interceptors.response.use(response => {
                 }catch(e){
                     app.$router.push('/login');
                 }
-
                 break;
             case 402:
                 showMessage(res.code + res.error);
@@ -64,7 +61,6 @@ axios.interceptors.response.use(response => {
         }
         return response.data;
     },
-    // 少量非200状态码会进入这里
     error => {
         if (error.response.status === 401) {
             showMessage('请重新登录');
@@ -74,5 +70,22 @@ axios.interceptors.response.use(response => {
     }
 );
 
-export default axios
+export const fetch = (url, data={}, method='get', headers=null) => {
+    const config = {
+        url,
+        method
+    }
+
+    if(method === 'get'){
+        Object.assign(config, {params: data})
+    }else{
+        Object.assign(config, {data})
+    }
+
+    if(headers){
+        Object.assign(config, {headers})
+    }
+
+    return axios(config)
+}
 

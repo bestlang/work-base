@@ -125,18 +125,18 @@
             this.loadStatusArr()
         },
         methods: {
-            loadStatusArr(){
-                this.$http
-                    .get("/admin/activity/status")
-                    .then(res => {
-                        console.log(res)
-                        this.statusArr = res.data.statusArr
-                    });
+            async loadStatusArr(){
+                let res = await this.fetch("/admin/activity/status")
+                console.log(res)
+                this.statusArr = res.data.statusArr
             },
+
             preview(file){window.open(file.url)},
+
             thumbnailSuccess(response, file, fileList){
                 this.form.thumbnail = response.data.file
             },
+
             thumbnailRemove(file, fileList){
                 this.form.thumbnail = ""
             },
@@ -144,23 +144,19 @@
             gallerySuccess(response, file, fileList){
                 this.form.galleries.push(response.data.file)
             },
+
             galleryRemove(file, fileList){
                 this.form.galleries = this.form.galleries.filter(x => x != file.response.data.file)
             },
-            onSubmit() {
-                alert(JSON.stringify(this.form))
-                return;
-                let that = this;
-                this.$http
-                    .post("/admin/activity/add", this.form)
-                    .then(res => {
-                        if(res.code == 200){
-                          that.successMessage('添加成功');
-                          that.$router.push('/activity/list');
-                        }else{
-                            that.errorMessage("出错了");
-                        }
-                    });
+
+            async onSubmit(){
+                let res = await this.fetch("/admin/activity/add", this.form, 'post')
+                if(res.code == 200){
+                    this.successMessage('添加成功');
+                    this.$router.push('/activity/list');
+                }else{
+                    this.errorMessage("出错了");
+                }
             }
         }
     }
