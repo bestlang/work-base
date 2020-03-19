@@ -114,6 +114,7 @@
   import imageUpload from "@/components/imageUpload"
   import multipleImageUpload from "@/components/multipleImageUpload"
   import {mapState, mapGetters} from 'vuex'
+  import api from '../../api/index'
 
   export default {
     data() {
@@ -182,34 +183,30 @@
           confirmButtonText: '确定',
           cancelButtonText: '取消',
           type: 'warning'
-        }).then(() => {
-          this.fetch("/admin/cms/content/delete", {id: row.id}, 'post')
-            .then(res => {
-              this.$message({
-                type: 'success',
-                message: '删除成功!'
-              });
-              this.loadContents()
-            }).catch(()=>{});
+        }).then(async () => {
+          let res = await api.deleteContent({id: row.id})
+          this.$message({
+            type: 'success',
+            message: '删除成功!'
+          });
+          await this.loadContents()
         });
       },
-      saveContent(){
+      async saveContent(){
           if(!this.form.channel_id && !this.form.model_id){
             this.$set(this.form, 'model_id', this.currentModel.id);
             this.$set(this.form, 'channel_id', this.currentChannel.id)
           }
-          this.fetch("/admin/cms/content/save", this.form, 'post')
-            .then(res => {
-              if(res.success){
-                this.$message({
-                  type: 'success',
-                  message: '添加成功!'
-                });
-                this.showForm = false;
-                this.loadContents();
-                this.form = {}
-              }
+          let res = await api.saveContent(this.form)
+          if(res.success){
+            this.$message({
+              type: 'success',
+              message: '添加成功!'
             });
+            this.showForm = false;
+            await this.loadContents();
+            this.form = {}
+          }
       },
 
       async handleNodeClick(node, ...params){
@@ -219,14 +216,14 @@
         this.$store.dispatch(this.$types.CMS_PARENT_CHANNEL, channel)
         await this.loadContentPositions()
       },
-      addContent(){
+      async addContent(){
         this.showForm = true;
         this.formTitle = '添加文章';
         this.showSwitch = false;
-        this.loadModel(this.currentChannel.model_id)
+        await this.loadModel(this.currentChannel.model_id)
       },
       async loadModel(id){
-        let res = await this.fetch("/admin/cms/model/get", {id})
+        let res = await api.getModel({id})
         let currentModel = res.data;
         // 过滤掉模型中属于栏目的字段
         currentModel.fields = currentModel.fields.filter(item => { return !item.is_channel })
@@ -246,11 +243,11 @@
         if(this.currentChannel){
           channel_id = this.currentChannel.id
         }
-        let res = await this.fetch("/admin/cms/contents", {channel_id})
+        let res = await api.getChannelContents({channel_id})
         this.contents = res.data;
       },
       async loadWholeContent({id}){
-        let res = await this.fetch("/admin/cms/content/whole", {id});
+        let res = await api.getWholeContent({id});
 
         let content = res.data;
         let currentModel = res.data.model;
@@ -289,7 +286,7 @@
           if(!channel_id){
               return;
           }
-          let res = await this.fetch("/admin/cms/content/positions", {channel_id})
+          let res = await api.getContentPositions({channel_id})
           this.contentPositions = res.data
       }
     },

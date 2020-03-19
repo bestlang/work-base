@@ -33,6 +33,9 @@
 </template>
 
 <script type="text/javascript">
+
+import api from "../api/index"
+
 export default {
     data() {
         return {
@@ -82,13 +85,13 @@ export default {
             }else{
                 this.loading = true;
                 this.loginFont = "logining...";
-                let res = await this.fetch("auth/login", this.params, 'post')
+                let res = await api.login(this.params)
                 if (res.code == 200) {
                     this.$store.commit(this.$types.ACCESS_TOKEN, res.data.access_token);
                     this.$store.commit(this.$types.USER, res.data.user);
-                    let perm = await this.fetch("/admin/privileges/user/permissions")
+                    let perm = await api.getUserPermissions()
                     if(perm && perm.data){
-                        this.$store.commit(this.$types.PRIVILEGES, res.data)
+                        this.$store.commit(this.$types.PRIVILEGES, perm.data)
                     }
                     this.$router.push("/dashboard");
                 }else if(res.code == 4011){

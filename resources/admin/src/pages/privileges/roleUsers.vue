@@ -67,6 +67,7 @@
   }
 </style>
 <script>
+    import api from '../../api/index'
     export default {
         data() {
             return {
@@ -102,7 +103,7 @@
             });
           },
           async doAddNewUser(){
-            let res = await this.fetch(`/admin/user/create/role/user`, this.form, 'post')
+            let res = await api.createRoleUser(this.form)
             if(res.success){
               await this.loadRoleUsers()
               this.showForm = false;
@@ -116,7 +117,7 @@
                 cancelButtonText: '取消',
                 type: 'warning'
               }).then(async () => {
-                let res = await this.fetch(`/admin/privileges/remove/role/model`, row.pivot, 'post')
+                let res = await api.removeRoleModel(row.pivot)
                 if(res.success){
                   await this.loadRoleUsers()
                 }else{

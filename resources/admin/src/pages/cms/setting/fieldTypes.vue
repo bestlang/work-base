@@ -54,6 +54,7 @@
 </template>
 
 <script>
+  import api from '../../../api/index'
   export default {
     data(){
       return {
@@ -87,7 +88,7 @@
         })
       },
       async submit(){
-        let res = await this.fetch("/admin/cms/model/field/type/save", this.form, 'post')
+        let res = await api.saveModelFieldType(this.form)
         if(res.success) {
           this.loading = true;
           this.loadTypes();
@@ -108,7 +109,7 @@
         }
       },
       async loadTypes(){
-        let res = await this.fetch("/admin/cms/model/field/types")
+        let res = await api.getModelFieldTypes("/admin/cms/model/field/types")
         this.loading = false;
         this.tableData = res.data;
       }

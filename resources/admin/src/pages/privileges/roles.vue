@@ -49,6 +49,7 @@
 </template>
 
 <script>
+    import api from '../../api/index'
     export default {
         data() {
             return {
@@ -77,7 +78,7 @@
               this.form = Object.assign(this.form, {id: row.id, name: row.name})
             },
             async handleSubmit(){
-                let res = await this.fetch('/admin/privileges/save/role', this.form, 'post')
+                let res = await api.saveRole(this.form)
                 if(res.success){
                     this.formVisible = false;
                     await this.loadRoles();
@@ -113,7 +114,7 @@
               }).catch(() => {});
             },
             async loadRoles(){
-                let res = await this.fetch("/admin/privileges/roles", this.params)
+                let res = await api.getRoles(this.params)
                 this.tableData = res.data;
             }
         },

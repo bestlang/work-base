@@ -60,6 +60,7 @@
 </template>
 
 <script>
+  import api from '../../../api/index'
   export default {
     data(){
       return {
@@ -87,7 +88,7 @@
           cancelButtonText: '取消',
           type: 'warning'
         }).then(async () => {
-          let res = await this.fetch("/admin/cms/model/delete", {id: row.id}, 'post')
+          let res = await api.deleteModel({id: row.id})
           if(res.success){
             await this.loadModels()
             this.$message({
@@ -107,7 +108,7 @@
         this.$router.push('/cms/setting/model/add');
       },
       async submit(){
-        let res = await this.fetch("/admin/cms/model/field/type/add", this.form, 'post')
+        let res = await api.addFieldType(this.form)
         if(res.success){
           this.loading = true;
           await this.loadModels();
@@ -124,13 +125,13 @@
         }
       },
       async loadModels(){
-        let res = await this.fetch("/admin/cms/model")
+        let res = await api.getModels()
         this.loading = false;
         this.tableData = res.data;
       }
     },
-    created() {
-      this.loadModels();
+    async created() {
+      await this.loadModels();
     }
   }
 </script>

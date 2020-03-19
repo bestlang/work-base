@@ -1,4 +1,5 @@
 import * as types from './types'
+import api from '../api/index'
 import {fetch} from "../api/fetch"
 
 const cmsConfig = {
@@ -75,13 +76,13 @@ const cmsConfig = {
   actions: {
       async [types.CMS_MODELS] ({commit}) {
         commit(types.LOADING, true)
-        let res = await fetch("/admin/cms/model")
+        let res = await api.getCmsModels();
         commit(types.CMS_MODELS, res.data);
         commit(types.LOADING, false)
       },
       async [types.CMS_CHANNELS] ({commit, dispatch} , parent) {
         commit(types.LOADING, true)
-        let res = await fetch("/admin/cms/channel/tree", {disabled: true})
+        let res = await api.getCmsChannelTree({disabled: true});
         // 取到了数据
         if(Object.keys(res.data).length > 0){
           let node = res.data[Object.keys(res.data)[0]]
@@ -103,7 +104,7 @@ const cmsConfig = {
       },
       async [types.CMS_CHANNEL_CHILDREN] ({commit}, node) {
         commit(types.LOADING, true)
-        let res = await fetch("/admin/cms/channel/children", {parent_id: node.id})
+        let res = await api.getCmsChannelChildren({parent_id: node.id})
         commit(types.CMS_CHANNEL_CHILDREN, res.data)
         commit(types.LOADING, false)
       },

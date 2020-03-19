@@ -31,6 +31,7 @@
     </div>
 </template>
 <script>
+    import api from '../../api/index'
     export default {
       data() {
         return {
@@ -70,23 +71,23 @@
           let nodes = this.$refs['role-permission-tree'].getCheckedNodes();
           let permissions = nodes.filter((n)=>n.children.length == 0).map((n) => n.id);
           let role_id = this.currentRole.id
-          let res = await this.fetch("/admin/privileges/give/permissions/to", {permissions, role_id}, 'post')
+          let res = await api.givePermissionsTo({permissions, role_id})
           this.$message({
             type: 'success',
             message: '设置成功!'
           });
         },
         async loadPermissionsTree(){
-          let res = await this.fetch("/admin/privileges/permissions/tree")
+          let res = await api.getPermissionsTree()
           this.treeData = [res.data[Object.keys(res.data)[0]]];
         },
         async loadRolePermissions(){
           let role_id = this.currentRole.id;
-          let res = await this.fetch("/admin/privileges/role/permissions", {role_id})
+          let res = await api.getRolePermissions({role_id})
           this.defaultCheckedKeys = res.data;
         },
         async loadUserPermissions(){
-          let res = await this.fetch("/admin/privileges/user/permissions")
+          let res = await api.getUserPermissions()
           localStorage.setItem(`privileges`, JSON.stringify(res));
         }
       },

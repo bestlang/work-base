@@ -171,6 +171,7 @@
   import ueditorConfig from "../../store/ueditor";
   import VueUeditorWrap from 'vue-ueditor-wrap';
   import {mapState, mapGetters} from 'vuex'
+  import api from '../../api/index'
 
   export default {
     data() {
@@ -248,7 +249,7 @@
           cancelButtonText: '取消',
           type: 'warning'
         }).then(async () => {
-          let res = await this.fetch("/admin/cms/channel/delete", {id: row.id}, 'post')
+          let res = await api.deleteCmsChannel({id: row.id})
           if(res.success){
             this.$store.dispatch(this.$types.CMS_CHANNELS, {id: row.parent_id});
             this.showChannelChildren = true;
@@ -286,7 +287,7 @@
       },
       async doAdd(){
         this.showChannelChildren = false
-        let res = await this.fetch("/admin/cms/channel/save", this.channelForm, 'post')
+        let res = await api.saveCmsChannel(this.channelForm)
         if(res.success){
           this.showChannelChildren = true;
           this.$store.dispatch(this.$types.CMS_CHANNELS, this.parentChannel);
@@ -302,7 +303,7 @@
         }
       },
       async doEdit(){
-        let res = await this.fetch("/admin/cms/channel/save", this.channelForm, 'post')
+        let res = await api.saveCmsChannel(this.channelForm)
         if(res.success){
           this.$message({
             type: 'success',
@@ -317,7 +318,7 @@
         }
       },
       async loadWholeChannel({id}){
-        let res = await this.fetch("/admin/cms/channel/whole", {id})
+        let res = await api.getCmsChannelWhole({id})
         let whole = res.data;
         this.channelForm = {}
         let baseFields = ['id', 'model_id', 'parent_id', 'name', 'title', 'keywords', 'description'];
@@ -337,7 +338,7 @@
         }
       },
       async loadChannelPositions(){
-          let res = await this.fetch("/admin/cms/positions", {is_channel: 1})
+          let res = await api.getCmsPositions({is_channel: 1})
           this.channelPositions = res.data
       }
 

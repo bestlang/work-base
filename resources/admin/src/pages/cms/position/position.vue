@@ -68,6 +68,7 @@
 </template>
 
 <script>
+    import api from '../../../api/index'
     export default {
         data(){
             return {
@@ -130,7 +131,7 @@
 //                });
             },
             async submit(){
-                let res = await this.fetch("/admin/cms/position/save", this.form, 'post')
+                let res = await api.savePosition(this.form)
                 if(res.success) {
                     this.loading = true;
                     await this.loadPositions();
@@ -142,7 +143,7 @@
                 }
             },
             async loadPositions(){
-                let res = await this.fetch("/admin/cms/positions")
+                let res = await api.getCmsPositions()
                 this.loading = false;
                 this.tableData = res.data;
             }

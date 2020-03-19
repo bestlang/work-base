@@ -125,33 +125,30 @@
             },
         },
         watch: {
-            activityId(newVal){
-                this.fetch("/admin/activity/activity", {activityId: newVal})
-                    .then(res => {
-                        if(res.code == 200){
-                            let newFormData = {}
-                            let a = res.data.activity
-                            Object.assign(newFormData, {
-                                id: a.id,
-                                name: a.name,
-                                start_time: a.start_time,
-                                end_time: a.end_time,
-                                type: a.type,
-                                detail: a.detail,
-                                thumbnail: a.thumbnail,
-                                galleries: a.galleries.map(v => v.thumbnail),
-                                status: a.status_original,
-                                applicable: a.applicable
-                            })
-                            this.statusArr = a.statusArr
-                            this.form = newFormData;
-                            this.thumbnailFileList = [a.thumbnail].map(function(x){return {name: "", url: x};})
-                            this.galleryFileList = a.galleries.map(function(x){return {name: "", url: x.thumbnail};})
-                            console.log(`this.form`, this.form)
-                        }else{
-                            this.errorMessage("出错了");
-                        }
-                    });
+            async activityId(newVal){
+                let res = await this.fetch("/admin/activity/activity", {activityId: newVal})
+                if(res.code == 200){
+                    let newFormData = {}
+                    let a = res.data.activity
+                    Object.assign(newFormData, {
+                        id: a.id,
+                        name: a.name,
+                        start_time: a.start_time,
+                        end_time: a.end_time,
+                        type: a.type,
+                        detail: a.detail,
+                        thumbnail: a.thumbnail,
+                        galleries: a.galleries.map(v => v.thumbnail),
+                        status: a.status_original,
+                        applicable: a.applicable
+                    })
+                    this.statusArr = a.statusArr
+                    this.form = newFormData;
+                    this.thumbnailFileList = [a.thumbnail].map(function(x){return {name: "", url: x};})
+                    this.galleryFileList = a.galleries.map(function(x){return {name: "", url: x.thumbnail};})
+                }else{
+                    this.errorMessage("出错了");
+                }
             }
         },
         mounted(){

@@ -152,6 +152,7 @@
 </template>
 <script>
   import addOptions from "../components/addOptions";
+  import api from '../../../api/index'
   export default {
     components:{
       'add-options': addOptions
@@ -237,7 +238,7 @@
           });
           return false;
         }
-        let res = await this.fetch("/admin/cms/model/save/field/order", {ids, orders}, 'post')
+        let res = await api.saveModelFieldOrder({ids, orders})
         if(this.modelForm.id){
           await this.loadModel(this.modelForm.id)
         }
@@ -257,7 +258,7 @@
           type: 'warning'
         }).then(async () => {
           let model_id = this.fieldForm.model_id
-          let res = await this.fetch("/admin/cms/model/delete/field", {model_id: model_id, id: row.id}, 'post')
+          let res = await api.deleteModelField({model_id: model_id, id: row.id})
           await this.loadModel(model_id);
           this.$message({
             type: 'success',
@@ -296,17 +297,17 @@
         this.showOptions = false;
       },
       async loadFieldTypes(){
-        let res = await this.fetch("/admin/cms/model/field/types")
+        let res = await api.getModelFieldTypes()
         this.options = res.data;
       },
       async loadModel(id){
-        let res = await this.fetch("/admin/cms/model/get", {id})
+        let res = await api.getModel({id})
         this.fields = res.data.fields;
         Object.assign(this.modelForm, res.data)
         this.fieldForm.model_id = res.data.id;
       },
       async save(){
-        let res = await this.fetch("/admin/cms/model/save", this.modelForm, 'post')
+        let res = await api.saveModel(this.modelForm)
         if(res.success){
           let message = '添加成功!'
           if(this.modelForm.id){
@@ -331,7 +332,7 @@
         if(!this.fieldForm.model_id){
           this.fieldForm.model_id = this.modelForm.id;
         }
-        let res = await this.fetch("/admin/cms/model/save/field", this.fieldForm, 'post')
+        let res = await api.modelSaveField(this.fieldForm)
         if(res.success){
           this.fieldVisible = false;
           let message = '添加成功!'

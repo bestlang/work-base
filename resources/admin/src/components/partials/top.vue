@@ -17,6 +17,8 @@
     </div>
 </template>
 <script>
+import api from '../../api/index'
+
 export default {
   computed: {
       user(){
@@ -27,17 +29,15 @@ export default {
     toggleCollapse() {
       this.$store.dispatch("toggleState")
     },
-    logout(){
-        this.fetch("auth/logout", {}, 'post')
-            .then(res => {
-                if (res.code == 200) {
-                    localStorage.removeItem(this.$types.USER)
-                    this.$store.commit(this.$types.ACCESS_TOKEN, null);
-                    this.$router.push("/login");
-                }else if(res.code == 401){
-                    this.$router.push("/login");
-                }
-            });
+    async logout(){
+        let res = await api.logout()
+        if(res.code == 200){
+            localStorage.removeItem(this.$types.USER)
+            this.$store.commit(this.$types.ACCESS_TOKEN, null);
+            this.$router.push("/login");
+        }else if(res.code == 401){
+            this.$router.push("/login");
+        }
     }
   }
 }

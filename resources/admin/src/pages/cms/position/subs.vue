@@ -55,6 +55,7 @@
     </div>
 </template>
 <script>
+    import api from '../../../api/index'
     export default {
         data(){
             return {
@@ -92,11 +93,11 @@
                 this.formVisible = true;
             },
             async getSubPositions({id}){
-                let res = await this.fetch("/admin/cms/position/subs", {id}, 'post')
+                let res = await api.getSubPositions({id})
                 this.subPositions = res.data;
             },
             async submit(){
-                let res = await this.fetch("/admin/cms/position/save", this.form, 'post')
+                let res = await api.savePosition(this.form)
                 if(res.success) {
                     await this.getSubPositions(this.currentChannelPosition)
                     this.formVisible = false;

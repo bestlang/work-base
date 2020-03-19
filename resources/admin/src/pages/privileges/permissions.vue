@@ -64,6 +64,7 @@
   </div>
 </template>
 <script>
+  import api from '../../api/index'
   export default {
     data() {
       return {
@@ -128,7 +129,7 @@
           this.$set(this.current, 'children', []);
         }
         this.formVisible = false
-        let res = await this.fetch("/admin/privileges/add/permission", {parent_id: this.current.id, name: this.form.name, show_name: this.form.show_name}, 'post')
+        let res = await api.addPermission({parent_id: this.current.id, name: this.form.name, show_name: this.form.show_name})
         newChild.id = res.data.id;
         this.current.children.push(newChild);
         if(res.success){
@@ -142,7 +143,7 @@
         }
       },
       async doEdit(){
-        let res = await this.fetch("/admin/privileges/edit/permission", {id: this.form.id, name: this.form.name, show_name: this.form.show_name}, 'post')
+        let res = await api.editPermission({id: this.form.id, name: this.form.name, show_name: this.form.show_name})
         this.$message({
           type: 'success',
           message: '修改成功!'
@@ -158,7 +159,7 @@
           cancelButtonText: '取消',
           type: 'warning'
         }).then(async () => {
-          let res = await this.fetch("/admin/privileges/delete/permission", {id: data.id}, 'post')
+          let res = await api.deletePermission({id: data.id})
           const parent = node.parent;
           const children = parent.data.children || parent.data;
           const index = children.findIndex(d => d.id === data.id);
@@ -174,7 +175,7 @@
         return true;
       },
       async loadPermissionsTree(){
-        let res = await this.fetch("/admin/privileges/permissions/tree", {disabled: true})
+        let res = await api.getPermissionsTree({disabled: true})
         this.treeData = [res.data[Object.keys(res.data)[0]]];
       }
     },

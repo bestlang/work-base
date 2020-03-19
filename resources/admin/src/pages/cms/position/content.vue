@@ -47,6 +47,7 @@
     </div>
 </template>
 <script>
+    import api from '../../../api/index'
     export default {
         data(){
             return {
@@ -60,7 +61,7 @@
         },
         methods:{
             async loadContents(){
-                let res = await this.fetch("/admin/cms/position/contents", {id: this.currentPosition.id})
+                let res = await api.getPositionContents({id: this.currentPosition.id})
                 this.tableData = res.data;
             }
         },

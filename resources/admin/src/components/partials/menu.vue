@@ -46,6 +46,7 @@
 <script>
     import $router from "@/router"
     import cell from "./cell"
+    import api from "../../api/index"
     export default {
       components:{
         cell
@@ -94,6 +95,10 @@
     async created() {
         this.defaultActive = this.$route.path;
         let routes = this.router.options.routes;
+        let perm = await api.getUserPermissions()
+        if(perm && perm.data){
+            this.$store.commit(this.$types.PRIVILEGES, perm.data)
+        }
         this.resetVisible(routes, this.privileges)
       }
     }
