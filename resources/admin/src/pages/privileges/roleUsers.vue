@@ -126,7 +126,7 @@
               }).catch(() => {});
             },
             async loadRoleUsers(){
-                let res = await this.fetch(`/admin/privileges/role/users/${this.currentRole.id}`)
+                let res = await api.getRoleUsers({id: this.currentRole.id})
                 this.roleName = res.data.name;
                 this.tableData = res.data.users;
             }

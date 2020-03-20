@@ -83,9 +83,10 @@ class PrivilegesController extends Controller
         return response()->ajax(Role::all());
     }
 
-    public function roleUsers(Request $request, $id)
+    public function roleUsers(Request $request)
     {
         $params = $request->all();
+        $id = Arr::get($params, 'id', 0);
         if($id){
             $role = Role::with(['users'])->find($id);
             return response()->ajax($role);
@@ -116,8 +117,9 @@ class PrivilegesController extends Controller
         return response()->ajax();
     }
 
-    public function deleteRole(Request $request, $id)
+    public function deleteRole(Request $request)
     {
+        $id = $request->input('id', 0);
         $role = Role::find($id);
         $count = Role::where('id', '<', $id)->count();
         if($count){

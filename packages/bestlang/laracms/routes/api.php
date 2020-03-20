@@ -12,8 +12,8 @@ Route::group(['middleware' => 'auth.jwt', 'prefix'=>'admin', 'namespace'=>'Admin
 
     Route::any('/privileges/roles', 'PrivilegesController@roles');
     Route::any('/privileges/save/role', 'PrivilegesController@saveRole');
-    Route::any('/privileges/delete/role/{id}', 'PrivilegesController@deleteRole');
-    Route::any('/privileges/role/users/{id}', 'PrivilegesController@roleUsers');
+    Route::any('/privileges/delete/role', 'PrivilegesController@deleteRole');
+    Route::any('/privileges/role/users', 'PrivilegesController@roleUsers');
     Route::any('/privileges/permissions/tree', 'PrivilegesController@permissionsTree');
     Route::any('/privileges/role/permissions', 'PrivilegesController@rolePermissions');
     Route::post('/privileges/add/permission', 'PrivilegesController@addPermission');

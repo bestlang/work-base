@@ -2,7 +2,6 @@ import Vue from "vue"
 import Vuex from "vuex"
 
 import system from "./system"
-import activity from "./activity"
 import cms from "./cms"
 import privilege from "./privilege";
 
@@ -27,7 +26,6 @@ const store = new Vuex.Store({
   },
   modules: {
     system,
-    activity,
     cms,
     privilege
   }

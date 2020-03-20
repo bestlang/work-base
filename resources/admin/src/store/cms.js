@@ -1,6 +1,5 @@
 import * as types from './types'
 import api from '../api/index'
-import {fetch} from "../api/fetch"
 
 const cmsConfig = {
   state: {

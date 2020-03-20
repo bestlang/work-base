@@ -98,7 +98,8 @@
                 cancelButtonText: '取消',
                 type: 'warning'
               }).then(async () => {
-                let res = await this.fetch('/admin/privileges/delete/role/'+row.id, {}, 'post')
+                //let res = await this.fetch('/admin/privileges/delete/role', {id: row.id}, 'post')
+                let res = await api.deleteRole({id: row.id})
                 if(res.success){
                   this.$message({
                     type: 'success',
