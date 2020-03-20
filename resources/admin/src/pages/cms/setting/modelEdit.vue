@@ -153,6 +153,7 @@
 <script>
   import addOptions from "../components/addOptions";
   import api from '../../../api/index'
+  import {mapGetters} from 'vuex'
   export default {
     components:{
       'add-options': addOptions
@@ -203,6 +204,7 @@
       }
     },
     computed:{
+      ...mapGetters(['currentModel']),
       channelFields(){
         return this.fields.filter(function(item){
           return item.is_channel === 1;
@@ -213,9 +215,6 @@
           return item.is_channel === 0;
         })
       },
-      currentModel(){
-          return this.$store.getters.currentModel;
-      }
     },
     methods:{
       async saveOrderFactor(isChannel = 0){

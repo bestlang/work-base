@@ -113,7 +113,7 @@
   import ueditorConfig from "../../store/ueditor";
   import imageUpload from "@/components/imageUpload"
   import multipleImageUpload from "@/components/multipleImageUpload"
-  import {mapState, mapGetters} from 'vuex'
+  import {mapGetters} from 'vuex'
   import api from '../../api/index'
 
   export default {
@@ -138,25 +138,11 @@
       multipleImageUpload
     },
     computed:{
-//      ...mapState({
-//          parentChannel: state => state.cms.parentChannel,
-//          currentChannel: state => state.cms.currentChannel,
-//          currentModel: state => state.cms.currentModel,
-//      }),
       ...mapGetters([
           'parentChannel',
           'currentChannel',
           'currentModel',
       ]),
-//      parentChannel(){
-//        return this.$store.getters.parentChannel;
-//      },
-//      currentChannel(){
-//        return this.$store.getters.currentChannel
-//      },
-//      currentModel(){
-//        return this.$store.getters.currentModel
-//      }
     },
     watch:{
       currentChannel(val, oldVal){
@@ -290,9 +276,9 @@
           this.contentPositions = res.data
       }
     },
-    mounted() {
-      this.loadContentPositions();
-      this.loadContents()
+    async mounted() {
+      await this.loadContentPositions();
+      await this.loadContents()
       this.$store.dispatch('collapse');
     }
   }

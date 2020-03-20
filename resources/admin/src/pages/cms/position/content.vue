@@ -48,6 +48,7 @@
 </template>
 <script>
     import api from '../../../api/index'
+    import {mapGetters} from 'vuex'
     export default {
         data(){
             return {
@@ -55,9 +56,7 @@
             }
         },
         computed:{
-            currentPosition(){
-                return this.$store.getters.currentPosition
-            }
+            ...mapGetters(['currentPosition']),
         },
         methods:{
             async loadContents(){
@@ -65,8 +64,8 @@
                 this.tableData = res.data;
             }
         },
-        mounted(){
-            this.loadContents()
+        async mounted(){
+            await this.loadContents()
         }
     }
 </script>

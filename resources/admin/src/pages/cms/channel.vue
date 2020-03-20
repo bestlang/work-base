@@ -343,11 +343,11 @@
       }
 
     },
-    mounted() {
+    async mounted() {
       this.$store.dispatch('toggleState');
       this.$store.dispatch(this.$types.CMS_CHANNELS);
       this.$store.dispatch(this.$types.CMS_MODELS);
-      this.loadChannelPositions()
+      await this.loadChannelPositions()
     },
     watch:{
       ['channelForm.model_id'](val, oldVal){

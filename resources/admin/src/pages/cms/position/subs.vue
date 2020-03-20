@@ -56,6 +56,7 @@
 </template>
 <script>
     import api from '../../../api/index'
+    import {mapGetters} from 'vuex'
     export default {
         data(){
             return {
@@ -70,9 +71,7 @@
             }
         },
         computed:{
-            currentChannelPosition(){
-                return this.$store.getters.currentChannelPosition
-            }
+            ...mapGetters(['currentChannelPosition']),
         },
         methods:{
             editChannel(row){

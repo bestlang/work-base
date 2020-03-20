@@ -95,12 +95,12 @@ export default {
                     }
                     this.$router.push("/dashboard");
                 }else if(res.code == 4011){
-                   this.restInfo()
+                   this.reset()
                 }
-                this.restInfo();
+                this.reset();
             }
         },
-        restInfo() {
+        reset() {
             this.loading = false;
             this.loginFont = "Login";
             this.params.password = "";
