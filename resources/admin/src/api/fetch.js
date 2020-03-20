@@ -31,7 +31,6 @@ axios.interceptors.request.use(config => {
 
 /**响应拦截器 */
 axios.interceptors.response.use(response => {
-        console.log('@@@@@@@@@@@@@@@@@@@@@@', JSON.stringify(response))
         let res = response.data;
         let code = parseInt(res.code)
         // 伪状态码

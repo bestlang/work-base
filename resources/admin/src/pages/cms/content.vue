@@ -200,13 +200,15 @@
         let channel = node[0]
         this.$store.dispatch(this.$types.CMS_CURRENT_CHANNEL, channel);
         this.$store.dispatch(this.$types.CMS_PARENT_CHANNEL, channel)
+        console.log(`@@@@@@@@@@@@@@`, channel)
         await this.loadContentPositions()
       },
       async addContent(){
-        this.showForm = true;
-        this.formTitle = '添加文章';
-        this.showSwitch = false;
-        await this.loadModel(this.currentChannel.model_id)
+          this.$router.push('/cms/content/add?id='+this.currentChannel.id)
+//        this.showForm = true;
+//        this.formTitle = '添加文章';
+//        this.showSwitch = false;
+//        await this.loadModel(this.currentChannel.model_id)
       },
       async loadModel(id){
         let res = await api.getModel({id})

@@ -15,23 +15,26 @@
   }
 </style>
 <template>
-  <div class="l-tree-containner">
-    <el-tree
-      @node-click="handleNodeClick"
-      icon-class="el-icon-caret-right"
-      :default-expand-all="true"
-      ref="tree"
-      :data="treeData"
-      node-key="id"
-      :props="customProps"
-      :expand-on-click-node="false">
-            <span class="custom-tree-node" slot-scope="{ node, data }">
-              <span><span v-if="!data.children.length" class="iconfont">&#xe92a;</span>{{ node.label }}</span>
-            </span>
-    </el-tree>
-  </div>
+      <div class="l-tree-containner">
+          <view v-if="title">{{title}}</view>
+          <el-tree
+          @node-click="handleNodeClick"
+          icon-class="el-icon-caret-right"
+          :default-expand-all="true"
+          ref="tree"
+          :data="treeData"
+          node-key="id"
+          :props="customProps"
+          :highlight-current="true"
+          :expand-on-click-node="false">
+                <span class="custom-tree-node" slot-scope="{ node, data }">
+                  <span><span v-if="!data.children.length" class="iconfont">&#xe92a;</span>{{ node.label }}</span>
+                </span>
+        </el-tree>
+      </div>
 </template>
 <script>
+  import {mapGetters} from 'vuex'
   export default {
     data(){
       return {
@@ -41,7 +44,20 @@
         }
       }
     },
+    props:{
+        title:{
+            type: String,
+            default: ''
+        },
+        selectedKey:{
+            type: Number,
+            default: 0
+        }
+    },
     computed:{
+        ...mapGetters([
+            'currentChannel',
+        ]),
       treeData(){
         return this.$store.getters.channels;
       }
@@ -51,9 +67,11 @@
         this.$emit('nodeClick', params);
       }
     },
-    mounted() {
+    async mounted() {
       this.$store.dispatch('toggleState');
-      this.$store.dispatch(this.$types.CMS_CHANNELS);
+      await this.$store.dispatch(this.$types.CMS_CHANNELS);
+      console.log(`currentChannel`, this.currentChannel)
+      this.$refs.tree.setCurrentKey(this.selectedKey)
     }
   }
 </script>

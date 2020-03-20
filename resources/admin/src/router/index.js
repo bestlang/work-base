@@ -48,6 +48,16 @@ export default new VueRouter({
               },
             },
             {
+                path: "/cms/content/add",
+                component: (resolve) => require(["../pages/cms/content/add.vue"], resolve),
+                meta: {
+                    can: 'cms list contents',
+                    show: false,
+                    name: '添加内容',
+                    font: '&#xe764;'
+                },
+            },
+            {
               path: "/cms/channel",
               component: (resolve) => require(["../pages/cms/channel.vue"], resolve),
               meta: {
