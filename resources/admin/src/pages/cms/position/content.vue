@@ -65,6 +65,7 @@
             }
         },
         async mounted(){
+            console.log(`current meta:`,this.$route.meta)
             await this.loadContents()
         }
     }

@@ -345,6 +345,7 @@
 
     },
     async mounted() {
+      console.log(`current meta:`,this.$route.meta)
       this.$store.dispatch('toggleState');
       this.$store.dispatch(this.$types.CMS_CHANNELS);
       this.$store.dispatch(this.$types.CMS_MODELS);

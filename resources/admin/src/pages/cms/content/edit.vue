@@ -26,7 +26,7 @@
                         <span class="l-go-back" @click="goback"><span class="iconfont">&#xe601;</span>返回</span>
                         <el-divider direction="vertical"></el-divider>
                         <!--<i class="iconfont">&#xe64c;</i>「」-->
-                        <span>在<span style="font-weight: 700">“{{currentChannel.name}}”</span>下{{formTitle}}</span>
+                        <span v-if="currentChannel">在<span style="font-weight: 700">“{{currentChannel.name}}”</span>下{{formTitle}}</span>
                     </div>
                 </div>
                 <div class="l-block-body">
@@ -47,7 +47,7 @@
                                 <image-upload v-model="form[item.field]"></image-upload>
                             </el-form-item>
 
-                            <el-form-item v-if="item.type=='multiple-image'" :label="item.label">
+                            <el-form-item v-if="item.type=='multiple-image' && form[item.field]" :label="item.label">
                                 <multiple-image-upload v-model="form[item.field]"></multiple-image-upload>
                             </el-form-item>
 
@@ -118,6 +118,8 @@
             async content_id(val){
                 if(val){
                     await this.loadWholeContent(val)
+                    let {data} = await api.getCmsChannelWhole({id: this.channel_id})
+                    this.$store.commit(this.$types.CMS_CURRENT_CHANNEL, data)
                     await this.loadContentPositions(this.currentChannel.id);
                 }
             }
@@ -130,9 +132,10 @@
                 let res = await api.getWholeContent({id});
 
                 let content = res.data;
+                this.channel_id = content.channel_id;
                 let currentModel = res.data.model;
                 currentModel.fields = currentModel.fields.filter(item => { return !item.is_channel })
-                this.$store.dispatch(this.$types.CMS_CURRENT_MODEL, currentModel)
+
                 let contentFields = ['channel_id', 'model_id', 'title', 'keywords', 'description'];
 
                 this.$set(this.form, 'id', id);
@@ -153,6 +156,8 @@
                 if(content.positions){
                     this.$set(this.form, 'positions', content.positions)
                 }
+
+                this.$store.dispatch(this.$types.CMS_CURRENT_MODEL, currentModel)
             },
             async saveContent(){
                 if(!this.form.channel_id && !this.form.model_id){

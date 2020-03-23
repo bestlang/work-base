@@ -10,12 +10,12 @@ class ContentMeta extends Model
     protected $guarded = [];
     public $timestamps = false;
 
-    public function getValueAttribute($value)
-    {
-        $decode = json_decode($value);
-        if(!$decode){
-            return $value;
-        }
-        return $decode;
-    }
+//    public function getValueAttribute($value)
+//    {
+//        $decode = json_decode($value);
+//        if(!$decode){
+//            return $value;
+//        }
+//        return $decode;
+//    }
 }

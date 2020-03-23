@@ -1,5 +1,6 @@
 <template>
     <el-upload
+            class="multiple-image-upload"
             :on-preview="preview"
             :action="uploadUrl"
             :on-remove="uploadRemove"
@@ -45,14 +46,12 @@
             }
         },
         mounted: function () {
-            this.$nextTick(() => {
-                this.vals = this.value
-            })
+            this.vals = this.value
         }
     }
 </script>
-<style lang="less">
-    .avatar-uploader .el-upload{
+<style scoped>
+    .multiple-image-upload >>> .el-upload--picture-card, .multiple-image-upload >>> .el-upload-list--picture-card li{
         border: 1px solid #DCDFE6;
         cursor: pointer;
         position: relative;

@@ -114,8 +114,8 @@
         this.showForm = false;
       },
       async editContent(row){
-          this.$store.dispatch(this.$types.CMS_CURRENT_CHANNEL, row.channel);
-          this.$store.dispatch(this.$types.CMS_PARENT_CHANNEL, row.channel);
+//          this.$store.dispatch(this.$types.CMS_CURRENT_CHANNEL, row.channel);
+//          this.$store.dispatch(this.$types.CMS_PARENT_CHANNEL, row.channel);
           this.$router.push('/cms/content/edit?content_id='+row.id);
       },
       deleteContent(row){
@@ -146,8 +146,9 @@
       },
     },
     async created() {
+      console.log(`current meta:`,this.$route.meta)
       this.channel_id = parseInt(this.$route.query.channel_id || 0);
-      let {data} = await api.getCmsChannelWhole({id: this.channel_id})
+      
       await this.loadContents()
       this.$store.dispatch('collapse');
     }

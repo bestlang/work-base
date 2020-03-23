@@ -67,9 +67,13 @@ class ContentController extends Controller
                     if($filed->type === 'checkbox'){
                         $value = implode(',', $value);
                     }
-//                    if($filed->type === 'multiple-image'){
-//                        $value = json_encode($value);
-//                    }
+                    if($filed->type === 'multiple-image'){
+                        $value = json_encode($value);
+                    }
+                }else{
+                    if(is_array($value)){
+                        $value = json_encode($value);
+                    }
                 }
                 $content->metas()->updateOrInsert(['content_id' => $id, 'field' => $filed->field], ['value' => $value]);
             }
@@ -86,15 +90,19 @@ class ContentController extends Controller
             }
             // 保存自定义字段
             foreach ($metaFileds as $filed){
-                $value =  Arr::get($params, $filed->field, '');
+                $value = Arr::get($params, $filed->field, null);
                 if($value){
                     // 对checkbox特殊处理
                     if($filed->type === 'checkbox'){
                         $value = implode(',', $value);
                     }
-//                    if($filed->type === 'multiple-image'){
-//                        $value = json_encode($value);
-//                    }
+                    if($filed->type === 'multiple-image'){
+                        $value = json_encode($value);
+                    }
+                }else{
+                    if(is_array($value)){
+                        $value = json_encode($value);
+                    }
                 }
                 $meta = ['field' => $filed->field, 'value' => $value];
                 $content->metas()->create($meta);
@@ -160,6 +168,9 @@ class ContentController extends Controller
             $type = Arr::get($filedTypeMap, $meta->field, null);
             if($type == 'checkbox' && $meta->value){
                 $meta->value = array_values(array_filter(explode(',', $meta->value)));
+            }
+            if($type == 'multiple-image'){
+                $meta->value = json_decode($meta->value);
             }
         });
         ///

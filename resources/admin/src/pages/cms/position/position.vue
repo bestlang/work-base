@@ -149,6 +149,7 @@
             }
         },
         async created() {
+            console.log(`current meta:`,this.$route.meta)
             await this.loadPositions();
         }
     }
