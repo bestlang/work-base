@@ -43,7 +43,7 @@ export default {
             loginFont: "Login",
             params: {
                 mobile: '18625072568',
-                password: ''
+                password: '111111'
             }
         }
     },

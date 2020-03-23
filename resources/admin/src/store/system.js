@@ -27,7 +27,7 @@ const systemConfig = {
 
   },
   mutations: {
-    toggleState (state) {
+    toggleState(state) {
       state.isCollapse = !state.isCollapse
     },
     [types.USER](state, payload) {
@@ -36,7 +36,7 @@ const systemConfig = {
     }
   },
   actions: {
-    toggleState ({commit}) {
+    toggleState({commit}) {
       commit("toggleState")
     },
     collapse({state}){

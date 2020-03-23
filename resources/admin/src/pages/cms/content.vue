@@ -18,7 +18,7 @@
 <template>
   <div class="l-content-list">
     <div v-title="'内容管理'"></div>
-    <channel-tree @nodeClick="handleNodeClick"></channel-tree>
+    <channel-tree :selectedKey="channel_id" @nodeClick="handleNodeClick"></channel-tree>
     <div class="l-tree-content">
         <div class="l-block" v-if="!showForm">
           <div class="l-block-header" v-if="parentChannel">
@@ -52,58 +52,6 @@
             </el-table>
           </div>
         </div>
-      <div class="l-block" v-if="showForm && currentModel">
-        <div class="l-block-header">
-          <div>
-            <span class="l-go-back" @click="goback"><span class="iconfont">&#xe601;</span>返回</span>
-            <el-divider direction="vertical"></el-divider>
-            <span>在「<i class="iconfont">&#xe64c;</i>{{currentChannel.name}}」下{{formTitle}}</span>
-          </div>
-        </div>
-        <div class="l-block-body">
-          <el-form label-width="100px">
-            <template v-for="(item, index) in currentModel.fields">
-
-              <el-form-item v-if="item.type=='text'" :label="item.label">
-                <el-input :key="index" :name="item.field" v-model="form[item.field]"></el-input>
-              </el-form-item>
-
-              <el-form-item v-if="item.type=='checkbox' && Array.isArray(form[item.field])" :label="item.label">
-                <el-checkbox-group v-model="form[item.field]">
-                  <el-checkbox :label="option.value" v-for="option in item.extra">{{option.name}}</el-checkbox>
-                </el-checkbox-group>
-              </el-form-item>
-
-              <el-form-item v-if="item.type=='image'" :label="item.label">
-                <image-upload v-model="form[item.field]"></image-upload>
-              </el-form-item>
-
-              <el-form-item v-if="item.type=='multiple-image'" :label="item.label">
-                <multiple-image-upload v-model="form[item.field]"></multiple-image-upload>
-              </el-form-item>
-
-              <el-form-item v-if="item.type=='textarea'" :label="item.label">
-                <el-input type="textarea" v-model="form[item.field]"></el-input>
-              </el-form-item>
-
-              <el-form-item v-if="item.type=='content'" class="l-mb-22" :label="item.label">
-                <div>
-                  <vue-ueditor-wrap v-model="form[item.field]" :config="ueditorConfig"></vue-ueditor-wrap>
-                </div>
-              </el-form-item>
-
-            </template>
-            <el-form-item label="编辑推荐位" v-if="contentPositions.length">
-                <el-checkbox-group  v-model="form['positions']">
-                  <el-checkbox :label="option.id" v-for="option in contentPositions">{{option.name}}</el-checkbox>
-                </el-checkbox-group>
-            </el-form-item>
-            <el-form-item>
-              <el-button type="primary" size="small" @click="saveContent">提交</el-button>
-            </el-form-item>
-          </el-form>
-        </div>
-      </div>
     </div>
   </div>
 </template>
@@ -128,7 +76,8 @@
             positions:[]
         },
         ueditorConfig: ueditorConfig,
-        contentPositions: []
+        contentPositions: [],
+        channel_id: 0
       }
     },
     components:{
@@ -150,6 +99,14 @@
       },
       showForm(){
         this.$store.dispatch('collapse');
+      },
+      async channel_id(val){
+          if(val){
+              console.log(`.........newVal:`, val)
+              let {data} = await api.getCmsChannelWhole({id: val})
+              this.$store.dispatch(this.$types.CMS_CURRENT_CHANNEL, data);
+              this.$store.dispatch(this.$types.CMS_PARENT_CHANNEL, data)
+          }
       }
     },
     methods: {
@@ -157,12 +114,9 @@
         this.showForm = false;
       },
       async editContent(row){
-        this.formTitle = '编辑文章';
-        this.$store.dispatch(this.$types.CMS_CURRENT_CHANNEL, row.channel);
-        this.$store.dispatch(this.$types.CMS_PARENT_CHANNEL, row.channel)
-        this.showForm = true;
-        await this.loadContentPositions(row.channel_id)
-        await this.loadWholeContent(row)
+          this.$store.dispatch(this.$types.CMS_CURRENT_CHANNEL, row.channel);
+          this.$store.dispatch(this.$types.CMS_PARENT_CHANNEL, row.channel);
+          this.$router.push('/cms/content/edit?content_id='+row.id);
       },
       deleteContent(row){
         this.$confirm('确定删除文章?', '提示', {
@@ -178,108 +132,22 @@
           await this.loadContents()
         });
       },
-      async saveContent(){
-          if(!this.form.channel_id && !this.form.model_id){
-            this.$set(this.form, 'model_id', this.currentModel.id);
-            this.$set(this.form, 'channel_id', this.currentChannel.id)
-          }
-          let res = await api.saveContent(this.form)
-          if(res.success){
-            this.$message({
-              type: 'success',
-              message: '添加成功!'
-            });
-            this.showForm = false;
-            await this.loadContents();
-            this.form = {}
-          }
-      },
-
       async handleNodeClick(node, ...params){
         this.showForm = false;
         let channel = node[0]
-        this.$store.dispatch(this.$types.CMS_CURRENT_CHANNEL, channel);
-        this.$store.dispatch(this.$types.CMS_PARENT_CHANNEL, channel)
-        console.log(`@@@@@@@@@@@@@@`, channel)
-        await this.loadContentPositions()
+        this.channel_id = channel.id
       },
       async addContent(){
-          this.$router.push('/cms/content/add?id='+this.currentChannel.id)
-//        this.showForm = true;
-//        this.formTitle = '添加文章';
-//        this.showSwitch = false;
-//        await this.loadModel(this.currentChannel.model_id)
-      },
-      async loadModel(id){
-        let res = await api.getModel({id})
-        let currentModel = res.data;
-        // 过滤掉模型中属于栏目的字段
-        currentModel.fields = currentModel.fields.filter(item => { return !item.is_channel })
-        this.$store.dispatch(this.$types.CMS_CURRENT_MODEL, currentModel)
-        for(let idx in this.currentModel.fields){
-          let item = this.currentModel.fields[idx];
-            // 重置表单
-            this.$set(this.form, item.field, '');
-              if(item.type == 'checkbox' || item.type == 'multiple-image'){
-                  this.$set(this.form, item.field, []);
-              }
-        }
-        this.$set(this.form, 'positions', [])
+          this.$router.push('/cms/content/add?channel_id='+this.currentChannel.id)
       },
       async loadContents(){
-        let channel_id = 0;
-        if(this.currentChannel){
-          channel_id = this.currentChannel.id
-        }
-        let res = await api.getChannelContents({channel_id})
+        let res = await api.getChannelContents({channel_id: this.channel_id})
         this.contents = res.data;
       },
-      async loadWholeContent({id}){
-        let res = await api.getWholeContent({id});
-
-        let content = res.data;
-        let currentModel = res.data.model;
-        currentModel.fields = currentModel.fields.filter(item => { return !item.is_channel })
-        this.$store.dispatch(this.$types.CMS_CURRENT_MODEL, currentModel)
-        let contentFields = ['channel_id', 'model_id', 'title', 'keywords', 'description'];
-
-        this.$set(this.form, 'id', id);
-
-        contentFields.forEach( field => {this.$set(this.form, field, content[field])} );
-
-        if(content.contents && content.contents.length){
-          content.contents.forEach( item => {this.$set(this.form, item.field, item.value)} );
-        }
-
-        if(content.metas && content.metas.length){
-          content.metas.forEach(
-            item => {
-              this.$set(this.form, item.field, item.value);
-            });
-        }
-
-        if(content.positions){
-            this.$set(this.form, 'positions', content.positions)
-        }
-        this.showSwitch = false
-
-      },
-      async loadContentPositions(channel_id=0){
-          if(!channel_id){
-              if(this.currentChannel && this.currentChannel.id){
-                  channel_id = this.currentChannel.id;
-              }
-          }
-          // 没有选定的栏目, 不进行[可选推荐位]的加载
-          if(!channel_id){
-              return;
-          }
-          let res = await api.getContentPositions({channel_id})
-          this.contentPositions = res.data
-      }
     },
-    async mounted() {
-      await this.loadContentPositions();
+    async created() {
+      this.channel_id = parseInt(this.$route.query.channel_id || 0);
+      let {data} = await api.getCmsChannelWhole({id: this.channel_id})
       await this.loadContents()
       this.$store.dispatch('collapse');
     }

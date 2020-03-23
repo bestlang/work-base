@@ -70,7 +70,7 @@
     async mounted() {
       this.$store.dispatch('toggleState');
       await this.$store.dispatch(this.$types.CMS_CHANNELS);
-      console.log(`currentChannel`, this.currentChannel)
+//      console.log(`currentChannel`, this.currentChannel)
       this.$refs.tree.setCurrentKey(this.selectedKey)
     }
   }

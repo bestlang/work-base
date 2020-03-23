@@ -47,6 +47,7 @@
     import $router from "@/router"
     import cell from "./cell"
     import api from "../../api/index"
+    import {mapGetters} from 'vuex'
     export default {
       components:{
         cell
@@ -59,17 +60,19 @@
           };
       },
       computed:{
-          appName(){
-              return this.$store.getters.appName
-          },
-          appShortName(){
-              return this.$store.getters.appShortName
-          },
-          isCollapse(){
-              return this.$store.state.system.isCollapse;
-          },
-          privileges(){
-              return this.$store.state.privilege.privileges
+          ...mapGetters([
+              'appName',
+              'appShortName',
+              'isCollapse',
+              'privileges'
+          ])
+      },
+      watch:{
+          privileges(newVal){
+              if(newVal.length){
+                  let routes = this.router.options.routes;
+                  this.resetVisible(routes, newVal)
+              }
           }
       },
       methods: {
@@ -94,12 +97,12 @@
       },
     async created() {
         this.defaultActive = this.$route.path;
-        let routes = this.router.options.routes;
-        let perm = await api.getUserPermissions()
-        if(perm && perm.data){
-            this.$store.commit(this.$types.PRIVILEGES, perm.data)
+        if(!this.privileges.length){
+            let perm = await api.getUserPermissions()
+            if(perm && perm.data){
+                this.$store.commit(this.$types.PRIVILEGES, perm.data)
+            }
         }
-        this.resetVisible(routes, this.privileges)
       }
     }
 </script>

@@ -18,14 +18,15 @@
 <template>
     <div class="l-content-list">
         <div v-title="'内容管理'"></div>
-        <channel-tree @nodeClick="handleNodeClick" :title="'栏目选择'" :selectedKey="selectedKey"></channel-tree>
+        <channel-tree @nodeClick="handleNodeClick" :title="'栏目选择'" :selectedKey="channel_id"></channel-tree>
         <div class="l-tree-content">
             <div class="l-block" v-if="currentModel">
                 <div class="l-block-header">
                     <div>
                         <span class="l-go-back" @click="goback"><span class="iconfont">&#xe601;</span>返回</span>
                         <el-divider direction="vertical"></el-divider>
-                        <span>在「<i class="iconfont">&#xe64c;</i>{{currentChannel.name}}」下{{formTitle}}</span>
+                        <!--<i class="iconfont">&#xe64c;</i>「」-->
+                        <span>在<span style="font-weight: 700">“{{currentChannel.name}}”</span>下{{formTitle}}</span>
                     </div>
                 </div>
                 <div class="l-block-body">
@@ -61,7 +62,7 @@
                             </el-form-item>
 
                         </template>
-                        <el-form-item label="编辑推荐位" v-if="contentPositions.length">
+                        <el-form-item label="编辑推荐位" v-if="contentPositions && contentPositions.length">
                             <el-checkbox-group  v-model="form['positions']">
                                 <el-checkbox :label="option.id" v-for="option in contentPositions">{{option.name}}</el-checkbox>
                             </el-checkbox-group>
@@ -90,13 +91,13 @@
                 checkList:[],
                 showSwitch: false,
                 contents: [],
-                formTitle: '添加文章',
+                formTitle: '添加内容',
                 form:{
                     positions:[]
                 },
                 ueditorConfig: ueditorConfig,
                 contentPositions: [],
-                selectedKey: 0
+                channel_id: 0
             }
         },
         components:{
@@ -113,16 +114,18 @@
             ]),
         },
         watch:{
-            async selectedKey(newVal){
-                if(newVal){
-                    let {data} = await api.getCmsChannelWhole({id: newVal})
+            async channel_id(val){
+                if(val){
+                    let {data} = await api.getCmsChannelWhole({id: val})
                     this.$store.dispatch(this.$types.CMS_CURRENT_CHANNEL, data);
                     await this.loadModel(data.model_id)
                 }
             }
         },
         methods: {
-            goback(){},
+            goback(){
+                this.$router.push('/cms/content?channel_id='+this.channel_id)
+            },
             async saveContent(){
                 if(!this.form.channel_id && !this.form.model_id){
                     this.$set(this.form, 'model_id', this.currentModel.id);
@@ -134,12 +137,13 @@
                         type: 'success',
                         message: '添加成功!'
                     });
-                    this.form = {}
+                    this.goback()
                 }
             },
 
             async handleNodeClick(node, ...params){
                 let channel = node[0]
+                this.channel_id = channel.id
                 this.$store.dispatch(this.$types.CMS_CURRENT_CHANNEL, channel);
                 this.$store.dispatch(this.$types.CMS_PARENT_CHANNEL, channel);
                 await this.loadModel(channel.model.id)
@@ -176,8 +180,8 @@
             }
         },
         async mounted() {
-            this.selectedKey = parseInt(this.$route.query.id);
-            await this.loadContentPositions();
+            this.channel_id = parseInt(this.$route.query.channel_id || 0);
+            await this.loadContentPositions(this.channel_id);
             this.$store.dispatch('collapse');
         }
     }

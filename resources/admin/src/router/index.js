@@ -58,6 +58,16 @@ export default new VueRouter({
                 },
             },
             {
+                path: "/cms/content/edit",
+                component: (resolve) => require(["../pages/cms/content/edit.vue"], resolve),
+                meta: {
+                    can: 'cms list contents',
+                    show: false,
+                    name: '编辑内容',
+                    font: '&#xe764;'
+                },
+            },
+            {
               path: "/cms/channel",
               component: (resolve) => require(["../pages/cms/channel.vue"], resolve),
               meta: {

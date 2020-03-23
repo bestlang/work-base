@@ -15,7 +15,9 @@ Controller中的action里面
 
 
 
-
+Promise回调函数
+1>. 回调函数为匿名函数时，回调函数的this会指向window，需要对回调函数bind(this)。
+2>. 回调函数为箭头函数时，回调函数的this会指向他的直接上层，本例中指向dog。
 
 
 ### JWT 配置参考

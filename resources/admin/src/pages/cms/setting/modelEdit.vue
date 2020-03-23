@@ -1,34 +1,21 @@
+<style scoped>
+  .l-block-body >>> .el-table .cell{
+    text-align: center;
+  }
+</style>
 <template>
   <div class="l-block">
     <div class="l-block-header">
       <div>
-        <router-link to="/cms/setting/model" tag="div"><span class="iconfont">&#xe601;</span>返回</router-link>
-        <!--<el-divider direction="vertical" style="display: inline"></el-divider>-->
+        <router-link to="/cms/setting/model" tag="span"><span class="iconfont">&#xe601;</span>返回</router-link>
+        <el-divider direction="vertical"></el-divider>
+        <span v-if="currentModel"><span style="font-weight: 700">“{{currentModel.name}}”</span>栏目字段管理</span>
       </div>
-      <div>{{modelForm.id ? '编辑':'新增'}}模型{{modelForm.name ? '"' + modelForm.name + '"' : ''}}</div>
     </div>
     <div class="l-block-body">
-      <el-tabs tab-position="left" v-model="activeName" @tab-click="handleClick">
-        <el-tab-pane label="基本信息" name="basic">
-          <el-form ref="form" :model="modelForm" label-width="120px">
-            <el-form-item label="模型名">
-              <el-input v-model="modelForm.name"></el-input>
-            </el-form-item>
-            <el-form-item label="栏目模板前缀">
-              <el-input v-model="modelForm.channel_template_prefix"></el-input>
-            </el-form-item>
-            <el-form-item label="内容模板前缀">
-              <el-input v-model="modelForm.content_template_prefix"></el-input>
-            </el-form-item>
-            <el-form-item>
-              <el-button type="primary" @click="save">保存</el-button>
-            </el-form-item>
-          </el-form>
-        </el-tab-pane>
-        <el-tab-pane label="栏目字段" name="channel">
-          <div class="l-block">
+          <div class="l-block" v-if="type=='channel'">
             <div class="l-block-header">
-              <el-button type="primary" @click="add('channel')">添加</el-button>
+              <el-button type="primary" @click="add(type)">添加</el-button>
             </div>
             <div class="l-block-body">
               <el-table
@@ -70,11 +57,9 @@
               <el-button @click="saveOrderFactor">保存排序</el-button>
             </div>
           </div>
-        </el-tab-pane>
-        <el-tab-pane label="内容字段" name="content">
-          <div class="l-block">
+          <div class="l-block" v-if="type=='content'">
             <div class="l-block-header">
-              <el-button type="primary" @click="add('content')">添加</el-button>
+              <el-button type="primary" @click="add(type)">添加</el-button>
             </div>
             <div class="l-block-body">
               <el-table
@@ -116,8 +101,6 @@
               <el-button @click="saveOrderFactor">保存排序</el-button>
             </div>
           </div>
-        </el-tab-pane>
-      </el-tabs>
     </div>
     <el-dialog :title="fieldTitle" :visible.sync="fieldVisible">
       <el-form :model="fieldForm" label-width="100px">
@@ -160,28 +143,21 @@
     },
     data(){
       return {
-        id:null,
+        model_id:null,
+        type: '',//channel, content
         loading: false,
         activeName: 'basic',
         fields:[],
-
-        modelForm: {
-          id: null,
-          name: '',
-          channel_template_prefix: '',
-          content_template_prefix: ''
-        },
-
         fieldTitle:'添加字段',
         fieldVisible: false,
         fieldForm:{
           id: '',
           model_id: null,
-          type: '',// text, select ...
+          type: '',
           field: '',
           label: '',
           extra: [],
-          is_channel: 0, // 1-channel | 0-content
+          is_channel: 0,
           is_custom: 1,
           is_display: 1,
           is_required: 0,
@@ -238,9 +214,7 @@
           return false;
         }
         let res = await api.saveModelFieldOrder({ids, orders})
-        if(this.modelForm.id){
-          await this.loadModel(this.modelForm.id)
-        }
+
         this.$message({
           type: 'success',
           message: '保存成功!'
@@ -265,18 +239,8 @@
           });
         });
       },
-      // beforeLeave(activeName, oldActiveName){
-      //   return true;
-      // },
+
       add(type){
-        if(!this.modelForm.id){
-          this.$message({
-            message: '请先提交基本信息!',
-            type: 'warning'
-          });
-          this.activeName = 'basic';
-          return;
-        }
         if(type == 'channel'){
           this.fieldForm.is_channel = 1;
         }else if(type == 'content'){
@@ -301,36 +265,12 @@
       },
       async loadModel(id){
         let res = await api.getModel({id})
+        this.$store.dispatch(this.$types.CMS_CURRENT_MODEL, res.data);
         this.fields = res.data.fields;
-        Object.assign(this.modelForm, res.data)
+        console.log(`this.fields:`,this.fields)
         this.fieldForm.model_id = res.data.id;
       },
-      async save(){
-        let res = await api.saveModel(this.modelForm)
-        if(res.success){
-          let message = '添加成功!'
-          if(this.modelForm.id){
-            message = '更新成功!';
-          }
-          this.$message({
-            message: message,
-            type: 'success'
-          });
-          Object.assign(this.modelForm, res.data);
-          this.id = res.data.id;
-          await this.loadModel(this.id);
-        }else{
-          let message = '出错了!请联系管理员';
-          this.$message({
-            message: message,
-            type: 'warning'
-          });
-        }
-      },
       async doSaveField(){
-        if(!this.fieldForm.model_id){
-          this.fieldForm.model_id = this.modelForm.id;
-        }
         let res = await api.modelSaveField(this.fieldForm)
         if(res.success){
           this.fieldVisible = false;
@@ -341,7 +281,7 @@
             message: message,
             type: 'success'
           });
-          await this.loadModel(this.id);
+          await this.loadModel(this.model_id);
         }else{
           this.$message({
             message: '出错了!请联系管理员',
@@ -349,19 +289,22 @@
           });
         }
       },
-      handleClick(tab, event) {
+      handleClick(tab, event){
         console.log(tab, event);
       },
       handleOptionsChange(val){
         this.fieldForm.extra = val;
       }
     },
-    async mounted() {
-      let id = this.currentModel.id;
-      this.id = id;
-      if(id){
-        await this.loadModel(id);
+    async mounted(){
+      let model_id = parseInt(this.$route.query.model_id || 0);
+      this.model_id = model_id;
+      if(this.model_id){
+          await this.loadModel(this.model_id);
       }
+      let type = this.$route.query.type.toString();
+      this.type = type;
+
       await this.loadFieldTypes();
     }
   }

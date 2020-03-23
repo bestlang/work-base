@@ -30,8 +30,8 @@
         }
     }
 </script>
-<style lang="less">
-    .avatar-uploader .el-upload{
+<style scoped>
+    .avatar-uploader >>> .el-upload{
         border: 1px solid #DCDFE6;
         cursor: pointer;
         position: relative;

@@ -33,6 +33,7 @@ export default {
         let res = await api.logout()
         if(res.code == 200){
             localStorage.removeItem(this.$types.USER)
+            localStorage.removeItem('privileges')
             this.$store.commit(this.$types.ACCESS_TOKEN, null);
             this.$router.push("/login");
         }else if(res.code == 401){
