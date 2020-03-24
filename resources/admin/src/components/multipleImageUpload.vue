@@ -11,7 +11,7 @@
             name="file"
             :headers="headers"
     >
-        <el-button size="small" type="primary">点击上传</el-button>
+        <el-button size="mini" icon="el-icon-plus" circle></el-button>
         <div slot="tip" class="el-upload__tip"></div>
     </el-upload>
 </template>
@@ -60,17 +60,13 @@
         padding: 8px;
         border-radius: 4px;
     }
-    .avatar-uploader-icon {
-        font-size: 28px;
-        color: #DCDFE6;
-        width: 146px;
-        height: 146px;
-        line-height: 146px;
-        text-align: center;
+    .multiple-image-upload >>> .el-upload--picture-card i{
+        font-weight: 700;
+        font-size: 20px;
+        color: #c0c0c0;
     }
-    .avatar {
-        width: 146px;
-        height: 146px;
-        display: block;
+    .multiple-image-upload >>> .el-upload--picture-card button{
+        border: none;
+        background: transparent;
     }
 </style>

@@ -52,6 +52,8 @@ export default {
         flex-flow: row nowrap;
         justify-content: space-between;
         padding: 0;
+        background: #f8f8f8;
+        border-bottom: 1px solid #e6e6e6;
     }
     .ls-left{
         display: flex;
@@ -60,12 +62,10 @@ export default {
         padding: 0;
     }
     .ls-top-left{
-        /*float: left;*/
         text-align: right;
         box-sizing: border-box;
     }
     .ls-top-right{
-        /*float: right;*/
         line-height: 50px;
         cursor: pointer;
         font-size:14px;
@@ -73,16 +73,6 @@ export default {
         .logout{
             padding-right: 20px;
         }
-    }
-    .ls-top-logo{
-        float: left;
-        text-align: left;
-        line-height: 50px;
-        letter-spacing: .05em;
-        padding-left: 30px;
-        color:#409EFF;
-        letter-spacing: 1.5px;
-        font-size: 20px;
     }
     .ls-icon-collapse{
         cursor: pointer;

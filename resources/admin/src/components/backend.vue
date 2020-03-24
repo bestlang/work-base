@@ -66,6 +66,7 @@ export default {
         padding: 10px;
         overflow-y: scroll;
         /*background: rgb(244, 244, 244);*/
-        background-color: #F5F7FA;
+        /*background-color: #F5F7FA;*/
+        /*background-color: #f8f8f8;*/
     }
 </style>

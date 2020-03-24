@@ -37,3 +37,8 @@
     }
   }
 </script>
+<style>
+    .el-tree-node{
+        margin-bottom: 5px;
+    }
+</style>

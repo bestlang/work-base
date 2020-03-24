@@ -9,7 +9,8 @@
             :headers="headers"
     >
         <img v-if="value" :src="value" class="avatar">
-        <i v-else class="el-icon-plus avatar-uploader-icon"></i>
+        <!--<i v-else class="el-icon-plus avatar-uploader-icon"></i>-->
+        <el-button v-else size="mini" icon="el-icon-plus" circle></el-button>
     </el-upload>
 </template>
 <script>
@@ -40,17 +41,18 @@
         padding: 8px;
         border-radius: 4px;
     }
-    .avatar-uploader-icon {
-        font-size: 28px;
-        color: #DCDFE6;
-        width: 146px;
-        height: 146px;
-        line-height: 146px;
-        text-align: center;
-    }
     .avatar {
         width: 146px;
         height: 146px;
         display: block;
+    }
+    .avatar-uploader >>> .el-upload--picture-card i{
+        font-weight: 700;
+        font-size: 20px;
+        color: #c0c0c0;
+    }
+    .avatar-uploader >>> .el-upload--picture-card button{
+        border: none;
+        background: transparent;
     }
 </style>

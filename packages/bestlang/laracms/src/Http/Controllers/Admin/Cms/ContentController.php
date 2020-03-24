@@ -16,18 +16,36 @@ class ContentController extends Controller
     public function index(Request $request)
     {
         $channelId = $request->input('channel_id', 0);
+        $page = $request->input('page', 0);
+        $page_size = $request->input('page_size', 10);
         $channelId = intval($channelId);
+        $page = intval($page);
+        $page_size = intval($page_size);
+
         if(!$channelId){
-            $contents = Content::with('channel')->orderBy('id', 'desc')->get();
+            $contents = Content::with('channel')
+                ->orderBy('id', 'desc')
+                ->limit($page_size)
+                ->offset(($page-1)*$page_size)
+                ->get();
             return response()->ajax($contents);
         }else{
             $channelIdArr = [];
-            $childrenIdArr = Channel::find($channelId)->getDescendants()->map(function($item){return $item->id;})->toArray();
+            $childrenIdArr = Channel::find($channelId)
+                ->getDescendants()
+                ->map(function($item){return $item->id;})
+                ->toArray();
             if(count($childrenIdArr)){
                 array_push($channelIdArr, ...$childrenIdArr);
             }
             array_push($channelIdArr, $channelId);
-            $contents = Content::whereIn('channel_id', $channelIdArr)->with('channel')->orderByRaw("case when `channel_id`=$channelId then 1 end desc")->orderBy('id', 'desc')->get();
+            $contents = Content::whereIn('channel_id', $channelIdArr)
+                ->with('channel')
+                ->orderByRaw("case when `channel_id`=$channelId then 1 end desc")
+                ->orderBy('id', 'desc')
+                ->limit($page_size)
+                ->offset(($page-1)*$page_size)
+                ->get();
             return response()->ajax($contents);
         }
     }

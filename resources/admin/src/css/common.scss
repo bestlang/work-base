@@ -32,7 +32,7 @@
 }
 
 .el-submenu__title, .el-menu-item{
-  font-size: 15px;
+  font-size: 16px;
 }
 
 .router-link-active{
@@ -57,7 +57,8 @@
   overflow: hidden;
   background: #FFF;
   overflow: hidden;
-  color: #303133;
+  //color: #303133;
+  color: #606266;
   box-sizing: border-box;
 
   .l-block-header{
@@ -122,4 +123,8 @@
 
 .l-cursor{
   cursor: pointer;
+}
+
+.el-table td{
+  padding: 6px 0;
 }

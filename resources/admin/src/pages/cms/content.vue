@@ -50,6 +50,7 @@
                 </template>
               </el-table-column>
             </el-table>
+            <pager :total="50" :page-size="20" @current-change="currentChange"></pager>
           </div>
         </div>
     </div>
@@ -61,6 +62,7 @@
   import ueditorConfig from "../../store/ueditor";
   import imageUpload from "@/components/imageUpload"
   import multipleImageUpload from "@/components/multipleImageUpload"
+  import pager from "@/components/pager"
   import {mapGetters} from 'vuex'
   import api from '../../api/index'
 
@@ -73,18 +75,21 @@
         showForm: false,
         formTitle: '添加文章',
         form:{
-            positions:[]
+          positions:[]
         },
         ueditorConfig: ueditorConfig,
         contentPositions: [],
-        channel_id: 0
+        channel_id: 0,
+        page:1,
+        page_size: 10
       }
     },
     components:{
-      'channel-tree': channelTree,
-      VueUeditorWrap,
-      imageUpload,
-      multipleImageUpload
+        'channel-tree': channelTree,
+        VueUeditorWrap,
+        imageUpload,
+        multipleImageUpload,
+        pager
     },
     computed:{
       ...mapGetters([
@@ -102,7 +107,7 @@
       },
       async channel_id(val){
           if(val){
-              console.log(`.........newVal:`, val)
+              this.page = 1
               let {data} = await api.getCmsChannelWhole({id: val})
               this.$store.dispatch(this.$types.CMS_CURRENT_CHANNEL, data);
               this.$store.dispatch(this.$types.CMS_PARENT_CHANNEL, data)
@@ -114,8 +119,6 @@
         this.showForm = false;
       },
       async editContent(row){
-//          this.$store.dispatch(this.$types.CMS_CURRENT_CHANNEL, row.channel);
-//          this.$store.dispatch(this.$types.CMS_PARENT_CHANNEL, row.channel);
           this.$router.push('/cms/content/edit?content_id='+row.id);
       },
       deleteContent(row){
@@ -133,22 +136,26 @@
         });
       },
       async handleNodeClick(node, ...params){
-        this.showForm = false;
-        let channel = node[0]
-        this.channel_id = channel.id
+          this.showForm = false;
+          let channel = node[0]
+          this.channel_id = channel.id
       },
       async addContent(){
           this.$router.push('/cms/content/add?channel_id='+this.currentChannel.id)
       },
       async loadContents(){
-        let res = await api.getChannelContents({channel_id: this.channel_id})
-        this.contents = res.data;
+          let res = await api.getChannelContents({channel_id: this.channel_id, page: this.page, page_size: this.page_size})
+          this.contents = res.data;
       },
+      async currentChange(page){
+          this.page = page
+          this.loadContents()
+      }
     },
     async created() {
       console.log(`current meta:`,this.$route.meta)
       this.channel_id = parseInt(this.$route.query.channel_id || 0);
-      
+
       await this.loadContents()
       this.$store.dispatch('collapse');
     }
