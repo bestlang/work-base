@@ -4,7 +4,8 @@
         font-size: 18px;
         padding: 0 20px;
         background: #f8f8f8;
-        border-bottom: 1px solid #e6e6e6;
+        /*background: #f5f5f5;*/
+        /*border-bottom: 1px solid #e6e6e6;*/
     }
 </style>
 
@@ -36,6 +37,7 @@
     .el-menu{
         border-right: 1px solid transparent;
     }
+
     .el-menu-vertical{
         /*height: calc(100vh - 50px);*/
     }

@@ -48,7 +48,7 @@ export default {
         height: 50px;
         background: #fff;
         width: 100%;
-        border-bottom:1px solid #e0e4e9;
+        /*border-bottom:1px solid #e0e4e9;*/
         z-index: 2;
     }
     .ls-content{
@@ -67,6 +67,5 @@ export default {
         overflow-y: scroll;
         /*background: rgb(244, 244, 244);*/
         /*background-color: #F5F7FA;*/
-        /*background-color: #f8f8f8;*/
     }
 </style>

@@ -184,7 +184,7 @@
     }
   }
 </script>
-<style scoped>
+<style lang="less" scoped>
   .custom-tree-node {
     flex: 1;
     display: flex;
@@ -192,6 +192,9 @@
     justify-content: space-between;
     font-size: 16px;
     padding-right: 8px;
+    .el-button--mini{
+      font-size: 14px;
+    }
   }
   .el-tree-node__content{
     border-bottom: 1px solid #f4f4f4;

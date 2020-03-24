@@ -39,6 +39,7 @@
 </script>
 <style>
     .el-tree-node{
-        margin-bottom: 5px;
+        box-sizing: content-box;
+        padding: 2px 0;
     }
 </style>

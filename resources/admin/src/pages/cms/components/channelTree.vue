@@ -10,11 +10,12 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    font-size: 15px;
-    padding-right: 8px;
+    font-size: 17px;
+    /*padding-right: 8px;*/
   }
   .el-tree-node__content{
-      margin-bottom: 5px;
+      box-sizing: content-box;
+      padding: 2px 0;
   }
 </style>
 <template>

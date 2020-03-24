@@ -53,7 +53,6 @@ export default {
         justify-content: space-between;
         padding: 0;
         background: #f8f8f8;
-        border-bottom: 1px solid #e6e6e6;
     }
     .ls-left{
         display: flex;

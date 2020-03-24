@@ -25,8 +25,8 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    font-size: 16px;
-    padding-right: 8px;
+    font-size: 17px;
+    /*padding-right: 8px;*/
   }
   .el-tree-node__content{
     border-bottom: 1px solid #f4f4f4;
