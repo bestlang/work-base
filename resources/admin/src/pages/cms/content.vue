@@ -50,7 +50,7 @@
                 </template>
               </el-table-column>
             </el-table>
-            <pager :total="50" :page-size="20" @current-change="currentChange"></pager>
+            <pager :total="total" :page-size="page_size" @current-change="currentChange"></pager>
           </div>
         </div>
     </div>
@@ -81,7 +81,8 @@
         contentPositions: [],
         channel_id: 0,
         page:1,
-        page_size: 10
+        page_size: 8,
+        total: 0
       }
     },
     components:{
@@ -144,8 +145,9 @@
           this.$router.push('/cms/content/add?channel_id='+this.currentChannel.id)
       },
       async loadContents(){
-          let res = await api.getChannelContents({channel_id: this.channel_id, page: this.page, page_size: this.page_size})
-          this.contents = res.data;
+          let {data} = await api.getChannelContents({channel_id: this.channel_id, page: this.page, page_size: this.page_size})
+          this.contents = data.contents;
+          this.total = data.total;
       },
       async currentChange(page){
           this.page = page

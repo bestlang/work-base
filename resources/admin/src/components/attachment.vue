@@ -1,17 +1,17 @@
 <template>
     <el-upload
-            class="multiple-image-upload"
-            :on-preview="preview"
+            class=""
+            :on-preview="handlePreview"
             :action="uploadUrl"
-            :on-remove="uploadRemove"
+            :on-remove="handleRemove"
+            :before-remove="beforeRemove"
             :on-success="uploadSuccess"
-            list-type="picture-card"
-            :multiple="true"
+            multiple
             :file-list="vals"
             name="file"
             :headers="headers"
     >
-        <el-button size="mini" icon="el-icon-plus" circle></el-button>
+        <el-button size="small" type="primary">点击上传</el-button>
         <div slot="tip" class="el-upload__tip"></div>
     </el-upload>
 </template>
@@ -30,16 +30,20 @@
             }
         },
         methods:{
-            preview(file){
-                window.open(file.url || file.response.data.file)
+            handlePreview(){},
+            beforeRemove(file, fileList) {
+                return this.$confirm(`确定移除 ${ file.name }？`);
             },
-            uploadRemove(file, fileList){
+            preview(file){
+                window.open(file.response.data.file)
+            },
+            handleRemove(file, fileList){
                 const updated = this.vals.filter( item => { return item.url != file.url} );
                 this.$emit('input', updated)
                 this.vals = updated
             },
             uploadSuccess(response, file, fileList){
-                const item = {description: '', url: response.data.file}
+                const item = {name: file.name, url: response.data.file}
                 let updated = [...this.vals, item]
                 this.$emit('input', updated)
                 this.vals = updated
@@ -53,22 +57,4 @@
     }
 </script>
 <style scoped>
-    .multiple-image-upload >>> .el-upload--picture-card, .multiple-image-upload >>> .el-upload-list--picture-card li{
-        border: 1px solid #DCDFE6;
-        cursor: pointer;
-        position: relative;
-        overflow: hidden;
-        box-sizing: content-box;
-        padding: 8px;
-        border-radius: 4px;
-    }
-    .multiple-image-upload >>> .el-upload--picture-card i{
-        font-weight: 700;
-        font-size: 20px;
-        color: #c0c0c0;
-    }
-    .multiple-image-upload >>> .el-upload--picture-card button{
-        border: none;
-        background: transparent;
-    }
 </style>

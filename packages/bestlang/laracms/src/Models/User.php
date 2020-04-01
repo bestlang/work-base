@@ -15,6 +15,9 @@ class User extends Authenticatable implements JWTSubject
 {
     use Notifiable,HasRoles;
 
+    //https://docs.spatie.be/laravel-permission/v2/basic-usage/multiple-guards/#main
+    protected $guard_name = 'api';
+
     /**
      * The attributes that are mass assignable.
      *
@@ -69,35 +72,35 @@ class User extends Authenticatable implements JWTSubject
 //        return $value;
 //    }
 
-    public function searchHistories()
-    {
-        return $this->hasMany(SearchHistory::class);
-    }
-
-    public function moneyRecords()
-    {
-        return $this->hasMany(UserMoney::class);
-    }
-
-    public function collectGoods()
-    {
-        return $this->hasMany(CollectGoods::class);
-    }
-
-    public function visitHistories()
-    {
-        return $this->hasMany(VisitHistory::class);
-    }
-
-    public function withdraws()
-    {
-        return $this->hasMany(Withdraw::class);
-    }
-
-    public function activityTuanOrders()
-    {
-        return $this->hasMany(ActivityTuanOrder::class);
-    }
+//    public function searchHistories()
+//    {
+//        return $this->hasMany(SearchHistory::class);
+//    }
+//
+//    public function moneyRecords()
+//    {
+//        return $this->hasMany(UserMoney::class);
+//    }
+//
+//    public function collectGoods()
+//    {
+//        return $this->hasMany(CollectGoods::class);
+//    }
+//
+//    public function visitHistories()
+//    {
+//        return $this->hasMany(VisitHistory::class);
+//    }
+//
+//    public function withdraws()
+//    {
+//        return $this->hasMany(Withdraw::class);
+//    }
+//
+//    public function activityTuanOrders()
+//    {
+//        return $this->hasMany(ActivityTuanOrder::class);
+//    }
 
     public function comments()
     {

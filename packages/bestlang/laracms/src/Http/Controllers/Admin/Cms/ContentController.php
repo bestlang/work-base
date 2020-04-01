@@ -15,6 +15,9 @@ class ContentController extends Controller
 {
     public function index(Request $request)
     {
+        if(!auth()->user()->can('cms list contents')){
+            return response()->ajax('', 401);
+        }
         $channelId = $request->input('channel_id', 0);
         $page = $request->input('page', 0);
         $page_size = $request->input('page_size', 10);
@@ -23,12 +26,14 @@ class ContentController extends Controller
         $page_size = intval($page_size);
 
         if(!$channelId){
-            $contents = Content::with('channel')
+            $query = Content::query();
+            $total = $query->count();
+            $contents = $query->with('channel')
                 ->orderBy('id', 'desc')
                 ->limit($page_size)
                 ->offset(($page-1)*$page_size)
                 ->get();
-            return response()->ajax($contents);
+            return response()->ajax(compact(['contents', 'total']));
         }else{
             $channelIdArr = [];
             $childrenIdArr = Channel::find($channelId)
@@ -39,14 +44,20 @@ class ContentController extends Controller
                 array_push($channelIdArr, ...$childrenIdArr);
             }
             array_push($channelIdArr, $channelId);
-            $contents = Content::whereIn('channel_id', $channelIdArr)
+            $query = Content::query();
+            $query->whereIn('channel_id', $channelIdArr);
+
+            $total = $query->count();
+
+            $contents = $query
                 ->with('channel')
                 ->orderByRaw("case when `channel_id`=$channelId then 1 end desc")
                 ->orderBy('id', 'desc')
                 ->limit($page_size)
                 ->offset(($page-1)*$page_size)
                 ->get();
-            return response()->ajax($contents);
+
+            return response()->ajax(compact(['contents', 'total']));
         }
     }
 
@@ -85,7 +96,7 @@ class ContentController extends Controller
                     if($filed->type === 'checkbox'){
                         $value = implode(',', $value);
                     }
-                    if($filed->type === 'multiple-image'){
+                    if($filed->type === 'multiple-image' || $filed->type === 'attachment'){
                         $value = json_encode($value);
                     }
                 }else{
@@ -114,7 +125,7 @@ class ContentController extends Controller
                     if($filed->type === 'checkbox'){
                         $value = implode(',', $value);
                     }
-                    if($filed->type === 'multiple-image'){
+                    if($filed->type === 'multiple-image' || $filed->type === 'attachment'){
                         $value = json_encode($value);
                     }
                 }else{
@@ -187,7 +198,7 @@ class ContentController extends Controller
             if($type == 'checkbox' && $meta->value){
                 $meta->value = array_values(array_filter(explode(',', $meta->value)));
             }
-            if($type == 'multiple-image'){
+            if($type == 'multiple-image' || $type == 'attachment'){
                 $meta->value = json_decode($meta->value);
             }
         });

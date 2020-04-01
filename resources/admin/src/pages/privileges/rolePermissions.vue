@@ -66,6 +66,11 @@
           return this.$store.getters.currentRole;
         }
       },
+      watch:{
+          role_id(val){
+              this.loadRolePermissions(val)
+          }
+      },
       methods: {
         async saveRolePermissions(){
           let nodes = this.$refs['role-permission-tree'].getCheckedNodes();
@@ -81,8 +86,8 @@
           let res = await api.getPermissionsTree()
           this.treeData = [res.data[Object.keys(res.data)[0]]];
         },
-        async loadRolePermissions(){
-          let role_id = this.currentRole.id;
+        async loadRolePermissions(role_id){
+//          let role_id = this.currentRole.id;
           let res = await api.getRolePermissions({role_id})
           this.defaultCheckedKeys = res.data;
         },
@@ -92,7 +97,8 @@
         }
       },
       async mounted() {
-        await this.loadRolePermissions();
+        this.role_id = parseInt(this.$route.query.role_id || 0);
+        //await this.loadRolePermissions();
         await this.loadPermissionsTree();
       }
     }

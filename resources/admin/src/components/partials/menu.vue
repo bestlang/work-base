@@ -11,7 +11,8 @@
 
 <template>
     <div>
-        <div class="ls-top-logo" v-show="!isCollapse">{{appName}}™</div>
+        <!--™-->
+        <div class="ls-top-logo" v-show="!isCollapse">{{appName}}</div>
         <div class="ls-top-logo-narrow" v-show="isCollapse">{{appShortName}}</div>
         <el-menu
                 :unique-opened="true"

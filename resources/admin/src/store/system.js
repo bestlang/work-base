@@ -2,7 +2,7 @@ import * as types from './types'
 
 const systemConfig = {
   state: {
-    appName: '我的技术总结',
+    appName: 'LARACMS',
     appShortName: '路',
     user: null,
     isCollapse: false

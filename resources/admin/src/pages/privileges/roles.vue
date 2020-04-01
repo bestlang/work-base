@@ -90,7 +90,7 @@
             },
             editRolePermissions(row){
               this.$store.dispatch(this.$types.PRIVILEGE_CURRENT_ROLE, row)
-              this.$router.push('/privileges/roles/permissions')
+              this.$router.push('/privileges/roles/permissions?role_id='+row.id)
             },
             handleDelete(row){
               this.$confirm('确认删除该角色?', '提示', {

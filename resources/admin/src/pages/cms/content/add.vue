@@ -51,6 +51,12 @@
                                 <multiple-image-upload v-model="form[item.field]"></multiple-image-upload>
                             </el-form-item>
 
+                            <el-form-item v-if="item.type=='attachment'" class="l-mb-22" :label="item.label">
+                                <div>
+                                    <attachment v-model="form[item.field]"></attachment>
+                                </div>
+                            </el-form-item>
+
                             <el-form-item v-if="item.type=='textarea'" :label="item.label">
                                 <el-input type="textarea" v-model="form[item.field]"></el-input>
                             </el-form-item>
@@ -60,6 +66,7 @@
                                     <vue-ueditor-wrap v-model="form[item.field]" :config="ueditorConfig"></vue-ueditor-wrap>
                                 </div>
                             </el-form-item>
+
 
                         </template>
                         <el-form-item label="编辑推荐位" v-if="contentPositions && contentPositions.length">
@@ -82,6 +89,7 @@
     import ueditorConfig from "../../../store/ueditor";
     import imageUpload from "@/components/imageUpload"
     import multipleImageUpload from "@/components/multipleImageUpload"
+    import attachment from "@/components/attachment"
     import {mapGetters} from 'vuex'
     import api from '../../../api/index'
 
@@ -104,7 +112,8 @@
             'channel-tree': channelTree,
             VueUeditorWrap,
             imageUpload,
-            multipleImageUpload
+            multipleImageUpload,
+            attachment
         },
         computed:{
             ...mapGetters([
@@ -127,6 +136,7 @@
                 this.$router.push('/cms/content?channel_id='+this.channel_id)
             },
             async saveContent(){
+                alert(JSON.stringify(this.form));
                 if(!this.form.channel_id && !this.form.model_id){
                     this.$set(this.form, 'model_id', this.currentModel.id);
                     this.$set(this.form, 'channel_id', this.currentChannel.id)

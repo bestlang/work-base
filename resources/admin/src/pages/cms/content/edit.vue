@@ -51,6 +51,12 @@
                                 <multiple-image-upload v-model="form[item.field]"></multiple-image-upload>
                             </el-form-item>
 
+                            <el-form-item v-if="item.type=='attachment' && form[item.field]" class="l-mb-22" :label="item.label">
+                                <div>
+                                    <attachment v-model="form[item.field]"></attachment>
+                                </div>
+                            </el-form-item>
+
                             <el-form-item v-if="item.type=='textarea'" :label="item.label">
                                 <el-input type="textarea" v-model="form[item.field]"></el-input>
                             </el-form-item>
@@ -82,6 +88,7 @@
     import ueditorConfig from "../../../store/ueditor";
     import imageUpload from "@/components/imageUpload"
     import multipleImageUpload from "@/components/multipleImageUpload"
+    import attachment from "@/components/attachment"
     import {mapGetters} from 'vuex'
     import api from '../../../api/index'
 
@@ -105,7 +112,8 @@
             'channel-tree': channelTree,
             VueUeditorWrap,
             imageUpload,
-            multipleImageUpload
+            multipleImageUpload,
+            attachment
         },
         computed:{
             ...mapGetters([
@@ -160,6 +168,7 @@
                 this.$store.dispatch(this.$types.CMS_CURRENT_MODEL, currentModel)
             },
             async saveContent(){
+                alert(JSON.stringify(this.form));
                 if(!this.form.channel_id && !this.form.model_id){
                     this.$set(this.form, 'model_id', this.currentModel.id);
                     this.$set(this.form, 'channel_id', this.currentChannel.id)

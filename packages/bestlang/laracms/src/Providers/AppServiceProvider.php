@@ -5,6 +5,7 @@ namespace Bestlang\Laracms\Providers;
 use Illuminate\Support\ServiceProvider;
 //use Bestlang\Laracms\LC;
 use Illuminate\Support\Facades\Gate;
+use Bestlang\Laracms\Models\Permission;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -27,7 +28,19 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Gate::before(function ($user, $ability) {
-            return $user->hasRole('administrator') ? true : null;
+            foreach ($user->getPermissionsViaRoles() as $permission){
+                $user->givePermissionTo($permission->name);
+            }
+            if($user->hasRole('administrator')){
+                $permissions = Permission::all();
+                foreach ($permissions as $permission){
+                    $user->givePermissionTo($permission->name);
+                }
+                return true;
+            }else{
+                return null;
+            }
+            //return $user->hasRole('administrator') ? true : null;
         });
         // config
         $this->publishes([

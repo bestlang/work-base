@@ -11,6 +11,7 @@ function showMessage(value) {
         duration: 3500
     });
 }
+axios.defaults.timeout = 50000;
 
 axios.interceptors.request.use(config => {
     config.baseURL = app.SITE_URL + '/api/'
