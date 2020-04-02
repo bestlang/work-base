@@ -9,6 +9,7 @@
             :multiple="true"
             :file-list="vals"
             name="file"
+            :show-file-list="true"
             :headers="headers"
     >
         <el-button size="mini" icon="el-icon-plus" circle></el-button>
@@ -26,7 +27,8 @@
                     'Authorization': 'Bearer ' + localStorage.getItem('accessToken')
                 },
                 disabled: false,
-                vals: []
+                vals: [],
+                updated: []
             }
         },
         methods:{
@@ -34,20 +36,21 @@
                 window.open(file.url || file.response.data.file)
             },
             uploadRemove(file, fileList){
-                const updated = this.vals.filter( item => { return item.url != file.url} );
-                this.$emit('input', updated)
-                this.vals = updated
+                this.updated = this.vals.filter( item => { return item.url != file.url} );
+                this.$emit('input', this.updated)
+//                this.vals = updated
             },
             uploadSuccess(response, file, fileList){
                 const item = {description: '', url: response.data.file}
-                let updated = [...this.vals, item]
-                this.$emit('input', updated)
-                this.vals = updated
+                this.updated = [...this.updated, item]
+                this.$emit('input', this.updated)
+//                this.vals = updated
             }
         },
         mounted: function () {
             if(this.value){
-                this.vals = this.value
+                this.vals = [...this.value]
+                this.updated = [...this.value]
             }
         }
     }
