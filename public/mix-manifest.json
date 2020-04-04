@@ -1,4 +1,4 @@
 {
-    "/laracms_static/app.js": "/laracms_static/app.js",
-    "/laracms_static/app.css": "/laracms_static/app.css"
+    "/vendor/laracms/dark/app.js": "/vendor/laracms/dark/app.js",
+    "/vendor/laracms/dark/app.css": "/vendor/laracms/dark/app.css"
 }
