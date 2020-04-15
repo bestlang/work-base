@@ -48,17 +48,17 @@ class AppServiceProvider extends ServiceProvider
             __DIR__.'/../../config/jwt.php' => config_path('jwt.php'),
             __DIR__.'/../../config/ueditor.php' => config_path('ueditor.php'),
             __DIR__.'/../../config/permission.php' => config_path('permission.php'),
-        ], 'config');
+        ], 'laracms-config');
 
         // vue 后台代码
-        $this->publishes([
-            __DIR__.'/../../resources/admin/' => resource_path('admin')
-        ], 'admin');
+//        $this->publishes([
+//            __DIR__.'/../../resources/admin/' => resource_path('admin')
+//        ], 'admin');
 
         // static file
         $this->publishes([
             __DIR__ . '/../../resources/vendor/' => public_path('vendor/')
-        ], 'static');
+        ], 'laracms-static');
 
         // migrations
         $this->loadMigrationsFrom(__DIR__.'/../../database/migrations');
@@ -72,6 +72,6 @@ class AppServiceProvider extends ServiceProvider
         // views
         $this->publishes([
             __DIR__.'/../../resources/views/laracms' => resource_path('views/vendor/laracms')
-        ], 'views');
+        ], 'laracms-views');
     }
 }

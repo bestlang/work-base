@@ -79,9 +79,9 @@
         ]
     },
     "repositories": {
-        "bestlang/page": {
+        "bestlang/laracms": {
             "type": "path",
-            "url": "/Users/lu/PhpstormProjects/larashop/packages/bestlang/page"
+            "url": "/Users/lu/PhpstormProjects/laracms/packages/bestlang/laracms"
         }
     }
 }
