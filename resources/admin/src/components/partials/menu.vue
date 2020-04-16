@@ -10,7 +10,7 @@
 </style>
 
 <template>
-    <div>
+    <div class="l-menu-wrap">
         <!--™-->
         <div class="ls-top-logo" v-show="!isCollapse">{{appName}}</div>
         <div class="ls-top-logo-narrow" v-show="isCollapse">{{appShortName}}</div>
@@ -35,12 +35,15 @@
 </template>
 
 <style scoped>
+    .l-menu-wrap{
+        overflow-y: scroll;
+    }
     .el-menu{
         border-right: 1px solid transparent;
     }
 
     .el-menu-vertical{
-        /*height: calc(100vh - 50px);*/
+        min-height: calc(100vh - 50px);
     }
     .el-menu-vertical:not(.el-menu--collapse) {
         width: 200px;

@@ -163,6 +163,7 @@ class ComposerStaticInitd018b3e43616cccb2461352cf4782150
         ),
         'F' => 
         array (
+            'Fruitcake\\Cors\\' => 15,
             'Fideloper\\Proxy\\' => 16,
             'Faker\\' => 6,
         ),
@@ -193,7 +194,6 @@ class ComposerStaticInitd018b3e43616cccb2461352cf4782150
             'BeyondCode\\DumpServer\\' => 22,
             'Bestlang\\Laracms\\' => 17,
             'Baum\\' => 5,
-            'Barryvdh\\Cors\\' => 14,
         ),
         'A' => 
         array (
@@ -517,6 +517,10 @@ class ComposerStaticInitd018b3e43616cccb2461352cf4782150
         array (
             0 => __DIR__ . '/..' . '/guzzlehttp/guzzle/src',
         ),
+        'Fruitcake\\Cors\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/fruitcake/laravel-cors/src',
+        ),
         'Fideloper\\Proxy\\' => 
         array (
             0 => __DIR__ . '/..' . '/fideloper/proxy/src',
@@ -589,10 +593,6 @@ class ComposerStaticInitd018b3e43616cccb2461352cf4782150
         array (
             0 => __DIR__ . '/..' . '/baum/baum/src',
         ),
-        'Barryvdh\\Cors\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/barryvdh/laravel-cors/src',
-        ),
         'Asm89\\Stack\\' => 
         array (
             0 => __DIR__ . '/..' . '/asm89/stack-cors/src/Asm89/Stack',
@@ -641,11 +641,6 @@ class ComposerStaticInitd018b3e43616cccb2461352cf4782150
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
         'App\\Http\\Controllers\\ActivityController' => __DIR__ . '/../..' . '/app/Http/Controllers/ActivityController.php',
         'App\\Http\\Controllers\\Admin\\ActivityController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/ActivityController.php',
-        'App\\Http\\Controllers\\Admin\\Cms\\ChannelController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/Cms/ChannelController.php',
-        'App\\Http\\Controllers\\Admin\\Cms\\ContentController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/Cms/ContentController.php',
-        'App\\Http\\Controllers\\Admin\\Cms\\FieldTypeController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/Cms/FieldTypeController.php',
-        'App\\Http\\Controllers\\Admin\\Cms\\ModelController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/Cms/ModelController.php',
-        'App\\Http\\Controllers\\Admin\\Cms\\PositionController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/Cms/PositionController.php',
         'App\\Http\\Controllers\\Admin\\OssController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/OssController.php',
         'App\\Http\\Controllers\\Admin\\PrivilegesController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/PrivilegesController.php',
         'App\\Http\\Controllers\\Admin\\UploadController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/UploadController.php',
@@ -689,19 +684,6 @@ class ComposerStaticInitd018b3e43616cccb2461352cf4782150
         'App\\Models\\ActivityTuanOrder' => __DIR__ . '/../..' . '/app/Models/ActivityTuanOrder.php',
         'App\\Models\\ActivityTuanOrderVote' => __DIR__ . '/../..' . '/app/Models/ActivityTuanOrderVote.php',
         'App\\Models\\ActivityType' => __DIR__ . '/../..' . '/app/Models/ActivityType.php',
-        'App\\Models\\Cms\\Channel' => __DIR__ . '/../..' . '/app/Models/Cms/Channel.php',
-        'App\\Models\\Cms\\ChannelContent' => __DIR__ . '/../..' . '/app/Models/Cms/ChannelContent.php',
-        'App\\Models\\Cms\\ChannelMeta' => __DIR__ . '/../..' . '/app/Models/Cms/ChannelMeta.php',
-        'App\\Models\\Cms\\Comment' => __DIR__ . '/../..' . '/app/Models/Cms/Comment.php',
-        'App\\Models\\Cms\\Content' => __DIR__ . '/../..' . '/app/Models/Cms/Content.php',
-        'App\\Models\\Cms\\ContentContent' => __DIR__ . '/../..' . '/app/Models/Cms/ContentContent.php',
-        'App\\Models\\Cms\\ContentMeta' => __DIR__ . '/../..' . '/app/Models/Cms/ContentMeta.php',
-        'App\\Models\\Cms\\FieldType' => __DIR__ . '/../..' . '/app/Models/Cms/FieldType.php',
-        'App\\Models\\Cms\\Model' => __DIR__ . '/../..' . '/app/Models/Cms/Model.php',
-        'App\\Models\\Cms\\ModelField' => __DIR__ . '/../..' . '/app/Models/Cms/ModelField.php',
-        'App\\Models\\Cms\\Position' => __DIR__ . '/../..' . '/app/Models/Cms/Position.php',
-        'App\\Models\\Cms\\PositionChannel' => __DIR__ . '/../..' . '/app/Models/Cms/PositionChannel.php',
-        'App\\Models\\Cms\\PositionContent' => __DIR__ . '/../..' . '/app/Models/Cms/PositionContent.php',
         'App\\Models\\CollectGoods' => __DIR__ . '/../..' . '/app/Models/CollectGoods.php',
         'App\\Models\\Faq' => __DIR__ . '/../..' . '/app/Models/Faq.php',
         'App\\Models\\Permission' => __DIR__ . '/../..' . '/app/Models/Permission.php',
@@ -728,10 +710,6 @@ class ComposerStaticInitd018b3e43616cccb2461352cf4782150
         'App\\Utils\\WXBizDataCrypt' => __DIR__ . '/../..' . '/app/Utils/WXBizDataCrypt.php',
         'Asm89\\Stack\\Cors' => __DIR__ . '/..' . '/asm89/stack-cors/src/Asm89/Stack/Cors.php',
         'Asm89\\Stack\\CorsService' => __DIR__ . '/..' . '/asm89/stack-cors/src/Asm89/Stack/CorsService.php',
-        'Barryvdh\\Cors\\HandleCors' => __DIR__ . '/..' . '/barryvdh/laravel-cors/src/HandleCors.php',
-        'Barryvdh\\Cors\\HandlePreflight' => __DIR__ . '/..' . '/barryvdh/laravel-cors/src/HandlePreflight.php',
-        'Barryvdh\\Cors\\LumenServiceProvider' => __DIR__ . '/..' . '/barryvdh/laravel-cors/src/LumenServiceProvider.php',
-        'Barryvdh\\Cors\\ServiceProvider' => __DIR__ . '/..' . '/barryvdh/laravel-cors/src/ServiceProvider.php',
         'Baum\\BaumServiceProvider' => __DIR__ . '/..' . '/baum/baum/src/BaumServiceProvider.php',
         'Baum\\Console\\MakeMigrationCommand' => __DIR__ . '/..' . '/baum/baum/src/Console/MakeMigrationCommand.php',
         'Baum\\Console\\MakeModelCommand' => __DIR__ . '/..' . '/baum/baum/src/Console/MakeModelCommand.php',
@@ -808,6 +786,10 @@ class ComposerStaticInitd018b3e43616cccb2461352cf4782150
         'Carbon\\CarbonPeriod' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/CarbonPeriod.php',
         'Carbon\\CarbonTimeZone' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/CarbonTimeZone.php',
         'Carbon\\Cli\\Invoker' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Cli/Invoker.php',
+        'Carbon\\Doctrine\\CarbonType' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Doctrine/CarbonType.php',
+        'Carbon\\Doctrine\\DateTimeDefaultPrecision' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Doctrine/DateTimeDefaultPrecision.php',
+        'Carbon\\Doctrine\\DateTimeImmutableType' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Doctrine/DateTimeImmutableType.php',
+        'Carbon\\Doctrine\\DateTimeType' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Doctrine/DateTimeType.php',
         'Carbon\\Exceptions\\BadUnitException' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Exceptions/BadUnitException.php',
         'Carbon\\Exceptions\\InvalidDateException' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Exceptions/InvalidDateException.php',
         'Carbon\\Exceptions\\NotAPeriodException' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Exceptions/NotAPeriodException.php',
@@ -2070,6 +2052,8 @@ class ComposerStaticInitd018b3e43616cccb2461352cf4782150
         'Faker\\ValidGenerator' => __DIR__ . '/..' . '/fzaninotto/faker/src/Faker/ValidGenerator.php',
         'Fideloper\\Proxy\\TrustProxies' => __DIR__ . '/..' . '/fideloper/proxy/src/TrustProxies.php',
         'Fideloper\\Proxy\\TrustedProxyServiceProvider' => __DIR__ . '/..' . '/fideloper/proxy/src/TrustedProxyServiceProvider.php',
+        'Fruitcake\\Cors\\CorsServiceProvider' => __DIR__ . '/..' . '/fruitcake/laravel-cors/src/CorsServiceProvider.php',
+        'Fruitcake\\Cors\\HandleCors' => __DIR__ . '/..' . '/fruitcake/laravel-cors/src/HandleCors.php',
         'GuzzleHttp\\Client' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/Client.php',
         'GuzzleHttp\\ClientInterface' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/ClientInterface.php',
         'GuzzleHttp\\Cookie\\CookieJar' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/Cookie/CookieJar.php',
@@ -4368,7 +4352,7 @@ class ComposerStaticInitd018b3e43616cccb2461352cf4782150
         'Psr\\Log\\LoggerInterface' => __DIR__ . '/..' . '/psr/log/Psr/Log/LoggerInterface.php',
         'Psr\\Log\\LoggerTrait' => __DIR__ . '/..' . '/psr/log/Psr/Log/LoggerTrait.php',
         'Psr\\Log\\NullLogger' => __DIR__ . '/..' . '/psr/log/Psr/Log/NullLogger.php',
-        'Psr\\Log\\Test\\DummyTest' => __DIR__ . '/..' . '/psr/log/Psr/Log/Test/LoggerInterfaceTest.php',
+        'Psr\\Log\\Test\\DummyTest' => __DIR__ . '/..' . '/psr/log/Psr/Log/Test/DummyTest.php',
         'Psr\\Log\\Test\\LoggerInterfaceTest' => __DIR__ . '/..' . '/psr/log/Psr/Log/Test/LoggerInterfaceTest.php',
         'Psr\\Log\\Test\\TestLogger' => __DIR__ . '/..' . '/psr/log/Psr/Log/Test/TestLogger.php',
         'Psr\\SimpleCache\\CacheException' => __DIR__ . '/..' . '/psr/simple-cache/src/CacheException.php',
@@ -4794,6 +4778,7 @@ class ComposerStaticInitd018b3e43616cccb2461352cf4782150
         'Symfony\\Component\\Console\\Exception\\InvalidArgumentException' => __DIR__ . '/..' . '/symfony/console/Exception/InvalidArgumentException.php',
         'Symfony\\Component\\Console\\Exception\\InvalidOptionException' => __DIR__ . '/..' . '/symfony/console/Exception/InvalidOptionException.php',
         'Symfony\\Component\\Console\\Exception\\LogicException' => __DIR__ . '/..' . '/symfony/console/Exception/LogicException.php',
+        'Symfony\\Component\\Console\\Exception\\MissingInputException' => __DIR__ . '/..' . '/symfony/console/Exception/MissingInputException.php',
         'Symfony\\Component\\Console\\Exception\\NamespaceNotFoundException' => __DIR__ . '/..' . '/symfony/console/Exception/NamespaceNotFoundException.php',
         'Symfony\\Component\\Console\\Exception\\RuntimeException' => __DIR__ . '/..' . '/symfony/console/Exception/RuntimeException.php',
         'Symfony\\Component\\Console\\Formatter\\OutputFormatter' => __DIR__ . '/..' . '/symfony/console/Formatter/OutputFormatter.php',
@@ -5596,7 +5581,6 @@ class ComposerStaticInitd018b3e43616cccb2461352cf4782150
         'Tymon\\JWTAuth\\Payload' => __DIR__ . '/..' . '/tymon/jwt-auth/src/Payload.php',
         'Tymon\\JWTAuth\\Providers\\AbstractServiceProvider' => __DIR__ . '/..' . '/tymon/jwt-auth/src/Providers/AbstractServiceProvider.php',
         'Tymon\\JWTAuth\\Providers\\Auth\\Illuminate' => __DIR__ . '/..' . '/tymon/jwt-auth/src/Providers/Auth/Illuminate.php',
-        'Tymon\\JWTAuth\\Providers\\Auth\\Sentinel' => __DIR__ . '/..' . '/tymon/jwt-auth/src/Providers/Auth/Sentinel.php',
         'Tymon\\JWTAuth\\Providers\\JWT\\Lcobucci' => __DIR__ . '/..' . '/tymon/jwt-auth/src/Providers/JWT/Lcobucci.php',
         'Tymon\\JWTAuth\\Providers\\JWT\\Namshi' => __DIR__ . '/..' . '/tymon/jwt-auth/src/Providers/JWT/Namshi.php',
         'Tymon\\JWTAuth\\Providers\\JWT\\Provider' => __DIR__ . '/..' . '/tymon/jwt-auth/src/Providers/JWT/Provider.php',
@@ -5619,7 +5603,6 @@ class ComposerStaticInitd018b3e43616cccb2461352cf4782150
         'Upyun\\Uploader' => __DIR__ . '/..' . '/upyun/sdk/src/Upyun/Uploader.php',
         'Upyun\\Upyun' => __DIR__ . '/..' . '/upyun/sdk/src/Upyun/Upyun.php',
         'Upyun\\Util' => __DIR__ . '/..' . '/upyun/sdk/src/Upyun/Util.php',
-        'UsersTableSeeder' => __DIR__ . '/../..' . '/database/seeds/UsersTableSeeder.php',
         'Webmozart\\Assert\\Assert' => __DIR__ . '/..' . '/webmozart/assert/src/Assert.php',
         'Whoops\\Exception\\ErrorException' => __DIR__ . '/..' . '/filp/whoops/src/Whoops/Exception/ErrorException.php',
         'Whoops\\Exception\\Formatter' => __DIR__ . '/..' . '/filp/whoops/src/Whoops/Exception/Formatter.php',
