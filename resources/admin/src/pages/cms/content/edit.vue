@@ -5,14 +5,14 @@
         min-height: calc(100vh - 50px - 20px);
         margin:-20px 0 -20px -20px;
         overflow-x: hidden;
-    .l-tree-content{
-        padding: 20px;
-        flex-grow: 1;
-        display: flex;
-        flex-flow: row nowrap;
-        box-sizing: border-box;
-        width: calc(100% - 240px);
-    }
+        .l-tree-content{
+            padding: 20px;
+            flex-grow: 1;
+            display: flex;
+            flex-flow: row nowrap;
+            box-sizing: border-box;
+            width: calc(100% - 240px);
+        }
     }
 </style>
 <template>

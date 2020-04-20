@@ -98,12 +98,12 @@
                 this.formVisible = true;
             },
             viewContents(row){
-                this.$store.commit(this.$types.CMS_CURRENT_POSITION, row)
-                this.$router.push('/cms/position/content');
+//                this.$store.commit(this.$types.CMS_CURRENT_POSITION, row)
+                this.$router.push('/cms/position/content?position_id='+row.id);
             },
             viewSubPositions(row){
-                this.$store.commit(this.$types.CMS_CURRENT_CHANNEL_POSITION, row)
-                this.$router.push('/cms/position/subs')
+//                this.$store.commit(this.$types.CMS_CURRENT_CHANNEL_POSITION, row)
+                this.$router.push('/cms/position/subs?channel_position_id='+row.id)
             },
             handleDelete(row){
 //                this.$confirm('确定删除模型?', '提示', {

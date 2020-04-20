@@ -5,7 +5,7 @@
                 <div>
                     <router-link class="l-cursor" to="/cms/position/position" tag="span"><span class="iconfont">&#xe601;</span> 返回</router-link>
                     <el-divider direction="vertical"></el-divider>
-                    <span>推荐位「{{currentPosition.name}}」下属内容</span>
+                    <span>推荐位「{{position.name}}」下属内容</span>
                 </div>
                 <!--<el-button type="primary" size="small" @click="handleAdd">新增</el-button>-->
             </div>
@@ -52,21 +52,28 @@
     export default {
         data(){
             return {
-                tableData: []
+                tableData: [],
+                position_id: null,
+                position: {}
             }
         },
         computed:{
             ...mapGetters(['currentPosition']),
         },
         methods:{
-            async loadContents(){
-                let res = await api.getPositionContents({id: this.currentPosition.id})
+            async loadContents(id){
+                let res = await api.getPositionContents({id})
                 this.tableData = res.data;
+            },
+            async getPosition(id){
+                let res = await api.getPosition({id})
+                this.position = res.data;
             }
         },
         async mounted(){
-            console.log(`current meta:`,this.$route.meta)
-            await this.loadContents()
+            this.position_id = parseInt(this.$route.query.position_id || 0);
+            await this.loadContents(this.position_id)
+            await this.getPosition(this.position_id)
         }
     }
 </script>

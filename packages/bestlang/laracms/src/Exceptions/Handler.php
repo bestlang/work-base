@@ -3,9 +3,7 @@
 namespace Bestlang\Laracms\Exceptions;
 
 use Exception;
-use function GuzzleHttp\Psr7\str;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
-// use Symfony\Component\HttpKernel\Exception\HttpException;
 use Illuminate\Validation\ValidationException;
 use Symfony\Component\HttpKernel\Exception\HttpExceptionInterface;
 

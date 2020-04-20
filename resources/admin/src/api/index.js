@@ -17,6 +17,7 @@ export default {
     removeRoleModel(data){ return fetch("/admin/privileges/remove/role/model", data, 'post') },
     saveRole(data){ return fetch("/admin/privileges/save/role", data, 'post') },
     getRoles(data){ return fetch("/admin/privileges/roles", data) },
+    getPosition(data){ return fetch("/admin/cms/get/position", data) },
     getSubPositions(data){ return fetch("/admin/cms/position/subs", data, 'post') },
     savePosition(data){ return fetch("/admin/cms/position/save", data, 'post') },
     givePermissionsTo(data){ return fetch("/admin/privileges/give/permissions/to", data, 'post') },

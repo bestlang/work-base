@@ -130,4 +130,11 @@ class PositionController extends Controller
             }
         }
     }
+
+    public function position(Request $request)
+    {
+        $id = $request->input('id');
+        $position = Position::find($id);
+        return response()->ajax($position);
+    }
 }

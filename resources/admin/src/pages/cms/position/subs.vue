@@ -5,7 +5,7 @@
                 <div>
                     <router-link class="l-cursor" to="/cms/position/position" tag="span"><span class="iconfont">&#xe601;</span> 返回</router-link>
                     <el-divider direction="vertical"></el-divider>
-                    <span>「{{currentChannelPosition.name}}」内容推荐位</span>
+                    <span>「{{position.name}}」内容推荐位</span>
                 </div>
                 <el-button type="primary" size="small" @click="handleAdd">新增</el-button>
             </div>
@@ -67,11 +67,10 @@
                     is_channel: 0,
                     order_factor: 100
                 },
-                subPositions: []
+                position: {},
+                subPositions: [],
+                channel_position_id: null
             }
-        },
-        computed:{
-            ...mapGetters(['currentChannelPosition']),
         },
         methods:{
             editChannel(row){
@@ -87,18 +86,22 @@
                     name: '',
                     is_channel: 0,
                     order_factor: 100,
-                    parent_id: this.currentChannelPosition.id
+                    parent_id: this.channel_position_id
                 })
                 this.formVisible = true;
             },
-            async getSubPositions({id}){
+            async getPosition(id){
+                let res = await api.getPosition({id})
+                this.position = res.data;
+            },
+            async getSubPositions(id){
                 let res = await api.getSubPositions({id})
                 this.subPositions = res.data;
             },
             async submit(){
                 let res = await api.savePosition(this.form)
                 if(res.success) {
-                    await this.getSubPositions(this.currentChannelPosition)
+                    await this.getSubPositions(this.channel_position_id)
                     this.formVisible = false;
                     let message = '添加成功!';
                     if(this.form.id){
@@ -112,7 +115,9 @@
             },
         },
         async mounted(){
-            await this.getSubPositions(this.currentChannelPosition)
+            this.channel_position_id = parseInt(this.$route.query.channel_position_id || 0);
+            await this.getSubPositions(this.channel_position_id)
+            await this.getPosition(this.channel_position_id)
         }
     }
 </script>
