@@ -107,8 +107,12 @@
         this.defaultActive = this.$route.path;
         if(!this.privileges.length){
             let perm = await api.getUserPermissions()
+            let user = await api.getUserInfo()
             if(perm && perm.data){
                 this.$store.commit(this.$types.PRIVILEGES, perm.data)
+            }
+            if(user && user.data){
+                this.$store.commit(this.$types.USER, user.data);
             }
         }
       }

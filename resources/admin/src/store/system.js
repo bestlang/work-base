@@ -22,6 +22,7 @@ const systemConfig = {
           return state.user;
       }
       let user = localStorage.getItem(types.USER)
+      console.log(`user:`, user)
       return JSON.parse(user)
     }
 

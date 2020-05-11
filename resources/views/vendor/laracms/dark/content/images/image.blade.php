@@ -14,7 +14,7 @@
         <div class="l-row">
             <div class="col-md-12 l-block-content">
                 <h1 class="l-content-title">{{$content->title}}</h1>
-                @if($album = LC::metas_get($content, 'album'))
+                @if($album = LC::meta($content, 'album'))
                     @foreach($album as $ab)
                         <img src="{{$ab->url}}" alt="">
                     @endforeach

@@ -19,10 +19,10 @@
                         {{--<a class="nav-link" href="/cms/contact">联系</a>--}}
                     {{--</li>--}}
                     <li class="nav-item active">
-                        <a class="nav-link" href="/cms/cms">front</a>
+                        <a class="nav-link" href="/cms">front</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/admin/#/">backend</a>
+                        <a class="nav-link" href="/admin">backend</a>
                     </li>
                     {{--<li class="nav-item">--}}
                         {{--<a class="nav-link" href="#">LARASHOP</a>--}}
@@ -52,6 +52,9 @@
                                        onclick="event.preventDefault();
                                                          document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
+                                    </a>
+                                    <a class="dropdown-item" href="/admin">
+                                        {{ __('Management') }}
                                     </a>
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">

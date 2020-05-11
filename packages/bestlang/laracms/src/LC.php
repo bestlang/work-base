@@ -6,17 +6,17 @@ use Arr;
 
 class LC
 {
-    public function metas_get($content, $field){
-        $metas = $content->metas;
-        foreach ($metas as $meta){
-            if($meta->field == $field){
-                return $meta->value;
-            }
-        }
-        return false;
-    }
+//    public function meta($content, $field){
+//        $metas = $content->metas;
+//        foreach ($metas as $meta){
+//            if($meta->field == $field){
+//                return $meta->value;
+//            }
+//        }
+//        return false;
+//    }
 
-    public function contents_get($content, $field){
+    public function content($content, $field){
         $contents = $content->contents;
         foreach ($contents as $content){
             if($content->field == $field){
@@ -31,12 +31,14 @@ class LC
             return [];
         }
         $contents = Position::where('name', $name)->first()->contents()->with(['metas', 'contents'])->get();
-//        $contents->map(function($content){
-//            foreach ($content->metas as $meta){
-//                $content->{$meta->field} = $meta->value;
-//            }
-//            unset($content->metas);
-//        });
+        $contents->map(function($content){
+            $ext = [];
+            foreach ($content->metas as $meta){
+                $ext[$meta->field] = $meta->value;
+            }
+            $content->ext = $ext;
+            //unset($content->metas);
+        });
 //        print_r($contents->toArray());
         return $contents;
     }

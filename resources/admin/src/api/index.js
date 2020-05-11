@@ -6,6 +6,7 @@ export default {
     getCmsModels(data){ return fetch("/admin/cms/model", data) },
     getCmsChannelTree(data){ return fetch("/admin/cms/channel/tree", data) },
     getCmsChannelChildren(data){ return fetch("/admin/cms/channel/children", data) },
+    getUserInfo(data){ return fetch("/admin/user/info", data) },
     getUserPermissions(data){ return fetch("/admin/privileges/user/permissions", data) },
     saveModelFieldType(data){ return fetch("/admin/cms/model/field/type/save", data, 'post') },
     getModelFieldTypes(data){ return fetch("/admin/cms/model/field/types", data) },
@@ -41,7 +42,5 @@ export default {
     modelSaveField(data){ return fetch("/admin/cms/model/save/field", data, 'post') },
     getPositionContents(data){ return fetch("/admin/cms/position/contents", data) },
     getRoleUsers(data){ return fetch("/admin/privileges/role/users", data) },
-    deleteRole(data){ return fetch("/admin/privileges/delete/role", data, 'post') },
-    xx(data){ return fetch("", data) },
-
+    deleteRole(data){ return fetch("/admin/privileges/delete/role", data, 'post') }
 }

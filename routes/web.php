@@ -23,9 +23,9 @@
 //});
 
 //Route::get('/', 'Pdd\IndexController@index');
-Route::get('/', function (){
-    return redirect('/cms');
-});
+//Route::get('/', function (){
+//    return redirect('/cms');
+//});
 Route::get('/info', function(){echo phpinfo();});
 //测试微信支付
 Route::get('/pay', 'Pdd\IndexController@wePay');

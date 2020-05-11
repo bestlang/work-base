@@ -11,7 +11,7 @@
 <div class="l-content" id="app">
     <div class="l-content-inner l-min-height">
         <div class="l-row">
-            <example-component></example-component>
+            {{--<example-component></example-component>--}}
             <p></p>
             <p></p>
             <p></p>
@@ -21,11 +21,11 @@
                     <div class="l-position-title">热点文章推荐</div>
                     @foreach(LC::position('热点文章推荐') as $content)
                         <div style="display: flex;flex-flow: row nowrap;">
-                            @if($thumb = LC::metas_get($content, 'thumb'))
+                            @if($thumb = $content->ext['thumb'])
                                 <div><img src="{{$thumb}}" alt="" style="width: 100px;height: 100px;"></div>
                             @endif
                             <div style="display: flex;flex-flow: column;">
-                                <p><a target="_self" href="/cms/content/{{$content->id}}">{{$content->title}}</a></p>
+                                <p><a target="_self" href="{{route('content', $content->id)}}">{{$content->title}}</a></p>
                                 <p>{{$content->created_at}}</p>
                             </div>
                         </div>
@@ -39,11 +39,11 @@
                 <div class="l-position-title">第一个推荐位</div>
                 @foreach(LC::position('第一个推荐位') as $content)
                     <div style="display: flex;flex-flow: row nowrap;">
-                        @if($thumb = LC::metas_get($content, 'thumb'))
+                        @if($thumb = $content->ext['thumb'])
                             <div><img src="{{$thumb}}" alt="" style="width: 100px;height: 100px;"></div>
                         @endif
                         <div style="display: flex;flex-flow: column;">
-                            <p><a target="_self" href="/cms/content/{{$content->id}}">{{$content->title}}</a></p>
+                            <p><a target="_self" href="{{route('content', $content->id)}}">{{$content->title}}</a></p>
                             <p>{{$content->created_at}}</p>
                         </div>
                     </div>
@@ -57,15 +57,15 @@
                     <div class="l-position-block">
                         <div class="l-position-title">
                             <div>❤{{$channel->name}}</div>
-                            <div><a href="/cms/channel/{{$channel->id}}">更多></a></div>
+                            <div><a href="{{route('channel', $channel->id)}}">更多></a></div>
                         </div>
                         @foreach($channel->contents as $content)
                             <div style="display: flex;flex-flow: row nowrap;">
-                                @if($content->thumb)
-                                    <div><img src="{{$content->thumb}}" alt="" style="width: 100px;height: 100px;"></div>
+                                @if($thumb = $content->ext['thumb'])
+                                    <div><img src="{{$thumb}}" alt="" style="width: 100px;height: 100px;"></div>
                                 @endif
                                     <div style="display: flex;flex-flow: column;">
-                                        <p><a target="_self" href="/cms/content/{{$content->id}}">{{$content->title}}</a></p>
+                                        <p><a target="_self" href="{{route('content', $content->id)}}">{{$content->title}}</a></p>
                                         <p>{{$content->created_at}}</p>
                                     </div>
                             </div>

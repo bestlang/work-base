@@ -135,28 +135,6 @@ class ChannelController extends Controller
         return response()->ajax($channel);
     }
 
-//    public function update(Request $request)
-//    {
-//        $params = $request->all();
-//        $rules = [
-//            'id' => 'required',
-//            'name' => 'required',
-//        ];
-//        $names = [
-//            'id' => 'ID',
-//            'name' => '栏目名'
-//        ];
-//        $validator = Validator::make($params, $rules, [], $names);
-//        if($validator->fails()){
-//            return response()->error($validator->errors()->first());
-//        }
-//        $id = Arr::get($params, 'id', 0);
-//        $updated = Arr::only($params, ['name', 'title', 'keywords', 'description', 'model_id']);
-//        $channel = Channel::find($id);
-//        $channel->update($updated);
-//        return response()->ajax();
-//    }
-
     public function delete(Request $request)
     {
         $id = $request->input('id');

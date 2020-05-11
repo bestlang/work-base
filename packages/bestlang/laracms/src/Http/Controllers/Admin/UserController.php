@@ -12,6 +12,14 @@ use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
+    public function info(Request $request)
+    {
+        $user = auth()->user();
+        if(!$user){
+            return response()->error("login required", 401);
+        }
+        return response()->ajax(auth()->user());
+    }
     public function create(Request $request)
     {
         $user = new User;

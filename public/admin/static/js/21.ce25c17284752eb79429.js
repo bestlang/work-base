@@ -1,2 +1,0 @@
-webpackJsonp([21],{dwZX:function(e,t,n){"use strict";Object.defineProperty(t,"__esModule",{value:!0});var i={render:function(){var e=this.$createElement,t=this._self._c||e;return t("div",[t("div",{directives:[{name:"title",rawName:"v-title",value:"评论管理",expression:"'评论管理'"}]}),this._v("\n    评论\n")])},staticRenderFns:[]},r=n("VU/8")({},i,!1,null,null,null);t.default=r.exports}});
-//# sourceMappingURL=21.ce25c17284752eb79429.js.map

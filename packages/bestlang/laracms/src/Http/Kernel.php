@@ -38,7 +38,7 @@ class Kernel extends HttpKernel
         ],
 
         'api' => [
-            \Fruitcake\Cors\HandleCors::class,
+            //\Fruitcake\Cors\HandleCors::class,
             'throttle:160,1',
             'bindings',
         ],
@@ -61,7 +61,6 @@ class Kernel extends HttpKernel
         'signed' => \Illuminate\Routing\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
-        'auth.jwt' => \Tymon\JWTAuth\Http\Middleware\Authenticate::class,
     ];
 
     /**

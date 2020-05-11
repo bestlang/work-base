@@ -48,7 +48,6 @@ class AppServiceProvider extends ServiceProvider
             __DIR__.'/../../config/jwt.php' => config_path('jwt.php'),
             __DIR__.'/../../config/ueditor.php' => config_path('ueditor.php'),
             __DIR__.'/../../config/permission.php' => config_path('permission.php'),
-            __DIR__.'/../../config/cors.php' => config_path('cors.php'),
         ], 'laracms-config');
 
         // vue 后台代码

@@ -10,7 +10,6 @@
     "require": {
         "php": "^7.1.3",
         "aliyuncs/oss-sdk-php": "^2.3",
-        "fruitcake/laravel-cors": "^1.0",
         "baum/baum": "v2.x-dev",
         "bestlang/laravel-ueditor": "dev-master",
         "doctrine/dbal": "^2.9",

@@ -13,7 +13,6 @@
   "require": {
     "illuminate/support": "~5|~6",
     "baum/baum": "v2.x-dev",
-    "fruitcake/laravel-cors": "^1.0",
     "bestlang/laravel-ueditor": "dev-master",
     "spatie/laravel-permission": "^2.38",
     "tymon/jwt-auth": "1.0.*",
