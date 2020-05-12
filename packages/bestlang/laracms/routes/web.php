@@ -1,7 +1,7 @@
 <?php
 Route::group(['prefix' => ''], function ($router) {
-    Route::get('/', 'IndexController@index');
-    Route::get('/cms', 'IndexController@cms');
+    Route::get('/', 'IndexController@cms');
+//    Route::get('/cms', 'IndexController@cms');
     Route::get('/about', 'IndexController@about');
     Route::get('/contact', 'IndexController@contact');
     Route::get('/content/{id}', 'ContentController@index')->name('content');
@@ -11,8 +11,8 @@ Route::group(['prefix' => ''], function ($router) {
 
 Route::group(['prefix' => 'ajax'], function($router){
     Route::group(['prefix' => 'auth'], function ($router) {
-        Route::any('login', 'AuthController@login');
-        Route::any('logout', 'AuthController@logout');
+//        Route::any('login', 'AuthController@login');
+        Route::any('logout', 'ExitController@logout');
     });
     Route::group(['prefix'=>'admin', 'namespace'=>'Admin'], function(){
         Route::get('/user/info', 'UserController@info');
@@ -63,3 +63,8 @@ Route::group(['prefix' => 'ajax'], function($router){
         });
     });
 });
+//登录之后的动作定向到首页
+Route::get('/home', function(){
+    return redirect('/');
+});
+

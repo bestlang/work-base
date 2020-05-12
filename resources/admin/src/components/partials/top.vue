@@ -35,9 +35,9 @@ export default {
             localStorage.removeItem(this.$types.USER)
             localStorage.removeItem('privileges')
             this.$store.commit(this.$types.ACCESS_TOKEN, null);
-            this.$router.push("/login");
+            location.href='/login';
         }else if(res.code == 401){
-            this.$router.push("/login");
+            location.href='login';
         }
     }
   }

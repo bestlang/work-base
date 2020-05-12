@@ -17,6 +17,6 @@ class ContentController extends Controller
 //        print_r(json_encode($content, JSON_UNESCAPED_UNICODE));return;
         $content_template_prefix = $content->model->content_template_prefix;
         $content_template = $content->channel->content_template;
-        return view('laracms::dark.content.'.$content_template_prefix.'.'.'content', compact(['content', 'comments']));
+        return view('laracms::dark.content.'.$content_template_prefix.'.'.$content_template, compact(['content', 'comments']));
     }
 }
