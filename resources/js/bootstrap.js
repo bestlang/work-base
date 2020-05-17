@@ -13,8 +13,7 @@ try {
     require('bootstrap');
     require('bootstrap/dist/css/bootstrap.min.css')
     require('normalize.css')
-    require('animate.css')
-    require('../sass/cms.scss')
+    // require('animate.css')
 } catch (e) {}
 
 /**

@@ -36,10 +36,11 @@
 
 <style scoped>
     .l-menu-wrap{
-        overflow-y: scroll;
     }
     .el-menu{
         border-right: 1px solid transparent;
+        height:calc(100vh - 50px);
+        overflow: hidden;
     }
 
     .el-menu-vertical{
@@ -47,6 +48,7 @@
     }
     .el-menu-vertical:not(.el-menu--collapse) {
         width: 200px;
+        overflow-y: auto;
     }
 
 </style>
@@ -85,10 +87,10 @@
       },
       methods: {
           handleOpen(key, keyPath) {
-              console.log(key, keyPath);
+//              console.log(key, keyPath);
           },
           handleClose(key, keyPath) {
-              console.log(key, keyPath);
+//              console.log(key, keyPath);
           },
           resetVisible(routes, privileges){
             routes.map((route, index) => {
@@ -108,11 +110,15 @@
         if(!this.privileges.length){
             let perm = await api.getUserPermissions()
             let user = await api.getUserInfo()
+            let csrf = await api.csrf()
             if(perm && perm.data){
                 this.$store.commit(this.$types.PRIVILEGES, perm.data)
             }
             if(user && user.data){
                 this.$store.commit(this.$types.USER, user.data);
+            }
+            if(csrf && csrf.data){
+                this.$store.commit(this.$types.CSRF, csrf.data);
             }
         }
       }

@@ -22,9 +22,10 @@
         props:['value'],
         data(){
             return {
-                uploadUrl: this.SITE_URL + '/api/admin/file/upload',
+                uploadUrl: this.SITE_URL + '/ajax/admin/file/upload',
                 headers: {
-                    'Authorization': 'Bearer ' + localStorage.getItem('accessToken')
+//                    'Authorization': 'Bearer ' + localStorage.getItem('accessToken')
+                    'X-CSRF-TOKEN': this.$store.getters[this.$types.CSRF]
                 },
                 disabled: false,
                 vals: [],

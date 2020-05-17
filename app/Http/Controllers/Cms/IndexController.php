@@ -17,7 +17,7 @@ class IndexController extends Controller
     {
         // 获取首页推荐的栏目
         // 取得栏目里面的文章
-        return view('cms.'.config('cms.theme').'.index.cms');
+        return view('cms.'.config('cms.theme').'.index.index');
     }
 
     public function about()

@@ -6,6 +6,7 @@ export const ACTIVITY_APPLICABLES = 'ACTIVITY_APPLICABLES'
 export const PRIVILEGES = 'PRIVILEGES'
 export const PRIVILEGE_CURRENT_ROLE = 'PRIVILEGE_CURRENT_ROLE'
 export const USER = 'USER'
+export const CSRF = 'CSRF'
 
 export const LOADING = 'LOADING'
 export const CMS_MODELS = 'CMS_MODELS'

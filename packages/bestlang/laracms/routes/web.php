@@ -1,15 +1,17 @@
 <?php
 Route::group(['prefix' => ''], function ($router) {
-    Route::get('/', 'IndexController@cms');
+    Route::get('/', 'IndexController@index');
 //    Route::get('/cms', 'IndexController@cms');
     Route::get('/about', 'IndexController@about');
     Route::get('/contact', 'IndexController@contact');
     Route::get('/content/{id}', 'ContentController@index')->name('content');
     Route::get('/channel/{id}', 'ChannelController@index')->name('channel');
     Route::any('/comment/save', 'CommentController@save');
+
 });
 
 Route::group(['prefix' => 'ajax'], function($router){
+    Route::any('/csrf', 'IndexController@csrf');
     Route::group(['prefix' => 'auth'], function ($router) {
 //        Route::any('login', 'AuthController@login');
         Route::any('logout', 'ExitController@logout');

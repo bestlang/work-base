@@ -3,9 +3,10 @@ import * as types from './types'
 const systemConfig = {
   state: {
     appName: 'LARACMS',
-    appShortName: '路',
+    appShortName: 'LC',
     user: null,
-    isCollapse: false
+    isCollapse: false,
+    csrf: null
   },
   getters:{
     appName(state){
@@ -22,9 +23,15 @@ const systemConfig = {
           return state.user;
       }
       let user = localStorage.getItem(types.USER)
-      console.log(`user:`, user)
       return JSON.parse(user)
-    }
+    },
+    [types.CSRF](state){
+        // if(state.csrf){
+        //     return state.csrf;
+        // }
+        let csrf = localStorage.getItem(types.CSRF)
+        return csrf;
+    },
 
   },
   mutations: {
@@ -34,6 +41,10 @@ const systemConfig = {
     [types.USER](state, payload) {
       state.user = payload;
       localStorage.setItem(types.USER, JSON.stringify(payload));
+    },
+    [types.CSRF](state, payload){
+      state.csrf = payload;
+      localStorage.setItem(types.CSRF, payload);
     }
   },
   actions: {

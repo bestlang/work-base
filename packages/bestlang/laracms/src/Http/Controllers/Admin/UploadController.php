@@ -9,6 +9,7 @@ use Upyun\Config;
 
 class UploadController extends Controller
 {
+
     public function index(Request $request)
     {
         $file = $request->file('file');

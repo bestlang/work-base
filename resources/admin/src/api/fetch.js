@@ -3,7 +3,6 @@ import { Message} from 'element-ui'
 import app from '../main.js'
 
 function showMessage(value) {
-    //app.$message.close();
     return Message({
         showClose: true,
         message: value,
@@ -15,16 +14,7 @@ axios.defaults.timeout = 50000;
 
 axios.interceptors.request.use(config => {
     config.baseURL = app.SITE_URL + '/ajax/'
-    //config.withCredentials = true
     config.timeout = 6000
-    // let accessToken = localStorage.getItem('accessToken')
-    // if (accessToken) {
-    //     config.headers = {
-    //         'Authorization': 'Bearer ' + accessToken,
-    //         'Content-Type': 'application/json',
-    //         'Accept': 'application/json'
-    //     }
-    // }
     return config
 }, error => {
     Promise.reject(error);// 错误提示
@@ -44,14 +34,6 @@ axios.interceptors.response.use(response => {
                 break;
             case 401:
                 location.href = '/login';
-                // try{
-                //     let accessToken = localStorage.getItem('accessToken');
-                //     showMessage('请重新登录!');
-                //     localStorage.setItem('accessToken', '');
-                //     app.$router.push('/login');
-                // }catch(e){
-                //     app.$router.push('/login');
-                // }
                 break;
             case 402:
                 showMessage(res.code + res.error);

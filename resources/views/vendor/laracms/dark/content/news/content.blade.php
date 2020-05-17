@@ -1,37 +1,96 @@
-@extends('layouts.app')
+@extends('laracms::dark.layouts.app')
 
 @section('content')
     {{--<div class="container">--}}
     <div class="l-content">
         <div class="l-content-inner l-min-height">
-            <div class="l-row">
-                <div class="col-md-12 l-block-content">
-                    <h1 class="l-content-title">{{$content->title}}</h1>
-                    <div>{!!  LC::content($content, 'content') !!}</div>
-                </div>
-                <div><h2>评论区:</h2></div>
-                <div>
-                    @foreach($comments as $comment)
-                        <p>{{$comment->user->name}} says:{{$comment->content}}</p>
-                    @endforeach
-                </div>
-                @guest
-                @if(Route::has('login'))
-                    <a href="{{ route('login') }}">登录</a>之后发表评论
-                @endif
-                @endguest
-                @auth
-                <form>
-                    <div class="form-group">
-                        <label for="comment">评论:</label>
-                        <input type="hidden" name="content_id" id="content_id" value="{{$content->id}}" />
-                        <textarea class="form-control" rows="5" id="comment"></textarea>
-                        <button type="button" class="btn btn-primary" id="comment_submit">提交</button>
+            <div class="container">
+            <div class="row l-article">
+                <div class="col-md-8 l-corn">
+                    <div class="l-bg-w">
+                        <div class="l-article-header">
+                            <ol class="breadcrumb">
+                                <li>首页</li>
+                                <li>最新新闻</li>
+                                <li>时事热点</li>
+                                <li>正文</li>
+                            </ol>
+                        </div>
+                        <div class="l-article-body">
+                            <h1 class="l-content-title">{{$content->title}}</h1>
+                            <div>{!!  LC::content($content, 'content') !!}</div>
+                        </div>
                     </div>
-                </form>
-                @endauth
+                    <div class="l-bg-w">
+                        <div class="container">
+                            <div class="row">
+                                <div class="l-article-body" style="background: #fff;padding: 15px;">
+                                    <div><h2 class="l-content-title">评论区:</h2></div>
+                                    <div>
+                                        @foreach($comments as $comment)
+                                            <p>{{$comment->user->name}} says:{{$comment->content}}</p>
+                                        @endforeach
+                                    </div>
+                                    @guest
+                                    @if(Route::has('login'))
+                                        <a href="{{ route('login') }}">登录</a>之后发表评论
+                                    @endif
+                                    @endguest
+                                    @auth
+                                    <form>
+                                        <div class="form-group">
+                                            <label for="comment">评论:</label>
+                                            <input type="hidden" name="content_id" id="content_id" value="{{$content->id}}" />
+                                            <textarea class="form-control" rows="5" id="comment"></textarea>
+                                            <button type="button" class="btn btn-primary" id="comment_submit">提交</button>
+                                        </div>
+                                    </form>
+                                    @endauth
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 l-pd-0">
+                    <div class="l-content-right">
+                        <div class="l-position-block">
+                            <p class="l-position-title">文章推荐</p>
+                            @foreach(LC::position('文章详情右侧推荐一') as $key => $content)
+                                <div class="media">
+                                    {{--@if($thumb = $content->ext['thumb'])--}}
+                                        {{--<div><img src="{{$thumb}}" alt="" style="width: 100px;height: 100px;"></div>--}}
+                                    {{--@endif--}}
+                                    <div class="media-left">{{$key+1}}</div>
+                                    <div class="media-body">
+                                        <div><a target="_self" href="{{route('content', $content->id)}}">{{$content->title}}</a></div>
+                                        {{--<p>{{$content->created_at}}</p>--}}
+                                    </div>
+                                </div>
+                            @endforeach
+                        </div>
+                    </div>
+                    <div class="l-content-right">
+                        <div class="l-position-block">
+                            <p class="l-position-title">文章推荐</p>
+                            @foreach(LC::position('文章详情右侧推荐一') as $key => $content)
+                                <div class="media">
+                                    {{--@if($thumb = $content->ext['thumb'])--}}
+                                    {{--<div><img src="{{$thumb}}" alt="" style="width: 100px;height: 100px;"></div>--}}
+                                    {{--@endif--}}
+                                    <div class="media-left">{{$key+1}}</div>
+                                    <div class="media-body">
+                                        <div><a target="_self" href="{{route('content', $content->id)}}">{{$content->title}}</a></div>
+                                        {{--<p>{{$content->created_at}}</p>--}}
+                                    </div>
+                                </div>
+                            @endforeach
+                        </div>
+                    </div>
+                </div>
+            </div>
             </div>
         </div>
+
     </div>
     {{--</div>--}}
 @endsection

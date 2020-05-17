@@ -4,6 +4,8 @@
             <div class="ls-icon-collapse" @click="toggleCollapse">
                 <i class="iconfont l-color">&#xe954;</i>
             </div>
+            <div class="l-top-item"><i class="iconfont">&#xe64c;</i> 大菜单</div>
+            <div class="l-top-item"><i class="iconfont">&#xe64c;</i> 小功能</div>
         </div>
         <div class="ls-top-right">
           <el-dropdown>
@@ -45,7 +47,8 @@ export default {
 </script>
 <style scoped lang="less">
     .l-color{
-      color:#409EFF;
+      /*color:#409EFF;*/
+      color:#2d2d2d;
     }
     .ls-top-wrap{
         display: flex;
@@ -53,6 +56,7 @@ export default {
         justify-content: space-between;
         padding: 0;
         background: #f8f8f8;
+        height: 100%;
     }
     .ls-left{
         display: flex;
@@ -63,6 +67,20 @@ export default {
     .ls-top-left{
         text-align: right;
         box-sizing: border-box;
+        >div{
+            display: inline-block;
+        }
+        .l-top-item{
+            height: 50px;
+            line-height: 50px;
+            padding: 0 20px;
+            color: #303133;
+            &:hover{
+                background: #f1f1f1;
+                color: #2d2d2d;
+                cursor: pointer;
+             }
+        }
     }
     .ls-top-right{
         line-height: 50px;
@@ -78,5 +96,6 @@ export default {
         line-height: 50px;
         padding: 0 16px;
         font-size: 22px;
+        display: inline-block;
     }
 </style>

@@ -27,4 +27,9 @@ class IndexController extends Controller
     {
         return view('laracms::dark.index.contact');
     }
+
+    public function csrf()
+    {
+        return response()->ajax(csrf_token());
+    }
 }

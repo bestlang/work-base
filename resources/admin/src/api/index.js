@@ -7,6 +7,7 @@ export default {
     getCmsChannelTree(data){ return fetch("/admin/cms/channel/tree", data) },
     getCmsChannelChildren(data){ return fetch("/admin/cms/channel/children", data) },
     getUserInfo(data){ return fetch("/admin/user/info", data) },
+    csrf(data){ return fetch("/csrf") },
     getUserPermissions(data){ return fetch("/admin/privileges/user/permissions", data) },
     saveModelFieldType(data){ return fetch("/admin/cms/model/field/type/save", data, 'post') },
     getModelFieldTypes(data){ return fetch("/admin/cms/model/field/types", data) },

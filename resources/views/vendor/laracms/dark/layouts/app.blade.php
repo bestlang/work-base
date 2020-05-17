@@ -7,20 +7,24 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('app.name', 'Laravel') }}™</title>
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
+    <script type="text/javascript" src="/vendor/laracms/dark/app.js"></script>
 
     <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+{{--    <link href="{{ asset('css/app.css') }}" rel="stylesheet">--}}
+    <link href="/vendor/laracms/dark/app.css" rel="stylesheet">
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-dark bg-dark shadow-sm">
+        {{--shadow-sm--}}
+        <nav class="navbar navbar-expand-md">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
+                <a class="navbar-brand l-logo-font" href="{{ url('/') }}">
+                    <span>{{ config('app.name', 'Laravel') }}</span>
+                    {{--<sup style="font-size: 60%;color:#999;">®</sup>--}}
+                    {{--<image src="https://img.dafont.com/preview.php?text=LARACMS&ttf=dark_seed0&ext=2&size=53&psize=m&y=55" width="180"></image>--}}
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -73,6 +77,17 @@
         <main class="py-4">
             @yield('content')
         </main>
+    </div>
+    <div class="l-foot">
+        <div class="container">
+            <div class="l-row">
+                <div class="l-special-remark">
+                    <div class="l-remark-title"><b>code for bread</b> 江苏省苏州市工业园区莲花新村一区45-105</div>
+                    <div class="l-remark-content">以时间换结果. <br />日积月累,必有所成</div>
+                </div>
+                <div class="l-group-link"></div>
+            {{--</div>--}}
+        </div>
     </div>
 </body>
 </html>
