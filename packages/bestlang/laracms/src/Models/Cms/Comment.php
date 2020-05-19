@@ -9,9 +9,9 @@ class Comment extends Model
 {
     protected $table = 'cms_comments';
 
-    public function content()
+    public function ref()
     {
-        return $this->belongsTo(Content::class);
+        return $this->belongsTo(Content::class, 'content_id');
     }
 
     public function user()

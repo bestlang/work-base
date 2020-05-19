@@ -13,8 +13,17 @@ function showMessage(value) {
 axios.defaults.timeout = 50000;
 
 axios.interceptors.request.use(config => {
-    config.baseURL = app.SITE_URL + '/ajax/'
+    config.baseURL = app.SITE_URL + '/api/'
+    config.withCredentials = true
     config.timeout = 6000
+    let accessToken = localStorage.getItem('accessToken')
+    if (accessToken) {
+        config.headers = {
+            'Authorization': 'Bearer ' + accessToken,
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+        }
+    }
     return config
 }, error => {
     Promise.reject(error);// 错误提示
@@ -33,13 +42,20 @@ axios.interceptors.response.use(response => {
             case 304:
                 break;
             case 401:
-                location.href = '/login';
+            case 0:
+                //location.href = '/login';
+                try{
+                    let accessToken = localStorage.getItem('accessToken');
+                    showMessage('请重新登录!');
+                    localStorage.setItem('accessToken', '');
+                    app.$router.push('/login');
+                }catch(e){
+                    app.$router.push('/login');
+                }
                 break;
             case 402:
                 showMessage(res.code + res.error);
                 break;
-            // case 0:
-            //     location.href = '/login';
             default:
                 showMessage(res.code + res.error);
                 break;

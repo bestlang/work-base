@@ -26,9 +26,6 @@ const systemConfig = {
       return JSON.parse(user)
     },
     [types.CSRF](state){
-        // if(state.csrf){
-        //     return state.csrf;
-        // }
         let csrf = localStorage.getItem(types.CSRF)
         return csrf;
     },

@@ -16,11 +16,12 @@ Route::group(['prefix' => 'ajax'], function($router){
 //        Route::any('login', 'AuthController@login');
         Route::any('logout', 'ExitController@logout');
     });
-    Route::group(['prefix'=>'admin', 'namespace'=>'Admin'], function(){
-        Route::get('/user/info', 'UserController@info');
-    });
+//    Route::group(['prefix'=>'admin', 'namespace'=>'Admin'], function(){
+//        Route::get('/user/info', 'UserController@info');
+//    });
     // @todo 使用带参数的中间来验证管理员 role:administrator
     Route::group(['middleware' => 'auth', 'prefix'=>'admin', 'namespace'=>'Admin'], function(){
+        Route::get('/user/info', 'UserController@info');
         Route::any('/file/upload', 'UploadController@index');
         Route::any('/privileges/roles', 'PrivilegesController@roles');
         Route::any('/privileges/save/role', 'PrivilegesController@saveRole');
@@ -62,6 +63,7 @@ Route::group(['prefix' => 'ajax'], function($router){
             Route::any('/cms/position/contents', 'PositionController@contents');
             Route::any('/cms/content/positions', 'PositionController@contentPositions');
             Route::any('/cms/get/position', 'PositionController@position');
+            Route::any('/cms/get/comments', 'CommentController@index');
         });
     });
 });

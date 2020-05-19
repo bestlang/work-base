@@ -43,5 +43,7 @@ export default {
     modelSaveField(data){ return fetch("/admin/cms/model/save/field", data, 'post') },
     getPositionContents(data){ return fetch("/admin/cms/position/contents", data) },
     getRoleUsers(data){ return fetch("/admin/privileges/role/users", data) },
-    deleteRole(data){ return fetch("/admin/privileges/delete/role", data, 'post') }
+    deleteRole(data){ return fetch("/admin/privileges/delete/role", data, 'post') },
+    getComments(data){ return fetch("/admin/cms/get/comments", data, 'post') }
+
 }
