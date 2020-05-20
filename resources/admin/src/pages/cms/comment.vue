@@ -2,8 +2,10 @@
     <div>
         <div v-title="'评论管理'"></div>
             <div v-for="comment in comments">
-                <div>文章:{{comment.ref.title}}</div>
-                <div>评论内容:{{comment.content}}</div>
+                <div style="border: 1px solid #f1f1f1;padding: 20px;margin-bottom: 5px;">
+                    <div>文章:{{comment.ref.title}}</div>
+                    <div>评论内容:{{comment.content}}</div>
+                </div>
             </div>
     </div>
 </template>
