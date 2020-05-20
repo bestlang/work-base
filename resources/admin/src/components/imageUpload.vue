@@ -14,13 +14,17 @@
     </el-upload>
 </template>
 <script>
+    import { getPrefix } from '../api/util'
+
     export default {
         props:['value'],
         data(){
+            let accessToken = localStorage.getItem('accessToken');
+
             return {
-                uploadUrl: this.SITE_URL + '/ajax/admin/file/upload',
+                uploadUrl: this.SITE_URL + '/' + getPrefix() + '/admin/file/upload',
                 headers: {
-//                    'Authorization': 'Bearer ' + localStorage.getItem('accessToken'),
+                    'Authorization': 'Bearer ' + accessToken,
                     'X-CSRF-TOKEN': this.$store.getters[this.$types.CSRF]
                 },
             }

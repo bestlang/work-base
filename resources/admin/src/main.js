@@ -7,6 +7,7 @@ import store from "./store"
 import * as types from "./store/types"
 import App from "./App"
 import {fetch} from "@/api/fetch"
+import {getPrefix} from "@/api/util"
 
 window.$ = require("jquery")
 
@@ -27,6 +28,7 @@ Vue.directive('title', {
         el.remove()
     }
 })
+console.log(`::::::::::`,getPrefix())
 
 export default new Vue({
   el: "#app",

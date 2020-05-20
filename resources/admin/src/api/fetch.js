@@ -1,7 +1,10 @@
 import axios from 'axios'
-import { Message} from 'element-ui'
+import { Message } from 'element-ui'
 import app from '../main.js'
-
+import {getPrefix} from './util'
+// function getPrefix(){
+//     return location.origin === process.env.SITE_URL ? 'ajax' : 'api'
+// }
 function showMessage(value) {
     return Message({
         showClose: true,
@@ -13,11 +16,11 @@ function showMessage(value) {
 axios.defaults.timeout = 50000;
 
 axios.interceptors.request.use(config => {
-    config.baseURL = app.SITE_URL + '/api/'
+    let accessToken = localStorage.getItem('accessToken')
+    config.baseURL = app.SITE_URL + '/' + getPrefix() + '/'
     config.withCredentials = true
     config.timeout = 6000
-    let accessToken = localStorage.getItem('accessToken')
-    if (accessToken) {
+    if (accessToken && getPrefix() == 'api') {
         config.headers = {
             'Authorization': 'Bearer ' + accessToken,
             'Content-Type': 'application/json',
@@ -43,14 +46,19 @@ axios.interceptors.response.use(response => {
                 break;
             case 401:
             case 0:
-                //location.href = '/login';
-                try{
-                    let accessToken = localStorage.getItem('accessToken');
-                    showMessage('请重新登录!');
-                    localStorage.setItem('accessToken', '');
-                    app.$router.push('/login');
-                }catch(e){
-                    app.$router.push('/login');
+                if(getPrefix() == 'api'){
+                    try{
+                        let accessToken = localStorage.getItem('accessToken')
+                        if(accessToken){
+                            showMessage('请重新登录!');
+                            localStorage.setItem('accessToken', '');
+                        }
+                        app.$router.push('/login');
+                    }catch(e){
+                        app.$router.push('/login');
+                    }
+                }else{
+                    location.href = '/login';
                 }
                 break;
             case 402:
@@ -63,6 +71,11 @@ axios.interceptors.response.use(response => {
         return response.data;
     },
     error => {
+        if(getPrefix() == 'api'){
+            app.$router.push('/login');
+        }else{
+            location.href = '/login'
+        }
         if (error.response.status === 401) {
             showMessage('请重新登录');
             app.$router.replace('/login');
