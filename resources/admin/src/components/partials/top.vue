@@ -4,8 +4,8 @@
             <div class="ls-icon-collapse" @click="toggleCollapse">
                 <i class="iconfont l-color">&#xe954;</i>
             </div>
-            <div class="l-top-item"><i class="iconfont">&#xe64c;</i> 大菜单</div>
-            <div class="l-top-item"><i class="iconfont">&#xe64c;</i> 小功能</div>
+            <div class="l-top-item" style="margin-left: 60px;"><i class="iconfont">&#xe64c;</i> 大功能</div>
+            <div class="l-top-item"><i class="iconfont">&#xe64c;</i> 小菜单</div>
         </div>
         <div class="ls-top-right">
           <el-dropdown>
@@ -20,6 +20,7 @@
 </template>
 <script>
 import api from '../../api/index'
+import { getPrefix } from '../../api/util'
 
 export default {
   computed: {
@@ -33,13 +34,15 @@ export default {
     },
     async logout(){
         let res = await api.logout()
-        if(res.code == 200){
+        if(getPrefix() == 'api'){
             localStorage.removeItem(this.$types.USER)
             localStorage.removeItem('privileges')
             this.$store.commit(this.$types.ACCESS_TOKEN, null);
-            location.href='/login';
-        }else if(res.code == 401){
-            location.href='login';
+            this.$router.push('/login')
+        }else{
+            if(res.code == 200 || res.code == 401){
+                location.href='/login';
+            }
         }
     }
   }
@@ -67,6 +70,7 @@ export default {
     .ls-top-left{
         text-align: right;
         box-sizing: border-box;
+        position: relative;
         >div{
             display: inline-block;
         }
@@ -97,5 +101,8 @@ export default {
         padding: 0 16px;
         font-size: 22px;
         display: inline-block;
+        position: absolute;
+        left: 0;
+        top: 0;
     }
 </style>

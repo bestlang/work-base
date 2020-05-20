@@ -28,7 +28,6 @@ Vue.directive('title', {
         el.remove()
     }
 })
-console.log(`::::::::::`,getPrefix())
 
 export default new Vue({
   el: "#app",
