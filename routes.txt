@@ -46,7 +46,7 @@
 |        | GET|HEAD|POST|PUT|PATCH|DELETE|OPTIONS | ajax/admin/privileges/user/permissions    |                  | Bestlang\Laracms\Http\Controllers\Admin\PrivilegesController@userPermissions    | web,auth     |
 |        | POST                                   | ajax/admin/user/create                    |                  | Bestlang\Laracms\Http\Controllers\Admin\UserController@create                   | web,auth     |
 |        | POST                                   | ajax/admin/user/create/role/user          |                  | Bestlang\Laracms\Http\Controllers\Admin\UserController@createRoleUser           | web,auth     |
-|        | GET|HEAD                               | ajax/admin/user/info                      |                  | Bestlang\Laracms\Http\Controllers\Admin\UserController@info                     | web          |
+|        | GET|HEAD                               | ajax/admin/user/info                      |                  | Bestlang\Laracms\Http\Controllers\Admin\UserController@info                     | web,auth     |
 |        | GET|HEAD|POST|PUT|PATCH|DELETE|OPTIONS | ajax/auth/logout                          |                  | Bestlang\Laracms\Http\Controllers\ExitController@logout                         | web          |
 |        | GET|HEAD|POST|PUT|PATCH|DELETE|OPTIONS | ajax/csrf                                 |                  | Bestlang\Laracms\Http\Controllers\IndexController@csrf                          | web          |
 |        | GET|HEAD                               | api/activity/activity                     |                  | App\Http\Controllers\ActivityController@activity                                | api,auth.jwt |
@@ -65,6 +65,7 @@
 |        | GET|HEAD|POST|PUT|PATCH|DELETE|OPTIONS | api/admin/cms/content/save                |                  | Bestlang\Laracms\Http\Controllers\Admin\Cms\ContentController@save              | api,auth.jwt |
 |        | GET|HEAD|POST|PUT|PATCH|DELETE|OPTIONS | api/admin/cms/content/whole               |                  | Bestlang\Laracms\Http\Controllers\Admin\Cms\ContentController@whole             | api,auth.jwt |
 |        | GET|HEAD|POST|PUT|PATCH|DELETE|OPTIONS | api/admin/cms/contents                    |                  | Bestlang\Laracms\Http\Controllers\Admin\Cms\ContentController@index             | api,auth.jwt |
+|        | GET|HEAD|POST|PUT|PATCH|DELETE|OPTIONS | api/admin/cms/get/comments                |                  | Bestlang\Laracms\Http\Controllers\Admin\Cms\CommentController@index             | api,auth.jwt |
 |        | GET|HEAD|POST|PUT|PATCH|DELETE|OPTIONS | api/admin/cms/get/position                |                  | Bestlang\Laracms\Http\Controllers\Admin\Cms\PositionController@position         | api,auth.jwt |
 |        | GET|HEAD|POST|PUT|PATCH|DELETE|OPTIONS | api/admin/cms/model                       |                  | Bestlang\Laracms\Http\Controllers\Admin\Cms\ModelController@index               | api,auth.jwt |
 |        | GET|HEAD|POST|PUT|PATCH|DELETE|OPTIONS | api/admin/cms/model/delete                |                  | Bestlang\Laracms\Http\Controllers\Admin\Cms\ModelController@delete              | api,auth.jwt |
@@ -162,7 +163,7 @@
 |        | GET|HEAD                               | home                                      |                  | Closure                                                                         | web          |
 |        | GET|HEAD                               | info                                      |                  | Closure                                                                         | web          |
 |        | POST                                   | login                                     |                  | App\Http\Controllers\Auth\LoginController@login                                 | web,guest    |
-|        | GET|HEAD                               | login                                     | login            | App\Http\Controllers\Auth\LoginController@showLoginForm                         | web,guest    |
+|        | GET|HEAD                               | login                                     |                  | Bestlang\Laracms\Http\Controllers\IndexController@                              | web          |
 |        | POST                                   | logout                                    | logout           | App\Http\Controllers\Auth\LoginController@logout                                | web          |
 |        | GET|HEAD                               | mp/code/session                           |                  | App\Http\Controllers\MpController@codeSession                                   | web          |
 |        | GET|HEAD|POST|PUT|PATCH|DELETE|OPTIONS | mp/serve                                  |                  | App\Http\Controllers\MpController@serve                                         | web          |
