@@ -13,6 +13,7 @@
         "baum/baum": "v2.x-dev",
         "bestlang/laravel-ueditor": "dev-master",
         "doctrine/dbal": "^2.9",
+        "endroid/qr-code": "^3.5",
         "fideloper/proxy": "^4.0",
         "fzaninotto/faker": "^1.8",
         "guzzlehttp/guzzle": "~6.0",

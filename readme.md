@@ -24,9 +24,6 @@ laravel joinSub()
 
 ### 如果使用config:cache 那么就不能从.env里面使用env()函数取值了
 
-### ueditor跨域上传的问题
-https://blog.csdn.net/lnktoking/article/details/79091753
-
 
 Uncaught RangeError: Maximum call stack size exceeded. at VueComponent.handleMouseenter
 
@@ -36,4 +33,11 @@ Uncaught RangeError: Maximum call stack size exceeded. at VueComponent.handleMou
 https://blog.csdn.net/hunkcai/article/details/51362073
 https://blog.csdn.net/xy707707/article/details/81219756
 
+
+
+php -d memory_limit=2048M /usr/local/bin/composer update
+
+https://www.tecmint.com/install-lamp-on-centos-8/
+https://www.digitalocean.com/community/tutorials/how-to-install-linux-nginx-mysql-php-lemp-stack-on-centos-8
+fastcgi_pass unix:/run/php-fpm/www.sock;
 

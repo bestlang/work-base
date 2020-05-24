@@ -52,3 +52,9 @@ Route::get('/activity/applicables', 'Admin\ActivityController@applicables');
 //Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('order/native1', 'IndexController@native1');
+
+Route::get('order/native2', 'IndexController@native2');
+
+Route::any('notify/wechat', 'IndexController@notify');
