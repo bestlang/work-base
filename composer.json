@@ -82,7 +82,7 @@
     "repositories": {
         "bestlang/laracms": {
             "type": "path",
-            "url": "/Users/lu/PhpstormProjects/laracms/packages/bestlang/laracms"
+            "url": "./packages/bestlang/laracms"
         }
     }
 }
