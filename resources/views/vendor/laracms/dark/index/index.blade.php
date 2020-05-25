@@ -21,7 +21,7 @@
                         <div class="l-position-items">
                             @foreach(LC::position('热点文章推荐') as $content)
                                 <div class="l-position">
-                                    @if($content->ext && $thumb = $content->ext['thumb'])
+                                    @if($thumb = $content->ext['thumb'])
                                         <div><img src="{{$thumb}}" alt="" style="width: 100px;height: 100px;"></div>
                                     @endif
                                     <div class="l-position-right">
@@ -37,7 +37,7 @@
                         <div class="l-position-items">
                             @foreach(LC::position('热点文章推荐') as $content)
                                 <div class="l-position">
-                                    @if($content->ext && $thumb = $content->ext['thumb'])
+                                    @if($thumb = $content->ext['thumb'])
                                         <div><img src="{{$thumb}}" alt="" style="width: 100px;height: 100px;"></div>
                                     @endif
                                     <div class="l-position-right">
@@ -55,7 +55,7 @@
                         <div class="l-position-items">
                             @foreach(LC::position('第一个推荐位') as $content)
                                 <div class="l-position">
-                                    @if($content->ext && $thumb = $content->ext['thumb'])
+                                    @if($thumb = $content->ext['thumb'])
                                         <div><img src="{{$thumb}}" alt="" style="width: 100px;height: 100px;"></div>
                                     @endif
                                     <div class="l-position-right">
@@ -76,7 +76,7 @@
                             </div>
                             @foreach($channel->contents as $content)
                                 <div class="l-position">
-                                    @if($content->ext && $thumb = $content->ext['thumb'])
+                                    @if($thumb = $content->ext['thumb'])
                                         <div><img src="{{$thumb}}" alt="" style="width: 100px;height: 100px;"></div>
                                     @endif
                                     <div class="l-position-right">

@@ -102,7 +102,7 @@
             </div>
           </div>
     </div>
-    <el-dialog :title="fieldTitle" :visible.sync="fieldVisible">
+    <el-dialog :title="fieldTitle" :visible.sync="fieldVisible" :close-on-click-modal="false">
       <el-form :model="fieldForm" label-width="100px">
         <el-form-item label="标签">
           <el-input v-model="fieldForm.label" autocomplete="off"></el-input>

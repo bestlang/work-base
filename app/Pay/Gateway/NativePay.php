@@ -1,5 +1,5 @@
 <?php
-namespace App\Pay\Products;
+namespace App\Pay\Gateway;
 
 use App\Pay\Data\WxPayBizPayUrl;
 use App\Pay\WxPayConfig;

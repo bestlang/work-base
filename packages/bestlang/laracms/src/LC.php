@@ -52,15 +52,17 @@ class LC
             return $sub->id;
         });
         //取得所有子推荐位所有文章
-        $positionContents = Position::whereIn('id', $subIds)->with('contents')->get()->map(function($position){
-            return $position->contents;
+        $positionContents = Position::whereIn('id', $subIds)->get()->map(function($position){
+            return $position->contents()->with(['metas', 'contents'])->get();
         });
         $groupContents = [];
         $positionContents = Arr::flatten($positionContents);
         foreach ($positionContents as $content){
+            $ext = [];
             foreach ($content->metas as $meta){
-                $content->{$meta->field} = $meta->value;
+                $ext[$meta->field] = $meta->value;
             }
+            $content->ext = $ext;
             $groupContents[$content->channel_id][] = $content;
         }
 

@@ -24,7 +24,8 @@ class NativeNotifyCallBack extends WxPayNotify
         $input->SetTime_start(date("YmdHis"));
         $input->SetTime_expire(date("YmdHis", time() + 600));
         $input->SetGoods_tag("test");
-        $input->SetNotify_url("http://paysdk.weixin.qq.com/notify.php");
+//        $input->SetNotify_url("http://paysdk.weixin.qq.com/notify.php");
+        $input->SetNotify_url("https://www.laracms.com/notify/wechat/native");
         $input->SetTrade_type("NATIVE");
         $input->SetOpenid($openId);
         $input->SetProduct_id($product_id);

@@ -57,4 +57,6 @@ Route::get('order/native1', 'IndexController@native1');
 
 Route::get('order/native2', 'IndexController@native2');
 
-Route::any('notify/wechat', 'IndexController@notify');
+Route::any('/notify/wechat', 'IndexController@notify');
+
+Route::any('/notify/wechat/native', 'IndexController@wechatNativeNotify');
