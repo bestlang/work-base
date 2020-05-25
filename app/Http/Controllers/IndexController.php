@@ -42,18 +42,17 @@ class IndexController extends Controller
         echo "<img src=\"".$qrCode->writeDataUri()."\" />";
     }
 
-    public function wechatNativeNotify(Request $request, WxPayConfig $config)
+    //需要调用统一下单api的
+    public function wechatNativeNotify(Request $request, WxPayConfig $config, NativeNotifyCallBack $nativeNotifyCallBack)
     {
         //初始化日志
         $logHandler = new CLogFileHandler(storage_path()."/logs/".date('Y-m-d').'.log');
         $log = Log::Init($logHandler, 15);
-//        $config = new WxPayConfig();
         Log::DEBUG("begin notify!");
-        $notify = new NativeNotifyCallBack();
-        $notify->Handle($config, true);
+        $nativeNotifyCallBack->Handle($config, true);
     }
-
-    public function notify(Request $request, PayNotifyCallBack $payNotifyCallBack, WxPayConfig $config)
+    //异步接受支付结果的通知
+    public function wechatAsyncNotify(Request $request, PayNotifyCallBack $payNotifyCallBack, WxPayConfig $config)
     {
         $logHandler = new CLogFileHandler(storage_path()."/logs/".'notify-'.date('Y-m-d').'.log');
         $log = Log::Init($logHandler, 15);
