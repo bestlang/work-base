@@ -49,7 +49,7 @@ class IndexController extends Controller
         $logHandler = new CLogFileHandler(storage_path()."/logs/".date('Y-m-d').'.log');
         $log = Log::Init($logHandler, 15);
         Log::DEBUG("begin notify!");
-        $nativeNotifyCallBack->Handle($config, true);
+        //$nativeNotifyCallBack->Handle($config, true);
     }
     //异步接受支付结果的通知
     public function wechatAsyncNotify(Request $request, PayNotifyCallBack $payNotifyCallBack, WxPayConfig $config)

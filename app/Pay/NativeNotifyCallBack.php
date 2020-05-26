@@ -1,12 +1,6 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: lu
- * Date: 2020/5/24
- * Time: 7:52 AM
- */
-
 namespace App\Pay;
+
 use App\Pay\Data\WxPayUnifiedOrder;
 use App\Pay\Log\Log;
 
