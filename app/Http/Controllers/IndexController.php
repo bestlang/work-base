@@ -45,6 +45,7 @@ class IndexController extends Controller
     //需要调用统一下单api的
     public function wechatNativeNotify(Request $request, WxPayConfig $config, NativeNotifyCallBack $nativeNotifyCallBack)
     {
+        Log::DEBUG("~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
         //初始化日志
         $logHandler = new CLogFileHandler(storage_path()."/logs/".date('Y-m-d').'.log');
         $log = Log::Init($logHandler, 15);
