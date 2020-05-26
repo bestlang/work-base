@@ -2,7 +2,7 @@
 namespace App\Pay;
 
 use App\Pay\Data\WxPayNotifyReply;
-
+use App\Pay\WxPayApi;
 /**
  *
  * 回调基础类
