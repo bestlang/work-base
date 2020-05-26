@@ -435,6 +435,7 @@ class WxPayApi
     {
         //获取通知的数据
         $xml = isset($GLOBALS['HTTP_RAW_POST_DATA']) ? $GLOBALS['HTTP_RAW_POST_DATA'] : file_get_contents("php://input");
+        info('************', [$xml]);
         if (empty($xml)) {
             # 如果没有数据，直接返回失败
             return false;
