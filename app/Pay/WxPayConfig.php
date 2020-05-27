@@ -38,7 +38,7 @@ class WxPayConfig extends WxPayConfigInterface
      **/
     public function GetNotifyUrl()
     {
-        return "https://www.laracms.com/notify/wechat/async";
+        return "https://www.laracms.com/notify/wechat/native";
     }
     public function GetSignType()
     {
