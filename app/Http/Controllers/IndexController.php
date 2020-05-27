@@ -20,6 +20,7 @@ class IndexController extends Controller
     {
         $url1 = $nativePay->GetPrePayUrl(time());
         $qrCode = new QrCode($url1);
+        echo $url1;
         echo "<img src=\"".$qrCode->writeDataUri()."\" />";
     }
 
