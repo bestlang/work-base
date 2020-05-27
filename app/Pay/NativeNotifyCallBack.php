@@ -7,20 +7,18 @@ use App\Pay\Log\Log;
 //native第一种支付方式, 需要调用统一下单Api
 class NativeNotifyCallBack extends WxPayNotify
 {
-    public function unifiedorder($openId, $product_id)
+    public function unifiedorder($openId, $product_id, WxPayConfig $config)
     {
         //统一下单
-        $config = new WxPayConfig();
         $input = new WxPayUnifiedOrder();
-        $input->SetBody("test");
-        $input->SetAttach("test");
+        $input->SetBody("CSRF有时候也是个大坑");
+        $input->SetAttach("CSRF");
         $input->SetOut_trade_no($config->GetMerchantId().date("YmdHis"));
         $input->SetTotal_fee("1");
         $input->SetTime_start(date("YmdHis"));
         $input->SetTime_expire(date("YmdHis", time() + 600));
-        $input->SetGoods_tag("test");
-//        $input->SetNotify_url("http://paysdk.weixin.qq.com/notify.php");
-        $input->SetNotify_url("https://www.laracms.com/notify/wechat/async");
+        $input->SetGoods_tag("CSRF");
+        $input->SetNotify_url($config->GetNotifyUrl());
         $input->SetTrade_type("NATIVE");
         $input->SetOpenid($openId);
         $input->SetProduct_id($product_id);

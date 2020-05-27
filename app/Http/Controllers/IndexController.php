@@ -24,7 +24,7 @@ class IndexController extends Controller
         echo "<img src=\"".$qrCode->writeDataUri()."\" />";
     }
 
-    public function native2(Request $request, WxPayUnifiedOrder $wxPayUnifiedOrder, NativePay $nativePay)
+    public function native2(Request $request, WxPayUnifiedOrder $wxPayUnifiedOrder, NativePay $nativePay, WxPayConfig $wxPayConfig)
     {
         $wxPayUnifiedOrder->SetBody("一件神器的商品");
         $wxPayUnifiedOrder->SetAttach("感谢付款");
@@ -33,7 +33,7 @@ class IndexController extends Controller
         $wxPayUnifiedOrder->SetTime_start(date("YmdHis"));
         $wxPayUnifiedOrder->SetTime_expire(date("YmdHis", time() + 600));
         $wxPayUnifiedOrder->SetGoods_tag("m100d99");
-        $wxPayUnifiedOrder->SetNotify_url("https://www.laracms.com/notify/wechat/async");
+        $wxPayUnifiedOrder->SetNotify_url($wxPayConfig->GetNotifyUrl());
         $wxPayUnifiedOrder->SetTrade_type("NATIVE");
         $wxPayUnifiedOrder->SetProduct_id("123456789");
 
