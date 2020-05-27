@@ -20,6 +20,7 @@ class VerifyCsrfToken extends Middleware
      */
     protected $except = [
         //
-        'mp/serve'
+        'mp/serve',
+        'notify/wechat/native'
     ];
 }
