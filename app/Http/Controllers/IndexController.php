@@ -33,7 +33,7 @@ class IndexController extends Controller
         $wxPayUnifiedOrder->SetTime_start(date("YmdHis"));
         $wxPayUnifiedOrder->SetTime_expire(date("YmdHis", time() + 600));
         $wxPayUnifiedOrder->SetGoods_tag("m100d99");
-        $wxPayUnifiedOrder->SetNotify_url("http://www.laracms.com/notify/wechat/native");
+        $wxPayUnifiedOrder->SetNotify_url("https://www.laracms.com/notify/wechat/async");
         $wxPayUnifiedOrder->SetTrade_type("NATIVE");
         $wxPayUnifiedOrder->SetProduct_id("123456789");
 
