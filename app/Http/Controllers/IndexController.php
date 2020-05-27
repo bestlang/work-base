@@ -52,12 +52,17 @@ class IndexController extends Controller
         Log::DEBUG("begin notify!");
         $nativeNotifyCallBack->Handle($config, true);
     }
-    //异步接受支付结果的通知
-    public function wechatAsyncNotify(PayNotifyCallBack $payNotifyCallBack, WxPayConfig $config)
+//    //异步接受支付结果的通知
+//    public function wechatAsyncNotify(PayNotifyCallBack $payNotifyCallBack, WxPayConfig $config)
+//    {
+//        $logHandler = new CLogFileHandler(storage_path()."/logs/".'notify-'.date('Y-m-d').'.log');
+//        $log = Log::Init($logHandler, 15);
+//        Log::DEBUG("begin notify");
+//        $payNotifyCallBack->Handle($config, false);
+//    }
+
+    public function wechatAsyncNotify()
     {
-        $logHandler = new CLogFileHandler(storage_path()."/logs/".'notify-'.date('Y-m-d').'.log');
-        $log = Log::Init($logHandler, 15);
-        Log::DEBUG("begin notify");
-        $payNotifyCallBack->Handle($config, false);
+        info('what the fuck', []);
     }
 }

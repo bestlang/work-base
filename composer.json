@@ -26,8 +26,7 @@
         "overtrue/laravel-wechat": "~5.0",
         "spatie/laravel-permission": "^2.38",
         "tymon/jwt-auth": "1.0.*",
-        "upyun/sdk": "^3.3",
-        "yansongda/laravel-pay": "^2.0"
+        "upyun/sdk": "^3.3"
     },
     "require-dev": {
         "beyondcode/laravel-dump-server": "^1.0",
