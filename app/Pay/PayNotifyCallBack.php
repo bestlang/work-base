@@ -7,7 +7,7 @@
  */
 
 namespace App\Pay;
-
+use App\Pay\Log\Log;
 
 class PayNotifyCallBack extends WxPayNotify
 {
