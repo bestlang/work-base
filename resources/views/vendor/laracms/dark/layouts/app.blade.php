@@ -84,7 +84,7 @@
         <div class="container">
             <div class="l-row">
                 <div class="l-special-remark">
-                    <div class="l-remark-title"><b>code for bread</b> 江苏省苏州市工业园</div>
+                    <div class="l-remark-title">Addr: 苏州工业园区仁爱路1号G区1楼G2-GB19</div>
                     <div class="l-remark-content">以时间换结果. <br />日积月累,必有所成</div>
                 </div>
                 <div class="l-group-link"></div>
