@@ -87,6 +87,17 @@
       'EasyWeChat' => 'Overtrue\\LaravelWeChat\\Facade',
     ),
   ),
+  'songshenzong/support' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Songshenzong\\Support\\StringsServiceProvider',
+    ),
+    'aliases' => 
+    array (
+      'Strings' => 'Songshenzong\\Support\\StringsFacade',
+    ),
+  ),
   'spatie/laravel-permission' => 
   array (
     'providers' => 

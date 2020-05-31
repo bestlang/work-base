@@ -37,9 +37,7 @@ class LC
                 $ext[$meta->field] = $meta->value;
             }
             $content->ext = $ext;
-            //unset($content->metas);
         });
-//        print_r($contents->toArray());
         return $contents;
     }
     public function channel_position($name){

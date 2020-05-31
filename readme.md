@@ -41,3 +41,6 @@ https://www.tecmint.com/install-lamp-on-centos-8/
 https://www.digitalocean.com/community/tutorials/how-to-install-linux-nginx-mysql-php-lemp-stack-on-centos-8
 fastcgi_pass unix:/run/php-fpm/www.sock;
 
+
+单页-特殊的栏目
+

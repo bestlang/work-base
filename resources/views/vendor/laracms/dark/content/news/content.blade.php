@@ -21,35 +21,60 @@
                             <div>{!!  LC::content($content, 'content') !!}</div>
                         </div>
                     </div>
-                    <div class="l-bg-w">
-                        <div class="container">
-                            <div class="row">
-                                <div class="l-article-body" style="background: #fff;padding: 15px;">
-                                    <div><h2 class="l-content-title">评论区:</h2></div>
-                                    <div>
-                                        @foreach($comments as $comment)
-                                            <p>{{$comment->user->name}} says:{{$comment->content}}</p>
-                                        @endforeach
-                                    </div>
-                                    @guest
-                                    @if(Route::has('login'))
-                                        <a href="{{ route('login') }}">登录</a>之后发表评论
-                                    @endif
-                                    @endguest
-                                    @auth
-                                    <form>
-                                        <div class="form-group">
-                                            <label for="comment">评论:</label>
-                                            <input type="hidden" name="content_id" id="content_id" value="{{$content->id}}" />
-                                            <textarea class="form-control" rows="5" id="comment"></textarea>
-                                            <button type="button" class="btn btn-primary" id="comment_submit">提交</button>
-                                        </div>
-                                    </form>
-                                    @endauth
-                                </div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">评论列表</div>
+                        <div class="panel-body">
+                            <div>
+                                @foreach($comments as $comment)
+                                    <p>{{$comment->user->name}} says:{{$comment->content}}</p>
+                                @endforeach
                             </div>
+                            @guest
+                            @if(Route::has('login'))
+                                <a href="{{ route('login') }}">登录</a>之后发表评论
+                            @endif
+                            @endguest
+                            @auth
+                            <form>
+                                <div class="form-group">
+                                    <label for="comment">评论:</label>
+                                    <input type="hidden" name="content_id" id="content_id" value="{{$content->id}}" />
+                                    <textarea class="form-control" rows="5" id="comment"></textarea>
+                                    <button type="button" class="btn btn-primary" id="comment_submit">提交</button>
+                                </div>
+                            </form>
+                            @endauth
                         </div>
                     </div>
+                    {{--<div class="l-bg-w">--}}
+                        {{--<div class="container">--}}
+                            {{--<div class="row">--}}
+                                {{--<div class="l-article-body" style="background: #fff;padding: 15px;">--}}
+                                    {{--<div><h2 class="l-content-title">评论区:</h2></div>--}}
+                                    {{--<div>--}}
+                                        {{--@foreach($comments as $comment)--}}
+                                            {{--<p>{{$comment->user->name}} says:{{$comment->content}}</p>--}}
+                                        {{--@endforeach--}}
+                                    {{--</div>--}}
+                                    {{--@guest--}}
+                                    {{--@if(Route::has('login'))--}}
+                                        {{--<a href="{{ route('login') }}">登录</a>之后发表评论--}}
+                                    {{--@endif--}}
+                                    {{--@endguest--}}
+                                    {{--@auth--}}
+                                    {{--<form>--}}
+                                        {{--<div class="form-group">--}}
+                                            {{--<label for="comment">评论:</label>--}}
+                                            {{--<input type="hidden" name="content_id" id="content_id" value="{{$content->id}}" />--}}
+                                            {{--<textarea class="form-control" rows="5" id="comment"></textarea>--}}
+                                            {{--<button type="button" class="btn btn-primary" id="comment_submit">提交</button>--}}
+                                        {{--</div>--}}
+                                    {{--</form>--}}
+                                    {{--@endauth--}}
+                                {{--</div>--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
+                    {{--</div>--}}
                 </div>
                 <div class="col-md-4 l-pd-0">
                     <div class="l-content-right">

@@ -13,6 +13,8 @@ try {
     require('bootstrap');
     require('bootstrap/dist/css/bootstrap.min.css')
     require('normalize.css')
+    require('swiper/css/swiper.min.css')
+    window.Swiper = require('swiper/js/swiper')
     // require('animate.css')
 } catch (e) {}
 

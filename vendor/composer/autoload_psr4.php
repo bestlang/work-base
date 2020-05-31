@@ -6,6 +6,8 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'xin\\helper\\' => array($vendorDir . '/xin/helper/src'),
+    'xin\\container\\' => array($vendorDir . '/xin/container/src'),
     'phpDocumentor\\Reflection\\' => array($vendorDir . '/phpdocumentor/reflection-common/src', $vendorDir . '/phpdocumentor/reflection-docblock/src', $vendorDir . '/phpdocumentor/type-resolver/src'),
     'Zxing\\' => array($vendorDir . '/khanamiryan/qrcode-detector-decoder/lib'),
     'Yansongda\\Supports\\' => array($vendorDir . '/yansongda/supports/src'),
@@ -52,7 +54,9 @@ return array(
     'Symfony\\Component\\Console\\' => array($vendorDir . '/symfony/console'),
     'Symfony\\Component\\Cache\\' => array($vendorDir . '/symfony/cache'),
     'Symfony\\Bridge\\PsrHttpMessage\\' => array($vendorDir . '/symfony/psr-http-message-bridge'),
+    'Stringy\\' => array($vendorDir . '/danielstjules/stringy/src'),
     'Spatie\\Permission\\' => array($vendorDir . '/spatie/laravel-permission/src'),
+    'Songshenzong\\Support\\' => array($vendorDir . '/songshenzong/support/src'),
     'Silly\\' => array($vendorDir . '/mnapoli/silly/src'),
     'Ramsey\\Uuid\\' => array($vendorDir . '/ramsey/uuid/src'),
     'Psy\\' => array($vendorDir . '/psy/psysh/src'),
@@ -82,6 +86,7 @@ return array(
     'League\\Flysystem\\' => array($vendorDir . '/league/flysystem/src'),
     'Lcobucci\\JWT\\' => array($vendorDir . '/lcobucci/jwt/src'),
     'Laravel\\Tinker\\' => array($vendorDir . '/laravel/tinker/src'),
+    'JmesPath\\' => array($vendorDir . '/mtdowling/jmespath.php/src'),
     'JeroenG\\Packager\\' => array($vendorDir . '/jeroen-g/laravel-packager/src'),
     'JellyBool\\Flysystem\\Upyun\\' => array($vendorDir . '/jellybool/flysystem-upyun/src'),
     'JakubOnderka\\PhpConsoleHighlighter\\' => array($vendorDir . '/jakub-onderka/php-console-highlighter/src'),
@@ -120,4 +125,8 @@ return array(
     'Baum\\' => array($vendorDir . '/baum/baum/src'),
     'BaconQrCode\\' => array($vendorDir . '/bacon/bacon-qr-code/src'),
     'App\\' => array($baseDir . '/app'),
+    'Alipay\\EasySDK\\' => array($vendorDir . '/alipaysdk/easysdk/php/src'),
+    'AlibabaCloud\\Tea\\FileForm\\' => array($vendorDir . '/alibabacloud/tea-fileform/src'),
+    'AlibabaCloud\\Tea\\' => array($vendorDir . '/alibabacloud/tea/src'),
+    'Adbar\\' => array($vendorDir . '/adbario/php-dot-notation/src'),
 );

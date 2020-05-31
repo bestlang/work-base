@@ -19,15 +19,20 @@ class ComposerStaticInitd018b3e43616cccb2461352cf4782150
         '37a3dc5111fe8f707ab4c132ef1dbc62' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/functions_include.php',
         'def43f6c87e4f8dfd0c9e1b1bab14fe8' => __DIR__ . '/..' . '/symfony/polyfill-iconv/bootstrap.php',
         '2c102faa651ef8ea5874edb585946bce' => __DIR__ . '/..' . '/swiftmailer/swiftmailer/lib/swift_required.php',
-        '9c67151ae59aff4788964ce8eb2a0f43' => __DIR__ . '/..' . '/clue/stream-filter/src/functions_include.php',
-        '8cff32064859f4559445b89279f3199c' => __DIR__ . '/..' . '/php-http/message/src/filters.php',
+        '65fec9ebcfbb3cbb4fd0d519687aea01' => __DIR__ . '/..' . '/danielstjules/stringy/src/Create.php',
         'e39a8b23c42d4e1452234d762b03835a' => __DIR__ . '/..' . '/ramsey/uuid/src/functions.php',
         '538ca81a9a966a6716601ecf48f4eaef' => __DIR__ . '/..' . '/opis/closure/functions.php',
+        'd767e4fc2dc52fe66584ab8c6684783e' => __DIR__ . '/..' . '/adbario/php-dot-notation/src/helpers.php',
+        'f0906e6318348a765ffb6eb24e0d0938' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Foundation/helpers.php',
+        '58571171fd5812e6e447dce228f52f4d' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Support/helpers.php',
+        '9c67151ae59aff4788964ce8eb2a0f43' => __DIR__ . '/..' . '/clue/stream-filter/src/functions_include.php',
+        'b067bc7112e384b61c701452d53a14a8' => __DIR__ . '/..' . '/mtdowling/jmespath.php/src/JmesPath.php',
+        '8cff32064859f4559445b89279f3199c' => __DIR__ . '/..' . '/php-http/message/src/filters.php',
+        '0d0b82117c23db94c492fee02b2ed01f' => __DIR__ . '/..' . '/songshenzong/support/src/StringsHelpers.php',
+        'd96a90b43bcdea846705672ffd4e9294' => __DIR__ . '/..' . '/songshenzong/support/src/BashEchoHelpers.php',
         '801c31d8ed748cfa537fa45402288c95' => __DIR__ . '/..' . '/psy/psysh/src/functions.php',
         'bd9634f2d41831496de0d3dfe4c94881' => __DIR__ . '/..' . '/symfony/polyfill-php56/bootstrap.php',
         'a9ed0d27b5a698798a89181429f162c5' => __DIR__ . '/..' . '/khanamiryan/qrcode-detector-decoder/lib/Common/customFunctions.php',
-        'f0906e6318348a765ffb6eb24e0d0938' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Foundation/helpers.php',
-        '58571171fd5812e6e447dce228f52f4d' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Support/helpers.php',
         'e8d8290bf1a9fb22ceb9abc966d831ec' => __DIR__ . '/..' . '/mpociot/documentarian/includes/helpers.php',
         '6124b4c8570aa390c21fafd04a26c69f' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/deep_copy.php',
         'f0e7e63bbb278a92db02393536748c5f' => __DIR__ . '/..' . '/overtrue/wechat/src/Kernel/Support/Helpers.php',
@@ -38,6 +43,11 @@ class ComposerStaticInitd018b3e43616cccb2461352cf4782150
     );
 
     public static $prefixLengthsPsr4 = array (
+        'x' => 
+        array (
+            'xin\\helper\\' => 11,
+            'xin\\container\\' => 14,
+        ),
         'p' => 
         array (
             'phpDocumentor\\Reflection\\' => 25,
@@ -107,7 +117,9 @@ class ComposerStaticInitd018b3e43616cccb2461352cf4782150
             'Symfony\\Component\\Console\\' => 26,
             'Symfony\\Component\\Cache\\' => 24,
             'Symfony\\Bridge\\PsrHttpMessage\\' => 30,
+            'Stringy\\' => 8,
             'Spatie\\Permission\\' => 18,
+            'Songshenzong\\Support\\' => 21,
             'Silly\\' => 6,
         ),
         'R' => 
@@ -158,6 +170,7 @@ class ComposerStaticInitd018b3e43616cccb2461352cf4782150
         ),
         'J' => 
         array (
+            'JmesPath\\' => 9,
             'JeroenG\\Packager\\' => 17,
             'JellyBool\\Flysystem\\Upyun\\' => 26,
             'JakubOnderka\\PhpConsoleHighlighter\\' => 35,
@@ -223,10 +236,22 @@ class ComposerStaticInitd018b3e43616cccb2461352cf4782150
         'A' => 
         array (
             'App\\' => 4,
+            'Alipay\\EasySDK\\' => 15,
+            'AlibabaCloud\\Tea\\FileForm\\' => 26,
+            'AlibabaCloud\\Tea\\' => 17,
+            'Adbar\\' => 6,
         ),
     );
 
     public static $prefixDirsPsr4 = array (
+        'xin\\helper\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/xin/helper/src',
+        ),
+        'xin\\container\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/xin/container/src',
+        ),
         'phpDocumentor\\Reflection\\' => 
         array (
             0 => __DIR__ . '/..' . '/phpdocumentor/reflection-common/src',
@@ -413,9 +438,17 @@ class ComposerStaticInitd018b3e43616cccb2461352cf4782150
         array (
             0 => __DIR__ . '/..' . '/symfony/psr-http-message-bridge',
         ),
+        'Stringy\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/danielstjules/stringy/src',
+        ),
         'Spatie\\Permission\\' => 
         array (
             0 => __DIR__ . '/..' . '/spatie/laravel-permission/src',
+        ),
+        'Songshenzong\\Support\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/songshenzong/support/src',
         ),
         'Silly\\' => 
         array (
@@ -532,6 +565,10 @@ class ComposerStaticInitd018b3e43616cccb2461352cf4782150
         'Laravel\\Tinker\\' => 
         array (
             0 => __DIR__ . '/..' . '/laravel/tinker/src',
+        ),
+        'JmesPath\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/mtdowling/jmespath.php/src',
         ),
         'JeroenG\\Packager\\' => 
         array (
@@ -686,6 +723,22 @@ class ComposerStaticInitd018b3e43616cccb2461352cf4782150
         array (
             0 => __DIR__ . '/../..' . '/app',
         ),
+        'Alipay\\EasySDK\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/alipaysdk/easysdk/php/src',
+        ),
+        'AlibabaCloud\\Tea\\FileForm\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/alibabacloud/tea-fileform/src',
+        ),
+        'AlibabaCloud\\Tea\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/alibabacloud/tea/src',
+        ),
+        'Adbar\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/adbario/php-dot-notation/src',
+        ),
     );
 
     public static $prefixesPsr0 = array (
@@ -714,6 +767,103 @@ class ComposerStaticInitd018b3e43616cccb2461352cf4782150
     );
 
     public static $classMap = array (
+        'Adbar\\Dot' => __DIR__ . '/..' . '/adbario/php-dot-notation/src/Dot.php',
+        'AlibabaCloud\\Tea\\Exception\\TeaError' => __DIR__ . '/..' . '/alibabacloud/tea/src/Exception/TeaError.php',
+        'AlibabaCloud\\Tea\\Exception\\TeaRetryError' => __DIR__ . '/..' . '/alibabacloud/tea/src/Exception/TeaRetryError.php',
+        'AlibabaCloud\\Tea\\Exception\\TeaUnableRetryError' => __DIR__ . '/..' . '/alibabacloud/tea/src/Exception/TeaUnableRetryError.php',
+        'AlibabaCloud\\Tea\\FileForm\\FileForm' => __DIR__ . '/..' . '/alibabacloud/tea-fileform/src/FileForm.php',
+        'AlibabaCloud\\Tea\\FileForm\\FileFormStream' => __DIR__ . '/..' . '/alibabacloud/tea-fileform/src/FileFormStream.php',
+        'AlibabaCloud\\Tea\\FileForm\\FileForm\\FileField' => __DIR__ . '/..' . '/alibabacloud/tea-fileform/src/FileForm/FileField.php',
+        'AlibabaCloud\\Tea\\Model' => __DIR__ . '/..' . '/alibabacloud/tea/src/Model.php',
+        'AlibabaCloud\\Tea\\Parameter' => __DIR__ . '/..' . '/alibabacloud/tea/src/Parameter.php',
+        'AlibabaCloud\\Tea\\Request' => __DIR__ . '/..' . '/alibabacloud/tea/src/Request.php',
+        'AlibabaCloud\\Tea\\Response' => __DIR__ . '/..' . '/alibabacloud/tea/src/Response.php',
+        'AlibabaCloud\\Tea\\Tea' => __DIR__ . '/..' . '/alibabacloud/tea/src/Tea.php',
+        'Alipay\\EasySDK\\Base\\Image\\Client' => __DIR__ . '/..' . '/alipaysdk/easysdk/php/src/Base/Image/Client.php',
+        'Alipay\\EasySDK\\Base\\Image\\Models\\AlipayOfflineMaterialImageUploadResponse' => __DIR__ . '/..' . '/alipaysdk/easysdk/php/src/Base/Image/Models/AlipayOfflineMaterialImageUploadResponse.php',
+        'Alipay\\EasySDK\\Base\\OAuth\\Client' => __DIR__ . '/..' . '/alipaysdk/easysdk/php/src/Base/OAuth/Client.php',
+        'Alipay\\EasySDK\\Base\\OAuth\\Models\\AlipaySystemOauthTokenResponse' => __DIR__ . '/..' . '/alipaysdk/easysdk/php/src/Base/OAuth/Models/AlipaySystemOauthTokenResponse.php',
+        'Alipay\\EasySDK\\Base\\Qrcode\\Client' => __DIR__ . '/..' . '/alipaysdk/easysdk/php/src/Base/Qrcode/Client.php',
+        'Alipay\\EasySDK\\Base\\Qrcode\\Models\\AlipayOpenAppQrcodeCreateResponse' => __DIR__ . '/..' . '/alipaysdk/easysdk/php/src/Base/Qrcode/Models/AlipayOpenAppQrcodeCreateResponse.php',
+        'Alipay\\EasySDK\\Base\\Video\\Client' => __DIR__ . '/..' . '/alipaysdk/easysdk/php/src/Base/Video/Client.php',
+        'Alipay\\EasySDK\\Base\\Video\\Models\\AlipayOfflineMaterialImageUploadResponse' => __DIR__ . '/..' . '/alipaysdk/easysdk/php/src/Base/Video/Models/AlipayOfflineMaterialImageUploadResponse.php',
+        'Alipay\\EasySDK\\Kernel\\AlipayConstants' => __DIR__ . '/..' . '/alipaysdk/easysdk/php/src/Kernel/AlipayConstants.php',
+        'Alipay\\EasySDK\\Kernel\\Base' => __DIR__ . '/..' . '/alipaysdk/easysdk/php/src/Kernel/Factory.php',
+        'Alipay\\EasySDK\\Kernel\\BaseClient' => __DIR__ . '/..' . '/alipaysdk/easysdk/php/src/Kernel/BaseClient.php',
+        'Alipay\\EasySDK\\Kernel\\CertEnvironment' => __DIR__ . '/..' . '/alipaysdk/easysdk/php/src/Kernel/CertEnvironment.php',
+        'Alipay\\EasySDK\\Kernel\\Config' => __DIR__ . '/..' . '/alipaysdk/easysdk/php/src/Kernel/Config.php',
+        'Alipay\\EasySDK\\Kernel\\Exceptions\\RuntimeException' => __DIR__ . '/..' . '/alipaysdk/easysdk/php/src/Kernel/Exceptions/RuntimeException.php',
+        'Alipay\\EasySDK\\Kernel\\Factory' => __DIR__ . '/..' . '/alipaysdk/easysdk/php/src/Kernel/Factory.php',
+        'Alipay\\EasySDK\\Kernel\\Marketing' => __DIR__ . '/..' . '/alipaysdk/easysdk/php/src/Kernel/Factory.php',
+        'Alipay\\EasySDK\\Kernel\\Member' => __DIR__ . '/..' . '/alipaysdk/easysdk/php/src/Kernel/Factory.php',
+        'Alipay\\EasySDK\\Kernel\\Payment' => __DIR__ . '/..' . '/alipaysdk/easysdk/php/src/Kernel/Factory.php',
+        'Alipay\\EasySDK\\Kernel\\Security' => __DIR__ . '/..' . '/alipaysdk/easysdk/php/src/Kernel/Factory.php',
+        'Alipay\\EasySDK\\Kernel\\Util' => __DIR__ . '/..' . '/alipaysdk/easysdk/php/src/Kernel/Factory.php',
+        'Alipay\\EasySDK\\Kernel\\Util\\AES' => __DIR__ . '/..' . '/alipaysdk/easysdk/php/src/Kernel/Util/AES.php',
+        'Alipay\\EasySDK\\Kernel\\Util\\AlipayEncrypt' => __DIR__ . '/..' . '/alipaysdk/easysdk/php/src/Kernel/Util/AlipayEncrypt.php',
+        'Alipay\\EasySDK\\Kernel\\Util\\AntCertificationUtil' => __DIR__ . '/..' . '/alipaysdk/easysdk/php/src/Kernel/Util/AntCertificationUtil.php',
+        'Alipay\\EasySDK\\Kernel\\Util\\JsonUtil' => __DIR__ . '/..' . '/alipaysdk/easysdk/php/src/Kernel/Util/JsonUtil.php',
+        'Alipay\\EasySDK\\Kernel\\Util\\PageUtil' => __DIR__ . '/..' . '/alipaysdk/easysdk/php/src/Kernel/Util/PageUtil.php',
+        'Alipay\\EasySDK\\Kernel\\Util\\SignContentExtractor' => __DIR__ . '/..' . '/alipaysdk/easysdk/php/src/Kernel/Util/SignContentExtractor.php',
+        'Alipay\\EasySDK\\Kernel\\Util\\Signer' => __DIR__ . '/..' . '/alipaysdk/easysdk/php/src/Kernel/Util/Signer.php',
+        'Alipay\\EasySDK\\Marketing\\OpenLife\\Client' => __DIR__ . '/..' . '/alipaysdk/easysdk/php/src/Marketing/OpenLife/Client.php',
+        'Alipay\\EasySDK\\Marketing\\OpenLife\\Models\\AlipayOpenPublicLifeMsgRecallResponse' => __DIR__ . '/..' . '/alipaysdk/easysdk/php/src/Marketing/OpenLife/Models/AlipayOpenPublicLifeMsgRecallResponse.php',
+        'Alipay\\EasySDK\\Marketing\\OpenLife\\Models\\AlipayOpenPublicMessageContentCreateResponse' => __DIR__ . '/..' . '/alipaysdk/easysdk/php/src/Marketing/OpenLife/Models/AlipayOpenPublicMessageContentCreateResponse.php',
+        'Alipay\\EasySDK\\Marketing\\OpenLife\\Models\\AlipayOpenPublicMessageContentModifyResponse' => __DIR__ . '/..' . '/alipaysdk/easysdk/php/src/Marketing/OpenLife/Models/AlipayOpenPublicMessageContentModifyResponse.php',
+        'Alipay\\EasySDK\\Marketing\\OpenLife\\Models\\AlipayOpenPublicMessageSingleSendResponse' => __DIR__ . '/..' . '/alipaysdk/easysdk/php/src/Marketing/OpenLife/Models/AlipayOpenPublicMessageSingleSendResponse.php',
+        'Alipay\\EasySDK\\Marketing\\OpenLife\\Models\\AlipayOpenPublicMessageTotalSendResponse' => __DIR__ . '/..' . '/alipaysdk/easysdk/php/src/Marketing/OpenLife/Models/AlipayOpenPublicMessageTotalSendResponse.php',
+        'Alipay\\EasySDK\\Marketing\\OpenLife\\Models\\AlipayOpenPublicSettingCategoryQueryResponse' => __DIR__ . '/..' . '/alipaysdk/easysdk/php/src/Marketing/OpenLife/Models/AlipayOpenPublicSettingCategoryQueryResponse.php',
+        'Alipay\\EasySDK\\Marketing\\OpenLife\\Models\\AlipayOpenPublicTemplateMessageIndustryModifyResponse' => __DIR__ . '/..' . '/alipaysdk/easysdk/php/src/Marketing/OpenLife/Models/AlipayOpenPublicTemplateMessageIndustryModifyResponse.php',
+        'Alipay\\EasySDK\\Marketing\\OpenLife\\Models\\Article' => __DIR__ . '/..' . '/alipaysdk/easysdk/php/src/Marketing/OpenLife/Models/Article.php',
+        'Alipay\\EasySDK\\Marketing\\OpenLife\\Models\\Context' => __DIR__ . '/..' . '/alipaysdk/easysdk/php/src/Marketing/OpenLife/Models/Context.php',
+        'Alipay\\EasySDK\\Marketing\\OpenLife\\Models\\Keyword' => __DIR__ . '/..' . '/alipaysdk/easysdk/php/src/Marketing/OpenLife/Models/Keyword.php',
+        'Alipay\\EasySDK\\Marketing\\OpenLife\\Models\\Template' => __DIR__ . '/..' . '/alipaysdk/easysdk/php/src/Marketing/OpenLife/Models/Template.php',
+        'Alipay\\EasySDK\\Marketing\\OpenLife\\Models\\Text' => __DIR__ . '/..' . '/alipaysdk/easysdk/php/src/Marketing/OpenLife/Models/Text.php',
+        'Alipay\\EasySDK\\Marketing\\Pass\\Client' => __DIR__ . '/..' . '/alipaysdk/easysdk/php/src/Marketing/Pass/Client.php',
+        'Alipay\\EasySDK\\Marketing\\Pass\\Models\\AlipayPassInstanceAddResponse' => __DIR__ . '/..' . '/alipaysdk/easysdk/php/src/Marketing/Pass/Models/AlipayPassInstanceAddResponse.php',
+        'Alipay\\EasySDK\\Marketing\\Pass\\Models\\AlipayPassInstanceUpdateResponse' => __DIR__ . '/..' . '/alipaysdk/easysdk/php/src/Marketing/Pass/Models/AlipayPassInstanceUpdateResponse.php',
+        'Alipay\\EasySDK\\Marketing\\Pass\\Models\\AlipayPassTemplateAddResponse' => __DIR__ . '/..' . '/alipaysdk/easysdk/php/src/Marketing/Pass/Models/AlipayPassTemplateAddResponse.php',
+        'Alipay\\EasySDK\\Marketing\\Pass\\Models\\AlipayPassTemplateUpdateResponse' => __DIR__ . '/..' . '/alipaysdk/easysdk/php/src/Marketing/Pass/Models/AlipayPassTemplateUpdateResponse.php',
+        'Alipay\\EasySDK\\Marketing\\TemplateMessage\\Client' => __DIR__ . '/..' . '/alipaysdk/easysdk/php/src/Marketing/TemplateMessage/Client.php',
+        'Alipay\\EasySDK\\Marketing\\TemplateMessage\\Models\\AlipayOpenAppMiniTemplatemessageSendResponse' => __DIR__ . '/..' . '/alipaysdk/easysdk/php/src/Marketing/TemplateMessage/Models/AlipayOpenAppMiniTemplatemessageSendResponse.php',
+        'Alipay\\EasySDK\\Member\\Identification\\Client' => __DIR__ . '/..' . '/alipaysdk/easysdk/php/src/Member/Identification/Client.php',
+        'Alipay\\EasySDK\\Member\\Identification\\Models\\AlipayUserCertifyOpenCertifyResponse' => __DIR__ . '/..' . '/alipaysdk/easysdk/php/src/Member/Identification/Models/AlipayUserCertifyOpenCertifyResponse.php',
+        'Alipay\\EasySDK\\Member\\Identification\\Models\\AlipayUserCertifyOpenInitializeResponse' => __DIR__ . '/..' . '/alipaysdk/easysdk/php/src/Member/Identification/Models/AlipayUserCertifyOpenInitializeResponse.php',
+        'Alipay\\EasySDK\\Member\\Identification\\Models\\AlipayUserCertifyOpenQueryResponse' => __DIR__ . '/..' . '/alipaysdk/easysdk/php/src/Member/Identification/Models/AlipayUserCertifyOpenQueryResponse.php',
+        'Alipay\\EasySDK\\Member\\Identification\\Models\\IdentityParam' => __DIR__ . '/..' . '/alipaysdk/easysdk/php/src/Member/Identification/Models/IdentityParam.php',
+        'Alipay\\EasySDK\\Member\\Identification\\Models\\MerchantConfig' => __DIR__ . '/..' . '/alipaysdk/easysdk/php/src/Member/Identification/Models/MerchantConfig.php',
+        'Alipay\\EasySDK\\Payment\\App\\Client' => __DIR__ . '/..' . '/alipaysdk/easysdk/php/src/Payment/App/Client.php',
+        'Alipay\\EasySDK\\Payment\\App\\Models\\AlipayTradeAppPayResponse' => __DIR__ . '/..' . '/alipaysdk/easysdk/php/src/Payment/App/Models/AlipayTradeAppPayResponse.php',
+        'Alipay\\EasySDK\\Payment\\Common\\Client' => __DIR__ . '/..' . '/alipaysdk/easysdk/php/src/Payment/Common/Client.php',
+        'Alipay\\EasySDK\\Payment\\Common\\Models\\AlipayDataDataserviceBillDownloadurlQueryResponse' => __DIR__ . '/..' . '/alipaysdk/easysdk/php/src/Payment/Common/Models/AlipayDataDataserviceBillDownloadurlQueryResponse.php',
+        'Alipay\\EasySDK\\Payment\\Common\\Models\\AlipayTradeCancelResponse' => __DIR__ . '/..' . '/alipaysdk/easysdk/php/src/Payment/Common/Models/AlipayTradeCancelResponse.php',
+        'Alipay\\EasySDK\\Payment\\Common\\Models\\AlipayTradeCloseResponse' => __DIR__ . '/..' . '/alipaysdk/easysdk/php/src/Payment/Common/Models/AlipayTradeCloseResponse.php',
+        'Alipay\\EasySDK\\Payment\\Common\\Models\\AlipayTradeCreateResponse' => __DIR__ . '/..' . '/alipaysdk/easysdk/php/src/Payment/Common/Models/AlipayTradeCreateResponse.php',
+        'Alipay\\EasySDK\\Payment\\Common\\Models\\AlipayTradeFastpayRefundQueryResponse' => __DIR__ . '/..' . '/alipaysdk/easysdk/php/src/Payment/Common/Models/AlipayTradeFastpayRefundQueryResponse.php',
+        'Alipay\\EasySDK\\Payment\\Common\\Models\\AlipayTradeQueryResponse' => __DIR__ . '/..' . '/alipaysdk/easysdk/php/src/Payment/Common/Models/AlipayTradeQueryResponse.php',
+        'Alipay\\EasySDK\\Payment\\Common\\Models\\AlipayTradeRefundResponse' => __DIR__ . '/..' . '/alipaysdk/easysdk/php/src/Payment/Common/Models/AlipayTradeRefundResponse.php',
+        'Alipay\\EasySDK\\Payment\\Common\\Models\\PresetPayToolInfo' => __DIR__ . '/..' . '/alipaysdk/easysdk/php/src/Payment/Common/Models/PresetPayToolInfo.php',
+        'Alipay\\EasySDK\\Payment\\Common\\Models\\RefundRoyaltyResult' => __DIR__ . '/..' . '/alipaysdk/easysdk/php/src/Payment/Common/Models/RefundRoyaltyResult.php',
+        'Alipay\\EasySDK\\Payment\\Common\\Models\\TradeFundBill' => __DIR__ . '/..' . '/alipaysdk/easysdk/php/src/Payment/Common/Models/TradeFundBill.php',
+        'Alipay\\EasySDK\\Payment\\Common\\Models\\TradeSettleDetail' => __DIR__ . '/..' . '/alipaysdk/easysdk/php/src/Payment/Common/Models/TradeSettleDetail.php',
+        'Alipay\\EasySDK\\Payment\\Common\\Models\\TradeSettleInfo' => __DIR__ . '/..' . '/alipaysdk/easysdk/php/src/Payment/Common/Models/TradeSettleInfo.php',
+        'Alipay\\EasySDK\\Payment\\FaceToFace\\Client' => __DIR__ . '/..' . '/alipaysdk/easysdk/php/src/Payment/FaceToFace/Client.php',
+        'Alipay\\EasySDK\\Payment\\FaceToFace\\Models\\AlipayTradePayResponse' => __DIR__ . '/..' . '/alipaysdk/easysdk/php/src/Payment/FaceToFace/Models/AlipayTradePayResponse.php',
+        'Alipay\\EasySDK\\Payment\\FaceToFace\\Models\\AlipayTradePrecreateResponse' => __DIR__ . '/..' . '/alipaysdk/easysdk/php/src/Payment/FaceToFace/Models/AlipayTradePrecreateResponse.php',
+        'Alipay\\EasySDK\\Payment\\FaceToFace\\Models\\TradeFundBill' => __DIR__ . '/..' . '/alipaysdk/easysdk/php/src/Payment/FaceToFace/Models/TradeFundBill.php',
+        'Alipay\\EasySDK\\Payment\\FaceToFace\\Models\\VoucherDetail' => __DIR__ . '/..' . '/alipaysdk/easysdk/php/src/Payment/FaceToFace/Models/VoucherDetail.php',
+        'Alipay\\EasySDK\\Payment\\Huabei\\Client' => __DIR__ . '/..' . '/alipaysdk/easysdk/php/src/Payment/Huabei/Client.php',
+        'Alipay\\EasySDK\\Payment\\Huabei\\Models\\AlipayTradeCreateResponse' => __DIR__ . '/..' . '/alipaysdk/easysdk/php/src/Payment/Huabei/Models/AlipayTradeCreateResponse.php',
+        'Alipay\\EasySDK\\Payment\\Huabei\\Models\\HuabeiConfig' => __DIR__ . '/..' . '/alipaysdk/easysdk/php/src/Payment/Huabei/Models/HuabeiConfig.php',
+        'Alipay\\EasySDK\\Payment\\Page\\Client' => __DIR__ . '/..' . '/alipaysdk/easysdk/php/src/Payment/Page/Client.php',
+        'Alipay\\EasySDK\\Payment\\Page\\Models\\AlipayTradePagePayResponse' => __DIR__ . '/..' . '/alipaysdk/easysdk/php/src/Payment/Page/Models/AlipayTradePagePayResponse.php',
+        'Alipay\\EasySDK\\Payment\\Wap\\Client' => __DIR__ . '/..' . '/alipaysdk/easysdk/php/src/Payment/Wap/Client.php',
+        'Alipay\\EasySDK\\Payment\\Wap\\Models\\AlipayTradeWapPayResponse' => __DIR__ . '/..' . '/alipaysdk/easysdk/php/src/Payment/Wap/Models/AlipayTradeWapPayResponse.php',
+        'Alipay\\EasySDK\\Security\\TextRisk\\Client' => __DIR__ . '/..' . '/alipaysdk/easysdk/php/src/Security/TextRisk/Client.php',
+        'Alipay\\EasySDK\\Security\\TextRisk\\Models\\AlipaySecurityRiskContentDetectResponse' => __DIR__ . '/..' . '/alipaysdk/easysdk/php/src/Security/TextRisk/Models/AlipaySecurityRiskContentDetectResponse.php',
+        'Alipay\\EasySDK\\Util\\AES\\Client' => __DIR__ . '/..' . '/alipaysdk/easysdk/php/src/Util/AES/Client.php',
+        'Alipay\\EasySDK\\Util\\Generic\\Client' => __DIR__ . '/..' . '/alipaysdk/easysdk/php/src/Util/Generic/Client.php',
+        'Alipay\\EasySDK\\Util\\Generic\\Models\\AlipayOpenApiGenericResponse' => __DIR__ . '/..' . '/alipaysdk/easysdk/php/src/Util/Generic/Models/AlipayOpenApiGenericResponse.php',
         'App\\Apis\\JdBase' => __DIR__ . '/../..' . '/app/Apis/JdBase.php',
         'App\\Apis\\Mp' => __DIR__ . '/../..' . '/app/Apis/Mp.php',
         'App\\Apis\\Pdd' => __DIR__ . '/../..' . '/app/Apis/Pdd.php',
@@ -797,9 +947,11 @@ class ComposerStaticInitd018b3e43616cccb2461352cf4782150
         'App\\Pay\\Data\\WxPayShortUrl' => __DIR__ . '/../..' . '/app/Pay/Data/WxPayShortUrl.php',
         'App\\Pay\\Data\\WxPayUnifiedOrder' => __DIR__ . '/../..' . '/app/Pay/Data/WxPayUnifiedOrder.php',
         'App\\Pay\\Exceptions\\WxPayException' => __DIR__ . '/../..' . '/app/Pay/Exceptions/WxPayException.php',
+        'App\\Pay\\Gateway\\NativePay' => __DIR__ . '/../..' . '/app/Pay/Gateway/NativePay.php',
         'App\\Pay\\Log\\CLogFileHandler' => __DIR__ . '/../..' . '/app/Pay/Log/CLogFileHandler.php',
         'App\\Pay\\Log\\Log' => __DIR__ . '/../..' . '/app/Pay/Log/Log.php',
-        'App\\Pay\\Products\\NativePay' => __DIR__ . '/../..' . '/app/Pay/Products/NativePay.php',
+        'App\\Pay\\NativeNotifyCallBack' => __DIR__ . '/../..' . '/app/Pay/NativeNotifyCallBack.php',
+        'App\\Pay\\PayNotifyCallBack' => __DIR__ . '/../..' . '/app/Pay/PayNotifyCallBack.php',
         'App\\Pay\\WxPayApi' => __DIR__ . '/../..' . '/app/Pay/WxPayApi.php',
         'App\\Pay\\WxPayConfig' => __DIR__ . '/../..' . '/app/Pay/WxPayConfig.php',
         'App\\Pay\\WxPayNotify' => __DIR__ . '/../..' . '/app/Pay/WxPayNotify.php',
@@ -3393,6 +3545,17 @@ class ComposerStaticInitd018b3e43616cccb2461352cf4782150
         'JeroenG\\Packager\\PackagerServiceProvider' => __DIR__ . '/..' . '/jeroen-g/laravel-packager/src/PackagerServiceProvider.php',
         'JeroenG\\Packager\\ProgressBar' => __DIR__ . '/..' . '/jeroen-g/laravel-packager/src/ProgressBar.php',
         'JeroenG\\Packager\\Wrapping' => __DIR__ . '/..' . '/jeroen-g/laravel-packager/src/Wrapping.php',
+        'JmesPath\\AstRuntime' => __DIR__ . '/..' . '/mtdowling/jmespath.php/src/AstRuntime.php',
+        'JmesPath\\CompilerRuntime' => __DIR__ . '/..' . '/mtdowling/jmespath.php/src/CompilerRuntime.php',
+        'JmesPath\\DebugRuntime' => __DIR__ . '/..' . '/mtdowling/jmespath.php/src/DebugRuntime.php',
+        'JmesPath\\Env' => __DIR__ . '/..' . '/mtdowling/jmespath.php/src/Env.php',
+        'JmesPath\\FnDispatcher' => __DIR__ . '/..' . '/mtdowling/jmespath.php/src/FnDispatcher.php',
+        'JmesPath\\Lexer' => __DIR__ . '/..' . '/mtdowling/jmespath.php/src/Lexer.php',
+        'JmesPath\\Parser' => __DIR__ . '/..' . '/mtdowling/jmespath.php/src/Parser.php',
+        'JmesPath\\SyntaxErrorException' => __DIR__ . '/..' . '/mtdowling/jmespath.php/src/SyntaxErrorException.php',
+        'JmesPath\\TreeCompiler' => __DIR__ . '/..' . '/mtdowling/jmespath.php/src/TreeCompiler.php',
+        'JmesPath\\TreeInterpreter' => __DIR__ . '/..' . '/mtdowling/jmespath.php/src/TreeInterpreter.php',
+        'JmesPath\\Utils' => __DIR__ . '/..' . '/mtdowling/jmespath.php/src/Utils.php',
         'JsonException' => __DIR__ . '/..' . '/symfony/polyfill-php73/Resources/stubs/JsonException.php',
         'Laravel\\Tinker\\ClassAliasAutoloader' => __DIR__ . '/..' . '/laravel/tinker/src/ClassAliasAutoloader.php',
         'Laravel\\Tinker\\Console\\TinkerCommand' => __DIR__ . '/..' . '/laravel/tinker/src/Console/TinkerCommand.php',
@@ -5053,6 +5216,16 @@ class ComposerStaticInitd018b3e43616cccb2461352cf4782150
         'Silly\\HyphenatedInputResolver' => __DIR__ . '/..' . '/mnapoli/silly/src/HyphenatedInputResolver.php',
         'Silly\\Input\\InputArgument' => __DIR__ . '/..' . '/mnapoli/silly/src/Input/InputArgument.php',
         'Silly\\Input\\InputOption' => __DIR__ . '/..' . '/mnapoli/silly/src/Input/InputOption.php',
+        'Songshenzong\\Support\\Arrays' => __DIR__ . '/..' . '/songshenzong/support/src/Arrays.php',
+        'Songshenzong\\Support\\BashEcho' => __DIR__ . '/..' . '/songshenzong/support/src/BashEcho.php',
+        'Songshenzong\\Support\\Env' => __DIR__ . '/..' . '/songshenzong/support/src/Env.php',
+        'Songshenzong\\Support\\OS' => __DIR__ . '/..' . '/songshenzong/support/src/OS.php',
+        'Songshenzong\\Support\\Strings' => __DIR__ . '/..' . '/songshenzong/support/src/Strings.php',
+        'Songshenzong\\Support\\StringsFacade' => __DIR__ . '/..' . '/songshenzong/support/src/StringsFacade.php',
+        'Songshenzong\\Support\\StringsServiceProvider' => __DIR__ . '/..' . '/songshenzong/support/src/StringsServiceProvider.php',
+        'Songshenzong\\Support\\Time' => __DIR__ . '/..' . '/songshenzong/support/src/Time.php',
+        'Songshenzong\\Support\\Traits\\Str' => __DIR__ . '/..' . '/songshenzong/support/src/Traits/Str.php',
+        'Songshenzong\\Support\\Traits\\Uri' => __DIR__ . '/..' . '/songshenzong/support/src/Traits/Uri.php',
         'Spatie\\Permission\\Commands\\CacheReset' => __DIR__ . '/..' . '/spatie/laravel-permission/src/Commands/CacheReset.php',
         'Spatie\\Permission\\Commands\\CreatePermission' => __DIR__ . '/..' . '/spatie/laravel-permission/src/Commands/CreatePermission.php',
         'Spatie\\Permission\\Commands\\CreateRole' => __DIR__ . '/..' . '/spatie/laravel-permission/src/Commands/CreateRole.php',
@@ -5076,6 +5249,8 @@ class ComposerStaticInitd018b3e43616cccb2461352cf4782150
         'Spatie\\Permission\\Traits\\HasPermissions' => __DIR__ . '/..' . '/spatie/laravel-permission/src/Traits/HasPermissions.php',
         'Spatie\\Permission\\Traits\\HasRoles' => __DIR__ . '/..' . '/spatie/laravel-permission/src/Traits/HasRoles.php',
         'Spatie\\Permission\\Traits\\RefreshesPermissionCache' => __DIR__ . '/..' . '/spatie/laravel-permission/src/Traits/RefreshesPermissionCache.php',
+        'Stringy\\StaticStringy' => __DIR__ . '/..' . '/danielstjules/stringy/src/StaticStringy.php',
+        'Stringy\\Stringy' => __DIR__ . '/..' . '/danielstjules/stringy/src/Stringy.php',
         'Symfony\\Bridge\\PsrHttpMessage\\Factory\\DiactorosFactory' => __DIR__ . '/..' . '/symfony/psr-http-message-bridge/Factory/DiactorosFactory.php',
         'Symfony\\Bridge\\PsrHttpMessage\\Factory\\HttpFoundationFactory' => __DIR__ . '/..' . '/symfony/psr-http-message-bridge/Factory/HttpFoundationFactory.php',
         'Symfony\\Bridge\\PsrHttpMessage\\Factory\\PsrHttpFactory' => __DIR__ . '/..' . '/symfony/psr-http-message-bridge/Factory/PsrHttpFactory.php',
@@ -6292,6 +6467,25 @@ class ComposerStaticInitd018b3e43616cccb2461352cf4782150
         'phpDocumentor\\Reflection\\Types\\String_' => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src/Types/String_.php',
         'phpDocumentor\\Reflection\\Types\\This' => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src/Types/This.php',
         'phpDocumentor\\Reflection\\Types\\Void_' => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src/Types/Void_.php',
+        'xin\\container\\AssocContainer' => __DIR__ . '/..' . '/xin/container/src/AssocContainer.php',
+        'xin\\container\\Container' => __DIR__ . '/..' . '/xin/container/src/Container.php',
+        'xin\\container\\ContainerException' => __DIR__ . '/..' . '/xin/container/src/ContainerException.php',
+        'xin\\container\\NotFoundException' => __DIR__ . '/..' . '/xin/container/src/NotFoundException.php',
+        'xin\\container\\ProviderContainer' => __DIR__ . '/..' . '/xin/container/src/ProviderContainer.php',
+        'xin\\container\\ProviderInterface' => __DIR__ . '/..' . '/xin/container/src/ProviderInterface.php',
+        'xin\\container\\traits\\AssocContainer' => __DIR__ . '/..' . '/xin/container/src/traits/AssocContainer.php',
+        'xin\\container\\traits\\ProviderContainer' => __DIR__ . '/..' . '/xin/container/src/traits/ProviderContainer.php',
+        'xin\\helper\\Arr' => __DIR__ . '/..' . '/xin/helper/src/Arr.php',
+        'xin\\helper\\File' => __DIR__ . '/..' . '/xin/helper/src/File.php',
+        'xin\\helper\\Func' => __DIR__ . '/..' . '/xin/helper/src/Func.php',
+        'xin\\helper\\Num' => __DIR__ . '/..' . '/xin/helper/src/Num.php',
+        'xin\\helper\\Position' => __DIR__ . '/..' . '/xin/helper/src/Position.php',
+        'xin\\helper\\Regex' => __DIR__ . '/..' . '/xin/helper/src/Regex.php',
+        'xin\\helper\\Secure' => __DIR__ . '/..' . '/xin/helper/src/Secure.php',
+        'xin\\helper\\Server' => __DIR__ . '/..' . '/xin/helper/src/Server.php',
+        'xin\\helper\\Str' => __DIR__ . '/..' . '/xin/helper/src/Str.php',
+        'xin\\helper\\Time' => __DIR__ . '/..' . '/xin/helper/src/Time.php',
+        'xin\\helper\\Version' => __DIR__ . '/..' . '/xin/helper/src/Version.php',
     );
 
     public static function getInitializer(ClassLoader $loader)

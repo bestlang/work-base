@@ -16,6 +16,7 @@
     <!-- Styles -->
 {{--    <link href="{{ asset('css/app.css') }}" rel="stylesheet">--}}
     <link href="/vendor/laracms/dark/app.css" rel="stylesheet">
+    @stack('css')
 </head>
 <body>
     <div id="app">
@@ -75,20 +76,22 @@
             </div>
         </nav>
 
-        <main class="py-4">
+        <main class="py-4 l-min-height">
             @yield('content')
         </main>
     </div>
-    <div class="l-foot">
+    <div class="l-foot footer mt-auto py-3">
         <div class="container">
             <div class="l-row">
                 <div class="l-special-remark">
-                    <div class="l-remark-title"><b>code for bread</b> 江苏省苏州市工业园区莲花新村一区45-105</div>
+                    <div class="l-remark-title"><b>code for bread</b> 江苏省苏州市工业园</div>
                     <div class="l-remark-content">以时间换结果. <br />日积月累,必有所成</div>
                 </div>
                 <div class="l-group-link"></div>
             {{--</div>--}}
+            </div>
         </div>
     </div>
+    @stack('script')
 </body>
 </html>
