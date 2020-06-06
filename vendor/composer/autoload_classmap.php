@@ -132,6 +132,7 @@ return array(
     'App\\Http\\Controllers\\Controller' => $baseDir . '/app/Http/Controllers/Controller.php',
     'App\\Http\\Controllers\\FaqController' => $baseDir . '/app/Http/Controllers/FaqController.php',
     'App\\Http\\Controllers\\HomeController' => $baseDir . '/app/Http/Controllers/HomeController.php',
+    'App\\Http\\Controllers\\Index2Controller' => $baseDir . '/app/Http/Controllers/Index2Controller.php',
     'App\\Http\\Controllers\\IndexController' => $baseDir . '/app/Http/Controllers/IndexController.php',
     'App\\Http\\Controllers\\MaterialController' => $baseDir . '/app/Http/Controllers/MaterialController.php',
     'App\\Http\\Controllers\\MpController' => $baseDir . '/app/Http/Controllers/MpController.php',

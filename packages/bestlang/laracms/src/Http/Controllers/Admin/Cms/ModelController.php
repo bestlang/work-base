@@ -1,5 +1,8 @@
 <?php
-
+/**
+ * @website https://www.laracms.com
+ * @author 295322133@qq.com
+ */
 namespace Bestlang\Laracms\Http\Controllers\Admin\Cms;
 
 use Bestlang\Laracms\Models\Cms\Model;
@@ -20,10 +23,10 @@ class ModelController extends Controller
     public function save(Request $request)
     {
         $params = $request->all();
-        $data = Arr::only($params, ['name', 'channel_template_prefix', 'content_template_prefix']);
+        $data = Arr::only($params, ['name', 'channel_template_prefix', 'content_template_prefix', 'is_single_page']);
         $id = Arr::get($params, 'id', 0);
         if($id){
-            $model = Model::find($id)->update($data);
+            $model = Model::where('id',$id)->update($data);
         }else{
             $model = Model::create($data);
             // 同时创建模型系统字段(栏目,内容)
@@ -71,7 +74,7 @@ class ModelController extends Controller
         $data = Arr::only($params, ['type','field','label', 'extra', 'is_channel']);
         $model = Model::find($params['model_id']);
         if($id){
-            $field = $model->fields()->find($id);
+            $field = $model->fields()->where('id', $id);
             $field->update($data);
         }else{
             $data['is_custom'] = '1';
@@ -112,7 +115,7 @@ class ModelController extends Controller
         $ids = $request->input('ids', []);
         $orders = $request->input('orders', []);
         foreach ($ids as $index => $id){
-            ModelField::find($id)->update(['order_factor' => $orders[$index]]);
+            ModelField::where('id', $id)->update(['order_factor' => $orders[$index]]);
         }
         return response()->ajax([$ids, $orders]);
     }

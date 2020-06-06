@@ -9,7 +9,7 @@
       <div>
         <router-link to="/cms/setting/model" tag="span"><span class="iconfont">&#xe601;</span>返回</router-link>
         <el-divider direction="vertical"></el-divider>
-        <span v-if="currentModel"><span style="font-weight: 700">“{{currentModel.name}}”</span>栏目字段管理</span>
+        <span v-if="currentModel"><span style="font-weight: 700">“{{currentModel.name}}”</span>{{type=='content'?'内容':'栏目'}}字段管理</span>
       </div>
     </div>
     <div class="l-block-body">

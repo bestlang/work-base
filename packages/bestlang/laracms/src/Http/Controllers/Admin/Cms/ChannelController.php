@@ -19,7 +19,10 @@ class ChannelController extends Controller
     {
         $params = $request->all();
         $disabled = Arr::get($params, 'disabled', false);
-        $tree = Channel::with('model')->get()->map(function($item)use($disabled){
+        $except_single_page = Arr::get($params, 'except_single_page', false);
+        $tree = Channel::with('model')->get()->filter(function($item)use($except_single_page){
+            return $except_single_page ? !$item->model->is_single_page : true;
+        })->map(function($item)use($disabled){
             if($disabled){
                 $item->disabled=true;
             }
@@ -73,7 +76,7 @@ class ChannelController extends Controller
                     return response()->error('更新失败!父栏目包含同名子栏目');
                 }
             }
-            $channel->update($data);
+            Channel::where('id', $id)->update($data);
         }else{
             if($parent_id){
                 $parent = Channel::find($parent_id);
@@ -104,7 +107,7 @@ class ChannelController extends Controller
         if($id){
             // 更新富文本字段
             foreach ($contentFileds as $filed){
-                $channel->contents()->updateOrInsert(['channel_id' => $id, 'field' => $filed->field], ['value' => Arr::get($params, $filed->field)]);
+                $channel->metas()->updateOrInsert(['channel_id' => $id, 'field' => $filed->field], ['value' => Arr::get($params, $filed->field)]);
             }
             // 更新自定义字段
             foreach ($metaFileds as $filed){
@@ -119,7 +122,7 @@ class ChannelController extends Controller
             // 保存富文本字段
             foreach ($contentFileds as $filed){
                 $content = ['field' => $filed->field, 'value' => Arr::get($params, $filed->field)];
-                $channel->contents()->create($content);
+                $channel->metas()->create($content);
             }
             // 保存自定义字段
             foreach ($metaFileds as $filed){

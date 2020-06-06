@@ -3,12 +3,11 @@
 @section('content')
     {{--<div class="container">--}}
     <div class="l-content">
-        <div class="l-content-inner l-min-height">
             <div class="container">
-            <div class="row l-article">
-                <div class="col-md-8 l-corn">
-                    <div class="l-bg-w">
-                        <div class="l-article-header">
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="panel panel-default article-content">
+                        <div class="panel-heading">
                             <ol class="breadcrumb">
                                 <li>首页</li>
                                 <li>最新新闻</li>
@@ -76,10 +75,10 @@
                         {{--</div>--}}
                     {{--</div>--}}
                 </div>
-                <div class="col-md-4 l-pd-0">
-                    <div class="l-content-right">
-                        <div class="l-position-block">
-                            <p class="l-position-title">文章推荐</p>
+                <div class="col-md-4">
+                    <div class="panel panel-default">
+                        <div class="panel-heading"><div class="l-position-title">文章推荐</div></div>
+                        <div class="panel-body">
                             @foreach(LC::position('文章详情右侧推荐一') as $key => $content)
                                 <div class="media">
                                     {{--@if($thumb = $content->ext['thumb'])--}}
@@ -94,9 +93,10 @@
                             @endforeach
                         </div>
                     </div>
-                    <div class="l-content-right">
-                        <div class="l-position-block">
-                            <p class="l-position-title">文章推荐</p>
+                    {{----}}
+                    <div class="panel panel-default">
+                        <div class="panel-heading"><div class="l-position-title">文章推荐</div></div>
+                        <div class="panel-body">
                             @foreach(LC::position('文章详情右侧推荐一') as $key => $content)
                                 <div class="media">
                                     {{--@if($thumb = $content->ext['thumb'])--}}
@@ -114,7 +114,6 @@
                 </div>
             </div>
             </div>
-        </div>
 
     </div>
     {{--</div>--}}

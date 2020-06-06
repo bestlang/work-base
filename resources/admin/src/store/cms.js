@@ -79,9 +79,10 @@ const cmsConfig = {
         commit(types.CMS_MODELS, res.data);
         commit(types.LOADING, false)
       },
-      async [types.CMS_CHANNELS] ({commit, dispatch} , parent) {
+      //payload = [parent, except_single_page]
+      async [types.CMS_CHANNELS] ({commit, dispatch}, payload=[null, 0]) {
         commit(types.LOADING, true)
-        let res = await api.getCmsChannelTree({disabled: true});
+        let res = await api.getCmsChannelTree({disabled: true, except_single_page: payload[1]});
         // 取到了数据
         if(Object.keys(res.data).length > 0){
           let node = res.data[Object.keys(res.data)[0]]
@@ -95,9 +96,9 @@ const cmsConfig = {
           // }
         }
         // 设置父栏目 以及 父栏目的子栏目列表
-        if(parent){
-          dispatch(types.CMS_PARENT_CHANNEL, parent)
-          dispatch(types.CMS_CHANNEL_CHILDREN, parent);
+        if(payload[0]){
+          dispatch(types.CMS_PARENT_CHANNEL, payload[0])
+          dispatch(types.CMS_CHANNEL_CHILDREN, payload[0]);
         }
         commit(types.LOADING, false);
       },

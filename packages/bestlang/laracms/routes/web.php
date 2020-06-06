@@ -23,6 +23,7 @@ Route::get('/about', 'IndexController@about');
 Route::get('/contact', 'IndexController@contact');
 Route::get('/content/{id}', 'ContentController@index')->name('content');
 Route::get('/channel/{id}', 'ChannelController@index')->name('channel');
+Route::get('/single/{id}', 'ChannelController@single')->name('single');
 Route::any('/comment/save', 'CommentController@save');
 
 Route::group(['prefix' => 'ajax'], function($router){
@@ -79,6 +80,13 @@ Route::group(['prefix' => 'ajax'], function($router){
             Route::any('/cms/content/positions', 'PositionController@contentPositions');
             Route::any('/cms/get/position', 'PositionController@position');
             Route::any('/cms/get/comments', 'CommentController@index');
+            Route::any('/cms/save/ad/position', 'AdController@saveAdPosition');
+            Route::any('/cms/get/ad/positions', 'AdController@getAdPositions');
+            Route::any('/cms/delete/ad/position', 'AdController@deleteAdPosition');
+            Route::any('/cms/save/ad', 'AdController@saveAd');
+            Route::any('/cms/get/ads', 'AdController@getAds');
+            Route::any('/cms/get/ad', 'AdController@getAd');
+            Route::any('/cms/delete/ad', 'AdController@deleteAd');
         });
     });
 });

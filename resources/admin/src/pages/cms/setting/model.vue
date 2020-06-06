@@ -35,8 +35,10 @@
       >
       </el-table-column>
       <el-table-column
-        prop="content_template_prefix"
         label="内容模板前缀">
+        <template slot-scope="scope">
+          <div v-if="scope.row.has_contents">{{scope.row.content_template_prefix}}</div>
+        </template>
       </el-table-column>
       <el-table-column
         label="栏目字段"
@@ -51,7 +53,7 @@
         width="100"
       >
         <template slot-scope="scope">
-          <el-button type="text" @click="handleFieldManager(scope.row, 'content')">管理</el-button>
+          <el-button v-if="scope.row.has_contents" type="text" @click="handleFieldManager(scope.row, 'content')">管理</el-button>
         </template>
       </el-table-column>
       <el-table-column
@@ -70,10 +72,16 @@
         <el-form-item label="模型名" label-width="100px">
           <el-input v-model="modelForm.name" autocomplete="off"></el-input>
         </el-form-item>
+        <el-form-item label="是否有内容" label-width="100px">
+          <el-radio-group v-model="modelForm.has_contents">
+            <el-radio :label="1">是</el-radio>
+            <el-radio :label="0">否(单页)</el-radio>
+          </el-radio-group>
+        </el-form-item>
         <el-form-item label="栏目模板前缀" label-width="100px">
           <el-input v-model="modelForm.channel_template_prefix" autocomplete="off"></el-input>
         </el-form-item>
-        <el-form-item label="内容模板前缀" label-width="100px">
+        <el-form-item label="内容模板前缀" label-width="100px" v-if="modelForm.has_contents">
           <el-input v-model="modelForm.content_template_prefix" autocomplete="off"></el-input>
         </el-form-item>
       </el-form>
@@ -96,6 +104,7 @@
           modelForm: {
             id: null,
             name: '',
+            has_contents: 1,
             channel_template_prefix: '',
             content_template_prefix: ''
         },
@@ -107,6 +116,7 @@
           Object.assign(this.modelForm, {
               id: null,
               name: '',
+              has_contents: 1,
               channel_template_prefix: '',
               content_template_prefix: ''
           })
@@ -196,6 +206,7 @@
           this.modelForm = Object.assign({}, {
               id: model.id,
               name: model.name,
+              has_contents: model.has_contents,
               channel_template_prefix: model.channel_template_prefix,
               content_template_prefix: model.content_template_prefix
           });

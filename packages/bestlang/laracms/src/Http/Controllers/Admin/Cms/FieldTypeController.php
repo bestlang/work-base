@@ -47,7 +47,7 @@ class FieldTypeController extends Controller
         if($id){
             $fieldType = FieldType::find($id);
             if($fieldType){
-                $fieldType->update($data);
+                FieldType::where('id', $id)->update($data);
             }
         }else{
             try{

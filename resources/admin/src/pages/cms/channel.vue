@@ -65,7 +65,7 @@
                   <el-button style="padding: 3px 10px" type="text" @click="addChannel(parentChannel)">新增子栏目</el-button>
                 </el-button-group>
             </div>
-            <div class="l-block-header" v-else>
+            <div class="l-block-header" v-if="!channels.length">
               <el-button style="padding: 3px 10px" type="text" @click="addChannel({id: 0})">新增栏目</el-button>
             </div>
             <div class="l-block-body">

@@ -73,8 +73,7 @@
     },
     async mounted() {
       this.$store.dispatch('toggleState');
-      await this.$store.dispatch(this.$types.CMS_CHANNELS);
-//      console.log(`currentChannel`, this.currentChannel)
+      await this.$store.dispatch(this.$types.CMS_CHANNELS, [null, 1]);
       this.$refs.tree.setCurrentKey(this.selectedKey)
     }
   }

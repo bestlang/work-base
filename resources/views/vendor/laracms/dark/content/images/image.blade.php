@@ -7,25 +7,25 @@
                 <div class="l-block-content">
                     <h1 class="l-content-title">{{$content->title}}</h1>
                     @if($albums = $content->ext['album'])
-                    <div class="swiper-container">
-                        <div class="swiper-container gallery-top">
-                            <div class="swiper-wrapper">
-                                @foreach($albums as $ab)
-                                    <div class="swiper-slide" style="background-image:url('{{$ab->url}}')">
-                                    </div>
-                                @endforeach
+                        <div class="swiper-container">
+                            <div class="swiper-container gallery-top">
+                                <div class="swiper-wrapper">
+                                    @foreach($albums as $ab)
+                                        <div class="swiper-slide" style="background-image:url('{{$ab->url}}')">
+                                        </div>
+                                    @endforeach
+                                </div>
+                                <div class="swiper-button-next swiper-button-white"></div>
+                                <div class="swiper-button-prev swiper-button-white"></div>
                             </div>
-                            <div class="swiper-button-next swiper-button-white"></div>
-                            <div class="swiper-button-prev swiper-button-white"></div>
-                        </div>
-                        <div class="swiper-container gallery-thumbs">
-                            <div class="swiper-wrapper">
-                                @foreach($albums as $ab)
-                                    <div class="swiper-slide" style="background-image:url('{{$ab->url}}')"></div>
-                                @endforeach
+                            <div class="swiper-container gallery-thumbs">
+                                <div class="swiper-wrapper">
+                                    @foreach($albums as $ab)
+                                        <div class="swiper-slide" style="background-image:url('{{$ab->url}}')"></div>
+                                    @endforeach
+                                </div>
                             </div>
                         </div>
-                    </div>
                     @endif
                     <div>{!!  LC::content($content, 'content') !!}</div>
                 </div>
@@ -60,23 +60,22 @@
 @endsection
 @push('script')
 <script type="text/javascript">
-$(function(){
-    $('#comment_submit').click(function(){
-        const content = $('#comment').val();
-        const contend_id = $('#content_id').val();
-        axios.post('/cms/comment/save', {content: content, content_id:contend_id}).then(response => {
-            let res = response.data;
-            if(res.success){
-            alert('评论成功')
-            location.reload()
-            }else{
-            alert(JSON.stringify(res.error))
-            }
-        })
+    $(function(){
+        $('#comment_submit').click(function(){
+            const content = $('#comment').val();
+            const contend_id = $('#content_id').val();
+            axios.post('/cms/comment/save', {content: content, content_id:contend_id}).then(response => {
+                let res = response.data;
+                if(res.success){
+                alert('评论成功')
+                location.reload()
+                }else{
+                alert(JSON.stringify(res.error))
+                }
+            })
+        });
     });
-});
-</script>
-<script>
+
     $(function(){
         var galleryThumbs = new Swiper('.gallery-thumbs', {
             spaceBetween: 10,

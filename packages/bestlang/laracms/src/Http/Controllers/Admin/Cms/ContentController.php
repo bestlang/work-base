@@ -82,7 +82,7 @@ class ContentController extends Controller
         if($id){
             $content = Content::find($id);
 
-            $content->update($arr);
+            Content::where('id', $id)->update($arr);
 
             // 更新富文本字段
             foreach ($contentFileds as $filed){

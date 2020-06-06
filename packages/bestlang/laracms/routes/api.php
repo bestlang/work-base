@@ -60,6 +60,13 @@ Route::group(['middleware' => 'auth.jwt', 'prefix'=>'admin', 'namespace'=>'Admin
         Route::any('/cms/content/positions', 'PositionController@contentPositions');
         Route::any('/cms/get/position', 'PositionController@position');
         Route::any('/cms/get/comments', 'CommentController@index');
+        Route::any('/cms/save/ad/position', 'AdController@saveAdPosition');
+        Route::any('/cms/get/ad/positions', 'AdController@getAdPositions');
+        Route::any('/cms/delete/ad/position', 'AdController@deleteAdPosition');
+        Route::any('/cms/save/ad', 'AdController@saveAd');
+        Route::any('/cms/get/ads', 'AdController@getAds');
+        Route::any('/cms/get/ad', 'AdController@getAd');
+        Route::any('/cms/delete/ad', 'AdController@deleteAd');
     });
 });
 Route::group(['prefix'=>'admin', 'namespace'=>'Admin'], function(){

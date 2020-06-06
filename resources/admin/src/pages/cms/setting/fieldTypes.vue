@@ -109,7 +109,7 @@
         }
       },
       async loadTypes(){
-        let res = await api.getModelFieldTypes("/admin/cms/model/field/types")
+        let res = await api.getModelFieldTypes()
         this.loading = false;
         this.tableData = res.data;
       }

@@ -180,6 +180,48 @@ export default new VueRouter({
                   }
                 }
               ]
+            },
+            {
+                path: "/cms/operation",
+                component: (resolve) => require(["../components/via.vue"], resolve),
+                meta: {
+                    can: 'cms operations',
+                    show: true,
+                    name: '运营管理',
+                    font: '&#xe764;'
+                },
+                children: [
+                    {
+                        path: "/cms/operation/ads",
+                        component: (resolve) => require(["../pages/cms/operation/ads.vue"], resolve),
+                        meta: {
+                            can: 'cms ad operations',
+                            show: true,
+                            name: '广告管理',
+                            font: '&#xe764;'
+                        }
+                    },
+                    {
+                        path: "/cms/operation/ad/positions",
+                        component: (resolve) => require(["../pages/cms/operation/adPositions.vue"], resolve),
+                        meta: {
+                            can: 'cms ad operations',
+                            show: true,
+                            name: '广告位',
+                            font: '&#xe764;'
+                        }
+                    },
+                    {
+                        path: "/cms/operation/edit/ad",
+                        component: (resolve) => require(["../pages/cms/operation/editAd.vue"], resolve),
+                        meta: {
+                            can: 'cms ad operations',
+                            show: false,
+                            name: '广告位',
+                            font: '&#xe764;'
+                        }
+                    }
+                ]
             }
           ]
         },

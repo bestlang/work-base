@@ -173,7 +173,7 @@ class PrivilegesController extends Controller
         $permission = Permission::find($id);
 //        $permission->name = $name;
 //        $permission->show_name = $show_name;
-        $permission->update(['name'=>$name, 'show_name'=>$show_name]);
+        Permission::where('id', $id)->update(['name'=>$name, 'show_name'=>$show_name]);
         return response()->ajax();
     }
 

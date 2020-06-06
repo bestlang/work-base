@@ -1,36 +1,19 @@
 <?php
 namespace Bestlang\Laracms;
 
+use Bestlang\Laracms\Models\Cms\Content;
 use Bestlang\Laracms\Models\Cms\Position;
 use Arr;
 
 class LC
 {
-//    public function meta($content, $field){
-//        $metas = $content->metas;
-//        foreach ($metas as $meta){
-//            if($meta->field == $field){
-//                return $meta->value;
-//            }
-//        }
-//        return false;
-//    }
-
-    public function content($content, $field){
-        $contents = $content->contents;
-        foreach ($contents as $content){
-            if($content->field == $field){
-                return $content->value;
-            }
-        }
-        return false;
+    public function cc($channelId, $count=5)
+    {
+        return $this->categoryContents($channelId, $count);
     }
-    public function position($name){
-        $position = Position::where('name', $name)->first();
-        if(!$position){
-            return [];
-        }
-        $contents = Position::where('name', $name)->first()->contents()->with(['metas', 'contents'])->get();
+    public function categoryContents($channelId, $count=5)
+    {
+        $contents = Content::where('channel_id', $channelId)->with(['metas', 'contents'])->limit($count)->get();
         $contents->map(function($content){
             $ext = [];
             foreach ($content->metas as $meta){
@@ -40,7 +23,47 @@ class LC
         });
         return $contents;
     }
-    public function channel_position($name){
+    public function latest($channelName='', $count=5)
+    {
+        $contents = Content::when($channelName, function($q) use ($channelName) {
+            return $q->whereHas('fans',function($query) use ($channelName) {
+                $query->where('channel.name','=',$channelName);
+            });
+        })->with(['metas', 'contents'])->limit($count)->get();
+        $contents->map(function($content){
+            $ext = [];
+            foreach ($content->metas as $meta){
+                $ext[$meta->field] = $meta->value;
+            }
+            $content->ext = $ext;
+        });
+        return $contents;
+    }
+    public function content($content, $field){
+        $contents = $content->contents;
+        foreach ($contents as $content){
+            if($content->field == $field){
+                return $content->value;
+            }
+        }
+        return false;
+    }
+    public function position($name, $count=5){
+        $position = Position::where('name', $name)->first();
+        if(!$position){
+            return [];
+        }
+        $contents = Position::where('name', $name)->first()->contents()->with(['metas', 'contents'])->limit($count)->get();
+        $contents->map(function($content){
+            $ext = [];
+            foreach ($content->metas as $meta){
+                $ext[$meta->field] = $meta->value;
+            }
+            $content->ext = $ext;
+        });
+        return $contents;
+    }
+    public function channel_position($name, $count=5){
         $position = Position::where('name', $name)->where('is_channel', 1)->first();
         if(!$position){
             return [];

@@ -97,7 +97,7 @@
           'parentChannel',
           'currentChannel',
           'currentModel',
-      ]),
+      ])
     },
     watch:{
       currentChannel(val, oldVal){

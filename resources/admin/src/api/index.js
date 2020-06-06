@@ -44,6 +44,13 @@ export default {
     getPositionContents(data){ return fetch("/admin/cms/position/contents", data) },
     getRoleUsers(data){ return fetch("/admin/privileges/role/users", data) },
     deleteRole(data){ return fetch("/admin/privileges/delete/role", data, 'post') },
-    getComments(data){ return fetch("/admin/cms/get/comments", data, 'post') }
+    getComments(data){ return fetch("/admin/cms/get/comments", data, 'post') },
+    saveAdPosition(data){ return fetch("/admin/cms/save/ad/position", data, 'post') },
+    getAdPositions(data){ return fetch("/admin/cms/get/ad/positions", data) },
+    getAds(data){ return fetch("/admin/cms/get/ads", data) },
+    getAd(data){ return fetch("/admin/cms/get/ad", data)},
+    deleteAdPosition(data){ return fetch("/admin/cms/delete/ad/position", data) },
+    deleteAd(data){ return fetch("/admin/cms/delete/ad", data) },
+    saveAd(data){ return fetch("/admin/cms/save/ad", data, 'post') },
 
 }

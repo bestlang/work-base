@@ -64,7 +64,7 @@ class PositionController extends Controller
         if($id){
             $position = Position::find($id);
             $data = Arr::only($params, ['name', 'order_factor']);
-            $position->update($data);
+            Position::where('id', $id)->update($data);
             return response()->ajax($position);
         }else{
             $data = Arr::only($params, ['name', 'is_channel', 'order_factor', 'parent_id']);
