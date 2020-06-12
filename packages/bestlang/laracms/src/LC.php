@@ -3,10 +3,23 @@ namespace Bestlang\Laracms;
 
 use Bestlang\Laracms\Models\Cms\Content;
 use Bestlang\Laracms\Models\Cms\Position;
+use Bestlang\Laracms\Models\Cms\Ad;
+use Bestlang\Laracms\Models\Cms\AdPosition;
 use Arr;
 
 class LC
 {
+    //alias of positionAds
+    public function pa($positionName, $count=5)
+    {
+        return $this->positionAds($positionName, $count);
+    }
+    public function positionAds($positionName, $count=5)
+    {
+        $position = AdPosition::where('name', $positionName)->first();
+        return $position->ads()->where('enabled', 1)->where('start_time', '<=', now())->where('end_time', '>=', now())->limit($count)->get();
+    }
+    //alias of categoryContents
     public function cc($channelId, $count=5)
     {
         return $this->categoryContents($channelId, $count);

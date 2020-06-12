@@ -228,13 +228,13 @@
 
                 </div>
 
-
+                @foreach(LC::pa('首页右第一个广告位', 2) as $index => $ad)
                 <div class="panel panel-blockimg">
-                    <a href="">
-                        <img src="/holder/720305.png" class="img-responsive">
+                    <a href="{{$ad->url}}" target="{{$ad->target}}">
+                        <img src="{{$ad->image}}" class="img-responsive">
                     </a>
                 </div>
-
+                @endforeach
                 <!-- S 热门资讯 -->
                 <div class="panel panel-default hot-article">
                     <div class="panel-heading">
@@ -255,13 +255,13 @@
                     </div>
                 </div>
                 <!-- E 热门资讯 -->
-
+                @foreach(LC::pa('首页右第一个广告位', 2) as $index => $ad)
                 <div class="panel panel-blockimg">
-                    <a href="" rel="nofollow" title="FastAdmin推荐企业服务器" target="_blank">
-                        <img src="/holder/360305.png" class="img-responsive" alt="">
+                    <a href="{{$ad->url}}" rel="nofollow" title="{{$ad->name}}" target="{{$ad->target}}">
+                        <img src="{{$ad->image}}" class="img-responsive" alt="">
                     </a>
                 </div>
-
+                @endforeach
                 <!-- S 热门标签 -->
                 <div class="panel panel-default hot-tags">
                     <div class="panel-heading">
@@ -322,11 +322,13 @@
                     </div>
                 @endforeach
                 <!-- E 推荐下载 -->
-
+                @foreach(LC::pa('首页右第一个广告位', 2) as $index => $ad)
                 <div class="panel panel-blockimg">
-                    <a href=""><img src="/holder/720305.png" class="img-responsive"/></a>
+                    <a href="{{$ad->url}}" title="{{$ad->name}}">
+                        <img src="{{$ad->image}}" alt="{{$ad->name}}" class="img-responsive"/>
+                    </a>
                 </div>
-
+                @endforeach
             </aside>
         </div>
     </div>

@@ -40,7 +40,6 @@ class AppServiceProvider extends ServiceProvider
             }else{
                 return null;
             }
-            //return $user->hasRole('administrator') ? true : null;
         });
         // config
         $this->publishes([

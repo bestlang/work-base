@@ -58,53 +58,17 @@
                     </li>
                     <!--判断是否有子级或高亮当前栏目-->
                     <li class="dropdown">
-                        <a href="/cms/news.html"  data-toggle="dropdown" >新闻中心 <b class="caret"></b></a>
+                        <a href="javascript:;" data-toggle="dropdown" >新闻中心 <b class="caret"></b></a>
                         <ul class="dropdown-menu" role="menu">
-                            <li><a href="/cms/investment.html">投资</a></li>
-                            <li><a href="/cms/security.html">安全</a></li>
-                            <li><a href="/cms/internet.html">互联网</a></li>
-                            <li><a href="/cms/hardware.html">硬件</a></li>
+                            <li><a href="{{route('channel', 7)}}">抖音攻略</a></li>
+                            <li><a href="{{route('channel', 17)}}">防疫指南</a></li>
+                            <li><a href="{{route('channel', 15)}}">五花八门</a></li>
+                            <li><a href="{{route('channel', 18)}}">YYYY</a></li>
                         </ul>
                     </li>
                     <!--判断是否有子级或高亮当前栏目-->
                     <li class="dropdown">
-                        <a href="/cms/product.html"  data-toggle="dropdown" >产品中心 <b class="caret"></b></a>
-                        <ul class="dropdown-menu" role="menu">
-                            <li><a href="/cms/smarthome.html">智能家居</a></li>
-                            <li><a href="/cms/mobiledevice.html">移动设备</a></li>
-                            <li><a href="/cms/wearable.html">智能设备</a></li>
-                        </ul>
-                    </li>
-                    <!--判断是否有子级或高亮当前栏目-->
-                    <li class="dropdown">
-                        <a href="/cms/download.html"  data-toggle="dropdown" >下载中心 <b class="caret"></b></a>
-                        <ul class="dropdown-menu" role="menu">
-                            <li><a href="/cms/network.html">网络工具</a></li>
-                            <li><a href="/cms/media.html">媒体工具</a></li>
-                            <li><a href="/cms/app.html">应用软件</a></li>
-                        </ul>
-                    </li>
-                    <!--判断是否有子级或高亮当前栏目-->
-                    <li class="">
-                        <a href="/cms/d/message.html" >自定义表单</a>
-                        <ul class="dropdown-menu" role="menu">
-                        </ul>
-                    </li>
-                    <!--判断是否有子级或高亮当前栏目-->
-                    <li class="">
-                        <a href="/cms/p/aboutus.html" >单页</a>
-                        <ul class="dropdown-menu" role="menu">
-                        </ul>
-                    </li>
-                    <!--判断是否有子级或高亮当前栏目-->
-                    <li class="">
-                        <a href="/cms/special/it.html" >专题</a>
-                        <ul class="dropdown-menu" role="menu">
-                        </ul>
-                    </li>
-                    <!--判断是否有子级或高亮当前栏目-->
-                    <li class="dropdown">
-                        <a href="javascript:"  data-toggle="dropdown" >更多 <b class="caret"></b></a>
+                        <a href="javascript:" data-toggle="dropdown" >更多 <b class="caret"></b></a>
                         <ul class="dropdown-menu" role="menu">
                             <li><a href="">官网</a></li>
                             <li><a href="/store.html">插件市场</a></li>
@@ -132,9 +96,27 @@
                     <li class="dropdown">
                         <a href="/index/user/index" class="dropdown-toggle" data-toggle="dropdown">会员<span class="hidden-sm">中心</span> <b class="caret"></b></a>
                         <ul class="dropdown-menu">
-                            <li><a href="/index/user/login"><i class="fa fa-sign-in fa-fw"></i>登录</a></li>
-                            <li><a href="/index/user/register"><i class="fa fa-user-o fa-fw"></i>注册</a></li>
-
+                            @guest
+                                <li><a href="{{route('login')}}"><i class="fa fa-sign-in fa-fw"></i>登录</a></li>
+                                @if (Route::has('register'))
+                                <li><a href="{{route('register')}}"><i class="fa fa-user-o fa-fw"></i>注册</a></li>
+                                @endif
+                            @else
+                                <li><a href="{{ route('logout') }}" onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                        {{ __('Logout') }}
+                                    </a>
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                        @csrf
+                                    </form>
+                                </li>
+                                @if(auth()->user()->type == 1)
+                                {{--{{Gate::allows('system')}}--}}
+                                <li><a class="dropdown-item" href="/admin">
+                                        {{ __('Management') }}
+                                    </a></li>
+                                @endif
+                            @endguest
                         </ul>
                     </li>
                 </ul>
@@ -207,19 +189,19 @@
     <!-- S 浮动按钮 -->
 
 
-    <a class="hover" href="" target="_blank">
-        <i class="iconfont icon-pencil"></i>
-        <em>立即<br>投稿</em>
-    </a>
+    {{--<a class="hover" href="" target="_blank">--}}
+        {{--<i class="iconfont icon-pencil"></i>--}}
+        {{--<em>立即<br>投稿</em>--}}
+    {{--</a>--}}
 
-    <a href="javascript:;">
-        <i class="iconfont icon-qrcode"></i>
-        <div class="floatbtn-wrapper">
-            <div class="qrcode"><img src="https://cdn.demo.fastadmin.net/assets/addons/cms/img/qrcode.png"></div>
-            <p>微信公众账号</p>
-            <p>微信扫一扫加关注</p>
-        </div>
-    </a>
+    {{--<a href="javascript:;">--}}
+        {{--<i class="iconfont icon-qrcode"></i>--}}
+        {{--<div class="floatbtn-wrapper">--}}
+            {{--<div class="qrcode"><img src="https://cdn.demo.fastadmin.net/assets/addons/cms/img/qrcode.png"></div>--}}
+            {{--<p>微信公众账号</p>--}}
+            {{--<p>微信扫一扫加关注</p>--}}
+        {{--</div>--}}
+    {{--</a>--}}
 
     <a id="back-to-top" class="hover" href="javascript:;">
         <i class="iconfont icon-backtotop"></i>

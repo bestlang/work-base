@@ -90,7 +90,7 @@
                     cancelButtonText: '取消',
                     type: 'warning'
                 }).then(async () => {
-                    let res = await api.deleteAd({id})
+                    let res = await api.deleteAd({id: row.id})
                     if(res.success){
                         this.$message({
                             message: '操作成功',

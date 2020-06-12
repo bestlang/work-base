@@ -286,6 +286,13 @@ export default new VueRouter({
       meta: {
         name: '登录',
       },
+    },
+    {
+        path: "/test",
+        component: (resolve) => require(["../pages/test.vue"], resolve),
+        meta: {
+            name: 'test',
+        },
     }
 
   ]

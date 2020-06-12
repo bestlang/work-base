@@ -19,9 +19,9 @@ class ChannelController extends Controller
     {
         $params = $request->all();
         $disabled = Arr::get($params, 'disabled', false);
-        $except_single_page = Arr::get($params, 'except_single_page', false);
-        $tree = Channel::with('model')->get()->filter(function($item)use($except_single_page){
-            return $except_single_page ? !$item->model->is_single_page : true;
+        $has_contents = Arr::get($params, 'has_contents', false);
+        $tree = Channel::with('model')->get()->filter(function($item)use($has_contents){
+            return $has_contents ? $item->model->has_contents : true;
         })->map(function($item)use($disabled){
             if($disabled){
                 $item->disabled=true;

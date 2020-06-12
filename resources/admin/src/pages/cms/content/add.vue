@@ -66,9 +66,10 @@
                                     <vue-ueditor-wrap v-model="form[item.field]" :config="ueditorConfig"></vue-ueditor-wrap>
                                 </div>
                             </el-form-item>
-
-
                         </template>
+                        <el-form-item label="标签">
+                            <tag></tag>
+                        </el-form-item>
                         <el-form-item label="编辑推荐位" v-if="contentPositions && contentPositions.length">
                             <el-checkbox-group  v-model="form['positions']">
                                 <el-checkbox :label="option.id" v-for="option in contentPositions">{{option.name}}</el-checkbox>
@@ -90,6 +91,7 @@
     import imageUpload from "@/components/imageUpload"
     import multipleImageUpload from "@/components/multipleImageUpload"
     import attachment from "@/components/attachment"
+    import tag from "@/components/tag"
     import {mapGetters} from 'vuex'
     import api from '../../../api/index'
 
@@ -113,7 +115,8 @@
             VueUeditorWrap,
             imageUpload,
             multipleImageUpload,
-            attachment
+            attachment,
+            tag
         },
         computed:{
             ...mapGetters([

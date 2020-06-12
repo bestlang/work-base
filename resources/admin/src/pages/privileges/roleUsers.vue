@@ -33,7 +33,7 @@
                     fixed="right"
                     label="操作">
                 <template slot-scope="scope">
-                    <el-button class="l-inline-btn" type="text" size="small" @click="handleRemove(scope.row)">移出</el-button>
+                    <el-button class="l-inline-btn" type="default" size="small" @click="handleRemove(scope.row)">移出</el-button>
                 </template>
             </el-table-column>
         </el-table>
@@ -75,13 +75,19 @@
                 total: 0,
                 tableData: [],
                 roleName: '',
+                role_id: null,
                 form: {
-                  role_id: this.$route.params.id,
+                  role_id: null,
                   mobile: '',
                   password: '',
                   confirm_password: '',
                   name: ''
                 }
+            }
+        },
+        watch:{
+            role_id(val){
+                this.loadRoleUsers(val)
             }
         },
         computed:{
@@ -126,12 +132,14 @@
               }).catch(() => {});
             },
             async loadRoleUsers(){
-                let res = await api.getRoleUsers({id: this.currentRole.id})
+                let res = await api.getRoleUsers({id: this.role_id || 0})
                 this.roleName = res.data.name;
                 this.tableData = res.data.users;
             }
         },
         async mounted() {
+            this.role_id = parseInt(this.$route.query.role_id || 0);
+            this.form.role_id = this.role_id
             await this.loadRoleUsers()
         }
     }

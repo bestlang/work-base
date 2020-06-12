@@ -22,7 +22,7 @@
     <div class="l-tree-content">
         <div class="l-block" v-if="!showForm">
           <div class="l-block-header" v-if="parentChannel">
-            <div><i class="iconfont">&#xe64c;</i> {{parentChannel.hasOwnProperty('name') ? parentChannel.name : ''}}</div>
+            <div><i class="iconfont">&#xe64c;</i> {{parentChannel.hasOwnProperty('name') ? parentChannel.name : ''}} <span style="color: white">{{parentChannel.id}}</span></div>
             <el-button type="primary" size="small" @click="addContent">新增</el-button>
           </div>
           <div class="l-block-body">

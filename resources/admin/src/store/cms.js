@@ -82,7 +82,7 @@ const cmsConfig = {
       //payload = [parent, except_single_page]
       async [types.CMS_CHANNELS] ({commit, dispatch}, payload=[null, 0]) {
         commit(types.LOADING, true)
-        let res = await api.getCmsChannelTree({disabled: true, except_single_page: payload[1]});
+        let res = await api.getCmsChannelTree({disabled: true, has_contents: payload[1]});
         // 取到了数据
         if(Object.keys(res.data).length > 0){
           let node = res.data[Object.keys(res.data)[0]]
