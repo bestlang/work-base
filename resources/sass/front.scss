@@ -1,0 +1,30 @@
+.l-flex-row{
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+}
+.l-flex-1{
+  flex: 1;
+}
+.l-login-title{
+  line-height: 50px;
+  font-size: 16px;
+  >div{
+    background: #f1f1f1;
+    a{
+      display: block;
+      &:hover{
+        text-decoration: none;
+      }
+    }
+    &.active{
+      background: transparent;
+      font-weight: 700;
+    }
+  }
+}
+.l-login-panel{
+  border: 1px solid #e4ecf3;
+  border-radius: 2px;
+  margin: 50px auto;
+}

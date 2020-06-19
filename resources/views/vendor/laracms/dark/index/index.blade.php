@@ -185,11 +185,15 @@
                                             <div class="article-intro hidden-xs">
                                                 {{$content->description}}
                                             </div>
+                                            <div>
+                                                @foreach($content->tags as $tag)
+                                                <a href="/cms/network.html" class="tag tag-primary">{{$tag->name}}</a>
+                                                @endforeach
+                                            </div>
                                             <div class="article-tag">
-                                                <a href="/cms/network.html" class="tag tag-primary">网络工具</a>
                                                 <span itemprop="date">2019年03月27日</span>
                                                 <span itemprop="likes" title="点赞次数"><i class="fa fa-thumbs-up"></i> 108 点赞</span>
-                                                <span itemprop="comments"><a href="/cms/network/102.html#comments" target="_blank" title="评论数"><i class="fa fa-comments"></i> 0</a> 评论</span>
+                                                <span itemprop="comments"><a href="{{route('content', $content->id)}}#comments" target="_blank" title="评论数"><i class="fa fa-comments"></i> {{$content->comments()->count()}}</a> 评论</span>
                                                 <span itemprop="views" title="浏览次数"><i class="fa fa-eye"></i> 1250 浏览</span>
                                             </div>
                                         </div>

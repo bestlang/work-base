@@ -12,6 +12,6 @@ const mix = require('laravel-mix');
  */
 
 mix.js('resources/js/app.js', 'public/vendor/laracms/dark/')
-    .sass('resources/sass/app.scss', 'public/vendor/laracms/dark/');
+    .sass('resources/sass/front.scss', 'public/vendor/laracms/dark/');
 
 // mix.less('resources/less/cms.less', 'public/css');

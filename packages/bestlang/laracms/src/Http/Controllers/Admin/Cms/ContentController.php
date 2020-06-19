@@ -5,6 +5,7 @@ namespace Bestlang\Laracms\Http\Controllers\Admin\Cms;
 use Bestlang\Laracms\Models\Cms\Channel;
 use Bestlang\Laracms\Models\Cms\ContentContent;
 use Bestlang\Laracms\Models\Cms\ContentMeta;
+use Bestlang\Laracms\Models\Cms\Tag;
 use Illuminate\Http\Request;
 use Bestlang\Laracms\Http\Controllers\Controller;
 use Bestlang\Laracms\Models\Cms\Content;
@@ -76,6 +77,7 @@ class ContentController extends Controller
         // 自定义字段 不包含TDK
         $metaFileds = $model->fields->filter(function($item){return $item->is_channel == '0' && $item->type != 'content' && $item->is_custom == '1';});
         $arr = Arr::only($params, ['channel_id', 'model_id', 'title', 'keywords', 'description']);
+        $tags = $request->input('tags', '');
 
         // 执行更新逻辑
         $id = $request->input('id', 0);
@@ -105,6 +107,15 @@ class ContentController extends Controller
                     }
                 }
                 $content->metas()->updateOrInsert(['content_id' => $id, 'field' => $filed->field], ['value' => $value]);
+            }
+            // tags标签
+            if($tags){
+//                return response()->ajax($tags);
+                $tagIds = collect($tags)->map(function($tag){
+                    $tagModel = Tag::firstOrCreate(['name' => $tag['name']]);
+                    return $tagModel->id;
+                });
+                $content->tags()->sync($tagIds);
             }
         }else{
             // 执行插入逻辑
@@ -152,7 +163,7 @@ class ContentController extends Controller
         if(!$id){
             return response()->error('参数错误!');
         }
-        $content = Content::with(['contents', 'metas'])->find($id);
+        $content = Content::with(['contents', 'metas', 'tags'])->find($id);
 
         $filedTypeMap = [];
         $content->model->fields->filter(function($item){

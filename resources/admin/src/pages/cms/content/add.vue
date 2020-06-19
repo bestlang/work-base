@@ -68,7 +68,7 @@
                             </el-form-item>
                         </template>
                         <el-form-item label="标签">
-                            <tag></tag>
+                            <tag v-model="form['tags']"></tag>
                         </el-form-item>
                         <el-form-item label="编辑推荐位" v-if="contentPositions && contentPositions.length">
                             <el-checkbox-group  v-model="form['positions']">
@@ -135,6 +135,9 @@
             }
         },
         methods: {
+            assignTags(payload){
+                this.$set(this.form, 'tags', payload.map(tag => tag.name).join(','));
+            },
             goback(){
                 this.$router.push('/cms/content?channel_id='+this.channel_id)
             },
@@ -195,6 +198,7 @@
             this.channel_id = parseInt(this.$route.query.channel_id || 0);
             await this.loadContentPositions(this.channel_id);
             this.$store.dispatch('collapse');
+            this.$set(this.form, 'tags', [{id: 1, name: ''}])
         }
     }
 </script>

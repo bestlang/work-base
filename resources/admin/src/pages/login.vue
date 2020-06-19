@@ -1,35 +1,21 @@
 <template>
-    <div class="login-container">
-        <div v-title="'登录'"></div>
-        <div class="login-inner">
-            <div style="width: 100vw; height: 100vh;">
-            <el-row class="login-inner-box">
-            <el-col class="login-form" :span="8" :offset="8">
-                <div style="text-align: center;font-size: 36px;padding-bottom: 40px;">{{appName}}™</div>
-                <div class="val user-after">
-                    <input type="text" autocomplete="off" placeholder="mobile"
-                           v-model="params.mobile"
-                           @keyup.enter="login"
-                           class="login-input user">
-                    <label id="mobile"></label>
-                </div>
-                <div class="val password-after">
-                    <input type="password" autocomplete="new-password" placeholder="password"
-                           v-model="params.password"
-                           @blur="requirePassword"
-                           @keydown="requirePassword"
-                           @keyup.enter="login"
-                           class="login-input user">
-                    <label id="password"></label>
-                </div>
-                <el-button :loading="loading"  class="login-input login-btn" type="primary" @click="login" id="login">{{loginFont}}</el-button>
-
-            </el-col>
-
-        </el-row>
+    <el-card class="box-card">
+        <div slot="header" class="clearfix">
+            <span>{{appName}}™管理端</span>
         </div>
-        </div>
-    </div>
+        <el-form :model="params" status-icon :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm">
+            <el-form-item label="用户名" prop="mobile">
+                <el-input type="text" v-model="params.mobile" autocomplete="off"></el-input>
+            </el-form-item>
+            <el-form-item label="密码" prop="password">
+                <el-input type="password" v-model="params.password" autocomplete="off"></el-input>
+            </el-form-item>
+            <el-form-item>
+                <el-button :loading="loading" type="primary" @click="login">{{loginFont}}</el-button>
+            </el-form-item>
+        </el-form>
+    </el-card>
+
 </template>
 
 <script type="text/javascript">
@@ -44,6 +30,9 @@ export default {
             params: {
                 mobile: '18625072568',
                 password: '111111'
+            },
+            rules: {
+
             }
         }
     },
@@ -110,34 +99,19 @@ export default {
 </script>
 
 <style lang="less" scoped>
-    .login-input{
-      text-indent: 15px;
+    @media screen and (min-width: 768px) {
+        .box-card {
+            width: 480px;
+            margin: 100px auto;
+        }
     }
-    .login-img{max-height: 50px;}
-    .val {
-        width: 320px;
-        margin: 0 auto;
-        position: relative;
-        z-index: 99;
+    @media screen and (max-width: 768px) {
+        .box-card {
+            width: 90vw;
+            margin: 100px auto;
+        }
     }
-    .user-after::after {
-        position: absolute;
-        top: 8px;
-        left: 15px;
-        color: #8ba6ba;
-        font-family: "iconfont";
-        font-size: 24px;
-        content: "\e614";
-    }
-    .password-after::after {
-        position: absolute;
-        top: 10px;
-        left: 16px;
-        color: #8ba6ba;
-        font-family: "iconfont";
-        font-size: 24px;
-        content: "\e75b";
-    }
+
     .val label {
         position: absolute;
         top: 14px;
@@ -152,8 +126,5 @@ export default {
     .val label.error {
         right: 48px;
         transition: 0.5s right;
-    }
-    #login{
-        text-indent: 0;
     }
 </style>

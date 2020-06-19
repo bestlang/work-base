@@ -35,9 +35,9 @@
                     <div class="more pull-right">
                         <ol class="breadcrumb">
                             <!-- S 面包屑导航 -->
-                            <li><a href="/cms/">首页</a></li>
-                            <li><a href="/cms/news.html">新闻中心</a></li>
-                            <li><a href="/cms/internet.html">互联网</a></li>
+                            @foreach(LC::breadcrumbs($channel) as $b)
+                                <li><a href="{{$b->url}}">{{$b->name}}</a></li>
+                            @endforeach
                             <!-- E 面包屑导航 -->
                         </ol>
                     </div>
@@ -80,8 +80,13 @@
                                                 <div class="article-intro hidden-xs" style="line-height: 22px;">
                                                     {{$content->description}}
                                                 </div>
-                                                <div class="article-tag" style="position: absolute;bottom: 0;">
-                                                    <a href="/cms/internet.html" class="tag tag-primary">互联网</a>
+                                                <div class="articlee-tag">
+                                                    @foreach($content->tags as $tag)
+                                                        <a href="/cms/internet.html" class="tag tag-primary">{{$tag->name}}</a>
+                                                    @endforeach
+                                                </div>
+                                                <div style="position: absolute;bottom: 0;">
+
                                                     <span itemprop="date">2018年04月17日</span>
                                                     <span itemprop="likes" title="点赞次数"><i class="fa fa-thumbs-up"></i> 233 点赞</span>
                                                     <span itemprop="comments"><a href="/cms/internet/33.html#comments" target="_blank" title="评论数"><i class="fa fa-comments"></i> 0</a> 评论</span>

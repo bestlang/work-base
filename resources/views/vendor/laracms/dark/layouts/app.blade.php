@@ -17,11 +17,12 @@
     <meta name="keywords" content="laracms"/>
     <meta name="description" content=""/>
 
-    <link rel="shortcut icon" href="https://cdn.demo.fastadmin.net/assets/img/favicon.ico" type="image/x-icon"/>
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon"/>
     <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.bootcdn.net/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <link href="https://cdn.bootcdn.net/ajax/libs/Swiper/4.5.0/css/swiper.min.css" rel="stylesheet">
     <link rel="stylesheet" media="screen" href="/vendor/laracms/dark/common.css" />
+    <link rel="stylesheet" media="screen" href="/vendor/laracms/dark/front.css" />
 
     <link rel="stylesheet" href="//at.alicdn.com/t/font_1104524_z1zcv22ej09.css">
     @stack('css')
@@ -64,6 +65,7 @@
                             <li><a href="{{route('channel', 17)}}">防疫指南</a></li>
                             <li><a href="{{route('channel', 15)}}">五花八门</a></li>
                             <li><a href="{{route('channel', 18)}}">YYYY</a></li>
+                            <li><a href="{{route('channel', 24)}}">苏州频道</a></li>
                         </ul>
                     </li>
                     <!--判断是否有子级或高亮当前栏目-->
@@ -222,6 +224,7 @@
 <script src="https://cdn.bootcdn.net/ajax/libs/Swiper/4.5.0/js/swiper.min.js"></script>
 {{--<script type="text/javascript" src="https://cdn.demo.fastadmin.net/assets/addons/cms/js/cms.js?r=1.0.2"></script>--}}
 {{--<script type="text/javascript" src="https://cdn.demo.fastadmin.net/assets/addons/cms/js/common.js?r=1.0.2"></script>--}}
+<script src="https://cdn.bootcdn.net/ajax/libs/axios/0.19.2/axios.min.js"></script>
 @stack('script')
 </body>
 </html>

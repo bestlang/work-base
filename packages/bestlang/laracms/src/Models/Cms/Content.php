@@ -39,4 +39,9 @@ class Content extends Model
     {
         return $this->hasMany(Comment::class)->with('user');
     }
+
+    public function tags()
+    {
+        return $this->belongsToMany(Tag::class, 'cms_content_tags','content_id','tag_id');
+    }
 }

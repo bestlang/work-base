@@ -1,6 +1,6 @@
 <template>
     <div class="add-row-tag">
-        <el-row :gutter="0" v-for="(row, index) in rowData" :key="index" class="row-item">
+        <el-row :gutter="0" v-for="(row, index) in this.value" :key="index" class="row-item">
             <el-col :span="7">
                 <!--<label>标签:</label>-->
                 <el-input
@@ -20,7 +20,7 @@
     export default {
         name: 'tag',
         props: {
-            propData: {
+            value: {
                 type: Array,
                 required: false,
                 default:function(){
@@ -33,32 +33,34 @@
         },
         data () {
             return {
-                rowData: [{
-                        id: 0,
-                        name: ''
-                    }]
+                rowData: []
             }
         },
         watch: {
             'rowData': {
                 deep: true,
                 handler(val){
-                    this.$emit('tagChange', val)
+                    this.$emit('input', val)
                 }
             }
         },
         methods: {
             addRow (row) {
-                for(let idx in this.rowData){
-                    this.rowData[idx].id == idx
+                this.rowData = [...this.value];
+                let id = 0;
+                for(let data of this.rowData){
+                    if(data.id > id) {
+                        id = data.id
+                    }
                 }
                 let obj = {
-                    id: this.rowData.length,
+                    id: id+1,
                     name: ''
                 }
                 this.rowData.push(obj)
             },
             deleteRow (row) {
+                this.rowData = [...this.value];
                 for(let idx in this.rowData){
                     if(this.rowData[idx].id == row.id){
                         this.$delete(this.rowData, idx)
@@ -67,12 +69,9 @@
                 }
             }
         },
-        created() {
-            if (this.propData.length > 0) {
-                for(let idx in this.propData){
-                    this.propData[idx]['id'] = parseInt(idx)
-                }
-                this.rowData = this.propData;
+        mounted() {
+            if (this.value.length > 0) {
+                this.rowData = [...this.value];
             }
         }
     }

@@ -1,6 +1,7 @@
 <?php
 namespace Bestlang\Laracms;
 
+use Bestlang\Laracms\Models\Cms\Channel;
 use Bestlang\Laracms\Models\Cms\Content;
 use Bestlang\Laracms\Models\Cms\Position;
 use Bestlang\Laracms\Models\Cms\Ad;
@@ -9,6 +10,21 @@ use Arr;
 
 class LC
 {
+    //Breadcrumbs
+    public function breadcrumbs(Channel $channel)
+    {
+        $ancestors = $channel->ancestors()->get();
+        $ancestors->push($channel);
+        $ancestors->map(function($c){
+            $c->url = route('channel', $c->id);
+        });
+        $ancestors->shift();
+        $home = new Channel();
+        $home->name = '首页';
+        $home->url = '/';
+        $ancestors->prepend($home);
+        return $ancestors;
+    }
     //alias of positionAds
     public function pa($positionName, $count=5)
     {
@@ -19,6 +35,7 @@ class LC
         $position = AdPosition::where('name', $positionName)->first();
         return $position->ads()->where('enabled', 1)->where('start_time', '<=', now())->where('end_time', '>=', now())->limit($count)->get();
     }
+
     //alias of categoryContents
     public function cc($channelId, $count=5)
     {
@@ -36,6 +53,7 @@ class LC
         });
         return $contents;
     }
+
     public function latest($channelName='', $count=5)
     {
         $contents = Content::when($channelName, function($q) use ($channelName) {
@@ -52,6 +70,7 @@ class LC
         });
         return $contents;
     }
+
     public function content($content, $field){
         $contents = $content->contents;
         foreach ($contents as $content){
@@ -61,6 +80,7 @@ class LC
         }
         return false;
     }
+
     public function position($name, $count=5){
         $position = Position::where('name', $name)->first();
         if(!$position){
@@ -76,6 +96,7 @@ class LC
         });
         return $contents;
     }
+
     public function channel_position($name, $count=5){
         $position = Position::where('name', $name)->where('is_channel', 1)->first();
         if(!$position){

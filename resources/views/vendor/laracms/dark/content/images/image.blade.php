@@ -30,7 +30,7 @@
                     <div>{!!  LC::content($content, 'content') !!}</div>
                 </div>
                 <div class="panel panel-default">
-                    <div class="panel-heading">评论列表</div>
+                    <div class="panel-heading" id="comments">评论列表</div>
                     <div class="panel-body">
                         <div>
                             @foreach($comments as $comment)
@@ -64,7 +64,7 @@
         $('#comment_submit').click(function(){
             const content = $('#comment').val();
             const contend_id = $('#content_id').val();
-            axios.post('/cms/comment/save', {content: content, content_id:contend_id}).then(response => {
+            axios.post('/comment/save', {content: content, content_id:contend_id}).then(response => {
                 let res = response.data;
                 if(res.success){
                 alert('评论成功')
@@ -100,6 +100,13 @@
 
 @push('css')
 <style>
+    #comment_submit{
+        margin-top: 10px;
+    }
+    .l-content-title{
+        font-size: 30px;
+        margin-bottom: 20px;
+    }
     .swiper-container {
         width: 100%;
         height: 640px;

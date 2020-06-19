@@ -9,9 +9,9 @@
                     <div class="panel panel-default article-content">
                         <div class="panel-heading">
                             <ol class="breadcrumb">
-                                <li>首页</li>
-                                <li>最新新闻</li>
-                                <li>时事热点</li>
+                                @foreach(LC::breadcrumbs($content->channel) as $b)
+                                <li><a href="{{$b->url}}">{{$b->name}}</a></li>
+                                @endforeach
                                 <li>正文</li>
                             </ol>
                         </div>
@@ -21,7 +21,7 @@
                         </div>
                     </div>
                     <div class="panel panel-default">
-                        <div class="panel-heading">评论列表</div>
+                        <div class="panel-heading" id="comments">评论列表</div>
                         <div class="panel-body">
                             <div>
                                 @foreach($comments as $comment)
@@ -127,7 +127,7 @@
 //            if(!content){
 //                alert('评论内容不能为空');
 //            }
-            axios.post('/cms/comment/save', {content: content, content_id:contend_id}).then(response => {
+            axios.post('/comment/save', {content: content, content_id:contend_id}).then(response => {
                 let res = response.data;
                 if(res.success){
                     alert('评论成功')
@@ -140,7 +140,13 @@
     });
 </script>
 @endpush
-
+@push('css')
+<style>
+    #comment_submit{
+        margin-top: 10px;
+    }
+</style>
+@endpush
 {{--<!DOCTYPE html>--}}
 {{--<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">--}}
 {{--<head>--}}

@@ -44,3 +44,6 @@ fastcgi_pass unix:/run/php-fpm/www.sock;
 
 单页-特殊的栏目
 
+
+
+php artisan migrate --path=packages/bestlang/laracms/database/migrations/2020_06_14_153336_create_cms_tags_table.php

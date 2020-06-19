@@ -51,7 +51,7 @@
 //                this.vals = updated
             }
         },
-        mounted: function () {
+        mounted(){
             if(this.value){
                 this.vals = [...this.value]
                 this.updated = [...this.value]

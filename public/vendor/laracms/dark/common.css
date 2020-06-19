@@ -360,7 +360,7 @@ a {
     visibility: hidden;
 }
 .navbar-inverse{
-    background-color: #777;
+    background-color: #002939;
 }
 .navbar-inverse .navbar-nav > li > a {
     color: #caced2;
@@ -662,8 +662,8 @@ a {
 }
 footer {
     padding: 30px 0;
-    background: #777;
-    color: #fff;
+    background: #002939;
+    color: #c1c1c1;
     margin-top: 25px;
 }
 footer a {
