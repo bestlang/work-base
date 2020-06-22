@@ -72,10 +72,6 @@
                         <div class="related-article">
                             <div class="row">
                                 @foreach(LC::position('首页图集推荐', 4) as $content)
-                                    {{--<li>--}}
-                                        {{--<span>[<a href="">{{$content->channel->name}}</a>]</span>--}}
-                                        {{--<a class="link-dark" href="{{route('content', $content->id)}}" title="{{$content->title}}">{{$content->title}}</a>--}}
-                                    {{--</li>--}}
                                     <div class="col-sm-3 col-xs-6">
                                         <a href="{{route('content', $content->id)}}" class="img-zoom">
                                             <div class="embed-responsive embed-responsive-4by3">
@@ -167,6 +163,57 @@
                             </article>
 
                             @foreach(LC::latest('', 15) as $index => $content)
+                                @if($content->model->id == 2)
+                                <article class="article-item">
+                                    <div class="gallery-article">
+                                        <h3 class="article-title">
+                                            <a href="{{route('content', $content->id)}}" >{{$content->title}}</a>
+                                        </h3>
+                                        <div class="row">
+                                            <div class="col-sm-3 col-xs-6">
+                                                <a href="{{route('content', $content->id)}}" class="img-zoom">
+                                                    <div class="embed-responsive embed-responsive-4by3">
+                                                        <img src="https://cdn.demo.fastadmin.net/uploads/20190327/b1e6477ef37fe30fbcbab777d468c6a5.png" alt="Apple watch 智能手表" class="embed-responsive-item">
+                                                    </div>
+                                                </a>
+                                            </div>
+                                            <div class="col-sm-3 col-xs-6">
+                                                <a href="{{route('content', $content->id)}}" class="img-zoom">
+                                                    <div class="embed-responsive embed-responsive-4by3">
+                                                        <img src="https://cdn.demo.fastadmin.net/uploads/20190327/cc275d7072b6d0e59ecdc620f4f59d18.png" alt="Apple watch 智能手表" class="embed-responsive-item">
+                                                    </div>
+                                                </a>
+                                            </div>
+                                            <div class="col-sm-3 col-xs-6">
+                                                <a href="{{route('content', $content->id)}}" class="img-zoom">
+                                                    <div class="embed-responsive embed-responsive-4by3">
+                                                        <img src="https://cdn.demo.fastadmin.net/uploads/20190327/0b1b09bc8beaaf0b53b145bbc1535dab.png" alt="Apple watch 智能手表" class="embed-responsive-item">
+                                                    </div>
+                                                </a>
+                                            </div>
+                                            <div class="col-sm-3 col-xs-6">
+                                                <a href="{{route('content', $content->id)}}" class="img-zoom">
+                                                    <div class="embed-responsive embed-responsive-4by3">
+                                                        <img src="https://cdn.demo.fastadmin.net/uploads/20190327/b4ce89b8240bea442ac6ee92f2f49cb0.png" alt="Apple watch 智能手表" class="embed-responsive-item">
+                                                    </div>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="media">
+                                            <div class="media-body ml-0">
+                                                <div class="article-intro hidden-xs">{{$content->description}}</div>
+                                                <div class="article-tag">
+                                                    <a href="/cms/mobiledevice.html" class="tag tag-primary">移动设备</a>
+                                                    <span itemprop="date">{{LC::dateFormat($content->created_at)}}</span>
+                                                    <span itemprop="likes" title="点赞次数"><i class="fa fa-thumbs-up"></i> 171 点赞</span>
+                                                    <span itemprop="comments"><a href="/cms/mobiledevice/100.html#comments" target="_blank" title="评论数"><i class="fa fa-comments"></i> {{$content->comments()->count()}}</a> 评论</span>
+                                                    <span itemprop="views" title="浏览次数"><i class="fa fa-eye"></i> 4049 浏览</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </article>
+                                @else
                                 <article class="article-item">
                                     <div class="media">
                                         <div class="media-left">
@@ -180,7 +227,7 @@
                                         </div>
                                         <div class="media-body">
                                             <h3 class="article-title">
-                                                <a href="{{route('content', $content->id)}}" >{{$content->title}}</a>
+                                                <a href="{{route('content', $content->id)}}">[{{$content->channel->name}}]{{$content->title}}</a>
                                             </h3>
                                             <div class="article-intro hidden-xs">
                                                 {{$content->description}}
@@ -191,7 +238,7 @@
                                                 @endforeach
                                             </div>
                                             <div class="article-tag">
-                                                <span itemprop="date">2019年03月27日</span>
+                                                <span itemprop="date">{{LC::dateFormat($content->created_at)}}</span>
                                                 <span itemprop="likes" title="点赞次数"><i class="fa fa-thumbs-up"></i> 108 点赞</span>
                                                 <span itemprop="comments"><a href="{{route('content', $content->id)}}#comments" target="_blank" title="评论数"><i class="fa fa-comments"></i> {{$content->comments()->count()}}</a> 评论</span>
                                                 <span itemprop="views" title="浏览次数"><i class="fa fa-eye"></i> 1250 浏览</span>
@@ -199,6 +246,7 @@
                                         </div>
                                     </div>
                                 </article>
+                                @endif
                             @endforeach
                             <!-- E 首页列表 -->
 
@@ -255,7 +303,6 @@
                                 </div>
                             </div>
                         @endforeach
-
                     </div>
                 </div>
                 <!-- E 热门资讯 -->

@@ -70,9 +70,12 @@ class ContentController extends Controller
             'channel_id' => 'required',
             'model_id' => 'required',
         ];
-        $model_id = Arr::get($params, 'model_id', 0);
+        $modelId = Arr::get($params, 'model_id', 0);
 
-        $model = Model::find($model_id);
+        $model = Model::find($modelId);
+        if(!$model){
+            response()->error('参数错误');
+        }
         $contentFileds = $model->fields->filter(function($item){return $item->is_channel == '0' && $item->type == 'content' && $item->is_custom == '1';});
         // 自定义字段 不包含TDK
         $metaFileds = $model->fields->filter(function($item){return $item->is_channel == '0' && $item->type != 'content' && $item->is_custom == '1';});
@@ -92,7 +95,7 @@ class ContentController extends Controller
             }
             // 更新自定义字段
             foreach ($metaFileds as $filed){
-                $value =  Arr::get($params, $filed->field, '');
+                $value =  Arr::get($params, $filed->field, null);
                 if($value){
                     // 对checkbox特殊处理
                     if($filed->type === 'checkbox'){
@@ -110,12 +113,18 @@ class ContentController extends Controller
             }
             // tags标签
             if($tags){
-//                return response()->ajax($tags);
-                $tagIds = collect($tags)->map(function($tag){
-                    $tagModel = Tag::firstOrCreate(['name' => $tag['name']]);
-                    return $tagModel->id;
-                });
-                $content->tags()->sync($tagIds);
+                try{
+                    $tagIds = collect($tags)->map(function($tag){
+                        if($tag['name']){
+                            $tagModel = Tag::firstOrCreate(['name' => $tag['name']]);
+                            return $tagModel->id;
+                        }
+                    })->toArray();
+                    $tagIds = array_filter($tagIds);
+                    $content->tags()->sync($tagIds);
+                }catch (\Exception $e){
+                    return response()->error($e->getMessage());
+                }
             }
         }else{
             // 执行插入逻辑

@@ -10,6 +10,10 @@ use Arr;
 
 class LC
 {
+    public function dateFormat($str)
+    {
+        return date('Y年m月d日 H:i', strtotime($str));
+    }
     //Breadcrumbs
     public function breadcrumbs(Channel $channel)
     {
