@@ -67,7 +67,7 @@
                                             <div class="media-left">
                                                 <a href="{{route('content', $content->id)}}" style="width: 160px;display: block;">
                                                     <div class="embed-responsive embed-responsive-4by3 img-zoom">
-                                                        @if($thumb = $content->ext['thumb'])
+                                                        @if(isset($content->ext['thumb']) && $thumb = $content->ext['thumb'])
                                                             <img src="{{$thumb}}" alt="{{$content->title}}"  />
                                                         @endif
                                                     </div>

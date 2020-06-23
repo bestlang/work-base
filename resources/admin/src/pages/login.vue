@@ -1,9 +1,9 @@
 <template>
     <el-card class="box-card">
         <div slot="header" class="clearfix">
-            <span>{{appName}}™管理端</span>
+            <h3>{{appName}}™管理端</h3>
         </div>
-        <el-form :model="params" status-icon :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm">
+        <el-form :model="params" status-icon :rules="rules" ref="ruleForm" label-width="60px" class="demo-ruleForm">
             <el-form-item label="用户名" prop="mobile">
                 <el-input type="text" v-model="params.mobile" autocomplete="off"></el-input>
             </el-form-item>
@@ -99,10 +99,12 @@ export default {
 </script>
 
 <style lang="less" scoped>
+
     @media screen and (min-width: 768px) {
         .box-card {
             width: 480px;
             margin: 100px auto;
+            padding: 20px 50px 10px;
         }
     }
     @media screen and (max-width: 768px) {

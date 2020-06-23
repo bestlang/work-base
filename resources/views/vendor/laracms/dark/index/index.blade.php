@@ -75,7 +75,7 @@
                                     <div class="col-sm-3 col-xs-6">
                                         <a href="{{route('content', $content->id)}}" class="img-zoom">
                                             <div class="embed-responsive embed-responsive-4by3">
-                                                @if($thumb = $content->ext['thumb'])
+                                                @if(isset($content->ext['thumb']) && $thumb = $content->ext['thumb'])
                                                 <img src="{{$thumb}}" alt="{{$content->title}}" class="embed-responsive-item">
                                                 @endif
                                             </div>
@@ -109,59 +109,6 @@
                     </div>
                     <div class="panel-body p-0">
                         <div class="article-list">
-
-                            <!-- S 首页列表 -->
-                            <article class="article-item">
-                                <div class="gallery-article">
-                                    <h3 class="article-title">
-                                        <a href="/cms/mobiledevice/100.html" >Apple watch 智能手表</a>
-                                    </h3>
-                                    <div class="row">
-                                        <div class="col-sm-3 col-xs-6">
-                                            <a href="/cms/mobiledevice/100.html" class="img-zoom">
-                                                <div class="embed-responsive embed-responsive-4by3">
-                                                    <img src="https://cdn.demo.fastadmin.net/uploads/20190327/b1e6477ef37fe30fbcbab777d468c6a5.png" alt="Apple watch 智能手表" class="embed-responsive-item">
-                                                </div>
-                                            </a>
-                                        </div>
-                                        <div class="col-sm-3 col-xs-6">
-                                            <a href="/cms/mobiledevice/100.html" class="img-zoom">
-                                                <div class="embed-responsive embed-responsive-4by3">
-                                                    <img src="https://cdn.demo.fastadmin.net/uploads/20190327/cc275d7072b6d0e59ecdc620f4f59d18.png" alt="Apple watch 智能手表" class="embed-responsive-item">
-                                                </div>
-                                            </a>
-                                        </div>
-                                        <div class="col-sm-3 col-xs-6">
-                                            <a href="/cms/mobiledevice/100.html" class="img-zoom">
-                                                <div class="embed-responsive embed-responsive-4by3">
-                                                    <img src="https://cdn.demo.fastadmin.net/uploads/20190327/0b1b09bc8beaaf0b53b145bbc1535dab.png" alt="Apple watch 智能手表" class="embed-responsive-item">
-                                                </div>
-                                            </a>
-                                        </div>
-                                        <div class="col-sm-3 col-xs-6">
-                                            <a href="/cms/mobiledevice/100.html" class="img-zoom">
-                                                <div class="embed-responsive embed-responsive-4by3">
-                                                    <img src="https://cdn.demo.fastadmin.net/uploads/20190327/b4ce89b8240bea442ac6ee92f2f49cb0.png" alt="Apple watch 智能手表" class="embed-responsive-item">
-                                                </div>
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div class="media">
-                                        <div class="media-body ml-0">
-                                            <div class="article-intro hidden-xs">
-                                                从 2015 年，苹果推出第一代 Apple Watch 后，在这 3 年时间里，Apple Watch 已经凭借着较准确的定位、合理的迭代升级逐渐成为了目前智能手表行业相对较优的选择。                </div>
-                                            <div class="article-tag">
-                                                <a href="/cms/mobiledevice.html" class="tag tag-primary">移动设备</a>
-                                                <span itemprop="date">2019年03月27日</span>
-                                                <span itemprop="likes" title="点赞次数"><i class="fa fa-thumbs-up"></i> 171 点赞</span>
-                                                <span itemprop="comments"><a href="/cms/mobiledevice/100.html#comments" target="_blank" title="评论数"><i class="fa fa-comments"></i> 1</a> 评论</span>
-                                                <span itemprop="views" title="浏览次数"><i class="fa fa-eye"></i> 4049 浏览</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </article>
-
                             @foreach(LC::latest('', 15) as $index => $content)
                                 @if($content->model->id == 2)
                                 <article class="article-item">
@@ -170,34 +117,18 @@
                                             <a href="{{route('content', $content->id)}}" >{{$content->title}}</a>
                                         </h3>
                                         <div class="row">
+                                            @foreach(json_decode($content->ext['album'], true) as $index => $album)
+                                                @if($index > 3)
+                                                    @break
+                                                @endif
                                             <div class="col-sm-3 col-xs-6">
                                                 <a href="{{route('content', $content->id)}}" class="img-zoom">
                                                     <div class="embed-responsive embed-responsive-4by3">
-                                                        <img src="https://cdn.demo.fastadmin.net/uploads/20190327/b1e6477ef37fe30fbcbab777d468c6a5.png" alt="Apple watch 智能手表" class="embed-responsive-item">
+                                                        <img src="{{$album['url']}}" alt="{{$album['description']}}" class="embed-responsive-item">
                                                     </div>
                                                 </a>
                                             </div>
-                                            <div class="col-sm-3 col-xs-6">
-                                                <a href="{{route('content', $content->id)}}" class="img-zoom">
-                                                    <div class="embed-responsive embed-responsive-4by3">
-                                                        <img src="https://cdn.demo.fastadmin.net/uploads/20190327/cc275d7072b6d0e59ecdc620f4f59d18.png" alt="Apple watch 智能手表" class="embed-responsive-item">
-                                                    </div>
-                                                </a>
-                                            </div>
-                                            <div class="col-sm-3 col-xs-6">
-                                                <a href="{{route('content', $content->id)}}" class="img-zoom">
-                                                    <div class="embed-responsive embed-responsive-4by3">
-                                                        <img src="https://cdn.demo.fastadmin.net/uploads/20190327/0b1b09bc8beaaf0b53b145bbc1535dab.png" alt="Apple watch 智能手表" class="embed-responsive-item">
-                                                    </div>
-                                                </a>
-                                            </div>
-                                            <div class="col-sm-3 col-xs-6">
-                                                <a href="{{route('content', $content->id)}}" class="img-zoom">
-                                                    <div class="embed-responsive embed-responsive-4by3">
-                                                        <img src="https://cdn.demo.fastadmin.net/uploads/20190327/b4ce89b8240bea442ac6ee92f2f49cb0.png" alt="Apple watch 智能手表" class="embed-responsive-item">
-                                                    </div>
-                                                </a>
-                                            </div>
+                                            @endforeach
                                         </div>
                                         <div class="media">
                                             <div class="media-body ml-0">
@@ -219,7 +150,7 @@
                                         <div class="media-left">
                                             <a href="{{route('content', $content->id)}}">
                                                 <div class="embed-responsive embed-responsive-4by3 img-zoom">
-                                                    @if($thumb = $content->ext['thumb'])
+                                                    @if(isset($content->ext['thumb']) && $thumb = $content->ext['thumb'])
                                                     <img src="{{$thumb}}" alt="{{$content->title}}"  />
                                                     @endif
                                                 </div>
@@ -268,7 +199,7 @@
                         <ul class="list-unstyled">
                             @foreach(LC::position('热点文章推荐', 5) as $content)
                                 <li>
-                                    <span>[<a href="">{{$content->channel->name}}</a>]</span>
+                                    <span>[<a href="{{route('channel', $content->channel->id)}}">{{$content->channel->name}}</a>]</span>
                                     <a class="link-dark" href="{{route('content', $content->id)}}" title="{{$content->title}}">{{$content->title}}</a>
                                 </li>
                             @endforeach
@@ -351,9 +282,9 @@
                 <!-- S 推荐下载 -->
                 @foreach(LC::channel_position('首页栏目推荐', 5) as $channel)
                     <div class="panel panel-default recommend-article">
-                        <div class="panel-heading">
+                        <div class="panel-heading l-flex">
                             <h3 class="panel-title">{{$channel->name}}</h3>
-                            {{--<a href="{{route('channel', $channel->id)}}">查看更多</a>--}}
+                            <a class="more" href="{{route('channel', $channel->id)}}">查看更多</a>
                         </div>
                         <div class="panel-body">
                             @foreach($channel->contents as $index => $content)

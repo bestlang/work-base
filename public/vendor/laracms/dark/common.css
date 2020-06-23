@@ -1938,9 +1938,10 @@ h1 .breadcrumb li {
     }
     .carousel-caption h3 {
         margin: 0;
-        font-size: 14px;
+        font-size: 16px;
         padding: 15px;
         text-align: left;
+        color: #eee;
     }
     .carousel-caption p {
         display: none;
@@ -2104,4 +2105,10 @@ h1 .breadcrumb li {
 }
 .autocomplete-suggestions .autocomplete-suggestion:hover {
     background: #f0f0f0;
+}
+
+.l-flex{
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
 }
