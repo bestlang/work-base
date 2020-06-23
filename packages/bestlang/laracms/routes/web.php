@@ -25,6 +25,7 @@ Route::get('/content/{id}', 'ContentController@index')->name('content');
 Route::get('/channel/{id}', 'ChannelController@index')->name('channel');
 Route::get('/single/{id}', 'ChannelController@single')->name('single');
 Route::any('/comment/save', 'CommentController@save');
+Route::get('/tag/{name}', 'TagController@contents')->name('tag');
 
 Route::group(['prefix' => 'ajax'], function($router){
     Route::any('/csrf', 'IndexController@csrf');

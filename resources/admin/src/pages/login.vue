@@ -3,15 +3,19 @@
         <div slot="header" class="clearfix">
             <h3>{{appName}}™管理端</h3>
         </div>
-        <el-form :model="params" status-icon :rules="rules" ref="ruleForm" label-width="60px" class="demo-ruleForm">
-            <el-form-item label="用户名" prop="mobile">
+        <el-form :model="params" status-icon :rules="rules" ref="ruleForm" label-width="0" class="demo-ruleForm">
+            <el-form-item prop="mobile">
+                <!--label="用户名"-->
+                <label>用户名</label>
                 <el-input type="text" v-model="params.mobile" autocomplete="off"></el-input>
             </el-form-item>
-            <el-form-item label="密码" prop="password">
+            <el-form-item  prop="password">
+                <!--label="密码"-->
+                <label>密码</label>
                 <el-input type="password" v-model="params.password" autocomplete="off"></el-input>
             </el-form-item>
             <el-form-item>
-                <el-button :loading="loading" type="primary" @click="login">{{loginFont}}</el-button>
+                <el-button style="width: 100%;margin-top: 20px;" :loading="loading" type="primary" @click="login">{{loginFont}}</el-button>
             </el-form-item>
         </el-form>
     </el-card>
@@ -99,12 +103,14 @@ export default {
 </script>
 
 <style lang="less" scoped>
-
+    label{
+        font-weight: 700;
+    }
     @media screen and (min-width: 768px) {
         .box-card {
             width: 480px;
             margin: 100px auto;
-            padding: 20px 50px 10px;
+            padding: 40px 50px 10px;
         }
     }
     @media screen and (max-width: 768px) {

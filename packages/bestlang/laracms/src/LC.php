@@ -6,10 +6,15 @@ use Bestlang\Laracms\Models\Cms\Content;
 use Bestlang\Laracms\Models\Cms\Position;
 use Bestlang\Laracms\Models\Cms\Ad;
 use Bestlang\Laracms\Models\Cms\AdPosition;
+use Bestlang\Laracms\Models\Cms\Tag;
 use Arr;
 
 class LC
 {
+    public function hot_tags()
+    {
+        return Tag::withCount('contents')->orderBy('contents_count', 'desc')->limit(20)->get();
+    }
     public function dateFormat($str)
     {
         return date('Y年m月d日 H:i', strtotime($str));

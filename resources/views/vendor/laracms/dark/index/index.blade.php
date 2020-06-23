@@ -63,7 +63,7 @@
                         <h3 class="panel-title">
                             <span>热门图集</span>
                             <div class="more">
-                                <a href="">查看更多</a>
+                                <a href="{{route('channel', 19)}}">查看更多</a>
                             </div>
                         </h3>
 
@@ -96,12 +96,11 @@
                             <div class="more hidden-xs">
                                 <ul class="list-unstyled list-inline">
                                     <!-- E 栏目筛选 -->
-                                    <li><a href="/channel/17">互联网</a></li>
-                                    <li><a href="">安全</a></li>
-                                    <li><a href="">投资</a></li>
-                                    <li><a href="">硬件</a></li>
-                                    <li><a href="">智能设备</a></li>
-                                    <li><a href="">移动设备</a></li>
+                                    <li><a href="{{route('channel', 7)}}">抖音攻略</a></li>
+                                    <li><a href="{{route('channel', 17)}}">防疫指南</a></li>
+                                    <li><a href="{{route('channel', 24)}}">苏州频道</a></li>
+                                    <li><a href="{{route('channel', 15)}}">五花八门</a></li>
+                                    <li><a href="{{route('channel', 19)}}">宝宝相册</a></li>
                                     <!-- E 栏目筛选 -->
                                 </ul>
                             </div>
@@ -165,7 +164,7 @@
                                             </div>
                                             <div>
                                                 @foreach($content->tags as $tag)
-                                                <a href="/cms/network.html" class="tag tag-primary">{{$tag->name}}</a>
+                                                <a href="{{route('tag', $tag->name)}}" class="tag tag-primary">{{$tag->name}}</a>
                                                 @endforeach
                                             </div>
                                             <div class="article-tag">
@@ -251,29 +250,9 @@
                     </div>
                     <div class="panel-body">
                         <div class="tags">
-                            <a href="" class="tag"> <span>压缩软件</span></a>
-                            <a href="" class="tag"> <span>压缩软件</span></a>
-                            <a href="" class="tag"> <span>压缩软件</span></a>
-                            <a href="" class="tag"> <span>压缩软件</span></a>
-                            <a href="" class="tag"> <span>压缩软件</span></a>
-                            <a href="" class="tag"> <span>压缩软件</span></a>
-                            <a href="" class="tag"> <span>压缩软件</span></a>
-                            <a href="" class="tag"> <span>压缩软件</span></a>
-                            <a href="" class="tag"> <span>压缩软件</span></a>
-                            <a href="" class="tag"> <span>压缩软件</span></a>
-                            <a href="" class="tag"> <span>压缩软件</span></a>
-                            <a href="" class="tag"> <span>压缩软件</span></a>
-                            <a href="" class="tag"> <span>压缩软件</span></a>
-                            <a href="" class="tag"> <span>压缩软件</span></a>
-                            <a href="" class="tag"> <span>压缩软件</span></a>
-                            <a href="" class="tag"> <span>压缩软件</span></a>
-                            <a href="" class="tag"> <span>压缩软件</span></a>
-                            <a href="" class="tag"> <span>压缩软件</span></a>
-                            <a href="" class="tag"> <span>压缩软件</span></a>
-                            <a href="" class="tag"> <span>压缩软件</span></a>
-                            <a href="" class="tag"> <span>压缩软件</span></a>
-                            <a href="" class="tag"> <span>压缩软件</span></a>
-
+                            @foreach(LC::hot_tags() as $index => $tag)
+                                <a href="{{route('tag', $tag->name)}}" class="tag"> <span>{{$tag->name}}</span></a>
+                            @endforeach
                         </div>
                     </div>
                 </div>

@@ -4,16 +4,7 @@
         <div class="">
             <div class="container">
                 <h1 class="category-title">
-                    {{$channel->name}}
-                    <div class="more pull-right">
-                        <ol class="breadcrumb">
-                            <!-- S 面包屑导航 -->
-                            @foreach(LC::breadcrumbs($channel) as $b)
-                                <li><a href="{{$b->url}}">{{$b->name}}</a></li>
-                            @endforeach
-                            <!-- E 面包屑导航 -->
-                        </ol>
-                    </div>
+                    {{$tag->name}}
                 </h1>
                 <div class="row">
                     <div class="col-md-8">
@@ -34,7 +25,6 @@
                             </div>
                             <div class="panel-body">
                                 @foreach($contents as $content)
-                                    {{--{{$content}}--}}
                                     <article class="article-item" style="padding: 20px 0;border-bottom: 1px solid #efefef;">
                                         <div class="media">
                                             <div class="media-left">

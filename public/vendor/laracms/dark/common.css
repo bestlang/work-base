@@ -2112,3 +2112,6 @@ h1 .breadcrumb li {
     flex-flow: row nowrap;
     justify-content: space-between;
 }
+.l-login-panel .panel-body{
+    padding: 30px 60px;
+}

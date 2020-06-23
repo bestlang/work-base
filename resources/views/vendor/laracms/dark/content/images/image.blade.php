@@ -6,7 +6,7 @@
             <div class="l-row">
                 <div class="l-block-content">
                     <h1 class="l-content-title">{{$content->title}}</h1>
-                    @if($albums = $content->ext['album'])
+                    @if(isset($content->ext['album']) && $albums = $content->ext['album'])
                         <div class="swiper-container">
                             <div class="swiper-container gallery-top">
                                 <div class="swiper-wrapper">
