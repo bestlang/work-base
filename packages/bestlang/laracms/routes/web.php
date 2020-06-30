@@ -26,6 +26,8 @@ Route::get('/channel/{id}', 'ChannelController@index')->name('channel');
 Route::get('/single/{id}', 'ChannelController@single')->name('single');
 Route::any('/comment/save', 'CommentController@save');
 Route::get('/tag/{name}', 'TagController@contents')->name('tag');
+Route::get('/search/{keyword}', 'SearchController@contents')->name('search');
+Route::get('/user', 'UserController@index');
 
 Route::group(['prefix' => 'ajax'], function($router){
     Route::any('/csrf', 'IndexController@csrf');
@@ -81,6 +83,7 @@ Route::group(['prefix' => 'ajax'], function($router){
             Route::any('/cms/content/positions', 'PositionController@contentPositions');
             Route::any('/cms/get/position', 'PositionController@position');
             Route::any('/cms/get/comments', 'CommentController@index');
+            Route::any('/cms/get/content/comments', 'CommentController@content');
             Route::any('/cms/save/ad/position', 'AdController@saveAdPosition');
             Route::any('/cms/get/ad/positions', 'AdController@getAdPositions');
             Route::any('/cms/delete/ad/position', 'AdController@deleteAdPosition');

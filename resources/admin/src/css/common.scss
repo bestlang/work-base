@@ -13,7 +13,7 @@
 }
 
 .el-button{
-  padding: 10px 20px;
+  padding: 12px 20px;
 }
 
 .unselectable {
@@ -100,7 +100,9 @@
 .l-mb-22{
   margin-bottom: 22px;
 }
-
+.l-mt-15{
+  margin-top: 15px;
+}
 .l-w-50{
   width: 50px;
 }
@@ -156,3 +158,17 @@
   background-color:#888;
 }
 /*控制滚动条 end*/
+
+.l-flex{
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+}
+
+a:link,a:visited,a:active{
+  color: #2d2d2d;
+  text-decoration: none;
+}
+a:hover{
+  text-decoration: underline;
+}

@@ -1,0 +1,223 @@
+html,body {
+    margin: 0;
+    padding: 0;
+}
+
+.el-submenu__title .title {
+    display: inline-block;
+    min-width: 44px;
+    vertical-align: middle;
+    transition: all .4s;
+    color: rgba(255, 255, 255, 1);
+    margin-left: 15px;
+}
+
+.el-menu-item .title {
+    margin-left: 15px;
+}
+
+.display-row-box {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    -ms-flex-align: center;
+    align-items: center;
+}
+
+.display-row-box .help-center {
+    border-right: 1px solid #e3e3e3;
+    cursor: pointer;
+}
+
+.display-row-box .help-center,
+.display-row-box span.el-dropdown-link {
+    padding: 0 20px;
+    line-height: 16px;
+}
+
+.display-row-box span.el-dropdown-link {
+    padding-right: 5px;
+}
+
+.home .el-submenu__title i,
+.home .el-menu .el-menu-item i {
+    color: rgba(255, 255, 255, 1);;
+    font-weight: 700;
+}
+
+.el-menu .el-menu-item .icon-fufei,
+.el-menu .el-menu-item .icon-yaoqing {
+    position: relative;
+    top: -2px;
+}
+
+.el-submenu__title:hover .title,
+.el-submenu__title:hover i,
+.el-menu .el-menu-item:hover i {
+    color: rgba(255, 255, 255, 1);
+}
+
+.home li.el-menu-item,
+.home .el-submenu__title {
+    color: rgba(255, 255, 255, 1);
+    transition: all .4s;
+    height: 50px;
+    line-height: 50px;
+}
+
+.home .el-submenu li.el-menu-item,
+.home .el-submenu li.el-menu-item:hover {
+    padding-left: 55px !important;
+    height: 42px;
+    line-height: 42px;
+}
+
+.el-submenu__title .icon-jinlingyingcaiwangtubiao52,
+.el-submenu__title .icon-weituoguanli {
+    position: relative;
+    top: -2px;
+}
+
+.el-submenu__title .icon-gongju,
+.el-submenu__title .icon-finance {
+    font-size: 18px;
+}
+
+.el-header.el-my-header {
+    width: 100%;
+    justify-content: space-between;
+    height: 46px !important;
+    padding-left: 0;
+    padding-right: 30px;
+}
+
+.store-name {
+    padding: 0 20px;
+}
+
+.small-word {
+    font-size: 14px;
+    color: #fff;
+    line-height: 46px;
+    text-align: center;
+    height: 46px;
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+}
+
+.big-word {
+    font-size: 16px;
+    color: #fff;
+    line-height: 50px;
+    text-align: center;
+    height: 50px;
+}
+
+span.el-dropdown-link {
+    color: #000;
+}
+
+.header-right-item {
+    height: 50px;
+    line-height: 50px;
+    padding: 0 16px;
+    cursor: pointer;
+}
+
+.el-menu-vertical-demo:not(.el-menu--collapse) {
+    width: 200px;
+    min-height: 400px;
+}
+
+.aside {
+    height: calc(100vh - 50px);
+}
+
+.main {
+    height: calc(100vh - 50px);
+    overflow: auto;
+    background: rgb(244, 244, 244);
+    padding: 15px;
+}
+
+.home-aside-bg {
+    background: #323232;
+    border-right: 1px solid #ffffff;
+}
+
+.iconfont.icon-style {
+    font-size: 18px;
+}
+
+.jqb-logo-img {
+    width: 24px;
+    flex: 0 0 auto;
+    margin-right: 13px;
+    border-radius: 50%;
+}
+
+.jqb-logo-text {
+    font-size: 16px;
+}
+
+.home .aside-wrappers {
+    flex: 1;
+}
+
+li.el-menu-item {
+    color: rgba(255, 255, 255, .8);
+}
+
+.home {
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+/*滚动条样式*/
+.home::-webkit-scrollbar { /*滚动条整体样式*/
+    width: 2px; /*高宽分别对应横竖滚动条的尺寸*/
+    height: 2px;
+    display: none;
+}
+
+.main::-webkit-scrollbar { /*滚动条整体样式*/
+    width: 4px; /*高宽分别对应横竖滚动条的尺寸*/
+    height: 4px;
+}
+
+.main::-webkit-scrollbar-thumb { /*滚动条里面小方块*/
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+    background: rgba(0, 0, 0, 0.2);
+}
+
+.main::-webkit-scrollbar-track { /*滚动条里面轨道*/
+    -webkit-box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+    border-radius: 0;
+    background: rgba(0, 0, 0, 0.1);
+}
+
+.el-menu-item.is-active {
+    color: #fff;
+    background-color: #409eff!important;
+}
+
+.el-header {
+    background-color: #eee;
+    color: #333;
+    line-height: 60px;
+}
+
+.menu-i {
+    display: inline-block;
+    width: 25px;
+    overflow: hidden;
+    text-align: center
+}
+
+.iconfont{
+    font-family: iconfont;
+    font-style: normal;
+}

@@ -22,10 +22,22 @@
     <div class="l-tree-content">
         <div class="l-block" v-if="!showForm">
           <div class="l-block-header" v-if="parentChannel">
-            <div><i class="iconfont">&#xe64c;</i> {{parentChannel.hasOwnProperty('name') ? parentChannel.name : ''}} <span style="color: white">{{parentChannel.id}}</span></div>
-            <el-button type="primary" size="small" @click="addContent">新增</el-button>
+            <div>
+              <i class="iconfont">&#xe64c;</i> {{parentChannel.hasOwnProperty('name') ? parentChannel.name : ''}} <span style="color: white">{{parentChannel.id}}</span>
+              <el-button type="primary" size="small" @click="addContent">新增</el-button>
+            </div>
           </div>
           <div class="l-block-body">
+            <div class="l-search-area" style="border-bottom: 1px solid #EBEEF5;">
+              <el-form ref="form" :model="form" :inline="true">
+                <el-form-item label="标题">
+                  <el-input v-model="form.keyword" style="width: 200px;"></el-input>
+                </el-form-item>
+                <el-form-item>
+                  <el-button type="primary" size="small" @click="search">搜索</el-button>
+                </el-form-item>
+              </el-form>
+            </div>
             <el-table
               :data="contents"
               style="width: 100%">
@@ -35,8 +47,10 @@
                 width="80">
               </el-table-column>
               <el-table-column
-                prop="title"
                 label="标题">
+                <template slot-scope="scope">
+                  <a :href="scope.row.link" target="_blank" class="l-a-same">{{scope.row.title}}</a>
+                </template>
               </el-table-column>
               <el-table-column
                 prop="channel.name"
@@ -75,10 +89,11 @@
         showForm: false,
         formTitle: '添加文章',
         form:{
-          positions:[]
+//          positions:[]
+            keyword: ''
         },
         ueditorConfig: ueditorConfig,
-        contentPositions: [],
+//        contentPositions: [],
         channel_id: 0,
         page:1,
         page_size: 8,
@@ -109,6 +124,7 @@
       async channel_id(val){
           if(val){
               this.page = 1
+              this.form.keyword = ''
               let {data} = await api.getCmsChannelWhole({id: val})
               this.$store.dispatch(this.$types.CMS_CURRENT_CHANNEL, data);
               this.$store.dispatch(this.$types.CMS_PARENT_CHANNEL, data)
@@ -116,6 +132,10 @@
       }
     },
     methods: {
+      search(){
+        let keyword = this.form.keyword
+        this.loadContents({keyword})
+      },
       goback(){
         this.showForm = false;
       },
@@ -144,8 +164,9 @@
       async addContent(){
           this.$router.push('/cms/content/add?channel_id='+this.currentChannel.id)
       },
-      async loadContents(){
-          let {data} = await api.getChannelContents({channel_id: this.channel_id, page: this.page, page_size: this.page_size})
+      async loadContents({...params}){
+          let queryData = {channel_id: this.channel_id, page: this.page, page_size: this.page_size, ...params}
+          let {data} = await api.getChannelContents(queryData)
           this.contents = data.contents;
           this.total = data.total;
       },

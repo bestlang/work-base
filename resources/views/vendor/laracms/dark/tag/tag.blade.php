@@ -24,41 +24,45 @@
                                 </h3>
                             </div>
                             <div class="panel-body">
-                                @foreach($contents as $content)
-                                    <article class="article-item" style="padding: 20px 0;border-bottom: 1px solid #efefef;">
-                                        <div class="media">
-                                            <div class="media-left">
-                                                <a href="{{route('content', $content->id)}}" style="width: 160px;display: block;">
-                                                    <div class="embed-responsive embed-responsive-4by3 img-zoom">
-                                                        @if(isset($content->ext['thumb']) && $thumb = $content->ext['thumb'])
-                                                            <img src="{{$thumb}}" alt="{{$content->title}}"  />
-                                                        @endif
+                                @if(count($contents))
+                                    @foreach($contents as $content)
+                                        <article class="article-item" style="padding: 20px 0;border-bottom: 1px solid #efefef;">
+                                            <div class="media">
+                                                <div class="media-left">
+                                                    <a href="{{route('content', $content->id)}}" style="width: 160px;display: block;">
+                                                        <div class="embed-responsive embed-responsive-4by3 img-zoom">
+                                                            @if(isset($content->ext['thumb']) && $thumb = $content->ext['thumb'])
+                                                                <img src="{{$thumb}}" alt="{{$content->title}}"  />
+                                                            @endif
+                                                        </div>
+                                                    </a>
+                                                </div>
+                                                <div class="media-body" style="position: relative;">
+                                                    <h3 class="article-title" style="margin: 0;font-size: 1.25em;">
+                                                        <a href="{{route('content', $content->id)}}">{{$content->title}}</a>
+                                                    </h3>
+                                                    <div class="article-intro hidden-xs" style="line-height: 22px;">
+                                                        {{$content->description}}
                                                     </div>
-                                                </a>
-                                            </div>
-                                            <div class="media-body" style="position: relative;">
-                                                <h3 class="article-title" style="margin: 0;font-size: 1.25em;">
-                                                    <a href="{{route('content', $content->id)}}">{{$content->title}}</a>
-                                                </h3>
-                                                <div class="article-intro hidden-xs" style="line-height: 22px;">
-                                                    {{$content->description}}
-                                                </div>
-                                                <div class="articlee-tag">
-                                                    @foreach($content->tags as $tag)
-                                                        <a href="/cms/internet.html" class="tag tag-primary">{{$tag->name}}</a>
-                                                    @endforeach
-                                                </div>
-                                                <div style="position: absolute;bottom: 0;">
+                                                    <div class="articlee-tag">
+                                                        @foreach($content->tags as $tag)
+                                                            <a href="{{route('tag', $tag->name)}}" class="tag tag-primary">{{$tag->name}}</a>
+                                                        @endforeach
+                                                    </div>
+                                                    <div style="position: absolute;bottom: 0;">
 
-                                                    <span itemprop="date">{{LC::dateFormat($content->created_at)}}</span>
-                                                    <span itemprop="likes" title="点赞次数"><i class="fa fa-thumbs-up"></i> 233 点赞</span>
-                                                    <span itemprop="comments"><a href="/cms/internet/33.html#comments" target="_blank" title="评论数"><i class="fa fa-comments"></i> 0</a> 评论</span>
-                                                    <span itemprop="views" title="浏览次数"><i class="fa fa-eye"></i> 7074 浏览</span>
+                                                        <span itemprop="date">{{LC::dateFormat($content->created_at)}}</span>
+                                                        <span itemprop="likes" title="点赞次数"><i class="fa fa-thumbs-up"></i> 0 点赞</span>
+                                                        <span itemprop="comments"><a href="{{route('content', $content->id)}}#comments" target="_blank" title="评论数"><i class="fa fa-comments"></i> {{$content->comments()->count()}}</a> 评论</span>
+                                                        <span itemprop="views" title="浏览次数"><i class="fa fa-eye"></i> 7074 浏览</span>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </article>
-                                @endforeach
+                                        </article>
+                                    @endforeach
+                                @else
+                                    <section class="text-center">无记录</section>
+                                @endif
                                 <div class="text-center pager"></div>
                             </div>
                         </div>

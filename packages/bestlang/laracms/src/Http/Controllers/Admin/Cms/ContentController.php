@@ -21,35 +21,40 @@ class ContentController extends Controller
         }
         $channelId = $request->input('channel_id', 0);
         $page = $request->input('page', 0);
+        $keyword = $request->input('keyword', null);
         $page_size = $request->input('page_size', 10);
+
         $channelId = intval($channelId);
         $page = intval($page);
         $page_size = intval($page_size);
 
+        $query = Content::query();
+        if($keyword){
+            $query = $query
+                ->where('title', 'like', "%{$keyword}%")
+                ->orWhere('keywords', 'like', "%{$keyword}%")
+                ->orWhere('description', 'like', "%{$keyword}%");
+        }
+        $total = $query->count();
+
         if(!$channelId){
-            $query = Content::query();
-            $total = $query->count();
             $contents = $query->with('channel')
                 ->orderBy('id', 'desc')
                 ->limit($page_size)
                 ->offset(($page-1)*$page_size)
                 ->get();
-            return response()->ajax(compact(['contents', 'total']));
+//            return response()->ajax(compact(['contents', 'total']));
         }else{
             $channelIdArr = [];
             $childrenIdArr = Channel::find($channelId)
-                ->getDescendants()
+                ->getDescendantsAndSelf()
                 ->map(function($item){return $item->id;})
                 ->toArray();
             if(count($childrenIdArr)){
                 array_push($channelIdArr, ...$childrenIdArr);
             }
-            array_push($channelIdArr, $channelId);
-            $query = Content::query();
             $query->whereIn('channel_id', $channelIdArr);
-
             $total = $query->count();
-
             $contents = $query
                 ->with('channel')
                 ->orderByRaw("case when `channel_id`=$channelId then 1 end desc")
@@ -57,9 +62,11 @@ class ContentController extends Controller
                 ->limit($page_size)
                 ->offset(($page-1)*$page_size)
                 ->get();
-
-            return response()->ajax(compact(['contents', 'total']));
         }
+        $contents->map(function($content){
+            $content->link = route('content', $content->id);
+        });
+        return response()->ajax(compact(['contents', 'total']));
     }
 
     public function save(Request $request)

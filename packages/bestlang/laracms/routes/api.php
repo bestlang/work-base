@@ -60,6 +60,7 @@ Route::group(['middleware' => 'auth.jwt', 'prefix'=>'admin', 'namespace'=>'Admin
         Route::any('/cms/content/positions', 'PositionController@contentPositions');
         Route::any('/cms/get/position', 'PositionController@position');
         Route::any('/cms/get/comments', 'CommentController@index');
+        Route::any('/cms/get/content/comments', 'CommentController@content');
         Route::any('/cms/save/ad/position', 'AdController@saveAdPosition');
         Route::any('/cms/get/ad/positions', 'AdController@getAdPositions');
         Route::any('/cms/delete/ad/position', 'AdController@deleteAdPosition');

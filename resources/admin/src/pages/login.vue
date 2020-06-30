@@ -1,7 +1,8 @@
 <template>
     <el-card class="box-card">
         <div slot="header" class="clearfix">
-            <h3>{{appName}}™管理端</h3>
+            <!--™-->
+            <h3>{{appName}}管理端</h3>
         </div>
         <el-form :model="params" status-icon :rules="rules" ref="ruleForm" label-width="0" class="demo-ruleForm">
             <el-form-item prop="mobile">
@@ -15,7 +16,7 @@
                 <el-input type="password" v-model="params.password" autocomplete="off"></el-input>
             </el-form-item>
             <el-form-item>
-                <el-button style="width: 100%;margin-top: 20px;" :loading="loading" type="primary" @click="login">{{loginFont}}</el-button>
+                <el-button style="width: 100%;margin-top: 20px;" size="medium" :loading="loading" type="primary" @click="login">{{loginFont}}</el-button>
             </el-form-item>
         </el-form>
     </el-card>

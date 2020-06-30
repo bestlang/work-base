@@ -18,6 +18,7 @@ class CreateCmsCommentsTable extends Migration
             $table->unsignedBigInteger('content_id')->default(0)->comment('内容ID');
             $table->unsignedBigInteger('user_id')->default(0)->comment('评论人ID');
             $table->unsignedBigInteger('parent_id')->default(0)->comment('父评论ID');
+            $table->string('ip')->nullable()->comment('客户IP');
             $table->text('content');
             $table->nullableTimestamps();
             $table->softDeletes();
