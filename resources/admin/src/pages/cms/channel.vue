@@ -245,7 +245,7 @@
         this.$store.dispatch(this.$types.CMS_CURRENT_CHANNEL, row)
       },
       deleteChannel(row){
-        this.$confirm('确定删除本栏目?', '提示', {
+        this.$confirm('确定删除“'+row.name+'”栏目?', '提示', {
           confirmButtonText: '确定',
           cancelButtonText: '取消',
           type: 'warning'

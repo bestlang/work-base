@@ -1,0 +1,2 @@
+webpackJsonp([21],{"u+uo":function(e,t,n){"use strict";Object.defineProperty(t,"__esModule",{value:!0});var i={render:function(){this.$createElement;this._self._c;return this._m(0)},staticRenderFns:[function(){var e=this.$createElement,t=this._self._c||e;return t("div",[t("div",[this._v("\n        购买记录\n    ")])])}]},r=n("VU/8")({data:function(){}},i,!1,null,null,null);t.default=r.exports}});
+//# sourceMappingURL=21.340f71838bb80f5a0e1c.js.map

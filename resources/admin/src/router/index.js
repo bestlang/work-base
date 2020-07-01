@@ -202,6 +202,16 @@ export default new VueRouter({
                 },
                 children: [
                     {
+                        path: "/cms/operation/purchase",
+                        component: (resolve) => require(["../pages/cms/purchase/purchase.vue"], resolve),
+                        meta: {
+                            can: 'cms list contents',
+                            show: true,
+                            name: '购买记录',
+                            font: '&#xe764;'
+                        }
+                    },
+                    {
                         path: "/cms/operation/ads",
                         component: (resolve) => require(["../pages/cms/operation/ads.vue"], resolve),
                         meta: {

@@ -4,8 +4,9 @@
             <div class="ls-icon-collapse" @click="toggleCollapse">
                 <i class="iconfont l-color">&#xe954;</i>
             </div>
-            <div class="l-top-item" style="margin-left: 60px;"><i class="iconfont">&#xe64c;</i> 花花</div>
-            <div class="l-top-item"><i class="iconfont">&#xe64c;</i> 黎黎</div>
+            <div class="l-top-item" :class="{active: true}" style="margin-left: 60px;"><i class="iconfont">&#xe618;</i> CMS</div>
+            <div class="l-top-item"><i class="iconfont">&#xe92a;</i> 问答</div>
+            <div class="l-top-item"><i class="iconfont">&#xe62f;</i> 商城</div>
         </div>
         <div class="ls-top-right">
           <el-dropdown>
@@ -49,6 +50,11 @@ export default {
 }
 </script>
 <style scoped lang="less">
+    .l-top-item{
+        &.active{
+            background: #f1f1f1;
+         }
+    }
     .l-color{
       /*color:#409EFF;*/
       color:#2d2d2d;

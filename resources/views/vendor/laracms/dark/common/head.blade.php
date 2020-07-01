@@ -91,7 +91,7 @@
                         <form class="form-inline navbar-form" action="#" method="get" onsubmit="location.href='/search/'+$('#searchinput').val();return false;">
                             @csrf
                             <div class="form-search hidden-sm hidden-md">
-                                <input class="form-control" name="keyword" type="text" id="searchinput" value="" placeholder="搜索">
+                                <input class="form-control" name="keyword" type="text" id="searchinput" value="{{$keyword??''}}" placeholder="搜索">
                             </div>
                         </form>
                     </li>

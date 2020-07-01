@@ -106,11 +106,11 @@
                 this.$router.push('/cms/position/subs?channel_position_id='+row.id)
             },
             handleDelete(row){
-//                this.$confirm('确定删除模型?', '提示', {
-//                    confirmButtonText: '确定',
-//                    cancelButtonText: '取消',
-//                    type: 'warning'
-//                }).then(() => {
+                this.$confirm('确定删除“ '+row.name+'”推荐位?', '提示', {
+                    confirmButtonText: '确定',
+                    cancelButtonText: '取消',
+                    type: 'warning'
+                }).then(() => {
 //                    this.$http
 //                        .post("/admin/cms/model/delete", {id: row.id})
 //                        .then(res => {
@@ -128,7 +128,7 @@
 //                            }
 //
 //                        }).catch(()=>{});
-//                });
+                });
             },
             async submit(){
                 let res = await api.savePosition(this.form)

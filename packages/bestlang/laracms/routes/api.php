@@ -55,6 +55,7 @@ Route::group(['middleware' => 'auth.jwt', 'prefix'=>'admin', 'namespace'=>'Admin
 
         Route::any('/cms/positions', 'PositionController@index');
         Route::any('/cms/position/save', 'PositionController@save');
+        Route::any('/cms/position/delete', 'PositionController@delete');
         Route::any('/cms/position/subs', 'PositionController@subs');
         Route::any('/cms/position/contents', 'PositionController@contents');
         Route::any('/cms/content/positions', 'PositionController@contentPositions');

@@ -89,6 +89,24 @@ class PositionController extends Controller
     public function delete(Request $request)
     {
         // 检查是否被使用
+        $params = $request->validate([
+            'id' => 'numeric'
+        ]);
+        $id = $params['id'];
+        $position = Position::find($id);
+        if(!$position){
+            return response()->error('推荐位不存在');
+        }
+        if($position->is_channel){
+            if($position->subs()->count()){
+                return response()->error('推荐位下仍有文章推荐位,无法删除!');
+            }
+        }else{
+            if($position->contents()->count()){
+                return response()->error('推荐位下仍有文章,无法删除!');
+            }
+        }
+        $position->delete();
     }
 
     // 所属推荐位的内容

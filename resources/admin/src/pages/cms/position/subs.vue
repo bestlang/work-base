@@ -77,8 +77,30 @@
                 Object.assign(this.form, row)
                 this.formVisible = true;
             },
-            deleteChannel(){
-
+            deleteChannel(row){
+                this.$confirm('确定删除“ '+row.name+'”推荐位?', '提示', {
+                    confirmButtonText: '确定',
+                    cancelButtonText: '取消',
+                    type: 'warning'
+                }).then(() => {
+//                    this.$http
+//                        .post("/admin/cms/model/delete", {id: row.id})
+//                        .then(res => {
+//                            if(res.success){
+//                                this.loadModels()
+//                                this.$message({
+//                                    type: 'success',
+//                                    message: '删除成功!'
+//                                });
+//                            }else{
+//                                this.$message({
+//                                    type: 'error',
+//                                    message: res.error
+//                                });
+//                            }
+//
+//                        }).catch(()=>{});
+                });
             },
             handleAdd(){
                 Object.assign(this.form, {
