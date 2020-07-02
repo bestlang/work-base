@@ -78,7 +78,7 @@
                     </div>
                     <div class="col-md-4">
                         <div class="panel panel-default">
-                            <div class="panel-heading"><div class="l-position-title">文章推荐</div></div>
+                            <div class="panel-heading"><h3 class="panel-title">文章推荐</h3></div>
                             <div class="panel-body">
                                 @foreach(LC::position('文章详情右侧推荐一') as $key => $content)
                                     <div class="media">
@@ -96,7 +96,7 @@
                         </div>
                         {{----}}
                         <div class="panel panel-default">
-                            <div class="panel-heading"><div class="l-position-title">文章推荐</div></div>
+                            <div class="panel-heading"><h3 class="panel-title">文章推荐</h3></div>
                             <div class="panel-body">
                                 @foreach(LC::position('文章详情右侧推荐一') as $key => $content)
                                     <div class="media">

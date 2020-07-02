@@ -292,6 +292,9 @@ body {
 a {
     color: #555;
 }
+.l-a{
+    color: #337ab7;
+}
 .btn-primary {
     color: #fff;
     background-color: #007bff;

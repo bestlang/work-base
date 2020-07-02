@@ -21,7 +21,9 @@
                         </div>
                     </div>
                     <div class="panel panel-default">
-                        <div class="panel-heading" id="comments">评论列表</div>
+                        <div class="panel-heading" id="comments">
+                            <h3 class="panel-title">评论列表</h3>
+                        </div>
                         <div class="panel-body">
                             <div>
                                 @foreach($comments as $comment)
@@ -30,7 +32,7 @@
                             </div>
                             @guest
                             @if(Route::has('login'))
-                                <a href="{{ route('login') }}">登录</a>之后发表评论
+                                <a href="{{ route('login') }}" class="l-a">登录</a>之后发表评论
                             @endif
                             @endguest
                             @auth
@@ -77,7 +79,7 @@
                 </div>
                 <div class="col-md-4">
                     <div class="panel panel-default">
-                        <div class="panel-heading"><div class="l-position-title">文章推荐</div></div>
+                        <div class="panel-heading"><h3 class="panel-title">文章推荐</h3></div>
                         <div class="panel-body">
                             @foreach(LC::position('文章详情右侧推荐一') as $key => $content)
                                 <div class="media">
@@ -95,7 +97,7 @@
                     </div>
                     {{----}}
                     <div class="panel panel-default">
-                        <div class="panel-heading"><div class="l-position-title">文章推荐</div></div>
+                        <div class="panel-heading"><h3 class="panel-title">文章推荐</h3></div>
                         <div class="panel-body">
                             @foreach(LC::position('文章详情右侧推荐一') as $key => $content)
                                 <div class="media">
