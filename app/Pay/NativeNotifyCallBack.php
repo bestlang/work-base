@@ -8,8 +8,9 @@ use App\Pay\WxPayConfig;
 //native第一种支付方式, 需要调用统一下单Api
 class NativeNotifyCallBack extends WxPayNotify
 {
-    public function unifiedorder($openId, $product_id, WxPayConfig $config)
+    public function unifiedorder($openId, $product_id)
     {
+        $config = new WxPayConfig();
         //统一下单
         $input = new WxPayUnifiedOrder();
         $input->SetBody("CSRF有时候也是个大坑");
