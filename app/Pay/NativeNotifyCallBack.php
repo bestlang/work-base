@@ -3,6 +3,7 @@ namespace App\Pay;
 
 use App\Pay\Data\WxPayUnifiedOrder;
 use App\Pay\Log\Log;
+use App\Pay\WxPayConfig;
 
 //native第一种支付方式, 需要调用统一下单Api
 class NativeNotifyCallBack extends WxPayNotify
