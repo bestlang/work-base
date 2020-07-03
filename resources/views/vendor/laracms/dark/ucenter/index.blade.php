@@ -1,4 +1,4 @@
-@extends('laracms::dark.layouts.app')
+@extends('laracms::dark.layouts.ucenter')
 
 @section('content')
     <div id="content-container" class="container">

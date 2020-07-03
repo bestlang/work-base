@@ -4,10 +4,10 @@ namespace Bestlang\Laracms\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class UserController extends Controller
+class UCenterController extends Controller
 {
     public function index(Request $request)
     {
-        return view('laracms::dark.user.index');
+        return view('laracms::dark.ucenter.index');
     }
 }
