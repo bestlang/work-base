@@ -124,6 +124,12 @@
               <el-form-item label="栏目名">
                 <el-input v-model="channelForm.name" autocomplete="off"></el-input>
               </el-form-item>
+            <el-form-item label="栏目模板">
+                <el-input v-model="channelForm.template" autocomplete="off"></el-input>
+            </el-form-item>
+                <el-form-item label="内容模板">
+                    <el-input v-model="channelForm.content_template" autocomplete="off"></el-input>
+                </el-form-item>
               <template v-for="(item, index) in customChannelFields">
                 <el-form-item v-if="item.type=='text'" :label="item.label">
                   <el-input :key="index" :name="item.field" v-model="channelForm[item.field]"></el-input>
@@ -322,7 +328,7 @@
         let res = await api.getCmsChannelWhole({id})
         let whole = res.data;
         this.channelForm = {}
-        let baseFields = ['id', 'model_id', 'parent_id', 'name', 'title', 'keywords', 'description'];
+        let baseFields = ['id', 'model_id', 'parent_id', 'name', 'title', 'keywords', 'description', 'template', 'content_template'];
 
         baseFields.forEach( field => {this.$set(this.channelForm, field, whole[field])} );
 

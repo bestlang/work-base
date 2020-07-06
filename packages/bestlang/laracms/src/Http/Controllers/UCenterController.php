@@ -8,6 +8,9 @@ class UCenterController extends Controller
 {
     public function index(Request $request)
     {
+        if(!auth()->user()){
+            return redirect('/login');
+        }
         return view('laracms::dark.ucenter.index');
     }
 }

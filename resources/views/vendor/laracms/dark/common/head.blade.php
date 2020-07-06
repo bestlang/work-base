@@ -56,7 +56,6 @@
                         <ul class="dropdown-menu" role="menu">
                         </ul>
                     </li>
-                    <!--判断是否有子级或高亮当前栏目-->
                     <li class="dropdown">
                         <a href="javascript:;" data-toggle="dropdown" >新闻中心 <b class="caret"></b></a>
                         <ul class="dropdown-menu" role="menu">
@@ -67,7 +66,6 @@
                             <li><a href="{{route('channel', 24)}}">苏州频道</a></li>
                         </ul>
                     </li>
-                    <!--判断是否有子级或高亮当前栏目-->
                     <li class="dropdown">
                         <a href="javascript:" data-toggle="dropdown" >更多 <b class="caret"></b></a>
                         <ul class="dropdown-menu" role="menu">
@@ -77,8 +75,9 @@
                             <li><a href="">文档</a></li>
                         </ul>
                     </li>
-                    <!--如果需要无限级请使用cms:nav标签-->
-
+                    <li>
+                        <a href="{{route('channel', 33)}}">商品购买</a>
+                    </li>
                 </ul>
                 <ul class="nav navbar-right hidden">
                     <ul class="nav navbar-nav">
@@ -96,7 +95,9 @@
                         </form>
                     </li>
                     <li class="dropdown">
-                        <a href="/index/user/index" class="dropdown-toggle" data-toggle="dropdown">会员<span class="hidden-sm">中心</span> <b class="caret"></b></a>
+                        <a href="" class="dropdown-toggle" data-toggle="dropdown">
+                            会员<span class="hidden-sm">中心</span> <b class="caret"></b>
+                        </a>
                         <ul class="dropdown-menu">
                             @guest
                             <li><a href="{{route('login')}}"><i class="fa fa-sign-in fa-fw"></i>登录</a></li>
@@ -104,6 +105,9 @@
                                 <li><a href="{{route('register')}}"><i class="fa fa-user-o fa-fw"></i>注册</a></li>
                             @endif
                             @else
+                                <li>
+                                    <a href="/ucenter">个人中心</a>
+                                </li>
                                 <li><a href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
@@ -118,7 +122,7 @@
                                             {{ __('Management') }}
                                         </a></li>
                                 @endif
-                                @endguest
+                             @endguest
                         </ul>
                     </li>
                 </ul>

@@ -14,6 +14,9 @@
             width: calc(100% - 240px);
         }
     }
+    .price{
+        width: 200px;
+    }
 </style>
 <template>
     <div class="l-content-list">
@@ -35,6 +38,10 @@
 
                             <el-form-item v-if="item.type=='text'" :label="item.label">
                                 <el-input :key="index" :name="item.field" v-model="form[item.field]"></el-input>
+                            </el-form-item>
+
+                            <el-form-item v-if="item.type=='number'" :label="item.label">
+                                <el-input class="price" type="number" :key="index" :name="item.field" v-model="form[item.field]"></el-input>
                             </el-form-item>
 
                             <el-form-item v-if="item.type=='checkbox' && Array.isArray(form[item.field])" :label="item.label">

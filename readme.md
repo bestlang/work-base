@@ -13,6 +13,8 @@ Controller中的action里面
 
 使用Route macro来避免api方式和session方式造成的路由定义重复
 
+https://payjs.cn/
+
 
 
 laravel joinSub()
