@@ -63,3 +63,9 @@ Route::any('/notify/wechat/native', 'IndexController@wechatNativeNotify');
 Route::any('/notify/wechat/async', 'IndexController@wechatAsyncNotify');
 
 Route::any('alipay/create', 'Index2Controller@invoke');
+
+
+
+Route::group(['prefix' => 'ajax'], function($router){
+    Route::any('pay/native2', 'PayController@native2');
+});

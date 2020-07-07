@@ -117,15 +117,4 @@
       0 => 'Tymon\\JWTAuth\\Providers\\LaravelServiceProvider',
     ),
   ),
-  'yansongda/laravel-pay' => 
-  array (
-    'providers' => 
-    array (
-      0 => 'Yansongda\\LaravelPay\\PayServiceProvider',
-    ),
-    'aliases' => 
-    array (
-      'Pay' => 'Yansongda\\LaravelPay\\Facades\\Pay',
-    ),
-  ),
 );

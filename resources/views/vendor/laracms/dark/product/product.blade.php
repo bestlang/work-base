@@ -16,79 +16,35 @@
                             </ol>
                         </div>
                         <div class="l-article-body">
-                            <div class="row" style="padding: 0 15px;margin-top: 20px;">
+                            <div class="row" style="padding: 0 15px 15px;margin-top: 20px;">
                                 <div class="col-sm-5 text-center">
                                     @if(isset($content->ext['thumb']) && $thumb = $content->ext['thumb'])
                                         <img src="{{$thumb}}" alt="{{$content->title}}" style="width: 100%;border: 1px solid #f1f1f1;" />
                                     @endif
                                 </div>
-                                <div class="col-sm-7">
-                                    <div><h3>商品名:{{$content->title}}</h3></div>
-                                    <div><h4>价格:¥{{$content->ext['price']}}</h4></div>
-                                    <div><h4>数量: <input type="text" value="1"></h4></div>
-                                    <div><input type="button" value="购买"></div>
+                                <div class="col-sm-7 l-buy-form" style="display: flex;flex-flow:column wrap;justify-content: space-between;">
+                                    <input type="hidden" id="content_id" value="{{$content->id}}" />
+                                    <div><h1 style="font-size: 20px;margin-top: 0;">{{$content->title}}</h1></div>
+                                    <div><h4>¥ <span style="color: red;">{{ sprintf('%.2f', $content->ext['price'])}}</span></h4></div>
+                                    <div><h4>数量: <input name="num" type="number" min="1" value="1" step="1" style="text-indent: 5px;border: 1px solid #f1f1f1;height: 36px;line-height: 36px;width: 60px;border-radius: 3px;"></h4></div>
+                                    <div><h4>支付方式: <div class="radio">
+                                                <label>
+                                                    <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked> 微信
+                                                </label>
+                                            </div>
+                                            <div class="radio">
+                                                <label>
+                                                    <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">支付宝
+                                                </label>
+                                            </div></h4></div>
+                                    <div><h4><button id="pay_btn" type="button" class="btn btn-primary">购买</button></h4></div>
                                 </div>
                             </div>
-                            <h4 style="padding: 5px 0;border-top: 1px solid #f1f1f1;border-bottom: 1px solid #f1f1f1;">商品详情</h4>
-                            <div>{!!  LC::content($content, 'content') !!}</div>
-                        </div>
-                    </div>
-                    <div class="panel panel-default">
-                        <div class="panel-heading" id="comments">
-                            <h3 class="panel-title">评论列表</h3>
-                        </div>
-                        <div class="panel-body">
-                            <div>
-                                @foreach($comments as $comment)
-                                    <p>{{$comment->user->name}} says:{{$comment->content}}</p>
-                                @endforeach
+                            <div style="padding: 15px 0;border-top: 1px solid #f1f1f1;">
+                                <div>{!!  LC::content($content, 'content') !!}</div>
                             </div>
-                            @guest
-                            @if(Route::has('login'))
-                                <a href="{{ route('login') }}" class="l-a">登录</a>之后发表评论
-                            @endif
-                            @endguest
-                            @auth
-                            <form>
-                                <div class="form-group">
-                                    <label for="comment">评论:</label>
-                                    <input type="hidden" name="content_id" id="content_id" value="{{$content->id}}" />
-                                    <textarea class="form-control" rows="5" id="comment"></textarea>
-                                    <button type="button" class="btn btn-primary" id="comment_submit">提交</button>
-                                </div>
-                            </form>
-                            @endauth
                         </div>
                     </div>
-                    {{--<div class="l-bg-w">--}}
-                    {{--<div class="container">--}}
-                    {{--<div class="row">--}}
-                    {{--<div class="l-article-body" style="background: #fff;padding: 15px;">--}}
-                    {{--<div><h2 class="l-content-title">评论区:</h2></div>--}}
-                    {{--<div>--}}
-                    {{--@foreach($comments as $comment)--}}
-                    {{--<p>{{$comment->user->name}} says:{{$comment->content}}</p>--}}
-                    {{--@endforeach--}}
-                    {{--</div>--}}
-                    {{--@guest--}}
-                    {{--@if(Route::has('login'))--}}
-                    {{--<a href="{{ route('login') }}">登录</a>之后发表评论--}}
-                    {{--@endif--}}
-                    {{--@endguest--}}
-                    {{--@auth--}}
-                    {{--<form>--}}
-                    {{--<div class="form-group">--}}
-                    {{--<label for="comment">评论:</label>--}}
-                    {{--<input type="hidden" name="content_id" id="content_id" value="{{$content->id}}" />--}}
-                    {{--<textarea class="form-control" rows="5" id="comment"></textarea>--}}
-                    {{--<button type="button" class="btn btn-primary" id="comment_submit">提交</button>--}}
-                    {{--</div>--}}
-                    {{--</form>--}}
-                    {{--@endauth--}}
-                    {{--</div>--}}
-                    {{--</div>--}}
-                    {{--</div>--}}
-                    {{--</div>--}}
                 </div>
                 <div class="col-md-4">
                     <div class="panel panel-default">
@@ -129,19 +85,40 @@
                 </div>
             </div>
         </div>
-
+    </div>
+    <div class="cover">
+        <div style="position: relative;width: 550px;height: 550px;margin: 0 auto;text-align: center;">
+            <div id="close_pay" style="cursor:pointer;position: absolute;top:0;right: 0;color: #fff;border-radius: 25px;width: 50px;height: 50px;font-size: 20px;line-height:50px;background: #2d2d2d;z-index: 0;">X</div>
+            <div style="background: #fff;width: 500px;height: 500px;border-radius: 10px;margin: 25px auto;">
+                <h1 style="text-align: center;padding-top: 58px;">扫码完成支付</h1>
+                <img src="" alt="" id="native2_code" style="width: 200px;height: 200px;margin: 30px auto 0;">
+            </div>
+        </div>
     </div>
     {{--</div>--}}
 @endsection
 @push('script')
 <script type="text/javascript">
     $(function(){
+        $('#pay_btn').click(function(){
+            let content_id = $('#content_id').val();
+            let num = $("input[name='num']").val();
+            axios.post('/ajax/pay/native2', {content_id: content_id, num: num}).then(response => {
+                let res = response.data;
+                if(res.success){
+                    $('#native2_code').attr('src', res.data)
+                    $('.cover').css('visibility', 'visible')
+                }else{
+                    if(res.code == 401){
+                        alert(res.error);
+                        top.location.href = '/login';
+                    }
+                }
+            })
+        });
         $('#comment_submit').click(function(){
             const content = $('#comment').val();
             const contend_id = $('#content_id').val();
-//            if(!content){
-//                alert('评论内容不能为空');
-//            }
             axios.post('/comment/save', {content: content, content_id:contend_id}).then(response => {
                 let res = response.data;
                 if(res.success){
@@ -152,13 +129,28 @@
                 }
             })
         });
+        $('#close_pay').click(function(){
+            $('.cover').css('visibility', 'hidden')
+        })
     });
 </script>
 @endpush
 @push('css')
 <style>
-    #comment_submit{
-        margin-top: 10px;
+    .l-buy-form > div{
+       /*margin-bottom: 5px;*/
+    }
+    .cover{
+        top:0;
+        left:0;
+        position: fixed;
+        background: rgba(0,0,0,.8);
+        width: 100%;
+        height: 100%;
+        z-index: 9998;
+        display: flex;
+        align-items: center;
+        visibility: hidden;
     }
 </style>
 @endpush

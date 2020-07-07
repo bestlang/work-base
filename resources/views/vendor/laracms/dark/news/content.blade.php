@@ -40,7 +40,7 @@
                                 <div class="form-group">
                                     <label for="comment">评论:</label>
                                     <input type="hidden" name="content_id" id="content_id" value="{{$content->id}}" />
-                                    <textarea class="form-control" rows="5" id="comment"></textarea>
+                                    <textarea class="form-control" rows="5" id="comment" style="resize: none;"></textarea>
                                     <button type="button" class="btn btn-primary" id="comment_submit">提交</button>
                                 </div>
                             </form>

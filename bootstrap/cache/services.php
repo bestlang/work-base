@@ -38,20 +38,19 @@
     34 => 'Songshenzong\\Support\\StringsServiceProvider',
     35 => 'Spatie\\Permission\\PermissionServiceProvider',
     36 => 'Tymon\\JWTAuth\\Providers\\LaravelServiceProvider',
-    37 => 'Yansongda\\LaravelPay\\PayServiceProvider',
-    38 => 'App\\Providers\\AppServiceProvider',
-    39 => 'App\\Providers\\AuthServiceProvider',
-    40 => 'App\\Providers\\EventServiceProvider',
-    41 => 'App\\Providers\\RouteServiceProvider',
-    42 => 'Tymon\\JWTAuth\\Providers\\LaravelServiceProvider',
-    43 => 'Spatie\\Permission\\PermissionServiceProvider',
-    44 => 'Jacobcyl\\AliOSS\\AliOssServiceProvider',
-    45 => 'JellyBool\\Flysystem\\Upyun\\UpyunServiceProvider',
-    46 => 'Overtrue\\LaravelWeChat\\ServiceProvider',
-    47 => 'Overtrue\\LaravelUEditor\\UEditorServiceProvider',
-    48 => 'Bestlang\\Laracms\\Providers\\AppServiceProvider',
-    49 => 'Bestlang\\Laracms\\Providers\\RouteServiceProvider',
-    50 => 'Bestlang\\Laracms\\Providers\\ResponseServiceProvider',
+    37 => 'App\\Providers\\AppServiceProvider',
+    38 => 'App\\Providers\\AuthServiceProvider',
+    39 => 'App\\Providers\\EventServiceProvider',
+    40 => 'App\\Providers\\RouteServiceProvider',
+    41 => 'Tymon\\JWTAuth\\Providers\\LaravelServiceProvider',
+    42 => 'Spatie\\Permission\\PermissionServiceProvider',
+    43 => 'Jacobcyl\\AliOSS\\AliOssServiceProvider',
+    44 => 'JellyBool\\Flysystem\\Upyun\\UpyunServiceProvider',
+    45 => 'Overtrue\\LaravelWeChat\\ServiceProvider',
+    46 => 'Overtrue\\LaravelUEditor\\UEditorServiceProvider',
+    47 => 'Bestlang\\Laracms\\Providers\\AppServiceProvider',
+    48 => 'Bestlang\\Laracms\\Providers\\RouteServiceProvider',
+    49 => 'Bestlang\\Laracms\\Providers\\ResponseServiceProvider',
   ),
   'eager' => 
   array (
@@ -200,8 +199,6 @@
     'validation.presence' => 'Illuminate\\Validation\\ValidationServiceProvider',
     'command.tinker' => 'Laravel\\Tinker\\TinkerServiceProvider',
     'NunoMaduro\\Collision\\Contracts\\Provider' => 'NunoMaduro\\Collision\\Adapters\\Laravel\\CollisionServiceProvider',
-    'pay.alipay' => 'Yansongda\\LaravelPay\\PayServiceProvider',
-    'pay.wechat' => 'Yansongda\\LaravelPay\\PayServiceProvider',
   ),
   'when' => 
   array (
@@ -245,9 +242,6 @@
     array (
     ),
     'NunoMaduro\\Collision\\Adapters\\Laravel\\CollisionServiceProvider' => 
-    array (
-    ),
-    'Yansongda\\LaravelPay\\PayServiceProvider' => 
     array (
     ),
   ),

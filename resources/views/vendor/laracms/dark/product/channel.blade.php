@@ -7,44 +7,67 @@
                     {{$channel->name}}
                     <div class="more pull-right">
                         <ol class="breadcrumb">
-                            <!-- S 面包屑导航 -->
                             @foreach(LC::breadcrumbs($channel) as $b)
                                 <li><a href="{{$b->url}}">{{$b->name}}</a></li>
                             @endforeach
-                            <!-- E 面包屑导航 -->
                         </ol>
                     </div>
                 </h1>
                 <div class="row">
                     <div class="col-md-8">
                         <div class="panel panel-default">
-                            <div class="panel-heading">
-                                <h3 class="panel-title">
-                                    <span>列表</span>
-                                    <div class="more">
-                                        <ul class="list-unstyled list-inline category-order clearfix">
-                                            <!-- S 排序 -->
-                                            <li><a href="?filter%5B0%5D=&amp;orderby=default&amp;orderway=asc" class="active">默认</a></li>
-                                            <li><a href="?filter%5B0%5D=&amp;orderby=views&amp;orderway=desc" class="">浏览次数</a></li>
-                                            <li><a href="?filter%5B0%5D=&amp;orderby=id&amp;orderway=desc" class="">发布日期</a></li>
-                                            <!-- E 排序 -->
-                                        </ul>
-                                    </div>
-                                </h3>
-                            </div>
+                            {{--<div class="panel-heading">--}}
+                                {{--<h3 class="panel-title">--}}
+                                    {{--<span>列表</span>--}}
+                                    {{--<div class="more">--}}
+                                        {{--<ul class="list-unstyled list-inline category-order clearfix">--}}
+                                            {{--<!-- S 排序 -->--}}
+                                            {{--<li><a href="?filter%5B0%5D=&amp;orderby=default&amp;orderway=asc" class="active">默认</a></li>--}}
+                                            {{--<li><a href="?filter%5B0%5D=&amp;orderby=views&amp;orderway=desc" class="">浏览次数</a></li>--}}
+                                            {{--<li><a href="?filter%5B0%5D=&amp;orderby=id&amp;orderway=desc" class="">发布日期</a></li>--}}
+                                            {{--<!-- E 排序 -->--}}
+                                        {{--</ul>--}}
+                                    {{--</div>--}}
+                                {{--</h3>--}}
+                            {{--</div>--}}
                             <div class="panel-body">
                             @if(count($contents))
                                     <div class="row" style="padding: 0 15px;">
                                         @foreach($contents as $content)
-                                            <a href="{{route('content', $content->id)}}">
-                                                <div class="col-sm-3" style="box-sizing: border-box;border: 1px solid #f1f1f1;">
+                                            <div class="col-sm-4" style="padding: 5px;">
+                                                <div style="box-sizing: border-box;border: 1px solid #f5f5f5;padding: 5px;">
+                                                    <a href="{{route('content', $content->id)}}">
                                                     @if(isset($content->ext['thumb']) && $thumb = $content->ext['thumb'])
                                                         <img src="{{$thumb}}" alt="{{$content->title}}" style="width: 100%;" />
                                                     @endif
                                                     <div><b>{{$content->title}}</b></div>
                                                     <div>价格: ¥{{$content->ext['price']}}</div>
+                                                    </a>
                                                 </div>
-                                            </a>
+                                            </div>
+                                            <div class="col-sm-4" style="padding: 5px;">
+                                                <div style="box-sizing: border-box;border: 1px solid #f5f5f5;padding: 5px;">
+                                                    <a href="{{route('content', $content->id)}}">
+                                                        @if(isset($content->ext['thumb']) && $thumb = $content->ext['thumb'])
+                                                            <img src="{{$thumb}}" alt="{{$content->title}}" style="width: 100%;" />
+                                                        @endif
+                                                        <div><b>{{$content->title}}</b></div>
+                                                        <div>价格: ¥{{$content->ext['price']}}</div>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-4" style="padding: 5px;">
+                                                <div style="box-sizing: border-box;border: 1px solid #f5f5f5;padding: 5px;">
+                                                    <a href="{{route('content', $content->id)}}">
+                                                        @if(isset($content->ext['thumb']) && $thumb = $content->ext['thumb'])
+                                                            <img src="{{$thumb}}" alt="{{$content->title}}" style="width: 100%;" />
+                                                        @endif
+                                                        <div><b>{{$content->title}}</b></div>
+                                                        <div>价格: ¥{{$content->ext['price']}}</div>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        @endforeach
                                         {{--<article class="article-item" style="padding: 20px 0;border-bottom: 1px solid #efefef;">--}}
                                             {{--<div class="media">--}}
                                                 {{--<div class="media-left">--}}
@@ -78,7 +101,6 @@
                                                 {{--</div>--}}
                                             {{--</div>--}}
                                         {{--</article>--}}
-                                    @endforeach
                                 </div>
                             @else
                                 <section class="text-center">无记录</section>

@@ -32,7 +32,6 @@
     <![endif]-->
 </head>
 <body class="group-page">
-
 <header class="header">
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <div class="container">
@@ -76,7 +75,7 @@
                         </ul>
                     </li>
                     <li>
-                        <a href="{{route('channel', 33)}}">商品购买</a>
+                        <a href="{{route('channel', 33)}}">会员充值</a>
                     </li>
                 </ul>
                 <ul class="nav navbar-right hidden">
