@@ -22,7 +22,7 @@ class PayController extends Controller
     {
         $user = auth()->user();
         if(!$user){
-            return response()->error('需要登录', 401);
+            return response()->error('请先登录', 401);
         }
         //前台确认支付之后请求本动作
         $content_id = $request->input('content_id', 0);

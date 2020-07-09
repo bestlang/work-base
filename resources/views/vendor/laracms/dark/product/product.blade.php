@@ -101,21 +101,24 @@
 <script type="text/javascript">
     $(function(){
         $('#pay_btn').click(function(){
-            let content_id = $('#content_id').val();
-            let num = $("input[name='num']").val();
-            axios.post('/ajax/pay/native2', {content_id: content_id, num: num}).then(response => {
-                let res = response.data;
-                if(res.success){
-                    $('#native2_code').attr('src', res.data)
-                    $('.cover').css('visibility', 'visible')
-                }else{
-                    if(res.code == 401){
-                        alert(res.error);
-                        top.location.href = '/login';
-                    }
-                }
-            })
+            //生成订单并跳转到订单详情
         });
+//        $('#pay_btn').click(function(){
+//            let content_id = $('#content_id').val();
+//            let num = $("input[name='num']").val();
+//            axios.post('/ajax/pay/native2', {content_id: content_id, num: num}).then(response => {
+//                let res = response.data;
+//                if(res.success){
+//                    $('#native2_code').attr('src', res.data)
+//                    $('.cover').css('visibility', 'visible')
+//                }else{
+//                    if(res.code == 401){
+//                        alert(res.error);
+//                        top.location.href = '/login';
+//                    }
+//                }
+//            })
+//        });
         $('#comment_submit').click(function(){
             const content = $('#comment').val();
             const contend_id = $('#content_id').val();

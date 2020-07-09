@@ -1,14 +1,9 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: lu
- * Date: 2020/5/25
- * Time: 9:57 PM
- */
-
 namespace App\Pay;
 use App\Pay\Log\Log;
+use App\Pay\Data\WxPayOrderQuery;
 
+// 处理支付成功回调
 class PayNotifyCallBack extends WxPayNotify
 {
     //查询订单
@@ -79,7 +74,7 @@ class PayNotifyCallBack extends WxPayNotify
         }
 
         //TODO 3、处理业务逻辑
-        Log::DEBUG("call back:" . json_encode($data));
+        Log::DEBUG("call back:>>>>>>>:" . json_encode($data));
         $notfiyOutput = array();
 
 
