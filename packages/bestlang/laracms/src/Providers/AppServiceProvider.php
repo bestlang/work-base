@@ -2,10 +2,14 @@
 
 namespace Bestlang\Laracms\Providers;
 
+use Illuminate\Routing\Route;
 use Illuminate\Support\ServiceProvider;
 //use Bestlang\Laracms\LC;
 use Illuminate\Support\Facades\Gate;
 use Bestlang\Laracms\Models\Permission;
+
+use Bestlang\Laracms\Models\Cms\Order;
+use Bestlang\Laracms\Observers\Cms\OrderObserver;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -27,6 +31,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        Order::observe(OrderObserver::class);
+
+        //下面代码在每个请求周期中都会重复执行,影响效率, 可以改成登录的时候做一次
         Gate::before(function ($user, $ability) {
             foreach ($user->getPermissionsViaRoles() as $permission){
                 $user->givePermissionTo($permission->name);

@@ -2,10 +2,22 @@
 namespace Bestlang\Laracms\Http\Controllers;
 
 
+use Illuminate\Http\Request;
+use Bestlang\Laracms\Models\Cms\Order;
+
 class OrderController
 {
-    public function index()
+    public function generate(Request $request)
     {
-        return view('laracms::dark.order.order');
+        $name = $request->input('name', null);
+        $money = $request->input('money', null);
+        $order = new Order;
+        $order->name = $name;
+        $order->money = $money;
+        $order->save();
+    }
+    public function detail()
+    {
+        return view('laracms::dark.order.detail');
     }
 }

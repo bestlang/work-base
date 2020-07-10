@@ -8,4 +8,9 @@ class Order extends Model
 {
     protected $table = 'cms_orders';
     protected $guarded = [];
+
+    public static function boot()
+    {
+        parent::boot();
+    }
 }
