@@ -13,11 +13,7 @@ class ContentController extends Controller
         //获取评论 @TODO 改为异步获取
         $comments = $content->comments;
 
-        $ext = [];
-        foreach ($content->metas as $meta){
-            $ext[$meta->field] = json_decode($meta->value) ? json_decode($meta->value) : $meta->value;
-        }
-        $content->ext = $ext;
+        $content->ext = $content->getExt();
 
         $prefix = $content->model->content_template_prefix;
         $template = $content->channel->content_template;

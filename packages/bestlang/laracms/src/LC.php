@@ -54,11 +54,7 @@ class LC
     {
         $contents = Content::where('channel_id', $channelId)->with(['metas', 'contents'])->limit($count)->get();
         $contents->map(function($content){
-            $ext = [];
-            foreach ($content->metas as $meta){
-                $ext[$meta->field] = $meta->value;
-            }
-            $content->ext = $ext;
+            $content->ext = $content->getExt();
         });
         return $contents;
     }
@@ -71,11 +67,7 @@ class LC
             });
         })->with(['metas', 'contents'])->limit($count)->get();
         $contents->map(function($content){
-            $ext = [];
-            foreach ($content->metas as $meta){
-                $ext[$meta->field] = $meta->value;
-            }
-            $content->ext = $ext;
+            $content->ext = $content->getExt();
         });
         return $contents;
     }
@@ -97,11 +89,7 @@ class LC
         }
         $contents = Position::where('name', $name)->first()->contents()->with(['metas', 'contents'])->limit($count)->get();
         $contents->map(function($content){
-            $ext = [];
-            foreach ($content->metas as $meta){
-                $ext[$meta->field] = $meta->value;
-            }
-            $content->ext = $ext;
+            $content->ext = $content->getExt();
         });
         return $contents;
     }
@@ -122,11 +110,7 @@ class LC
         $groupContents = [];
         $positionContents = Arr::flatten($positionContents);
         foreach ($positionContents as $content){
-            $ext = [];
-            foreach ($content->metas as $meta){
-                $ext[$meta->field] = $meta->value;
-            }
-            $content->ext = $ext;
+            $content->ext = $content->getExt();
             $groupContents[$content->channel_id][] = $content;
         }
 

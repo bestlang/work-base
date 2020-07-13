@@ -36,13 +36,6 @@ if(!function_exists('position')){
             return [];
         }
         $contents = Position::where('name', $name)->first()->contents()->with(['metas', 'contents'])->get();
-//        $contents->map(function($content){
-//            foreach ($content->metas as $meta){
-//                $content->{$meta->field} = $meta->value;
-//            }
-//            unset($content->metas);
-//        });
-//        print_r($contents->toArray());
         return $contents;
     }
 }

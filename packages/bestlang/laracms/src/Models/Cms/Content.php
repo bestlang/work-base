@@ -44,4 +44,14 @@ class Content extends Model
     {
         return $this->belongsToMany(Tag::class, 'cms_content_tags','content_id','tag_id');
     }
+
+    public function getExt()
+    {
+        $metas = $this->metas()->get();
+        $ext = [];
+        foreach ($metas as $meta){
+            $ext[$meta->field] = json_decode($meta->value) ? json_decode($meta->value, true) : $meta->value;
+        }
+        return $ext;
+    }
 }

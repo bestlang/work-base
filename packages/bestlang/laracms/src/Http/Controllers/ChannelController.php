@@ -14,11 +14,7 @@ class ChannelController extends Controller
         $channelIds = $channel->descendantsAndSelf()->get()->map(function($item){return $item->id;} )->toArray();
         $contents = Content::whereIn('channel_id', $channelIds)->with(['metas', 'contents'])->paginate(20);
         $contents->map(function($content){
-            $ext = [];
-            foreach ($content->metas as $meta){
-                $ext[$meta->field] = $meta->value;
-            }
-            $content->ext = $ext;
+            $content->ext = $content->getExt();
         });
         $prefix = $channel->model->channel_template_prefix;
         $template = $channel->template;

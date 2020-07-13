@@ -67,13 +67,11 @@
 {{--<script type="text/javascript" src="https://cdn.demo.fastadmin.net/assets/libs/bootstrap/dist/js/bootstrap.min.js"></script>--}}
 <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js"></script>
 {{--<script type="text/javascript" src="https://cdn.demo.fastadmin.net/assets/libs/fastadmin-layer/dist/layer.js"></script>--}}
-<script type="text/javascript" src="https://cdn.demo.fastadmin.net/assets/libs/art-template/dist/template-native.js"></script>
-<script type="text/javascript" src="https://cdn.demo.fastadmin.net/assets/addons/cms/js/jquery.autocomplete.js"></script>
+{{--<script type="text/javascript" src="https://cdn.demo.fastadmin.net/assets/libs/art-template/dist/template-native.js"></script>--}}
+{{--<script type="text/javascript" src="https://cdn.demo.fastadmin.net/assets/addons/cms/js/jquery.autocomplete.js"></script>--}}
 {{--<script type="text/javascript" src="https://cdn.demo.fastadmin.net/assets/addons/cms/js/swiper.min.js"></script>--}}
 <script src="https://cdn.bootcdn.net/ajax/libs/Swiper/4.5.0/js/swiper.min.js"></script>
-{{--<script type="text/javascript" src="https://cdn.demo.fastadmin.net/assets/addons/cms/js/cms.js?r=1.0.2"></script>--}}
-{{--<script type="text/javascript" src="https://cdn.demo.fastadmin.net/assets/addons/cms/js/common.js?r=1.0.2"></script>--}}
-<script src="https://cdn.bootcdn.net/ajax/libs/axios/0.19.2/axios.min.js"></script>
+{{--<script src="https://cdn.bootcdn.net/ajax/libs/axios/0.19.2/axios.min.js"></script>--}}
 @stack('script')
 </body>
 </html>

@@ -26,7 +26,7 @@
                                     <input type="hidden" id="content_id" value="{{$content->id}}" />
                                     <div><h1 style="font-size: 20px;margin-top: 0;">{{$content->title}}</h1></div>
                                     <div><h4>¥ <span style="color: red;">{{ sprintf('%.2f', $content->ext['price'])}}</span></h4></div>
-                                    <div><h4>数量: <input name="num" type="number" min="1" value="1" step="1" style="text-indent: 5px;border: 1px solid #f1f1f1;height: 36px;line-height: 36px;width: 60px;border-radius: 3px;"></h4></div>
+                                    <div><h4>数量: <input name="num" id="num" class="num" type="number" min="1" value="1" step="1"></h4></div>
                                     <div><h4>支付方式: <div class="radio">
                                                 <label>
                                                     <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked> 微信
@@ -36,11 +36,13 @@
                                                 <label>
                                                     <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">支付宝
                                                 </label>
-                                            </div></h4></div>
+                                            </div></h4>
+                                    </div>
                                     <div><h4><button id="pay_btn" type="button" class="btn btn-primary">购买</button></h4></div>
                                 </div>
                             </div>
                             <div style="padding: 15px 0;border-top: 1px solid #f1f1f1;">
+                                <div>{{json_encode($content->getExt())}}</div>
                                 <div>{!!  LC::content($content, 'content') !!}</div>
                             </div>
                         </div>
@@ -102,6 +104,22 @@
     $(function(){
         $('#pay_btn').click(function(){
             //生成订单并跳转到订单详情
+            var r = confirm("确定购买?")
+            if (r == true){
+                var content_id = $('#content_id').val();
+                var num = $('#num').val();
+                axios.post('/order/generate', {content_id: content_id, num: num}).then(response => {
+                    let res = response.data;
+                    if(res.success){
+                        location.href = '/order/'+res.data.order_no;
+                    }else{
+                        if(res.code == 401){
+                            alert(res.error);
+                            top.location.href = '/login';
+                        }
+                    }
+                })
+            }
         });
 //        $('#pay_btn').click(function(){
 //            let content_id = $('#content_id').val();
@@ -140,6 +158,9 @@
 @endpush
 @push('css')
 <style>
+    .num{
+        text-indent: 5px;border: 1px solid #f1f1f1;height: 36px;line-height: 36px;width: 60px;border-radius: 3px;
+    }
     .l-buy-form > div{
        /*margin-bottom: 5px;*/
     }

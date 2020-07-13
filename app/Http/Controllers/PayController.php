@@ -35,12 +35,8 @@ class PayController extends Controller
         }
 
         $content = Content::with(['metas'])->find($content_id);
-        foreach ($content->metas as $meta){
-            if($meta->field == 'price'){
-                $price = intval(floatval($meta->value)* floatval($num) *100);
-                break;
-            }
-        }
+        $exts = $content->getExt();
+        $price = $exts['price'];
         $wxPayUnifiedOrder->SetBody($content->title);
         $wxPayUnifiedOrder->SetAttach($user->id.'_'.$content->id);
         $wxPayUnifiedOrder->SetOut_trade_no($user->id.'_'.$content_id.'_'.date("YmdHis"));

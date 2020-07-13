@@ -14,9 +14,11 @@
                     <!-- S 焦点图 -->
                     <div id="index-focus" class="carousel slide carousel-focus" data-ride="carousel">
                         <ol class="carousel-indicators">
-                            <li data-target="#index-focus" data-slide-to="0" class="active"></li>
-                            <li data-target="#index-focus" data-slide-to="1" class=""></li>
-                            <li data-target="#index-focus" data-slide-to="2" class=""></li>
+                            @foreach(LC::cc(32, 5) as $index => $content)
+                                <li data-target="#index-focus" data-slide-to="{{$index}}" class="{{$index == 0 ? 'active' : ''}}"></li>
+                            @endforeach
+                            {{--<li data-target="#index-focus" data-slide-to="1" class=""></li>--}}
+                            {{--<li data-target="#index-focus" data-slide-to="2" class=""></li>--}}
                         </ol>
                         <div class="carousel-inner" role="listbox">
                             {{--<div class="item active">--}}
@@ -35,7 +37,7 @@
                                     {{--</div>--}}
                                 {{--</a>--}}
                             {{--</div>--}}
-                            @foreach(LC::cc(32, 4) as $index => $content)
+                            @foreach(LC::cc(32, 5) as $index => $content)
                                 <div class="item {{$index == 0 ? 'active':''}}">
                                     <a href="{{$content->ext['url']}}">
                                         <div class="carousel-img" style="background-image:url('{{$content->ext['image']}}');"></div>
@@ -116,7 +118,7 @@
                                             <a href="{{route('content', $content->id)}}" >{{$content->title}}</a>
                                         </h3>
                                         <div class="row">
-                                            @foreach(json_decode($content->ext['album'], true) as $index => $album)
+                                            @foreach($content->ext['album'] as $index => $album)
                                                 @if($index > 3)
                                                     @break
                                                 @endif

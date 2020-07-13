@@ -8,18 +8,33 @@
                 <div class="col-md-8">
                     <div class="panel panel-default article-content">
                         <div class="l-article-body">
-                            <h1>订单创建成功,请您您快付款!</h1>
-                            <div>
-                                <div>商品名称: 订单充值</div>
-                                <div>商品描述: 订单充值-laracms-购买</div>
-                                <div>订单号: 100200300400500</div>
-                                <div>交易金额: 1040元</div>
+                            <h1 style="font-size: 20px;"><i class="fa fa-check-circle" aria-hidden="true"></i> 订单创建成功,请您您快付款!</h1>
+                            <div style="border: 1px solid #f1f1f1;padding: 20px;">
+                                <div>商品名称: {{$order->name}}</div>
+                                <div>商品描述: 订单充值</div>
+                                <div>订单号: {{$order->order_no}}</div>
+                                <div>交易金额: {{$order->money}}元</div>
                             </div>
-                            <div>付款方式:
-                                <div>支付宝</div>
-                                <div>微信支付</div>
-                            </div>
-                            <div>立即支付</div>
+                            <nav class="navbar navbar-default" role="navigation">
+                                <div>
+                                    <div>
+                                        <a style="float: left;" href="#">支付方式</a>
+                                    </div>
+                                    <ul class="nav nav-tabs">
+                                        <li class="active"><a href="#identifier" data-toggle="tab">支付宝</a></li>
+                                        <li><a href="#identifier2" data-toggle="tab">微信支付</a></li>
+                                    </ul>
+                                    <div class="tab-content">
+                                        <div class="tab-pane fade in active" id="identifier">
+                                            <p>菜鸟教程是一个提供最新的web技术站点，本站免费提供了建站相关的技术文档，帮助广大web技术爱好者快速入门并建立自己的网站。菜鸟先飞早入行——学的不仅是技术，更是梦想。</p>
+                                        </div>
+                                        <div class="tab-pane fade" id="identifier2">
+                                            <p>iOS 是一个由苹果公司开发和发布的手机操作系统。最初是于 2007 年首次发布 iPhone、iPod Touch 和 Apple
+                                                TV。iOS 派生自 OS X，它们共享 Darwin 基础。OS X 操作系统是用在苹果电脑上，iOS 是苹果的移动版本。</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </nav>
                         </div>
                     </div>
                 </div>
