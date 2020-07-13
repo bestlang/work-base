@@ -16,7 +16,7 @@ Route::any('/order/{order_no}', 'OrderController@detail');
 Route::group(['prefix' => 'ajax'], function($router){
     Route::any('/csrf', 'IndexController@csrf');
     Route::group(['prefix' => 'auth'], function ($router) {
-//        Route::any('login', 'AuthController@login');
+        Route::any('login', 'AuthController@login');
         Route::any('logout', 'ExitController@logout');
     });
     // @todo 使用带参数的中间来验证管理员 role:administrator
