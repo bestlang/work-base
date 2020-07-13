@@ -8,7 +8,10 @@
                 <div class="col-md-8">
                     <div class="panel panel-default article-content">
                         <div class="l-article-body">
-                            <h1 style="font-size: 20px;"><i class="fa fa-check-circle" aria-hidden="true"></i> 订单创建成功,请您您快付款!</h1>
+                            <h1 style="font-size: 20px;margin-top: 0;padding-top: 10px;line-height: 30px;">
+                                <i style="color: green;font-size: 30px;display: inline-block;vertical-align: bottom;" class="fa fa-check-circle" aria-hidden="true"></i>
+                                <span style="line-height: 30px;">订单创建成功,请您您快付款!</span>
+                            </h1>
                             <div style="border: 1px solid #f1f1f1;padding: 20px;">
                                 <div>商品名称: {{$order->name}}</div>
                                 <div>商品描述: 订单充值</div>

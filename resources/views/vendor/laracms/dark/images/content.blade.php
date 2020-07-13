@@ -11,7 +11,7 @@
                             <div class="swiper-container gallery-top">
                                 <div class="swiper-wrapper">
                                     @foreach($albums as $ab)
-                                        <div class="swiper-slide" style="background-image:url('{{$ab->url}}')">
+                                        <div class="swiper-slide" style="background-image:url('{{$ab['url']}}')">
                                         </div>
                                     @endforeach
                                 </div>
@@ -21,7 +21,7 @@
                             <div class="swiper-container gallery-thumbs">
                                 <div class="swiper-wrapper">
                                     @foreach($albums as $ab)
-                                        <div class="swiper-slide" style="background-image:url('{{$ab->url}}')"></div>
+                                        <div class="swiper-slide" style="background-image:url('{{$ab['url']}}')"></div>
                                     @endforeach
                                 </div>
                             </div>

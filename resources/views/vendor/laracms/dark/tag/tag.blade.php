@@ -4,7 +4,7 @@
         <div class="">
             <div class="container">
                 <h1 class="category-title">
-                    {{$tag->name}}
+                    “{{$tag->name}}”相关的内容
                 </h1>
                 <div class="row">
                     <div class="col-md-8">
