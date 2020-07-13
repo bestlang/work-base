@@ -15,10 +15,10 @@
                                 <div>订单号: {{$order->order_no}}</div>
                                 <div>交易金额: {{$order->money}}元</div>
                             </div>
-                            <nav class="navbar navbar-default" role="navigation">
-                                <div>
+                            <nav class="navbar" role="navigation">
+                                <div style="padding-top: 20px;">
                                     <div>
-                                        <a style="float: left;" href="#">支付方式</a>
+                                        <span style="float: left;display: inline-block;padding: 10px 15px;" href="#">支付方式</span>
                                     </div>
                                     <ul class="nav nav-tabs">
                                         <li class="active"><a href="#identifier" data-toggle="tab">支付宝</a></li>
@@ -104,6 +104,10 @@
 @endpush
 @push('css')
 <style>
+    .tab-content{
+        padding-top: 25px;
+        padding-bottom: 25px;
+    }
     .l-buy-form > div{
         /*margin-bottom: 5px;*/
     }
