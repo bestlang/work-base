@@ -13,7 +13,7 @@ Controller中的action里面
 
 使用Route macro来避免api方式和session方式造成的路由定义重复
 
-https://payjs.cn/
+个人(非商家)接入微信支付原理:https://pay.weixin.qq.com/wiki/doc/api/xiaowei.php?chapter=19_1
 
 
 

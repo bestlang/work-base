@@ -4,6 +4,7 @@ namespace App\Pay;
 use App\Pay\Exceptions\WxPayException;
 use App\Pay\Data\WxPayResults;
 use App\Pay\Data\WxPayNotifyResults;
+use App\Pay\Data\WxPayReport;
 /**
  *
  * 接口访问类，包含所有微信支付API列表的封装，类中方法为static方法，

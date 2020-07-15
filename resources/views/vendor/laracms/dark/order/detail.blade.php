@@ -10,7 +10,7 @@
                         <div class="l-article-body">
                             <h1 style="font-size: 20px;margin-top: 0;padding-top: 10px;line-height: 30px;">
                                 <i style="color: green;font-size: 30px;display: inline-block;vertical-align: bottom;" class="fa fa-check-circle" aria-hidden="true"></i>
-                                <span style="line-height: 30px;">订单创建成功,请您您快付款!</span>
+                                <span style="line-height: 30px;">订单创建成功,请您尽快完成支付</span>
                             </h1>
                             <div style="border: 1px solid #f1f1f1;padding: 20px;">
                                 <div>商品名称: {{$order->name}}</div>
@@ -24,16 +24,20 @@
                                         <span style="float: left;display: inline-block;padding: 10px 15px;" href="#">支付方式</span>
                                     </div>
                                     <ul class="nav nav-tabs">
-                                        <li class="active"><a href="#identifier" data-toggle="tab">支付宝</a></li>
-                                        <li><a href="#identifier2" data-toggle="tab">微信支付</a></li>
+                                        <li class="active"><a href="#identifier" data-toggle="tab">微信支付</a></li>
+                                        <li><a href="#identifier2" data-toggle="tab">支付宝</a></li>
                                     </ul>
                                     <div class="tab-content">
                                         <div class="tab-pane fade in active" id="identifier">
-                                            <p>菜鸟教程是一个提供最新的web技术站点，本站免费提供了建站相关的技术文档，帮助广大web技术爱好者快速入门并建立自己的网站。菜鸟先飞早入行——学的不仅是技术，更是梦想。</p>
+                                            <p>
+                                                <img src="" alt="" id="native2_code" style="width: 200px;height: 200px;margin: 30px auto 0;">
+                                            </p>
                                         </div>
                                         <div class="tab-pane fade" id="identifier2">
-                                            <p>iOS 是一个由苹果公司开发和发布的手机操作系统。最初是于 2007 年首次发布 iPhone、iPod Touch 和 Apple
-                                                TV。iOS 派生自 OS X，它们共享 Darwin 基础。OS X 操作系统是用在苹果电脑上，iOS 是苹果的移动版本。</p>
+                                            <p>
+                                                iOS 是一个由苹果公司开发和发布的手机操作系统。最初是于 2007 年首次发布 iPhone、iPod Touch 和 Apple
+                                                TV。iOS 派生自 OS X，它们共享 Darwin 基础。OS X 操作系统是用在苹果电脑上，iOS 是苹果的移动版本。
+                                            </p>
                                         </div>
                                     </div>
                                 </div>
@@ -86,6 +90,22 @@
 @push('script')
 <script type="text/javascript">
     $(function(){
+        var productName = "{{$order->name}}"
+        var productId = "{{$order->id}}"
+        var orderNo = "{{$order->order_no}}"
+        var price = "{{$order->money * 100}}"
+        axios.post('/ajax/pay/native2', {productName, productId, orderNo, price}).then(response => {
+            let res = response.data;
+            if(res.success){
+                $('#native2_code').attr('src', res.data)
+                //$('.cover').css('visibility', 'visible')
+            }else{
+                if(res.code == 401){
+                    alert(res.error);
+                    top.location.href = '/login';
+                }
+            }
+        })
         $('#pay_btn').click(function(){
             let content_id = $('#content_id').val();
             let num = $("input[name='num']").val();

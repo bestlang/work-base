@@ -20,33 +20,25 @@ class PayController extends Controller
 {
     public function native2(Request $request, WxPayUnifiedOrder $wxPayUnifiedOrder, NativePay $nativePay, WxPayConfig $wxPayConfig)
     {
+        $productName = $request->input('productName');
+        $productId = $request->input('productId');
+        $orderNo = $request->input('orderNo');
+        $price = $request->input('price');
         $user = auth()->user();
         if(!$user){
             return response()->error('请先登录', 401);
         }
         //前台确认支付之后请求本动作
-        $content_id = $request->input('content_id', 0);
-        $num = $request->input('num', 0);
-        if(!$content_id){
-            return response()->error('参数错误');
-        }
-        if(!$num){
-            return response()->error('参数错误');
-        }
-
-        $content = Content::with(['metas'])->find($content_id);
-        $exts = $content->getExt();
-        $price = $exts['price'];
-        $wxPayUnifiedOrder->SetBody($content->title);
-        $wxPayUnifiedOrder->SetAttach($user->id.'_'.$content->id);
-        $wxPayUnifiedOrder->SetOut_trade_no($user->id.'_'.$content_id.'_'.date("YmdHis"));
+        $wxPayUnifiedOrder->SetBody($productName);
+        //$wxPayUnifiedOrder->SetAttach($user->id.'_'.$content->id);
+        $wxPayUnifiedOrder->SetOut_trade_no($orderNo);
         $wxPayUnifiedOrder->SetTotal_fee($price);
         $wxPayUnifiedOrder->SetTime_start(date("YmdHis"));
         $wxPayUnifiedOrder->SetTime_expire(date("YmdHis", time() + 600));
         //$wxPayUnifiedOrder->SetGoods_tag("m100d99");
         $wxPayUnifiedOrder->SetNotify_url($wxPayConfig->GetNotifyUrl());
         $wxPayUnifiedOrder->SetTrade_type("NATIVE");
-        $wxPayUnifiedOrder->SetProduct_id($content->id);
+        $wxPayUnifiedOrder->SetProduct_id($productId);
 
         $result = $nativePay->GetPayUrl($wxPayUnifiedOrder);
         $url2 = $result["code_url"];

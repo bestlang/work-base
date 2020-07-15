@@ -24,20 +24,12 @@
                                 </div>
                                 <div class="col-sm-7 l-buy-form" style="display: flex;flex-flow:column wrap;justify-content: space-between;">
                                     <input type="hidden" id="content_id" value="{{$content->id}}" />
+                                    @if(auth()->check())
+                                        <input type="hidden" id="user_id" value="{{auth()->user()->id}}" />
+                                    @endif
                                     <div><h1 style="font-size: 20px;margin-top: 0;">{{$content->title}}</h1></div>
                                     <div><h4>¥ <span style="color: red;">{{ sprintf('%.2f', $content->ext['price'])}}</span></h4></div>
                                     <div><h4>数量: <input name="num" id="num" class="num" type="number" min="1" value="1" step="1"></h4></div>
-                                    <div><h4>支付方式: <div class="radio">
-                                                <label>
-                                                    <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked> 微信
-                                                </label>
-                                            </div>
-                                            <div class="radio">
-                                                <label>
-                                                    <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">支付宝
-                                                </label>
-                                            </div></h4>
-                                    </div>
                                     <div><h4><button id="pay_btn" type="button" class="btn btn-primary">购买</button></h4></div>
                                 </div>
                             </div>
@@ -101,10 +93,16 @@
 @endsection
 @push('script')
 <script type="text/javascript">
+
     $(function(){
         $('#pay_btn').click(function(){
             //生成订单并跳转到订单详情
             var r = confirm("确定购买?")
+            var user_id = $("#user_id").val()
+            if(!user_id){
+                alert('需要登录')
+                top.location.href = '/login';
+            }
             if (r == true){
                 var content_id = $('#content_id').val();
                 var num = $('#num').val();
