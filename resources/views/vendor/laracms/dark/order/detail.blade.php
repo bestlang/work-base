@@ -90,11 +90,8 @@
 @push('script')
 <script type="text/javascript">
     $(function(){
-        var productName = "{{$order->name}}"
-        var productId = "{{$order->id}}"
-        var orderNo = "{{$order->order_no}}"
-        var price = "{{$order->money * 100}}"
-        axios.post('/ajax/pay/native2', {productName, productId, orderNo, price}).then(response => {
+        var order_no = "{{$order->order_no}}"
+        axios.post('/ajax/pay/native2', {order_no}).then(response => {
             let res = response.data;
             if(res.success){
                 $('#native2_code').attr('src', res.data)

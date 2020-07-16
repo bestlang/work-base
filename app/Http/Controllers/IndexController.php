@@ -8,9 +8,9 @@ use App\Pay\Gateway\NativePay;
 use App\Pay\Data\WxPayUnifiedOrder;
 use App\Pay\Log\CLogFileHandler;
 use App\Pay\Log\Log;
-use App\Pay\NativeNotifyCallBack;
+use App\Pay\Custom\NativeNotifyCallBack;
 use App\Pay\WxPayConfig;
-use App\Pay\PayNotifyCallBack;
+use App\Pay\Custom\PayNotifyCallBack;
 
 use Endroid\QrCode\QrCode;
 
@@ -24,24 +24,24 @@ class IndexController extends Controller
         echo "<img src=\"".$qrCode->writeDataUri()."\" />";
     }
 
-    public function native2(Request $request, WxPayUnifiedOrder $wxPayUnifiedOrder, NativePay $nativePay, WxPayConfig $wxPayConfig)
-    {
-        $wxPayUnifiedOrder->SetBody("一件神器的商品");
-        $wxPayUnifiedOrder->SetAttach("感谢付款");
-        $wxPayUnifiedOrder->SetOut_trade_no("sdkphp123456789".date("YmdHis"));
-        $wxPayUnifiedOrder->SetTotal_fee("1");
-        $wxPayUnifiedOrder->SetTime_start(date("YmdHis"));
-        $wxPayUnifiedOrder->SetTime_expire(date("YmdHis", time() + 600));
-        //$wxPayUnifiedOrder->SetGoods_tag("m100d99");
-        $wxPayUnifiedOrder->SetNotify_url($wxPayConfig->GetNotifyUrl());
-        $wxPayUnifiedOrder->SetTrade_type("NATIVE");
-        $wxPayUnifiedOrder->SetProduct_id("123456789");
-
-        $result = $nativePay->GetPayUrl($wxPayUnifiedOrder);
-        $url2 = $result["code_url"];
-        $qrCode = new QrCode($url2);
-        echo "<img src=\"".$qrCode->writeDataUri()."\" />";
-    }
+//    public function native2(Request $request, WxPayUnifiedOrder $wxPayUnifiedOrder, NativePay $nativePay, WxPayConfig $wxPayConfig)
+//    {
+//        $wxPayUnifiedOrder->SetBody("一件神器的商品");
+//        $wxPayUnifiedOrder->SetAttach("感谢付款");
+//        $wxPayUnifiedOrder->SetOut_trade_no("sdkphp123456789".date("YmdHis"));
+//        $wxPayUnifiedOrder->SetTotal_fee("1");
+//        $wxPayUnifiedOrder->SetTime_start(date("YmdHis"));
+//        $wxPayUnifiedOrder->SetTime_expire(date("YmdHis", time() + 600));
+//        //$wxPayUnifiedOrder->SetGoods_tag("m100d99");
+//        $wxPayUnifiedOrder->SetNotify_url($wxPayConfig->GetNotifyUrl());
+//        $wxPayUnifiedOrder->SetTrade_type("NATIVE");
+//        $wxPayUnifiedOrder->SetProduct_id("123456789");
+//
+//        $result = $nativePay->GetPayUrl($wxPayUnifiedOrder);
+//        $url2 = $result["code_url"];
+//        $qrCode = new QrCode($url2);
+//        echo "<img src=\"".$qrCode->writeDataUri()."\" />";
+//    }
 
     //需要调用统一下单api的
     public function wechatNativeNotify(WxPayConfig $config, NativeNotifyCallBack $nativeNotifyCallBack)

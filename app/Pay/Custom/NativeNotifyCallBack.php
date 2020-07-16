@@ -1,20 +1,24 @@
 <?php
-namespace App\Pay;
+namespace App\Pay\Custom;
 
 use App\Pay\Data\WxPayUnifiedOrder;
 use App\Pay\Log\Log;
 use App\Pay\WxPayConfig;
+use App\Pay\WxPayNotify;
+
+use Bestlang\Laracms\Services\OrderGenerator;
 
 //native第一种支付方式, 需要调用统一下单Api
 class NativeNotifyCallBack extends WxPayNotify
 {
-    public function unifiedorder($openId, $product_id)
+    public function unifiedOrder($openId, $product_id)
     {
         $config = new WxPayConfig();
+        $order = new OrderGenerator($product_id, 1);
         //统一下单
         $input = new WxPayUnifiedOrder();
-        $input->SetBody("CSRF有时候也是个大坑");
-        $input->SetAttach("CSRF");
+        $input->SetBody($order->name);
+        //$input->SetAttach("xxx");
         $input->SetOut_trade_no($config->GetMerchantId().date("YmdHis"));
         $input->SetTotal_fee("1");
         $input->SetTime_start(date("YmdHis"));
@@ -57,7 +61,7 @@ class NativeNotifyCallBack extends WxPayNotify
         $data = $objData->GetValues();
         //echo "处理回调";
         Log::DEBUG("call back:" . json_encode($data));
-        //TODO 1、进行参数校验
+        //1、进行参数校验
         if(!array_key_exists("openid", $data) ||
             !array_key_exists("product_id", $data))
         {
@@ -66,7 +70,7 @@ class NativeNotifyCallBack extends WxPayNotify
             return false;
         }
 
-        //TODO 2、进行签名验证
+        //2、进行签名验证
         try {
             $checkResult = $objData->CheckSign($config);
             if($checkResult == false){
@@ -81,9 +85,9 @@ class NativeNotifyCallBack extends WxPayNotify
         $openid = $data["openid"];
         $product_id = $data["product_id"];
 
-        //TODO 3、处理业务逻辑
+        //3、处理业务逻辑
         //统一下单
-        $result = $this->unifiedorder($openid, $product_id);
+        $result = $this->unifiedOrder($openid, $product_id);
         if(!array_key_exists("appid", $result) ||
             !array_key_exists("mch_id", $result) ||
             !array_key_exists("prepay_id", $result))
