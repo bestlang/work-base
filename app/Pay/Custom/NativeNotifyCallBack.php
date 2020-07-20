@@ -6,15 +6,16 @@ use App\Pay\Log\Log;
 use App\Pay\WxPayConfig;
 use App\Pay\WxPayNotify;
 
+use Bestlang\Laracms\Models\Cms\Order;
 use Bestlang\Laracms\Services\OrderGenerator;
 
 //native第一种支付方式, 需要调用统一下单Api
 class NativeNotifyCallBack extends WxPayNotify
 {
-    public function unifiedOrder($openId, $product_id)
+    public function unifiedOrder($openId, $order_no)
     {
         $config = new WxPayConfig();
-        $order = new OrderGenerator($product_id, 1);
+        $order = Order::where('order_no', $order_no)->first();
         //统一下单
         $input = new WxPayUnifiedOrder();
         $input->SetBody($order->name);
@@ -27,7 +28,7 @@ class NativeNotifyCallBack extends WxPayNotify
         $input->SetNotify_url($config->GetNotifyUrl());
         $input->SetTrade_type("NATIVE");
         $input->SetOpenid($openId);
-        $input->SetProduct_id($product_id);
+        $input->SetProduct_id($order->product_id);
         try {
             $result = WxPayApi::unifiedOrder($config, $input);
             Log::DEBUG("unifiedorder:" . json_encode($result));

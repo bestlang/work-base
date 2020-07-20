@@ -3,6 +3,7 @@ namespace App\Pay\Custom;
 use App\Pay\Log\Log;
 use App\Pay\Data\WxPayOrderQuery;
 use App\Pay\WxPayNotify;
+use Bestlang\Laracms\Events\PayNotify;
 
 // 处理支付成功回调
 class PayNotifyCallBack extends WxPayNotify
@@ -101,6 +102,7 @@ class PayNotifyCallBack extends WxPayNotify
             transaction_id: "4200000591202007151807423555"
         }
         */
+        event(new PayNotify($data['out_trade_no']));
         $notfiyOutput = array();
 
 

@@ -97,13 +97,13 @@
     $(function(){
         $('#pay_btn').click(function(){
             //生成订单并跳转到订单详情
-            var r = confirm("确定购买?")
+            var decision = confirm("确定购买?")
             var user_id = $("#user_id").val()
             if(!user_id){
                 alert('需要登录')
                 top.location.href = '/login';
             }
-            if (r == true){
+            if (decision){
                 var content_id = $('#content_id').val();
                 var num = $('#num').val();
                 axios.post('/order/generate', {content_id: content_id, num: num}).then(response => {

@@ -30,7 +30,12 @@
                                     <div class="tab-content">
                                         <div class="tab-pane fade in active" id="identifier">
                                             <p>
-                                                <img src="" alt="" id="native2_code" style="width: 200px;height: 200px;margin: 30px auto 0;">
+                                                <p>NATIVE1</p>
+                                                <img src="" alt="" id="native1_code" style="width: 200px;height: 200px;margin: 10px auto 0;">
+                                            </p>
+                                            <p>
+                                                <p>NATIVE2</p>
+                                                <img src="" alt="" id="native2_code" style="width: 200px;height: 200px;margin: 10px auto 0;">
                                             </p>
                                         </div>
                                         <div class="tab-pane fade" id="identifier2">
@@ -95,6 +100,18 @@
             let res = response.data;
             if(res.success){
                 $('#native2_code').attr('src', res.data)
+                //$('.cover').css('visibility', 'visible')
+            }else{
+                if(res.code == 401){
+                    alert(res.error);
+                    top.location.href = '/login';
+                }
+            }
+        })
+        axios.post('/ajax/pay/native1', {order_no}).then(response => {
+            let res = response.data;
+            if(res.success){
+                $('#native1_code').attr('src', res.data)
                 //$('.cover').css('visibility', 'visible')
             }else{
                 if(res.code == 401){

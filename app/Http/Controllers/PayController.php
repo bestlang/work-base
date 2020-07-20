@@ -24,29 +24,29 @@ class PayController extends Controller
         $this->nativePay = $nativePay;
         $this->wxPayConfig = $wxPayConfig;
     }
-    public function native2(Request $request)
-    {
-        $orderNo = $request->input('order_no');
-        $order = Order::where('order_no', $orderNo)->first();
-        $user = auth()->user();
-        if(!$user){
-            return response()->error('请先登录', 401);
-        }
-        //前台确认支付之后请求本动作
-        $this->wxPayUnifiedOrder->SetBody($order->name);
-        //$wxPayUnifiedOrder->SetAttach('xxx');
-        $this->wxPayUnifiedOrder->SetOut_trade_no($orderNo);
-        $this->wxPayUnifiedOrder->SetTotal_fee($order->money * 100);
-        $this->wxPayUnifiedOrder->SetTime_start(date("YmdHis"));
-        $this->wxPayUnifiedOrder->SetTime_expire(date("YmdHis", time() + 600));
-        //$wxPayUnifiedOrder->SetGoods_tag("xxx");
-        $this->wxPayUnifiedOrder->SetNotify_url($this->wxPayConfig->GetNotifyUrl());
-        $this->wxPayUnifiedOrder->SetTrade_type("NATIVE");
-        $this->wxPayUnifiedOrder->SetProduct_id($order->id);
-
-        $result = $this->nativePay->GetPayUrl($this->wxPayUnifiedOrder);
-        $url2 = $result["code_url"];
-        $qrCode = new QrCode($url2);
-        return response()->ajax($qrCode->writeDataUri());
-    }
+//    public function native2(Request $request)
+//    {
+//        $orderNo = $request->input('order_no');
+//        $order = Order::where('order_no', $orderNo)->first();
+//        $user = auth()->user();
+//        if(!$user){
+//            return response()->error('请先登录', 401);
+//        }
+//        //前台确认支付之后请求本动作
+//        $this->wxPayUnifiedOrder->SetBody($order->name);
+//        //$wxPayUnifiedOrder->SetAttach('xxx');
+//        $this->wxPayUnifiedOrder->SetOut_trade_no($orderNo);
+//        $this->wxPayUnifiedOrder->SetTotal_fee($order->money * 100);
+//        $this->wxPayUnifiedOrder->SetTime_start(date("YmdHis"));
+//        $this->wxPayUnifiedOrder->SetTime_expire(date("YmdHis", time() + 600));
+//        //$wxPayUnifiedOrder->SetGoods_tag("xxx");
+//        $this->wxPayUnifiedOrder->SetNotify_url($this->wxPayConfig->GetNotifyUrl());
+//        $this->wxPayUnifiedOrder->SetTrade_type("NATIVE");
+//        $this->wxPayUnifiedOrder->SetProduct_id($order->id);
+//
+//        $result = $this->nativePay->GetPayUrl($this->wxPayUnifiedOrder);
+//        $url2 = $result["code_url"];
+//        $qrCode = new QrCode($url2);
+//        return response()->ajax($qrCode->writeDataUri());
+//    }
 }

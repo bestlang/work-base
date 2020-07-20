@@ -8,12 +8,17 @@ class OrderGenerator
 {
     public function __invoke($content_id, $num)
     {
-        $content = Content::find($content_id);
-        $price = $content->getExt()['price'];
-        $order = new Order;
-        $order->name = $content->title;
-        $order->money = $price * $num;
-        $order->save();
+        try{
+            $content = Content::find($content_id);
+            $price = $content->getExt()['price'];
+            $order = new Order;
+            $order->name = $content->title;
+            $order->money = $price * $num;
+            $order->product_id = $content_id;
+            $order->save();
+        }catch (\Exception $e){
+            return $e->getMessage();
+        }
         return $order;
     }
 }

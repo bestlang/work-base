@@ -58,14 +58,14 @@ Route::get('wechat/order/native1', 'IndexController@native1');
 Route::get('wechat/order/native2', 'IndexController@native2');
 
 //进入商户平台-->产品中心-->开发配置 填写此地址
-Route::any('/notify/wechat/native', 'IndexController@wechatNativeNotify');
-
-Route::any('/notify/wechat/async', 'IndexController@wechatAsyncNotify');
+//Route::any('/notify/wechat/native', 'IndexController@wechatNativeNotify');
+//
+//Route::any('/notify/wechat/async', 'IndexController@wechatAsyncNotify');
 
 Route::any('alipay/create', 'Index2Controller@invoke');
 
 
 
-Route::group(['prefix' => 'ajax'], function($router){
-    Route::any('pay/native2', 'PayController@native2');
-});
+//Route::group(['prefix' => 'ajax'], function($router){
+//    Route::any('pay/native2', 'PayController@native2');
+//});

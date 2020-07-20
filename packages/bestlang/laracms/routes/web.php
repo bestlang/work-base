@@ -13,7 +13,12 @@ Route::get('/ucenter', 'UCenterController@index');
 Route::any('/order/generate', 'OrderController@generate');
 Route::any('/order/{order_no}', 'OrderController@detail');
 
+Route::any('/notify/wechat/native', 'OrderController@wechatNativeNotify');
+Route::any('/notify/wechat/async', 'OrderController@wechatAsyncNotify');
+
 Route::group(['prefix' => 'ajax'], function($router){
+    Route::any('/pay/native1', 'OrderController@native1');
+    Route::any('/pay/native2', 'OrderController@native2');
     Route::any('/csrf', 'IndexController@csrf');
     Route::group(['prefix' => 'auth'], function ($router) {
         Route::any('login', 'AuthController@login');
