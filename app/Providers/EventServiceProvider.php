@@ -31,4 +31,9 @@ class EventServiceProvider extends ServiceProvider
 
         //
     }
+    //自动发现事件处理程序
+    public function shouldDiscoverEvents()
+    {
+        return true;
+    }
 }

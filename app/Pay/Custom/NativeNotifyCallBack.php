@@ -20,11 +20,11 @@ class NativeNotifyCallBack extends WxPayNotify
         $input = new WxPayUnifiedOrder();
         $input->SetBody($order->name);
         //$input->SetAttach("xxx");
-        $input->SetOut_trade_no($config->GetMerchantId().date("YmdHis"));
-        $input->SetTotal_fee("1");
+        $input->SetOut_trade_no($order->order_no);
+        $input->SetTotal_fee($order->money * 100);
         $input->SetTime_start(date("YmdHis"));
         $input->SetTime_expire(date("YmdHis", time() + 600));
-        $input->SetGoods_tag("CSRF");
+        //$input->SetGoods_tag("xxx");
         $input->SetNotify_url($config->GetNotifyUrl());
         $input->SetTrade_type("NATIVE");
         $input->SetOpenid($openId);

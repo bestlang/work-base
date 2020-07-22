@@ -15,6 +15,8 @@ use App\Pay\Log\CLogFileHandler;
 use App\Pay\Custom\NativeNotifyCallBack;
 use App\Pay\Log\Log;
 
+use App\Pay\Custom\PayNotifyCallBack;
+
 class OrderController
 {
     protected $wxPayUnifiedOrder, $nativePay, $wxPayConfig;
@@ -51,6 +53,14 @@ class OrderController
         $log = Log::Init($logHandler, 15);
         Log::DEBUG("begin notify!");
         $nativeNotifyCallBack->Handle($config, true);
+    }
+
+    public function wechatAsyncNotify(Request $request, PayNotifyCallBack $payNotifyCallBack, WxPayConfig $config)
+    {
+        $logHandler = new CLogFileHandler(storage_path()."/logs/".'notify-'.date('Y-m-d').'.log');
+        $log = Log::Init($logHandler, 15);
+        Log::DEBUG("begin notify");
+        $payNotifyCallBack->Handle($config, false);
     }
 
     //微信支付的native2
