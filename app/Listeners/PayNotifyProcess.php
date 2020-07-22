@@ -4,6 +4,7 @@ namespace App\Listeners;
 
 use Bestlang\Laracms\Events\PayNotify;
 use Bestlang\Laracms\Models\Cms\Order;
+use App\Pay\Log\Log;
 
 class PayNotifyProcess
 {
@@ -22,5 +23,6 @@ class PayNotifyProcess
         $order = Order::where('order_no', $order_no)->first();
         $order->status = 1;
         $order->save();
+        Log::DEBUG("order paid=======>:" . json_encode($order));
     }
 }
