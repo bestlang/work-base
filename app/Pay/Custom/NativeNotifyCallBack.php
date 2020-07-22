@@ -7,7 +7,7 @@ use App\Pay\WxPayConfig;
 use App\Pay\WxPayNotify;
 
 use Bestlang\Laracms\Models\Cms\Order;
-use Bestlang\Laracms\Services\OrderGenerator;
+use App\Pay\WxPayApi;
 
 //native第一种支付方式, 需要调用统一下单Api
 class NativeNotifyCallBack extends WxPayNotify

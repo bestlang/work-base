@@ -51,7 +51,7 @@ class OrderController
         //初始化日志
         $logHandler = new CLogFileHandler(storage_path()."/logs/".date('Y-m-d').'.log');
         $log = Log::Init($logHandler, 15);
-        Log::DEBUG("begin notify!");
+        Log::DEBUG("begin notify native1 !");
         $nativeNotifyCallBack->Handle($config, true);
     }
 
