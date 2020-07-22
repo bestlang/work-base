@@ -20,7 +20,7 @@ class NativeNotifyCallBack extends WxPayNotify
         $input = new WxPayUnifiedOrder();
         $input->SetBody($order->name);
         //$input->SetAttach("xxx");
-        $input->SetOut_trade_no($order->order_no);
+        $input->SetOut_trade_no($order_no.'_'.time());
         $input->SetTotal_fee($order->money * 100);
         $input->SetTime_start(date("YmdHis"));
         $input->SetTime_expire(date("YmdHis", time() + 600));

@@ -70,8 +70,8 @@ class OrderController
         $this->nativePay = $nativePay;
         $this->wxPayConfig = $wxPayConfig;
 
-        $orderNo = $request->input('order_no');
-        $order = Order::where('order_no', $orderNo)->first();
+        $order_no = $request->input('order_no');
+        $order = Order::where('order_no', $order_no)->first();
         $user = auth()->user();
         if(!$user){
             return response()->error('请先登录', 401);
@@ -79,7 +79,7 @@ class OrderController
         //前台确认支付之后请求本动作
         $this->wxPayUnifiedOrder->SetBody($order->name);
         //$wxPayUnifiedOrder->SetAttach('xxx');
-        $this->wxPayUnifiedOrder->SetOut_trade_no($orderNo);
+        $this->wxPayUnifiedOrder->SetOut_trade_no($order_no.'_'.time());
         $this->wxPayUnifiedOrder->SetTotal_fee($order->money * 100);
         $this->wxPayUnifiedOrder->SetTime_start(date("YmdHis"));
         $this->wxPayUnifiedOrder->SetTime_expire(date("YmdHis", time() + 600));
