@@ -4,6 +4,8 @@ use App\Pay\Log\Log;
 use App\Pay\Data\WxPayOrderQuery;
 use App\Pay\WxPayNotify;
 use Bestlang\Laracms\Events\PayNotify;
+use App\Pay\WxPayConfig;
+use App\Pay\WxPayApi;
 
 // 处理支付成功回调
 class PayNotifyCallBack extends WxPayNotify
