@@ -95,6 +95,7 @@ class NativeNotifyCallBack extends WxPayNotify
         {
             $msg = "统一下单失败";
             Log::DEBUG($msg  . json_encode($data));
+            Log::DEBUG($msg  . json_encode($result));
             return false;
         }
 
