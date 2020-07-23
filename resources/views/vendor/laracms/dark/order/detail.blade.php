@@ -30,7 +30,7 @@
                                     <div class="tab-content">
                                         <div class="tab-pane fade in active" id="identifier">
                                             <p>
-                                                <p>NATIVE1</p>
+                                                {{--<p>NATIVE1</p>--}}
                                                 <img src="" alt="" id="native1_code" style="width: 200px;height: 200px;margin: 10px auto 0;">
                                             </p>
                                             {{--<p>--}}
