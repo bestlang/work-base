@@ -13,6 +13,7 @@ Route::get('/ucenter', 'UCenterController@index');
 Route::any('/order/generate', 'OrderController@generate');
 Route::any('/order/{order_no}', 'OrderController@detail');
 
+//进入商户平台-->产品中心-->开发配置 填写此地址
 Route::any('/notify/wechat/native', 'OrderController@wechatNativeNotify');
 Route::any('/notify/wechat/async', 'OrderController@wechatAsyncNotify');
 

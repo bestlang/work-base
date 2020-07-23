@@ -31,28 +31,28 @@
                                                     </a>
                                                 </div>
                                             </div>
-                                            <div class="col-sm-4" style="padding: 5px;">
-                                                <div style="box-sizing: border-box;border: 1px solid #f5f5f5;padding: 5px;">
-                                                    <a href="{{route('content', $content->id)}}">
-                                                        @if(isset($content->ext['thumb']) && $thumb = $content->ext['thumb'])
-                                                            <img src="{{$thumb}}" alt="{{$content->title}}" style="width: 100%;" />
-                                                        @endif
-                                                        <div><b>{{$content->title}}</b></div>
-                                                        <div>价格: ¥{{$content->ext['price']}}</div>
-                                                    </a>
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-4" style="padding: 5px;">
-                                                <div style="box-sizing: border-box;border: 1px solid #f5f5f5;padding: 5px;">
-                                                    <a href="{{route('content', $content->id)}}">
-                                                        @if(isset($content->ext['thumb']) && $thumb = $content->ext['thumb'])
-                                                            <img src="{{$thumb}}" alt="{{$content->title}}" style="width: 100%;" />
-                                                        @endif
-                                                        <div><b>{{$content->title}}</b></div>
-                                                        <div>价格: ¥{{$content->ext['price']}}</div>
-                                                    </a>
-                                                </div>
-                                            </div>
+                                            {{--<div class="col-sm-4" style="padding: 5px;">--}}
+                                                {{--<div style="box-sizing: border-box;border: 1px solid #f5f5f5;padding: 5px;">--}}
+                                                    {{--<a href="{{route('content', $content->id)}}">--}}
+                                                        {{--@if(isset($content->ext['thumb']) && $thumb = $content->ext['thumb'])--}}
+                                                            {{--<img src="{{$thumb}}" alt="{{$content->title}}" style="width: 100%;" />--}}
+                                                        {{--@endif--}}
+                                                        {{--<div><b>{{$content->title}}</b></div>--}}
+                                                        {{--<div>价格: ¥{{$content->ext['price']}}</div>--}}
+                                                    {{--</a>--}}
+                                                {{--</div>--}}
+                                            {{--</div>--}}
+                                            {{--<div class="col-sm-4" style="padding: 5px;">--}}
+                                                {{--<div style="box-sizing: border-box;border: 1px solid #f5f5f5;padding: 5px;">--}}
+                                                    {{--<a href="{{route('content', $content->id)}}">--}}
+                                                        {{--@if(isset($content->ext['thumb']) && $thumb = $content->ext['thumb'])--}}
+                                                            {{--<img src="{{$thumb}}" alt="{{$content->title}}" style="width: 100%;" />--}}
+                                                        {{--@endif--}}
+                                                        {{--<div><b>{{$content->title}}</b></div>--}}
+                                                        {{--<div>价格: ¥{{$content->ext['price']}}</div>--}}
+                                                    {{--</a>--}}
+                                                {{--</div>--}}
+                                            {{--</div>--}}
                                         @endforeach
                                         {{--<article class="article-item" style="padding: 20px 0;border-bottom: 1px solid #efefef;">--}}
                                             {{--<div class="media">--}}

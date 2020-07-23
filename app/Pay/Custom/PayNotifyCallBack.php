@@ -81,27 +81,27 @@ class PayNotifyCallBack extends WxPayNotify
         Log::DEBUG("call back:>>>>>>>:" . json_encode($data));
         /*
         {
-            appid: "wx49a724deab97c52b",
+            appid: "xxx",
             attach: [],
             bank_type: "OTHERS",
             cash_fee: "1",
             cash_fee_type: "CNY",
             fee_type: "CNY",
             is_subscribe: "Y",
-            mch_id: "1542382061",
-            nonce_str: "tjIAnaOnJ7E2pwbq",
-            openid: "o_0T61Q6pqA1xDYbmdYqfft1_Qt0",
-            out_trade_no: "20200715214237612952",
+            mch_id: "xxx",
+            nonce_str: "xxx",
+            openid: "xxx",
+            out_trade_no: "xxx",
             result_code: "SUCCESS",
             return_code: "SUCCESS",
             return_msg: "OK",
-            sign: "6629D8928651C0D89795EB37C51557860748DB6533C4B730AE8E86BB5C9CD681",
-            time_end: "20200715214256",
+            sign: "xxx",
+            time_end: "xxx",
             total_fee: "1",
             trade_state: "SUCCESS",
             trade_state_desc: "支付成功",
             trade_type: "NATIVE",
-            transaction_id: "4200000591202007151807423555"
+            transaction_id: "xxx"
         }
         */
         event(new PayNotify($data['out_trade_no']));

@@ -33,16 +33,17 @@
                                                 <p>NATIVE1</p>
                                                 <img src="" alt="" id="native1_code" style="width: 200px;height: 200px;margin: 10px auto 0;">
                                             </p>
-                                            <p>
+                                            <p style="display: none">
                                                 <p>NATIVE2</p>
                                                 <img src="" alt="" id="native2_code" style="width: 200px;height: 200px;margin: 10px auto 0;">
                                             </p>
                                         </div>
                                         <div class="tab-pane fade" id="identifier2">
-                                            <p>
-                                                iOS 是一个由苹果公司开发和发布的手机操作系统。最初是于 2007 年首次发布 iPhone、iPod Touch 和 Apple
-                                                TV。iOS 派生自 OS X，它们共享 Darwin 基础。OS X 操作系统是用在苹果电脑上，iOS 是苹果的移动版本。
-                                            </p>
+                                            支付宝支付
+                                            {{--<p>--}}
+                                                {{--iOS 是一个由苹果公司开发和发布的手机操作系统。最初是于 2007 年首次发布 iPhone、iPod Touch 和 Apple--}}
+                                                {{--TV。iOS 派生自 OS X，它们共享 Darwin 基础。OS X 操作系统是用在苹果电脑上，iOS 是苹果的移动版本。--}}
+                                            {{--</p>--}}
                                         </div>
                                     </div>
                                 </div>
@@ -96,23 +97,11 @@
 <script type="text/javascript">
     $(function(){
         var order_no = "{{$order->order_no}}"
-        axios.post('/ajax/pay/native2', {order_no}).then(response => {
-            let res = response.data;
-            if(res.success){
-                $('#native2_code').attr('src', res.data)
-                //$('.cover').css('visibility', 'visible')
-            }else{
-                if(res.code == 401){
-                    alert(res.error);
-                    top.location.href = '/login';
-                }
-            }
-        })
+
         axios.post('/ajax/pay/native1', {order_no}).then(response => {
             let res = response.data;
             if(res.success){
                 $('#native1_code').attr('src', res.data)
-                //$('.cover').css('visibility', 'visible')
             }else{
                 if(res.code == 401){
                     alert(res.error);
@@ -120,6 +109,19 @@
                 }
             }
         })
+
+        axios.post('/ajax/pay/native2', {order_no}).then(response => {
+            let res = response.data;
+            if(res.success){
+                $('#native2_code').attr('src', res.data)
+            }else{
+                if(res.code == 401){
+                    alert(res.error);
+                    top.location.href = '/login';
+                }
+            }
+        })
+
         $('#pay_btn').click(function(){
             let content_id = $('#content_id').val();
             let num = $("input[name='num']").val();
@@ -146,7 +148,6 @@
         padding-bottom: 25px;
     }
     .l-buy-form > div{
-        /*margin-bottom: 5px;*/
     }
 </style>
 @endpush
