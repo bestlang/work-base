@@ -33,10 +33,10 @@
                                                 <p>NATIVE1</p>
                                                 <img src="" alt="" id="native1_code" style="width: 200px;height: 200px;margin: 10px auto 0;">
                                             </p>
-                                            <p style="display: none">
-                                                <p>NATIVE2</p>
-                                                <img src="" alt="" id="native2_code" style="width: 200px;height: 200px;margin: 10px auto 0;">
-                                            </p>
+                                            {{--<p>--}}
+                                                {{--<p>NATIVE2</p>--}}
+                                                {{--<img src="" alt="" id="native2_code" style="width: 200px;height: 200px;margin: 10px auto 0;">--}}
+                                            {{--</p>--}}
                                         </div>
                                         <div class="tab-pane fade" id="identifier2">
                                             支付宝支付
@@ -110,17 +110,17 @@
             }
         })
 
-        axios.post('/ajax/pay/native2', {order_no}).then(response => {
-            let res = response.data;
-            if(res.success){
-                $('#native2_code').attr('src', res.data)
-            }else{
-                if(res.code == 401){
-                    alert(res.error);
-                    top.location.href = '/login';
-                }
-            }
-        })
+//        axios.post('/ajax/pay/native2', {order_no}).then(response => {
+//            let res = response.data;
+//            if(res.success){
+//                $('#native2_code').attr('src', res.data)
+//            }else{
+//                if(res.code == 401){
+//                    alert(res.error);
+//                    top.location.href = '/login';
+//                }
+//            }
+//        })
 
         $('#pay_btn').click(function(){
             let content_id = $('#content_id').val();
