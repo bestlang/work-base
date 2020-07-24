@@ -53,3 +53,11 @@ fastcgi_pass unix:/run/php-fpm/www.sock;
 php artisan migrate --path=packages/bestlang/laracms/database/migrations/2020_06_14_153336_create_cms_tags_table.php
 
 php -d memory_limit=-1 /usr/local/bin/composer update
+
+
+========
+php7.4之下 支付宝包(easysdk) 中方法函数hex2dec报错:
+vendor/alipaysdk/easysdk/php/src/Kernel/Util/AntCertificationUtil.php
+if(substr($hex, 0, 2) === '0x'){
+    $hex = substr($hex, 2);
+}
