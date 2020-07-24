@@ -20,6 +20,8 @@ Controller中的action里面
 laravel joinSub()
 
 
+
+
 ### JWT 配置参考
 #### https://tutsforweb.com/restful-api-in-laravel-56-using-jwt-authentication/
 
