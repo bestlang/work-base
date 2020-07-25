@@ -180,7 +180,7 @@ return [
         Jacobcyl\AliOSS\AliOssServiceProvider::class,
         JellyBool\Flysystem\Upyun\UpyunServiceProvider::class,
         Overtrue\LaravelWeChat\ServiceProvider::class,
-        Overtrue\LaravelUEditor\UEditorServiceProvider::class,
+        Bestlang\LaravelUEditor\UEditorServiceProvider::class,
 
         Bestlang\Laracms\Providers\AppServiceProvider::class,
         Bestlang\Laracms\Providers\RouteServiceProvider::class,

@@ -10,7 +10,7 @@
   array (
     'providers' => 
     array (
-      0 => 'Overtrue\\LaravelUEditor\\UEditorServiceProvider',
+      0 => 'Bestlang\\LaravelUEditor\\UEditorServiceProvider',
     ),
   ),
   'beyondcode/laravel-dump-server' => 

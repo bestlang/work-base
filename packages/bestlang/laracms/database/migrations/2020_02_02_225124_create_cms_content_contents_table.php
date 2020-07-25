@@ -16,7 +16,8 @@ class CreateCmsContentContentsTable extends Migration
         Schema::create('cms_content_contents', function (Blueprint $table) {
             $table->unsignedInteger('content_id');
             $table->string('field')->comment('字段名');
-            $table->text('value')->nullable();
+            $table->mediumText('value')->nullable();
+
         });
     }
 
