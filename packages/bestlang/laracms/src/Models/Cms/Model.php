@@ -10,8 +10,7 @@ class Model extends BaseModel
 
     protected $fillable = [
         'name',
-        'channel_template_prefix',
-        'content_template_prefix'
+        'template_prefix'
     ];
 
     public function fields()

@@ -32,6 +32,12 @@
     <script src="https://cdn.bootcdn.net/ajax/libs/respond.js/1.4.0/respond.min.js"></script>
     <![endif]-->
     <script src="/vendor/laracms/dark/app.js"></script>
+    <style>
+        .l-content-title{
+            font-size: 24px;
+            line-height: 150%;
+        }
+    </style>
 </head>
 <body class="group-page">
 <header class="header">
@@ -75,6 +81,9 @@
                             <li><a href="">社区</a></li>
                             <li><a href="">文档</a></li>
                         </ul>
+                    </li>
+                    <li>
+                        <a href="{{route('channel', 25)}}">软件下载</a>
                     </li>
                     <li>
                         <a href="{{route('channel', 33)}}">会员充值</a>

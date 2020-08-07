@@ -39,7 +39,8 @@
                                             {{--</p>--}}
                                         </div>
                                         <div class="tab-pane fade" id="identifier2">
-                                            支付宝支付
+                                            支付金额: ¥{{$order->money}}
+                                            <input type="button" id="perform_alipay" value="确认支付">
                                             {{--<p>--}}
                                                 {{--iOS 是一个由苹果公司开发和发布的手机操作系统。最初是于 2007 年首次发布 iPhone、iPod Touch 和 Apple--}}
                                                 {{--TV。iOS 派生自 OS X，它们共享 Darwin 基础。OS X 操作系统是用在苹果电脑上，iOS 是苹果的移动版本。--}}
@@ -108,6 +109,19 @@
                     top.location.href = '/login';
                 }
             }
+        })
+        $('#perform_alipay').click(function(){
+            axios.post('/ajax/pay/alipay/page', {order_no}).then(response => {
+                let res = response.data;
+                if(res.success){
+                    $(res.data.body).appendTo('body')
+                }else{
+                    if(res.code == 401){
+                        alert(res.error);
+                        top.location.href = '/login';
+                    }
+                }
+            })
         })
 
 //        axios.post('/ajax/pay/native2', {order_no}).then(response => {

@@ -61,3 +61,4 @@ vendor/alipaysdk/easysdk/php/src/Kernel/Util/AntCertificationUtil.php
 if(substr($hex, 0, 2) === '0x'){
     $hex = substr($hex, 2);
 }
+支付宝"当面付"是可以生成二维码给用户直接扫的

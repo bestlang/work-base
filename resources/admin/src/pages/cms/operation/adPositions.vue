@@ -101,7 +101,7 @@
                         message: JSON.stringify(res),
                         type: 'success'
                     });
-                    this.loadAdPositions();
+                    this.getAdPositions();
                 })
             },
             add(){
@@ -117,7 +117,7 @@
                 let res = await api.saveAdPosition(this.form)
                 if(res.success) {
                     this.loading = true;
-                    this.loadAdPositions();
+                    this.getAdPositions();
                     this.formVisible = false;
                     let successMsg = '添加成功!';
                     if(this.form.id){
@@ -134,14 +134,14 @@
                     });
                 }
             },
-            async loadAdPositions(){
+            async getAdPositions(){
                 let res = await api.getAdPositions()
                 this.loading = false;
                 this.tableData = res.data;
             }
         },
         async created() {
-            await this.loadAdPositions();
+            await this.getAdPositions();
         }
     }
 </script>

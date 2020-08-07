@@ -15,9 +15,9 @@ class ContentController extends Controller
 
         $content->ext = $content->getExt();
 
-        $prefix = $content->model->content_template_prefix;
+        //$prefix = $content->model->template_prefix;
         $template = $content->channel->content_template;
-        $view_path = "laracms::dark.{$prefix}.{$template}";
+        $view_path = "laracms::dark.models.{$template}";
         return view($view_path, compact(['content', 'comments']));
     }
 }

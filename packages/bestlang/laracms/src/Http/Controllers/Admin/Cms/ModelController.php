@@ -9,7 +9,6 @@ use Bestlang\Laracms\Models\Cms\Model;
 use Bestlang\Laracms\Models\Cms\ModelField;
 use Illuminate\Http\Request;
 use Bestlang\Laracms\Http\Controllers\Controller;
-use Bestlang\Laracms\Models\Cms\FieldType;
 use Illuminate\Support\Arr;
 
 class ModelController extends Controller
@@ -23,7 +22,7 @@ class ModelController extends Controller
     public function save(Request $request)
     {
         $params = $request->all();
-        $data = Arr::only($params, ['name', 'channel_template_prefix', 'content_template_prefix', 'is_single_page']);
+        $data = Arr::only($params, ['name', 'template_prefix', 'is_single_page']);
         $id = Arr::get($params, 'id', 0);
         if($id){
             $model = Model::where('id',$id)->update($data);
@@ -119,4 +118,44 @@ class ModelController extends Controller
         }
         return response()->ajax([$ids, $orders]);
     }
+
+    public function templatePrefix(Request $request)
+    {
+        $path = resource_path().'/views/vendor/laracms/dark/models/';
+        $resource = opendir($path);
+        $dirNameArr = [];
+        while($file = readdir($resource)){
+            if($file !== '.' && $file !== '..'){
+                $dirNameArr[] = 'models.'.$file;
+            }
+        }
+        return response()->ajax($dirNameArr);
+    }
+
+    public function templatePath(Request $request)
+    {
+        $base = resource_path().'/views/vendor/laracms/dark/';
+        $model_id = $request->input('model_id');
+        $model = Model::find($model_id);
+        if(!$model){
+            return response()->ajax([]);
+        }else{
+            if($model->template_prefix){
+                $prefix = explode('.',$model->template_prefix);
+                $path = $base . "${prefix[0]}/${prefix[1]}/";
+                $resource = opendir($path);
+                $templateArr = [];
+                while($file = readdir($resource)){
+                    if($file !== '.' && $file !== '..'){
+                        $templateArr[] = $prefix[1].'.'.str_replace('.blade.php', '', $file);
+                    }
+                }
+                return response()->ajax($templateArr);
+            }else{
+                return response()->ajax([]);
+            }
+
+        }
+    }
+
 }

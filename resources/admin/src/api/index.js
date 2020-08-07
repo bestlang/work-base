@@ -53,5 +53,7 @@ export default {
     deleteAdPosition(data){ return fetch('/admin/cms/delete/ad/position', data) },
     deleteAd(data){ return fetch('/admin/cms/delete/ad', data) },
     saveAd(data){ return fetch('/admin/cms/save/ad', data, 'post') },
-
+    getOptionalTemplatePrefix(data){ return fetch('/admin/cms/get/optional/template/prefix', data) },
+    getOptionalTemplatePath(data){ return fetch('/admin/cms/get/optional/template/path', data) },
+    getOrders(data){ return fetch('/admin/cms/get/orders', data) },
 }

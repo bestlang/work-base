@@ -30,15 +30,9 @@
         label="名称">
       </el-table-column>
       <el-table-column
-        prop="channel_template_prefix"
-        label="栏目模板前缀"
+        prop="template_prefix"
+        label="模板前缀"
       >
-      </el-table-column>
-      <el-table-column
-        label="内容模板前缀">
-        <template slot-scope="scope">
-          <div v-if="scope.row.has_contents">{{scope.row.content_template_prefix}}</div>
-        </template>
       </el-table-column>
       <el-table-column
         label="栏目字段"
@@ -78,11 +72,15 @@
             <el-radio :label="0">否(单页)</el-radio>
           </el-radio-group>
         </el-form-item>
-        <el-form-item label="栏目模板前缀" label-width="100px">
-          <el-input v-model="modelForm.channel_template_prefix" autocomplete="off"></el-input>
-        </el-form-item>
-        <el-form-item label="内容模板前缀" label-width="100px" v-if="modelForm.has_contents">
-          <el-input v-model="modelForm.content_template_prefix" autocomplete="off"></el-input>
+        <el-form-item label="模板前缀" label-width="100px">
+          <el-select v-model="modelForm.template_prefix" placeholder="请选择">
+            <el-option
+                    v-for="(item, index) in optionalTemplatePaths"
+                    :key="index"
+                    :label="item"
+                    :value="item">
+            </el-option>
+          </el-select>
         </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
@@ -101,12 +99,12 @@
         loading: true,
         tableData: [],
         dialogFormVisible: false,
+        optionalTemplatePaths: [],
           modelForm: {
             id: null,
             name: '',
             has_contents: 1,
-            channel_template_prefix: '',
-            content_template_prefix: ''
+            template_prefix: '',
         },
       }
     },
@@ -117,8 +115,7 @@
               id: null,
               name: '',
               has_contents: 1,
-              channel_template_prefix: '',
-              content_template_prefix: ''
+              template_prefix: '',
           })
       },
       handleFieldManager(row, type=''){
@@ -150,27 +147,6 @@
 
         });
       },
-//      add(){
-//        this.dialogFormVisible = true;
-//        //this.$router.push('/cms/setting/model/add');
-//      },
-//      async submit(){
-//        let res = await api.addFieldType(this.form)
-//        if(res.success){
-//          this.loading = true;
-//          await this.loadModels();
-//          this.dialogFormVisible = false;
-//          this.$message({
-//            message: '添加成功!',
-//            type: 'success'
-//          });
-//        }else{
-//          this.$message({
-//            message: res.error,
-//            type: 'warning'
-//          });
-//        }
-//      },
         async save(){
             let res = await api.saveModel(this.modelForm)
             if(res.success){
@@ -200,6 +176,12 @@
         this.loading = false;
         this.tableData = res.data;
       },
+      async loadTemplatePrefix(){
+          let {data} = await api.getOptionalTemplatePrefix();
+          this.loading = false;
+          this.optionalTemplatePaths = data;
+          console.log(`optionalTemplatePaths:`, JSON.stringify(this.optionalTemplatePaths))
+      },
       async loadModel(id){
           let res = await api.getModel({id})
           let model = res.data
@@ -207,13 +189,13 @@
               id: model.id,
               name: model.name,
               has_contents: model.has_contents,
-              channel_template_prefix: model.channel_template_prefix,
-              content_template_prefix: model.content_template_prefix
+              template_prefix: model.template_prefix
           });
       },
     },
     async created() {
       await this.loadModels();
+      await this.loadTemplatePrefix();
     }
   }
 </script>

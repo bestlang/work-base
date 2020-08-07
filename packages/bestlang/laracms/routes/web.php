@@ -16,10 +16,12 @@ Route::any('/order/{order_no}', 'OrderController@detail');
 //进入商户平台-->产品中心-->开发配置 填写此地址
 Route::any('/notify/wechat/native', 'OrderController@wechatNativeNotify');
 Route::any('/notify/wechat/async', 'OrderController@wechatAsyncNotify');
+Route::any('/notify/alipay', 'AliPayController@notify');
 
 Route::group(['prefix' => 'ajax'], function($router){
     Route::any('/pay/native1', 'OrderController@native1');
     Route::any('/pay/native2', 'OrderController@native2');
+    Route::any('/pay/alipay/page', 'AliPayController@page');
     Route::any('/csrf', 'IndexController@csrf');
     Route::group(['prefix' => 'auth'], function ($router) {
         Route::any('login', 'AuthController@login');

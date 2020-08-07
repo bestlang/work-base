@@ -201,16 +201,26 @@ export default new VueRouter({
                     font: '&#xe764;'
                 },
                 children: [
-                    // {
-                    //     path: "/cms/operation/purchase",
-                    //     component: (resolve) => require(["../pages/cms/purchase/purchase.vue"], resolve),
-                    //     meta: {
-                    //         can: 'cms list contents',
-                    //         show: true,
-                    //         name: '购买记录',
-                    //         font: '&#xe764;'
-                    //     }
-                    // },
+                    {
+                        path: "/cms/operation/siteSetting",
+                        component: (resolve) => require(["../pages/cms/operation/siteSetting.vue"], resolve),
+                        meta: {
+                            can: 'cms operations',
+                            show: true,
+                            name: '站点设置',
+                            font: '&#xe764;'
+                        }
+                    },
+                    {
+                        path: "/cms/operation/orders",
+                        component: (resolve) => require(["../pages/cms/operation/orders.vue"], resolve),
+                        meta: {
+                            can: 'cms operations',
+                            show: true,
+                            name: '订单管理',
+                            font: '&#xe764;'
+                        }
+                    },
                     {
                         path: "/cms/operation/ads",
                         component: (resolve) => require(["../pages/cms/operation/ads.vue"], resolve),

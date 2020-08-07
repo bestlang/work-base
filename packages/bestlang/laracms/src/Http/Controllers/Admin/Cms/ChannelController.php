@@ -56,7 +56,16 @@ class ChannelController extends Controller
         $name = Arr::get($params, 'name', '');
         $model_id = Arr::get($params, 'model_id', 0);
 
-        $data = Arr::only($params, ['name', 'title', 'keywords', 'description', 'model_id']);
+        $data = Arr::only($params, [
+            'name',
+            'title',
+            'keywords',
+            'description',
+            'model_id',
+            'content_template',
+            'parent_id',
+            'template'
+            ]);
 
         $id = Arr::get($params, 'id', 0);
 

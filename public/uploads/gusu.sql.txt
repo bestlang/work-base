@@ -1,0 +1,14 @@
+alter table `dingzhi_order_item` add `status` tinyint not null default '0' comment '订单状态0默认状态 20定制中 30待收货 40已完成 50已取消', add `post_type` tinyint null comment '配送方式：10物流发货，20无需物流', add `post_no` varchar(50) null comment '物流单号', add `post_name` varchar(100) null comment '物流公司名称', add `live_discount` int not null default '100' comment '现场折扣(%)';
+alter table `dingzhi_setting` add `live_discount` text null default '' comment '现场折扣(%)';
+alter table `dingzhi_order_item` add `origin_price` int null comment '原价', add `tech_price` int null comment '部件加价';
+alter table `dingzhi_order_item` add `cycle_after_sales` int unsigned null default '0' comment '售后周期', add `cycle_goods` int unsigned null default '0' comment '收货周期(到期强制收货)', add `commision` int unsigned null default '0' comment '佣金金额', add `commision_settle_time` int unsigned not null default '0' comment '佣金结算时间', add `commision_status` int unsigned not null default '0' comment '佣金状态:0 未结算, 1 已结算, 2 已取消', add `consigned_at` int unsigned not null default '0' comment '发货时间', add `signed_at` int unsigned not null default '0' comment '签收时间';
+alter table `dingzhi_setting` add `adviser_base_commission` tinyint null default '17' comment '基础佣金比例', add `adviser_extra_commission_line` tinyint null default '85' comment '额外佣金计算起点比例', add `adviser_extra_commission` tinyint null default '80' comment '额外佣金比例';
+alter table `dingzhi_order_item` add `adviser_base_commission` tinyint null default '0' comment '基础佣金比例', add `adviser_extra_commission_line` tinyint null default '0' comment '额外佣金计算起点比例', add `adviser_extra_commission` tinyint null default '0' comment '额外佣金比例';
+
+
+
+
+
+
+
+状态10待支付20待确认30待上门40量体完成50取消预约60待分配70上传数据完成(定制中)80待收货90售后100已完成

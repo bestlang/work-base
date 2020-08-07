@@ -16,8 +16,8 @@ class ContentController extends Controller
 //        print_r($comments->toArray());
         //在这里判断渲染哪个模板
 //        print_r(json_encode($content, JSON_UNESCAPED_UNICODE));return;
-        $content_template_prefix = $content->model->content_template_prefix;
+        $template_prefix = $content->model->template_prefix;
         $content_template = $content->channel->content_template;
-        return view('cms.'.config('cms.theme').'.content.'.$content_template_prefix.'.'.$content_template, compact(['content', 'comments']));
+        return view('cms.'.config('cms.theme').'.content.'.$template_prefix.'.'.$content_template, compact(['content', 'comments']));
     }
 }

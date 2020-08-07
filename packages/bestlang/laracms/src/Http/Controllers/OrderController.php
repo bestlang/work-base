@@ -35,6 +35,7 @@ class OrderController
         $order = Order::where('order_no', $order_no)->first();
         return view('laracms::dark.order.detail', ['order' => $order]);
     }
+
     //native1
     public function native1(Request $request, NativePay $nativePay)
     {

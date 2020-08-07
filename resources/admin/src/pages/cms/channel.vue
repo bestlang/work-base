@@ -58,7 +58,7 @@
       </div>
       <div class="l-tree-content" v-if="showChannelChildren">
         <div class="l-block">
-            <div class="l-block-header"  v-if="parentChannel && parentChannel.id">
+            <div class="l-block-header" v-if="parentChannel && parentChannel.id">
                 <span><i class="iconfont">&#xe64c;</i> {{parentChannel.hasOwnProperty('name') ? parentChannel.name : ''}}</span>
                 <el-button-group>
                   <el-button style="padding: 3px 10px" type="text" @click="editChannel(parentChannel)">编辑</el-button>
@@ -125,10 +125,26 @@
                 <el-input v-model="channelForm.name" autocomplete="off"></el-input>
               </el-form-item>
             <el-form-item label="栏目模板">
-                <el-input v-model="channelForm.template" autocomplete="off"></el-input>
+                <!--<el-input v-model="channelForm.template" autocomplete="off"></el-input>-->
+                <el-select v-model="channelForm.template" placeholder="请选择">
+                    <el-option
+                            v-for="(item, index) in optionalTemplatePath"
+                            :key="index"
+                            :label="item"
+                            :value="item">
+                    </el-option>
+                </el-select>
             </el-form-item>
                 <el-form-item label="内容模板">
-                    <el-input v-model="channelForm.content_template" autocomplete="off"></el-input>
+                    <el-select v-model="channelForm.content_template" placeholder="请选择">
+                        <el-option
+                                v-for="(item, index) in optionalTemplatePath"
+                                :key="index"
+                                :label="item"
+                                :value="item">
+                        </el-option>
+                    </el-select>
+                    <!--<el-input v-model="channelForm.content_template" autocomplete="off"></el-input>-->
                 </el-form-item>
               <template v-for="(item, index) in customChannelFields">
                 <el-form-item v-if="item.type=='text'" :label="item.label">
@@ -149,24 +165,13 @@
                 </el-form-item>
               </template>
                 <el-form-item label="栏目推荐位" v-if="channelPositions.length">
-                    <!--<el-switch-->
-                            <!--v-model="showSwitch"-->
-                            <!--active-color="#13ce66"-->
-                            <!--inactive-color="#cccccc">-->
-                    <!--</el-switch>-->
                     <el-checkbox-group v-model="channelForm['positions']">
                         <el-checkbox :label="option.id" v-for="option in channelPositions">{{option.name}}</el-checkbox>
-                        <!--<el-checkbox label="复选框 A"></el-checkbox>-->
-                        <!--<el-checkbox label="复选框 B"></el-checkbox>-->
-                        <!--<el-checkbox label="复选框 C"></el-checkbox>-->
-                        <!--<el-checkbox label="复选框 D"></el-checkbox>-->
-                        <!--<el-checkbox label="复选框 E"></el-checkbox>-->
                     </el-checkbox-group>
                 </el-form-item>
 
               <el-form-item>
                 <el-button type="primary" @click="doSubmit">确定</el-button>
-                <!--<el-button @click="doCancel">取消</el-button>-->
               </el-form-item>
             </el-form>
           </div>
@@ -184,7 +189,7 @@
     data() {
       return {
         checkList:[],
-        //showSwitch: true,
+        optionalTemplatePath: [],
         channelPositions: [],
         customProps: {
           children: 'children',
@@ -203,6 +208,11 @@
         ueditorConfig: ueditorConfig
       }
     },
+    watch:{
+        ['channelForm.model_id'](val){
+            this.loadTemplatePath(val)
+        }
+    },
     components:{
       VueUeditorWrap
     },
@@ -213,24 +223,14 @@
             'channelChildren',
             'models',
             'parentChannel',
-        ]),
-//      loading(){
-//        return this.$store.getters.loading;
-//      },
-//      treeData(){
-//        return this.$store.getters.channels;
-//      },
-//      children(){
-//        return this.$store.getters.channelChildren;
-//      },
-//      models(){
-//        return this.$store.getters.models;
-//      },
-//      parentChannel(){
-//        return this.$store.getters.parentChannel;
-//      },
+        ])
     },
     methods: {
+      async loadTemplatePath(model_id){
+            let {data} = await api.getOptionalTemplatePath({model_id});
+            console.log(JSON.stringify(data))
+            this.optionalTemplatePath = data;
+        },
       addChannel(row){
         this.showChannelChildren = false;
         this.channelForm = Object.assign({}, {
@@ -358,7 +358,9 @@
       await this.loadChannelPositions()
     },
     watch:{
-      ['channelForm.model_id'](val, oldVal){
+      async ['channelForm.model_id'](val){
+        console.log(`###########`, val);
+        await this.loadTemplatePath(val)
         if(val){
           if(this.models.length > 0){
             this.models.forEach( model => {
