@@ -21,6 +21,13 @@ class OrderController
 {
     protected $wxPayUnifiedOrder, $nativePay, $wxPayConfig;
 
+    public function orders(Request $request)
+    {
+        $user = auth()->user();
+        $orders = Order::where('user_id', $user->id)->paginate(5);
+        return view('laracms::dark.ucenter.orders', ['orders' => $orders]);
+    }
+
     public function generate(Request $request)
     {
         $content_id = $request->input('content_id');

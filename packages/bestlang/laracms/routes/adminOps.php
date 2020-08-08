@@ -54,5 +54,7 @@ Route::group(['prefix'=>'admin', 'namespace'=>'Admin'], function(){
         Route::any('/cms/delete/ad', 'AdController@deleteAd');
         Route::any('/cms/get/optional/template/prefix', 'ModelController@templatePrefix');
         Route::any('/cms/get/optional/template/path', 'ModelController@templatePath');
+        Route::any('/cms/get/optional/themes', 'SiteController@themes');
+        Route::any('/cms/orders', 'OrderController@orders');
     });
 });

@@ -12,7 +12,7 @@ class ChannelController extends Controller
     {
         $channel = Channel::with('contents')->findOrFail($id);
         $channelIds = $channel->descendantsAndSelf()->get()->map(function($item){return $item->id;} )->toArray();
-        $contents = Content::whereIn('channel_id', $channelIds)->with(['metas', 'contents'])->paginate(20);
+        $contents = Content::whereIn('channel_id', $channelIds)->with(['metas', 'contents'])->paginate(5);
         $contents->map(function($content){
             $content->ext = $content->getExt();
         });

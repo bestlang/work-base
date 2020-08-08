@@ -19,8 +19,8 @@ class CreateCmsOrdersTable extends Migration
             $table->string('order_no')->comment('订单号');
             $table->string('product_id')->comment('商品ID')->nullable();
             $table->decimal('money', 10, 2)->comment('订单金额');
-            $table->tinyInteger('status')->comment('订单状态0未支付1已支付')->default(0);
-            $table->tinyInteger('gateway')->comment('支付方式1微信2支付宝3其它')->default(1);
+            $table->tinyInteger('status')->comment('订单状态0未支付1已支付4已取消')->default(0);
+            $table->tinyInteger('gateway')->comment('支付方式0未指定1微信2支付宝')->default(1);
             $table->nullableTimestamps();
             $table->softDeletes();
         });

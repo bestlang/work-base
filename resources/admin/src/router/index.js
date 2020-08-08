@@ -150,6 +150,16 @@ export default new VueRouter({
               },
               children: [
                 {
+                  path: "/cms/setting/siteSetting",
+                  component: (resolve) => require(["../pages/cms/setting/siteSetting.vue"], resolve),
+                  meta: {
+                      can: 'dashboard',
+                      show: true,
+                      name: '站点设置',
+                      font: '&#xe764;'
+                  }
+                },
+                {
                   path: "/cms/setting/model",
                   component: (resolve) => require(["../pages/cms/setting/model.vue"], resolve),
                   meta: {
@@ -201,16 +211,6 @@ export default new VueRouter({
                     font: '&#xe764;'
                 },
                 children: [
-                    {
-                        path: "/cms/operation/siteSetting",
-                        component: (resolve) => require(["../pages/cms/operation/siteSetting.vue"], resolve),
-                        meta: {
-                            can: 'cms operations',
-                            show: true,
-                            name: '站点设置',
-                            font: '&#xe764;'
-                        }
-                    },
                     {
                         path: "/cms/operation/orders",
                         component: (resolve) => require(["../pages/cms/operation/orders.vue"], resolve),

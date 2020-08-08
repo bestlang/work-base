@@ -72,7 +72,9 @@
                             @else
                                 <section class="text-center">无记录</section>
                             @endif
-                                <div class="text-center pager"></div>
+                                <div class="text-center pager">
+                                    {{$contents->links()}}
+                                </div>
                             </div>
                         </div>
                     </div>

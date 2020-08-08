@@ -10,6 +10,7 @@ Route::any('/comment/save', 'CommentController@save');
 Route::get('/tag/{name}', 'TagController@contents')->name('tag');
 Route::get('/search/{keyword}', 'SearchController@contents')->name('search');
 Route::get('/ucenter', 'UCenterController@index');
+Route::get('/ucenter/orders', 'OrderController@orders');
 Route::any('/order/generate', 'OrderController@generate');
 Route::any('/order/{order_no}', 'OrderController@detail');
 
