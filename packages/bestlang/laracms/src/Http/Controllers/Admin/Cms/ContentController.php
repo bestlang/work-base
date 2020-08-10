@@ -56,7 +56,7 @@ class ContentController extends Controller
             $query->whereIn('channel_id', $channelIdArr);
             $total = $query->count();
             $contents = $query
-                ->with('channel')
+                ->with(['channel', 'channel.content_template'])
                 ->orderByRaw("case when `channel_id`=$channelId then 1 end desc")
                 ->orderBy('id', 'desc')
                 ->limit($page_size)
@@ -65,6 +65,9 @@ class ContentController extends Controller
         }
         $contents->map(function($content){
             $content->link = route('content', $content->id);
+            if(!$content->channel->content_template){
+                $content->link = '';
+            }
         });
         return response()->ajax(compact(['contents', 'total']));
     }

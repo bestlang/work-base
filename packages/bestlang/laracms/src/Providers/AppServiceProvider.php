@@ -2,9 +2,7 @@
 
 namespace Bestlang\Laracms\Providers;
 
-use Illuminate\Routing\Route;
 use Illuminate\Support\ServiceProvider;
-//use Bestlang\Laracms\LC;
 use Illuminate\Support\Facades\Gate;
 use Bestlang\Laracms\Models\Permission;
 

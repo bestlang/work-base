@@ -49,7 +49,8 @@
               <el-table-column
                 label="标题">
                 <template slot-scope="scope">
-                  <a :href="scope.row.link" target="_blank" class="l-a-same">{{scope.row.title}}</a>
+                  <a v-if="scope.row.link" :href="scope.row.link" target="_blank" class="l-a-same">{{scope.row.title}}</a>
+                  <span v-else>{{scope.row.title}}</span>
                 </template>
               </el-table-column>
               <el-table-column

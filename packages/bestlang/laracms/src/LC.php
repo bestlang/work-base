@@ -113,7 +113,6 @@ class LC
             $content->ext = $content->getExt();
             $groupContents[$content->channel_id][] = $content;
         }
-
         $channels->map(function($channel)use($groupContents){
             if(Arr::get($groupContents, $channel->id)){
                 $channelPositionContents = $groupContents[$channel->id];
