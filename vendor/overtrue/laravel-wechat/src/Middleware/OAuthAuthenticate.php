@@ -50,7 +50,7 @@ class OAuthAuthenticate
 
         if (!$session) {
             if ($request->has('code')) {
-                session([$sessionKey => $officialAccount->oauth->userFromCode($request->get('code')) ?? []]);
+                session([$sessionKey => $officialAccount->oauth->user() ?? []]);
                 $isNewSession = true;
 
                 event(new WeChatUserAuthorized(session($sessionKey), $isNewSession, $account));
@@ -60,7 +60,7 @@ class OAuthAuthenticate
 
             session()->forget($sessionKey);
 
-            return redirect()->to($officialAccount->oauth->scopes($scope)->redirect($request->fullUrl()));
+            return $officialAccount->oauth->scopes($scope)->redirect($request->fullUrl());
         }
 
         event(new WeChatUserAuthorized(session($sessionKey), $isNewSession, $account));

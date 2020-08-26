@@ -39,7 +39,8 @@ return array(
     '6747f579ad6817f318cc3a7e7a0abb93' => $vendorDir . '/overtrue/wechat/src/Kernel/Helpers.php',
     '0d0b82117c23db94c492fee02b2ed01f' => $vendorDir . '/songshenzong/support/src/StringsHelpers.php',
     'd96a90b43bcdea846705672ffd4e9294' => $vendorDir . '/songshenzong/support/src/BashEchoHelpers.php',
-    '0d8253363903f0ac7b0978dcde4e28a0' => $vendorDir . '/beyondcode/laravel-dump-server/helpers.php',
     '377b22b161c09ed6e5152de788ca020a' => $vendorDir . '/spatie/laravel-permission/src/helpers.php',
+    '1c9a42db2a2353c9ea457e033ee42da8' => $vendorDir . '/bestlang/laracms/src/helpers.php',
+    '0d8253363903f0ac7b0978dcde4e28a0' => $vendorDir . '/beyondcode/laravel-dump-server/helpers.php',
     'b4e3f29b106af37a2bb239f73cdf68c7' => $baseDir . '/app/helpers.php',
 );

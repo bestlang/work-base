@@ -6,6 +6,19 @@
       0 => 'Baum\\BaumServiceProvider',
     ),
   ),
+  'bestlang/laracms' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Bestlang\\Laracms\\Providers\\AppServiceProvider',
+      1 => 'Bestlang\\Laracms\\Providers\\RouteServiceProvider',
+      2 => 'Bestlang\\Laracms\\Providers\\ResponseServiceProvider',
+    ),
+    'aliases' => 
+    array (
+      'LC' => 'Bestlang\\Laracms\\Facades\\LC',
+    ),
+  ),
   'bestlang/laravel-ueditor' => 
   array (
     'providers' => 

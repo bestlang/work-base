@@ -29,6 +29,7 @@
       "Bestlang\\Laracms\\": "src/"
     },
     "files": [
+      "src/helpers.php"
     ],
     "classmap": [
       "database/seeds",

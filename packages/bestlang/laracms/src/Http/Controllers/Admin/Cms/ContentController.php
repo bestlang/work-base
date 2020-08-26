@@ -56,7 +56,7 @@ class ContentController extends Controller
             $query->whereIn('channel_id', $channelIdArr);
             $total = $query->count();
             $contents = $query
-                ->with(['channel', 'channel.content_template'])
+                ->with(['channel'])
                 ->orderByRaw("case when `channel_id`=$channelId then 1 end desc")
                 ->orderBy('id', 'desc')
                 ->limit($page_size)

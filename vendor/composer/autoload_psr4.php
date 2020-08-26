@@ -121,7 +121,7 @@ return array(
     'Carbon\\' => array($vendorDir . '/nesbot/carbon/src/Carbon'),
     'BeyondCode\\DumpServer\\' => array($vendorDir . '/beyondcode/laravel-dump-server/src'),
     'Bestlang\\LaravelUEditor\\' => array($vendorDir . '/bestlang/laravel-ueditor/src'),
-    'Bestlang\\Laracms\\' => array($baseDir . '/packages/bestlang/laracms/src'),
+    'Bestlang\\Laracms\\' => array($baseDir . '/packages/bestlang/laracms/src', $vendorDir . '/bestlang/laracms/src'),
     'Baum\\' => array($vendorDir . '/baum/baum/src'),
     'BaconQrCode\\' => array($vendorDir . '/bacon/bacon-qr-code/src'),
     'App\\' => array($baseDir . '/app'),

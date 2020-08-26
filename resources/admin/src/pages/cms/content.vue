@@ -127,7 +127,7 @@
               this.page = 1
               this.form.keyword = ''
               let {data} = await api.getCmsChannelWhole({id: val})
-              this.$store.dispatch(this.$types.CMS_CURRENT_CHANNEL, data);
+              this.$store.dispatch(this.$types.CMS_CURRENT_CHANNEL, data)
               this.$store.dispatch(this.$types.CMS_PARENT_CHANNEL, data)
           }
       }
@@ -158,7 +158,8 @@
         });
       },
       async handleNodeClick(node, ...params){
-          this.showForm = false;
+          console.log(...node)
+          this.showForm = false
           let channel = node[0]
           this.channel_id = channel.id
       },
