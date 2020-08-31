@@ -65,3 +65,8 @@ if(substr($hex, 0, 2) === '0x'){
 
 ---------------------------
 官网参照: 站点1: https://laradoc.com/
+
+
+
+---------------------------
+"Bestlang\\Laracms\\":"packages/bestlang/laracms/src/"

@@ -3,40 +3,19 @@
 @section('content')
 
     <div class="container" id="content-container">
-
-        <!--<div style="margin-bottom:20px;">-->
-        <!---->
-        <!--</div>-->
+        {{--{{ auth()->user()->can('privileges permissions') }}--}}
+        {{--{{ auth()->user()->can('cms list contents') }}--}}
 
         <div class="row">
             <main class="col-md-8">
                 <div class="swiper-container index-focus">
-                    <!-- S 焦点图 -->
                     <div id="index-focus" class="carousel slide carousel-focus" data-ride="carousel">
                         <ol class="carousel-indicators">
                             @foreach(LC::cc(32, 5) as $index => $content)
                                 <li data-target="#index-focus" data-slide-to="{{$index}}" class="{{$index == 0 ? 'active' : ''}}"></li>
                             @endforeach
-                            {{--<li data-target="#index-focus" data-slide-to="1" class=""></li>--}}
-                            {{--<li data-target="#index-focus" data-slide-to="2" class=""></li>--}}
                         </ol>
                         <div class="carousel-inner" role="listbox">
-                            {{--<div class="item active">--}}
-                                {{--<a href="">--}}
-                                    {{--<div class="carousel-img" style="background-image:url('/lunbo/1000417-3.png');"></div>--}}
-                                    {{--<div class="carousel-caption hidden-xs">--}}
-                                        {{--<h3>首页焦点图标题3</h3>--}}
-                                    {{--</div>--}}
-                                {{--</a>--}}
-                            {{--</div>--}}
-                            {{--<div class="item">--}}
-                                {{--<a href="">--}}
-                                    {{--<div class="carousel-img" style="background-image:url('/lunbo/1000417-2.png');"></div>--}}
-                                    {{--<div class="carousel-caption hidden-xs">--}}
-                                        {{--<h3>首页焦点图标题2</h3>--}}
-                                    {{--</div>--}}
-                                {{--</a>--}}
-                            {{--</div>--}}
                             @foreach(LC::cc(32, 5) as $index => $content)
                                 <div class="item {{$index == 0 ? 'active':''}}">
                                     <a href="{{$content->ext['url']}}">
@@ -57,7 +36,6 @@
                             <span class="sr-only">Next</span>
                         </a>
                     </div>
-                    <!-- E 焦点图 -->
                 </div>
 
                 <div class="panel panel-default index-gallary">
@@ -65,7 +43,7 @@
                         <h3 class="panel-title">
                             <span>热门图集</span>
                             <div class="more">
-                                <a href="{{route('channel', 19)}}">查看更多</a>
+                                @channelLink(热门图集-19-查看更多)
                             </div>
                         </h3>
 
@@ -97,13 +75,11 @@
 
                             <div class="more hidden-xs">
                                 <ul class="list-unstyled list-inline">
-                                    <!-- E 栏目筛选 -->
-                                    <li><a href="{{route('channel', 7)}}">抖音攻略</a></li>
-                                    <li><a href="{{route('channel', 17)}}">防疫指南</a></li>
-                                    <li><a href="{{route('channel', 24)}}">苏州频道</a></li>
-                                    <li><a href="{{route('channel', 15)}}">五花八门</a></li>
-                                    <li><a href="{{route('channel', 19)}}">宝宝相册</a></li>
-                                    <!-- E 栏目筛选 -->
+                                    <li>@channelLink(抖音攻略-7)</li>
+                                    <li>@channelLink(防疫指南-17)</li>
+                                    <li>@channelLink(苏州频道-24)</li>
+                                    <li>@channelLink(五花八门-15)</li>
+                                    <li>@channelLink(宝宝相册-19)</li>
                                 </ul>
                             </div>
                         </h3>
@@ -180,7 +156,6 @@
                                 </article>
                                 @endif
                             @endforeach
-                            <!-- E 首页列表 -->
 
                             {{--<div class="text-center">--}}
                                 {{--<a href="?page=2" data-page="1" class="btn btn-default my-4 px-4 btn-loadmore">加载更多</a>--}}
@@ -192,7 +167,6 @@
 
             <aside class="col-xs-12 col-sm-4">
                 <div class="panel panel-default lasest-update">
-                    <!-- S 最近更新 -->
                     <div class="panel-heading">
                         <h3 class="panel-title">热点文章推荐</h3>
                     </div>
@@ -219,7 +193,6 @@
                     </a>
                 </div>
                 @endforeach
-                <!-- S 热门资讯 -->
                 <div class="panel panel-default hot-article">
                     <div class="panel-heading">
                         <h3 class="panel-title">第一个推荐位</h3>
@@ -237,7 +210,6 @@
                         @endforeach
                     </div>
                 </div>
-                <!-- E 热门资讯 -->
                 @foreach(LC::pa('首页右第一个广告位', 2) as $index => $ad)
                 <div class="panel panel-blockimg">
                     <a href="{{$ad->url}}" rel="nofollow" title="{{$ad->name}}" target="{{$ad->target}}">
@@ -245,7 +217,6 @@
                     </a>
                 </div>
                 @endforeach
-                <!-- S 热门标签 -->
                 <div class="panel panel-default hot-tags">
                     <div class="panel-heading">
                         <h3 class="panel-title">热门标签</h3>
@@ -258,9 +229,7 @@
                         </div>
                     </div>
                 </div>
-                <!-- E 热门标签 -->
 
-                <!-- S 推荐下载 -->
                 @foreach(LC::channel_position('首页栏目推荐', 5) as $channel)
                     <div class="panel panel-default recommend-article">
                         <div class="panel-heading l-flex">
@@ -284,7 +253,6 @@
                         </div>
                     </div>
                 @endforeach
-                <!-- E 推荐下载 -->
                 @foreach(LC::pa('首页右第一个广告位', 2) as $index => $ad)
                 <div class="panel panel-blockimg">
                     <a href="{{$ad->url}}" title="{{$ad->name}}">

@@ -8,6 +8,7 @@ use Bestlang\Laracms\Models\Permission;
 
 use Bestlang\Laracms\Models\Cms\Order;
 use Bestlang\Laracms\Observers\Cms\OrderObserver;
+use Illuminate\Support\Facades\Blade;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -31,20 +32,19 @@ class AppServiceProvider extends ServiceProvider
     {
         Order::observe(OrderObserver::class);
 
-        //下面代码在每个请求周期中都会重复执行,影响效率, 可以改成登录的时候做一次
         Gate::before(function ($user, $ability) {
             foreach ($user->getPermissionsViaRoles() as $permission){
                 $user->givePermissionTo($permission->name);
             }
-            if($user->hasRole('administrator')){
-                $permissions = Permission::all();
-                foreach ($permissions as $permission){
-                    $user->givePermissionTo($permission->name);
-                }
-                return true;
-            }else{
-                return null;
-            }
+//            if($user->hasRole('administrator')){
+//                $permissions = Permission::all();
+//                foreach ($permissions as $permission){
+//                    $user->givePermissionTo($permission->name);
+//                }
+//                return true;
+//            }else{
+//                return null;
+//            }
         });
         // config
         $this->publishes([
@@ -77,5 +77,14 @@ class AppServiceProvider extends ServiceProvider
         $this->publishes([
             __DIR__.'/../../resources/views/laracms' => resource_path('views/vendor/laracms')
         ], 'laracms-views');
+
+        Blade::directive('channelLink', function ($expression) {
+            @list($channelName, $channelId, $as) = explode('-', $expression);
+            if($as){
+                $channelName = $as;
+            }
+            return "<a href=\"".route('channel', $channelId)."\">".$channelName."</a>";
+        });
+
     }
 }
