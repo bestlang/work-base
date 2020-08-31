@@ -98,15 +98,19 @@ class PrivilegesController extends Controller
     {
         $user = Auth::user();
         $params = $request->all();
-        $id = Arr::get($params, 'id', '');
-        $name = Arr::get($params, 'name', '');
+        $id = Arr::get($params, 'id');
+        $name = Arr::get($params, 'name');
         if($id){
-            if($user::can('privileges edit roles')){
-                $role = Role::find($id);
-                $role->name = $name;
-                $role->save();
-            }else{
-                return response()->error('无权限!');
+            try{
+                if($user->can('privileges edit roles')){
+                    $role = Role::find($id);
+                    $role->name = $name;
+                    $role->save();
+                }else{
+                    return response()->error('无权限!');
+                }
+            }catch (\Exception $e){
+                return response()->error('error occur:'.$e->getMessage());
             }
 
         }else{
