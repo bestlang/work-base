@@ -43,11 +43,11 @@ class Order extends Model
 
     public function getStatusTextAttribute()
     {
-        return self::STATUS_TEXT[$this->attributes['status']];
+        return self::STATUS_TEXT[$this->attributes['status']??0];
     }
 
     public function getGatewayTextAttribute()
     {
-        return self::GATEWAY_TEXT[$this->attributes['gateway']];
+        return self::GATEWAY_TEXT[$this->attributes['gateway']??0];
     }
 }
