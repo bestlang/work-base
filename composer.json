@@ -12,6 +12,7 @@
         "aliyuncs/oss-sdk-php": "^2.3",
         "baum/baum": "v2.x-dev",
         "bestlang/easysdk": "dev-master",
+        "bestlang/base": "dev-master",
         "bestlang/laracms": "dev-master",
         "bestlang/laravel-ueditor": "dev-master",
         "doctrine/dbal": "^2.9",
@@ -80,9 +81,13 @@
         ]
     },
     "repositories": {
+        "bestlang/base": {
+            "type": "path",
+            "url": "./bestlang/base"
+        },
         "bestlang/laracms": {
             "type": "path",
-            "url": "./packages/bestlang/laracms"
+            "url": "./bestlang/laracms"
         }
     }
 }

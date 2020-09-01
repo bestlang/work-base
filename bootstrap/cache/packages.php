@@ -6,6 +6,16 @@
       0 => 'Baum\\BaumServiceProvider',
     ),
   ),
+  'bestlang/base' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Bestlang\\Base\\Providers\\ResponseServiceProvider',
+    ),
+    'aliases' => 
+    array (
+    ),
+  ),
   'bestlang/laracms' => 
   array (
     'providers' => 

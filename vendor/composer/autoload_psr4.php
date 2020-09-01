@@ -122,6 +122,7 @@ return array(
     'BeyondCode\\DumpServer\\' => array($vendorDir . '/beyondcode/laravel-dump-server/src'),
     'Bestlang\\LaravelUEditor\\' => array($vendorDir . '/bestlang/laravel-ueditor/src'),
     'Bestlang\\Laracms\\' => array($vendorDir . '/bestlang/laracms/src'),
+    'Bestlang\\Base\\' => array($vendorDir . '/bestlang/base/src'),
     'Baum\\' => array($vendorDir . '/baum/baum/src'),
     'BaconQrCode\\' => array($vendorDir . '/bacon/bacon-qr-code/src'),
     'App\\' => array($baseDir . '/app'),
