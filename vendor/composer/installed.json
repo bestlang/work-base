@@ -358,11 +358,10 @@
         "dist": {
             "type": "path",
             "url": "./bestlang/base",
-            "reference": "63d388a55dd96f14cd8f31ebdde956cb21abe695"
+            "reference": "5ac2d33c81d153783762d2a902907ed1410851ec"
         },
         "require": {
             "baum/baum": "v2.x-dev",
-            "bestlang/laravel-ueditor": "dev-master",
             "illuminate/support": "~5|~6",
             "spatie/laravel-permission": "^2.38",
             "tymon/jwt-auth": "1.0.*"
@@ -377,6 +376,7 @@
         "extra": {
             "laravel": {
                 "providers": [
+                    "Bestlang\\Base\\Providers\\AppServiceProvider",
                     "Bestlang\\Base\\Providers\\ResponseServiceProvider"
                 ],
                 "aliases": []
@@ -490,14 +490,13 @@
         "dist": {
             "type": "path",
             "url": "./bestlang/laracms",
-            "reference": "7d4ba18904bc07a64c467b6cc36c071eb6841817"
+            "reference": "196fe800624804da2522a6151eb519f6d1790446"
         },
         "require": {
             "baum/baum": "v2.x-dev",
+            "bestlang/base": "dev-master",
             "bestlang/laravel-ueditor": "dev-master",
             "illuminate/support": "~5|~6",
-            "spatie/laravel-permission": "^2.38",
-            "tymon/jwt-auth": "1.0.*",
             "upyun/sdk": "^3.3"
         },
         "require-dev": {
@@ -511,8 +510,7 @@
             "laravel": {
                 "providers": [
                     "Bestlang\\Laracms\\Providers\\AppServiceProvider",
-                    "Bestlang\\Laracms\\Providers\\RouteServiceProvider",
-                    "Bestlang\\Laracms\\Providers\\ResponseServiceProvider"
+                    "Bestlang\\Laracms\\Providers\\RouteServiceProvider"
                 ],
                 "aliases": {
                     "LC": "Bestlang\\Laracms\\Facades\\LC"

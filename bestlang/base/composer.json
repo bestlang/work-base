@@ -13,7 +13,6 @@
   "require": {
     "illuminate/support": "~5|~6",
     "baum/baum": "v2.x-dev",
-    "bestlang/laravel-ueditor": "dev-master",
     "spatie/laravel-permission": "^2.38",
     "tymon/jwt-auth": "1.0.*"
   },
@@ -38,6 +37,7 @@
   "extra": {
     "laravel": {
       "providers": [
+        "Bestlang\\Base\\Providers\\AppServiceProvider",
         "Bestlang\\Base\\Providers\\ResponseServiceProvider"
       ],
       "aliases": {

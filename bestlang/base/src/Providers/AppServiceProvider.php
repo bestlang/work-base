@@ -1,13 +1,10 @@
 <?php
 
-namespace Bestlang\Laracms\Providers;
+namespace Bestlang\Base\Providers;
 
 use Illuminate\Support\ServiceProvider;
-//use Illuminate\Support\Facades\Gate;
-//use Bestlang\Laracms\Models\Permission;
+use Illuminate\Support\Facades\Gate;
 
-use Bestlang\Laracms\Models\Cms\Order;
-use Bestlang\Laracms\Observers\Cms\OrderObserver;
 use Illuminate\Support\Facades\Blade;
 
 class AppServiceProvider extends ServiceProvider
@@ -19,7 +16,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->bind('lc', 'Bestlang\Laracms\LC');
+        $this->app['router']->aliasMiddleware('auth.jwt', \Tymon\JWTAuth\Http\Middleware\Authenticate::class);
     }
 
     /**
@@ -29,29 +26,27 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        Order::observe(OrderObserver::class);
-//
-//        Gate::before(function ($user, $ability) {
-//            foreach ($user->getPermissionsViaRoles() as $permission){
-//                $user->givePermissionTo($permission->name);
+        Gate::before(function ($user, $ability) {
+            foreach ($user->getPermissionsViaRoles() as $permission){
+                $user->givePermissionTo($permission->name);
+            }
+//            if($user->hasRole('administrator')){
+//                $permissions = Permission::all();
+//                foreach ($permissions as $permission){
+//                    $user->givePermissionTo($permission->name);
+//                }
+//                return true;
+//            }else{
+//                return null;
 //            }
-////            if($user->hasRole('administrator')){
-////                $permissions = Permission::all();
-////                foreach ($permissions as $permission){
-////                    $user->givePermissionTo($permission->name);
-////                }
-////                return true;
-////            }else{
-////                return null;
-////            }
-//        });
+        });
         // config
         $this->publishes([
-//            __DIR__.'/../../config/auth.php' => config_path('auth.php'),
-//            __DIR__.'/../../config/jwt.php' => config_path('jwt.php'),
-            __DIR__.'/../../config/ueditor.php' => config_path('ueditor.php'),
-//            __DIR__.'/../../config/permission.php' => config_path('permission.php'),
-        ], 'laracms-config');
+            __DIR__.'/../../config/auth.php' => config_path('auth.php'),
+            __DIR__.'/../../config/jwt.php' => config_path('jwt.php'),
+            //__DIR__.'/../../config/ueditor.php' => config_path('ueditor.php'),
+            __DIR__.'/../../config/permission.php' => config_path('permission.php'),
+        ], 'bestlang-base-config');
 
         // vue 后台代码
 //        $this->publishes([

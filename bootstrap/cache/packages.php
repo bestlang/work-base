@@ -10,7 +10,8 @@
   array (
     'providers' => 
     array (
-      0 => 'Bestlang\\Base\\Providers\\ResponseServiceProvider',
+      0 => 'Bestlang\\Base\\Providers\\AppServiceProvider',
+      1 => 'Bestlang\\Base\\Providers\\ResponseServiceProvider',
     ),
     'aliases' => 
     array (
@@ -22,7 +23,6 @@
     array (
       0 => 'Bestlang\\Laracms\\Providers\\AppServiceProvider',
       1 => 'Bestlang\\Laracms\\Providers\\RouteServiceProvider',
-      2 => 'Bestlang\\Laracms\\Providers\\ResponseServiceProvider',
     ),
     'aliases' => 
     array (
