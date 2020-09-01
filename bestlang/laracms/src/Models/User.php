@@ -3,6 +3,7 @@
 namespace Bestlang\Laracms\Models;
 
 use Bestlang\Base\Models\User as BaseUser;
+
 use Bestlang\Laracms\Models\Cms\Comment;
 use Bestlang\Laracms\Models\Cms\Order;
 

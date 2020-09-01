@@ -17,7 +17,7 @@ class ContentController extends Controller
     public function index(Request $request)
     {
         if(!auth()->user()->can('cms list contents')){
-            return response()->ajax('', 401);
+            return response()->ajax('没有操作权限!', 401);
         }
         $channelId = $request->input('channel_id', 0);
         $page = $request->input('page', 0);

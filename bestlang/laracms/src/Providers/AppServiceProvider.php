@@ -30,33 +30,10 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Order::observe(OrderObserver::class);
-//
-//        Gate::before(function ($user, $ability) {
-//            foreach ($user->getPermissionsViaRoles() as $permission){
-//                $user->givePermissionTo($permission->name);
-//            }
-////            if($user->hasRole('administrator')){
-////                $permissions = Permission::all();
-////                foreach ($permissions as $permission){
-////                    $user->givePermissionTo($permission->name);
-////                }
-////                return true;
-////            }else{
-////                return null;
-////            }
-//        });
         // config
         $this->publishes([
-//            __DIR__.'/../../config/auth.php' => config_path('auth.php'),
-//            __DIR__.'/../../config/jwt.php' => config_path('jwt.php'),
             __DIR__.'/../../config/ueditor.php' => config_path('ueditor.php'),
-//            __DIR__.'/../../config/permission.php' => config_path('permission.php'),
         ], 'laracms-config');
-
-        // vue 后台代码
-//        $this->publishes([
-//            __DIR__.'/../../resources/admin/' => resource_path('admin')
-//        ], 'admin');
 
         // static file
         $this->publishes([

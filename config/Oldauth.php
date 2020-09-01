@@ -40,6 +40,7 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+
         'api' => [
             'driver' => 'jwt',
             'provider' => 'users',
@@ -67,7 +68,7 @@ return [
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
-            'model' => Bestlang\Base\Models\User::class,
+            'model' => Bestlang\Laracms\Models\User::class,
         ],
 
         // 'users' => [

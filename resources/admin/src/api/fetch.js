@@ -45,6 +45,10 @@ axios.interceptors.response.use(response => {
             case 304:
                 break;
             case 401:
+                if(res.data){ //有提示字符串直接显示, 无需跳转到登录页面
+                    showMessage(res.data);
+                    break;
+                }
             case 0:
                 if(getPrefix() == 'api'){
                     try{

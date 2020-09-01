@@ -12,6 +12,10 @@
                 header-cell-class-name="cell-class"
                 style="width: 100%">
             <el-table-column
+                  prop="id"
+                  label="ID">
+            </el-table-column>
+            <el-table-column
                     prop="name"
                     label="角色名">
             </el-table-column>
