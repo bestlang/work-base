@@ -12,6 +12,7 @@
     array (
       0 => 'Bestlang\\Base\\Providers\\AppServiceProvider',
       1 => 'Bestlang\\Base\\Providers\\ResponseServiceProvider',
+      2 => 'Bestlang\\Base\\Providers\\RouteServiceProvider',
     ),
     'aliases' => 
     array (

@@ -1,6 +1,6 @@
 <?php
 
-namespace Bestlang\Laracms\Http\Controllers;
+namespace Bestlang\Base\Http\Controllers;
 
 class ExitController extends Controller
 {

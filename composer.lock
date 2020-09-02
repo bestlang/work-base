@@ -285,12 +285,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/etrepat/baum.git",
-                "reference": "b56eb6fe8f642b2663c6841b09e8e660cd112e34"
+                "reference": "582dae08d28a2b80a9f8308c620b4114bdaebf3f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/etrepat/baum/zipball/b56eb6fe8f642b2663c6841b09e8e660cd112e34",
-                "reference": "b56eb6fe8f642b2663c6841b09e8e660cd112e34",
+                "url": "https://api.github.com/repos/etrepat/baum/zipball/582dae08d28a2b80a9f8308c620b4114bdaebf3f",
+                "reference": "582dae08d28a2b80a9f8308c620b4114bdaebf3f",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -300,13 +300,15 @@
                 ]
             },
             "require": {
-                "illuminate/contracts": "~5.7.0|~5.8.0|^6.0|^7.0",
-                "illuminate/database": "~5.7.0|~5.8.0|^6.0|^7.0",
-                "illuminate/events": "~5.7.0|~5.8.0|^6.0|^7.0",
-                "illuminate/support": "~5.7.0|~5.8.0|^6.0|^7.0",
-                "php": "^7.1.3"
+                "illuminate/contracts": "~5.7.0|~5.8.0|^6.0|^7.0|^8.0",
+                "illuminate/database": "~5.7.0|~5.8.0|^6.0|^7.0|^8.0",
+                "illuminate/events": "~5.7.0|~5.8.0|^6.0|^7.0|^8.0",
+                "illuminate/support": "~5.7.0|~5.8.0|^6.0|^7.0|^8.0",
+                "php": "^7.1.3 || ^8.0"
             },
             "require-dev": {
+                "illuminate/console": "~5.7.0|~5.8.0|^6.0|^7.0|^8.0",
+                "illuminate/filesystem": "~5.7.0|~5.8.0|^6.0|^7.0|^8.0",
                 "mockery/mockery": "^1.0",
                 "phpunit/phpunit": "^7.5|^8.0",
                 "psy/psysh": "@stable",
@@ -333,7 +335,7 @@
                 {
                     "name": "Estanislau Trepat",
                     "email": "estanis@etrepat.com",
-                    "homepage": "http://etrepat.com"
+                    "homepage": "https://etrepat.com"
                 }
             ],
             "description": "Baum is an implementation of the Nested Set pattern for Eloquent models.",
@@ -344,7 +346,7 @@
                 "laravel 5",
                 "nested set"
             ],
-            "time": "2020-04-09T16:10:35+00:00"
+            "time": "2020-09-01T17:33:03+00:00"
         },
         {
             "name": "bestlang/base",
@@ -352,7 +354,7 @@
             "dist": {
                 "type": "path",
                 "url": "./bestlang/base",
-                "reference": "5ac2d33c81d153783762d2a902907ed1410851ec"
+                "reference": "08429917a294ec6d2bc31b60d2df199e80fe6d8d"
             },
             "require": {
                 "baum/baum": "v2.x-dev",
@@ -371,7 +373,8 @@
                 "laravel": {
                     "providers": [
                         "Bestlang\\Base\\Providers\\AppServiceProvider",
-                        "Bestlang\\Base\\Providers\\ResponseServiceProvider"
+                        "Bestlang\\Base\\Providers\\ResponseServiceProvider",
+                        "Bestlang\\Base\\Providers\\RouteServiceProvider"
                     ],
                     "aliases": []
                 }

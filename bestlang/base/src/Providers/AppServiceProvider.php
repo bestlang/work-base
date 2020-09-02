@@ -30,16 +30,17 @@ class AppServiceProvider extends ServiceProvider
             foreach ($user->getPermissionsViaRoles() as $permission){
                 $user->givePermissionTo($permission->name);
             }
-//            if($user->hasRole('administrator')){
-//                $permissions = Permission::all();
-//                foreach ($permissions as $permission){
-//                    $user->givePermissionTo($permission->name);
-//                }
-//                return true;
-//            }else{
-//                return null;
-//            }
+            /*if($user->hasRole('administrator')){
+                $permissions = Permission::all();
+                foreach ($permissions as $permission){
+                    $user->givePermissionTo($permission->name);
+                }
+                return true;
+            }else{
+                return null;
+            }*/
         });
+        $this->loadViewsFrom(__DIR__.'/../../resources/views/base', 'base');
         // config
         $this->publishes([
             __DIR__.'/../../config/auth.php' => config_path('auth.php'),

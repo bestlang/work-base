@@ -38,7 +38,8 @@
     "laravel": {
       "providers": [
         "Bestlang\\Base\\Providers\\AppServiceProvider",
-        "Bestlang\\Base\\Providers\\ResponseServiceProvider"
+        "Bestlang\\Base\\Providers\\ResponseServiceProvider",
+        "Bestlang\\Base\\Providers\\RouteServiceProvider"
       ],
       "aliases": {
       }
