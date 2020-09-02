@@ -180,11 +180,11 @@ return [
         Jacobcyl\AliOSS\AliOssServiceProvider::class,
         JellyBool\Flysystem\Upyun\UpyunServiceProvider::class,
         Overtrue\LaravelWeChat\ServiceProvider::class,
-        Bestlang\LaravelUEditor\UEditorServiceProvider::class,
-
-        Bestlang\Laracms\Providers\AppServiceProvider::class,
-        Bestlang\Laracms\Providers\RouteServiceProvider::class,
-        Bestlang\Laracms\Providers\ResponseServiceProvider::class
+//        Bestlang\LaravelUEditor\UEditorServiceProvider::class,
+//
+//        Bestlang\Laracms\Providers\AppServiceProvider::class,
+//        Bestlang\Laracms\Providers\RouteServiceProvider::class,
+//        Bestlang\Laracms\Providers\ResponseServiceProvider::class
     ],
 
     /*
@@ -238,7 +238,6 @@ return [
         'EasyWeChat' => Overtrue\LaravelWeChat\Facade::class,
         'JWTAuth' => Tymon\JWTAuth\Facades\JWTAuth::class,
         'JWTFactory' => Tymon\JWTAuth\Facades\JWTFactory::class,
-        'LC' => Bestlang\Laracms\Facades\LC::class
     ],
 
 ];

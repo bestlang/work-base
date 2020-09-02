@@ -52,6 +52,7 @@ class LoginController extends Controller
 
     public function username()
     {
+        //目前web前台使用email管理后台使用手机
         if(request()->ajax()){
             return 'mobile';
         }else{
