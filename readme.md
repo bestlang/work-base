@@ -70,3 +70,7 @@ if(substr($hex, 0, 2) === '0x'){
 
 ---------------------------
 "Bestlang\\Laracms\\":"packages/bestlang/laracms/src/"
+
+
+---------------------------
+try 使用带参数的中间来验证管理员 role:administrator

@@ -31,7 +31,7 @@ export default {
     data() {
         return {
             loading: false,
-            loginFont: "Login",
+            loginFont: "登录",
             params: {
                 mobile: '18625072568',
                 password: '111111'
@@ -81,13 +81,14 @@ export default {
                 this.loginFont = "logining...";
                 let res = await api.login(this.params)
                 if (res.code == 200) {
-                    this.$store.commit(this.$types.ACCESS_TOKEN, res.data.access_token);
-                    this.$store.commit(this.$types.USER, res.data.user);
+                    res.data.access_token && this.$store.commit(this.$types.ACCESS_TOKEN, res.data.access_token);
+                    res.data.user && this.$store.commit(this.$types.USER, res.data.user);
                     let perm = await api.getUserPermissions()
                     if(perm && perm.data){
                         this.$store.commit(this.$types.PRIVILEGES, perm.data)
                     }
                     this.$router.push("/dashboard");
+
                 }else if(res.code == 4011){
                    this.reset()
                 }

@@ -30,7 +30,7 @@
         <div class="col-md-3">
             <div class="sidenav">
                 <ul class="list-group">
-                    <li class="list-group-heading">会员中心</li>
+                    <li class="list-group-heading">会员中心-{{auth()->user()->name}}</li>
                     <li class="list-group-item l-menu-order"> <a href="/ucenter/orders"><i class="fa fa-shopping-bag fa-fw"></i> 订单记录</a> </li>
                     <li class="list-group-item l-menu-member"> <a href=""><i class="fa fa-user-circle fa-fw"></i> 会员中心</a> </li>
                     <li class="list-group-item"> <a href=""><i class="fa fa-user-o fa-fw"></i> 个人资料</a> </li>

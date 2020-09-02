@@ -23,15 +23,9 @@ Route::group(['prefix' => 'ajax'], function($router){
     Route::any('/pay/native1', 'OrderController@native1');
     Route::any('/pay/native2', 'OrderController@native2');
     Route::any('/pay/alipay/page', 'AliPayController@page');
-    Route::any('/csrf', 'IndexController@csrf');
-    // @todo 使用带参数的中间来验证管理员 role:administrator
+
     Route::group(['middleware' => 'auth'], function(){
           include('adminOps.php');
 
     });
 });
-//登录之后的动作定向到首页
-//Route::get('/home', function(){
-//    return redirect('/');
-//});
-

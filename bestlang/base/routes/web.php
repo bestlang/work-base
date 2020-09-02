@@ -2,18 +2,17 @@
 
 Route::group(['prefix' => 'ajax'], function($router){
 
-    Route::group(['prefix' => 'auth'], function ($router) {
-        Route::any('login', 'AuthController@login');
-        Route::any('logout', 'ExitController@logout');
+    Route::any('/csrf', 'IndexController@csrf');
+    Route::group(['namespace'=>'Auth', 'prefix'=>'auth'], function(){
+        Route::any('login', 'LoginController@login');
+        Route::any('logout', 'LoginController@logout');
     });
-
-    // @todo 使用带参数的中间来验证管理员 role:administrator
     Route::group(['middleware' => 'auth'], function(){
         include('adminOps.php');
-
     });
 });
 
+/*登录注册相关路由*/
 Route::group(['namespace'=>'Auth'], function(){
     Route::get('login', 'LoginController@showLoginForm')->name('login');
     Route::post('login', 'LoginController@login');

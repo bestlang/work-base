@@ -27,6 +27,8 @@ axios.interceptors.request.use(config => {
             'Accept': 'application/json'
         }
     }
+    // Laravel判断是否ajax请求的标准
+    config.headers['X-Requested-With'] = 'XMLHttpRequest';
     return config
 }, error => {
     Promise.reject(error);// 错误提示
@@ -45,20 +47,20 @@ axios.interceptors.response.use(response => {
             case 304:
                 break;
             case 401:
-                if(res.data){ //有提示字符串直接显示, 无需跳转到登录页面
+                if(res.data.length){ //有提示字符串直接显示, 无需跳转到登录页面. 相反地: '' 或者 [] 则跳转到登录
                     showMessage(res.data);
                     break;
+                }else{
+                    showMessage('请重新登录!');
+                    localStorage.setItem('accessToken', '');
+                    app.$router.push('/login');
                 }
             case 0:
                 if(getPrefix() == 'api'){
-                    try{
-                        let accessToken = localStorage.getItem('accessToken')
-                        if(accessToken){
-                            showMessage('请重新登录!');
-                            localStorage.setItem('accessToken', '');
-                        }
-                        app.$router.push('/login');
-                    }catch(e){
+                    let accessToken = localStorage.getItem('accessToken')
+                    if(!accessToken){
+                        showMessage('请重新登录!');
+                        localStorage.setItem('accessToken', '');
                         app.$router.push('/login');
                     }
                 }else{
