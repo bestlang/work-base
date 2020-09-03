@@ -19,7 +19,7 @@ export default new VueRouter({
       children:[
         {
           path: "/dashboard",
-          component:  (resolve) => require(["../pages/dashboard.vue"], resolve),
+          component:  () => import("../pages/dashboard.vue"),
           meta: {
             can: 'dashboard',
             show:true,
@@ -29,7 +29,7 @@ export default new VueRouter({
         },
         {
           path: "/cms",
-          component: (resolve) => require(["../components/via.vue"], resolve),
+          component: () => import("../components/via.vue"),
           meta: {
             can: 'cms',
             show:true,
@@ -39,7 +39,7 @@ export default new VueRouter({
           children: [
             {
               path: "/cms/content",
-              component: (resolve) => require(["../pages/cms/content.vue"], resolve),
+              component: () => import("../pages/cms/content.vue"),
               meta: {
                 can: 'cms list contents',
                 show: true,
@@ -49,7 +49,7 @@ export default new VueRouter({
             },
             {
                 path: "/cms/content/add",
-                component: (resolve) => require(["../pages/cms/content/add.vue"], resolve),
+                component: () => import("../pages/cms/content/add.vue"),
                 meta: {
                     can: 'cms list contents',
                     show: false,
@@ -59,7 +59,7 @@ export default new VueRouter({
             },
             {
                 path: "/cms/content/edit",
-                component: (resolve) => require(["../pages/cms/content/edit.vue"], resolve),
+                component: () => import("../pages/cms/content/edit.vue"),
                 meta: {
                     can: 'cms list contents',
                     show: false,
@@ -69,7 +69,7 @@ export default new VueRouter({
             },
             {
               path: "/cms/channel",
-              component: (resolve) => require(["../pages/cms/channel.vue"], resolve),
+              component: () => import("../pages/cms/channel.vue"),
               meta: {
                 can: 'cms list channels',
                 show: true,
@@ -79,7 +79,7 @@ export default new VueRouter({
             },
             {
               path: "/cms/position",
-              component: (resolve) => require(["../components/via.vue"], resolve),
+              component: () => import("../components/via.vue"),
                 meta: {
                     can: 'cms list contents',
                     show: true,
@@ -89,7 +89,7 @@ export default new VueRouter({
                 children:[
                     {
                         path: "/cms/position/position",
-                        component: (resolve) => require(["../pages/cms/position/position.vue"], resolve),
+                        component: () => import("../pages/cms/position/position.vue"),
                         meta: {
                             can: 'dashboard',
                             show: true,
@@ -99,7 +99,7 @@ export default new VueRouter({
                     },
                     {
                         path: "/cms/position/content",
-                        component: (resolve) => require(["../pages/cms/position/content.vue"], resolve),
+                        component: () => import("../pages/cms/position/content.vue"),
                         meta: {
                             can: 'dashboard',
                             show: false,
@@ -109,7 +109,7 @@ export default new VueRouter({
                     },
                     {
                         path: "/cms/position/subs",
-                        component: (resolve) => require(["../pages/cms/position/subs.vue"], resolve),
+                        component: () => import("../pages/cms/position/subs.vue"),
                         meta: {
                             can: 'dashboard',
                             show: false,
@@ -121,7 +121,7 @@ export default new VueRouter({
             },
             {
               path: "/cms/comment",
-              component: (resolve) => require(["../pages/cms/comment/comment.vue"], resolve),
+              component: () => import("../pages/cms/comment/comment.vue"),
               meta: {
                   can: 'cms list contents',
                   show: true,
@@ -131,7 +131,7 @@ export default new VueRouter({
             },
             {
               path: "/cms/comment/content",
-              component: (resolve) => require(["../pages/cms/comment/content.vue"], resolve),
+              component: () => import("../pages/cms/comment/content.vue"),
               meta: {
                   can: 'cms list contents',
                   show: false,
@@ -141,7 +141,7 @@ export default new VueRouter({
             },
             {
               path: "/cms/setting",
-              component: (resolve) => require(["../components/via.vue"], resolve),
+              component: () => import("../components/via.vue"),
               meta: {
                 can: 'cms list contents',
                 show: true,
@@ -151,7 +151,7 @@ export default new VueRouter({
               children: [
                 {
                   path: "/cms/setting/siteSetting",
-                  component: (resolve) => require(["../pages/cms/setting/siteSetting.vue"], resolve),
+                  component: () => import("../pages/cms/setting/siteSetting.vue"),
                   meta: {
                       can: 'dashboard',
                       show: true,
@@ -161,7 +161,7 @@ export default new VueRouter({
                 },
                 {
                   path: "/cms/setting/model",
-                  component: (resolve) => require(["../pages/cms/setting/model.vue"], resolve),
+                  component: () => import("../pages/cms/setting/model.vue"),
                   meta: {
                     can: 'dashboard',
                     show: true,
@@ -171,7 +171,7 @@ export default new VueRouter({
                 },
                 {
                   path: "/cms/setting/model/add",
-                  component: (resolve) => require(["../pages/cms/setting/modelEdit.vue"], resolve),
+                  component: () => import("../pages/cms/setting/modelEdit.vue"),
                   meta: {
                     can: 'dashboard',
                     show: false,
@@ -181,7 +181,7 @@ export default new VueRouter({
                 },
                 {
                   path: "/cms/setting/model/edit",
-                  component: (resolve) => require(["../pages/cms/setting/modelEdit.vue"], resolve),
+                  component: () => import("../pages/cms/setting/modelEdit.vue"),
                   meta: {
                     can: 'dashboard',
                     show: false,
@@ -191,7 +191,7 @@ export default new VueRouter({
                 },
                 {
                   path: "/cms/setting/field/types",
-                  component: (resolve) => require(["../pages/cms/setting/fieldTypes.vue"], resolve),
+                  component: () => import("../pages/cms/setting/fieldTypes.vue"),
                   meta: {
                     can: 'dashboard',
                     show: true,
@@ -203,7 +203,7 @@ export default new VueRouter({
             },
             {
                 path: "/cms/operation",
-                component: (resolve) => require(["../components/via.vue"], resolve),
+                component: () => import("../components/via.vue"),
                 meta: {
                     can: 'cms operations',
                     show: true,
@@ -213,7 +213,7 @@ export default new VueRouter({
                 children: [
                     {
                         path: "/cms/operation/orders",
-                        component: (resolve) => require(["../pages/cms/operation/orders.vue"], resolve),
+                        component: () => import("../pages/cms/operation/orders.vue"),
                         meta: {
                             can: 'cms operations',
                             show: true,
@@ -223,7 +223,7 @@ export default new VueRouter({
                     },
                     {
                         path: "/cms/operation/ads",
-                        component: (resolve) => require(["../pages/cms/operation/ads.vue"], resolve),
+                        component: () => import("../pages/cms/operation/ads.vue"),
                         meta: {
                             can: 'cms ad operations',
                             show: true,
@@ -233,7 +233,7 @@ export default new VueRouter({
                     },
                     {
                         path: "/cms/operation/ad/positions",
-                        component: (resolve) => require(["../pages/cms/operation/adPositions.vue"], resolve),
+                        component: () => import("../pages/cms/operation/adPositions.vue"),
                         meta: {
                             can: 'cms ad operations',
                             show: true,
@@ -243,7 +243,7 @@ export default new VueRouter({
                     },
                     {
                         path: "/cms/operation/edit/ad",
-                        component: (resolve) => require(["../pages/cms/operation/editAd.vue"], resolve),
+                        component: () => import("../pages/cms/operation/editAd.vue"),
                         meta: {
                             can: 'cms ad operations',
                             show: false,
@@ -257,7 +257,7 @@ export default new VueRouter({
         },
         {
           path: "/privileges",
-          component: (resolve) => require(["../components/via.vue"], resolve),
+          component: () => import("../components/via.vue"),
           meta: {
             can: 'privileges',
             show: true,
@@ -267,7 +267,7 @@ export default new VueRouter({
           children: [
             {
               path: "/privileges/roles",
-              component: (resolve) => require(["../pages/privileges/roles.vue"], resolve),
+              component: () => import("../pages/privileges/roles.vue"),
               meta: {
                 can: 'privileges list roles',
                 show: true,
@@ -277,7 +277,7 @@ export default new VueRouter({
             },
             {
               path: "/privileges/permissions",
-              component: (resolve) => require(["../pages/privileges/permissions.vue"], resolve),
+              component: () => import("../pages/privileges/permissions.vue"),
               meta: {
                 can: 'privileges list permissions',
                 show: true,
@@ -286,8 +286,18 @@ export default new VueRouter({
               },
             },
             {
+              path: "/privileges/users",
+              component: () => import("../pages/privileges/users.vue"),
+              meta: {
+                  can: 'privileges list permissions',
+                  show: true,
+                  name: '用户管理',
+                  font: '&#xe70b;'
+              },
+            },
+            {
               path: "/privileges/roles/users",
-              component: (resolve) => require(["../pages/privileges/roleUsers.vue"], resolve),
+              component: () => import("../pages/privileges/roleUsers.vue"),
               meta: {
                 // can: 'privileges role users',
                 can: 'privileges list role users',
@@ -298,7 +308,7 @@ export default new VueRouter({
             },
             {
               path: "/privileges/roles/permissions",
-              component: (resolve) => require(["../pages/privileges/rolePermissions.vue"], resolve),
+              component: () => import("../pages/privileges/rolePermissions.vue"),
               meta: {
                 can: 'privileges role permissions',
                 show: false,
@@ -312,14 +322,14 @@ export default new VueRouter({
     },
     {
       path: "/login",
-      component: (resolve) => require(["../pages/login.vue"], resolve),
+      component: () => import("../pages/login.vue"),
       meta: {
         name: '登录',
       },
     },
     {
         path: "/test",
-        component: (resolve) => require(["../pages/test.vue"], resolve),
+        component: () => import("../pages/test.vue"),
         meta: {
             name: 'test',
         },

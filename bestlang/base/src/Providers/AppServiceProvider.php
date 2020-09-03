@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Gate;
 use Illuminate\Contracts\Debug\ExceptionHandler;
 use Tymon\JWTAuth\Http\Middleware\Authenticate;
 use Bestlang\Base\Exceptions\Handler as CustomExceptionHandler;
+use Validator;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -57,8 +58,26 @@ class AppServiceProvider extends ServiceProvider
             __DIR__.'/../../config/permission.php' => config_path('permission.php'),
         ], 'bestlang-base-config');
 
-//        $this->publishes([
-//            __DIR__.'/../../foo/bar/' => resource_path('bar')
-//        ], 'admin');
+        /*
+        $this->publishes([
+            __DIR__.'/../../foo/bar/' => resource_path('bar')
+        ], 'admin');
+        */
+
+        Validator::extend('mobile', function ($attribute, $value, $parameters, $validator) {
+            if(preg_match("/^1\d{10}$/",$value)){
+                return true;
+            }else{
+                return false;
+            }
+        });
+
+        Validator::extend('phone', function ($attribute, $value, $parameters, $validator) {
+            if(preg_match("/^1\d{10}$/",$value) || preg_match("/^0\d{2,3}-?\d{7,8}$/", $value)){
+                return true;
+            }else{
+                return false;
+            }
+        });
     }
 }

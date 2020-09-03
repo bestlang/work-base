@@ -1,8 +1,11 @@
 <?php
 Route::group(['prefix'=>'admin', 'namespace'=>'Admin'], function(){
     Route::any('/file/upload', 'UploadController@index');
+    Route::any('/user/create', 'UserController@create');
+    Route::any('/user/update', 'UserController@update');
     Route::get('/user/info', 'UserController@info');
     Route::any('/privileges/roles', 'PrivilegesController@roles');
+    Route::any('/privileges/users', 'PrivilegesController@users');
     Route::any('/privileges/save/role', 'PrivilegesController@saveRole');
     Route::any('/privileges/delete/role', 'PrivilegesController@deleteRole');
     Route::any('/privileges/role/users', 'PrivilegesController@roleUsers');
@@ -14,6 +17,6 @@ Route::group(['prefix'=>'admin', 'namespace'=>'Admin'], function(){
     Route::post('/privileges/remove/role/model', 'PrivilegesController@removeRoleModel');
     Route::post('/privileges/give/permissions/to', 'PrivilegesController@givePermissionsTo');
     Route::any('/privileges/user/permissions', 'PrivilegesController@userPermissions');
-    Route::post('/user/create', 'UserController@create');
+    //Route::post('/user/create', 'UserController@create');
     Route::post('/user/create/role/user', 'UserController@createRoleUser');
 });

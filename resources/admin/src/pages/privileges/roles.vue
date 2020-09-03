@@ -72,9 +72,7 @@
             }
         },
         computed:{
-            types(){
-                return this.$store.getters.activityTypes;
-            }
+
         },
         methods: {
             editRole(row){

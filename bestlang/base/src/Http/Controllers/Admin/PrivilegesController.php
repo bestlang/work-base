@@ -2,13 +2,13 @@
 
 namespace Bestlang\Base\Http\Controllers\Admin;
 
-use Bestlang\Laracms\Models\User;
+use Bestlang\Base\Models\User;
 use Illuminate\Http\Request;
-use Bestlang\Laracms\Http\Controllers\Controller;
+use Bestlang\Base\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Spatie\Permission\Models\Role;
 use Illuminate\Support\Arr;
-use Bestlang\Laracms\Models\Permission;
+use Bestlang\Base\Models\Permission;
 
 class PrivilegesController extends Controller
 {
@@ -81,6 +81,21 @@ class PrivilegesController extends Controller
     public function roles()
     {
         return response()->ajax(Role::all());
+    }
+
+    public function users(Request $request)
+    {
+        $page = $request->input('page', 0);
+        $page_size = $request->input('page_size', 10);
+        $page = intval($page);
+        $page_size = intval($page_size);
+        $query = User::query();
+        $total = $query->count();
+        $users = $query->orderBy('id', 'asc')
+        ->limit($page_size)
+        ->offset(($page-1)*$page_size)
+        ->get();
+        return response()->ajax(compact(['users', 'total']));
     }
 
     public function roleUsers(Request $request)

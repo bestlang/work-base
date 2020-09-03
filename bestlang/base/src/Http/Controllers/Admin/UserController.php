@@ -23,10 +23,84 @@ class UserController extends Controller
 
     public function create(Request $request)
     {
+        $params = $request->all();
+        $rules = [
+            'name' => 'required',
+            'mobile' => 'nullable|mobile',
+            'email' => 'email|unique:users,email',
+            'password' => 'required',
+            'confirm_password' => 'required|same:password',
+        ];
+        $info = [
+            'name.required' => '昵称不得为空',
+            'mobile.mobile' => '手机号格式不正确',
+            'email.email' => '邮箱格式不正确',
+            'email.unique' => '邮箱在系统中已存在',
+            'password.required' => '密码不得为空',
+            'confirm_password.required' => '确认密码不得为空',
+            'confirm_password.same' => '两次输入密码不一致',
+
+        ];
+        $fields = [
+            'name' => '昵称',
+            'mobile' => '手机号',
+            'email' => '邮箱',
+            'password' => '密码',
+            'confirm_password' => '确认密码',
+
+        ];
+        $validator = Validator::make($params, $rules , $info , $fields);
+        if($validator->fails()){
+            return response()->error($validator->errors()->first());
+        }
+
         $user = new User;
-        $role_id = $request->input('role_id', '');
-        $user->name = 'sampleuser';
-        $user->password = bcrypt('123456');
+        $user->name = $params['name'];
+        $user->mobile = $params['mobile'];
+        $user->email = $params['email'];
+        $user->password = bcrypt($params['password']);
+        $user->save();
+        return response()->ajax($user);
+    }
+
+    public function update(Request $request)
+    {
+        $params = $request->all();
+        $rules = [
+            'id' => 'required',
+            'name' => 'required',
+            'mobile' => 'nullable|mobile',
+            'email' => 'email|unique:users,email,'.$params['id'].',id',
+            'password' => 'nullable',
+            'confirm_password' => 'nullable|same:password',
+        ];
+        $info = [
+            'id.required' => '参数缺失',
+            'name.required' => '昵称不得为空',
+            'mobile.mobile' => '手机号格式不正确',
+            'email.email' => '邮箱格式不正确',
+            'email.unique' => '邮箱在系统中已存在',
+            'confirm_password.same' => '两次输入密码不一致',
+        ];
+        $fields = [
+            'id' => 'ID',
+            'name' => '昵称',
+            'mobile' => '手机号',
+            'email' => '邮箱',
+            'password' => '密码',
+            'confirm_password' => '确认密码',
+
+        ];
+        $validator = Validator::make($params, $rules , $info , $fields);
+        if($validator->fails()){
+            return response()->error($validator->errors()->first());
+        }
+
+        $user = User::find($params['id']);
+        $user->name = $params['name'];
+        isset($params['mobile']) && $user->mobile = $params['mobile'];
+        $user->email = $params['email'];
+        isset($params['mobile']) && $user->password = bcrypt($params['password']);
         $user->save();
         return response()->ajax($user);
     }
@@ -40,12 +114,6 @@ class UserController extends Controller
             'password' => 'required',
             'confirm_password' => 'required',
             'name' => 'required'
-        ];
-        $info = [
-            'mobile.required' => '不得为空',
-            'password.required' => '不得为空',
-            'confirm_password.required' => '不得为空',
-            'name.required' => '不得为空',
         ];
         $fields = [
             'role_id' => '角色ID',
