@@ -57,9 +57,8 @@ class AppServiceProvider extends ServiceProvider
             __DIR__.'/../../config/permission.php' => config_path('permission.php'),
         ], 'bestlang-base-config');
 
-        // vue 后台代码
 //        $this->publishes([
-//            __DIR__.'/../../resources/admin/' => resource_path('admin')
+//            __DIR__.'/../../foo/bar/' => resource_path('bar')
 //        ], 'admin');
     }
 }

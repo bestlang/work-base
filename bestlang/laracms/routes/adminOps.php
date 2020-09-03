@@ -1,6 +1,5 @@
 <?php
 Route::group(['prefix'=>'admin', 'namespace'=>'Admin'], function(){
-    Route::any('/file/upload', 'UploadController@index');
     Route::group(['namespace'=>'Cms'], function(){
         Route::any('/cms/channel/tree', 'ChannelController@tree');
         Route::any('/cms/channel/add', 'ChannelController@add');

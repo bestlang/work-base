@@ -1,5 +1,6 @@
 <?php
 Route::group(['prefix'=>'admin', 'namespace'=>'Admin'], function(){
+    Route::any('/file/upload', 'UploadController@index');
     Route::get('/user/info', 'UserController@info');
     Route::any('/privileges/roles', 'PrivilegesController@roles');
     Route::any('/privileges/save/role', 'PrivilegesController@saveRole');
