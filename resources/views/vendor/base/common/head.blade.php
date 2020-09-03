@@ -50,16 +50,16 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="/"><img src="/laracms.png" width="180" alt="LaraCMS"></a>
+                <a class="navbar-brand" href="/"><img src="/logo.png" width="180" alt="LaraCMS"></a>
             </div>
 
             <div class="collapse navbar-collapse" id="navbar-collapse">
                 <ul class="nav navbar-nav" data-current="0">
-                    <li class="">
-                        <a href="/">首页</a>
-                        <ul class="dropdown-menu" role="menu">
-                        </ul>
-                    </li>
+                    {{--<li class="">--}}
+                        {{--<a href="/">首页</a>--}}
+                        {{--<ul class="dropdown-menu" role="menu">--}}
+                        {{--</ul>--}}
+                    {{--</li>--}}
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li class="dropdown">

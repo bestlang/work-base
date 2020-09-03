@@ -20,12 +20,13 @@ Route::any('/notify/wechat/async', 'OrderController@wechatAsyncNotify');
 Route::any('/notify/alipay', 'AliPayController@notify');
 
 Route::group(['prefix' => 'ajax'], function($router){
+
+    Route::group(['middleware' => 'auth'], function(){
+        include('adminOps.php');
+    });
+
     Route::any('/pay/native1', 'OrderController@native1');
     Route::any('/pay/native2', 'OrderController@native2');
     Route::any('/pay/alipay/page', 'AliPayController@page');
 
-    Route::group(['middleware' => 'auth'], function(){
-          include('adminOps.php');
-
-    });
 });
