@@ -24,25 +24,15 @@ trait Relatable
         return $this->hasMany(get_class($this), $this->getParentColumnName());
     }
 
-    // /**
-    //  * Inmmediate descendants relation. Alias for "children".
-    //  *
-    //  * @return \Illuminate\Database\Eloquent\Relations\HasMany
-    //  */
-    // public function immediateDescendants()
-    // {
-    //     return $this->children();
-    // }
-
-    // /**
-    //  * Attribute alias so as to eager-load the proper relationship.
-    //  *
-    //  * @return mixed
-    //  */
-    // public function getImmediateDescendantsAttribute()
-    // {
-    //     return $this->getRelationValue('children');
-    // }
+    /**
+     * Inmmediate descendants relation. Alias for "children".
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function immediateDescendants()
+    {
+        return $this->children();
+    }
 
     /**
      * Retrive all of its "immediate" descendants.
@@ -52,7 +42,6 @@ trait Relatable
      */
     public function getImmediateDescendants($columns = ['*'])
     {
-        // return $this->children()->get($columns);
         return $this->getRelationValue('children');
     }
 
@@ -440,5 +429,39 @@ trait Relatable
         return $this->siblings()
                 ->where($this->getLeftColumnName(), '>', $this->getLeft())
                 ->first();
+    }
+
+    /**
+     * Prunes a branch off the tree, shifting all the elements on the right
+     * back to the left so the counts work.
+     *
+     * @return void;
+     */
+    public function destroyDescendants()
+    {
+        if (is_null($this->getRight()) || is_null($this->getLeft())) {
+            return;
+        }
+
+        $this->getConnection()->transaction(function () {
+            $this->refresh();
+
+            $lftCol = $this->getQualifiedLeftColumnName();
+            $rgtCol = $this->getQualifiedRightColumnName();
+            $lft    = $this->getLeft();
+            $rgt    = $this->getRight();
+
+            // Apply a lock to the rows which fall past the deletion point
+            $this->newQuery()->where($lftCol, '>=', $lft)->select($this->getQualifiedKeyName())->lockForUpdate()->get();
+
+            // Prune children
+            $this->newQuery()->where($lftCol, '>', $lft)->where($rgtCol, '<', $rgt)->delete();
+
+            // Update left and right indexes for the remaining nodes
+            $diff = $rgt - $lft + 1;
+
+            $this->newQuery()->where($lftCol, '>', $rgt)->decrement($lftCol, $diff);
+            $this->newQuery()->where($rgtCol, '>', $rgt)->decrement($rgtCol, $diff);
+        });
     }
 }

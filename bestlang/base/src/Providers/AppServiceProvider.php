@@ -5,7 +5,9 @@ namespace Bestlang\Base\Providers;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Gate;
 
-use Illuminate\Support\Facades\Blade;
+use Illuminate\Contracts\Debug\ExceptionHandler;
+use Tymon\JWTAuth\Http\Middleware\Authenticate;
+use Bestlang\Base\Exceptions\Handler as CustomExceptionHandler;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -16,7 +18,11 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app['router']->aliasMiddleware('auth.jwt', \Tymon\JWTAuth\Http\Middleware\Authenticate::class);
+        $this->app['router']->aliasMiddleware('auth.jwt', Authenticate::class);
+        $this->app->singleton(
+            ExceptionHandler::class,
+            CustomExceptionHandler::class
+        );
     }
 
     /**

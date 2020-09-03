@@ -21,6 +21,7 @@ trait Node
         Concerns\WorksWithSoftDeletes,
         Concerns\CanBeScoped,
         Concerns\Relatable,
+        Concerns\HasDepth,
         Concerns\Movable,
         Concerns\Validatable,
         Concerns\Rebuildable,
@@ -51,13 +52,6 @@ trait Node
     }
 
     /**
-     * Indicates whether we should move to a new parent.
-     *
-     * @var int
-     */
-    protected static $moveToNewParentId = null;
-
-    /**
      * Returns the first root node.
      *
      * @return \Baum\NestedSet\Node
@@ -80,58 +74,6 @@ trait Node
     }
 
     /**
-    * Returns the level of this node in the tree.
-    * Root level is 0.
-    *
-    * @return int
-    */
-    public function getLevel()
-    {
-        if (is_null($this->getParentKey())) {
-            return 0;
-        }
-
-        return $this->computeLevel();
-    }
-
-    /**
-     * Compute current node level. If could not move past ourseleves return
-     * our ancestor count, otherwhise get the first parent level + the computed
-     * nesting.
-     *
-     * @return integer
-     */
-    protected function computeLevel()
-    {
-        list($node, $nesting) = $this->determineDepth($this);
-
-        if ($node->equals($this)) {
-            return $this->ancestors()->count();
-        }
-
-        return $node->getLevel() + $nesting;
-    }
-
-    /**
-     * Return an array with the last node we could reach and its nesting level
-     *
-     * @param   Baum\Node $node
-     * @param   integer   $nesting
-     * @return  array
-     */
-    protected function determineDepth($node, $nesting = 0)
-    {
-        // Traverse back up the ancestry chain and add to the nesting level count
-        while ($parent = $node->parent()->first()) {
-            $nesting = $nesting + 1;
-
-            $node = $parent;
-        }
-
-        return [$node, $nesting];
-    }
-
-    /**
      * Sets default values for left and right fields.
      *
      * @return void
@@ -142,90 +84,6 @@ trait Node
 
         $this->setAttribute($this->getLeftColumnName(), $maxRgt + 1);
         $this->setAttribute($this->getRightColumnName(), $maxRgt + 2);
-    }
-
-    /**
-     * Store the parent_id if the attribute is modified so as we are able to move
-     * the node to this new parent after saving.
-     *
-     * @return void
-     */
-    public function storeNewParent()
-    {
-        if ($this->isDirty($this->getParentColumnName()) && ($this->exists || !$this->isRoot())) {
-            static::$moveToNewParentId = $this->getParentKey();
-        } else {
-            static::$moveToNewParentId = false;
-        }
-    }
-
-    /**
-     * Move to the new parent if appropiate.
-     *
-     * @return void
-     */
-    public function moveToNewParent()
-    {
-        $pid = static::$moveToNewParentId;
-
-        if (is_null($pid)) {
-            $this->makeRoot();
-        } elseif ($pid !== false) {
-            $this->makeChildOf($pid);
-        }
-    }
-
-    /**
-     * Sets the depth attribute
-     *
-     * @return \Baum\Node
-     */
-    public function setDepth()
-    {
-        $this->getConnection()->transaction(function () {
-            $this->refresh();
-
-            $level = $this->getLevel();
-
-            $this->newQuery()->where($this->getKeyName(), '=', $this->getKey())->update([$this->getDepthColumnName() => $level]);
-            $this->setAttribute($this->getDepthColumnName(), $level);
-        });
-
-        return $this;
-    }
-
-    /**
-     * Prunes a branch off the tree, shifting all the elements on the right
-     * back to the left so the counts work.
-     *
-     * @return void;
-     */
-    public function destroyDescendants()
-    {
-        if (is_null($this->getRight()) || is_null($this->getLeft())) {
-            return;
-        }
-
-        $this->getConnection()->transaction(function () {
-            $this->refresh();
-
-            $lftCol = $this->getQualifiedLeftColumnName();
-            $rgtCol = $this->getQualifiedRightColumnName();
-            $lft    = $this->getLeft();
-            $rgt    = $this->getRight();
-
-            // Apply a lock to the rows which fall past the deletion point
-            $this->newQuery()->where($lftCol, '>=', $lft)->select($this->getQualifiedKeyName())->lockForUpdate()->get();
-
-            // Prune children
-            $this->newQuery()->where($lftCol, '>', $lft)->where($rgtCol, '<', $rgt)->delete();
-
-            // Update left and right indexes for the remaining nodes
-            $diff = $rgt - $lft + 1;
-
-            $this->newQuery()->where($lftCol, '>', $rgt)->decrement($lftCol, $diff);
-            $this->newQuery()->where($rgtCol, '>', $rgt)->decrement($rgtCol, $diff);
-        });
     }
 
     /**
@@ -302,22 +160,6 @@ trait Node
     }
 
     /**
-     * Provides a depth level limit for the query.
-     *
-     * @param   query   \Illuminate\Database\Query\Builder
-     * @param   limit   integer
-     * @return  \Illuminate\Database\Query\Builder
-     */
-    public function scopeLimitDepth($query, $limit)
-    {
-        $depth  = $this->exists ? $this->getDepth() : $this->getLevel();
-        $max    = $depth + $limit;
-        $scopes = [$depth, $max];
-
-        return $query->whereBetween($this->getDepthColumnName(), [min($scopes), max($scopes)]);
-    }
-
-    /**
      * Returns the root node starting at the current node.
      *
      * @return NestedSet
@@ -335,34 +177,6 @@ trait Node
                 return $this;
             }
         }
-    }
-
-    /**
-     * Sets the depth attribute for the current node and all of its descendants.
-     *
-     * @return \Baum\Node
-     */
-    public function setDepthWithSubtree()
-    {
-        $this->getConnection()->transaction(function () {
-            $this->refresh();
-
-            $this->descendantsAndSelf()->select($this->getKeyName())->lockForUpdate()->get();
-
-            $oldDepth = !is_null($this->getDepth()) ? $this->getDepth() : 0;
-
-            $newDepth = $this->getLevel();
-
-            $this->newQuery()->where($this->getKeyName(), '=', $this->getKey())->update([$this->getDepthColumnName() => $newDepth]);
-            $this->setAttribute($this->getDepthColumnName(), $newDepth);
-
-            $diff = $newDepth - $oldDepth;
-            if (!$this->isLeaf() && $diff != 0) {
-                $this->descendants()->increment($this->getDepthColumnName(), $diff);
-            }
-        });
-
-        return $this;
     }
 
     /**

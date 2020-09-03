@@ -1,6 +1,6 @@
 <?php
 
-namespace Bestlang\Laracms\Exceptions;
+namespace Bestlang\Base\Exceptions;
 
 use Exception;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;

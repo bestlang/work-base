@@ -3,11 +3,7 @@
 namespace App\Exceptions;
 
 use Exception;
-use function GuzzleHttp\Psr7\str;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
-// use Symfony\Component\HttpKernel\Exception\HttpException;
-use Illuminate\Validation\ValidationException;
-use Symfony\Component\HttpKernel\Exception\HttpExceptionInterface;
 
 class Handler extends ExceptionHandler
 {
@@ -17,7 +13,8 @@ class Handler extends ExceptionHandler
      * @var array
      */
     protected $dontReport = [
-        //
+        InvalidRequestException::class,
+        CouponCodeUnavailableException::class,
     ];
 
     /**
@@ -33,6 +30,8 @@ class Handler extends ExceptionHandler
     /**
      * Report or log an exception.
      *
+     * This is a great spot to send exceptions to Sentry, Bugsnag, etc.
+     *
      * @param  \Exception  $exception
      * @return void
      */
@@ -45,26 +44,11 @@ class Handler extends ExceptionHandler
      * Render an exception into an HTTP response.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \Exception  $e
+     * @param  \Exception  $exception
      * @return \Illuminate\Http\Response
      */
-    public function render($request, Exception $e)
+    public function render($request, Exception $exception)
     {
-        $statusCode = 200;
-        $errMessage = '';
-        if($e instanceof HttpExceptionInterface){
-            $statusCode = $e->getStatusCode();
-        }else if($e instanceof ValidationException){
-            $statusCode = $e->status;
-            $errMessage = $e->errors();
-        }else if($e instanceof Exception){
-            $statusCode = $e->getCode();
-            $errMessage = $e->getMessage();
-        }
-        if($request->expectsJson()){
-            return response()->error($errMessage, $statusCode);
-        }else{
-            return parent::render($request, $e);
-        }
+        return parent::render($request, $exception);
     }
 }
