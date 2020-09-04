@@ -1,15 +1,4 @@
 <?php return array (
-  'air/employee' => 
-  array (
-    'providers' => 
-    array (
-      0 => 'Air\\Employee\\Providers\\AppServiceProvider',
-      1 => 'Air\\Employee\\Providers\\RouteServiceProvider',
-    ),
-    'aliases' => 
-    array (
-    ),
-  ),
   'baum/baum' => 
   array (
     'providers' => 
@@ -121,6 +110,17 @@
     'aliases' => 
     array (
       'EasyWeChat' => 'Overtrue\\LaravelWeChat\\Facade',
+    ),
+  ),
+  'sniper/employee' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Sniper\\Employee\\Providers\\AppServiceProvider',
+      1 => 'Sniper\\Employee\\Providers\\RouteServiceProvider',
+    ),
+    'aliases' => 
+    array (
     ),
   ),
   'songshenzong/support' => 

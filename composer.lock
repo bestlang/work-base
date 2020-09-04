@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "09a381f4525f69f5249f2bfae20c7627",
+    "content-hash": "78807a9af2d3a7eb8fd864460ee43c12",
     "packages": [
         {
             "name": "adbario/php-dot-notation",
@@ -60,56 +60,6 @@
                 "dotnotation"
             ],
             "time": "2019-01-01T23:59:15+00:00"
-        },
-        {
-            "name": "air/employee",
-            "version": "dev-master",
-            "dist": {
-                "type": "path",
-                "url": "./air/employee",
-                "reference": "75a6b97c3e525c3644e51236d38f2ca95f2376a1"
-            },
-            "require": {
-                "bestlang/base": "dev-master",
-                "illuminate/support": "~5|~6"
-            },
-            "type": "library",
-            "extra": {
-                "laravel": {
-                    "providers": [
-                        "Air\\Employee\\Providers\\AppServiceProvider",
-                        "Air\\Employee\\Providers\\RouteServiceProvider"
-                    ],
-                    "aliases": []
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Air\\Employee\\": "src/"
-                },
-                "files": [
-                    "src/helpers.php"
-                ],
-                "classmap": [
-                    "database/seeds",
-                    "database/factories"
-                ]
-            },
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "luzhang",
-                    "email": "luzhang@sniper-tech.com"
-                }
-            ],
-            "description": "employee related module",
-            "homepage": "local",
-            "keywords": [
-                "employee",
-                "sniper"
-            ]
         },
         {
             "name": "alibabacloud/tea",
@@ -3792,16 +3742,16 @@
         },
         {
             "name": "php-http/discovery",
-            "version": "1.9.1",
+            "version": "1.10.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-http/discovery.git",
-                "reference": "64a18cc891957e05d91910b3c717d6bd11fbede9"
+                "reference": "88ff14cad4a0db68b343260fa7ac3f1599703660"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-http/discovery/zipball/64a18cc891957e05d91910b3c717d6bd11fbede9",
-                "reference": "64a18cc891957e05d91910b3c717d6bd11fbede9",
+                "url": "https://api.github.com/repos/php-http/discovery/zipball/88ff14cad4a0db68b343260fa7ac3f1599703660",
+                "reference": "88ff14cad4a0db68b343260fa7ac3f1599703660",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -3859,7 +3809,7 @@
                 "message",
                 "psr7"
             ],
-            "time": "2020-07-13T15:44:45+00:00"
+            "time": "2020-09-04T08:41:23+00:00"
         },
         {
             "name": "php-http/guzzle6-adapter",
@@ -4848,6 +4798,56 @@
                 "uuid"
             ],
             "time": "2020-02-21T04:36:14+00:00"
+        },
+        {
+            "name": "sniper/employee",
+            "version": "dev-master",
+            "dist": {
+                "type": "path",
+                "url": "./sniper/employee",
+                "reference": "4ad2ab21c834407f71132efd37c59b184d84fa02"
+            },
+            "require": {
+                "bestlang/base": "dev-master",
+                "illuminate/support": "~5|~6"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Sniper\\Employee\\Providers\\AppServiceProvider",
+                        "Sniper\\Employee\\Providers\\RouteServiceProvider"
+                    ],
+                    "aliases": []
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Sniper\\Employee\\": "src/"
+                },
+                "files": [
+                    "src/helpers.php"
+                ],
+                "classmap": [
+                    "database/seeds",
+                    "database/factories"
+                ]
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "luzhang",
+                    "email": "luzhang@sniper-tech.com"
+                }
+            ],
+            "description": "employee related module",
+            "homepage": "local",
+            "keywords": [
+                "employee",
+                "sniper"
+            ]
         },
         {
             "name": "songshenzong/support",
@@ -9940,7 +9940,7 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
-        "air/employee": 20,
+        "sniper/employee": 20,
         "baum/baum": 20,
         "bestlang/base": 20,
         "bestlang/easysdk": 20,

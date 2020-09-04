@@ -47,7 +47,7 @@ class LoginController extends Controller
 
     public function showLoginForm()
     {
-        return view('base::auth.login');
+        return view(session('project').'::auth.login');
     }
 
     public function username()

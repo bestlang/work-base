@@ -57,6 +57,7 @@ return array(
     'Stringy\\' => array($vendorDir . '/danielstjules/stringy/src'),
     'Spatie\\Permission\\' => array($vendorDir . '/spatie/laravel-permission/src'),
     'Songshenzong\\Support\\' => array($vendorDir . '/songshenzong/support/src'),
+    'Sniper\\Employee\\' => array($vendorDir . '/sniper/employee/src'),
     'Silly\\' => array($vendorDir . '/mnapoli/silly/src'),
     'Ramsey\\Uuid\\' => array($vendorDir . '/ramsey/uuid/src'),
     'Psy\\' => array($vendorDir . '/psy/psysh/src'),
@@ -129,6 +130,5 @@ return array(
     'Alipay\\EasySDK\\' => array($vendorDir . '/bestlang/easysdk/php/src'),
     'AlibabaCloud\\Tea\\FileForm\\' => array($vendorDir . '/alibabacloud/tea-fileform/src'),
     'AlibabaCloud\\Tea\\' => array($vendorDir . '/alibabacloud/tea/src'),
-    'Air\\Employee\\' => array($vendorDir . '/air/employee/src'),
     'Adbar\\' => array($vendorDir . '/adbario/php-dot-notation/src'),
 );

@@ -7,9 +7,6 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'Adbar\\Dot' => $vendorDir . '/adbario/php-dot-notation/src/Dot.php',
-    'Air\\Employee\\Http\\Controllers\\EmployeeController' => $vendorDir . '/air/employee/src/Http/Controllers/EmployeeController.php',
-    'Air\\Employee\\Providers\\AppServiceProvider' => $vendorDir . '/air/employee/src/Providers/AppServiceProvider.php',
-    'Air\\Employee\\Providers\\RouteServiceProvider' => $vendorDir . '/air/employee/src/Providers/RouteServiceProvider.php',
     'AlibabaCloud\\Tea\\Exception\\TeaError' => $vendorDir . '/alibabacloud/tea/src/Exception/TeaError.php',
     'AlibabaCloud\\Tea\\Exception\\TeaRetryError' => $vendorDir . '/alibabacloud/tea/src/Exception/TeaRetryError.php',
     'AlibabaCloud\\Tea\\Exception\\TeaUnableRetryError' => $vendorDir . '/alibabacloud/tea/src/Exception/TeaUnableRetryError.php',
@@ -4543,6 +4540,9 @@ return array(
     'Silly\\HyphenatedInputResolver' => $vendorDir . '/mnapoli/silly/src/HyphenatedInputResolver.php',
     'Silly\\Input\\InputArgument' => $vendorDir . '/mnapoli/silly/src/Input/InputArgument.php',
     'Silly\\Input\\InputOption' => $vendorDir . '/mnapoli/silly/src/Input/InputOption.php',
+    'Sniper\\Employee\\Http\\Controllers\\EmployeeController' => $vendorDir . '/sniper/employee/src/Http/Controllers/EmployeeController.php',
+    'Sniper\\Employee\\Providers\\AppServiceProvider' => $vendorDir . '/sniper/employee/src/Providers/AppServiceProvider.php',
+    'Sniper\\Employee\\Providers\\RouteServiceProvider' => $vendorDir . '/sniper/employee/src/Providers/RouteServiceProvider.php',
     'Songshenzong\\Support\\Arrays' => $vendorDir . '/songshenzong/support/src/Arrays.php',
     'Songshenzong\\Support\\BashEcho' => $vendorDir . '/songshenzong/support/src/BashEcho.php',
     'Songshenzong\\Support\\Env' => $vendorDir . '/songshenzong/support/src/Env.php',

@@ -9,7 +9,7 @@
     "license": "MIT",
     "require": {
         "php": "^7.1.3",
-        "air/employee": "dev-master",
+        "sniper/employee": "dev-master",
         "aliyuncs/oss-sdk-php": "^2.3",
         "baum/baum": "v2.x-dev",
         "bestlang/base": "dev-master",
@@ -90,9 +90,9 @@
             "type": "path",
             "url": "./bestlang/laracms"
         },
-        "air/employee": {
+        "sniper/employee": {
             "type": "path",
-            "url": "./air/employee"
+            "url": "./sniper/employee"
         }
     }
 }

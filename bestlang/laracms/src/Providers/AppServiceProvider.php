@@ -50,9 +50,9 @@ class AppServiceProvider extends ServiceProvider
         $this->loadViewsFrom(__DIR__.'/../../resources/views/laracms', 'laracms');
 
         // views
-        $this->publishes([
-            __DIR__.'/../../resources/views/laracms' => resource_path('views/vendor/laracms')
-        ], 'laracms-views');
+//        $this->publishes([
+//            __DIR__.'/../../resources/views/laracms' => resource_path('views/vendor/laracms')
+//        ], 'laracms-views');
 
         Blade::directive('channelLink', function ($expression) {
             @list($channelName, $channelId, $as) = explode('-', $expression);

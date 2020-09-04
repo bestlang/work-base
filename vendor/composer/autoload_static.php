@@ -42,9 +42,9 @@ class ComposerStaticInitd018b3e43616cccb2461352cf4782150
         '6747f579ad6817f318cc3a7e7a0abb93' => __DIR__ . '/..' . '/overtrue/wechat/src/Kernel/Helpers.php',
         '0d0b82117c23db94c492fee02b2ed01f' => __DIR__ . '/..' . '/songshenzong/support/src/StringsHelpers.php',
         'd96a90b43bcdea846705672ffd4e9294' => __DIR__ . '/..' . '/songshenzong/support/src/BashEchoHelpers.php',
-        '5a0b3820d6cc983a2ebc78c5864e1c56' => __DIR__ . '/..' . '/air/employee/src/helpers.php',
         '1c9a42db2a2353c9ea457e033ee42da8' => __DIR__ . '/..' . '/bestlang/laracms/src/helpers.php',
         '0d8253363903f0ac7b0978dcde4e28a0' => __DIR__ . '/..' . '/beyondcode/laravel-dump-server/helpers.php',
+        '9229b4ebfbd18e2b37473f2692db8647' => __DIR__ . '/..' . '/sniper/employee/src/helpers.php',
         'b4e3f29b106af37a2bb239f73cdf68c7' => __DIR__ . '/../..' . '/app/helpers.php',
     );
 
@@ -123,6 +123,7 @@ class ComposerStaticInitd018b3e43616cccb2461352cf4782150
             'Stringy\\' => 8,
             'Spatie\\Permission\\' => 18,
             'Songshenzong\\Support\\' => 21,
+            'Sniper\\Employee\\' => 16,
             'Silly\\' => 6,
         ),
         'R' => 
@@ -243,7 +244,6 @@ class ComposerStaticInitd018b3e43616cccb2461352cf4782150
             'Alipay\\EasySDK\\' => 15,
             'AlibabaCloud\\Tea\\FileForm\\' => 26,
             'AlibabaCloud\\Tea\\' => 17,
-            'Air\\Employee\\' => 13,
             'Adbar\\' => 6,
         ),
     );
@@ -454,6 +454,10 @@ class ComposerStaticInitd018b3e43616cccb2461352cf4782150
         'Songshenzong\\Support\\' => 
         array (
             0 => __DIR__ . '/..' . '/songshenzong/support/src',
+        ),
+        'Sniper\\Employee\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/sniper/employee/src',
         ),
         'Silly\\' => 
         array (
@@ -744,10 +748,6 @@ class ComposerStaticInitd018b3e43616cccb2461352cf4782150
         array (
             0 => __DIR__ . '/..' . '/alibabacloud/tea/src',
         ),
-        'Air\\Employee\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/air/employee/src',
-        ),
         'Adbar\\' => 
         array (
             0 => __DIR__ . '/..' . '/adbario/php-dot-notation/src',
@@ -781,9 +781,6 @@ class ComposerStaticInitd018b3e43616cccb2461352cf4782150
 
     public static $classMap = array (
         'Adbar\\Dot' => __DIR__ . '/..' . '/adbario/php-dot-notation/src/Dot.php',
-        'Air\\Employee\\Http\\Controllers\\EmployeeController' => __DIR__ . '/..' . '/air/employee/src/Http/Controllers/EmployeeController.php',
-        'Air\\Employee\\Providers\\AppServiceProvider' => __DIR__ . '/..' . '/air/employee/src/Providers/AppServiceProvider.php',
-        'Air\\Employee\\Providers\\RouteServiceProvider' => __DIR__ . '/..' . '/air/employee/src/Providers/RouteServiceProvider.php',
         'AlibabaCloud\\Tea\\Exception\\TeaError' => __DIR__ . '/..' . '/alibabacloud/tea/src/Exception/TeaError.php',
         'AlibabaCloud\\Tea\\Exception\\TeaRetryError' => __DIR__ . '/..' . '/alibabacloud/tea/src/Exception/TeaRetryError.php',
         'AlibabaCloud\\Tea\\Exception\\TeaUnableRetryError' => __DIR__ . '/..' . '/alibabacloud/tea/src/Exception/TeaUnableRetryError.php',
@@ -5317,6 +5314,9 @@ class ComposerStaticInitd018b3e43616cccb2461352cf4782150
         'Silly\\HyphenatedInputResolver' => __DIR__ . '/..' . '/mnapoli/silly/src/HyphenatedInputResolver.php',
         'Silly\\Input\\InputArgument' => __DIR__ . '/..' . '/mnapoli/silly/src/Input/InputArgument.php',
         'Silly\\Input\\InputOption' => __DIR__ . '/..' . '/mnapoli/silly/src/Input/InputOption.php',
+        'Sniper\\Employee\\Http\\Controllers\\EmployeeController' => __DIR__ . '/..' . '/sniper/employee/src/Http/Controllers/EmployeeController.php',
+        'Sniper\\Employee\\Providers\\AppServiceProvider' => __DIR__ . '/..' . '/sniper/employee/src/Providers/AppServiceProvider.php',
+        'Sniper\\Employee\\Providers\\RouteServiceProvider' => __DIR__ . '/..' . '/sniper/employee/src/Providers/RouteServiceProvider.php',
         'Songshenzong\\Support\\Arrays' => __DIR__ . '/..' . '/songshenzong/support/src/Arrays.php',
         'Songshenzong\\Support\\BashEcho' => __DIR__ . '/..' . '/songshenzong/support/src/BashEcho.php',
         'Songshenzong\\Support\\Env' => __DIR__ . '/..' . '/songshenzong/support/src/Env.php',

@@ -84,6 +84,6 @@ class RegisterController extends Controller
      */
     public function showRegistrationForm()
     {
-        return view('base::auth.register');
+        return view(session('project').'::auth.register');
     }
 }
