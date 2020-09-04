@@ -536,7 +536,7 @@
             "dist": {
                 "type": "path",
                 "url": "./bestlang/laracms",
-                "reference": "e665cf2feee26a3636362980a43c144b992c10a7"
+                "reference": "42974a05ea3c4c6c5526a619275131e488b40392"
             },
             "require": {
                 "baum/baum": "v2.x-dev",
@@ -558,7 +558,7 @@
                         "Bestlang\\Laracms\\Providers\\RouteServiceProvider"
                     ],
                     "aliases": {
-                        "laracms": "Bestlang\\Laracms\\Facades\\LC"
+                        "laracms": "Bestlang\\Laracms\\Facades\\Laracms"
                     }
                 }
             },

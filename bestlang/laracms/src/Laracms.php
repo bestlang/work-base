@@ -9,9 +9,9 @@ use Bestlang\Laracms\Models\Cms\AdPosition;
 use Bestlang\Laracms\Models\Cms\Tag;
 use Arr;
 
-class LC
+class Laracms
 {
-    public function hot_tags()
+    public function hotTags()
     {
         return Tag::withCount('contents')->orderBy('contents_count', 'desc')->limit(20)->get();
     }
@@ -34,23 +34,14 @@ class LC
         $ancestors->prepend($home);
         return $ancestors;
     }
-    //alias of positionAds
-    public function pa($positionName, $count=5)
-    {
-        return $this->positionAds($positionName, $count);
-    }
+
     public function positionAds($positionName, $count=5)
     {
         $position = AdPosition::where('name', $positionName)->first();
         return $position->ads()->where('enabled', 1)->where('start_time', '<=', now())->where('end_time', '>=', now())->limit($count)->get();
     }
 
-    //alias of categoryContents
-    public function cc($channelId, $count=5)
-    {
-        return $this->categoryContents($channelId, $count);
-    }
-    public function categoryContents($channelId, $count=5)
+    public function channelContents($channelId, $count=5)
     {
         $contents = Content::where('channel_id', $channelId)->with(['metas', 'contents'])->limit($count)->get();
         $contents->map(function($content){
@@ -94,7 +85,7 @@ class LC
         return $contents;
     }
 
-    public function channel_position($name, $count=5){
+    public function channelPosition($name, $count=5){
         $position = Position::where('name', $name)->where('is_channel', 1)->first();
         if(!$position){
             return [];

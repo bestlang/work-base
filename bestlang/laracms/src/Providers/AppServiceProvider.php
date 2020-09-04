@@ -19,7 +19,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->bind('lc', 'Bestlang\Laracms\LC');
+        $this->app->bind('laracms', 'Bestlang\Laracms\Laracms');
     }
 
     /**

@@ -11,12 +11,12 @@
                 <div class="swiper-container index-focus">
                     <div id="index-focus" class="carousel slide carousel-focus" data-ride="carousel">
                         <ol class="carousel-indicators">
-                            @foreach(laracms::cc(32, 5) as $index => $content)
+                            @foreach(laracms::channelContents(32, 5) as $index => $content)
                                 <li data-target="#index-focus" data-slide-to="{{$index}}" class="{{$index == 0 ? 'active' : ''}}"></li>
                             @endforeach
                         </ol>
                         <div class="carousel-inner" role="listbox">
-                            @foreach(laracms::cc(32, 5) as $index => $content)
+                            @foreach(laracms::channelContents(32, 5) as $index => $content)
                                 <div class="item {{$index == 0 ? 'active':''}}">
                                     <a href="{{$content->ext['url']}}">
                                         <div class="carousel-img" style="background-image:url('{{$content->ext['image']}}');"></div>
@@ -186,7 +186,7 @@
 
                 </div>
 
-                @foreach(laracms::pa('首页右第一个广告位', 2) as $index => $ad)
+                @foreach(laracms::positionAds('首页右第一个广告位', 2) as $index => $ad)
                 <div class="panel panel-blockimg">
                     <a href="{{$ad->url}}" target="{{$ad->target}}">
                         <img src="{{$ad->image}}" class="img-responsive">
@@ -210,7 +210,7 @@
                         @endforeach
                     </div>
                 </div>
-                @foreach(laracms::pa('首页右第一个广告位', 2) as $index => $ad)
+                @foreach(laracms::positionAds('首页右第一个广告位', 2) as $index => $ad)
                 <div class="panel panel-blockimg">
                     <a href="{{$ad->url}}" rel="nofollow" title="{{$ad->name}}" target="{{$ad->target}}">
                         <img src="{{$ad->image}}" class="img-responsive" alt="">
@@ -223,14 +223,14 @@
                     </div>
                     <div class="panel-body">
                         <div class="tags">
-                            @foreach(laracms::hot_tags() as $index => $tag)
+                            @foreach(laracms::hotTags() as $index => $tag)
                                 <a href="{{route('tag', $tag->name)}}" class="tag"> <span>{{$tag->name}}</span></a>
                             @endforeach
                         </div>
                     </div>
                 </div>
 
-                @foreach(laracms::channel_position('首页栏目推荐', 5) as $channel)
+                @foreach(laracms::channelPosition('首页栏目推荐', 5) as $channel)
                     <div class="panel panel-default recommend-article">
                         <div class="panel-heading l-flex">
                             <h3 class="panel-title">{{$channel->name}}</h3>
@@ -253,7 +253,7 @@
                         </div>
                     </div>
                 @endforeach
-                @foreach(laracms::pa('首页右第一个广告位', 2) as $index => $ad)
+                @foreach(laracms::positionAds('首页右第一个广告位', 2) as $index => $ad)
                 <div class="panel panel-blockimg">
                     <a href="{{$ad->url}}" title="{{$ad->name}}">
                         <img src="{{$ad->image}}" alt="{{$ad->name}}" class="img-responsive"/>

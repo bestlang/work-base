@@ -41,7 +41,7 @@
         "Bestlang\\Laracms\\Providers\\RouteServiceProvider"
       ],
       "aliases": {
-        "laracms": "Bestlang\\Laracms\\Facades\\LC"
+        "laracms": "Bestlang\\Laracms\\Facades\\Laracms"
       }
     }
   }

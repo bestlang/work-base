@@ -39,7 +39,7 @@
     ),
     'aliases' => 
     array (
-      'laracms' => 'Bestlang\\Laracms\\Facades\\LC',
+      'laracms' => 'Bestlang\\Laracms\\Facades\\Laracms',
     ),
   ),
   'bestlang/laravel-ueditor' => 
