@@ -15,7 +15,6 @@
         "bestlang/base": "dev-master",
         "bestlang/easysdk": "dev-master",
         "bestlang/laracms": "dev-master",
-        "bestlang/laravel-ueditor": "dev-master",
         "doctrine/dbal": "^2.9",
         "endroid/qr-code": "^3.5",
         "fideloper/proxy": "^4.0",

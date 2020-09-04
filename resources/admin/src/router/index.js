@@ -317,6 +317,84 @@ export default new VueRouter({
               },
             }
           ]
+        },
+        {
+          path: "/sniper/employee",
+          component: () => import("../components/via.vue"),
+          meta: {
+              can: 'cms',
+              show: true,
+              name: '员工系统',
+              font: '&#xe70b;'
+          },
+          children: [
+              {
+                  path: "/basic",
+                  component: () => import("../components/via.vue"),
+                  meta: {
+                      can: 'cms',
+                      show: true,
+                      name: '基础数据',
+                      font: '&#xe612;',
+                      type: 'title'
+                  },
+                  children: [
+                    {
+                        path: "/department",
+                        component: () => import("../pages/sniper/employee/basic/department.vue"),
+                        meta: {
+                        can: 'cms',
+                            show: true,
+                            name: '部门管理',
+                            font: '&#xe612;'
+                        }
+                    },
+                    {
+                      path: "/position",
+                      component: () => import("../pages/sniper/employee/basic/position.vue"),
+                      meta: {
+                          can: 'cms',
+                          show: true,
+                          name: '职位管理',
+                          font: '&#xe612;'
+                      }
+                    }
+                  ]
+              },
+              {
+                  path: "/arch",
+                  component: () => import("../components/via.vue"),
+                  meta: {
+                      can: 'cms',
+                      show: true,
+                      name: '人员管理',
+                      font: '&#xe612;',
+                      type: 'title'
+                  },
+                  children: [
+                      {
+                          path: "/list",
+                          component: () => import("../pages/sniper/employee/arch/list.vue"),
+                          meta: {
+                              can: 'cms',
+                              show: true,
+                              name: '员工列表',
+                              font: '&#xe612;'
+                          }
+                      },
+                      {
+                          path: "/graph",
+                          component: () => import("../pages/sniper/employee/arch/graph.vue"),
+                          meta: {
+                              can: 'cms',
+                              show: true,
+                              name: '职位管理',
+                              font: '&#xe612;'
+                          }
+                      }
+                  ]
+              },
+          ]
         }
       ]
     },

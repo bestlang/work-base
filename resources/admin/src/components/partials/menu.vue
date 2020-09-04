@@ -26,7 +26,7 @@
               <template  v-for="(item , index) in router.options.routes">
                 <template  v-if="item.children  && item.children.filter(x=>x.meta.show).length">
                   <template v-for="child in item.children">
-                    <cell :item="child"  :type="child.children && item.children.filter(x=>x.meta.show).length ? 'el-submenu':'el-menu-item'"></cell>
+                    <cell :item="child" :type="child.children && item.children.filter(x=>x.meta.show).length ? 'el-submenu':'el-menu-item'"></cell>
                   </template>
                 </template>
               </template>

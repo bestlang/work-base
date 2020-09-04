@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "78807a9af2d3a7eb8fd864460ee43c12",
+    "content-hash": "c0d2e6520ae549d5a15156d8fc900ee5",
     "packages": [
         {
             "name": "adbario/php-dot-notation",
@@ -9944,8 +9944,7 @@
         "baum/baum": 20,
         "bestlang/base": 20,
         "bestlang/easysdk": 20,
-        "bestlang/laracms": 20,
-        "bestlang/laravel-ueditor": 20
+        "bestlang/laracms": 20
     },
     "prefer-stable": true,
     "prefer-lowest": false,
