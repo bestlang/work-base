@@ -25,7 +25,7 @@ class OrderController
     {
         $user = auth()->user();
         $orders = Order::where('user_id', $user->id)->paginate(5);
-        return view('laracms::dark.ucenter.orders', ['orders' => $orders]);
+        return render('ucenter.orders', ['orders' => $orders]);
     }
 
     public function generate(Request $request)
@@ -40,7 +40,7 @@ class OrderController
     public function detail($order_no,Request $request)
     {
         $order = Order::where('order_no', $order_no)->first();
-        return view('laracms::dark.order.detail', ['order' => $order]);
+        return render('order.detail', ['order' => $order]);
     }
 
     //native1

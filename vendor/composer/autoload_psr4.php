@@ -129,5 +129,6 @@ return array(
     'Alipay\\EasySDK\\' => array($vendorDir . '/bestlang/easysdk/php/src'),
     'AlibabaCloud\\Tea\\FileForm\\' => array($vendorDir . '/alibabacloud/tea-fileform/src'),
     'AlibabaCloud\\Tea\\' => array($vendorDir . '/alibabacloud/tea/src'),
+    'Air\\Employee\\' => array($vendorDir . '/air/employee/src'),
     'Adbar\\' => array($vendorDir . '/adbario/php-dot-notation/src'),
 );

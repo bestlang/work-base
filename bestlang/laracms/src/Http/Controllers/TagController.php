@@ -14,6 +14,6 @@ class TagController extends Controller{
         $contents->map(function($content){
             $content->ext = $content->getExt();
         });
-        return view('laracms::dark.tag.tag', ['tag' => $tag, 'contents'=> $contents]);
+        return render('tag.tag', ['tag' => $tag, 'contents'=> $contents]);
     }
 }

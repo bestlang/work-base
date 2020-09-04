@@ -43,6 +43,7 @@
         "Bestlang\\Base\\Providers\\RouteServiceProvider"
       ],
       "aliases": {
+        "hashconfig": "Bestlang\\Base\\Facades\\HashConfig"
       }
     }
   }

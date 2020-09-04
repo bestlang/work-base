@@ -1,4 +1,15 @@
 <?php return array (
+  'air/employee' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Air\\Employee\\Providers\\AppServiceProvider',
+      1 => 'Air\\Employee\\Providers\\RouteServiceProvider',
+    ),
+    'aliases' => 
+    array (
+    ),
+  ),
   'baum/baum' => 
   array (
     'providers' => 
@@ -16,6 +27,7 @@
     ),
     'aliases' => 
     array (
+      'hashconfig' => 'Bestlang\\Base\\Facades\\HashConfig',
     ),
   ),
   'bestlang/laracms' => 
@@ -27,7 +39,7 @@
     ),
     'aliases' => 
     array (
-      'LC' => 'Bestlang\\Laracms\\Facades\\LC',
+      'laracms' => 'Bestlang\\Laracms\\Facades\\LC',
     ),
   ),
   'bestlang/laravel-ueditor' => 

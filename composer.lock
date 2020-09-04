@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "700c7b7fa385a8f30bb35fdd046d5d17",
+    "content-hash": "09a381f4525f69f5249f2bfae20c7627",
     "packages": [
         {
             "name": "adbario/php-dot-notation",
@@ -60,6 +60,56 @@
                 "dotnotation"
             ],
             "time": "2019-01-01T23:59:15+00:00"
+        },
+        {
+            "name": "air/employee",
+            "version": "dev-master",
+            "dist": {
+                "type": "path",
+                "url": "./air/employee",
+                "reference": "75a6b97c3e525c3644e51236d38f2ca95f2376a1"
+            },
+            "require": {
+                "bestlang/base": "dev-master",
+                "illuminate/support": "~5|~6"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Air\\Employee\\Providers\\AppServiceProvider",
+                        "Air\\Employee\\Providers\\RouteServiceProvider"
+                    ],
+                    "aliases": []
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Air\\Employee\\": "src/"
+                },
+                "files": [
+                    "src/helpers.php"
+                ],
+                "classmap": [
+                    "database/seeds",
+                    "database/factories"
+                ]
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "luzhang",
+                    "email": "luzhang@sniper-tech.com"
+                }
+            ],
+            "description": "employee related module",
+            "homepage": "local",
+            "keywords": [
+                "employee",
+                "sniper"
+            ]
         },
         {
             "name": "alibabacloud/tea",
@@ -354,13 +404,14 @@
             "dist": {
                 "type": "path",
                 "url": "./bestlang/base",
-                "reference": "08429917a294ec6d2bc31b60d2df199e80fe6d8d"
+                "reference": "94cbcd7376b9cd2317c50ec7138f243e28e61d1f"
             },
             "require": {
                 "baum/baum": "v2.x-dev",
                 "illuminate/support": "~5|~6",
                 "spatie/laravel-permission": "^2.38",
-                "tymon/jwt-auth": "1.0.*"
+                "tymon/jwt-auth": "1.0.*",
+                "upyun/sdk": "^3.3"
             },
             "require-dev": {
                 "mockery/mockery": "^1.1",
@@ -376,7 +427,9 @@
                         "Bestlang\\Base\\Providers\\ResponseServiceProvider",
                         "Bestlang\\Base\\Providers\\RouteServiceProvider"
                     ],
-                    "aliases": []
+                    "aliases": {
+                        "hashconfig": "Bestlang\\Base\\Facades\\HashConfig"
+                    }
                 }
             },
             "autoload": {
@@ -483,14 +536,13 @@
             "dist": {
                 "type": "path",
                 "url": "./bestlang/laracms",
-                "reference": "196fe800624804da2522a6151eb519f6d1790446"
+                "reference": "e665cf2feee26a3636362980a43c144b992c10a7"
             },
             "require": {
                 "baum/baum": "v2.x-dev",
                 "bestlang/base": "dev-master",
                 "bestlang/laravel-ueditor": "dev-master",
-                "illuminate/support": "~5|~6",
-                "upyun/sdk": "^3.3"
+                "illuminate/support": "~5|~6"
             },
             "require-dev": {
                 "mockery/mockery": "^1.1",
@@ -506,7 +558,7 @@
                         "Bestlang\\Laracms\\Providers\\RouteServiceProvider"
                     ],
                     "aliases": {
-                        "LC": "Bestlang\\Laracms\\Facades\\LC"
+                        "laracms": "Bestlang\\Laracms\\Facades\\LC"
                     }
                 }
             },
@@ -9888,6 +9940,7 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
+        "air/employee": 20,
         "baum/baum": 20,
         "bestlang/base": 20,
         "bestlang/easysdk": 20,

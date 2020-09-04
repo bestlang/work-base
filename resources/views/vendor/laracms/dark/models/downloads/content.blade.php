@@ -9,7 +9,7 @@
                     <div class="panel panel-default article-content">
                         <div class="panel-heading">
                             <ol class="breadcrumb">
-                                @foreach(LC::breadcrumbs($content->channel) as $b)
+                                @foreach(laracms::breadcrumbs($content->channel) as $b)
                                 <li><a href="{{$b->url}}">{{$b->name}}</a></li>
                                 @endforeach
                                 <li>正文</li>
@@ -17,7 +17,7 @@
                         </div>
                         <div class="l-article-body">
                             <h1 class="l-content-title">{{$content->title}}</h1>
-                            <div>{!!  LC::content($content, 'content') !!}</div>
+                            <div>{!!  laracms::content($content, 'content') !!}</div>
                             <ul>
                                 @foreach($content->ext['attachment'] as $att)
                                 <li><a href="{{$att['url']}}" target="_blank">{{$att['name']}}</a></li>
@@ -57,7 +57,7 @@
                     <div class="panel panel-default">
                         <div class="panel-heading"><h3 class="panel-title">文章推荐</h3></div>
                         <div class="panel-body">
-                            @foreach(LC::position('文章详情右侧推荐一') as $key => $content)
+                            @foreach(laracms::position('文章详情右侧推荐一') as $key => $content)
                                 <div class="media">
                                     {{--@if($thumb = $content->ext['thumb'])--}}
                                         {{--<div><img src="{{$thumb}}" alt="" style="width: 100px;height: 100px;"></div>--}}
@@ -75,7 +75,7 @@
                     <div class="panel panel-default">
                         <div class="panel-heading"><h3 class="panel-title">文章推荐</h3></div>
                         <div class="panel-body">
-                            @foreach(LC::position('文章详情右侧推荐一') as $key => $content)
+                            @foreach(laracms::position('文章详情右侧推荐一') as $key => $content)
                                 <div class="media">
                                     {{--@if($thumb = $content->ext['thumb'])--}}
                                     {{--<div><img src="{{$thumb}}" alt="" style="width: 100px;height: 100px;"></div>--}}
@@ -144,7 +144,7 @@
         {{--<div class="l-row">--}}
             {{--<div class="col-md-12 l-block-content">--}}
                 {{--<h1 class="l-content-title">{{$content->title}}</h1>--}}
-                {{--<div>{!!  LC::content($content, 'content') !!}</div>--}}
+                {{--<div>{!!  laracms::content($content, 'content') !!}</div>--}}
             {{--</div>--}}
             {{--<div><h2>评论区:</h2></div>--}}
             {{--<div>--}}

@@ -17,6 +17,6 @@ class SearchController extends Controller{
         $contents->map(function($content){
             $content->ext = $content->getExt();
         });
-        return view('laracms::dark.search.search', ['keyword' => $keyword, 'contents'=> $contents]);
+        return render('search.search', ['keyword' => $keyword, 'contents'=> $contents]);
     }
 }

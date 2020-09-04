@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCmsConfigTable extends Migration
+class CreateHashConfigTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateCmsConfigTable extends Migration
      */
     public function up()
     {
-        Schema::create('cms_config', function (Blueprint $table) {
+        Schema::create('hash_config', function (Blueprint $table) {
             $table->increments('id');
             $table->string('key')->comment('键');
             $table->string('field')->comment('字段名');
@@ -29,6 +29,6 @@ class CreateCmsConfigTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('cms_config');
+        Schema::dropIfExists('hash_config');
     }
 }

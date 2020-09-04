@@ -1,12 +1,12 @@
 <?php
 
-namespace Bestlang\Laracms\Models\Cms;
+namespace Bestlang\Base\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Config extends Model
+class HashConfig extends Model
 {
-    protected $table = 'cms_config';
+    protected $table = 'hash_config';
     public $guarded = [];
 
     public static function get($key, $field)

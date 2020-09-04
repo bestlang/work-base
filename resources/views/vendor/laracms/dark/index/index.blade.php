@@ -11,12 +11,12 @@
                 <div class="swiper-container index-focus">
                     <div id="index-focus" class="carousel slide carousel-focus" data-ride="carousel">
                         <ol class="carousel-indicators">
-                            @foreach(LC::cc(32, 5) as $index => $content)
+                            @foreach(laracms::cc(32, 5) as $index => $content)
                                 <li data-target="#index-focus" data-slide-to="{{$index}}" class="{{$index == 0 ? 'active' : ''}}"></li>
                             @endforeach
                         </ol>
                         <div class="carousel-inner" role="listbox">
-                            @foreach(LC::cc(32, 5) as $index => $content)
+                            @foreach(laracms::cc(32, 5) as $index => $content)
                                 <div class="item {{$index == 0 ? 'active':''}}">
                                     <a href="{{$content->ext['url']}}">
                                         <div class="carousel-img" style="background-image:url('{{$content->ext['image']}}');"></div>
@@ -51,7 +51,7 @@
                     <div class="panel-body">
                         <div class="related-article">
                             <div class="row">
-                                @foreach(LC::position('首页图集推荐', 4) as $content)
+                                @foreach(laracms::position('首页图集推荐', 4) as $content)
                                     <div class="col-sm-3 col-xs-6">
                                         <a href="{{route('content', $content->id)}}" class="img-zoom">
                                             <div class="embed-responsive embed-responsive-4by3">
@@ -86,7 +86,7 @@
                     </div>
                     <div class="panel-body p-0">
                         <div class="article-list">
-                            @foreach(LC::latest('', 15) as $index => $content)
+                            @foreach(laracms::latest('', 15) as $index => $content)
                                 @if($content->model->id == 2)
                                 <article class="article-item">
                                     <div class="gallery-article">
@@ -112,7 +112,7 @@
                                                 <div class="article-intro hidden-xs">{{$content->description}}</div>
                                                 <div class="article-tag">
                                                     <a href="/cms/mobiledevice.html" class="tag tag-primary">移动设备</a>
-                                                    <span itemprop="date">{{LC::dateFormat($content->created_at)}}</span>
+                                                    <span itemprop="date">{{laracms::dateFormat($content->created_at)}}</span>
                                                     <span itemprop="likes" title="点赞次数"><i class="fa fa-thumbs-up"></i> 171 点赞</span>
                                                     <span itemprop="comments"><a href="/cms/mobiledevice/100.html#comments" target="_blank" title="评论数"><i class="fa fa-comments"></i> {{$content->comments()->count()}}</a> 评论</span>
                                                     <span itemprop="views" title="浏览次数"><i class="fa fa-eye"></i> 4049 浏览</span>
@@ -146,7 +146,7 @@
                                                 @endforeach
                                             </div>
                                             <div class="article-tag">
-                                                <span itemprop="date">{{LC::dateFormat($content->created_at)}}</span>
+                                                <span itemprop="date">{{laracms::dateFormat($content->created_at)}}</span>
                                                 <span itemprop="likes" title="点赞次数"><i class="fa fa-thumbs-up"></i> 108 点赞</span>
                                                 <span itemprop="comments"><a href="{{route('content', $content->id)}}#comments" target="_blank" title="评论数"><i class="fa fa-comments"></i> {{$content->comments()->count()}}</a> 评论</span>
                                                 <span itemprop="views" title="浏览次数"><i class="fa fa-eye"></i> 1250 浏览</span>
@@ -172,7 +172,7 @@
                     </div>
                     <div class="panel-body">
                         <ul class="list-unstyled">
-                            @foreach(LC::position('热点文章推荐', 5) as $content)
+                            @foreach(laracms::position('热点文章推荐', 5) as $content)
                                 <li>
                                     <span>[<a href="{{route('channel', $content->channel->id)}}">{{$content->channel->name}}</a>]</span>
                                     <a class="link-dark" href="{{route('content', $content->id)}}" title="{{$content->title}}">{{$content->title}}</a>
@@ -186,7 +186,7 @@
 
                 </div>
 
-                @foreach(LC::pa('首页右第一个广告位', 2) as $index => $ad)
+                @foreach(laracms::pa('首页右第一个广告位', 2) as $index => $ad)
                 <div class="panel panel-blockimg">
                     <a href="{{$ad->url}}" target="{{$ad->target}}">
                         <img src="{{$ad->image}}" class="img-responsive">
@@ -198,7 +198,7 @@
                         <h3 class="panel-title">第一个推荐位</h3>
                     </div>
                     <div class="panel-body">
-                        @foreach(LC::position('热点文章推荐', 5) as $index => $content)
+                        @foreach(laracms::position('热点文章推荐', 5) as $index => $content)
                             <div class="media media-number">
                                 <div class="media-left">
                                     <span class="num">{{$index+1}}</span>
@@ -210,7 +210,7 @@
                         @endforeach
                     </div>
                 </div>
-                @foreach(LC::pa('首页右第一个广告位', 2) as $index => $ad)
+                @foreach(laracms::pa('首页右第一个广告位', 2) as $index => $ad)
                 <div class="panel panel-blockimg">
                     <a href="{{$ad->url}}" rel="nofollow" title="{{$ad->name}}" target="{{$ad->target}}">
                         <img src="{{$ad->image}}" class="img-responsive" alt="">
@@ -223,14 +223,14 @@
                     </div>
                     <div class="panel-body">
                         <div class="tags">
-                            @foreach(LC::hot_tags() as $index => $tag)
+                            @foreach(laracms::hot_tags() as $index => $tag)
                                 <a href="{{route('tag', $tag->name)}}" class="tag"> <span>{{$tag->name}}</span></a>
                             @endforeach
                         </div>
                     </div>
                 </div>
 
-                @foreach(LC::channel_position('首页栏目推荐', 5) as $channel)
+                @foreach(laracms::channel_position('首页栏目推荐', 5) as $channel)
                     <div class="panel panel-default recommend-article">
                         <div class="panel-heading l-flex">
                             <h3 class="panel-title">{{$channel->name}}</h3>
@@ -253,7 +253,7 @@
                         </div>
                     </div>
                 @endforeach
-                @foreach(LC::pa('首页右第一个广告位', 2) as $index => $ad)
+                @foreach(laracms::pa('首页右第一个广告位', 2) as $index => $ad)
                 <div class="panel panel-blockimg">
                     <a href="{{$ad->url}}" title="{{$ad->name}}">
                         <img src="{{$ad->image}}" alt="{{$ad->name}}" class="img-responsive"/>

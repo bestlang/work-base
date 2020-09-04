@@ -1,6 +1,6 @@
 'use strict'
 module.exports = {
-  APP_NAME: 'LaraCMS',
+  APP_NAME: '基础系统',
   APP_SHORT_NAME: 'LC',
   NODE_ENV: '"production"',
   SITE_URL: '"http://127.0.0.1:8000"',

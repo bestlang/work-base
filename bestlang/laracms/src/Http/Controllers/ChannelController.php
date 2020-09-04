@@ -16,10 +16,8 @@ class ChannelController extends Controller
         $contents->map(function($content){
             $content->ext = $content->getExt();
         });
-        //$prefix = $channel->model->template_prefix;
-        $template = $channel->template;
-        $view_path = "laracms::dark.models.{$template}";
-        return view($view_path, compact(['contents', 'channel']));
+        $view_path = 'models.'.$channel->template;
+        return render($view_path, compact(['contents', 'channel']));
     }
 
     public function single(Request $request, $id)
@@ -30,9 +28,7 @@ class ChannelController extends Controller
             $ext[$meta->field] = $meta->value;
         }
         $channel->ext = $ext;
-        //$prefix = $channel->model->template_prefix;
-        $template = $channel->template;
-        $view_path = "laracms::dark.models.{$template}";
-        return view($view_path, compact('channel'));
+        $view_path = 'models.'.$channel->template;
+        return render($view_path, compact('channel'));
     }
 }
