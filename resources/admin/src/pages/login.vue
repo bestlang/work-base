@@ -26,6 +26,7 @@
 <script type="text/javascript">
 
 import api from "../api/index"
+import config from "../../config/prod.env"
 
 export default {
     data() {
@@ -43,7 +44,7 @@ export default {
     },
     computed:{
         appName(){
-            return this.$store.getters.appName
+            return config.APP_NAME
         },
         accessToken(){
             return this.$store.getters.accessToken

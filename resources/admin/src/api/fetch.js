@@ -5,14 +5,6 @@ import {getPrefix} from './util'
 // function getPrefix(){
 //     return location.origin === process.env.SITE_URL ? 'ajax' : 'api'
 // }
-function showMessage(value) {
-    return Message({
-        showClose: true,
-        message: value,
-        type: 'error',
-        duration: 3500
-    });
-}
 axios.defaults.timeout = 50000;
 
 axios.interceptors.request.use(config => {
@@ -48,10 +40,10 @@ axios.interceptors.response.use(response => {
                 break;
             case 401:
                 if(res.data.length){ //有提示字符串直接显示, 无需跳转到登录页面. 相反地: '' 或者 [] 则跳转到登录
-                    showMessage(res.data);
+                    app.showMessage(res.data);
                     break;
                 }else{
-                    showMessage('请重新登录!');
+                    app.showMessage('请重新登录!');
                     localStorage.setItem('accessToken', '');
                     app.$router.push('/login');
                 }
@@ -59,7 +51,7 @@ axios.interceptors.response.use(response => {
                 if(getPrefix() == 'api'){
                     let accessToken = localStorage.getItem('accessToken')
                     if(!accessToken){
-                        showMessage('请重新登录!');
+                        app.showMessage('请重新登录!');
                         localStorage.setItem('accessToken', '');
                         app.$router.push('/login');
                     }
@@ -68,10 +60,10 @@ axios.interceptors.response.use(response => {
                 }
                 break;
             case 402:
-                showMessage(res.code + res.error);
+                app.showMessage(res.code + res.error);
                 break;
             default:
-                showMessage(res.code + res.error);
+                app.showMessage(res.code + res.error);
                 break;
         }
         return response.data;
@@ -83,7 +75,7 @@ axios.interceptors.response.use(response => {
             location.href = '/login'
         }
         if (error.response.status === 401) {
-            showMessage('请重新登录');
+            app.showMessage('请重新登录');
             app.$router.replace('/login');
         }
         Promise.reject(error);// 错误提示

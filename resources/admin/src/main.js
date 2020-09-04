@@ -22,6 +22,8 @@ Vue.prototype.$types = types
 Vue.prototype.SITE_URL = process.env.SITE_URL
 Vue.prototype.ADMIN_URL = process.env.ADMIN_URL
 Vue.prototype.showMessage = (value, type='error') => { // success/warning/info/error
+    /*手动关闭所有实例*/
+    ElementUI.Message.closeAll()
     return ElementUI.Message({
         showClose: true,
         message: value,
