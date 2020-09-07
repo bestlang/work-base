@@ -5,7 +5,7 @@
             <div class="l-block-header">
                 <div class="l-flex">
                     <span>员工系统 / 部门管理</span>
-                    <el-button type="primary" plain>主要按钮</el-button>
+                    <el-button type="primary" @click="add"><i class="iconfont">&#xe663;</i>新增</el-button>
                 </div>
             </div>
             <div class="l-block-body">
@@ -57,7 +57,11 @@
 </template>
 <script>
 	export default {
-
+        methods:{
+            add(){
+                this.$router.push('/department/add')
+            }
+        }
 	}
 </script>
 <style scoped lang="less">

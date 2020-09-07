@@ -11,4 +11,3 @@ rsync -ax ./public/vendor/ "$TO_PATH"/resources/vendor/
 
 cd "$TO_PATH" && git add . && git commit -m '#' && git push
 
-open /Users/lu/PhpstormProjects/bestlang/laracms

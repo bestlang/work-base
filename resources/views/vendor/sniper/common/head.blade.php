@@ -75,13 +75,13 @@
                                 <li><a href="{{route('register')}}"><i class="fa fa-user-o fa-fw"></i>注册</a></li>
                             @endif
                             @else
-                                <li>
-                                    <a href="/ucenter">个人中心</a>
-                                </li>
+                                {{--<li>--}}
+                                    {{--<a href="/ucenter">个人中心</a>--}}
+                                {{--</li>--}}
                                 <li>
                                     <a href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
+                                        {{ __('退出') }}
                                     </a>
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                         @csrf
@@ -90,7 +90,7 @@
                                 @if(auth()->user()->type == 1)
                                     {{--{{ Gate::allows('system') }}--}}
                                     <li><a class="dropdown-item" href="/admin">
-                                            {{ __('Management') }}
+                                            {{ __('管理') }}
                                         </a></li>
                                 @endif
                              @endguest

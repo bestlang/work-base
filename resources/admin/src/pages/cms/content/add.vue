@@ -100,7 +100,7 @@
     import attachment from "@/components/attachment"
     import tag from "@/components/tag"
     import {mapGetters} from 'vuex'
-    import api from '../../../api/index'
+    import api from '@/api/index'
 
     export default {
         data() {

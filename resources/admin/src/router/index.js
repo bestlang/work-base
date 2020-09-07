@@ -59,6 +59,16 @@ export default new VueRouter({
                               }
                           },
                           {
+                              path: "/department/add",
+                              component: () => import("../pages/sniper/employee/basic/departmentAdd.vue"),
+                              meta: {
+                                  can: 'cms',
+                                  show: false,
+                                  name: '新增部门',
+                                  font: '&#xe612;'
+                              }
+                          },
+                          {
                               path: "/position",
                               component: () => import("../pages/sniper/employee/basic/position.vue"),
                               meta: {
@@ -97,7 +107,7 @@ export default new VueRouter({
                               meta: {
                                   can: 'cms',
                                   show: true,
-                                  name: '职位管理',
+                                  name: '组织架构',
                                   font: '&#xe612;'
                               }
                           }
