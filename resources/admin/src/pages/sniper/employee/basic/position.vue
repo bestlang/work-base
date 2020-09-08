@@ -2,7 +2,7 @@
 	<div class="l-channel-list">
 		<div v-title="'职位管理'"></div>
 		<div class="l-tree-container">
-			<position-tree  :selectedKey="2" @nodeClick="handleNodeClick"></position-tree>
+			<position-tree  :selectedKey="2" @nodeClick="handleNodeClick" @treeLoaded="performTreeLoaded"></position-tree>
 		</div>
 		<div class="l-tree-content">
 			<div class="l-block">
@@ -13,7 +13,32 @@
 					</div>
 				</div>
 				<div class="l-block-body">
-
+					<el-table
+							v-loading="loading"
+							:data="children"
+							style="width: 100%">
+						<el-table-column
+								prop="id"
+								label="ID"
+								width="80">
+						</el-table-column>
+						<el-table-column
+								prop="name"
+								label="职位名">
+						</el-table-column>
+						<el-table-column
+								prop="department.name"
+								label="所属部门">
+						</el-table-column>
+						<el-table-column
+								label="操作">
+							<template slot-scope="scope">
+								<el-button type="text">编辑</el-button>
+								<el-button type="text">新增子栏目</el-button>
+								<el-button type="text">删除</el-button>
+							</template>
+						</el-table-column>
+					</el-table>
 				</div>
 			</div>
 		</div>
@@ -28,10 +53,14 @@
 	    data(){
 	        return {
 				id: 0,
-				children: []
+				children: [],
+                loading: false
 			}
 		},
 		methods:{
+            performTreeLoaded(children){
+                this.children = children
+			},
             handleNodeClick(node){
 				let indeed  = node[0]
 				if(indeed.children.length){

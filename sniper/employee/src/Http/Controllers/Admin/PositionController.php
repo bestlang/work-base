@@ -26,7 +26,7 @@ class PositionController
 //            $position->children = $position->getDescendants();
 //            return response()->ajax($position);
 //        }
-        $tree = Position::get()->toHierarchy();
+        $tree = Position::with('department')->get()->toHierarchy();
         return response()->ajax($tree);
     }
     public function treeSelect(Request $request)
