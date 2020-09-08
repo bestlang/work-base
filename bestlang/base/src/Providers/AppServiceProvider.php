@@ -8,7 +8,9 @@ use Illuminate\Support\Facades\Gate;
 use Illuminate\Contracts\Debug\ExceptionHandler;
 use Tymon\JWTAuth\Http\Middleware\Authenticate;
 use Bestlang\Base\Exceptions\Handler as CustomExceptionHandler;
+use Illuminate\Database\Eloquent\Collection;
 use Validator;
+use Bestlang\Base\Mixins\Collection as MixinCollection;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -25,6 +27,7 @@ class AppServiceProvider extends ServiceProvider
             ExceptionHandler::class,
             CustomExceptionHandler::class
         );
+        Collection::mixin(new MixinCollection);
     }
 
     /**

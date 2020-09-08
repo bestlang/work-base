@@ -38,22 +38,28 @@
                 value: null,
                 form: {
                     name: '',
-                    parent_id: '0',
+                    parent_id: null,
                     manager: '',
                 },
                 departments: [],
             }
         },
         methods:{
-            save(){
-                alert(JSON.stringify(this.form));
+            async save(){
+                let res = await this.saveDepartment()
+                if(res.hasError){
+                    this.showMessage(res.error)
+                }else{
+                    this.showMessage('添加成功！', 'success')
+                }
             },
             async getDepartments(){
                 let res = await api.sniperGetDepartments({})
-                this.departments = res.data
+                this.departments = [Object.values(res.data)[0]]
             },
             async saveDepartment(){
                 let res = await api.sniperSaveDepartment(this.form)
+                return res
             }
         },
         async mounted(){
