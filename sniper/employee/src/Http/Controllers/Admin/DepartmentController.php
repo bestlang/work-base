@@ -3,23 +3,53 @@ namespace Sniper\Employee\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use Sniper\Employee\Models\Department;
+use Sniper\Employee\Models\Position;
 use Validator;
 
 class DepartmentController
 {
-    public function index(Request $request)
+    public function departmentDetail(Request $request)
+    {
+        $id = $request->input('id');
+        if(!$id){
+            return response()->error('参数错误');
+        }
+        $department = Department::with('parent')->find($id);
+        if($department){
+            return response()->ajax($department);
+        }
+    }
+    // 部门子树
+    public function getDescendants(Request $request)
+    {
+        $id = $request->input('id');
+        if(!$id){
+            return response()->error('参数错误');
+        }
+        $department = Department::find($id);
+        if($department){
+            $department->children = $department->getDescendants();
+            return response()->ajax($department);
+        }
+    }
+    //所以直属根节点的部门
+    public function level1(Request $request)
+    {
+        $root = Department::whereNull('parent_id')->first();
+        $children = $root->children()->get();
+        return response()->ajax($children);
+    }
+
+    public function treeSelect(Request $request)
     {
         $departments = Department::all();
         if(!count($departments)){
-            $default = new \stdClass();
+            $default = new Department();
             $default->id = '0';
             $default->name  = '做为根部门';
             $departments->push($default);
         }
-        $departments->map(function($department){
-            $department->label = $department->name;
-        });
-        $treeSelect = $departments->treeSelect();
+        $treeSelect = $departments->toHierarchy();
         return response()->ajax($treeSelect);
     }
 
@@ -52,8 +82,17 @@ class DepartmentController
         // 更新
         if($id){
             $department = Department::find($id);
+            $exists = Department::where([ 'parent_id' => $params['parent_id'],  'name'=>$params['name'] ])->where('id', '!=', $params['id'])->exists();
+            if($exists){
+                return response()->error('添加失败！同级同名部门已存在.');
+            }
             $department->update(['parent_id' => $params['parent_id'], 'name' => $params['name'], 'manager' => $params['manager']]);
         }else{ // 新增
+            //判断是否存在同级同名
+            $exists = Department::where( [ 'parent_id' => $params['parent_id'],  'name'=>$params['name'] ] )->exists();
+            if($exists){
+                return response()->error('添加失败！同级同名部门已存在.');
+            }
             if(!$params['parent_id']){//根节点
                 $root = Department::create(['name' => $params['name'], 'manager' => $params['manager']]);
             }else{//非根节点

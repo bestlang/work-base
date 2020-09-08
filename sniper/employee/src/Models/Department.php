@@ -8,4 +8,9 @@ class Department extends Node
 {
     protected $table = 'sniper_employee_departments';
     protected $guarded = [];
+
+    public function parent()
+    {
+        return $this->belongsTo(Department::class, 'parent_id');
+    }
 }

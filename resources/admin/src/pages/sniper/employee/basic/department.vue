@@ -10,44 +10,8 @@
             </div>
             <div class="l-block-body">
                 <div class="l-department-wrap">
-                    <div class="l-department">
-                        <h1 class="l-title">技术研发部</h1>
-                        <article class="l-employee-count"><b>2</b> 人</article>
-                    </div>
-                    <div class="l-department">
-                        <h1 class="l-title">技术研发部</h1>
-                        <article class="l-employee-count"><b>2</b> 人</article>
-                    </div>
-                    <div class="l-department">
-                        <h1 class="l-title">技术研发部</h1>
-                        <article class="l-employee-count"><b>2</b> 人</article>
-                    </div>
-                    <div class="l-department">
-                        <h1 class="l-title">技术研发部</h1>
-                        <article class="l-employee-count"><b>2</b> 人</article>
-                    </div>
-                    <div class="l-department">
-                        <h1 class="l-title">技术研发部</h1>
-                        <article class="l-employee-count"><b>2</b> 人</article>
-                    </div>
-                    <div class="l-department">
-                        <h1 class="l-title">技术研发部</h1>
-                        <article class="l-employee-count"><b>2</b> 人</article>
-                    </div>
-                    <div class="l-department">
-                        <h1 class="l-title">技术研发部</h1>
-                        <article class="l-employee-count"><b>2</b> 人</article>
-                    </div>
-                    <div class="l-department">
-                        <h1 class="l-title">技术研发部</h1>
-                        <article class="l-employee-count"><b>2</b> 人</article>
-                    </div>
-                    <div class="l-department">
-                        <h1 class="l-title">技术研发部</h1>
-                        <article class="l-employee-count"><b>2</b> 人</article>
-                    </div>
-                    <div class="l-department">
-                        <h1 class="l-title">技术研发部</h1>
+                    <div class="l-department" v-for="(department, index) in departments" @click="departmentDetail(department)">
+                        <h1 class="l-title">{{department.name}}</h1>
                         <article class="l-employee-count"><b>2</b> 人</article>
                     </div>
                 </div>
@@ -56,11 +20,28 @@
 	</div>
 </template>
 <script>
+    import api from "@/api/index"
+
 	export default {
-        methods:{
-            add(){
-                this.$router.push('/department/add')
+        data(){
+            return {
+                departments:[]
             }
+        },
+        methods:{
+            departmentDetail({id}){
+                this.$router.push('/basic/department/detail?id='+id)
+            },
+            async getDepartmentLevel1(){
+                let res = await api.sniperGetDepartmentLevel1()
+                this.departments = res.data
+            },
+            add(){
+                this.$router.push('/basic/department/edit')
+            }
+        },
+        mounted(){
+            this.getDepartmentLevel1()
         }
 	}
 </script>
@@ -78,8 +59,10 @@
             margin: 20px 30px 0 0;
             border-radius: 2px;
             cursor: pointer;
+            background: #fcfcfc;
             &:hover{
                 box-shadow: 3px 3px 6px #f1f1f1;
+                background: #fff;
                 h1{
                     color: #2d2d2d;
                 }

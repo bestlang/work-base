@@ -38,81 +38,103 @@ export default new VueRouter({
               },
               children: [
                   {
-                      path: "/basic",
-                      component: () => import("../components/via.vue"),
+                      path: "/basic/department",
+                      component: () => import("../pages/sniper/employee/basic/department.vue"),
                       meta: {
                           can: 'cms',
                           show: true,
-                          name: '基础数据',
-                          font: '&#xe612;',
-                          type: 'title'
-                      },
-                      children: [
-                          {
-                              path: "/department",
-                              component: () => import("../pages/sniper/employee/basic/department.vue"),
-                              meta: {
-                                  can: 'cms',
-                                  show: true,
-                                  name: '部门管理',
-                                  font: '&#xe612;'
-                              }
-                          },
-                          {
-                              path: "/department/add",
-                              component: () => import("../pages/sniper/employee/basic/departmentAdd.vue"),
-                              meta: {
-                                  can: 'cms',
-                                  show: false,
-                                  name: '新增部门',
-                                  font: '&#xe612;'
-                              }
-                          },
-                          {
-                              path: "/position",
-                              component: () => import("../pages/sniper/employee/basic/position.vue"),
-                              meta: {
-                                  can: 'cms',
-                                  show: true,
-                                  name: '职位管理',
-                                  font: '&#xe612;'
-                              }
-                          }
-                      ]
+                          name: '部门管理',
+                          font: '&#xe612;'
+                      }
                   },
                   {
-                      path: "/arch",
-                      component: () => import("../components/via.vue"),
+                      path: "/basic/department/edit",
+                      component: () => import("../pages/sniper/employee/basic/departmentEdit.vue"),
+                      meta: {
+                          can: 'cms',
+                          show: false,
+                          name: '新增部门',
+                          font: '&#xe612;'
+                      }
+                  },
+                  {
+                      path: "/basic/department/detail",
+                      component: () => import("../pages/sniper/employee/basic/departmentDetail.vue"),
+                      meta: {
+                          can: 'cms',
+                          show: false,
+                          name: '部门详情',
+                          font: '&#xe612;'
+                      }
+                  },
+                  {
+                      path: "/basic/position",
+                      component: () => import("../pages/sniper/employee/basic/position.vue"),
                       meta: {
                           can: 'cms',
                           show: true,
-                          name: '人员管理',
-                          font: '&#xe612;',
-                          type: 'title'
-                      },
-                      children: [
-                          {
-                              path: "/list",
-                              component: () => import("../pages/sniper/employee/arch/list.vue"),
-                              meta: {
-                                  can: 'cms',
-                                  show: true,
-                                  name: '员工列表',
-                                  font: '&#xe612;'
-                              }
-                          },
-                          {
-                              path: "/graph",
-                              component: () => import("../pages/sniper/employee/arch/graph.vue"),
-                              meta: {
-                                  can: 'cms',
-                                  show: true,
-                                  name: '组织架构',
-                                  font: '&#xe612;'
-                              }
-                          }
-                      ]
+                          name: '职位管理',
+                          font: '&#xe612;'
+                      }
                   },
+                  {
+                      path: "/basic/position/edit",
+                      component: () => import("../pages/sniper/employee/basic/positionEdit.vue"),
+                      meta: {
+                          can: 'cms',
+                          show: false,
+                          name: '添加管理',
+                          font: '&#xe612;'
+                      }
+                  },
+                  {
+                      path: "/list",
+                      component: () => import("../pages/sniper/employee/arch/list.vue"),
+                      meta: {
+                          can: 'cms',
+                          show: true,
+                          name: '员工列表',
+                          font: '&#xe612;'
+                      }
+                  },
+                  {
+                      path: "/graph",
+                      component: () => import("../pages/sniper/employee/arch/graph.vue"),
+                      meta: {
+                          can: 'cms',
+                          show: true,
+                          name: '组织架构',
+                          font: '&#xe612;'
+                      }
+                  },
+                  // {
+                  //     path: "/basic",
+                  //     component: () => import("../components/via.vue"),
+                  //     meta: {
+                  //         can: 'cms',
+                  //         show: true,
+                  //         name: '基础数据',
+                  //         font: '&#xe612;',
+                  //         type: 'title'
+                  //     },
+                  //     children: [
+                  //
+                  //     ]
+                  // },
+                  // {
+                  //     path: "/arch",
+                  //     component: () => import("../components/via.vue"),
+                  //     meta: {
+                  //         can: 'cms',
+                  //         show: true,
+                  //         name: '人员管理',
+                  //         font: '&#xe612;',
+                  //         type: 'title'
+                  //     },
+                  //     children: [
+                  //
+                  //     ]
+                  // },
               ]
           },
         {

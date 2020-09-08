@@ -103,7 +103,6 @@
                     <!--「<i class="iconfont">&#xe64c;</i> 」-->
                   在 <span style="font-weight: 700">“{{parentChannel.name}}”</span>下新增栏目</span>
                 </span>
-              </span>
               <el-button-group>
                 <el-button style="padding: 3px 10px" type="text" @click="addChannel(channelForm)">新增子栏目</el-button>
                 <el-button style="padding: 3px 10px" type="text" @click="deleteChannel(channelForm)">删除</el-button>
