@@ -3,19 +3,24 @@
 namespace Sniper\Employee\Models;
 
 use Baum\Node;
+use Illuminate\Database\Eloquent\Model;
 
-class Employee extends Node
+class Employee extends Model
 {
     protected $table = 'sniper_employee_employee';
 
-    // 'parent_id' column name
-    protected $parentColumn = 'parent_user_id';
+    protected $primaryKey = 'user_id';
 
     protected $guarded = [];
 
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'user_id', 'id');
+    }
+
+    public function position()
+    {
+        return $this->belongsTo(Position::class);
     }
 
 }

@@ -66,7 +66,6 @@
         },
         watch:{
             async updated(){
-                console.log('*****************')
                 await this.updateTree()
             }
         },

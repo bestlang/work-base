@@ -22,12 +22,6 @@ class CreateSniperEmployeeEmployeeTable extends Migration
             $table->string('tag')->nullable()->comment('标签');
             $table->unsignedBigInteger('position_id')->nullable()->comment('职位ID');
             $table->string('phone')->nullable()->comment('手机');
-            //$table->unsignedBigInteger('parent_id')->nullable()->comment('上级ID');
-            // $table->nestedSet();
-            $table->integer('parent_user_id')->nullable();
-            $table->integer('left')->nullable();
-            $table->integer('right')->nullable();
-            $table->integer('depth')->nullable();
 
             $table->string('work_place')->comment('工作地点')->nullable();
 
@@ -46,6 +40,7 @@ class CreateSniperEmployeeEmployeeTable extends Migration
             $table->smallInteger('children')->comment('子女数量')->default(0);
             $table->string('emergency')->nullable()->comment('紧急联系人');
             $table->string('emergency_phone')->comment('紧急联系人电话')->nullable();
+            $table->string('avatar')->comment('头像')->nullable();
 
             $table->nullableTimestamps();
             $table->softDeletes();

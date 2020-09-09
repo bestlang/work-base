@@ -76,4 +76,8 @@ export default {
     sniperGetPositionDetail(data){ return fetch('/admin/sniper/employee/get/position/detail', data) },
     sniperGetPositionDescendants(data){ return fetch('/admin/sniper/employee/get/position/descendants', data) },
     sniperDeletePosition(data){ return fetch('/admin/sniper/employee/delete/position', data, 'post') },
+
+    sniperSaveEmployee(data){ return fetch('/admin/sniper/employee/save/employee', data, 'post') },
+    sniperGetDepartmentEmployee(data){ return fetch('/admin/sniper/employee/department/employee', data) },
+    sniperDeleteDepartment(data){ return fetch('/admin/sniper/employee/delete/department', data, 'post') },
 }

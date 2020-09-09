@@ -8,6 +8,16 @@ use Validator;
 
 class DepartmentController
 {
+    public function delete(Request $request)
+    {
+        $id = $request->input('id');
+        if(!$id){
+            return response()->error('参数错误');
+        }
+        $position = Department::find($id);
+        $position->delete();
+        return response()->ajax();
+    }
     public function departmentDetail(Request $request)
     {
         $id = $request->input('id');

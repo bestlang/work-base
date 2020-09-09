@@ -15,7 +15,7 @@ class UploadController extends Controller
         $destinationPath = 'uploads/';
         $filename = $file->getClientOriginalName();
         $file->move($destinationPath, $filename);
-        $serviceConfig = new Config(config('upyun.serviceName'), config('upyun.operatorName'), config('upyun.operatorPassword'));
+        /*$serviceConfig = new Config(config('upyun.serviceName'), config('upyun.operatorName'), config('upyun.operatorPassword'));
         $client = new Upyun($serviceConfig);
 
         $path = $destinationPath.$filename;
@@ -23,6 +23,8 @@ class UploadController extends Controller
         $client->write($path, $fp);
 
         return response()->json(['statusCode'=>'200', 'data'=>['file'=>config('upyun.cdnPath').'/'.$path]]);
+        */
+        return response()->ajax(['file' => $destinationPath.$filename]);
     }
 
     /*

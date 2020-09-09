@@ -17,4 +17,9 @@ class Position extends Node
     {
         return $this->belongsTo(Position::class, 'parent_id');
     }
+
+    public function employee()
+    {
+        return $this->hasMany(Employee::class);
+    }
 }

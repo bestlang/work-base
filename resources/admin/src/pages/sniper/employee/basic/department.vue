@@ -10,6 +10,7 @@
                     <el-button-group>
                     <el-button v-if="showForm" type="primary" @click="save" size="small">保存</el-button>
                     <el-button v-if="!showForm" type="primary" @click="edit" size="small">编辑</el-button>
+                    <el-button type="danger" @click="remove" size="small">删除</el-button>
                     <el-button type="success" @click="add" size="small"><i class="iconfont">&#xe663;</i>新增</el-button>
                     </el-button-group>
                 </div>
@@ -29,7 +30,7 @@
                         </el-form-item>
                     </el-form>
                 </div>
-                <div v-if="department.children && department.children.length">
+                <div v-if="department.children && department.children.length" style="margin-top: 20px;">
                     <el-divider content-position="left">直属部门</el-divider>
                     <div class="l-department-wrap">
                         <div class="l-department" v-for="(department, index) in department.children" @click="departmentDetail(department)" :key="index">
@@ -77,6 +78,20 @@
                 let res = await api.sniperSaveDepartment(this.form)
                 return res
             },
+            remove(){
+                let id = this.department.id
+                this.$confirm('确定删除部门?', '提示', {
+                    confirmButtonText: '确定',
+                    cancelButtonText: '取消',
+                    type: 'warning'
+                }).then(async () => {
+                    let res = await api.sniperDeleteDepartment({id})
+                    if(!res.hasError){
+                        this.showMessage('删除成功！', 'success')
+                        this.updated = Math.random()
+                    }
+                });
+            },
             edit(){
                 this.assignForm(this.department)
             },
@@ -86,7 +101,7 @@
                     this.showMessage(res.error)
                 }else{
                     this.showMessage('更新成功！', 'success')
-                   this.updated = this.form.id
+                   this.updated = Math.random()//Math.floor(Math.random() * 999999)
                 }
             },
             assignForm(department){
@@ -183,10 +198,10 @@
             margin: 20px 30px 0 0;
             border-radius: 2px;
             cursor: pointer;
-            background: #fcfcfc;
+            background: #F2F8FE;
             &:hover{
-                box-shadow: 3px 3px 6px #f1f1f1;
-                background: #fff;
+                box-shadow: 3px 3px 6px #FAFAFA;
+                background: #fcf8e3;
                 h1{
                     color: #2d2d2d;
                 }
@@ -198,6 +213,7 @@
                 font-weight: bold;
             }
             .l-employee-count{
+                color: #4c110f;
                 position: absolute;
                 bottom: 10px;
                 left: 10px;

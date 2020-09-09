@@ -88,8 +88,8 @@ export default new VueRouter({
                       }
                   },
                   {
-                      path: "/list",
-                      component: () => import("../pages/sniper/employee/arch/list.vue"),
+                      path: "/basic/employee/list",
+                      component: () => import("../pages/sniper/employee/employee/list.vue"),
                       meta: {
                           can: 'cms',
                           show: true,
@@ -98,8 +98,18 @@ export default new VueRouter({
                       }
                   },
                   {
+                      path: "/basic/employee/edit",
+                      component: () => import("../pages/sniper/employee/employee/edit.vue"),
+                      meta: {
+                          can: 'cms',
+                          show: false,
+                          name: '新增员工',
+                          font: '&#xe614;'
+                      }
+                  },
+                  {
                       path: "/graph",
-                      component: () => import("../pages/sniper/employee/arch/graph.vue"),
+                      component: () => import("../pages/sniper/employee/employee/graph.vue"),
                       meta: {
                           can: 'cms',
                           show: true,
