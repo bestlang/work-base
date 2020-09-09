@@ -52,7 +52,7 @@ export default {
     saveAdPosition(data){ return fetch('/admin/cms/save/ad/position', data, 'post') },
     getAdPositions(data){ return fetch('/admin/cms/get/ad/positions', data) },
     getAds(data){ return fetch('/admin/cms/get/ads', data) },
-    getAd(data){ return fetch('/admin/cms/get/ad', data)},
+    getAd(data){ return fetch('/admin/cms/get/ad', data) },
     deleteAdPosition(data){ return fetch('/admin/cms/delete/ad/position', data) },
     deleteAd(data){ return fetch('/admin/cms/delete/ad', data) },
     saveAd(data){ return fetch('/admin/cms/save/ad', data, 'post') },
@@ -65,14 +65,15 @@ export default {
 
 
 
-    sniperGetDepartmentLevel1(data){ return fetch('/admin/sniper/employee/departments/level1', data)},
-    sniperGetDepartmentsTreeSelect(data){ return  fetch('/admin/sniper/employee/departments/tree/select', data)},
-    sniperSaveDepartment(data){ return fetch('/admin/sniper/employee/save/department', data, 'post')},
+    sniperGetDepartmentLevel1(data){ return fetch('/admin/sniper/employee/departments/level1', data) },
+    sniperGetDepartmentsTreeSelect(data){ return  fetch('/admin/sniper/employee/departments/tree/select', data) },
+    sniperSaveDepartment(data){ return fetch('/admin/sniper/employee/save/department', data, 'post') },
     sniperGetDepartmentDetail(data){ return fetch('/admin/sniper/employee/get/department/detail', data)},
-    sniperGetDepartmentDescendants(data){ return fetch('/admin/sniper/employee/get/department/descendants', data)},
+    sniperGetDepartmentDescendants(data){ return fetch('/admin/sniper/employee/get/department/descendants', data) },
 
-    sniperGetPositionsTreeSelect(data){ return  fetch('/admin/sniper/employee/positions/tree/select', data)},
-    sniperSavePosition(data){ return fetch('/admin/sniper/employee/save/position', data, 'post')},
-    sniperGetPositionDetail(data){ return fetch('/admin/sniper/employee/get/position/detail', data)},
-    sniperGetPositionDescendants(data){ return fetch('/admin/sniper/employee/get/position/descendants', data)},
+    sniperGetPositionsTreeSelect(data){ return  fetch('/admin/sniper/employee/positions/tree/select', data) },
+    sniperSavePosition(data){ return fetch('/admin/sniper/employee/save/position', data, 'post') },
+    sniperGetPositionDetail(data){ return fetch('/admin/sniper/employee/get/position/detail', data) },
+    sniperGetPositionDescendants(data){ return fetch('/admin/sniper/employee/get/position/descendants', data) },
+    sniperDeletePosition(data){ return fetch('/admin/sniper/employee/delete/position', data, 'post') },
 }

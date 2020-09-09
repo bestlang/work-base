@@ -1,10 +1,10 @@
 <style lang="less">
-    .l-tree-containner{
-        min-width: 200px;
-        padding: 20px;
-        border-right: 1px solid #f4f4f4;
-        flex-shrink: 0;
-    }
+    /*.l-tree-container{*/
+        /*min-width: 200px;*/
+        /*padding: 20px;*/
+        /*border-right: 1px solid #f4f4f4;*/
+        /*flex-shrink: 0;*/
+    /*}*/
     .custom-tree-node {
         flex: 1;
         display: flex;
@@ -19,7 +19,7 @@
     }
 </style>
 <template>
-    <div class="l-tree-containner">
+    <div class="l-tree-container">
         <view v-if="title">{{title}}</view>
         <el-tree
                 @node-click="handleNodeClick"
@@ -65,14 +65,14 @@
             ...mapGetters([]),
         },
         methods:{
-            handleNodeClick(...params){
-                this.$emit('nodeClick', params);
+            handleNodeClick(node){
+                this.$emit('nodeClick', node);
             }
         },
         async mounted() {
             let res = await  api.sniperGetPositionDescendants()
             this.treeData =  [Object.values(res.data)[0]];
-            this.$emit('treeLoaded', this.treeData[0].children)
+            this.$emit('treeLoaded', this.treeData[0])
         }
     }
 </script>

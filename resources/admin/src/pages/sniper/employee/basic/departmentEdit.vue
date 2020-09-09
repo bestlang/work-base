@@ -37,7 +37,7 @@
             return {
                 value: null,
                 form: {
-                    id: '',
+                    id: 0,
                     name: '',
                     parent_id: null,
                     manager: '',
@@ -79,7 +79,7 @@
                 }
             },
             async getDepartments(){
-                let res = await api.sniperGetDepartmentsTreeSelect({})
+                let res = await api.sniperGetDepartmentsTreeSelect()
                 let root = Object.values(res.data)[0]
                 //处理数据 适应TreeSelect组件
                 const removeEmptyChildren = function(data){
@@ -101,7 +101,11 @@
         },
         async mounted(){
             this.getDepartments()
-            this.form.id = parseInt(this.$route.query.id) || '';
+            this.form.id = parseInt(this.$route.query.id) || 0;
+            let parent_id = parseInt(this.$route.query.parent_id) || 0;
+            if(parent_id){
+                this.form.parent_id = parent_id
+            }
         }
     }
 </script>

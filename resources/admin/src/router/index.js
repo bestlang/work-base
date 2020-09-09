@@ -33,8 +33,8 @@ export default new VueRouter({
               meta: {
                   can: 'cms',
                   show: true,
-                  name: '员工系统',
-                  font: '&#xe70b;'
+                  name: '人力资源',
+                  font: '&#xe612;'
               },
               children: [
                   {
@@ -44,7 +44,7 @@ export default new VueRouter({
                           can: 'cms',
                           show: true,
                           name: '部门管理',
-                          font: '&#xe612;'
+                          font: '&#xe69a;'
                       }
                   },
                   {
@@ -74,7 +74,7 @@ export default new VueRouter({
                           can: 'cms',
                           show: true,
                           name: '职位管理',
-                          font: '&#xe612;'
+                          font: '&#xe611;'
                       }
                   },
                   {
@@ -94,7 +94,7 @@ export default new VueRouter({
                           can: 'cms',
                           show: true,
                           name: '员工列表',
-                          font: '&#xe612;'
+                          font: '&#xe614;'
                       }
                   },
                   {
@@ -104,7 +104,7 @@ export default new VueRouter({
                           can: 'cms',
                           show: true,
                           name: '组织架构',
-                          font: '&#xe612;'
+                          font: '&#xe629;'
                       }
                   },
                   // {

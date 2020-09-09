@@ -59,37 +59,32 @@
                 type: Number,
                 default: 0
             },
-            parent_id:{
+            updated:{
                 type: Number,
                 default: 0
             }
         },
         watch:{
-           async parent_id(val){
-               let res = await  api.sniperGetDepartmentDescendants({id: val})
-
-               const addEmptyChildren = function(data){
-                   if(!data.children){
-                       data.children = []
-                   }else{
-                       for(let child of data.children){
-                           addEmptyChildren(child)
-                       }
-                   }
-               }
-               addEmptyChildren(res.data)
-               this.treeData =  [res.data];
+            async updated(){
+                console.log('*****************')
+                await this.updateTree()
             }
         },
         computed:{
             ...mapGetters([]),
         },
         methods:{
-            handleNodeClick(...params){
-                this.$emit('nodeClick', params);
+            handleNodeClick(node){
+                this.$emit('nodeClick', node);
+            },
+            async updateTree(){
+                let res = await  api.sniperGetDepartmentDescendants()
+                this.treeData =  [Object.values(res.data)[0]];
+                this.$emit('treeLoaded', this.treeData[0])
             }
         },
         async mounted() {
+            await this.updateTree()
         }
     }
 </script>

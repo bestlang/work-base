@@ -23,6 +23,9 @@
                     <el-form-item label="所需员工数">
                         <el-input v-model="form.desiring"></el-input>
                     </el-form-item>
+                    <el-form-item label="工作描述">
+                        <el-input type="textarea" v-model="form.jd"></el-input>
+                    </el-form-item>
                 </el-form>
             </div>
         </div>
@@ -55,6 +58,7 @@
                     department_id: null,
                     parent_id: null,
                     desiring: '',
+                    jd: ''
                 },
                 departments: [],
                 positions: []
@@ -62,16 +66,23 @@
         },
         watch:{
             async  ['form.id'](val){
-                await this.getPositionDetail(val)
+                if(val){
+                    await this.getPositionDetail(val)
+                }
             }
         },
         methods:{
+            assignForm(position){
+                this.form.id = position.id
+                this.form.name = position.name
+                this.form.department_id = position.department_id
+                this.form.parent_id = position.parent_id
+                this.form.desiring = position.desiring
+                this.form.jd = position.jd
+            },
             async getPositionDetail(id){
                 let {data} = await api.sniperGetPositionDetail({id});
-                this.form.id = data.id
-                this.form.name = data.name
-                this.form.department_id = data.department_id
-                this.form.desiring = data.desiring
+                this.assignForm(data)
             },
             //tree select 节点数据适应
             normalizer(node) {
@@ -89,7 +100,11 @@
                 if(res.hasError){
                     this.showMessage(res.error)
                 }else{
-                    this.showMessage('添加成功！', 'success')
+                    let msg = '添加成功！';
+                    if(this.form.id){
+                        msg = '更新成功！';
+                    }
+                    this.showMessage(msg, 'success')
                     this.$router.push('/basic/position')
                 }
             },
@@ -97,15 +112,6 @@
                 let res = await api.sniperGetDepartmentsTreeSelect({})
                 let root = Object.values(res.data)[0]
                 //处理数据 适应TreeSelect组件
-                // const removeEmptyChildren = function(data){
-                //     if(!data.children.length){
-                //         data.children = undefined
-                //     }else{
-                //         for(let child of data.children){
-                //             removeEmptyChildren(child)
-                //         }
-                //     }
-                // }
                 removeEmptyChildren(root)
                 this.departments = [root]
             },
@@ -113,15 +119,6 @@
                 let res = await api.sniperGetPositionsTreeSelect({})
                 let root = Object.values(res.data)[0]
                 //处理数据 适应TreeSelect组件
-                // const removeEmptyChildren = function(data){
-                //     if(!data.children.length){
-                //         data.children = undefined
-                //     }else{
-                //         for(let child of data.children){
-                //             removeEmptyChildren(child)
-                //         }
-                //     }
-                // }
                 removeEmptyChildren(root)
                 this.positions = [root]
             },
@@ -133,7 +130,11 @@
         async mounted(){
             await this.getDepartments()
             await this.getPositions()
-            this.form.id = parseInt(this.$route.query.id) || '';
+            this.form.id = parseInt(this.$route.query.id) || 0;
+            let parent_id = parseInt(this.$route.query.parent_id) || 0;
+            if(parent_id){
+                this.form.parent_id = parent_id;
+            }
         }
     }
 </script>

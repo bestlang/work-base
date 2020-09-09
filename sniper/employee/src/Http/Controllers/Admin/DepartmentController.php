@@ -22,15 +22,18 @@ class DepartmentController
     // 部门子树
     public function getDescendants(Request $request)
     {
-        $id = $request->input('id');
-        if(!$id){
-            return response()->error('参数错误');
-        }
-        $department = Department::find($id);
-        if($department){
-            $department->children = $department->getDescendants();
-            return response()->ajax($department);
-        }
+//        $id = $request->input('id');
+//        if(!$id){
+//            return response()->error('参数错误');
+//        }
+//        $department = Department::find($id);
+//        if($department){
+//            $department->children = $department->getDescendants();
+//            return response()->ajax($department);
+//        }
+
+        $tree = Department::with('parent')->get()->toHierarchy();
+        return response()->ajax($tree);
     }
     //所以直属根节点的部门
     public function level1(Request $request)
