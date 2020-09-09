@@ -32,16 +32,6 @@ class DepartmentController
     // 部门子树
     public function getDescendants(Request $request)
     {
-//        $id = $request->input('id');
-//        if(!$id){
-//            return response()->error('参数错误');
-//        }
-//        $department = Department::find($id);
-//        if($department){
-//            $department->children = $department->getDescendants();
-//            return response()->ajax($department);
-//        }
-
         $tree = Department::with('parent')->get()->toHierarchy();
         return response()->ajax($tree);
     }
@@ -72,14 +62,13 @@ class DepartmentController
         $rules = [
           'id' => 'numeric|nullable',
           'name' => 'required',
-          'parent_id' => 'numeric|required',
+          'parent_id' => 'numeric|nullable',
           'manager' => 'nullable'
         ];
         $info = [
           'id.numeric' => '参数不合法',
           'name.required' => '部门名称不能为空',
           'parent_id.numeric' => '上级部门错误',
-          'parent_id.required' => '请选择上级部门'
         ];
         $names = [
           'id' => 'ID',
@@ -92,6 +81,7 @@ class DepartmentController
             return response()->error($validator->errors()->first());
         }
         $id = $params['id'] ?? 0;
+        isset($params['parent_id']) || $params['parent_id'] = null;
         // 更新
         if($id){
             $department = Department::find($id);
