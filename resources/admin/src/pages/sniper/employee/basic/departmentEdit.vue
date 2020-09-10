@@ -67,7 +67,7 @@
                 }
             },
             viewDepartments(){
-                this.$router.push('/basic/department')
+                this.$router.push('/sniper/employee/department')
             },
             async save(){
                 let res = await this.saveDepartment()
@@ -75,7 +75,7 @@
                     this.showMessage(res.error)
                 }else{
                     this.showMessage('添加成功！', 'success')
-                    this.$router.push('/basic/department')
+                    this.$router.push('/sniper/employee/department')
                 }
             },
             async getDepartments(){

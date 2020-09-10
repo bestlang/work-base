@@ -50,7 +50,7 @@
         },
         methods:{
             editDepartment({id}){
-                this.$router.push('/basic/department/edit?id='+id)
+                this.$router.push('/sniper/employee/department/edit?id='+id)
             },
             handleNodeClick(node){
                 this.sub_id = node[0].id
@@ -60,7 +60,7 @@
                 this.department = res.data
             },
             viewDepartment(){
-                this.$router.push('/basic/department')
+                this.$router.push('/sniper/employee/department')
             }
         },
         async mounted(){

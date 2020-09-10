@@ -1,10 +1,10 @@
 <template>
     <div>
-        <div v-title="'新增员工'"></div>
+        <div v-title="'编辑员工'"></div>
         <div class="l-block">
             <div class="l-block-header">
                 <div class="l-flex">
-                    <span>员工系统  / 添加员工</span>
+                    <span>员工系统  / {{bread_title}}</span>
                     <el-button type="primary" @click="save" size="small">保存</el-button>
                 </div>
             </div>
@@ -21,12 +21,12 @@
                         <tree-select v-model="form.position_id" :multiple="false" :options="positions"  :default-expand-level="10" :normalizer="normalizer" />
                     </el-form-item>
                     <el-form-item label="真实姓名">
-                        <el-input v-model="form.name"></el-input>
+                        <el-input v-model="form.real_name"></el-input>
                     </el-form-item>
                     <el-form-item label="性别">
                         <div>
-                            <el-radio v-model="form.gender" label="1" border>男</el-radio>
-                            <el-radio v-model="form.gender" label="2" border>女</el-radio>
+                            <el-radio v-model="form.gender" :label="1" border>男</el-radio>
+                            <el-radio v-model="form.gender" :label="2" border>女</el-radio>
                         </div>
                     </el-form-item>
                     <el-form-item label="头像">
@@ -108,6 +108,7 @@
         components: { TreeSelect, imageUpload },
         data(){
             return {
+                bread_title: '新增员工',
                 value: null,
                 form: {
                     user_id: 0,
@@ -138,19 +139,38 @@
             }
         },
         watch:{
-
+            async ['form.user_id'](val){
+                await this.getEmployeeDetail(val)
+            }
         },
         methods:{
-            assignForm(position){
-                this.form.id = position.id
-                this.form.name = position.name
-                this.form.department_id = position.department_id
-                this.form.parent_id = position.parent_id
-                this.form.desiring = position.desiring
-                this.form.jd = position.jd
+            assignForm(employee){
+                    this.form.user_id = employee.user_id
+                    this.form.real_name = employee.real_name
+                    this.form.department_id = employee.department_id
+                    //this.form.tag = employee.tag
+                    this.form.position_id = employee.position_id
+                    this.form.phone = employee.phone
+                    //this.form.work_place = employee.work_place
+                    this.form.gender = employee.gender
+                    //this.form.native_land = employee.native_land
+                    //this.form.birthday = employee.birthday
+                    this.form.id_card = employee.id_card
+                    this.form.email = employee.user.email
+                    this.form.password = undefined
+                    /*this.form.school = employee.school
+                    this.form.study_duration = employee.study_duration
+                    this.form.degree = employee.degree
+                    this.form.marital = employee.marital
+                    this.form.mate = employee.mate
+                    this.form.children = employee.children*/
+                    this.form.emergency = employee.emergency
+                    this.form.emergency_phone = employee.emergency_phone
+                    this.form.avatar = employee.avatar
             },
-            async getPositionDetail(id){
-                let {data} = await api.sniperGetPositionDetail({id});
+            async getEmployeeDetail(id){
+                let {data} = await api.sniperGetEmployeeDetail({id})
+                console.log(JSON.stringify(data))
                 this.assignForm(data)
             },
             //tree select 节点数据适应
@@ -162,13 +182,13 @@
                 }
             },
             viewPositions(){
-                this.$router.push('/basic/position')
+                this.$router.push('/sniper/employee/position')
             },
             async save(){
                 let res = await api.sniperSaveEmployee(this.form)
                 if(!res.hasError){
                     this.showMessage('添加成功！', 'success')
-                    this.$router.push('/basic/employee/list')
+                    this.$router.push('/sniper/employee/employee/list')
                 }else{
                     this.showMessage(res.error, 'error')
                 }
@@ -195,10 +215,15 @@
         async mounted(){
             await this.getDepartments()
             await this.getPositions()
-            this.form.id = parseInt(this.$route.query.id) || 0;
-            let department_id = parseInt(this.$route.query.department_id) || 0;
+            this.form.id = parseInt(this.$route.query.id) || 0
+            let department_id = parseInt(this.$route.query.department_id) || 0
             if(department_id){
-                this.form.department_id = department_id;
+                this.form.department_id = department_id
+            }
+            let employee_id = parseInt(this.$route.query.employee_id) || 0
+            if(employee_id){
+                this.form.user_id = employee_id
+                this.bread_title = '编辑员工'
             }
         }
     }

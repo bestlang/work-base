@@ -38,7 +38,7 @@ export default new VueRouter({
               },
               children: [
                   {
-                      path: "/basic/department",
+                      path: "/sniper/employee/department",
                       component: () => import("../pages/sniper/employee/basic/department.vue"),
                       meta: {
                           can: 'cms',
@@ -48,7 +48,7 @@ export default new VueRouter({
                       }
                   },
                   {
-                      path: "/basic/department/edit",
+                      path: "/sniper/employee/department/edit",
                       component: () => import("../pages/sniper/employee/basic/departmentEdit.vue"),
                       meta: {
                           can: 'cms',
@@ -58,7 +58,7 @@ export default new VueRouter({
                       }
                   },
                   {
-                      path: "/basic/department/detail",
+                      path: "/sniper/employee/department/detail",
                       component: () => import("../pages/sniper/employee/basic/departmentDetail.vue"),
                       meta: {
                           can: 'cms',
@@ -68,7 +68,7 @@ export default new VueRouter({
                       }
                   },
                   {
-                      path: "/basic/position",
+                      path: "/sniper/employee/position",
                       component: () => import("../pages/sniper/employee/basic/position.vue"),
                       meta: {
                           can: 'cms',
@@ -78,7 +78,7 @@ export default new VueRouter({
                       }
                   },
                   {
-                      path: "/basic/position/edit",
+                      path: "/sniper/employee/position/edit",
                       component: () => import("../pages/sniper/employee/basic/positionEdit.vue"),
                       meta: {
                           can: 'cms',
@@ -88,7 +88,7 @@ export default new VueRouter({
                       }
                   },
                   {
-                      path: "/basic/employee/list",
+                      path: "/sniper/employee/employee/list",
                       component: () => import("../pages/sniper/employee/employee/list.vue"),
                       meta: {
                           can: 'cms',
@@ -98,7 +98,7 @@ export default new VueRouter({
                       }
                   },
                   {
-                      path: "/basic/employee/edit",
+                      path: "/sniper/employee/employee/edit",
                       component: () => import("../pages/sniper/employee/employee/edit.vue"),
                       meta: {
                           can: 'cms',

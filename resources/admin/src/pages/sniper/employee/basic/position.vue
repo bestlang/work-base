@@ -78,17 +78,17 @@
 				this.position = position
 			},
 			edit(){
-                this.$router.push('/basic/position/edit?id='+this.position.id)
+                this.$router.push('/sniper/employee/position/edit?id='+this.position.id)
 			},
             add(){
                 let {id} = this.position
-                this.$router.push('/basic/position/edit?parent_id='+id)
+                this.$router.push('/sniper/employee/position/edit?parent_id='+id)
             },
             editPosition({id}){
-                this.$router.push('/basic/position/edit?id='+id)
+                this.$router.push('/sniper/employee/position/edit?id='+id)
 			},
             addPosition({id}){
-                this.$router.push('/basic/position/edit?parent_id='+id)
+                this.$router.push('/sniper/employee/position/edit?parent_id='+id)
 			},
             async deletePosition({id}){
                 this.$confirm('确定删除职位?', '提示', {

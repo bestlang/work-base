@@ -130,11 +130,11 @@
             departmentDetail(department){
                 this.department = department
                 this.assignForm(department)
-                //this.$router.push('/basic/department/detail?id='+id)
+                //this.$router.push('/sniper/employee/department/detail?id='+id)
             },
             add(){
                 let {id} = this.department
-                this.$router.push('/basic/department/edit?parent_id='+id)
+                this.$router.push('/sniper/employee/department/edit?parent_id='+id)
             },
             async getDepartmentsTree(){
                 this.departments = []

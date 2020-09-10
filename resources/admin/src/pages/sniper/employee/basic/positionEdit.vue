@@ -93,7 +93,7 @@
                 }
             },
             viewPositions(){
-                this.$router.push('/basic/position')
+                this.$router.push('/sniper/employee/position')
             },
             async save(){
                 let res = await this.savePosition()
@@ -105,7 +105,7 @@
                         msg = '更新成功！';
                     }
                     this.showMessage(msg, 'success')
-                    this.$router.push('/basic/position')
+                    this.$router.push('/sniper/employee/position')
                 }
             },
             async getDepartments(){

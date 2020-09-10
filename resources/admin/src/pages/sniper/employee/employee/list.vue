@@ -14,13 +14,13 @@
 			<div class="l-block-body">
 				<div class="l-employee-wrap">
 					<template v-if="employee.length">
-					<div class="l-employee" v-for="(em, index) in employee"  :key="index">
-						<img :src="'http://127.0.0.1:8000/'+em.avatar" alt="">
-						<h1 class="l-title">{{em.real_name}}({{em.position.name}})</h1>
-						<div style="font-size: 10px;">{{em.user.email}}</div>
-					</div>
+						<div class="l-employee" v-for="(em, index) in employee"  :key="index" @click="viewEmployee(em)">
+							<img :src="'http://127.0.0.1:8000/'+em.avatar" alt="">
+							<h1 class="l-title">{{em.real_name}}({{em.position.name}})</h1>
+							<div style="font-size: 10px;">{{em.user.email}}</div>
+						</div>
 					</template>
-					<div v-else style="text-align: center;color: #ccc;width: 100%;">空空如也</div>
+					<div v-else style="text-align: center;color: #ccc;width: 100%;">暂无人员</div>
 				</div>
 			</div>
 		</div>
@@ -44,9 +44,12 @@
 			}
 		},
         methods:{
+            viewEmployee({user_id}){
+                this.$router.push('/sniper/employee/employee/edit?employee_id='+user_id)
+			},
 			add(){
 				let {id} = this.department
-				this.$router.push('/basic/employee/edit?department_id='+id)
+				this.$router.push('/sniper/employee/employee/edit?department_id='+id)
 			},
             handleNodeClick(node){
                 this.department = node
