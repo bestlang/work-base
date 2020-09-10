@@ -8,6 +8,12 @@ use Sniper\Employee\Models\Employee;
 
 class EmployeeController
 {
+    public function detail(Request $request)
+    {
+        $id = $request->input('id');
+        $user = Employee::with('user')->find($id);
+        return response()->ajax($user);
+    }
     public function departmentEmployee(Request $request)
     {
         $query = Employee::query();
@@ -26,6 +32,44 @@ class EmployeeController
     public function save(Request $request)
     {
         $params = $request->all();
+        $msg = '参数不合法';
+        $rules = [
+            'department_id' => 'required|numeric',
+            'position_id' => 'required|numeric',
+            'real_name' => 'required',
+            'gender' => 'numeric|required',
+            //'avatar' => 'nullable',
+            'phone' => 'required|phone',
+            'id_card' => 'required',
+            'email' => 'required',
+            //'password' => 'nullable',
+            //'emergency' => 'nullable',
+            //'emergency_phone' => 'nullable'
+        ];
+        $info = [
+            'department_id.required' => '请选择部门',
+            'department_id.numeric' => $msg,
+            'position_id.required' => '请选择职位',
+            'position_id.numeric' => $msg,
+            'real_name.required' => '请录入真实姓名',
+            'gender.numeric' => $msg,
+            'gender.required' => '请选择性别',
+            'phone.phone' => '请输入合法的手机号',
+            'phone.required' => '请输入手机号',
+            'id_card.required' => '请录入身份证号',
+            'email.required' => '请录入公司邮箱'
+        ];
+        $validator = Validator::make($params, $rules , $info , []);
+        if($validator->fails()){
+            return response()->error($validator->errors()->first());
+        }
+        $user_id = $request->input('user_id');
+        $password = $request->input('password');
+        if($user_id){//更新
+
+        }else{//新增
+
+        }
         $user = new User;
         $user->name = $params['name'];
         $user->password = bcrypt($params['password']);
