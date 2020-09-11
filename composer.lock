@@ -3159,16 +3159,16 @@
         },
         {
             "name": "nesbot/carbon",
-            "version": "2.39.1",
+            "version": "2.39.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/briannesbitt/Carbon.git",
-                "reference": "7af467873250583cc967a59ee9df29fabab193c1"
+                "reference": "326efde1bc09077a26cb77f6e2e32e13f06c27f2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/7af467873250583cc967a59ee9df29fabab193c1",
-                "reference": "7af467873250583cc967a59ee9df29fabab193c1",
+                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/326efde1bc09077a26cb77f6e2e32e13f06c27f2",
+                "reference": "326efde1bc09077a26cb77f6e2e32e13f06c27f2",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -3250,7 +3250,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2020-09-04T13:11:37+00:00"
+            "time": "2020-09-10T12:16:42+00:00"
         },
         {
             "name": "nikic/php-parser",
@@ -3467,16 +3467,16 @@
         },
         {
             "name": "overtrue/laravel-wechat",
-            "version": "5.0.7",
+            "version": "5.0.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/overtrue/laravel-wechat.git",
-                "reference": "feb3eca83910dac425390aaabcd89896686b9c34"
+                "reference": "88480ba5997711d2dbf345e1f8dd7d237391aacd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/overtrue/laravel-wechat/zipball/feb3eca83910dac425390aaabcd89896686b9c34",
-                "reference": "feb3eca83910dac425390aaabcd89896686b9c34",
+                "url": "https://api.github.com/repos/overtrue/laravel-wechat/zipball/88480ba5997711d2dbf345e1f8dd7d237391aacd",
+                "reference": "88480ba5997711d2dbf345e1f8dd7d237391aacd",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -3486,7 +3486,7 @@
                 ]
             },
             "require": {
-                "illuminate/container": "^5.1 || ^6.0 || ^7.0",
+                "illuminate/container": "^5.1 || ^6.0 || ^7.0 || ^8.0",
                 "overtrue/wechat": "^4.0"
             },
             "type": "library",
@@ -3522,7 +3522,7 @@
                 "wechat",
                 "weixin"
             ],
-            "time": "2020-07-28T04:23:13+00:00"
+            "time": "2020-09-11T01:15:30+00:00"
         },
         {
             "name": "overtrue/socialite",
@@ -5168,16 +5168,16 @@
         },
         {
             "name": "symfony/cache-contracts",
-            "version": "v1.1.9",
+            "version": "v1.1.10",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/cache-contracts.git",
-                "reference": "4638bdd93e14dddc171212258d0c6d8c95e95ced"
+                "reference": "8d5489c10ef90aa7413e4921fc3c0520e24cbed7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/cache-contracts/zipball/4638bdd93e14dddc171212258d0c6d8c95e95ced",
-                "reference": "4638bdd93e14dddc171212258d0c6d8c95e95ced",
+                "url": "https://api.github.com/repos/symfony/cache-contracts/zipball/8d5489c10ef90aa7413e4921fc3c0520e24cbed7",
+                "reference": "8d5489c10ef90aa7413e4921fc3c0520e24cbed7",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -5232,7 +5232,21 @@
                 "interoperability",
                 "standards"
             ],
-            "time": "2020-07-06T13:19:58+00:00"
+            "funding": [
+                {
+                    "url": "https://symfony.com/sponsor",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/fabpot",
+                    "type": "github"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
+                    "type": "tidelift"
+                }
+            ],
+            "time": "2020-09-02T16:08:58+00:00"
         },
         {
             "name": "symfony/console",
@@ -7326,16 +7340,16 @@
         },
         {
             "name": "symfony/translation-contracts",
-            "version": "v1.1.9",
+            "version": "v1.1.10",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/translation-contracts.git",
-                "reference": "a5db6f7707fd35d137b1398734f2d745c8616ea2"
+                "reference": "84180a25fad31e23bebd26ca09d89464f082cacc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/translation-contracts/zipball/a5db6f7707fd35d137b1398734f2d745c8616ea2",
-                "reference": "a5db6f7707fd35d137b1398734f2d745c8616ea2",
+                "url": "https://api.github.com/repos/symfony/translation-contracts/zipball/84180a25fad31e23bebd26ca09d89464f082cacc",
+                "reference": "84180a25fad31e23bebd26ca09d89464f082cacc",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -7389,7 +7403,21 @@
                 "interoperability",
                 "standards"
             ],
-            "time": "2020-07-06T13:19:58+00:00"
+            "funding": [
+                {
+                    "url": "https://symfony.com/sponsor",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/fabpot",
+                    "type": "github"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
+                    "type": "tidelift"
+                }
+            ],
+            "time": "2020-09-02T16:08:58+00:00"
         },
         {
             "name": "symfony/var-dumper",
@@ -7662,16 +7690,16 @@
         },
         {
             "name": "tymon/jwt-auth",
-            "version": "1.0.0",
+            "version": "1.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/tymondesigns/jwt-auth.git",
-                "reference": "d4cf9fd2b98790712d3e6cd1094e5ff018431f19"
+                "reference": "b927137cd5bd4d2f5d48a1ca71bc85006b99dbae"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tymondesigns/jwt-auth/zipball/d4cf9fd2b98790712d3e6cd1094e5ff018431f19",
-                "reference": "d4cf9fd2b98790712d3e6cd1094e5ff018431f19",
+                "url": "https://api.github.com/repos/tymondesigns/jwt-auth/zipball/b927137cd5bd4d2f5d48a1ca71bc85006b99dbae",
+                "reference": "b927137cd5bd4d2f5d48a1ca71bc85006b99dbae",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -7681,19 +7709,19 @@
                 ]
             },
             "require": {
-                "illuminate/auth": "^5.2|^6|^7",
-                "illuminate/contracts": "^5.2|^6|^7",
-                "illuminate/http": "^5.2|^6|^7",
-                "illuminate/support": "^5.2|^6|^7",
+                "illuminate/auth": "^5.2|^6|^7|^8",
+                "illuminate/contracts": "^5.2|^6|^7|^8",
+                "illuminate/http": "^5.2|^6|^7|^8",
+                "illuminate/support": "^5.2|^6|^7|^8",
                 "lcobucci/jwt": "^3.2",
                 "namshi/jose": "^7.0",
                 "nesbot/carbon": "^1.0|^2.0",
                 "php": "^5.5.9|^7.0"
             },
             "require-dev": {
-                "illuminate/console": "^5.2|^6|^7",
-                "illuminate/database": "^5.2|^6|^7",
-                "illuminate/routing": "^5.2|^6|^7",
+                "illuminate/console": "^5.2|^6|^7|^8",
+                "illuminate/database": "^5.2|^6|^7|^8",
+                "illuminate/routing": "^5.2|^6|^7|^8",
                 "mockery/mockery": ">=0.9.9",
                 "phpunit/phpunit": "~4.8|~6.0"
             },
@@ -7738,7 +7766,13 @@
                 "jwt",
                 "laravel"
             ],
-            "time": "2020-03-04T11:21:28+00:00"
+            "funding": [
+                {
+                    "url": "https://www.patreon.com/seantymon",
+                    "type": "patreon"
+                }
+            ],
+            "time": "2020-09-08T12:29:20+00:00"
         },
         {
             "name": "upyun/sdk",

@@ -42,7 +42,7 @@ class EmployeeController
             //'avatar' => 'nullable',
             'phone' => 'required|phone',
             'id_card' => 'required',
-            'email' => 'required',
+            'email' => 'required|email',
             //'password' => 'nullable',
             //'emergency' => 'nullable',
             'emergency_phone' => 'nullable|phone'
