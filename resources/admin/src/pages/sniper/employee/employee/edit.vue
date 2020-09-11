@@ -9,80 +9,118 @@
                 </div>
             </div>
             <div class="l-block-body">
-
-                <el-form ref="form" :model="form" label-width="130px" style="width: 50%;overflow-y: visible">
-                    <el-form-item label="所属部门">
-                        <tree-select v-model="form.department_id" :multiple="false" :options="departments"  :default-expand-level="10" :normalizer="normalizer" />
-                    </el-form-item>
-                    <!--<el-form-item label="标签">-->
-                    <!--<el-input v-model="form.tag"></el-input>-->
-                    <!--</el-form-item>-->
-                    <el-form-item label="职位">
-                        <tree-select v-model="form.position_id" :multiple="false" :options="positions"  :default-expand-level="10" :normalizer="normalizer" />
-                    </el-form-item>
-                    <el-form-item label="真实姓名">
-                        <el-input v-model="form.real_name"></el-input>
-                    </el-form-item>
-                    <el-form-item label="性别">
-                        <div>
-                            <el-radio v-model="form.gender" :label="1" border>男</el-radio>
-                            <el-radio v-model="form.gender" :label="2" border>女</el-radio>
+                <el-tabs v-model="activeName" @tab-click="handleClick" type="border-card">
+                    <el-tab-pane label="基本信息" name="basic">
+                        <el-form ref="form" :model="form" label-width="130px" style="width: 50%;overflow-y: visible;padding-top: 20px;">
+                            <el-form-item label="所属部门*">
+                                <tree-select v-model="form.department_id" :multiple="false" :options="departments"  :default-expand-level="10" :normalizer="normalizer" />
+                            </el-form-item>
+                            <el-form-item label="职位*">
+                                <tree-select v-model="form.position_id" :multiple="false" :options="positions"  :default-expand-level="10" :normalizer="normalizer" />
+                            </el-form-item>
+                            <el-form-item label="真实姓名*">
+                                <el-input v-model="form.real_name"></el-input>
+                            </el-form-item>
+                            <el-form-item label="性别*">
+                                <div>
+                                    <el-radio v-model="form.gender" :label="1" border>男</el-radio>
+                                    <el-radio v-model="form.gender" :label="2" border>女</el-radio>
+                                </div>
+                            </el-form-item>
+                            <el-form-item label="头像">
+                                <image-upload v-model="form.avatar"></image-upload>
+                            </el-form-item>
+                            <el-form-item label="手机号*">
+                                <el-input v-model="form.phone"></el-input>
+                            </el-form-item>
+                            <el-form-item label="身份证号">
+                                <el-input v-model="form.id_card"></el-input>
+                            </el-form-item>
+                            <el-form-item label="公司邮箱">
+                                <el-input v-model="form.email"></el-input>
+                            </el-form-item>
+                            <el-form-item label="初始密码">
+                                <el-input type="password" v-model="form.password" auto-complete="new-password" :placeholder="passwordHolder"></el-input>
+                            </el-form-item>
+                            <el-form-item label="紧急联系人">
+                                <el-input v-model="form.emergency"></el-input>
+                            </el-form-item>
+                            <el-form-item label="紧急联系人手机号">
+                                <el-input v-model="form.emergency_phone"></el-input>
+                            </el-form-item>
+                        </el-form>
+                    </el-tab-pane>
+                    <el-tab-pane label="扩展信息" name="extend">
+                        <el-form ref="form" :model="form" label-width="130px" style="width: 50%;overflow-y: visible;padding-top: 20px;">
+                            <el-form-item label="婚姻状况">
+                                <el-input v-model="form.marital"></el-input>
+                            </el-form-item>
+                            <el-form-item label="配偶姓名">
+                                <el-input v-model="form.mate"></el-input>
+                            </el-form-item>
+                            <el-form-item label="子女数">
+                                <el-input v-model="form.children"></el-input>
+                            </el-form-item>
+                            <el-form-item label="工作地点">
+                                <el-input v-model="form.work_place"></el-input>
+                            </el-form-item>
+                            <el-form-item label="籍贯">
+                                <el-input v-model="form.native_land"></el-input>
+                            </el-form-item>
+                            <el-form-item label="生日">
+                                <el-input v-model="form.birthday"></el-input>
+                            </el-form-item>
+                            <el-form-item label="标签">
+                            <el-input v-model="form.tag"></el-input>
+                            </el-form-item>
+                        </el-form>
+                    </el-tab-pane>
+                    <el-tab-pane label="教育经历" name="education">
+                        <el-button type="primary" icon="el-icon-plus" circle style="float: right;margin-bottom: 10px;" @click="showEducationForm"></el-button>
+                        <div style="overflow-y: visible;">
+                            <el-table
+                                    border
+                                    :data="form.educationHistory"
+                                    style="width: 100%">
+                                <el-table-column
+                                        label="起止时间"
+                                        width="200px">
+                                    <template slot-scope="scope">
+                                        {{scope.row.start_time}} ~ {{scope.row.end_time}}
+                                    </template>
+                                </el-table-column>
+                                <el-table-column
+                                        prop="school"
+                                        label="学校"
+                                        width="180">
+                                </el-table-column>
+                                <el-table-column
+                                        prop="specialize"
+                                        label="专业">
+                                </el-table-column>
+                                <el-table-column
+                                        prop="degree"
+                                        label="学位">
+                                </el-table-column>
+                                <el-table-column
+                                        label="是否统招">
+                                    <template slot-scope="scope">
+                                        {{scope.row.unified ? '是':'否'}}
+                                    </template>
+                                </el-table-column>
+                                <el-table-column
+                                        label="操作">
+                                    <template slot-scope="scope">
+                                        <el-button type="text" @click="editEducation(scope.row)">编辑</el-button>
+                                        <el-button type="text" @click="delEducation(scope.row)">删除</el-button>
+                                    </template>
+                                </el-table-column>
+                            </el-table>
+                            <education style="margin-top: 20px;" v-show="showEducationFlag" :default-data="education" @cancel="hideEducationForm"></education>
                         </div>
-                    </el-form-item>
-                    <el-form-item label="头像">
-                        <image-upload v-model="form.avatar"></image-upload>
-                    </el-form-item>
-                    <el-form-item label="手机号">
-                        <el-input v-model="form.phone"></el-input>
-                    </el-form-item>
-
-                    <!--<el-form-item label="工作地点">-->
-                        <!--<el-input v-model="form.work_place"></el-input>-->
-                    <!--</el-form-item>-->
-
-                    <!--<el-form-item label="籍贯">-->
-                        <!--<el-input v-model="form.native_land"></el-input>-->
-                    <!--</el-form-item>-->
-                    <!--<el-form-item label="生日">-->
-                        <!--<el-input v-model="form.birthday"></el-input>-->
-                    <!--</el-form-item>-->
-                    <el-form-item label="身份证号">
-                        <el-input v-model="form.id_card"></el-input>
-                    </el-form-item>
-                    <el-form-item label="公司邮箱">
-                        <el-input v-model="form.email"></el-input>
-                    </el-form-item>
-                    <el-form-item label="初始密码">
-                        <el-input type="password" v-model="form.password" auto-complete="new-password" :placeholder="passwordHolder"></el-input>
-                    </el-form-item>
-                    <!--<el-form-item label="学校">-->
-                        <!--<el-input v-model="form.school"></el-input>-->
-                    <!--</el-form-item>-->
-                    <!--<el-form-item label="学习时间">-->
-                        <!--<el-input v-model="form.study_duration"></el-input>-->
-                    <!--</el-form-item>-->
-                    <!--<el-form-item label="学位">-->
-                        <!--<el-input v-model="form.degree"></el-input>-->
-                    <!--</el-form-item>-->
-                    <!--<el-form-item label="婚姻状况">-->
-                        <!--<el-input v-model="form.marital"></el-input>-->
-                    <!--</el-form-item>-->
-                    <!--<el-form-item label="配偶">-->
-                        <!--<el-input v-model="form.mate"></el-input>-->
-                    <!--</el-form-item>-->
-                    <!--<el-form-item label="子女数量">-->
-                        <!--<el-input v-model="form.children"></el-input>-->
-                    <!--</el-form-item>-->
-                    <el-form-item label="紧急联系人">
-                        <el-input v-model="form.emergency"></el-input>
-                    </el-form-item>
-                    <el-form-item label="紧急联系人手机号">
-                        <el-input v-model="form.emergency_phone"></el-input>
-                    </el-form-item>
-                </el-form>
-                <!--<el-divider content-position="left">扩展资料</el-divider>-->
-                <!--<el-form ref="form" :model="form" label-width="100px" style="width: 50%;overflow-y: visible">-->
-                <!--</el-form>-->
+                    </el-tab-pane>
+                    <el-tab-pane label="工作经历" name="jobs">工作经历</el-tab-pane>
+                </el-tabs>
             </div>
         </div>
     </div>
@@ -93,6 +131,7 @@
     import TreeSelect from '@riophae/vue-treeselect'
     import '@riophae/vue-treeselect/dist/vue-treeselect.css'
     import imageUpload from "@/components/imageUpload"
+    import Education from '../components/Education'
 
     const removeEmptyChildren = function(data){
         if(!data.children.length){
@@ -105,9 +144,10 @@
     }
 
     export default {
-        components: { TreeSelect, imageUpload },
+        components: { TreeSelect, imageUpload, Education },
         data(){
             return {
+                activeName: 'education',
                 bread_title: '新增员工',
                 value: null,
                 passwordHolder: '',
@@ -133,10 +173,40 @@
                     children: '',
                     emergency:'',
                     emergency_phone:'',
-                    avatar: ''
+                    avatar: '',
+                    educationHistory: [
+                        {
+                            id: null,
+                            start_time: '2020-01',
+                            end_time: '2020-01',
+                            school: '哈尔滨工程大学',
+                            specialize: '软件工程',
+                            degree: '学士',
+                            unified: 1
+                        },
+                        {
+                            id: null,
+                            start_time: '2020-01',
+                            end_time: '2020-01',
+                            school: '哈尔滨工业大学',
+                            specialize: '航空航天',
+                            degree: '学士',
+                            unified: 1
+                        },
+                    ]
                 },
                 departments: [],
-                positions: []
+                positions: [],
+                education: {
+                    id: null,
+                    start_time: null,
+                    end_time: null,
+                    school: null,
+                    specialize: null,
+                    degree: null,
+                    unified: 1
+                },
+                showEducationFlag: false
             }
         },
         watch:{
@@ -145,6 +215,33 @@
             }
         },
         methods:{
+            showEducationForm(){
+                this.showEducationFlag =  true
+            },
+            hideEducationForm(){
+                this.showEducationFlag = false
+            },
+            assignEducationForm(education){
+                this.education.id = education.id
+                this.education.start_time = education.start_time
+                this.education.end_time = education.end_time
+                this.education.school = education.school
+                this.education.specialize = education.specialize
+                this.education.specialize = education.specialize
+                this.education.degree = education.degree
+                this.education.unified = education.unified
+            },
+            editEducation(row){
+                this.showEducationForm = true
+                this.assignEducationForm(row)
+
+            },
+            delEducation(row){
+
+            },
+            handleClick(tab, event) {
+                console.log(tab, event);
+            },
             assignForm(employee){
                     this.form.user_id = employee.user_id
                     this.form.real_name = employee.real_name
@@ -152,22 +249,26 @@
                     //this.form.tag = employee.tag
                     this.form.position_id = employee.position_id
                     this.form.phone = employee.phone
-                    //this.form.work_place = employee.work_place
+
                     this.form.gender = employee.gender
-                    //this.form.native_land = employee.native_land
-                    //this.form.birthday = employee.birthday
+
                     this.form.id_card = employee.id_card
                     this.form.email = employee.user.email
                     this.form.password = undefined
                     /*this.form.school = employee.school
                     this.form.study_duration = employee.study_duration
                     this.form.degree = employee.degree
-                    this.form.marital = employee.marital
-                    this.form.mate = employee.mate
-                    this.form.children = employee.children*/
+                    */
                     this.form.emergency = employee.emergency
                     this.form.emergency_phone = employee.emergency_phone
                     this.form.avatar = employee.avatar
+                //extend
+                    this.form.marital = employee.marital
+                    this.form.mate = employee.mate
+                    this.form.children = employee.children
+                    this.form.work_place = employee.work_place
+                    this.form.native_land = employee.native_land
+                    this.form.birthday = employee.birthday
             },
             async getEmployeeDetail(id){
                 let {data} = await api.sniperGetEmployeeDetail({id})
@@ -188,7 +289,8 @@
             async save(){
                 let res = await api.sniperSaveEmployee(this.form)
                 if(!res.hasError){
-                    this.showMessage('添加成功！', 'success')
+                    let msg = !this.form.user_id ? '添加成功' : '更新成功'
+                    this.showMessage(msg, 'success')
                     this.$router.push('/sniper/employee/employee/list')
                 }else{
                     this.showMessage(res.error, 'error')

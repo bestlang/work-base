@@ -74,7 +74,7 @@ class EmployeeController
                 'email' => $params['email'],
             ];
             if($password){
-                $userData['password'] = $password;
+                $userData['password'] = bcrypt($password);
             }
             $user->update($userData);
             $user->employee->real_name = $params['real_name'];
@@ -84,6 +84,7 @@ class EmployeeController
             $user->employee->gender = $params['gender'];
             $user->employee->id_card = $params['id_card'];
             $user->push();
+            return response()->ajax();
         }else{//新增
             $user = new User;
             $user->name = $params['real_name'];

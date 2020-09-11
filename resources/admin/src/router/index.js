@@ -103,7 +103,7 @@ export default new VueRouter({
                       meta: {
                           can: 'cms',
                           show: false,
-                          name: '新增员工',
+                          name: '新增/编辑员工',
                           font: '&#xe614;'
                       }
                   },

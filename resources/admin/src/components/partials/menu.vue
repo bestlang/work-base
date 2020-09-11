@@ -1,4 +1,7 @@
 <style scoped lang="less">
+    .ls-top-logo{
+        color: #00a2d4;
+    }
     .ls-top-logo, .ls-top-logo-narrow{
         line-height: 50px;
         font-size: 18px;
@@ -12,7 +15,9 @@
 <template>
     <div class="l-menu-wrap">
         <!--™-->
-        <div class="ls-top-logo" v-show="!isCollapse">{{appName}}内部系统</div>
+        <div class="ls-top-logo" v-show="!isCollapse">
+            <b>{{appName}}</b><b>管理面板</b>
+        </div>
         <div class="ls-top-logo-narrow" v-show="isCollapse">{{appShortName}}</div>
         <el-menu
                 :unique-opened="true"
