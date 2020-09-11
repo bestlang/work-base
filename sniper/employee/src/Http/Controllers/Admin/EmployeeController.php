@@ -6,13 +6,14 @@ use Sniper\Employee\Models\Department;
 use Sniper\Employee\Models\User;
 use Sniper\Employee\Models\Employee;
 use Validator;
+use Arr;
 
 class EmployeeController
 {
     public function detail(Request $request)
     {
         $id = $request->input('id');
-        $user = Employee::with('user')->find($id);
+        $user = Employee::with(['user', 'education'])->find($id);
         return response()->ajax($user);
     }
     public function departmentEmployee(Request $request)
@@ -84,6 +85,22 @@ class EmployeeController
             $user->employee->gender = $params['gender'];
             $user->employee->id_card = $params['id_card'];
             $user->push();
+            ///存储教育经历
+            $educationHistory = $request->input('educationHistory');
+            foreach ($educationHistory as $education){
+                    if($education['id']){
+                        $dirty = Arr::except($education, ['id']);
+                        $model = $user->employee->education()->find($education['id']);
+                        if($model){
+                            $model->update($dirty);
+                        }else{//id找不到或者为临时fake id
+                            $user->employee->education()->create($dirty);
+                        }
+                    }else{
+                        $user->employee->education()->create($education);
+                    }
+            }
+            ///
             return response()->ajax();
         }else{//新增
             $user = new User;

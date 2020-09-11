@@ -23,4 +23,9 @@ class Employee extends Model
         return $this->belongsTo(Position::class);
     }
 
+    public function education()
+    {
+        return $this->hasMany(Education::class, 'user_id', 'user_id');
+    }
+
 }

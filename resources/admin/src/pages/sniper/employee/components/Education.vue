@@ -1,19 +1,21 @@
 <template>
     <el-card class="box-card" shadow="hover">
         <el-form :model="form" label-width="80px">
-            <el-form-item label="起止年月">
+            <el-form-item label="起止日期">
                 <el-date-picker
                         :editable="false"
                         v-model="form.start_time"
                         type="month"
-                        placeholder="开始年月">
+                        value-format="yyyy-MM"
+                        placeholder="开始日期">
                 </el-date-picker>
                  ~
                 <el-date-picker
                         :editable="false"
                         v-model="form.end_time"
                         type="month"
-                        placeholder="结束年月">
+                        value-format="yyyy-MM"
+                        placeholder="结束日期">
                 </el-date-picker>
             </el-form-item>
             <el-form-item label="学校名称">
@@ -32,7 +34,7 @@
                 </div>
             </el-form-item>
             <el-form-item>
-                <el-button type="primary">确定</el-button>
+                <el-button type="primary" @click="submit">确定</el-button>
                 <el-button type="warning" @click="cancel">取消</el-button>
             </el-form-item>
         </el-form>
@@ -83,6 +85,9 @@
             },
             cancel(){
                 this.$emit('cancel')
+            },
+            submit(){
+                this.$emit('submit', this.form)
             }
         },
         mounted(){}

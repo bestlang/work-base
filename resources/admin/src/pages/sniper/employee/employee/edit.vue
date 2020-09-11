@@ -76,7 +76,10 @@
                         </el-form>
                     </el-tab-pane>
                     <el-tab-pane label="教育经历" name="education">
-                        <el-button type="primary" icon="el-icon-plus" circle style="float: right;margin-bottom: 10px;" @click="showEducationForm"></el-button>
+                        <div class="l-flex">
+                            <div><i>从最高学历开始填写</i></div>
+                            <el-button type="primary" icon="el-icon-plus" circle style="margin-bottom: 10px;" @click="addEducation"></el-button>
+                        </div>
                         <div style="overflow-y: visible;">
                             <el-table
                                     border
@@ -116,7 +119,7 @@
                                     </template>
                                 </el-table-column>
                             </el-table>
-                            <education style="margin-top: 20px;" v-show="showEducationFlag" :default-data="education" @cancel="hideEducationForm"></education>
+                            <education style="margin-top: 20px;" v-show="showEducationFlag" :default-data="education" @cancel="hideEducationForm" @submit="restoreEducation"></education>
                         </div>
                     </el-tab-pane>
                     <el-tab-pane label="工作经历" name="jobs">工作经历</el-tab-pane>
@@ -174,31 +177,12 @@
                     emergency:'',
                     emergency_phone:'',
                     avatar: '',
-                    educationHistory: [
-                        {
-                            id: null,
-                            start_time: '2020-01',
-                            end_time: '2020-01',
-                            school: '哈尔滨工程大学',
-                            specialize: '软件工程',
-                            degree: '学士',
-                            unified: 1
-                        },
-                        {
-                            id: null,
-                            start_time: '2020-01',
-                            end_time: '2020-01',
-                            school: '哈尔滨工业大学',
-                            specialize: '航空航天',
-                            degree: '学士',
-                            unified: 1
-                        },
-                    ]
+                    educationHistory: []
                 },
                 departments: [],
                 positions: [],
                 education: {
-                    id: null,
+                    id: '',
                     start_time: null,
                     end_time: null,
                     school: null,
@@ -231,13 +215,46 @@
                 this.education.degree = education.degree
                 this.education.unified = education.unified
             },
+            addEducation(){
+                this.showEducationForm()
+                this.education.id =  'temp_' + Math.random().toString().substr(2)
+                this.education.start_time = ''
+                this.education.send_time = ''
+                this.education.school = ''
+                this.education.specialize = ''
+                this.education.degree = ''
+                this.education.unified = 1
+            },
             editEducation(row){
-                this.showEducationForm = true
+                this.showEducationForm()
                 this.assignEducationForm(row)
 
             },
             delEducation(row){
 
+            },
+            //暂存教育信息
+            restoreEducation(education){
+                let found = false
+                for(let idx in this.form.educationHistory){
+                    if(this.form.educationHistory[idx].id == education.id){
+                        let theOne = this.form.educationHistory[idx]
+                        theOne.start_time = education.start_time
+                        theOne.end_time = education.end_time
+                        theOne.school = education.school
+                        theOne.specialize = education.specialize
+                        theOne.degree = education.degree
+                        theOne.unified = education.unified
+                        found = true
+                        break
+                    }
+                }
+                if(!found){//没找到
+                    this.form.educationHistory.push(education)
+                }
+
+                this.hideEducationForm()
+                this.showMessage('点击保存存储教育经历', 'warning')
             },
             handleClick(tab, event) {
                 console.log(tab, event);
@@ -255,10 +272,7 @@
                     this.form.id_card = employee.id_card
                     this.form.email = employee.user.email
                     this.form.password = undefined
-                    /*this.form.school = employee.school
-                    this.form.study_duration = employee.study_duration
-                    this.form.degree = employee.degree
-                    */
+
                     this.form.emergency = employee.emergency
                     this.form.emergency_phone = employee.emergency_phone
                     this.form.avatar = employee.avatar
@@ -269,10 +283,11 @@
                     this.form.work_place = employee.work_place
                     this.form.native_land = employee.native_land
                     this.form.birthday = employee.birthday
+                // education
+                    this.form.educationHistory = employee.education
             },
             async getEmployeeDetail(id){
                 let {data} = await api.sniperGetEmployeeDetail({id})
-                console.log(JSON.stringify(data))
                 this.assignForm(data)
             },
             //tree select 节点数据适应
