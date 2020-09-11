@@ -122,7 +122,13 @@
                             <education style="margin-top: 20px;" v-show="showEducationFlag" :default-data="education" @cancel="hideEducationForm" @submit="restoreEducation"></education>
                         </div>
                     </el-tab-pane>
-                    <el-tab-pane label="工作经历" name="jobs">工作经历</el-tab-pane>
+                    <el-tab-pane label="工作经历" name="jobs">
+                        <div class="l-flex">
+                            <div><i>从最近工作经历开始填写</i></div>
+                            <el-button type="primary" icon="el-icon-plus" circle style="margin-bottom: 10px;" @click="addJob"></el-button>
+                        </div>
+                        <job></job>
+                    </el-tab-pane>
                 </el-tabs>
             </div>
         </div>
@@ -135,6 +141,7 @@
     import '@riophae/vue-treeselect/dist/vue-treeselect.css'
     import imageUpload from "@/components/imageUpload"
     import Education from '../components/Education'
+    import Job from '../components/Job'
 
     const removeEmptyChildren = function(data){
         if(!data.children.length){
@@ -147,7 +154,7 @@
     }
 
     export default {
-        components: { TreeSelect, imageUpload, Education },
+        components: { TreeSelect, imageUpload, Education, Job },
         data(){
             return {
                 activeName: 'education',
@@ -224,6 +231,9 @@
                 this.education.specialize = ''
                 this.education.degree = ''
                 this.education.unified = 1
+            },
+            addJob(){
+
             },
             editEducation(row){
                 this.showEducationForm()
