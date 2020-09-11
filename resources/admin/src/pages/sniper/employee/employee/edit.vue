@@ -10,7 +10,7 @@
             </div>
             <div class="l-block-body">
 
-                <el-form ref="form" :model="form" label-width="120px" style="width: 50%;overflow-y: visible">
+                <el-form ref="form" :model="form" label-width="130px" style="width: 50%;overflow-y: visible">
                     <el-form-item label="所属部门">
                         <tree-select v-model="form.department_id" :multiple="false" :options="departments"  :default-expand-level="10" :normalizer="normalizer" />
                     </el-form-item>
@@ -53,7 +53,7 @@
                         <el-input v-model="form.email"></el-input>
                     </el-form-item>
                     <el-form-item label="初始密码">
-                        <el-input type="password" v-model="form.password" auto-complete="new-password"></el-input>
+                        <el-input type="password" v-model="form.password" auto-complete="new-password" :placeholder="passwordHolder"></el-input>
                     </el-form-item>
                     <!--<el-form-item label="学校">-->
                         <!--<el-input v-model="form.school"></el-input>-->
@@ -76,7 +76,7 @@
                     <el-form-item label="紧急联系人">
                         <el-input v-model="form.emergency"></el-input>
                     </el-form-item>
-                    <el-form-item label="紧急联系人电话">
+                    <el-form-item label="紧急联系人手机号">
                         <el-input v-model="form.emergency_phone"></el-input>
                     </el-form-item>
                 </el-form>
@@ -110,6 +110,7 @@
             return {
                 bread_title: '新增员工',
                 value: null,
+                passwordHolder: '',
                 form: {
                     user_id: 0,
                     real_name: '',
@@ -224,6 +225,7 @@
             if(employee_id){
                 this.form.user_id = employee_id
                 this.bread_title = '编辑员工'
+                this.passwordHolder = '不修改密码请留空'
             }
         }
     }

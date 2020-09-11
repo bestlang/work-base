@@ -16,5 +16,5 @@ Route::group(['prefix'=>'admin/sniper/employee', 'namespace'=>'Admin'], function
 
         Route::post('/save/employee', 'EmployeeController@save');
         Route::any('/department/employee', 'EmployeeController@departmentEmployee');
-
+        Route::any('/get/employee/detail', 'EmployeeController@detail');
 });
