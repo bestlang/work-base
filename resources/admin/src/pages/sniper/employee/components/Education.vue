@@ -1,7 +1,7 @@
 <template>
     <el-card class="box-card" shadow="hover">
         <el-form :model="form" label-width="80px">
-            <el-form-item label="起止日期">
+            <el-form-item label="起止日期*">
                 <el-date-picker
                         :editable="false"
                         v-model="form.start_time"
@@ -18,7 +18,7 @@
                         placeholder="结束日期">
                 </el-date-picker>
             </el-form-item>
-            <el-form-item label="学校名称">
+            <el-form-item label="学校名称*">
                 <el-input v-model="form.school"></el-input>
             </el-form-item>
             <el-form-item label="专业">

@@ -13,7 +13,7 @@ class EmployeeController
     public function detail(Request $request)
     {
         $id = $request->input('id');
-        $user = Employee::with(['user', 'education'])->find($id);
+        $user = Employee::with(['user', 'education', 'job'])->find($id);
         return response()->ajax($user);
     }
     public function departmentEmployee(Request $request)
@@ -46,7 +46,18 @@ class EmployeeController
             'email' => 'required|email',
             //'password' => 'nullable',
             //'emergency' => 'nullable',
-            'emergency_phone' => 'nullable|phone'
+            'emergency_phone' => 'nullable|phone',
+            //教育信息
+            'educationHistory.*.start_time' => 'required',
+            'educationHistory.*.end_time' => 'required|after:educationHistory.*.start_time',
+            'educationHistory.*.school' => 'required',
+            'educationHistory.*.unified' => 'required',
+            //工作信息
+            'jobHistory.*.start_time' => 'required',
+            'jobHistory.*.end_time' => 'required|after:jobHistory.*.start_time',
+            'jobHistory.*.company' => 'required',
+            'jobHistory.*.position' => 'required',
+            'jobHistory.*.witness_phone' => 'phone|nullable',
         ];
         $info = [
             'department_id.required' => '请选择部门',
@@ -60,7 +71,20 @@ class EmployeeController
             'phone.required' => '请输入手机号',
             'id_card.required' => '请录入身份证号',
             'email.required' => '请录入公司邮箱',
-            'emergency_phone.phone' => '请录入合法的紧急联系人手机号'
+            'emergency_phone.phone' => '请录入合法的紧急联系人手机号',
+
+            'educationHistory.*.start_time.required' => '教育经历开始日期必填',
+            'educationHistory.*.end_time.required' => '教育经历结束日期必填',
+            'educationHistory.*.end_time.after' => '教育经历结束日期不得小于开始日期',
+            'educationHistory.*.school.required' => '教育经历学校必填',
+            'educationHistory.*.unified.required' => '',
+
+            'jobHistory.*.start_time.required' => '工作经历开始日期必填',
+            'jobHistory.*.end_time.required' => '工作经历结束日期必填',
+            'jobHistory.*.end_time.after' => '工作经历结束日期不得小于开始日期',
+            'jobHistory.*.company.required' => '工作经历企业必填',
+            'jobHistory.*.position.required '=> '工作经历岗位必填',
+            'jobHistory.*.witness_phone.phone' => '证明人电话格式不正确'
         ];
         $validator = Validator::make($params, $rules , $info , []);
         if($validator->fails()){
@@ -88,17 +112,25 @@ class EmployeeController
             ///存储教育经历
             $educationHistory = $request->input('educationHistory');
             foreach ($educationHistory as $education){
-                    if($education['id']){
-                        $dirty = Arr::except($education, ['id']);
-                        $model = $user->employee->education()->find($education['id']);
-                        if($model){
-                            $model->update($dirty);
-                        }else{//id找不到或者为临时fake id
-                            $user->employee->education()->create($dirty);
-                        }
-                    }else{
-                        $user->employee->education()->create($education);
-                    }
+                $data = Arr::except($education, ['id']);
+                $model = $user->employee->education()->find($education['id']);
+                if($model){
+                    $model->update($data);
+                }else{//id找不到或者为临时fake id
+                    $user->employee->education()->create($data);
+                }
+            }
+            ///
+            ///存储工作经历
+            $jobHistory = $request->input('jobHistory');
+            foreach ($jobHistory as $job){
+                $data = Arr::except($job, ['id']);
+                $model = $user->employee->job()->find($job['id']);
+                if($model){
+                    $model->update($data);
+                }else{//id找不到或者为临时fake id
+                    $user->employee->job()->create($data);
+                }
             }
             ///
             return response()->ajax();
@@ -117,6 +149,20 @@ class EmployeeController
                 'id_card' => $params['id_card'],
                 'avatar' => $params['avatar'],
             ]);
+            ///存储教育经历
+            $educationHistory = $request->input('educationHistory');
+            foreach ($educationHistory as $education){
+                $row = Arr::except($education, ['id']);
+                $user->employee->education()->create($row);
+            }
+            ///
+            ///存储工作经历
+            $jobHistory = $request->input('jobHistory');
+            foreach ($jobHistory as $job){
+                $row = Arr::except($job, ['id']);
+                $user->employee->job()->create($row);
+            }
+            ///
             return response()->ajax($user);
         }
     }

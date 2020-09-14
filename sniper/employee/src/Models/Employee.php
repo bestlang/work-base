@@ -28,4 +28,9 @@ class Employee extends Model
         return $this->hasMany(Education::class, 'user_id', 'user_id');
     }
 
+    public function job()
+    {
+        return $this->hasMany(Job::class, 'user_id', 'user_id');
+    }
+
 }

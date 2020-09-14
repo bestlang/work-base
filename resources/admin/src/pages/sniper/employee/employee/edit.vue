@@ -95,7 +95,7 @@
                                 <el-table-column
                                         prop="school"
                                         label="学校"
-                                        width="180">
+                                        width="220">
                                 </el-table-column>
                                 <el-table-column
                                         prop="specialize"
@@ -106,7 +106,7 @@
                                         label="学位">
                                 </el-table-column>
                                 <el-table-column
-                                        label="是否统招">
+                                        label="是否统招*">
                                     <template slot-scope="scope">
                                         {{scope.row.unified ? '是':'否'}}
                                     </template>
@@ -127,7 +127,47 @@
                             <div><i>从最近工作经历开始填写</i></div>
                             <el-button type="primary" icon="el-icon-plus" circle style="margin-bottom: 10px;" @click="addJob"></el-button>
                         </div>
-                        <job></job>
+                            <el-table
+                                    border
+                                    :data="form.jobHistory"
+                                    style="width: 100%">
+                                <el-table-column
+                                        label="起止时间"
+                                        width="200px">
+                                    <template slot-scope="scope">
+                                        {{scope.row.start_time}} ~ {{scope.row.end_time}}
+                                    </template>
+                                </el-table-column>
+                                <el-table-column
+                                        prop="company"
+                                        label="公司"
+                                        width="220">
+                                </el-table-column>
+                                <el-table-column
+                                        prop="position"
+                                        label="岗位">
+                                </el-table-column>
+                                <el-table-column
+                                        prop="salary"
+                                        label="薪酬">
+                                </el-table-column>
+                                <el-table-column
+                                        prop="reason"
+                                        label="离职原因">
+                                </el-table-column>
+                                <el-table-column
+                                        prop="witness_phone"
+                                        label="证明人电话">
+                                </el-table-column>
+                                <el-table-column
+                                        label="操作">
+                                    <template slot-scope="scope">
+                                        <el-button type="text" @click="editJob(scope.row)">编辑</el-button>
+                                        <el-button type="text" @click="delJob(scope.row)">删除</el-button>
+                                    </template>
+                                </el-table-column>
+                            </el-table>
+                        <job style="margin-top: 20px;" v-show="showJobFlag" :default-data="job" @cancel="hideJobForm" @submit="restoreJob"></job>
                     </el-tab-pane>
                 </el-tabs>
             </div>
@@ -184,7 +224,8 @@
                     emergency:'',
                     emergency_phone:'',
                     avatar: '',
-                    educationHistory: []
+                    educationHistory: [],
+                    jobHistory: []
                 },
                 departments: [],
                 positions: [],
@@ -197,7 +238,18 @@
                     degree: null,
                     unified: 1
                 },
-                showEducationFlag: false
+                job: {
+                    id: '',
+                    start_time: null,
+                    end_time: null,
+                    company: null,
+                    position: null,
+                    salary: 0,
+                    reason: '',
+                    witness_phone: ''
+                },
+                showEducationFlag: false,
+                showJobFlag: false,
             }
         },
         watch:{
@@ -212,6 +264,12 @@
             hideEducationForm(){
                 this.showEducationFlag = false
             },
+            showJobForm(){
+                this.showJobFlag =  true
+            },
+            hideJobForm(){
+                this.showJobFlag = false
+            },
             assignEducationForm(education){
                 this.education.id = education.id
                 this.education.start_time = education.start_time
@@ -222,9 +280,19 @@
                 this.education.degree = education.degree
                 this.education.unified = education.unified
             },
+            assignJobForm(job){
+                this.job.id = job.id
+                this.job.start_time = job.start_time
+                this.job.end_time = job.end_time
+                this.job.company = job.company
+                this.job.position = job.position
+                this.job.salary = job.salary
+                this.job.reason = job.reason
+                this.job.witness_phone = job.witness_phone
+            },
             addEducation(){
                 this.showEducationForm()
-                this.education.id =  'temp_' + Math.random().toString().substr(2)
+                this.education.id = 'temp_' + Math.random().toString().substr(2)
                 this.education.start_time = ''
                 this.education.send_time = ''
                 this.education.school = ''
@@ -233,15 +301,69 @@
                 this.education.unified = 1
             },
             addJob(){
-
+                this.showJobForm()
+                this.job.id = 'temp_' + Math.random().toString().substr(2)
+                this.job.start_time = ''
+                this.job.send_time = ''
+                this.job.company = ''
+                this.job.position = ''
+                this.job.salary = ''
+                this.job.reason = ''
+                this.job.witness_phone = ''
             },
             editEducation(row){
                 this.showEducationForm()
                 this.assignEducationForm(row)
-
+            },
+            editJob(row){
+                this.showJobForm()
+                this.assignJobForm(row)
             },
             delEducation(row){
-
+                this.$confirm('确定删除本条教育经历?', '提示', {
+                    confirmButtonText: '确定',
+                    cancelButtonText: '取消',
+                    type: 'warning'
+                }).then(async () => {
+                    let user_id = this.form.user_id
+                    let id = row.id
+                    let res = await api.sniperDeleteEmployeeEducation({user_id, id})
+                    if(!res.hasError){
+                        let selectedIndex = -1
+                        for(let idx in this.form.educationHistory){
+                            if(this.form.educationHistory[idx].id == row.id){
+                                selectedIndex = idx
+                                break
+                            }
+                        }
+                        if(selectedIndex != -1){
+                            this.form.educationHistory.splice(selectedIndex, 1)
+                        }
+                    }
+                })
+            },
+            delJob(row){
+                this.$confirm('确定删除本条工作经历?', '提示', {
+                    confirmButtonText: '确定',
+                    cancelButtonText: '取消',
+                    type: 'warning'
+                }).then(async () => {
+                    let user_id = this.form.user_id
+                    let id = row.id
+                    let res = await api.sniperDeleteEmployeeJob({user_id, id})
+                    if(!res.hasError){
+                        let selectedIndex = -1
+                        for(let idx in this.form.jobHistory){
+                            if(this.form.jobHistory[idx].id == row.id){
+                                selectedIndex = idx
+                                break
+                            }
+                        }
+                        if(selectedIndex != -1){
+                            this.form.jobHistory.splice(selectedIndex, 1)
+                        }
+                    }
+                })
             },
             //暂存教育信息
             restoreEducation(education){
@@ -264,7 +386,30 @@
                 }
 
                 this.hideEducationForm()
-                this.showMessage('点击保存存储教育经历', 'warning')
+                this.showMessage('点击“保存”按钮存储教育经历', 'info')
+            },
+            restoreJob(job){
+                let found = false
+                for(let idx in this.form.jobHistory){
+                    if(this.form.jobHistory[idx].id == job.id){
+                        let theOne = this.form.jobHistory[idx]
+                        theOne.start_time = job.start_time
+                        theOne.end_time = job.end_time
+                        theOne.company = job.company
+                        theOne.position = job.position
+                        theOne.salary = job.salary
+                        theOne.reason = job.reason
+                        theOne.witness_phone = job.witness_phone
+                        found = true
+                        break
+                    }
+                }
+                if(!found){//没找到
+                    this.form.jobHistory.push(job)
+                }
+
+                this.hideJobForm()
+                this.showMessage('点击“保存”按钮存储工作经历', 'info')
             },
             handleClick(tab, event) {
                 console.log(tab, event);
@@ -286,15 +431,18 @@
                     this.form.emergency = employee.emergency
                     this.form.emergency_phone = employee.emergency_phone
                     this.form.avatar = employee.avatar
-                //extend
+                    //extend
                     this.form.marital = employee.marital
                     this.form.mate = employee.mate
                     this.form.children = employee.children
                     this.form.work_place = employee.work_place
                     this.form.native_land = employee.native_land
                     this.form.birthday = employee.birthday
-                // education
+                    // education
                     this.form.educationHistory = employee.education
+                    // job
+                    this.form.jobHistory = employee.job
+
             },
             async getEmployeeDetail(id){
                 let {data} = await api.sniperGetEmployeeDetail({id})

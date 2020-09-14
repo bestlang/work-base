@@ -1,7 +1,7 @@
 <template>
     <el-card class="box-card" shadow="hover">
-        <el-form :model="form" label-width="80px">
-            <el-form-item label="起止日期">
+        <el-form :model="form" label-width="120px">
+            <el-form-item label="起止日期*">
                 <el-date-picker
                         :editable="false"
                         v-model="form.start_time"
@@ -18,14 +18,14 @@
                         placeholder="结束日期">
                 </el-date-picker>
             </el-form-item>
-            <el-form-item label="企业名称">
+            <el-form-item label="企业名称*">
                 <el-input v-model="form.company"></el-input>
             </el-form-item>
-            <el-form-item label="岗位">
+            <el-form-item label="岗位*">
                 <el-input v-model="form.position"></el-input>
             </el-form-item>
             <el-form-item label="薪酬">
-                <el-input v-model="form.salary"></el-input>
+                <el-input v-model="form.salary" type="number"></el-input>
             </el-form-item>
             <el-form-item label="离职原因">
                 <el-input type="text" v-model="form.reason"></el-input>
