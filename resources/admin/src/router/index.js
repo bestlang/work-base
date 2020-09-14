@@ -108,6 +108,16 @@ export default new VueRouter({
                       }
                   },
                   {
+                      path: "/sniper/employee/employee/attendance",
+                      component: () => import("../pages/sniper/employee/employee/attendance.vue"),
+                      meta: {
+                          can: 'cms',
+                          show: true,
+                          name: '考勤记录',
+                          font: '&#xe629;'
+                      }
+                  },
+                  /*{
                       path: "/graph",
                       component: () => import("../pages/sniper/employee/employee/graph.vue"),
                       meta: {
@@ -116,7 +126,7 @@ export default new VueRouter({
                           name: '组织架构',
                           font: '&#xe629;'
                       }
-                  },
+                  },*/
                   // {
                   //     path: "/basic",
                   //     component: () => import("../components/via.vue"),

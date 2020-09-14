@@ -19,4 +19,6 @@ Route::group(['prefix'=>'admin/sniper/employee', 'namespace'=>'Admin'], function
         Route::any('/get/employee/detail', 'EmployeeController@detail');
         Route::post('/delete/employee/education', 'EducationController@delete');
         Route::post('/delete/employee/job', 'JobController@delete');
+
+        Route::any('/ding/get/departments', 'DingController@departments');
 });

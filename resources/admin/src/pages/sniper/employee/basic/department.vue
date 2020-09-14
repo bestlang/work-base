@@ -1,7 +1,8 @@
 <template>
 	<div class="l-position-list">
         <div v-title="'部门管理'"></div>
-        <department-tree  :selectedKey="2" @nodeClick="handleNodeClick" @treeLoaded="performTreeLoaded" :updated="updated"></department-tree>
+        <!--:selectedKey="2"-->
+        <department-tree @nodeClick="handleNodeClick" @treeLoaded="performTreeLoaded" :updated="updated"></department-tree>
         <div class="l-block">
             <div class="l-block-header">
                 <div class="l-flex">

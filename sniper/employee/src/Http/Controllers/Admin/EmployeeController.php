@@ -108,6 +108,17 @@ class EmployeeController
             $user->employee->phone = $params['phone'];
             $user->employee->gender = $params['gender'];
             $user->employee->id_card = $params['id_card'];
+            //扩展信息
+            $user->employee->marital = $request->input('marital', 3);
+            $user->employee->mate = $request->input('mate');
+            $user->employee->children = $request->input('children');
+            $user->employee->work_place = $request->input('work_place');
+            $user->employee->native_land = $request->input('native_land');
+            $user->employee->birthday = $request->input('birthday');
+            $user->employee->birthday = $request->input('birthday');
+            $user->employee->tag = $request->input('tag');
+
+
             $user->push();
             ///存储教育经历
             $educationHistory = $request->input('educationHistory');
@@ -148,6 +159,15 @@ class EmployeeController
                 'gender' => $params['gender'],
                 'id_card' => $params['id_card'],
                 'avatar' => $params['avatar'],
+                //扩展信息
+                'marital'=> $request->input('marital', 3),
+                'mate' => $request->input('mate'),
+                'children' => $request->input('children'),
+                'work_place' => $request->input('work_place'),
+                'native_land' => $request->input('native_land'),
+                'birthday' => $request->input('birthday'),
+                'birthday' => $request->input('birthday'),
+                'tag' => $request->input('tag'),
             ]);
             ///存储教育经历
             $educationHistory = $request->input('educationHistory');

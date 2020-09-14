@@ -103,7 +103,7 @@
 			padding: 10px;
 			position: relative;
 			box-shadow: #67C23A;
-			height: 140px;
+			/*height: 140px;*/
 			border:1px solid #eee;
 			width: 200px;
 			min-height: 240px;

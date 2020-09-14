@@ -33,13 +33,13 @@
                             <el-form-item label="手机号*">
                                 <el-input v-model="form.phone"></el-input>
                             </el-form-item>
-                            <el-form-item label="身份证号">
+                            <el-form-item label="身份证号*">
                                 <el-input v-model="form.id_card"></el-input>
                             </el-form-item>
-                            <el-form-item label="公司邮箱">
+                            <el-form-item label="公司邮箱*">
                                 <el-input v-model="form.email"></el-input>
                             </el-form-item>
-                            <el-form-item label="初始密码">
+                            <el-form-item label="登录密码">
                                 <el-input type="password" v-model="form.password" auto-complete="new-password" :placeholder="passwordHolder"></el-input>
                             </el-form-item>
                             <el-form-item label="紧急联系人">
@@ -53,16 +53,19 @@
                     <el-tab-pane label="扩展信息" name="extend">
                         <el-form ref="form" :model="form" label-width="130px" style="width: 50%;overflow-y: visible;padding-top: 20px;">
                             <el-form-item label="婚姻状况">
-                                <el-input v-model="form.marital"></el-input>
+                                <el-radio-group v-model="form.marital">
+                                    <el-radio :label="3" border>单身</el-radio>
+                                    <el-radio :label="1" border>已婚</el-radio>
+                                    <el-radio :label="2" border>合法同居者</el-radio>
+                                    <el-radio :label="4" border>丧偶</el-radio>
+                                    <el-radio :label="5" border>离异</el-radio>
+                                </el-radio-group>
                             </el-form-item>
-                            <el-form-item label="配偶姓名">
+                            <el-form-item label="配偶姓名" v-show="form.marital <3">
                                 <el-input v-model="form.mate"></el-input>
                             </el-form-item>
-                            <el-form-item label="子女数">
+                            <el-form-item label="子女数" v-show="form.marital < 3">
                                 <el-input v-model="form.children"></el-input>
-                            </el-form-item>
-                            <el-form-item label="工作地点">
-                                <el-input v-model="form.work_place"></el-input>
                             </el-form-item>
                             <el-form-item label="籍贯">
                                 <el-input v-model="form.native_land"></el-input>
@@ -72,6 +75,9 @@
                             </el-form-item>
                             <el-form-item label="标签">
                             <el-input v-model="form.tag"></el-input>
+                            </el-form-item>
+                            <el-form-item label="工作地点">
+                                <el-input v-model="form.work_place"></el-input>
                             </el-form-item>
                         </el-form>
                     </el-tab-pane>
@@ -197,7 +203,7 @@
         components: { TreeSelect, imageUpload, Education, Job },
         data(){
             return {
-                activeName: 'education',
+                activeName: 'basic',
                 bread_title: '新增员工',
                 value: null,
                 passwordHolder: '',
@@ -215,10 +221,10 @@
                     id_card: '',
                     email: '',
                     password: '111111',
-                    school: '',
+                    /*school: '',
                     study_duration: '',
-                    degree: '',
-                    marital: '',
+                    degree: '',*/
+                    marital: 3,
                     mate: '',
                     children: '',
                     emergency:'',
@@ -418,7 +424,7 @@
                     this.form.user_id = employee.user_id
                     this.form.real_name = employee.real_name
                     this.form.department_id = employee.department_id
-                    //this.form.tag = employee.tag
+                    this.form.tag = employee.tag
                     this.form.position_id = employee.position_id
                     this.form.phone = employee.phone
 
@@ -432,7 +438,7 @@
                     this.form.emergency_phone = employee.emergency_phone
                     this.form.avatar = employee.avatar
                     //extend
-                    this.form.marital = employee.marital
+                    this.form.marital = employee.marital ? employee.marital : 3
                     this.form.mate = employee.mate
                     this.form.children = employee.children
                     this.form.work_place = employee.work_place

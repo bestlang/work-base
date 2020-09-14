@@ -47,7 +47,7 @@
                     children: 'children',
                     label: 'name'
                 },
-                treeData:[]
+                treeData: []
             }
         },
         props:{
@@ -77,8 +77,9 @@
                 this.$emit('nodeClick', node);
             },
             async updateTree(){
-                let res = await  api.sniperGetDepartmentDescendants()
-                this.treeData =  [Object.values(res.data)[0]];
+                let res = await  api.sniperDingGetDepartments()
+                this.treeData = [res.data.departments];
+                console.log(JSON.stringify(this.treeData))
                 this.$emit('treeLoaded', this.treeData[0])
             }
         },
