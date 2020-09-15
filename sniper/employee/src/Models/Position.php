@@ -11,7 +11,7 @@ class Position extends Node
 
     public function department()
     {
-        return $this->belongsTo(Department::class, 'department_id');
+        return $this->belongsTo(Attendance::class, 'department_id');
     }
     public function parent()
     {

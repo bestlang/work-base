@@ -4,7 +4,7 @@ namespace Sniper\Employee\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use Sniper\Employee\Services\DingTalk;
 
-class DingController
+class DingTalkController
 {
     protected $dingTalk = null;
 

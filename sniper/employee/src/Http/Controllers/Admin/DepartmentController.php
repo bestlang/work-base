@@ -2,7 +2,7 @@
 namespace Sniper\Employee\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
-use Sniper\Employee\Models\Department;
+use Sniper\Employee\Models\Attendance;
 use Sniper\Employee\Models\Position;
 use Validator;
 
@@ -14,7 +14,7 @@ class DepartmentController
         if(!$id){
             return response()->error('参数错误');
         }
-        $position = Department::find($id);
+        $position = Attendance::find($id);
         $position->delete();
         return response()->ajax();
     }
@@ -24,7 +24,7 @@ class DepartmentController
         if(!$id){
             return response()->error('参数错误');
         }
-        $department = Department::with('parent')->find($id);
+        $department = Attendance::with('parent')->find($id);
         if($department){
             return response()->ajax($department);
         }
@@ -32,22 +32,22 @@ class DepartmentController
     // 部门子树
     public function getDescendants(Request $request)
     {
-        $tree = Department::with('parent')->get()->toHierarchy();
+        $tree = Attendance::with('parent')->get()->toHierarchy();
         return response()->ajax($tree);
     }
     //所以直属根节点的部门
     public function level1(Request $request)
     {
-        $root = Department::whereNull('parent_id')->first();
+        $root = Attendance::whereNull('parent_id')->first();
         $children = $root->children()->get();
         return response()->ajax($children);
     }
 
     public function treeSelect(Request $request)
     {
-        $departments = Department::all();
+        $departments = Attendance::all();
         if(!count($departments)){
-            $default = new Department();
+            $default = new Attendance();
             $default->id = '0';
             $default->name  = '做为根部门';
             $departments->push($default);
@@ -84,23 +84,23 @@ class DepartmentController
         isset($params['parent_id']) || $params['parent_id'] = null;
         // 更新
         if($id){
-            $department = Department::find($id);
-            $exists = Department::where([ 'parent_id' => $params['parent_id'],  'name'=>$params['name'] ])->where('id', '!=', $params['id'])->exists();
+            $department = Attendance::find($id);
+            $exists = Attendance::where([ 'parent_id' => $params['parent_id'],  'name'=>$params['name'] ])->where('id', '!=', $params['id'])->exists();
             if($exists){
                 return response()->error('添加失败！同级同名部门已存在.');
             }
             $department->update(['parent_id' => $params['parent_id'], 'name' => $params['name'], 'manager' => $params['manager']]);
         }else{ // 新增
             //判断是否存在同级同名
-            $exists = Department::where( [ 'parent_id' => $params['parent_id'],  'name'=>$params['name'] ] )->exists();
+            $exists = Attendance::where( [ 'parent_id' => $params['parent_id'],  'name'=>$params['name'] ] )->exists();
             if($exists){
                 return response()->error('添加失败！同级同名部门已存在.');
             }
             if(!$params['parent_id']){//根节点
-                $root = Department::create(['name' => $params['name'], 'manager' => $params['manager']]);
+                $root = Attendance::create(['name' => $params['name'], 'manager' => $params['manager']]);
             }else{//非根节点
-                $parent = Department::find($params['parent_id']);
-                $child = Department::create(['name' => $params['name'], 'manager' => $params['manager']]);
+                $parent = Attendance::find($params['parent_id']);
+                $child = Attendance::create(['name' => $params['name'], 'manager' => $params['manager']]);
                 $child->makeChildOf($parent);
             }
         }

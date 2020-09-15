@@ -9,7 +9,9 @@ class AppServiceProvider extends ServiceProvider
 
     public function register()
     {
-
+        $this->mergeConfigFrom(
+            __DIR__.'/../../config/database.php', 'database.connections'
+        );
     }
 
     public function boot()
@@ -22,5 +24,8 @@ class AppServiceProvider extends ServiceProvider
                 DingTalk::class
             ]);
         }
+        $this->publishes([
+            __DIR__.'/../../config/ding.php' => config_path('ding.php'),
+        ]);
     }
 }
