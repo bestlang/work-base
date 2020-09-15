@@ -2,6 +2,7 @@
 namespace Sniper\Employee\Services;
 
 use GuzzleHttp\Client;
+use GuzzleHttp\RequestOptions;
 
 class DingTalk
 {
@@ -49,7 +50,7 @@ class DingTalk
         $access_token = $this->_getAccessToken();
         $client = new Client();
         $url = "https://oapi.dingtalk.com/user/simplelist?access_token={$access_token}&department_id={$departmentId}";
-        $response = $client->request('GET', $url, ['offset' => 0, 'size' => 100]);
+        $response = $client->request('GET', $url, [ 'query' => ['offset' => 0, 'size' => 100]]);
         $content = $response->getBody()->getContents();
         $users = json_decode($content)->userlist;
         return $users;
@@ -64,7 +65,7 @@ class DingTalk
         $access_token = $this->_getAccessToken();
         $client = new Client();
         $url = "https://oapi.dingtalk.com/attendance/list?access_token={$access_token}";
-        $response = $client->request('POST', $url,  ['form_params' => compact(['workDateFrom', 'workDateTo', 'userIdList', 'offset', 'limit'])]);
+        $response = $client->request('POST', $url,  [RequestOptions::JSON => compact(['workDateFrom', 'workDateTo', 'userIdList', 'offset', 'limit'])]);
         $content = $response->getBody()->getContents();
         echo $content;
         $recordResult = json_decode($content)->recordresult;
