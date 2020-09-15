@@ -3,6 +3,7 @@
 namespace Sniper\Employee\Console\Commands;
 
 use Illuminate\Console\Command;
+use Sniper\Employee\Services\DingTalk;
 
 class GetDingUsers extends Command
 {
@@ -35,8 +36,9 @@ class GetDingUsers extends Command
      *
      * @return mixed
      */
-    public function handle()
+    public function handle(DingTalk $dingTalk)
     {
+            echo json_encode($dingTalk->departments());
             echo $this->description;
     }
 }

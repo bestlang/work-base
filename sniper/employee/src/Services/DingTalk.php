@@ -16,7 +16,7 @@ class DingTalk
         return json_decode($content)->access_token;
     }
 
-    public function departments(Request $request)
+    public function departments()
     {
         $access_token = $this->_getAccessToken();
         $client = new Client();
