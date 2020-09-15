@@ -38,9 +38,11 @@ class GetDingUsers extends Command
     {
             $departments = $dingTalk->departments();
             $departmentIds = $departments['departmentIds'];
+            $users = [];
             foreach ($departmentIds as $departmentId){
-                echo json_encode($dingTalk->_getDepartmentUsers($departmentId));
-                echo "===================================\n";
+                $users[] = $dingTalk->_getDepartmentUsers($departmentId);
             }
+            $allUsers = Arr::flatten($users);
+            echo json_encode($allUsers);
     }
 }
