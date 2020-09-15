@@ -32,13 +32,15 @@ class GetDingUsers extends Command
     }
 
     /**
-     * Execute the console command.
-     *
-     * @return mixed
+     * @param DingTalk $dingTalk
      */
     public function handle(DingTalk $dingTalk)
     {
-            echo json_encode($dingTalk->departments());
-            echo $this->description;
+            $departments = $dingTalk->departments();
+            $departmentIds = $departments['departmentIds'];
+            foreach ($departmentIds as $departmentId){
+                echo json_encode($dingTalk->_getDepartmentUsers($departmentId));
+                echo "===================================\n";
+            }
     }
 }

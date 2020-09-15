@@ -41,18 +41,17 @@ class DingTalk
                 $rootKey = $key;
             }
         }
-        return $departments[$rootKey];
+        return ['departments' => $departments[$rootKey], 'departmentIds' => $departmentIds];
     }
 
     public function _getDepartmentUsers($departmentId)
     {
-        $users = [];
         $access_token = $this->_getAccessToken();
         $client = new Client();
         $url = "https://oapi.dingtalk.com/user/simplelist?access_token={$access_token}&department_id={$departmentId}";
         $response = $client->request('GET', $url, ['offset' => 0, 'size' => 100]);
         $content = $response->getBody()->getContents();
-        $users[] = json_decode($content)->userlist;
-
+        $users = json_decode($content)->userlist;
+        return $users;
     }
 }
