@@ -56,7 +56,7 @@ class DingTalk extends Command
 
                 $startTimestamp = strtotime('-150 days');
                 $workDateTo = date('Y-m-d H:i:s', $startTimestamp+ 5 * 86400 );
-                while($startTimestamp < time()){
+//                while($startTimestamp < time()){
                     $workDateFrom = date('Y-m-d H:i:s', $startTimestamp);
                     $offset = 0;
                     $limit = 50;
@@ -82,10 +82,10 @@ class DingTalk extends Command
                             ]);
                         }
                         $offset += $limit;
-                        usleep(300);
+                        usleep(100);
                     }
-                    $startTimestamp += 5 * 86400;
-                }
+//                    $startTimestamp += 5 * 86400;
+//                }
             }
 
     }
