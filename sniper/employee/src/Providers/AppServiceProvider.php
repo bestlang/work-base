@@ -2,7 +2,7 @@
 namespace Sniper\Employee\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use Sniper\Employee\Console\Commands\GetDingUsers;
+use Sniper\Employee\Console\Commands\DingTalk;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -19,7 +19,7 @@ class AppServiceProvider extends ServiceProvider
         $this->loadViewsFrom(resource_path('views/vendor/sniper'), 'sniper');
         if ($this->app->runningInConsole()) {
             $this->commands([
-                GetDingUsers::class
+                DingTalk::class
             ]);
         }
     }
