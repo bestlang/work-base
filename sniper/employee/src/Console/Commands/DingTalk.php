@@ -54,7 +54,9 @@ class DingTalk extends Command
                 $allAttendance = [];
                 $offset = 0;
                 $limit = 50;
-                while($attendance = $ding->_getUserAttendance(['0264283157756536'], $offset, $limit)){
+                $workDateFrom = '-10 days';
+                $workDateTo = '+1 days';
+                while($attendance = $ding->_getUserAttendance(['0264283157756536'], $workDateFrom, $workDateTo, $offset, $limit)){
                     $allAttendance[] = $attendance;
                     echo json_encode($attendance);
                     $offset += $limit;
