@@ -1,10 +1,9 @@
 <?php
-namespace Sniper\Employee\Http\Controllers\Admin;
+namespace Sniper\Employee\Services;
 
 use GuzzleHttp\Client;
-use Illuminate\Http\Request;
 
-class DingController
+class DingTalk
 {
     public function _getAccessToken()
     {
@@ -24,7 +23,6 @@ class DingController
         $url = "https://oapi.dingtalk.com/department/list?access_token={$access_token}";
         $response = $client->request('GET', $url);
         $content = $response->getBody()->getContents();
-        print($content);
         $departments = json_decode($content)->department;
         $rootKey = 0;
         $departmentIds = [];
@@ -43,8 +41,7 @@ class DingController
                 $rootKey = $key;
             }
         }
-        //return response()->ajax( $departments[$rootKey] );
-        return response()->ajax( ['departments' => $departments[$rootKey], 'departmentIds' =>$departmentIds] );
+        return $departments[$rootKey];
     }
 
     public function _getDepartmentUsers($departmentId)
