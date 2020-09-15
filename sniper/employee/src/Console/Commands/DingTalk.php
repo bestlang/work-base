@@ -54,7 +54,7 @@ class DingTalk extends Command
             }else if($act == 'attendance'){
                 $allAttendance = [];
 
-                $startTimestamp = strtotime('-150 days');
+                $startTimestamp = strtotime('-50 days');
                 $workDateTo = date('Y-m-d H:i:s', $startTimestamp+ 5 * 86400 );
 //                while($startTimestamp < time()){
                     $workDateFrom = date('Y-m-d H:i:s', $startTimestamp);
