@@ -4,6 +4,7 @@ namespace Sniper\Employee\Console\Commands;
 
 use Illuminate\Console\Command;
 use Sniper\Employee\Services\DingTalk;
+use Arr;
 
 class GetDingUsers extends Command
 {
