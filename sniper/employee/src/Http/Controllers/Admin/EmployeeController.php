@@ -2,7 +2,7 @@
 namespace Sniper\Employee\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
-use Sniper\Employee\Models\Attendance;
+use Sniper\Employee\Models\Department;
 use Sniper\Employee\Models\User;
 use Sniper\Employee\Models\Employee;
 use Validator;
@@ -21,7 +21,7 @@ class EmployeeController
         $query = Employee::query();
         $departmentId = $request->input('departmentId');
         $departmentIdArr = [];
-        $departmentIdArr = Attendance::find($departmentId)
+        $departmentIdArr = Department::find($departmentId)
             ->getDescendantsAndSelf()
             ->map(function($item){return $item->id;})
             ->toArray();

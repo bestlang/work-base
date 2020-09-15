@@ -11,8 +11,8 @@
 |
 */
 Route::any('/', function(){
-    return redirect('/sniper');
-    /*return redirect('/cms');*/
+        return redirect('/sniper');
+        // return redirect('/cms');
 });
 
 Route::get('/info', function(){echo phpinfo();});
