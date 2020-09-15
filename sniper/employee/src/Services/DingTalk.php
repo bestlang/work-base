@@ -56,7 +56,7 @@ class DingTalk
         return $users;
     }
 
-    public function _getUserAttendance($userIdList, $workDateFrom='-10 days', $workDateTo='+1 days', $offset = 0, $limit = 50)
+    public function _getUserAttendance($userIdList, $workDateFrom='-5 days', $workDateTo='+1 days', $offset = 0, $limit = 50)
     {
         $workDateFrom = date("Y-m-d H:i:s", strtotime($workDateFrom));
         $workDateTo = date("Y-m-d H:i:s", strtotime($workDateTo));
@@ -65,12 +65,12 @@ class DingTalk
         $client = new Client();
         $url = "https://oapi.dingtalk.com/attendance/list?access_token={$access_token}";
         $options = [RequestOptions::JSON => compact(['workDateFrom', 'workDateTo', 'userIdList', 'offset', 'limit'])];
-        echo json_encode($options);
         $response = $client->request('POST', $url,  $options);
         $content = $response->getBody()->getContents();
-        echo $content;
         $recordResult = json_decode($content)->recordresult;
-        return $recordResult;
+        if(count($recordResult)){
+            return $recordResult;
+        }
     }
 
 }
