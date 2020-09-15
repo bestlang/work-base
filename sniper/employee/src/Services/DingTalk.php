@@ -64,7 +64,7 @@ class DingTalk
         $access_token = $this->_getAccessToken();
         $client = new Client();
         $url = "https://oapi.dingtalk.com/attendance/list?access_token={$access_token}";
-        $response = $client->request('POST', $url, compact(['workDateFrom', 'workDateTo', 'userIdList', 'offset', 'limit']));
+        $response = $client->request('POST', $url, json_encode(compact(['workDateFrom', 'workDateTo', 'userIdList', 'offset', 'limit'])));
         $content = $response->getBody()->getContents();
         echo $content;
         $recordResult = json_decode($content)->recordresult;
