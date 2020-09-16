@@ -81,11 +81,8 @@ class DingTalk
         return $user;
     }
 
-    public function _getUserAttendance($userIdList, $workDateFrom='-5 days', $workDateTo='+1 days', $offset = 0, $limit = 50)
+    public function _getUserAttendance($userIdList, $workDateFrom, $workDateTo, $offset = 0, $limit = 50)
     {
-        $workDateFrom = date("Y-m-d H:i:s", strtotime($workDateFrom));
-        $workDateTo = date("Y-m-d H:i:s", strtotime($workDateTo));
-
         $access_token = $this->_getAccessToken();
         $client = new Client();
         $url = "https://oapi.dingtalk.com/attendance/list?access_token={$access_token}";

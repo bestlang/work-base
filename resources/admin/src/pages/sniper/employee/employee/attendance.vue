@@ -11,7 +11,7 @@
                             <div v-for="(user, index) in users" :key="index" class="l-user">
                                 <div style="border-bottom: 1px solid #f1f1f1;padding-bottom: 10px;">
                                 <div><b>{{user.name}}</b></div>
-                                <div><small>{{user.orgEmail ? user.orgEmail : '-'}}</small></div>
+                                <div><small style="color: #afafaf">{{user.orgEmail ? user.orgEmail : '-'}}</small></div>
                                 </div>
                                 <div><small>本周：正常1次 迟到1次 早退1次</small></div>
                                 <div><small>本月：正常1次 迟到1次 早退1次</small></div>
