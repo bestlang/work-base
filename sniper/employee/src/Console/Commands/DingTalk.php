@@ -51,9 +51,8 @@ class DingTalk extends Command
                 $allUsers = Arr::flatten($users);
                 foreach($allUsers as $u){
                     $user = $ding->_getUser($u->userid);
-                    print_r($user);echo "\n";
+                    echo "======\n";print_r($user);echo "========\n";
                     if($user && isset($user->userid)){
-
                         DingUser::updateOrCreate(['userid' => $user->userid],[
                             'errcode' => $user->errcode,
                             'unionid' => $user->unionid,
