@@ -16,6 +16,7 @@ class CreateSniperEmployeeDingUsersTable extends Migration
         Schema::connection('proxy')->create('sniper_employee_ding_users', function (Blueprint $table) {
             $table->string('errcode')->nullable()->default(0);
             $table->string('unionid')->nullable();
+            $table->string('openId')->nullable();
             $table->string('remark')->nullable();
             $table->string('userid')->nullable();
             $table->text('isLeaderInDepts')->nullable();

@@ -51,34 +51,35 @@ class DingTalk extends Command
                 $allUsers = Arr::flatten($users);
                 foreach($allUsers as $user){
                     $user = $ding->_getUser($user->userid);
-//                    if($user && isset($user->userid)){
-//                        DingUser::updateOrCreate(['userid' => $user->userid],[
-//                            'errcode' => $user->errcode,
-//                            'unionid' => $user->unionid,
-//                            'remark' => $user->remark,
-//                            'isLeaderInDepts' => $user->isLeaderInDepts,
-//                            'isBoss' => $user->isBoss,
-//                            'hiredDate' => $user->hiredDate,
-//                            'isSenior' => $user->isSenior,
-//                            'tel' => $user->tel,
-//                            'department' => json_encode($user->department),
-//                            'workPlace' => $user->workPlace,
-//                            'email' => $user->email,
-//                            'orderInDepts' => $user->orderInDepts,
-//                            'mobile' => $user->mobile,
-//                            'errmsg' => $user->errmsg,
-//                            'active' => $user->active,
-//                            'avatar' => $user->avatar,
-//                            'isAdmin' => $user->isAdmin,
-//                            'isHide' => $user->isHide,
-//                            'jobnumber' => $user->jobnumber,
-//                            'name' => $user->name,
-//                            'extattr' => $user->extattr,
-//                            'stateCode' => $user->stateCode,
-//                            'position' => $user->position,
-//                            'roles' => jsset($user->roles) ? json_encode($user->roles) : '',
-//                        ]);
-//                    }
+                    if($user && isset($user->userid)){
+                        DingUser::updateOrCreate(['userid' => $user->userid],[
+                            'errcode' => $user->errcode,
+                            'unionid' => $user->unionid,
+                            'openId' =>$user->openId,
+                            'remark' => $user->remark,
+                            'isLeaderInDepts' => $user->isLeaderInDepts,
+                            'isBoss' => $user->isBoss,
+                            'hiredDate' => $user->hiredDate,
+                            'isSenior' => $user->isSenior,
+                            'tel' => $user->tel,
+                            'department' => json_encode($user->department),
+                            'workPlace' => $user->workPlace,
+                            'email' => $user->email,
+                            'orderInDepts' => $user->orderInDepts,
+                            'mobile' => isset($user->mobile) ? $user->mobile : '',
+                            'errmsg' => $user->errmsg,
+                            'active' => $user->active,
+                            'avatar' => $user->avatar,
+                            'isAdmin' => $user->isAdmin,
+                            'isHide' => $user->isHide,
+                            'jobnumber' => $user->jobnumber,
+                            'name' => $user->name,
+                            'extattr' => isset($user->extattr) ? $user->extattr : '',
+                            'stateCode' => isset($user->stateCode) ? $user->stateCode : '',
+                            'position' => $user->position,
+                            'roles' => jsset($user->roles) ? json_encode($user->roles) : '',
+                        ]);
+                    }
                 }
             }else if($act == 'departments'){
                 $departments = $ding->departments();
