@@ -73,7 +73,7 @@ class DingTalk extends Command
                             'avatar' => $user->avatar,
                             'isAdmin' => $user->isAdmin,
                             'isHide' => $user->isHide,
-                            'jobnumber' => $user->jobnumber,
+                            'jobnumber' => isset($user->jobnumber) ? $user->jobnumber : '',
                             'name' => $user->name,
                             'extattr' => isset($user->extattr) ? $user->extattr : '',
                             'stateCode' => isset($user->stateCode) ? $user->stateCode : '',
