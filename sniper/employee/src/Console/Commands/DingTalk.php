@@ -56,7 +56,7 @@ class DingTalk extends Command
                     DingDepartment::updateOrCreate(['id' => $dep->id],
                         [
                             'name' => $dep->name,
-                            'parentid' => $dep->parentid,
+                            'parentid' => isset($dep->parentid) ? $dep->parentid : null,
                             'createDeptGroup' => $dep->createDeptGroup,
                             'autoAddUser' => $dep->autoAddUser,
                             'ext' => isset($dep->ext) ? $dep->ext : ''
