@@ -57,7 +57,7 @@ class DingTalk extends Command
                             'errcode' => $user->errcode,
                             'unionid' => $user->unionid,
                             'openId' =>$user->openId,
-                            'remark' => $user->remark,
+                            'remark' => isset($user->remark) ? $user->remark : '',
                             'isLeaderInDepts' => $user->isLeaderInDepts,
                             'isBoss' => $user->isBoss,
                             'hiredDate' => $user->hiredDate,
