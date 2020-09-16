@@ -78,7 +78,7 @@ class DingTalk extends Command
                             'extattr' => isset($user->extattr) ? $user->extattr : '',
                             'stateCode' => isset($user->stateCode) ? $user->stateCode : '',
                             'position' => isset($user->position) ? $user->position : '',
-                            'roles' => jsset($user->roles) ? json_encode($user->roles) : '',
+                            'roles' => isset($user->roles) ? json_encode($user->roles) : '',
                         ]);
                     }
                 }
