@@ -6,6 +6,7 @@ use Illuminate\Console\Command;
 use Sniper\Employee\Services\DingTalk as DingService;
 use Arr;
 use Sniper\Employee\Models\DingTalk\Attendance;
+use Sniper\Employee\Models\DingTalk\Department as DingDepartment;
 
 class DingTalk extends Command
 {
@@ -50,7 +51,17 @@ class DingTalk extends Command
                 echo json_encode($allUsers);
             }else if($act == 'departments'){
                 $departments = $ding->departments();
-                echo json_encode($departments);
+                $rawDepartments = $departments['rawDepartments'];
+                foreach ($rawDepartments as $dep){
+                    DingDepartment::updateOrCreate(['id' => $dep->id],
+                        [
+                            'name' => $dep->name,
+                            'parentid' => $dep->parentid,
+                            'createDeptGroup' => $dep->createDeptGroup,
+                            'autoAddUser' => $dep->autoAddUser,
+                            'ext' => $dep->ext
+                        ]);
+                }
             }else if($act == 'attendance'){
                 $allAttendance = [];
 

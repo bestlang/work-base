@@ -20,9 +20,9 @@ class CreateSniperEmployeeJobsTable extends Migration
             $table->string('end_time')->comment('开始日期');
             $table->string('company')->comment('企业名称');
             $table->string('position')->comment('岗位')->nullable();
-            $table->decimal('salary', 10, 2)->comment('工资');
+            $table->decimal('salary', 10, 2)->comment('工资')->nullable();
             $table->text('reason')->comment('离职原因')->nullable();
-            $table->string('witness_phone')->comment('证明人电话');
+            $table->string('witness_phone')->comment('证明人电话')->nullable();
             $table->nullableTimestamps();
         });
     }

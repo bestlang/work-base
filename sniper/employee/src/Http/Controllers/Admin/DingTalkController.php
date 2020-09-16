@@ -2,20 +2,28 @@
 namespace Sniper\Employee\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
-use Sniper\Employee\Services\DingTalk;
+use Sniper\Employee\Models\DingTalk\Department;
 
 class DingTalkController
 {
-    protected $dingTalk = null;
-
-    public function __construct(DingTalk $dingTalk)
-    {
-        $this->dingTalk = $dingTalk;
-    }
-
     public function departments(Request $request)
     {
-        $response = $this->dingTalk->departments();
-        return response()->ajax( $response );
+        $departments = Department::all();
+        $rootKey = 0;
+        foreach ($departments as $key => &$department){
+            if(!isset($department->children)){
+                $department->children = [];
+            }
+            if(isset($department->parentid)){
+                for($i=0;$i<count($departments); $i++){
+                    if($departments[$i]->id == $department->parentid){
+                        $departments[$i]->children[] = $department;
+                    }
+                }
+            }else{
+                $rootKey = $key;
+            }
+        }
+        return response()->ajax( $departments[$rootKey] );
     }
 }

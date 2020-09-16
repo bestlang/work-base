@@ -3,6 +3,7 @@ namespace Sniper\Employee\Services;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\RequestOptions;
+use Sniper\Employee\Models\DingTalk\Department as DingDepartment;
 
 class DingTalk
 {
@@ -25,6 +26,7 @@ class DingTalk
         $response = $client->request('GET', $url);
         $content = $response->getBody()->getContents();
         $departments = json_decode($content)->department;
+        $rawDepartments = $departments;
         $rootKey = 0;
         $departmentIds = [];
         foreach ($departments as $key => &$department){
@@ -42,7 +44,7 @@ class DingTalk
                 $rootKey = $key;
             }
         }
-        return ['departments' => $departments[$rootKey], 'departmentIds' => $departmentIds];
+        return ['departments' => $departments[$rootKey], 'departmentIds' => $departmentIds, 'rawDepartments' => $rawDepartments];
     }
 
     public function _getDepartmentUsers($departmentId)
