@@ -78,7 +78,7 @@
             },
             async updateTree(){
                 let res = await  api.sniperDingGetDepartments()
-                this.treeData = [res.data.departments];
+                this.treeData = [res.data];
                 console.log(JSON.stringify(this.treeData))
                 this.$emit('treeLoaded', this.treeData[0])
             }

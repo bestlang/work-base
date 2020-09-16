@@ -58,6 +58,17 @@ class DingTalk
         return $users;
     }
 
+    public function _getUser($userid)
+    {
+        $access_token = $this->_getAccessToken();
+        $client = new Client();
+        $url = "https://oapi.dingtalk.com/user/get?access_token={$access_token}&userid={$userid}";
+        $response = $client->request('GET', $url);
+        $content = $response->getBody()->getContents();
+        $user =  json_encode($content);
+        return $user;
+    }
+
     public function _getUserAttendance($userIdList, $workDateFrom='-5 days', $workDateTo='+1 days', $offset = 0, $limit = 50)
     {
         $workDateFrom = date("Y-m-d H:i:s", strtotime($workDateFrom));

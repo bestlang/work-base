@@ -17,7 +17,9 @@ class DingTalkController
             if(isset($department->parentid)){
                 for($i=0;$i<count($departments); $i++){
                     if($departments[$i]->id == $department->parentid){
-                        $departments[$i]->children[] = $department;
+                        $children = $departments[$i]->children;
+                        $children[] = $department;
+                        $departments[$i]->children = $children;
                     }
                 }
             }else{

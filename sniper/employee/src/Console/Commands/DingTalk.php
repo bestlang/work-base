@@ -48,7 +48,11 @@ class DingTalk extends Command
                     $users[] = $ding->_getDepartmentUsers($departmentId);
                 }
                 $allUsers = Arr::flatten($users);
-                echo json_encode($allUsers);
+                foreach($allUsers as $user){
+                    $user = $ding->_getUser($user->userid);
+                    echo json_encode($user);
+                    break;
+                }
             }else if($act == 'departments'){
                 $departments = $ding->departments();
                 $rawDepartments = $departments['rawDepartments'];
