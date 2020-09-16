@@ -62,7 +62,7 @@ class DingTalk extends Command
                             'hiredDate' => isset($user->hiredDate) ? $user->hiredDate : '',
                             'isSenior' => $user->isSenior,
                             'tel' => isset($user->tel) ? $user->tel : '',
-                            'department' => json_encode($user->department),
+                            'department' => $user->department[0],
                             'workPlace' => isset($user->workPlace) ? $user->workPlace : '',
                             'email' => isset($user->email) ? $user->email : '',
                             'orgEmail' => isset($user->orgEmail) ? $user->orgEmail : '',
