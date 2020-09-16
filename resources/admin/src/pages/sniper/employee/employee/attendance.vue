@@ -31,7 +31,7 @@
             handleNodeClick(node){
                 // this.department = node
                 // this.assignForm(node)
-                // console.log(node)
+                console.log(node)
             },
             performTreeLoaded(department){
                 // this.department = department
