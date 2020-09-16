@@ -59,7 +59,7 @@ class DingTalk extends Command
                             'parentid' => $dep->parentid,
                             'createDeptGroup' => $dep->createDeptGroup,
                             'autoAddUser' => $dep->autoAddUser,
-                            'ext' => $dep->ext
+                            'ext' => isset($dep->ext) ? $dep->ext : ''
                         ]);
                 }
             }else if($act == 'attendance'){
