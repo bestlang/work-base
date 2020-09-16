@@ -7,6 +7,7 @@ use Sniper\Employee\Services\DingTalk as DingService;
 use Arr;
 use Sniper\Employee\Models\DingTalk\Attendance;
 use Sniper\Employee\Models\DingTalk\Department as DingDepartment;
+use Sniper\Employee\Models\DingTalk\User as DingUser;
 
 class DingTalk extends Command
 {
@@ -50,8 +51,34 @@ class DingTalk extends Command
                 $allUsers = Arr::flatten($users);
                 foreach($allUsers as $user){
                     $user = $ding->_getUser($user->userid);
-                    echo json_encode($user);
-                    break;
+//                    if($user && isset($user->userid)){
+//                        DingUser::updateOrCreate(['userid' => $user->userid],[
+//                            'errcode' => $user->errcode,
+//                            'unionid' => $user->unionid,
+//                            'remark' => $user->remark,
+//                            'isLeaderInDepts' => $user->isLeaderInDepts,
+//                            'isBoss' => $user->isBoss,
+//                            'hiredDate' => $user->hiredDate,
+//                            'isSenior' => $user->isSenior,
+//                            'tel' => $user->tel,
+//                            'department' => json_encode($user->department),
+//                            'workPlace' => $user->workPlace,
+//                            'email' => $user->email,
+//                            'orderInDepts' => $user->orderInDepts,
+//                            'mobile' => $user->mobile,
+//                            'errmsg' => $user->errmsg,
+//                            'active' => $user->active,
+//                            'avatar' => $user->avatar,
+//                            'isAdmin' => $user->isAdmin,
+//                            'isHide' => $user->isHide,
+//                            'jobnumber' => $user->jobnumber,
+//                            'name' => $user->name,
+//                            'extattr' => $user->extattr,
+//                            'stateCode' => $user->stateCode,
+//                            'position' => $user->position,
+//                            'roles' => jsset($user->roles) ? json_encode($user->roles) : '',
+//                        ]);
+//                    }
                 }
             }else if($act == 'departments'){
                 $departments = $ding->departments();

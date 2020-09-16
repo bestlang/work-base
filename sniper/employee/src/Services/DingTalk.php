@@ -21,7 +21,6 @@ class DingTalk
         }catch (\Exception $e){
             echo "_getAccessToken:", "\n", $content, "\n";
         }
-        echo "\$access_token: {$access_token}\n";
         return $access_token;
     }
 
@@ -59,7 +58,7 @@ class DingTalk
         $access_token = $this->_getAccessToken();
         $client = new Client();
         $url = "https://oapi.dingtalk.com/user/simplelist?access_token={$access_token}&department_id={$departmentId}";
-        $response = $client->request('GET', $url);//, [ 'query' => ['offset' => 0, 'size' => 100]]
+        $response = $client->request('GET', $url);//, [ 'query' => ['offset' => 0, 'size' => 100]]如果使用query, $url中就不能带参数
         $content = $response->getBody()->getContents();
         $users = [];
         try {
@@ -77,6 +76,7 @@ class DingTalk
         $url = "https://oapi.dingtalk.com/user/get?access_token={$access_token}&userid={$userid}";
         $response = $client->request('GET', $url);
         $content = $response->getBody()->getContents();
+        echo $content, "\n";
         $user =  json_encode($content);
         return $user;
     }
