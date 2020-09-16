@@ -27,6 +27,7 @@ class CreateSniperEmployeeDingUsersTable extends Migration
             $table->string('department')->nullable(); // array cast to string
             $table->string('workPlace')->nullable();
             $table->string('email')->nullable();
+            $table->string('orgEmail')->nullable();
             $table->string('orderInDepts')->nullable();
             $table->string('mobile')->nullable();
             $table->string('errmsg')->nullable();

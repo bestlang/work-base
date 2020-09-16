@@ -76,8 +76,8 @@ class DingTalk
         $url = "https://oapi.dingtalk.com/user/get?access_token={$access_token}&userid={$userid}";
         $response = $client->request('GET', $url);
         $content = $response->getBody()->getContents();
-        echo $content, "\n";
         $user =  json_decode($content);
+        echo "\nprocess user of id : {$user->userid}\n";
         return $user;
     }
 
