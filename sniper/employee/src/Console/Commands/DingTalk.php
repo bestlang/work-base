@@ -97,41 +97,41 @@ class DingTalk extends Command
                         ]);
                 }
             }else if($act == 'attendance'){
-                $allAttendance = [];
                 $offset = 0;
                 $limit = 50;
                 $workDateFrom = date('Y-m-d 00:00:00');
-                $workDateTo = date('Y-m-d H:i:s',strtotime($workDateFrom) + 86400);
-                $userIds = DingUser::all()->map(function($user){
-                    return $user->userid;
-                })->toArray();
-                while($attendances = $ding->_getUserAttendance($userIds, $workDateFrom, $workDateTo, $offset, $limit)){
-                    $allAttendance[] = $attendances;
-                    foreach ($attendances as $att){
-                        echo json_encode($att),"\n";
-                        Attendance::updateOrCreate(
-                            ['id' => $att->id],
-                            [
-                            "baseCheckTime" => $att->baseCheckTime,
-                            "checkType" => $att->checkType,
-                            "corpId" => $att->corpId,
-                            "groupId" => $att->groupId,
-                            "locationResult" => $att->locationResult,
-                            "planId" => $att->planId,
-                            "recordId" => isset($att->recordId) ? $att->recordId : '',
-                            "timeResult" => $att->timeResult,
-                            "userCheckTime" => $att->userCheckTime,
-                            "userId" => $att->userId,
-                            "workDate" => $att->workDate,
-                            "procInstId" => isset($att->procInstId) ? $att->procInstId : ''
-                        ]);
+                for($days = 0; $days<100; $days++){
+                    $workDateFrom = date('Y-m-d H:i:s',strtotime($workDateFrom) - $days * 86400);
+                    $workDateTo = date('Y-m-d H:i:s',strtotime($workDateFrom) + 86400);
+                    $userIds = DingUser::all()->map(function($user){
+                        return $user->userid;
+                    })->toArray();
+                    while($attendances = $ding->_getUserAttendance($userIds, $workDateFrom, $workDateTo, $offset, $limit)){
+                        foreach ($attendances as $att){
+                            echo json_encode($att),"\n";
+                            Attendance::updateOrCreate(
+                                ['id' => $att->id],
+                                [
+                                    "baseCheckTime" => $att->baseCheckTime,
+                                    "checkType" => $att->checkType,
+                                    "corpId" => $att->corpId,
+                                    "groupId" => $att->groupId,
+                                    "locationResult" => $att->locationResult,
+                                    "planId" => $att->planId,
+                                    "recordId" => isset($att->recordId) ? $att->recordId : '',
+                                    "timeResult" => $att->timeResult,
+                                    "userCheckTime" => $att->userCheckTime,
+                                    "userId" => $att->userId,
+                                    "workDate" => $att->workDate,
+                                    "procInstId" => isset($att->procInstId) ? $att->procInstId : ''
+                                ]);
+                        }
+                        $offset += $limit;
+                        usleep(100);
                     }
-                    $offset += $limit;
-                    usleep(100);
+                    usleep(200);
                 }
-//                    $startTimestamp += 5 * 86400;
-//                }
-            }
 
+            }
     }
 }
