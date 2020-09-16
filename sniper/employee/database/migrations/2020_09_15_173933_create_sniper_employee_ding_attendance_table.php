@@ -16,6 +16,7 @@ class CreateSniperEmployeeDingAttendanceTable extends Migration
         Schema::connection('proxy')->create('sniper_employee_ding_attendance', function (Blueprint $table) {
             $table->bigInteger('id');
             $table->string('baseCheckTime')->nullable();
+            $table->string('ymd')->nullable();
             $table->string('checkType')->nullable();
             $table->string('corpId')->nullable();
             $table->string('groupId')->nullable();
