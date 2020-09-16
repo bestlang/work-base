@@ -54,7 +54,12 @@ class DingTalk
         $url = "https://oapi.dingtalk.com/user/simplelist?access_token={$access_token}&department_id={$departmentId}";
         $response = $client->request('GET', $url, [ 'query' => ['offset' => 0, 'size' => 100]]);
         $content = $response->getBody()->getContents();
-        $users = json_decode($content)->userlist;
+        $users = [];
+        try {
+            $users = json_decode($content)->userlist;
+        }catch (\Exception $e){
+            echo $content, "\n";
+        }
         return $users;
     }
 
