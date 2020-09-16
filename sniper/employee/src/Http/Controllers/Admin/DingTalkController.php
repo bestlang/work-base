@@ -5,6 +5,7 @@ use Illuminate\Http\Request;
 use Sniper\Employee\Models\DingTalk\Department as DingDepartment;
 use Sniper\Employee\Models\DingTalk\User as DingUser;
 use Sniper\Employee\Models\DingTalk\Attendance as DingAttendance;
+use DB;
 
 class DingTalkController
 {
@@ -40,7 +41,8 @@ class DingTalkController
             $department = DingDepartment::with('subs')->where('id', $id)->first();
             $this->_getUnder($department, $departmentIdArr);
         }
-        $users = DingUser::whereIn('department', $departmentIdArr)->get();
+        //$users = DingUser::whereIn('department', $departmentIdArr)->get();
+        $users = DB::connection('proxy')->table('sniper_employee_ding_users')->whereIn('department', $departmentIdArr)->get();
         return response()->ajax($users);
     }
 

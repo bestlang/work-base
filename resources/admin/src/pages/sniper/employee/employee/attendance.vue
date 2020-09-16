@@ -13,8 +13,15 @@
                                 <div><b>{{user.name}}</b><span style="color: #fff">{{user.userid}}</span></div>
                                 <div><small style="color: #afafaf">{{user.orgEmail ? user.orgEmail : '-'}}</small></div>
                                 </div>
-                                <div><small>本周：正常1次 迟到1次 早退1次</small></div>
-                                <div><small>本月：{{user.result}}</small></div>
+                                <!--<div><small>本周：正常1次 迟到1次 早退1次</small></div>-->
+                                <div>
+                                    <div v-if="user.result">
+                                        <small>本月：
+                                    {{user.result.Late?'迟到'+user.result.Late+'次':''}}
+                                    {{user.result.Early?'早退'+user.result.Early+'次':''}}
+                                        </small>
+                                </div>
+                                </div>
                                 <div></div>
                             </div>
                     </div>
