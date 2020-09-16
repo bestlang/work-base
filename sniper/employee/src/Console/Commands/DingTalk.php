@@ -65,7 +65,7 @@ class DingTalk extends Command
                             'tel' => isset($user->tel) ? $user->tel : '',
                             'department' => json_encode($user->department),
                             'workPlace' => isset($user->workPlace) ? $user->workPlace : '',
-                            'email' => $user->email,
+                            'email' => isset($user->email) ? $user->email : '',
                             'orderInDepts' => $user->orderInDepts,
                             'mobile' => isset($user->mobile) ? $user->mobile : '',
                             'errmsg' => $user->errmsg,
