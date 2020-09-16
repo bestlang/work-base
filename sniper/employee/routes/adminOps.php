@@ -22,4 +22,5 @@ Route::group(['prefix'=>'admin/sniper/employee', 'namespace'=>'Admin'], function
 
         Route::any('/ding/get/departments', 'DingTalkController@departments');
         Route::any('/ding/get/department/users', 'DingTalkController@departmentUsers');
+        Route::any('/ding/get/users/attendance', 'DingTalkController@usersAttendance');
 });

@@ -10,11 +10,11 @@
                     <div class="l-user-wrap">
                             <div v-for="(user, index) in users" :key="index" class="l-user">
                                 <div style="border-bottom: 1px solid #f1f1f1;padding-bottom: 10px;">
-                                <div><b>{{user.name}}</b></div>
+                                <div><b>{{user.name}}</b><span style="color: #fff">{{user.userid}}</span></div>
                                 <div><small style="color: #afafaf">{{user.orgEmail ? user.orgEmail : '-'}}</small></div>
                                 </div>
                                 <div><small>本周：正常1次 迟到1次 早退1次</small></div>
-                                <div><small>本月：正常1次 迟到1次 早退1次</small></div>
+                                <div><small>本月：{{user.result}}</small></div>
                                 <div></div>
                             </div>
                     </div>
@@ -55,7 +55,42 @@
             },
             async getDepartmentUsers({id}){
                 let res = await api.sniperDingGetDepartmentUsers({id})
+                let userIds = res.data.map(function(user){
+                    return user.userid
+                })
                 this.users = res.data
+                await this.getUsersAttendance({userIds})
+
+            },
+            async getUsersAttendance({userIds}){
+                let {data} = await api.sniperDingGetUsersAttendance({userIds})
+                let lastArr = {};
+                for(let userId in data){
+                    //console.log(userId+':')
+                    for(let dt in data[userId]){
+                        if(!lastArr[userId]){
+                            lastArr[userId] = {}
+                        }
+                        //console.log("\t"+dt+':')
+                        for(let tp in data[userId][dt]){
+                            //console.log("\t\t" + tp + ":")
+                            //console.log("\t\t\t"+data[userId][dt][tp].timeResult)
+                            if(!lastArr[userId][data[userId][dt][tp].timeResult]){
+                                lastArr[userId][data[userId][dt][tp].timeResult] = 0
+                            }
+                            lastArr[userId][data[userId][dt][tp].timeResult] +=1
+                        }
+                    }
+                }
+                for(let userId in lastArr){
+                    console.log(userId, "\n")
+                    for(let idx in this.users){
+                        if(this.users[idx].userid == userId) {
+                            this.$set(this.users[idx], 'result', lastArr[userId])
+                        }
+                    }
+                }
+                console.log("lastArr:"+JSON.stringify(lastArr));
             }
         }
     }
