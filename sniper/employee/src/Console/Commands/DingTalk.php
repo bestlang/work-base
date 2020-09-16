@@ -111,7 +111,7 @@ class DingTalk extends Command
                         foreach ($attendances as $att){
                             echo json_encode($att),"\n";
                             Attendance::updateOrCreate(
-                                ['userId' => $att->userId,"workDate" => $att->workDate, "ymd" => date('Y-m-d',$att->baseCheckTime / 1000), "checkType" => $att->checkType,],
+                                ['userId' => $att->userId,"workDate" => $att->workDate, "ymd" => date('Y-m-d',$att->baseCheckTime / 1000), "checkType" => $att->checkType],
                                 [
                                     'id' => $att->id,
                                     "baseCheckTime" => $att->baseCheckTime,
@@ -127,9 +127,9 @@ class DingTalk extends Command
                                 ]);
                         }
                         $offset += $limit;
-                        usleep(100);
+                        //usleep(100);
                     }
-                    usleep(200);
+                    //usleep(200);
                 }
 
             }
