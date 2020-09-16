@@ -77,7 +77,7 @@ class DingTalk
         $response = $client->request('GET', $url);
         $content = $response->getBody()->getContents();
         echo $content, "\n";
-        $user =  json_encode($content);
+        $user =  json_decode($content);
         return $user;
     }
 
