@@ -59,7 +59,7 @@ class DingTalk
         $access_token = $this->_getAccessToken();
         $client = new Client();
         $url = "https://oapi.dingtalk.com/user/simplelist?access_token={$access_token}&department_id={$departmentId}";
-        $response = $client->request('GET', $url, [ 'query' => ['offset' => 0, 'size' => 100]]);
+        $response = $client->request('GET', $url);//, [ 'query' => ['offset' => 0, 'size' => 100]]
         $content = $response->getBody()->getContents();
         $users = [];
         try {
