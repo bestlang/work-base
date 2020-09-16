@@ -21,6 +21,7 @@ class DingTalk
         }catch (\Exception $e){
             echo "_getAccessToken:", "\n", $content, "\n";
         }
+        echo "\$access_token: {$access_token}\n";
         return $access_token;
     }
 
