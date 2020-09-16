@@ -8,6 +8,7 @@ use Arr;
 use Sniper\Employee\Models\DingTalk\Attendance;
 use Sniper\Employee\Models\DingTalk\Department as DingDepartment;
 use Sniper\Employee\Models\DingTalk\User as DingUser;
+use DB;
 
 class DingTalk extends Command
 {
@@ -101,9 +102,7 @@ class DingTalk extends Command
                 for($days = 0; $days<180; $days++){
                     $workDateFrom = date('Y-m-d H:i:s',strtotime($dateBegin) - $days * 86400);
                     $workDateTo = date('Y-m-d H:i:s',strtotime($workDateFrom) + 86400);
-                    $userIds = DingUser::all()->map(function($user){
-                        return $user->userid;
-                    })->toArray();
+                    $userIds = DB::connection('proxy')->table('sniper_employee_ding_users')->pluck('userid')->toArray();
                     echo "\n--------------------------query {$workDateFrom}-------------------------:\n";
                     $offset = 0;
                     $limit = 50;
