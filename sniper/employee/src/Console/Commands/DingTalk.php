@@ -49,8 +49,8 @@ class DingTalk extends Command
                     $users[] = $ding->_getDepartmentUsers($departmentId);
                 }
                 $allUsers = Arr::flatten($users);
-                foreach($allUsers as $user){
-                    $user = $ding->_getUser($user->userid);
+                foreach($allUsers as $u){
+                    $user = $ding->_getUser($u->userid);
                     print_r($user);echo "\n";
                     if($user && isset($user->userid)){
 
