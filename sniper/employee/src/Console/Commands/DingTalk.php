@@ -60,7 +60,7 @@ class DingTalk extends Command
                             'remark' => isset($user->remark) ? $user->remark : '',
                             'isLeaderInDepts' => $user->isLeaderInDepts,
                             'isBoss' => $user->isBoss,
-                            'hiredDate' => $user->hiredDate,
+                            'hiredDate' => isset($user->hiredDate) ? $user->hiredDate : '',
                             'isSenior' => $user->isSenior,
                             'tel' => $user->tel,
                             'department' => json_encode($user->department),
