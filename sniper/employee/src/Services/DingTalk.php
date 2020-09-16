@@ -89,8 +89,13 @@ class DingTalk
         $options = [RequestOptions::JSON => compact(['workDateFrom', 'workDateTo', 'userIdList', 'offset', 'limit'])];
         $response = $client->request('POST', $url,  $options);
         $content = $response->getBody()->getContents();
-        echo $content, "\n";
-        $recordResult = json_decode($content)->recordresult;
+        $recordResult = [];
+        try{
+            $recordResult = json_decode($content)->recordresult;
+        }catch (\Exception $e){
+            echo $content, "\n";
+        }
+
         if(count($recordResult)){
             return $recordResult;
         }

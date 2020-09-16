@@ -106,6 +106,7 @@ class DingTalk extends Command
                     $userIds = DingUser::all()->map(function($user){
                         return $user->userid;
                     })->toArray();
+                    echo "\n--------------------------query {$workDateFrom}-------------------------:\n";
                     while($attendances = $ding->_getUserAttendance($userIds, $workDateFrom, $workDateTo, $offset, $limit)){
                         foreach ($attendances as $att){
                             echo json_encode($att),"\n";
