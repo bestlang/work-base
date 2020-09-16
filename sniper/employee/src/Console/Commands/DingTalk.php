@@ -13,6 +13,7 @@ class DingTalk extends Command
 {
     /**
      * The name and signature of the console command.
+     * php artisan sniper:dingTalk attendance
      *
      * @var string
      */
@@ -117,7 +118,7 @@ class DingTalk extends Command
                             "groupId" => $att->groupId,
                             "locationResult" => $att->locationResult,
                             "planId" => $att->planId,
-                            "recordId" => $att->recordId,
+                            "recordId" => isset($att->recordId) ? $att->recordId : '',
                             "timeResult" => $att->timeResult,
                             "userCheckTime" => $att->userCheckTime,
                             "userId" => $att->userId,
