@@ -4,16 +4,27 @@
         <ding-department-tree  @nodeClick="handleNodeClick" @treeLoaded="performTreeLoaded" :updated="updated"></ding-department-tree>
         <div class="l-block">
             <div class="l-block-header">
-                111
+                考勤人员
             </div>
             <div class="l-block-body">
-                    blablabla
+                    <div class="l-user-wrap">
+                            <div v-for="(user, index) in users" :key="index" class="l-user">
+                                <div style="border-bottom: 1px solid #f1f1f1;padding-bottom: 10px;">
+                                <div><b>{{user.name}}</b></div>
+                                <div><small>{{user.orgEmail ? user.orgEmail : '-'}}</small></div>
+                                </div>
+                                <div><small>本周：正常1次 迟到1次 早退1次</small></div>
+                                <div><small>本月：正常1次 迟到1次 早退1次</small></div>
+                                <div></div>
+                            </div>
+                    </div>
             </div>
         </div>
 
     </div>
 </template>
 <script>
+    import api from "../../../../api/index"
     import DingDepartmentTree from "../components/DingDepartmentTree"
     export default {
         components:{
@@ -21,26 +32,52 @@
         },
         data(){
             return {
-                updated: 0
+                updated: 0,
+                department: null,
+                users: []
             }
         },
-        computed:{
-
+        watch:{
+            async ['department.id'](id){
+                await this.getDepartmentUsers({id})
+            }
         },
         methods:{
             handleNodeClick(node){
-                // this.department = node
+                this.department = node
                 // this.assignForm(node)
-                console.log(node)
+                console.log('node click:'+JSON.stringify(node))
             },
             performTreeLoaded(department){
-                // this.department = department
+                console.log('performTreeLoaded:'+JSON.stringify(department))
+                this.department = department
                 // this.assignForm(department)
             },
+            async getDepartmentUsers({id}){
+                let res = await api.sniperDingGetDepartmentUsers({id})
+                this.users = res.data
+            }
         }
     }
 </script>
 <style scoped lang="less">
+    .l-user-wrap{
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: flex-start;
+        .l-user{
+            width: 240px;
+            height: 120px;
+            border: 1px solid #f1f1f1;
+            margin-bottom: 20px;
+            margin-right: 20px;
+            display: flex;
+            flex-flow: column;
+            justify-content: space-between;
+            padding: 15px 10px 10px;
+
+        }
+    }
     .l-position-list{
         display: flex;
         flex-flow: row nowrap;

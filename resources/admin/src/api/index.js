@@ -88,4 +88,5 @@ export default {
     sniperDeleteEmployeeJob(data){ return fetch('/admin/sniper/employee/delete/employee/job', data, 'post')},
 
     sniperDingGetDepartments(data){ return fetch('/admin/sniper/employee/ding/get/departments', data)},
+    sniperDingGetDepartmentUsers(data){ return fetch('/admin/sniper/employee/ding/get/department/users', data)},
 }

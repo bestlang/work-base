@@ -8,4 +8,9 @@ class Department extends Model
     protected $table = 'sniper_employee_ding_departments';
     protected $guarded = [];
 
+    public function subs()
+    {
+        return $this->hasMany(Department::class, 'parentid', 'id');
+    }
+
 }
