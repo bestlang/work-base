@@ -15,7 +15,13 @@ class DingTalk
         $url = "https://oapi.dingtalk.com/gettoken?appkey={$appKey}&appsecret={$appSecret}";
         $response = $client->request('GET', $url);
         $content = $response->getBody()->getContents();
-        return json_decode($content)->access_token;
+        $access_token = null;
+        try{
+            $access_token = json_decode($content)->access_token;
+        }catch (\Exception $e){
+            echo "_getAccessToken:", "\n", $content, "\n";
+        }
+        return $access_token;
     }
 
     public function departments()
@@ -58,7 +64,7 @@ class DingTalk
         try {
             $users = json_decode($content)->userlist;
         }catch (\Exception $e){
-            echo $content, "\n";
+            echo "_getDepartmentUsers:", "\n", $content, "\n";
         }
         return $users;
     }
