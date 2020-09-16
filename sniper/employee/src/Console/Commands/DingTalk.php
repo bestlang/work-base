@@ -97,8 +97,6 @@ class DingTalk extends Command
                         ]);
                 }
             }else if($act == 'attendance'){
-                $offset = 0;
-                $limit = 50;
                 $workDateFrom = date('Y-m-d 00:00:00');
                 for($days = 0; $days<100; $days++){
                     $workDateFrom = date('Y-m-d H:i:s',strtotime($workDateFrom) - $days * 86400);
@@ -107,6 +105,8 @@ class DingTalk extends Command
                         return $user->userid;
                     })->toArray();
                     echo "\n--------------------------query {$workDateFrom}-------------------------:\n";
+                    $offset = 0;
+                    $limit = 50;
                     while($attendances = $ding->_getUserAttendance($userIds, $workDateFrom, $workDateTo, $offset, $limit)){
                         foreach ($attendances as $att){
                             echo json_encode($att),"\n";
