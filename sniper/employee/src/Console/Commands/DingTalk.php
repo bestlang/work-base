@@ -149,7 +149,14 @@ class DingTalk extends Command
                 $offset = 0;
                 $size = 20;
                 $result = $ding->_getLeaveStatus($userid_list, $start_time, $end_time, $offset, $size);
-                echo json_encode($result);
+                $leave_status = [];
+                $leave_status[] = $result->result->leave_status;
+                while($result->result->has_more){
+                    $offset += $size;
+                    $result = $ding->_getLeaveStatus($userid_list, $start_time, $end_time, $offset, $size);
+                    $leave_status[] = $result->result->leave_status;
+                }
+                echo json_encode(Arr::flatten($leave_status));
             }
     }
 }
