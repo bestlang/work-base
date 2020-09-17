@@ -17,12 +17,16 @@
                                 <div>
                                     <div v-if="user.result">
                                         <small>本月：
-                                            {{user.result.Late?'迟到'+user.result.Late+'次':''}}
-                                            {{user.result.Early?'早退'+user.result.Early+'次':''}}
+                                            <span v-if="user.result.Late || user.result.Early || user.result.NotSigned">
+                                                {{user.result.Late?'迟到'+user.result.Late+'次':''}}
+                                                {{user.result.Early?'早退'+user.result.Early+'次':''}}
+                                                {{user.result.NotSigned?'未打卡'+user.result.NotSigned+'次':''}}
+                                            </span>
+                                            <span v-else>正常</span>
                                         </small>
                                     </div>
                                 </div>
-                                <div><small>{{user.result}}</small></div>
+                                <!--<div><small>{{user.result}}</small></div>-->
                                 <div></div>
                             </div>
                     </div>

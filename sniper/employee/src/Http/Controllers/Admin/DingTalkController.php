@@ -61,9 +61,14 @@ class DingTalkController
     public function usersAttendance(Request $request)
     {
         $userIds = $request->input('userIds');
+        $month = $request->input('month');
         //$userIds = explode(',', $userIds);
         $start = strtotime(date('Y-m-01')) * 1000;
         $end = ( strtotime(date('Y-m-t')) + 86400 ) * 1000;
+        if($month){
+            $start = strtotime(date($month.'-01')) * 1000;
+            $end = ( strtotime(date($month.'-t')) + 86400 ) * 1000;
+        }
         $attendances = DingAttendance::whereIn('userId', $userIds)->whereBetween('baseCheckTime', [$start, $end])->orderBy('baseCheckTime', 'asc')->orderBy('userId', 'desc')->get();
         $lastArr = [];
         foreach ($attendances as $at){
