@@ -8,7 +8,7 @@
             </div>
             <div class="l-block-body">
                     <div class="l-user-wrap">
-                            <div v-for="(user, index) in users" :key="index" class="l-user">
+                            <div v-for="(user, index) in users" :key="index" class="l-user" @click="viewDetail(user)">
                                 <div style="border-bottom: 1px solid #f1f1f1;padding-bottom: 10px;">
                                 <div><b>{{user.name}}</b><span style="color: #fff">{{user.userid}}</span></div>
                                 <div><small style="color: #afafaf">{{user.orgEmail ? user.orgEmail : '-'}}</small></div>
@@ -17,11 +17,12 @@
                                 <div>
                                     <div v-if="user.result">
                                         <small>本月：
-                                    {{user.result.Late?'迟到'+user.result.Late+'次':''}}
-                                    {{user.result.Early?'早退'+user.result.Early+'次':''}}
+                                            {{user.result.Late?'迟到'+user.result.Late+'次':''}}
+                                            {{user.result.Early?'早退'+user.result.Early+'次':''}}
                                         </small>
+                                    </div>
                                 </div>
-                                </div>
+                                <div><small>{{user.result}}</small></div>
                                 <div></div>
                             </div>
                     </div>
@@ -50,6 +51,10 @@
             }
         },
         methods:{
+            viewDetail(user){
+                let userId = user.userid
+                this.$router.push('/sniper/employee/employee/attendance/detail?userId='+user.userid+'&month=2020-09')
+            },
             handleNodeClick(node){
                 this.department = node
                 // this.assignForm(node)
@@ -108,6 +113,7 @@
         flex-flow: row wrap;
         justify-content: flex-start;
         .l-user{
+            cursor: pointer;
             width: 240px;
             height: 120px;
             border: 1px solid #f1f1f1;

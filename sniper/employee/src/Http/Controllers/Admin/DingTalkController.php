@@ -57,13 +57,13 @@ class DingTalkController
         }
     }
 
-    //获取特定用户列表本周考勤状况
+    //获取特定用户列表本月考勤状况
     public function usersAttendance(Request $request)
     {
         $userIds = $request->input('userIds');
         //$userIds = explode(',', $userIds);
         $start = strtotime(date('Y-m-01')) * 1000;
-        $end = ( strtotime(date('Y-m-t')) + 85400 ) * 1000;
+        $end = ( strtotime(date('Y-m-t')) + 86400 ) * 1000;
         $attendances = DingAttendance::whereIn('userId', $userIds)->whereBetween('baseCheckTime', [$start, $end])->orderBy('baseCheckTime', 'asc')->orderBy('userId', 'desc')->get();
         $lastArr = [];
         foreach ($attendances as $at){

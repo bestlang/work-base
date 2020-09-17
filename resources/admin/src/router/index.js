@@ -117,6 +117,16 @@ export default new VueRouter({
                           font: '&#xe629;'
                       }
                   },
+                  {
+                      path: "/sniper/employee/employee/attendance/detail",
+                      component: () => import("../pages/sniper/employee/employee/attendanceDetail.vue"),
+                      meta: {
+                          can: 'cms',
+                          show: false,
+                          name: '考勤详情',
+                          font: '&#xe629;'
+                      }
+                  },
                   /*{
                       path: "/graph",
                       component: () => import("../pages/sniper/employee/employee/graph.vue"),
