@@ -3,6 +3,7 @@
 namespace Sniper\Employee\Console\Commands;
 
 use Illuminate\Console\Command;
+use Sniper\Employee\Models\DingTalk\Leave;
 use Sniper\Employee\Services\DingTalk as DingService;
 use Arr;
 use Sniper\Employee\Models\DingTalk\Attendance;
@@ -149,14 +150,25 @@ class DingTalk extends Command
                 $offset = 0;
                 $size = 20;
                 $result = $ding->_getLeaveStatus($userid_list, $start_time, $end_time, $offset, $size);
+                echo $offset, "\n";
                 $leave_status = [];
                 $leave_status[] = $result->result->leave_status;
                 while($result->result->has_more){
                     $offset += $size;
+                    echo $offset, "\n";
                     $result = $ding->_getLeaveStatus($userid_list, $start_time, $end_time, $offset, $size);
                     $leave_status[] = $result->result->leave_status;
                 }
-                echo json_encode(Arr::flatten($leave_status));
+                $leave_status = Arr::flatten($leave_status);
+                foreach ($leave_status as $leave){
+                    Leave::updateOrCreate([
+                        'userid' => $leave->userid,
+                        'start_time' => $leave->start_time
+                    ],[
+                        'end_time' => $leave->end_time
+                    ]);
+                }
+//                echo json_encode(Arr::flatten($leave_status));
             }
     }
 }
