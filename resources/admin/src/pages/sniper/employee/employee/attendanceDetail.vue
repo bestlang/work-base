@@ -1,22 +1,27 @@
 <template>
-    <el-calendar @input="dateChange">
-        <template
-                slot="dateCell"
-                slot-scope="{date, data}">
-            <p style="font-size: 18px;font-weight: 300;">
-                {{ data.day.split('-').slice(1).join('/') }}
-            </p>
-            <div v-show="showResult(data.day) && timeLine(data.day)">
-                <el-progress  :percentage="50" :show-text="false" stroke-linecap="square" :stroke-width="4" color="#ccc"></el-progress>
-                <el-progress style="margin-top: 2px" :percentage="timeLine(data.day) * 50" :show-text="false" stroke-linecap="square" :stroke-width="4" status="success"></el-progress>
-            </div>
-            <div v-show="showResult(data.day)" style="font-size: 12px;color: #5a5e66">
-                <p><span v-html="readable(data.day).onDutyTimeResult"></span></p>
-                <p><span v-html="readable(data.day).offDutyTimeResult"></span></p>
-            </div>
+    <div>
+        <el-calendar @input="dateChange">
+            <template
+                    slot="dateCell"
+                    slot-scope="{date, data}">
+                <p style="font-size: 18px;font-weight: 300;">
+                    {{ data.day.split('-').slice(1).join('/') }}
+                </p>
+                <div v-show="showResult(data.day) && timeLine(data.day)">
+                    <el-progress  :percentage="50" :show-text="false" stroke-linecap="square" :stroke-width="4" color="#ddd"></el-progress>
+                    <el-progress style="margin-top: 2px" :percentage="timeLine(data.day) * 50" :show-text="false" stroke-linecap="square" :stroke-width="4" status="success"></el-progress>
+                </div>
+                <div v-show="showResult(data.day)" style="font-size: 12px;color: #5a5e66">
+                    <p><span v-html="readable(data.day).onDutyTimeResult"></span></p>
+                    <p><span v-html="readable(data.day).offDutyTimeResult"></span></p>
+                </div>
 
-        </template>
-    </el-calendar>
+            </template>
+        </el-calendar>
+        <div>
+            {{month}}
+        </div>
+    </div>
 </template>
 <script>
     import api from "../../../../api/index"

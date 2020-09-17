@@ -63,8 +63,10 @@ class DingTalkController
         $userIds = $request->input('userIds');
         $month = $request->input('month');
         //$userIds = explode(',', $userIds);
+        //未指定 本月
         $start = strtotime(date('Y-m-01')) * 1000;
         $end = ( strtotime(date('Y-m-t')) + 86400 ) * 1000;
+        //指定了月份
         if($month){
             $start = strtotime(date($month.'-01')) * 1000;
             $end = ( strtotime(date($month.'-t')) + 86400 ) * 1000;
@@ -75,5 +77,17 @@ class DingTalkController
             $lastArr[$at->userId][$at->ymd][$at->checkType] = $at;
         }
         return response()->ajax($lastArr);
+    }
+
+    public function user(Request $request)
+    {
+        $userId = $request->input('userId');
+        $user = null;
+        try {
+            $user = DingUser::with('departmentInfo')->where('userid', $userId)->firstOrFail();
+        }catch (\Exception $e){
+            return response()->error($e->getMessage());
+        }
+        return response()->ajax($user);
     }
 }

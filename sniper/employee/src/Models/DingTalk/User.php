@@ -9,4 +9,9 @@ class User extends Model
     protected $guarded = [];
 
     protected $primaryKey = 'userid';
+
+    public function departmentInfo()
+    {
+        return $this->belongsTo(Department::class, 'department');
+    }
 }

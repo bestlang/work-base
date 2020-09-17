@@ -5,7 +5,7 @@
             title="提醒"
             type="warning"
             style="margin-bottom: 20px;">
-      <div slot="default">
+      <div slot="defalut">
             <p>这里放一些提醒信息</p>
       </div>
     </el-alert>
