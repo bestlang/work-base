@@ -132,7 +132,7 @@ class DingTalk extends Command
 
             }else if($act == 'process'){
                 $time = time();
-                $attendances = Attendance::where('procInstId', '!=', '')->all();
+                $attendances = Attendance::where('procInstId', '!=', '')->get();
                 foreach ($attendances as $attendance){
                     if($time - $attendance->baseCheckTime/1000 < 180 * 86400){
                         $result = $ding->_getProcess($attendance->procInstId);
