@@ -98,7 +98,7 @@ class DingTalk extends Command
                 }
             }else if($act == 'attendance'){
                 $dateBegin = date('Y-m-d 00:00:00');
-                for($days = 0; $days<10; $days++){
+                for($days = 0; $days<180; $days++){
                     $workDateFrom = date('Y-m-d H:i:s',strtotime($dateBegin) - $days * 86400);
                     $workDateTo = date('Y-m-d H:i:s',strtotime($workDateFrom) + 86400);
                     $userIds = DB::connection('proxy')->table('sniper_employee_ding_users')->pluck('userid')->toArray();
@@ -142,9 +142,10 @@ class DingTalk extends Command
                     }
                 }
             }else if($act == 'leavestatus'){
-                $userid_list = '0604166167860683';
-                $start_time = strtotime('2020-07-08') * 1000;
-                $end_time = strtotime('2020-09-01') * 1000;
+                $userIds = DB::connection('proxy')->table('sniper_employee_ding_users')->pluck('userid')->toArray();
+                $userid_list = implode(',', $userIds);
+                $end_time = time() * 1000;
+                $start_time = $end_time - 180 * 86400 * 1000;
                 $offset = 0;
                 $size = 20;
                 $result = $ding->_getLeaveStatus($userid_list, $start_time, $end_time, $offset, $size);
