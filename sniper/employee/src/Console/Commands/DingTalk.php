@@ -55,6 +55,7 @@ class DingTalk extends Command
                     $user = $ding->_getUser($u->userid);
                     if($user && isset($user->userid)){
                         DingUser::updateOrCreate(['unionid' => $user->unionid, 'openId' =>$user->openId] , [
+                            'userid' => $user->userid,
                             'errcode' => $user->errcode,
                             'remark' => isset($user->remark) ? $user->remark : '',
                             'isLeaderInDepts' => $user->isLeaderInDepts,
