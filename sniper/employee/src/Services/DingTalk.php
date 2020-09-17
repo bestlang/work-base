@@ -77,7 +77,7 @@ class DingTalk
         $response = $client->request('GET', $url);
         $content = $response->getBody()->getContents();
         $user =  json_decode($content);
-        echo "\nprocess user of id : {$user->userid}\n";
+        echo "process user of id : {$user->userid}\n";
         return $user;
     }
 
@@ -99,6 +99,17 @@ class DingTalk
         if(count($recordResult)){
             return $recordResult;
         }
+    }
+
+    public function _getProcess($process_instance_id)
+    {
+        $access_token = $this->_getAccessToken();
+        $client = new Client();
+        $url = "https://oapi.dingtalk.com/topapi/processinstance/get?access_token={$access_token}";
+        $options = [RequestOptions::JSON => compact(['process_instance_id'])];
+        $response = $client->request('POST', $url,  $options);
+        $content = $response->getBody()->getContents();
+        return json_decode($content);
     }
 
 }

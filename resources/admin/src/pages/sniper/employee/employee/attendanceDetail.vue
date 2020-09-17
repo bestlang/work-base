@@ -18,8 +18,11 @@
 
             </template>
         </el-calendar>
-        <div>
-            {{month}}
+        <div><i style="color: #555;">{{month}}月份</i></div>
+        <div style="border-top: 1px solid #ccc;display: flex;flex-flow: row nowrap;justify-content: space-between" v-if="user">
+            <!--{{user}}-->
+            <div><b style="color: #555;">{{user.name}}</b><i style="color: #aaa;"><{{user.orgEmail}}></i> <span style="color: #fff;">{{user.userid}}</span></div>
+            <div style="color: #555;font-style: italic">{{user.department_info?user.department_info.name:''}}</div>
         </div>
     </div>
 </template>
@@ -30,6 +33,7 @@
             return {
                 userId: null,
                 month: null,
+                user: null,
                 value : new Date(),
                 attendances:{}
             }
@@ -38,8 +42,10 @@
 
         },
         watch:{
-            async userId(){
-
+            async userId(val){
+                if(val){
+                    await this.getUser(val)
+                }
             },
             async month(val){
                 if(this.userId)
@@ -47,6 +53,10 @@
             }
         },
         methods:{
+            async getUser(userId){
+                let {data} = await api.sniperDingGetUser({userId})
+                this.user = data
+            },
             dateChange(row){
                 let d = new Date(row)
                 let y = d.getFullYear()

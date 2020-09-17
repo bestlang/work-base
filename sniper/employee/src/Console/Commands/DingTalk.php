@@ -130,6 +130,9 @@ class DingTalk extends Command
                     //usleep(200);
                 }
 
+            }else if($act == 'process'){
+                $result = $ding->_getProcess('d840a36e-627e-47bd-aa3c-1ec0935c9af2');
+                print_r($result);
             }
     }
 }
