@@ -131,8 +131,15 @@ class DingTalk extends Command
                 }
 
             }else if($act == 'process'){
-                $result = $ding->_getProcess('d840a36e-627e-47bd-aa3c-1ec0935c9af2');
-                print_r($result);
+                $time = time();
+                $attendances = Attendance::where('procInstId', '!=', '')->all();
+                foreach ($attendances as $attendance){
+                    if($time - $attendance->baseCheckTime/1000 < 180 * 86400){
+                        $result = $ding->_getProcess($attendance->procInstId);
+                        echo "================\n";
+                        echo $attendance->procInstId, ":",  json_encode($result),"\n";
+                    }
+                }
             }
     }
 }
