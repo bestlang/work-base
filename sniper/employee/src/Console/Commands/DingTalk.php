@@ -121,7 +121,8 @@ class DingTalk extends Command
                                     "timeResult" => $att->timeResult,
                                     "userCheckTime" => $att->userCheckTime,
                                     "workDate" => $att->workDate,
-                                    "procInstId" => isset($att->procInstId) ? $att->procInstId : ''
+                                    "procInstId" => isset($att->procInstId) ? $att->procInstId : '',
+                                    "approveId" => isset($att->approveId) ? $att->approveId : ''
                                 ]);
                         }
                         $offset += $limit;
