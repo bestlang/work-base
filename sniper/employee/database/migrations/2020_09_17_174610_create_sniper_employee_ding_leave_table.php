@@ -13,7 +13,7 @@ class CreateSniperEmployeeDingLeaveTable extends Migration
      */
     public function up()
     {
-        Schema::create('sniper_employee_ding_leave', function (Blueprint $table) {
+        Schema::connection('proxy')->create('sniper_employee_ding_leave', function (Blueprint $table) {
             $table->string('userid');
             $table->string('start_time')->nullable();
             $table->string('end_time')->nullable();
@@ -28,6 +28,6 @@ class CreateSniperEmployeeDingLeaveTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('sniper_employee_ding_leave');
+        Schema::connection('proxy')->dropIfExists('sniper_employee_ding_leave');
     }
 }

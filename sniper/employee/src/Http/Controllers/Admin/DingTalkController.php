@@ -5,6 +5,7 @@ use Illuminate\Http\Request;
 use Sniper\Employee\Models\DingTalk\Department as DingDepartment;
 use Sniper\Employee\Models\DingTalk\User as DingUser;
 use Sniper\Employee\Models\DingTalk\Attendance as DingAttendance;
+use Sniper\Employee\Models\DingTalk\Leave;
 use DB;
 
 class DingTalkController
@@ -75,6 +76,16 @@ class DingTalkController
         $lastArr = [];
         foreach ($attendances as $at){
             $lastArr[$at->userId][$at->ymd][$at->checkType] = $at;
+        }
+        foreach ($lastArr as $userId => &$v){
+            $totalHours = 0;
+            $leaves = Leave::where('userId', $userId)->where(function ($query)use($start, $end){
+                    $query->where([['end_time', '>', $start], ['end_time', '<=', $end]])->orWhere([['start_time', '>=', $start], ['start_time', '<', $end]]);
+                })->get();
+            $lastArr[$userId]['leave'] = 0;
+            foreach ($leaves as $leave){
+                $lastArr[$userId]['leave'] += ($leave->end_time - $leave->start_time)/(1000*60*60);
+            }
         }
         return response()->ajax($lastArr);
     }

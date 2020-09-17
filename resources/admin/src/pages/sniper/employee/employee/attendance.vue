@@ -19,6 +19,7 @@
                                         <small>本月：
                                             <span style="font-weight: 700" v-html="resultHtml(user.result)"></span>
                                         </small>
+                                        <small>{{user.leave}}</small>
                                     </div>
                                 </div>
                                 <!--<div><small>{{user.result}}</small></div>-->
@@ -93,16 +94,14 @@
                 let {data} = await api.sniperDingGetUsersAttendance({userIds})
                 let lastArr = {};
                 for(let userId in data){
-                    //console.log(userId+':')
+
                     for(let dt in data[userId]){
                         if(!lastArr[userId]){
                             lastArr[userId] = {}
                         }
-                        //console.log("\t"+dt+':')
                         //tp == type
                         for(let tp in data[userId][dt]){
-                            //console.log("\t\t" + tp + ":")
-                            //console.log("\t\t\t"+data[userId][dt][tp].timeResult)
+
                             if(!lastArr[userId][data[userId][dt][tp].timeResult]){
                                 lastArr[userId][data[userId][dt][tp].timeResult] = 0
                             }
@@ -117,6 +116,7 @@
                     for(let idx in this.users){
                         if(this.users[idx].userid == userId) {
                             this.$set(this.users[idx], 'result', lastArr[userId])
+                            this.$set(this.users[idx], 'leave', data[userId].leave)
                         }
                     }
                 }
