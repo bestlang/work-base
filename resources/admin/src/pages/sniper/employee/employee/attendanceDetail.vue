@@ -95,27 +95,35 @@
                 }
                 let onDutyTimeResult = ''
                 let offDutyTimeResult = ''
+                let onClock = ''
+                let offClock = ''
                 if(this.attendances[day] && this.attendances[day].OnDuty){
                     onDutyTimeResult = this.attendances[day].OnDuty.timeResult
+                    if(this.attendances[day].OnDuty.procInstId || this.attendances[day].OnDuty.approveId){
+                        onClock = '<span class="iconfont" title="已关联请假、加班等">&#xe60b;</span>'
+                    }
                 }
                 if(this.attendances[day] && this.attendances[day].OffDuty){
                     offDutyTimeResult = this.attendances[day].OffDuty.timeResult
+                    if(this.attendances[day].OffDuty.procInstId || this.attendances[day].OffDuty.approveId){
+                        offClock = '<span class="iconfont" title="已关联请假、加班等">&#xe60b;</span>'
+                    }
                 }
                 if(onDutyTimeResult == 'Late'){
                     let on = this.attendances[day].OnDuty
-                    onDutyTimeResult = '<span style="color: red;font-weight: 700">上班:' + resultMap[onDutyTimeResult] + Math.ceil((on.userCheckTime - on.baseCheckTime)/1000/60) + '分钟</span>'
+                    onDutyTimeResult = '<span style="color: red;font-weight: 700">上班' + resultMap[onDutyTimeResult] + Math.ceil((on.userCheckTime - on.baseCheckTime)/1000/60) + '分钟</span>'+onClock
                 }else if(onDutyTimeResult == 'NotSigned'){
-                    onDutyTimeResult = '<span style="color: orange;font-weight: 700">上班:' + resultMap[onDutyTimeResult] + '</span>'
+                    onDutyTimeResult = '<span style="color: orange;font-weight: 700">上班' + resultMap[onDutyTimeResult] + '</span>'+onClock
                 }else if(onDutyTimeResult == 'Normal'){
-                    onDutyTimeResult = '<span style="color: green;font-weight: 700">上班:' + resultMap[onDutyTimeResult] + '</span>'
+                    onDutyTimeResult = '<span style="color: green;font-weight: 700">上班' + resultMap[onDutyTimeResult] + '</span>'+onClock
                 }
                 if(offDutyTimeResult == 'Early'){
                     let off = this.attendances[day].OffDuty
-                    offDutyTimeResult = '<span style="color: red;font-weight: 700">下班:' + resultMap[offDutyTimeResult] + Math.ceil((off.baseCheckTime - off.userCheckTime)/1000/60) + '分钟</span>'
+                    offDutyTimeResult = '<span style="color: red;font-weight: 700">下班' + resultMap[offDutyTimeResult] + Math.ceil((off.baseCheckTime - off.userCheckTime)/1000/60) + '分钟</span>'+offClock
                 }else if(offDutyTimeResult == 'NotSigned'){
-                    offDutyTimeResult = '<span style="color: orange;font-weight: 700">下班:' + resultMap[offDutyTimeResult] + '</span>'
+                    offDutyTimeResult = '<span style="color: orange;font-weight: 700">下班' + resultMap[offDutyTimeResult] + '</span>'+offClock
                 }else if(offDutyTimeResult == 'Normal'){
-                    offDutyTimeResult = '<span style="color: green;font-weight: 700">下班:' +resultMap[offDutyTimeResult] + '</span>'
+                    offDutyTimeResult = '<span style="color: green;font-weight: 700">下班' +resultMap[offDutyTimeResult] + '</span>'+offClock
                 }
 
                 return {

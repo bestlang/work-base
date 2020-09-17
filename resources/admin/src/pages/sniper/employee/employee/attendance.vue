@@ -17,12 +17,7 @@
                                 <div>
                                     <div v-if="user.result">
                                         <small>本月：
-                                            <span v-if="user.result.Late || user.result.Early || user.result.NotSigned">
-                                                {{user.result.Late?'迟到'+user.result.Late+'次':''}}
-                                                {{user.result.Early?'早退'+user.result.Early+'次':''}}
-                                                {{user.result.NotSigned?'未打卡'+user.result.NotSigned+'次':''}}
-                                            </span>
-                                            <span v-else>正常</span>
+                                            <span style="font-weight: 700" v-html="resultHtml(user.result)"></span>
                                         </small>
                                     </div>
                                 </div>
@@ -55,6 +50,22 @@
             }
         },
         methods:{
+            resultHtml(result){
+                let html = ''
+                if(result.Late){
+                    html += '<span style="color: red">'+'迟到'+result.Late+'次</span>'
+                }
+                if(result.Early){
+                    html += '<span style="color: orange">'+'早退'+result.Early+'次</span>'
+                }
+                if(result.NotSigned){
+                    html += '<span style="color: gray">'+'未打卡'+result.NotSigned+'次</span>'
+                }
+                if(!html){
+                    html = '<span style="color: green">正常</span>'
+                }
+                return html
+            },
             viewDetail(user){
                 let userId = user.userid
                 this.$router.push('/sniper/employee/employee/attendance/detail?userId='+user.userid+'&month=2020-09')
@@ -88,13 +99,16 @@
                             lastArr[userId] = {}
                         }
                         //console.log("\t"+dt+':')
+                        //tp == type
                         for(let tp in data[userId][dt]){
                             //console.log("\t\t" + tp + ":")
                             //console.log("\t\t\t"+data[userId][dt][tp].timeResult)
                             if(!lastArr[userId][data[userId][dt][tp].timeResult]){
                                 lastArr[userId][data[userId][dt][tp].timeResult] = 0
                             }
-                            lastArr[userId][data[userId][dt][tp].timeResult] +=1
+                            if(!data[userId][dt][tp].approveId && !data[userId][dt][tp].procInstId){
+                                lastArr[userId][data[userId][dt][tp].timeResult] +=1
+                            }
                         }
                     }
                 }
