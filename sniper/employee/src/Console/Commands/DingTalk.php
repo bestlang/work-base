@@ -141,9 +141,9 @@ class DingTalk extends Command
                     }
                 }
             }else if($act == 'leavestatus'){
-                $userid_list = '542706561157841';
-                $start_time = strtotime('2020-09-08') * 1000;
-                $end_time = strtotime('2020-09-11') * 1000;
+                $userid_list = '0604166167860683';
+                $start_time = strtotime('2020-07-08') * 1000;
+                $end_time = strtotime('2020-09-01') * 1000;
                 $offset = 0;
                 $size = 20;
                 $result = $ding->_getLeaveStatus($userid_list, $start_time, $end_time, $offset, $size);
