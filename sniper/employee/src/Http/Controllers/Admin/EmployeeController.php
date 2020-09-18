@@ -121,7 +121,14 @@ class EmployeeController
 
 
             $user->push();
-            ProcessEditUser::dispatch($user_id. 'U')->onQueue('updateDingTalkUser');//
+             $attr = [
+                'userid' => $user_id,
+                'name' => $user->name,
+                'email' => $user->email,
+                'orgEmail' => $user->email,
+                'tel' => $user->employee->phone
+            ];
+            ProcessEditUser::dispatch($user_id. 'U', $attr)->onQueue('updateDingTalkUser');//
             ///存储教育经历
             $educationHistory = $request->input('educationHistory');
             foreach ($educationHistory as $education){

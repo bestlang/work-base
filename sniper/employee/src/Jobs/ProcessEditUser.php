@@ -8,7 +8,6 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Sniper\Employee\Services\DingTalk;
-use Sniper\Employee\Models\User;
 use Sniper\Employee\Models\DingTalk\User as DingUser;
 
 class ProcessEditUser implements ShouldQueue
@@ -17,14 +16,16 @@ class ProcessEditUser implements ShouldQueue
 
     public $tries = 3;
     protected $signal;
+    protected $attr;
     /**
      * Create a new job instance.
      *
      * @return void
      */
-    public function __construct($signal)
+    public function __construct($signal, $attr)
     {
         $this->signal = $signal;
+        $this->attr = $attr;
     }
 
     /**
@@ -41,16 +42,8 @@ class ProcessEditUser implements ShouldQueue
         ];
         $user_id = substr($this->signal, 0, -1);
         $act = substr($this->signal, -1);
-        $user = User::with(['dingUser'])->find($user_id);
         if($act == 'U'){
-            $attr = [
-                'userid' => $user->dingUser->userid,
-                'name' => $user->name,
-                'email' => $user->email,
-                'orgEmail' => $user->email,
-                'tel' => $user->phone
-            ];
-            $ding->_updateUser($user_id, $attr);
+            $ding->_updateUser($user_id, $this->attr);
         }
         //$ding->${$map[$act]}($user_id, []);
 
