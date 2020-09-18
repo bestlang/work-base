@@ -193,7 +193,7 @@
         .l-department{
             position: relative;
             box-shadow: #67C23A;
-            height: 140px;
+            height: 80px;
             border:1px solid #f1f1f1;
             width: 200px;
             margin: 20px 30px 0 0;
@@ -204,7 +204,7 @@
                 box-shadow: 3px 3px 6px #FAFAFA;
                 background: #fcf8e3;
                 h1{
-                    color: #2d2d2d;
+                    color: #555;
                 }
             }
             h1{
@@ -214,7 +214,7 @@
                 font-weight: bold;
             }
             .l-employee-count{
-                color: #4c110f;
+                color: #555;
                 position: absolute;
                 bottom: 10px;
                 left: 10px;

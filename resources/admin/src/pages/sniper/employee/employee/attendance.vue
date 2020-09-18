@@ -10,7 +10,7 @@
                     <div class="l-user-wrap">
                             <div v-for="(user, index) in users" :key="index" class="l-user" @click="viewDetail(user)">
                                 <div style="border-bottom: 1px solid #f1f1f1;padding-bottom: 10px;">
-                                <div><b>{{user.name}}</b><span style="color: #fff">{{user.userid}}</span></div>
+                                <div><b>{{user.name}}</b><small style="color: #fff;display: none;">{{user.userid}}</small></div>
                                 <div><small style="color: #afafaf">{{user.orgEmail ? user.orgEmail : '-'}}</small></div>
                                 </div>
                                 <!--<div><small>本周：正常1次 迟到1次 早退1次</small></div>-->
@@ -138,8 +138,8 @@
         justify-content: flex-start;
         .l-user{
             cursor: pointer;
-            width: 240px;
-            height: 120px;
+            width: 230px;
+            height: 140px;
             border: 1px solid #f1f1f1;
             margin-bottom: 20px;
             margin-right: 20px;
@@ -147,6 +147,11 @@
             flex-flow: column;
             justify-content: space-between;
             padding: 15px 10px 10px;
+            background: #F2F8FE;
+            &:hover{
+                box-shadow: 3px 3px 6px #f1f1f1;
+                background: #fcf8e3;
+            }
 
         }
     }
@@ -175,40 +180,40 @@
     .l-block{
         padding-left: 20px;
     }
-    .l-department-wrap{
-        display: flex;
-        flex-flow: row wrap;
-        justify-content: flex-start;
-        .l-department{
-            position: relative;
-            box-shadow: #67C23A;
-            height: 140px;
-            border:1px solid #f1f1f1;
-            width: 220px;
-            margin: 20px 30px 0 0;
-            border-radius: 2px;
-            cursor: pointer;
-            background: #F2F8FE;
-            &:hover{
-                box-shadow: 3px 3px 6px #FAFAFA;
-                background: #fcf8e3;
-                h1{
-                    color: #2d2d2d;
-                }
-            }
-            h1{
-                font-size: 16px;
-                color: #777;
-                padding: 10px 0 0 10px;
-                font-weight: bold;
-            }
-            .l-employee-count{
-                color: #4c110f;
-                position: absolute;
-                bottom: 10px;
-                left: 10px;
-                font-size: 14px;
-            }
-        }
-    }
+    /*.l-department-wrap{*/
+        /*display: flex;*/
+        /*flex-flow: row wrap;*/
+        /*justify-content: flex-start;*/
+        /*.l-department{*/
+            /*position: relative;*/
+            /*box-shadow: #67C23A;*/
+            /*height: 140px;*/
+            /*border:1px solid #f1f1f1;*/
+            /*width: 200px;*/
+            /*margin: 20px 30px 0 0;*/
+            /*border-radius: 2px;*/
+            /*cursor: pointer;*/
+            /*background: #F2F8FE;*/
+            /*&:hover{*/
+                /*box-shadow: 3px 3px 6px #FAFAFA;*/
+                /*background: #fcf8e3;*/
+                /*h1{*/
+                    /*color: #2d2d2d;*/
+                /*}*/
+            /*}*/
+            /*h1{*/
+                /*font-size: 16px;*/
+                /*color: #777;*/
+                /*padding: 10px 0 0 10px;*/
+                /*font-weight: bold;*/
+            /*}*/
+            /*.l-employee-count{*/
+                /*color: #4c110f;*/
+                /*position: absolute;*/
+                /*bottom: 10px;*/
+                /*left: 10px;*/
+                /*font-size: 14px;*/
+            /*}*/
+        /*}*/
+    /*}*/
 </style>
