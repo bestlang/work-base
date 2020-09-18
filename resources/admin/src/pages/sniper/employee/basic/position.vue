@@ -4,7 +4,7 @@
 			<position-tree  :selectedKey="2" @nodeClick="handleNodeClick" @treeLoaded="performTreeLoaded"></position-tree>
 		<div class="l-tree-content">
 			<div class="l-block">
-				<div class="l-block-header">
+				<div class="l-block-header" style="padding-right: 20px;">
 					<div class="l-flex">
 						<!--<span>员工系统 / 职位管理</span>-->
 						<span><i class="iconfont">&#xe611;</i> {{position.hasOwnProperty('name') ? position.name : ''}}</span>

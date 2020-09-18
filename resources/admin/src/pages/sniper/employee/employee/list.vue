@@ -18,7 +18,7 @@
 							<img :src="em.avatar?em.avatar : '/vendor/sniper/user.png'" alt="" style="border-radius: 100em;">
 							<h1 class="l-title">{{em.real_name}}</h1>
 							<!--({{em.position.name}})-->
-							<div style="font-size: 10px;">{{em.user.email}}</div>
+							<div style="font-size: 10px;">{{em.user?em.user.email:''}}</div>
 						</div>
 					</template>
 					<div v-else style="text-align: center;color: #ccc;width: 100%;">暂无人员</div>
