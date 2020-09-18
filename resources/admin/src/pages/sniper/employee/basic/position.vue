@@ -11,7 +11,6 @@
 						<el-button-group>
 							<el-button type="primary" size="small" @click="edit"><i class="iconfont">&#xe618;</i>编辑</el-button>
 							<el-button type="success" size="small" @click="add"><i class="iconfont">&#xe663;</i>新增</el-button>
-
 						</el-button-group>
 					</div>
 				</div>
@@ -122,7 +121,7 @@
 			padding: 20px;
 			border-right: 1px solid #f4f4f4;
 			flex-shrink: 0;
-			overflow-y: auto;
+			overflow:auto;
 		}
 		.l-tree-content{
 			padding: 20px;
@@ -130,7 +129,7 @@
 			display: flex;
 			flex-flow: row nowrap;
 			box-sizing: border-box;
-			width: calc(100% - 240px);
+			max-width: calc(100% - 240px);
 		}
 	}
 </style>

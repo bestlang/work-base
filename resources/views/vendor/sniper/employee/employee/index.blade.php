@@ -36,6 +36,9 @@
         .l-flow{
             background: url("/vendor/sniper/flow.png") no-repeat scroll center / 80%;
         }
+        .l-fellow{
+            background: url("/vendor/sniper/fellow.png") no-repeat scroll center / 80%;
+        }
 
     </style>
  @endpush
@@ -46,6 +49,10 @@
                 <div class="l-app">
                     <div class="l-app-icon l-attendance"></div>
                     <div class="l-app-title" >考勤</div>
+                </div>
+                <div class="l-app">
+                    <div class="l-app-icon l-fellow"></div>
+                    <div class="l-app-title" >同事</div>
                 </div>
                 <div class="l-app">
                     <div class="l-app-icon l-stock"></div>

@@ -3,8 +3,8 @@
         <div v-title="'考勤记录'"></div>
         <ding-department-tree  @nodeClick="handleNodeClick" @treeLoaded="performTreeLoaded" :updated="updated"></ding-department-tree>
         <div class="l-block">
-            <div cl考勤人员ass="l-block-header">
-
+            <div class="l-block-header">
+                {{department ? department.name : ''}}
             </div>
             <div class="l-block-body">
                     <div class="l-user-wrap">
@@ -138,7 +138,7 @@
         justify-content: flex-start;
         .l-user{
             cursor: pointer;
-            width: 230px;
+            width: 220px;
             height: 140px;
             border: 1px solid #f1f1f1;
             margin-bottom: 20px;
