@@ -129,7 +129,7 @@ class EmployeeController
                 'orgEmail' => $user->email,
                 'tel' => $user->employee->phone
             ];
-            ProcessEditUser::dispatch($user_id. 'U', $attr)->onQueue('updateDingTalkUser');//
+            ProcessEditUser::dispatch('U', $attr)->onQueue('updateDingTalkUser');//
             ///存储教育经历
             $educationHistory = $request->input('educationHistory');
             foreach ($educationHistory as $education){

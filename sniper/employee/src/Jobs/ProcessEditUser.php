@@ -35,15 +35,9 @@ class ProcessEditUser implements ShouldQueue
      */
     public function handle(DingTalk $ding)
     {
-        $map = [
-            'C' => '_createUser',
-            'U' => '_updateUser',
-            'D' => '_deleteUser'
-        ];
-        $user_id = substr($this->signal, 0, -1);
-        $act = substr($this->signal, -1);
-        if($act == 'U'){
-            $res = $ding->_updateUser($user_id, $this->attr);
+        if($this->signal == 'U'){
+            $res = $ding->_updateUser($this->attr);
+            echo json_encode($this->attr),"\n";
             echo json_encode($res),"\n";
         }
         //$ding->${$map[$act]}($user_id, []);
