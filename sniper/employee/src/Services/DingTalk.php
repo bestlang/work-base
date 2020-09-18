@@ -124,7 +124,7 @@ class DingTalk
         return json_decode($content);
     }
 
-    public function _updateUser($userid, $attr)
+    public function _updateUser($attr)
     {
         $access_token = $this->_getAccessToken();
         $client = new Client();
