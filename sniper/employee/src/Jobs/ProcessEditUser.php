@@ -43,7 +43,8 @@ class ProcessEditUser implements ShouldQueue
         $user_id = substr($this->signal, 0, -1);
         $act = substr($this->signal, -1);
         if($act == 'U'){
-            $ding->_updateUser($user_id, $this->attr);
+            $res = $ding->_updateUser($user_id, $this->attr);
+            echo json_encode($res),"\n";
         }
         //$ding->${$map[$act]}($user_id, []);
 
