@@ -3,8 +3,8 @@
         <div v-title="'考勤记录'"></div>
         <ding-department-tree  @nodeClick="handleNodeClick" @treeLoaded="performTreeLoaded" :updated="updated"></ding-department-tree>
         <div class="l-block">
-            <div class="l-block-header">
-                考勤人员
+            <div cl考勤人员ass="l-block-header">
+
             </div>
             <div class="l-block-body">
                     <div class="l-user-wrap">
@@ -18,8 +18,8 @@
                                     <div v-if="user.result">
                                         <small>本月：
                                             <span style="font-weight: 700" v-html="resultHtml(user.result)"></span>
+                                            <span v-if="user.leave && user.leave.length" :title="user.leaveStr"><small  style="color: darkorange;font-weight: normal;"><span class="iconfont">&#xe60b;</span>请假{{user.leave.length}}次</small></span>
                                         </small>
-                                        <small>{{user.leave}}</small>
                                     </div>
                                 </div>
                                 <!--<div><small>{{user.result}}</small></div>-->
@@ -117,6 +117,12 @@
                         if(this.users[idx].userid == userId) {
                             this.$set(this.users[idx], 'result', lastArr[userId])
                             this.$set(this.users[idx], 'leave', data[userId].leave)
+                            let leaveStr = ''
+                            for(let id in data[userId].leave){
+                                leaveStr += '['+data[userId].leave[id].start_time+'~'+data[userId].leave[id].end_time+'],';
+                            }
+
+                            this.$set(this.users[idx], 'leaveStr', leaveStr.slice(0,-1))
                         }
                     }
                 }

@@ -74,17 +74,22 @@ class DingTalkController
         }
         $attendances = DingAttendance::whereIn('userId', $userIds)->whereBetween('baseCheckTime', [$start, $end])->orderBy('baseCheckTime', 'asc')->orderBy('userId', 'desc')->get();
         $lastArr = [];
-        foreach ($attendances as $at){
+        foreach ($attendances as &$at){
+            $at->hi = date('H:i',$at->userCheckTime/1000);
             $lastArr[$at->userId][$at->ymd][$at->checkType] = $at;
         }
         foreach ($lastArr as $userId => &$v){
-            $totalHours = 0;
             $leaves = Leave::where('userId', $userId)->where(function ($query)use($start, $end){
                     $query->where([['end_time', '>', $start], ['end_time', '<=', $end]])->orWhere([['start_time', '>=', $start], ['start_time', '<', $end]]);
                 })->get();
-            $lastArr[$userId]['leave'] = 0;
+            $lastArr[$userId]['leave'] = [];
             foreach ($leaves as $leave){
-                $lastArr[$userId]['leave'] += ($leave->end_time - $leave->start_time)/(1000*60*60);
+                $record = [
+                    'start_time' => date('Y-m-d H:i:s', $leave->start_time/1000),
+                    'end_time' => date('Y-m-d H:i:s', $leave->end_time/1000),
+                ];
+                $lastArr[$userId]['leave'][]= $record;
+                $lastArr[$userId][date('Y-m-d', strtotime($record['start_time']))]['leave'] = $record;
             }
         }
         return response()->ajax($lastArr);

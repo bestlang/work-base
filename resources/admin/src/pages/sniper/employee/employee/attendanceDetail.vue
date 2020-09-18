@@ -8,12 +8,14 @@
                     {{ data.day.split('-').slice(1).join('/') }}
                 </p>
                 <div v-show="showResult(data.day) && timeLine(data.day)">
-                    <el-progress  :percentage="50" :show-text="false" stroke-linecap="square" :stroke-width="4" color="#ddd"></el-progress>
-                    <el-progress style="margin-top: 2px" :percentage="timeLine(data.day) * 50" :show-text="false" stroke-linecap="square" :stroke-width="4" status="success"></el-progress>
+                    <el-progress  :percentage="50"  :show-text="false" stroke-linecap="square" :stroke-width="4" color="#ddd"></el-progress>
+                    <el-progress  style="margin-top: 2px" :percentage="timeLine(data.day) * 50"  :show-text="false" stroke-linecap="square" :stroke-width="4"></el-progress>
                 </div>
                 <div v-show="showResult(data.day)" style="font-size: 12px;color: #5a5e66">
-                    <p><span v-html="readable(data.day).onDutyTimeResult"></span></p>
-                    <p><span v-html="readable(data.day).offDutyTimeResult"></span></p>
+                    <p><span v-html="readable(data.day).onDutyTimeResult"></span><span></span></p>
+                    <!--{{readable(data.day).onDutyTime}}-->
+                    <p><span v-html="readable(data.day).offDutyTimeResult"></span><span>{{readable(data.day).offDutyTime}}</span></p>
+                    <p><span v-html="readable(data.day).leaveResult"></span></p>
                 </div>
 
             </template>
@@ -53,6 +55,13 @@
             }
         },
         methods:{
+            format0(){
+                return ''
+            },
+            format(percentage, e){
+                console.log(e)
+               return  'dasdas'//this.readable(day).offDutyTime
+            },
             async getUser(userId){
                 let {data} = await api.sniperDingGetUser({userId})
                 this.user = data
@@ -95,6 +104,9 @@
                 }
                 let onDutyTimeResult = ''
                 let offDutyTimeResult = ''
+                let leaveResult = ''
+                let onDutyTime = ''
+                let offDutyTime = ''
                 let onClock = ''
                 let offClock = ''
                 if(this.attendances[day] && this.attendances[day].OnDuty){
@@ -102,16 +114,19 @@
                     if(this.attendances[day].OnDuty.procInstId || this.attendances[day].OnDuty.approveId){
                         onClock = '<span class="iconfont" title="已关联请假、加班等">&#xe60b;</span>'
                     }
+                    onDutyTime = this.attendances[day].OnDuty.hi
                 }
                 if(this.attendances[day] && this.attendances[day].OffDuty){
                     offDutyTimeResult = this.attendances[day].OffDuty.timeResult
                     if(this.attendances[day].OffDuty.procInstId || this.attendances[day].OffDuty.approveId){
                         offClock = '<span class="iconfont" title="已关联请假、加班等">&#xe60b;</span>'
                     }
+
+                    offDutyTime = this.attendances[day].OffDuty.hi
                 }
                 if(onDutyTimeResult == 'Late'){
                     let on = this.attendances[day].OnDuty
-                    onDutyTimeResult = '<span style="color: red;font-weight: 700">上班' + resultMap[onDutyTimeResult] + Math.ceil((on.userCheckTime - on.baseCheckTime)/1000/60) + '分钟</span>'+onClock
+                    onDutyTimeResult = '<span style="color: red;font-weight: 700">上班' + resultMap[onDutyTimeResult] + Math.floor((on.userCheckTime - on.baseCheckTime)/1000/60) + '分钟</span>'+onClock
                 }else if(onDutyTimeResult == 'NotSigned'){
                     onDutyTimeResult = '<span style="color: orange;font-weight: 700">上班' + resultMap[onDutyTimeResult] + '</span>'+onClock
                 }else if(onDutyTimeResult == 'Normal'){
@@ -119,16 +134,24 @@
                 }
                 if(offDutyTimeResult == 'Early'){
                     let off = this.attendances[day].OffDuty
-                    offDutyTimeResult = '<span style="color: red;font-weight: 700">下班' + resultMap[offDutyTimeResult] + Math.ceil((off.baseCheckTime - off.userCheckTime)/1000/60) + '分钟</span>'+offClock
+                    offDutyTimeResult = '<span style="color: red;font-weight: 700">下班' + resultMap[offDutyTimeResult] + Math.floor((off.baseCheckTime - off.userCheckTime)/1000/60) + '分钟</span>'+offClock
                 }else if(offDutyTimeResult == 'NotSigned'){
                     offDutyTimeResult = '<span style="color: orange;font-weight: 700">下班' + resultMap[offDutyTimeResult] + '</span>'+offClock
                 }else if(offDutyTimeResult == 'Normal'){
                     offDutyTimeResult = '<span style="color: green;font-weight: 700">下班' +resultMap[offDutyTimeResult] + '</span>'+offClock
                 }
 
+                if(this.attendances[day] && this.attendances[day].leave){
+                    let leave = this.attendances[day].leave
+                    leaveResult = `<span class="iconfont" title="请假">&#xe60b;</span><span>${leave.start_time.slice(5, -3)}~${leave.end_time.slice(5, -3)}</span>`
+                }
+
                 return {
                     onDutyTimeResult,
-                    offDutyTimeResult
+                    offDutyTimeResult,
+                    leaveResult,
+                    onDutyTime,
+                    offDutyTime
                 }
             },
             async getUserAttendance(userId, month){
