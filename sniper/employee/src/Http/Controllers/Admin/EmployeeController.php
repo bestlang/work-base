@@ -95,6 +95,7 @@ class EmployeeController
         $password = $request->input('password');
         if($user_id){//更新
             $user = User::find($user_id);
+            $dingUser = $user->dingUser;
             $userData = [
                 'name' => $params['real_name'],
                 'email' => $params['email'],
@@ -122,7 +123,7 @@ class EmployeeController
 
             $user->push();
              $attr = [
-                'userid' => $user_id,
+                'userid' => $dingUser->userid,
                 'name' => $user->name,
                 'email' => $user->email,
                 'orgEmail' => $user->email,
