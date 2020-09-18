@@ -195,7 +195,7 @@
             box-shadow: #67C23A;
             height: 140px;
             border:1px solid #f1f1f1;
-            width: 220px;
+            width: 200px;
             margin: 20px 30px 0 0;
             border-radius: 2px;
             cursor: pointer;

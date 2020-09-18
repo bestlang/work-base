@@ -15,8 +15,9 @@
 				<div class="l-employee-wrap">
 					<template v-if="employee.length">
 						<div class="l-employee" v-for="(em, index) in employee"  :key="index" @click="viewEmployee(em)">
-							<img :src="'http://127.0.0.1:8000/'+em.avatar" alt="">
-							<h1 class="l-title">{{em.real_name}}({{em.position.name}})</h1>
+							<img :src="em.avatar?'http://127.0.0.1:8000/'+em.avatar : '/vendor/sniper/user.png'" alt="">
+							<h1 class="l-title">{{em.real_name}}</h1>
+							<!--({{em.position.name}})-->
 							<div style="font-size: 10px;">{{em.user.email}}</div>
 						</div>
 					</template>
@@ -106,17 +107,24 @@
 			/*height: 140px;*/
 			border:1px solid #eee;
 			width: 200px;
-			min-height: 240px;
+			height: 140px;
 			margin: 20px 30px 0 0;
 			border-radius: 5px;
 			cursor: pointer;
-			background: #fcfcfc;
+			background: #F2F8FE;
+			/*
+			 height: 140px;
+            border:1px solid #f1f1f1;
+            width: 220px;
+            margin: 20px 30px 0 0;
+			*/
 			img{
-				width: 100%;
+				width: 60px;
+				height: 60px;
 			}
 			&:hover{
 				box-shadow: 3px 3px 6px #f1f1f1;
-				background: #fff;
+				background: #fcf8e3;
 				h1{
 					color: #2d2d2d;
 				}

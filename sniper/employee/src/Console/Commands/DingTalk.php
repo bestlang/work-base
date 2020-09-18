@@ -139,6 +139,10 @@ class DingTalk extends Command
                             //'avatar' => null,
                             //扩展信息
                         ]);
+                    }else{
+                        $user->employee->real_name = $dingUser->name;
+                        $user->employee->department_id = $dingUser->department;
+                        $user->push();
                     }
                 }
 
