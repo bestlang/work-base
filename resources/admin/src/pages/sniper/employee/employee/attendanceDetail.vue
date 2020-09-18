@@ -111,15 +111,23 @@
                 let offClock = ''
                 if(this.attendances[day] && this.attendances[day].OnDuty){
                     onDutyTimeResult = this.attendances[day].OnDuty.timeResult
+                    let on = this.attendances[day].OnDuty
+                    if(on.approveId || on.procInstId){
+                        onDutyTimeResult = 'Normal'
+                    }
                     if(this.attendances[day].OnDuty.procInstId || this.attendances[day].OnDuty.approveId){
-                        onClock = '<span class="iconfont" title="已关联请假、加班等">&#xe60b;</span>'
+                        onClock = '<span class="iconfont" title="已关联出差/请假/加班等">&#xe60b;</span>'
                     }
                     onDutyTime = this.attendances[day].OnDuty.hi
                 }
                 if(this.attendances[day] && this.attendances[day].OffDuty){
                     offDutyTimeResult = this.attendances[day].OffDuty.timeResult
+                    let off = this.attendances[day].OffDuty
+                    if(off.approveId || off.procInstId){
+                        offDutyTimeResult = 'Normal'
+                    }
                     if(this.attendances[day].OffDuty.procInstId || this.attendances[day].OffDuty.approveId){
-                        offClock = '<span class="iconfont" title="已关联请假、加班等">&#xe60b;</span>'
+                        offClock = '<span class="iconfont" title="已关联出差/请假/加班等">&#xe60b;</span>'
                     }
 
                     offDutyTime = this.attendances[day].OffDuty.hi
