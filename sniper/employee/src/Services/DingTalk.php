@@ -124,4 +124,15 @@ class DingTalk
         return json_decode($content);
     }
 
+    public function _updateUser($userid, $attr)
+    {
+        $access_token = $this->_getAccessToken();
+        $client = new Client();
+        $url = "https://oapi.dingtalk.com/user/update?access_token={$access_token}";
+        $options = [RequestOptions::JSON => $attr];
+        $response = $client->request('POST', $url,  $options);
+        $content = $response->getBody()->getContents();
+        return json_decode($content);
+    }
+
 }

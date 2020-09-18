@@ -145,8 +145,6 @@ class DingTalk extends Command
                         $user->push();
                     }
                 }
-
-
             }else if($act == 'attendance'){
                 $dateBegin = date('Y-m-d 00:00:00');
                 for($days = 0; $days<180; $days++){
@@ -219,6 +217,8 @@ class DingTalk extends Command
                     ]);
                 }
 //                echo json_encode(Arr::flatten($leave_status));
+            }else if($act == 'updateUser'){
+
             }
     }
 }

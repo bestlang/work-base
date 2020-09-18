@@ -2,6 +2,7 @@
 namespace Sniper\Employee\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
+use Sniper\Employee\Jobs\ProcessEditUser;
 use Sniper\Employee\Models\Department;
 use Sniper\Employee\Models\User;
 use Sniper\Employee\Models\Employee;
@@ -14,6 +15,7 @@ class EmployeeController
     {
         $id = $request->input('id');
         $user = Employee::with(['user', 'education', 'job'])->find($id);
+        ProcessEditUser::dispatch($id. 'C')->onQueue('updateDingTalkUser');//
         return response()->ajax($user);
     }
     public function departmentEmployee(Request $request)
