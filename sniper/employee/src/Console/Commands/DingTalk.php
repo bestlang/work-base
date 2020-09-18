@@ -4,10 +4,12 @@ namespace Sniper\Employee\Console\Commands;
 
 use Illuminate\Console\Command;
 use Sniper\Employee\Models\DingTalk\Leave;
+use Sniper\Employee\Models\User;
 use Sniper\Employee\Services\DingTalk as DingService;
 use Arr;
 use Sniper\Employee\Models\DingTalk\Attendance;
 use Sniper\Employee\Models\DingTalk\Department as DingDepartment;
+use Sniper\Employee\Models\Department;
 use Sniper\Employee\Models\DingTalk\User as DingUser;
 use DB;
 
@@ -38,6 +40,16 @@ class DingTalk extends Command
         parent::__construct();
     }
 
+    public function _syncDepartments($parent, $dingSubs)
+    {
+        foreach ($dingSubs as $dingSub){
+            $child = Department::updateOrCreate(['id' => $dingSub->id, 'name' => $dingSub->name]);
+            $child->makeChildOf($parent);
+            if($dingSub->subs){
+                $this->_syncDepartments($child, $dingSub->subs);
+            }
+        }
+    }
     /**
      * @param DingService $ding
      */
@@ -97,6 +109,40 @@ class DingTalk extends Command
                             'ext' => isset($dep->ext) ? $dep->ext : ''
                         ]);
                 }
+            }else if ($act == 'syncDepartments'){
+                $dingDepartment = DingDepartment::whereNull('parentid')->first();
+                $parent = Department::updateOrCreate(
+                    ['id' => $dingDepartment->id],
+                    [
+                        'name' => $dingDepartment->name,
+                        'parent_id' => $dingDepartment->parentid,
+                    ]
+                );
+                $dingSubs = $dingDepartment->subs;
+                $this->_syncDepartments($parent, $dingSubs);
+            }else if($act == 'syncUsers'){
+                $dingUsers = DingUser::all();
+                foreach ($dingUsers as $dingUser){
+                    if(!$dingUser->orgEmail){
+                        $dingUser->orgEmail = substr($dingUser->unionid, 0, 10).'@sniper-tech.com';
+                    }
+                    $user = User::where(['email' => $dingUser->orgEmail, 'name' => $dingUser->name])->first();
+                    if(!$user){
+                        $user = User::create(['email' => $dingUser->orgEmail, 'name' => $dingUser->name, 'password' => bcrypt('111111')]);
+                        $user->employee()->create([
+                            'real_name' => $dingUser->name,
+                            'department_id' => $dingUser->department,
+                            //'position_id' => null,
+                            //'phone' => null,
+                            //'gender' => null,
+                            //'id_card' => null,
+                            //'avatar' => null,
+                            //扩展信息
+                        ]);
+                    }
+                }
+
+
             }else if($act == 'attendance'){
                 $dateBegin = date('Y-m-d 00:00:00');
                 for($days = 0; $days<180; $days++){
