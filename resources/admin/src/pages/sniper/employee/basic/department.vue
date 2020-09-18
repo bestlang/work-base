@@ -38,7 +38,7 @@
                             <h1 class="l-title">{{department.name}}</h1>
                             <article class="l-employee-count">
                                 <!--<b>2</b> 人-->
-                                <i class="iconfont">&#xe69a;</i>
+                                <!--<i class="iconfont">&#xe69a;</i>-->
                             </article>
                         </div>
                     </div>

@@ -99,6 +99,7 @@ class EmployeeController
             $userData = [
                 'name' => $params['real_name'],
                 'email' => $params['email'],
+                'mobile' => $params['phone']
             ];
             if($password){
                 $userData['password'] = bcrypt($password);
@@ -127,9 +128,12 @@ class EmployeeController
                 'name' => $user->name,
                 'email' => $user->email,
                 'orgEmail' => $user->email,
-                'tel' => $user->employee->phone
+                //'tel' => $user->employee->phone 分机号 不是手机, 改不了.
             ];
             ProcessEditUser::dispatch('U', $attr)->onQueue('updateDingTalkUser');//
+            $user->dingUser->email = $user->email;
+            $user->dingUser->orgEmail = $user->email;
+            $user->push();
             ///存储教育经历
             $educationHistory = $request->input('educationHistory');
             foreach ($educationHistory as $education){
@@ -160,6 +164,7 @@ class EmployeeController
             $user->name = $params['real_name'];
             $user->password = bcrypt($params['password']);
             $user->email = $params['email'];
+            $user->mobile = $params['phone'];
             $user->save();
             $user->employee()->create([
                 'real_name' => $params['real_name'],
@@ -179,6 +184,7 @@ class EmployeeController
                 'birthday' => $request->input('birthday'),
                 'tag' => $request->input('tag'),
             ]);
+            // 新建用户
             ///存储教育经历
             $educationHistory = $request->input('educationHistory');
             foreach ($educationHistory as $education){
