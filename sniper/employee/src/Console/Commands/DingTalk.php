@@ -132,6 +132,7 @@ class DingTalk extends Command
                         $user->employee()->create([
                             'real_name' => $dingUser->name,
                             'department_id' => $dingUser->department,
+                            'avatar' => $dingUser->avatar
                             //'position_id' => null,
                             //'phone' => null,
                             //'gender' => null,
@@ -142,6 +143,7 @@ class DingTalk extends Command
                     }else{
                         $user->employee->real_name = $dingUser->name;
                         $user->employee->department_id = $dingUser->department;
+                        $user->employee->avatar = $dingUser->avatar;
                         $user->push();
                     }
                 }
@@ -217,8 +219,6 @@ class DingTalk extends Command
                     ]);
                 }
 //                echo json_encode(Arr::flatten($leave_status));
-            }else if($act == 'updateUser'){
-
             }
     }
 }

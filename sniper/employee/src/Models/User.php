@@ -10,4 +10,9 @@ class User extends BaseUser
     {
         return $this->hasOne(Employee::class, 'user_id', 'id');
     }
+
+    public function dingUser()
+    {
+        return $this->hasOne(\Sniper\Employee\Models\DingTalk\User::class, 'orgEmail', 'email');
+    }
 }

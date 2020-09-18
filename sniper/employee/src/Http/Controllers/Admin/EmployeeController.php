@@ -15,7 +15,6 @@ class EmployeeController
     {
         $id = $request->input('id');
         $user = Employee::with(['user', 'education', 'job'])->find($id);
-        ProcessEditUser::dispatch($id. 'C')->onQueue('updateDingTalkUser');//
         return response()->ajax($user);
     }
     public function departmentEmployee(Request $request)
@@ -122,6 +121,7 @@ class EmployeeController
 
 
             $user->push();
+            ProcessEditUser::dispatch($user_id. 'U')->onQueue('updateDingTalkUser');//
             ///存储教育经历
             $educationHistory = $request->input('educationHistory');
             foreach ($educationHistory as $education){
