@@ -23,6 +23,7 @@ class AppServiceProvider extends ServiceProvider
             $this->commands([
                 DingTalk::class
             ]);
+
         }
         $this->publishes([
             __DIR__.'/../../config/ding.php' => config_path('ding.php'),
