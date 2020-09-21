@@ -12,8 +12,7 @@
                     <el-progress  style="margin-top: 2px" :percentage="timeLine(data.day) * 50"  :show-text="false" stroke-linecap="square" :stroke-width="4"></el-progress>
                 </div>
                 <div v-show="showResult(data.day)" style="font-size: 12px;color: #5a5e66">
-                    <p><span v-html="readable(data.day).onDutyTimeResult"></span><span></span></p>
-                    <!--{{readable(data.day).onDutyTime}}-->
+                    <p><span v-html="readable(data.day).onDutyTimeResult"></span><span>{{readable(data.day).onDutyTime}}</span></p>
                     <p><span v-html="readable(data.day).offDutyTimeResult"></span><span>{{readable(data.day).offDutyTime}}</span></p>
                     <p><span v-html="readable(data.day).leaveResult"></span></p>
                 </div>
