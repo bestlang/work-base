@@ -31,7 +31,7 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->command('sniper:dingTalk attendance')->hourly();
+        $schedule->command('sniper:dingTalk attendance')->dailyAt('09:45');
 //        ///////////////////////////////////////////////////
 //        // 抓取成交的订单
 //        $schedule->call(function () {
