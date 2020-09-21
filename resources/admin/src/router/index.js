@@ -31,7 +31,7 @@ export default new VueRouter({
               path: "/sniper/employee",
               component: () => import("../components/via.vue"),
               meta: {
-                  can: 'cms',
+                  can: 'hr',
                   show: true,
                   name: '人力资源',
                   font: '&#xe612;'
@@ -41,7 +41,7 @@ export default new VueRouter({
                       path: "/sniper/employee/department",
                       component: () => import("../pages/sniper/employee/basic/department.vue"),
                       meta: {
-                          can: 'cms',
+                          can: 'hr departments',
                           show: true,
                           name: '部门管理',
                           font: '&#xe69a;'
@@ -51,7 +51,7 @@ export default new VueRouter({
                       path: "/sniper/employee/department/edit",
                       component: () => import("../pages/sniper/employee/basic/departmentEdit.vue"),
                       meta: {
-                          can: 'cms',
+                          can: 'hr departments',
                           show: false,
                           name: '新增部门',
                           font: '&#xe612;'
@@ -61,7 +61,7 @@ export default new VueRouter({
                       path: "/sniper/employee/department/detail",
                       component: () => import("../pages/sniper/employee/basic/departmentDetail.vue"),
                       meta: {
-                          can: 'cms',
+                          can: 'hr departments',
                           show: false,
                           name: '部门详情',
                           font: '&#xe612;'
@@ -71,7 +71,7 @@ export default new VueRouter({
                       path: "/sniper/employee/position",
                       component: () => import("../pages/sniper/employee/basic/position.vue"),
                       meta: {
-                          can: 'cms',
+                          can: 'hr positions',
                           show: true,
                           name: '职位管理',
                           font: '&#xe611;'
@@ -81,9 +81,9 @@ export default new VueRouter({
                       path: "/sniper/employee/position/edit",
                       component: () => import("../pages/sniper/employee/basic/positionEdit.vue"),
                       meta: {
-                          can: 'cms',
+                          can: 'hr positions',
                           show: false,
-                          name: '添加管理',
+                          name: '编辑职位',
                           font: '&#xe612;'
                       }
                   },
@@ -91,7 +91,7 @@ export default new VueRouter({
                       path: "/sniper/employee/employee/list",
                       component: () => import("../pages/sniper/employee/employee/list.vue"),
                       meta: {
-                          can: 'cms',
+                          can: 'hr employee',
                           show: true,
                           name: '员工列表',
                           font: '&#xe614;'
@@ -101,7 +101,7 @@ export default new VueRouter({
                       path: "/sniper/employee/employee/edit",
                       component: () => import("../pages/sniper/employee/employee/edit.vue"),
                       meta: {
-                          can: 'cms',
+                          can: 'hr employee',
                           show: false,
                           name: '新增/编辑员工',
                           font: '&#xe614;'
@@ -111,7 +111,7 @@ export default new VueRouter({
                       path: "/sniper/employee/employee/attendance",
                       component: () => import("../pages/sniper/employee/employee/attendance.vue"),
                       meta: {
-                          can: 'cms',
+                          can: 'hr attendance',
                           show: true,
                           name: '考勤记录',
                           font: '&#xe629;'
@@ -121,7 +121,7 @@ export default new VueRouter({
                       path: "/sniper/employee/employee/attendance/detail",
                       component: () => import("../pages/sniper/employee/employee/attendanceDetail.vue"),
                       meta: {
-                          can: 'cms',
+                          can: 'hr attendance',
                           show: false,
                           name: '考勤详情',
                           font: '&#xe629;'

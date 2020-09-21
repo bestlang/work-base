@@ -1,33 +1,40 @@
 <template>
     <div>
-        <div class="top-buttons" style="display: flex;flex-flow: row nowrap;">
-          <router-link to="/privileges/roles" tag="div"><span class="iconfont">&#xe601;</span>返回</router-link>
-          <el-divider direction="vertical"></el-divider>
-          <div>{{role_name}}权限</div>
-        </div>
-        <div>
-            <div style="width:60%;">
-              <el-tree
-                :empty-text="emptyText"
-                ref="role-permission-tree"
-                :data="treeData"
-                default-expand-all
-                show-checkbox
-                node-key="id"
-                :props="customProps"
-                :default-checked-keys="defaultCheckedKeys"
-                :expand-on-click-node="true"
-                :check-on-click-node="false">
+        <div class="l-block">
+            <div class="l-block-header">
+                <div style="display: inline-block;">
+                    <router-link to="/privileges/roles" tag="span"><span class="iconfont">&#xe601;</span>返回</router-link>
+                    <el-divider direction="vertical"></el-divider>
+                    <span>{{role_name}}权限</span>
+                </div>
+                <div><el-button @click="saveRolePermissions" type="primary">保存</el-button></div>
+            </div>
+            <div class="l-block-body">
+                <div>
+                    <div style="width:60%;">
+                        <el-tree
+                                :empty-text="emptyText"
+                                ref="role-permission-tree"
+                                :data="treeData"
+                                default-expand-all
+                                show-checkbox
+                                node-key="id"
+                                :props="customProps"
+                                :default-checked-keys="defaultCheckedKeys"
+                                :expand-on-click-node="true"
+                                :check-on-click-node="false">
                 <span class="custom-tree-node" slot-scope="{ node, data }">
                   <span>{{ node.label }}</span>
-  <!--                <span v-if="!data.children.length" class="iconfont">&#xe92a;</span>-->
-  <!--                -{{ data.id }}-->
+                    <!--                <span v-if="!data.children.length" class="iconfont">&#xe92a;</span>-->
+                    <!--                -{{ data.id }}-->
                 </span>
-              </el-tree>
+                        </el-tree>
+                    </div>
+                    <div class="l-delimiter"></div>
+
+                </div>
             </div>
-            <div class="l-delimiter"></div>
-            <el-button @click="saveRolePermissions">保存</el-button>
-          </div>
+        </div>
     </div>
 </template>
 <script>

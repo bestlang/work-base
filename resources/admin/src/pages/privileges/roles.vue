@@ -83,6 +83,7 @@
                 let res = await api.saveRole(this.form)
                 if(res.success){
                     this.formVisible = false;
+                    this.showMessage('操作成功！', 'success');
                     await this.loadRoles();
                 }
             },

@@ -34,7 +34,7 @@ export default {
             loading: false,
             loginFont: "登录",
             params: {
-                mobile: '18625072568',
+                mobile: '13222988085',
                 password: '111111'
             },
             rules: {

@@ -10,6 +10,7 @@ use Tymon\JWTAuth\Http\Middleware\Authenticate;
 use Bestlang\Base\Exceptions\Handler as CustomExceptionHandler;
 use Illuminate\Database\Eloquent\Collection;
 use Validator;
+use Bestlang\Base\Models\Permission;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -39,7 +40,7 @@ class AppServiceProvider extends ServiceProvider
             foreach ($user->getPermissionsViaRoles() as $permission){
                 $user->givePermissionTo($permission->name);
             }
-            /*if($user->hasRole('administrator')){
+            if($user->hasRole('administrator')){
                 $permissions = Permission::all();
                 foreach ($permissions as $permission){
                     $user->givePermissionTo($permission->name);
@@ -47,7 +48,7 @@ class AppServiceProvider extends ServiceProvider
                 return true;
             }else{
                 return null;
-            }*/
+            }
         });
         // migrations
         $this->loadMigrationsFrom(__DIR__.'/../../database/migrations');

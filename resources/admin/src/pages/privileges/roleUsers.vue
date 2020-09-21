@@ -17,6 +17,11 @@
                 header-cell-class-name="cell-class"
                 style="width: 100%">
             <el-table-column
+                    prop="id"
+                    label="id"
+                    width="120">
+            </el-table-column>
+            <el-table-column
                     prop="name"
                     label="昵称">
             </el-table-column>
@@ -25,15 +30,10 @@
               label="手机号">
             </el-table-column>
             <el-table-column
-                    prop="id"
-                    label="id"
-                    width="120">
-            </el-table-column>
-            <el-table-column
                     fixed="right"
                     label="操作">
                 <template slot-scope="scope">
-                    <el-button class="l-inline-btn" type="default" size="small" @click="handleRemove(scope.row)">移出</el-button>
+                    <el-button class="l-inline-btn" type="text" size="small" @click="handleRemove(scope.row)">移出</el-button>
                 </template>
             </el-table-column>
         </el-table>

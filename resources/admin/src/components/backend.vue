@@ -45,7 +45,7 @@ export default {
         border-right: 1px solid #e6e6e6;
     }
     .ls-top{
-        box-shadow: 0 1px 5px rgba(0, 0, 0, 0.10);
+        /*box-shadow: 0 1px 5px rgba(0, 0, 0, 0.10);*/
         height: 50px;
         background: #fff;
         width: 100%;

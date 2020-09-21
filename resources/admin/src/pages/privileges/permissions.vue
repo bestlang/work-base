@@ -5,12 +5,12 @@
       <div class="l-block">
         <div class="l-block-header">所有权限</div>
         <div class="l-block-body">
+          <!--default-expand-all-->
           <el-table
                   :data="tableData"
                   style="width: 100%;margin-bottom: 20px;"
                   row-key="id"
                   border
-                  default-expand-all
                   :tree-props="{children: 'children', hasChildren: 'hasChildren'}">
             <el-table-column
                     prop="show_name"
@@ -29,19 +29,16 @@
             <span>
               <el-button
                       type="text"
-                      size="mini"
                       @click="() => edit(scope.row)">
                 编辑
               </el-button>
               <el-button
                       type="text"
-                      size="mini"
                       @click="() => add(scope.row)">
                 新增
               </el-button>
               <el-button
                       type="text"
-                      size="mini"
                       @click="() => remove(scope.row)">
                 删除
               </el-button>

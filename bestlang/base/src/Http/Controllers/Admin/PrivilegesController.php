@@ -122,15 +122,16 @@ class PrivilegesController extends Controller
                     $role->name = $name;
                     $role->save();
                 }else{
-                    return response()->error('无权限!');
+                    return response()->ajax('无权限！', 401);
                 }
             }catch (\Exception $e){
                 return response()->error('error occur:'.$e->getMessage());
             }
-
         }else{
-            $role = new Role();
-            $role->name = $name;
+            if(!$user->can('privileges add roles')){
+                return response()->ajax('无权限！', 401);
+            }
+            $role = new Role(['name' => $name, 'guard_name' => 'api']);
             $role->save();
         }
         return response()->ajax();
@@ -175,7 +176,7 @@ class PrivilegesController extends Controller
         if($parent_id){
             $parent = Permission::find($parent_id);
             if($parent){
-                $child = Permission::create(['name' => $name, 'show_name'=>$show_name]);
+                $child = Permission::create(['name' => $name, 'show_name' => $show_name, 'guard_name' => 'api']);
                 $child->makeChildOf($parent);
                 return response()->ajax($child);
             }
