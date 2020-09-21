@@ -32,7 +32,12 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         $schedule->command('sniper:dingTalk attendance')->dailyAt('10:00');
+        $schedule->command('sniper:dingTalk attendance')->dailyAt('20:00');
         $schedule->command('sniper:dingTalk users')->dailyAt('22:00');
+        $schedule->command('sniper:dingTalk leavestatus')->dailyAt('22:00');
+        $schedule->command('sniper:dingTalk syncUsers')->dailyAt('22:20');
+        $schedule->command('sniper:dingTalk departments')->dailyAt('22:30');
+        $schedule->command('sniper:dingTalk syncDepartments')->dailyAt('22:40');
 //        ///////////////////////////////////////////////////
 //        // 抓取成交的订单
 //        $schedule->call(function () {

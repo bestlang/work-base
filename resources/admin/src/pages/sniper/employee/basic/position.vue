@@ -98,6 +98,9 @@
                     let res = await api.sniperDeletePosition({id})
                     if(!res.hasError){
                         this.showMessage('删除成功！', 'success')
+						this.position.children = this.position.children.filter(function(p){
+						    return p.id != id
+						})
                     }
                 });
 
