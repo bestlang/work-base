@@ -19,7 +19,7 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-//        PddCats::class,
+        PddCats::class,
         GenSql::class
     ];
 
@@ -31,6 +31,7 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
+        $schedule->command('sniper:dingTalk attendance')->hourly();
 //        ///////////////////////////////////////////////////
 //        // 抓取成交的订单
 //        $schedule->call(function () {
@@ -55,7 +56,7 @@ class Kernel extends ConsoleKernel
 //
 //        ///////////////////////////////////////////////////
 //        //更新小程序accessToken
-        $schedule->command('sniper:dingTalk  attendance')->hourly();
+//        $schedule->command('access:token')->hourly();
 //        ///////////////////////////////////////////////////
 //
 //        ///////////////////////////////////////////////////
