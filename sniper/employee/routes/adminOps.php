@@ -10,7 +10,7 @@ Route::group(['prefix'=>'admin/sniper/employee', 'namespace'=>'Admin'], function
 
         Route::any('/positions/tree/select', 'PositionController@treeSelect');
         Route::any('/get/position/detail', 'PositionController@positionDetail');
-        Route::any('/get/position/descendants', 'positionController@getDescendants');
+        Route::any('/get/position/descendants', 'PositionController@getDescendants');
         Route::post('/save/position', 'PositionController@save');
         Route::post('/delete/position', 'PositionController@delete');
 
