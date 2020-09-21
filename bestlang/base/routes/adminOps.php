@@ -4,6 +4,7 @@ Route::group(['prefix'=>'admin', 'namespace'=>'Admin'], function(){
     Route::any('/user/create', 'UserController@create');
     Route::any('/user/update', 'UserController@update');
     Route::get('/user/info', 'UserController@info');
+    Route::any('/privileges/role', 'PrivilegesController@role');
     Route::any('/privileges/roles', 'PrivilegesController@roles');
     Route::any('/privileges/users', 'PrivilegesController@users');
     Route::any('/privileges/save/role', 'PrivilegesController@saveRole');

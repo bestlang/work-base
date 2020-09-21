@@ -53,6 +53,7 @@
             label: 'show_name'
           },
           treeData:[],
+          currentRole: null,
 
           current:null,
           dialogFormVisible: false,
@@ -69,19 +70,21 @@
         types(){
           return this.$store.getters.activityTypes;
         },
-        currentRole(){
-          return this.$store.getters.currentRole;
-        }
+        // currentRole(){
+        //   return this.$store.getters.currentRole;
+        // }
       },
       watch:{
-          role_id(val){
-              this.loadRolePermissions(val)
+          async role_id(val){
+              await this.loadRolePermissions(val)
+               await this.getRole(val)
           }
       },
       methods: {
         async saveRolePermissions(){
           let nodes = this.$refs['role-permission-tree'].getCheckedNodes();
-          let permissions = nodes.filter((n)=>n.children.length == 0).map((n) => n.id);
+          let permissions = nodes.filter((n)=>n.children.length == 0).map((n) => n.id ? n.id : '');
+          alert(JSON.stringify(permissions));//return;
           let role_id = this.currentRole.id
           let res = await api.givePermissionsTo({permissions, role_id})
           this.$message({
@@ -92,6 +95,10 @@
         async loadPermissionsTree(){
           let res = await api.getPermissionsTree()
           this.treeData = [res.data[Object.keys(res.data)[0]]];
+        },
+        async getRole(role_id){
+            let {data} = await api.getRole({role_id})
+            this.currentRole = data
         },
         async loadRolePermissions(role_id){
 //          let role_id = this.currentRole.id;

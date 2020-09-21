@@ -20,6 +20,7 @@ export default {
     createRoleUser(data){ return fetch('/admin/user/create/role/user', data, 'post') },
     removeRoleModel(data){ return fetch('/admin/privileges/remove/role/model', data, 'post') },
     saveRole(data){ return fetch('/admin/privileges/save/role', data, 'post') },
+    getRole(data){ return fetch('/admin/privileges/role', data) },
     getRoles(data){ return fetch('/admin/privileges/roles', data) },
     getUsers(data){ return fetch('/admin/privileges/users', data) },
     getPosition(data){ return fetch('/admin/cms/get/position', data) },

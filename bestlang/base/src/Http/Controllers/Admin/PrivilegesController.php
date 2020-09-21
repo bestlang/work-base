@@ -47,8 +47,15 @@ class PrivilegesController extends Controller
         $currentPermissions = Arr::get($params, 'permissions', 0);
         $role = Role::find($role_id);
         $oldPermissions = $role->getAllPermissions()->pluck('id')->toArray();
+
+        $role->users->each(function($user){
+            $user->syncPermissions([]);
+        });
+
         $role->permissions()->detach($oldPermissions);//[]
         $role->permissions()->attach($currentPermissions);//[]
+
+
         return response()->ajax();
     }
     // get permissions of a role
@@ -81,6 +88,13 @@ class PrivilegesController extends Controller
     public function roles()
     {
         return response()->ajax(Role::all());
+    }
+
+    public function role(Request $request)
+    {
+        $role_id = $request->input('role_id');
+        $role = Role::find($role_id);
+        return response()->ajax($role);
     }
 
     public function users(Request $request)
