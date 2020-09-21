@@ -1,55 +1,60 @@
 <template>
   <div>
     <div v-title="'权限管理'"></div>
-    <!--<div class="top-buttons" style="display: flex;flex-flow: row nowrap; justify-content: space-between;">-->
-<!--      <div>所有权限</div>-->
-    <!--</div>-->
-    <div style="width:50%;">
+    <div style="width:90%;">
       <div class="l-block">
         <div class="l-block-header">所有权限</div>
         <div class="l-block-body">
-          <el-tree
-        :empty-text="emptyText"
-        ref="tree"
-        :data="treeData"
-        :default-expanded-keys="[]"
-        :default-expand-all="true"
-        node-key="id"
-        :props="customProps"
-        :default-checked-keys="[]"
-        @check="handleCheckChange"
-        :expand-on-click-node="false">
-        <span class="custom-tree-node" slot-scope="{ node, data }">
-          <span><span v-if="!data.children.length" class="iconfont">&#xe92a;</span>{{ node.label }}</span>
-<!--          -{{ data.id }}-->
-          <span>
-            <el-button
-              type="text"
-              size="mini"
-              @click="() => edit(data)">
-              编辑
-            </el-button>
-            <el-button
-              type="text"
-              size="mini"
-              @click="() => add(data)">
-              新增
-            </el-button>
-            <el-button
-              type="text"
-              size="mini"
-              @click="() => remove(node, data)">
-              删除
-            </el-button>
-          </span>
-        </span>
-      </el-tree>
+          <el-table
+                  :data="tableData"
+                  style="width: 100%;margin-bottom: 20px;"
+                  row-key="id"
+                  border
+                  default-expand-all
+                  :tree-props="{children: 'children', hasChildren: 'hasChildren'}">
+            <el-table-column
+                    prop="show_name"
+                    label="权限"
+                    sortable
+                    width="240">
+            </el-table-column>
+            <el-table-column
+                    prop="name"
+                    label="权限字符串"
+                    sortable>
+            </el-table-column>
+            <el-table-column
+                    label="操作">
+              <template slot-scope="scope">
+            <span>
+              <el-button
+                      type="text"
+                      size="mini"
+                      @click="() => edit(scope.row)">
+                编辑
+              </el-button>
+              <el-button
+                      type="text"
+                      size="mini"
+                      @click="() => add(scope.row)">
+                新增
+              </el-button>
+              <el-button
+                      type="text"
+                      size="mini"
+                      @click="() => remove(scope.row)">
+                删除
+              </el-button>
+            </span>
+              </template>
+            </el-table-column>
+          </el-table>
         </div>
       </div>
     </div>
     <el-dialog :title="title" :visible.sync="formVisible"  :close-on-click-modal="false">
       <el-form :model="form" label-width="100px">
-        <el-form-item label="权限显示名">
+        <el-form-item label="权限">
           <el-input v-model="form.show_name" autocomplete="off"></el-input>
         </el-form-item>
         <el-form-item label="权限字符串">
@@ -68,6 +73,7 @@
   export default {
     data() {
       return {
+        tableData: [],
         emptyText: 'loading...',
         customProps: {
           children: 'children',
@@ -153,17 +159,14 @@
         this.reset()
         this.formVisible = false
       },
-      remove(node, data) {
+      remove(row) {
         this.$confirm('删除权限存在风险,是否继续?', '提示', {
           confirmButtonText: '确定',
           cancelButtonText: '取消',
           type: 'warning'
         }).then(async () => {
-          let res = await api.deletePermission({id: data.id})
-          const parent = node.parent;
-          const children = parent.data.children || parent.data;
-          const index = children.findIndex(d => d.id === data.id);
-          children.splice(index, 1);
+          let res = await api.deletePermission({id: row.id})
+          await this.loadPermissionsTree()
           this.$message({
             type: 'success',
             message: '删除成功!'
@@ -177,6 +180,7 @@
       async loadPermissionsTree(){
         let res = await api.getPermissionsTree({disabled: true})
         this.treeData = [res.data[Object.keys(res.data)[0]]];
+        this.tableData = this.treeData
       }
     },
     async mounted() {
