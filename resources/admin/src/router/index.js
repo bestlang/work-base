@@ -465,6 +465,7 @@ export default new VueRouter({
       component: () => import("../pages/login.vue"),
       meta: {
         name: '登录',
+        show: false
       },
     },
     {
@@ -472,6 +473,7 @@ export default new VueRouter({
         component: () => import("../pages/test.vue"),
         meta: {
             name: 'test',
+            show: false
         },
     }
 

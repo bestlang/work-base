@@ -30,9 +30,9 @@
                 :default-active="defaultActive"
                 :collapse="isCollapse">
               <template  v-for="(item , index) in router.options.routes">
-                <template  v-if="item.children  && item.children.filter(x=>x.meta.show).length">
+                <template  v-if="showOrNot(item)">
                   <template v-for="child in item.children">
-                    <cell :item="child" :type="child.children && item.children.filter(x=>x.meta.show).length ? 'el-submenu':'el-menu-item'"></cell>
+                    <cell :item="child" :type="calType(child)" v-if="showOrNot(child)"></cell>
                   </template>
                 </template>
               </template>
@@ -97,11 +97,18 @@
           }
       },
       methods: {
+          calType(item){
+              return item.children && item.children.filter(x=>x.meta.show).length ? 'el-submenu':'el-menu-item'
+          },
+          showOrNot(item){
+              return ( !item.children || item.children && item.children.filter(x=>x.meta.show).length )
+          },
+
           handleOpen(key, keyPath) {
-//              console.log(key, keyPath);
+
           },
           handleClose(key, keyPath) {
-//              console.log(key, keyPath);
+
           },
           resetVisible(routes, privileges){
             routes.map((route, index) => {
