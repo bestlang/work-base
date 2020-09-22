@@ -84,7 +84,6 @@
         async saveRolePermissions(){
           let nodes = this.$refs['role-permission-tree'].getCheckedNodes();
           let permissions = nodes.filter((n)=>n.children.length == 0).map((n) => n.id ? n.id : '');
-          alert(JSON.stringify(permissions));//return;
           let role_id = this.currentRole.id
           let res = await api.givePermissionsTo({permissions, role_id})
           this.$message({

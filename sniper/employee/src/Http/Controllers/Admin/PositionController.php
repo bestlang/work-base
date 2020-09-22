@@ -31,11 +31,9 @@ class PositionController
     // 部门子树
     public function getDescendants(Request $request)
     {
-//        $position = Position::whereNull('parent_id')->first();
-//        if($position){
-//            $position->children = $position->getDescendants();
-//            return response()->ajax($position);
-//        }
+        if(!auth()->user()->can('hr list positions')){
+            return response()->error('没有权限!', 4011);
+        }
         $tree = Position::with(['department', 'parent'])->get()->toHierarchy();
         return response()->ajax($tree);
     }

@@ -78,8 +78,10 @@
             },
             async updateTree(){
                 let res = await  api.sniperGetDepartmentDescendants()
-                this.treeData =  [Object.values(res.data)[0]];
-                this.$emit('treeLoaded', this.treeData[0])
+                if(res.data){
+                    this.treeData = [Object.values(res.data)[0]]
+                    this.$emit('treeLoaded', this.treeData[0])
+                }
             }
         },
         async mounted() {

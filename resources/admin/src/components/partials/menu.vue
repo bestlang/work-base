@@ -20,7 +20,7 @@
             <b>{{appName}}</b><b>管理面板</b>
         </div>
         <div class="ls-top-logo-narrow" v-show="isCollapse">{{appShortName}}</div>
-        <el-menu v-show="flag"
+        <el-menu
                 :unique-opened="true"
                 ref="sidemenu"
                 class="el-menu-vertical"
@@ -73,7 +73,6 @@
           return {
             defaultActive:'',
             router: $router,
-            flag: false,
 //            privileges: []
           };
       },
@@ -92,7 +91,6 @@
       watch:{
           privileges(newVal){
               if(newVal.length){
-                  this.flag = true
                   let routes = this.router.options.routes;
                   this.resetVisible(routes, newVal)
               }

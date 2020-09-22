@@ -32,9 +32,9 @@ class DepartmentController
     // 部门子树
     public function getDescendants(Request $request)
     {
-        if(!auth()->user()->can('hr departments')){
-            return response()->ajax('没有权限!', 401);
-        }
+//        if(!auth()->user()->can('hr departments')){
+//            return response()->error('没有权限!', 4011);
+//        }
         $tree = Department::with('parent')->get()->toHierarchy();
         return response()->ajax($tree);
     }
