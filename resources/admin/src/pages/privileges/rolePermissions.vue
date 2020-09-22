@@ -5,7 +5,7 @@
                 <div style="display: inline-block;">
                     <router-link to="/privileges/roles" tag="span"><span class="iconfont">&#xe601;</span>返回</router-link>
                     <el-divider direction="vertical"></el-divider>
-                    <span>{{role_name}}权限</span>
+                    <span><b v-if="currentRole">{{currentRole.name}}</b>权限</span>
                 </div>
                 <div><el-button @click="saveRolePermissions" type="primary">保存</el-button></div>
             </div>
@@ -21,13 +21,11 @@
                                 node-key="id"
                                 :props="customProps"
                                 :default-checked-keys="defaultCheckedKeys"
-                                :expand-on-click-node="true"
+                                :expand-on-click-node="false"
                                 :check-on-click-node="false">
-                <span class="custom-tree-node" slot-scope="{ node, data }">
-                  <span>{{ node.label }}</span>
-                    <!--                <span v-if="!data.children.length" class="iconfont">&#xe92a;</span>-->
-                    <!--                -{{ data.id }}-->
-                </span>
+                                <span class="custom-tree-node" slot-scope="{ node, data }">
+                                    <span :style="{letterSpacing: node.isLeaf ? '0.2px': Math.abs(node.level - 10)*0.2+'px', fontSize: node.isLeaf ? '13px' : Math.max((22 - node.level*2), 13)+'px'}">{{ node.label }}</span>
+                                </span>
                         </el-tree>
                     </div>
                     <div class="l-delimiter"></div>
@@ -44,7 +42,6 @@
         return {
           emptyText: 'loading...',
           role_id: null,
-          role_name: null,
           defaultCheckedKeys: [],
           total: 0,
           tableData: [],
@@ -90,6 +87,7 @@
             type: 'success',
             message: '设置成功!'
           });
+          setTimeout(function(){location.reload()}, 1500)
         },
         async loadPermissionsTree(){
           let res = await api.getPermissionsTree()
@@ -122,12 +120,15 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    font-size: 18px;
-    padding-right: 8px;
+    font-size: 14px;
+    padding-right: 5px;
+      line-height: 20px;
   }
-  .el-tree-node__content{
-    border-bottom: 1px solid #f4f4f4;
-    height: 32px;
-    line-height: 32px;
+  >>> /deep/ .el-tree-node{
+  padding: 0;
+  }
+  >>> /deep/ .el-tree-node__content{
+    height: 24px;
+      line-height: 24px;
   }
 </style>

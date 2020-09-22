@@ -41,7 +41,7 @@ export default new VueRouter({
                       path: "/sniper/employee/department",
                       component: () => import("../pages/sniper/employee/basic/department.vue"),
                       meta: {
-                          can: 'hr departments',
+                          can: 'hr list departments',
                           show: true,
                           name: '部门管理',
                           font: '&#xe69a;'
@@ -51,7 +51,7 @@ export default new VueRouter({
                       path: "/sniper/employee/department/edit",
                       component: () => import("../pages/sniper/employee/basic/departmentEdit.vue"),
                       meta: {
-                          can: 'hr departments',
+                          can: 'hr add departments',
                           show: false,
                           name: '新增部门',
                           font: '&#xe612;'
@@ -61,7 +61,7 @@ export default new VueRouter({
                       path: "/sniper/employee/department/detail",
                       component: () => import("../pages/sniper/employee/basic/departmentDetail.vue"),
                       meta: {
-                          can: 'hr departments',
+                          can: 'hr list departments',
                           show: false,
                           name: '部门详情',
                           font: '&#xe612;'

@@ -32,9 +32,9 @@ class DepartmentController
     // 部门子树
     public function getDescendants(Request $request)
     {
-//        if(!auth()->user()->can('hr departments')){
-//            return response()->error('没有权限!', 4011);
-//        }
+        if(!auth()->user()->can('hr list departments')){
+            return response()->error('没有权限!', 4011);
+        }
         $tree = Department::with('parent')->get()->toHierarchy();
         return response()->ajax($tree);
     }
@@ -82,6 +82,9 @@ class DepartmentController
         $validator = Validator::make($params, $rules , $info , $names);
         if($validator->fails()){
             return response()->error($validator->errors()->first());
+        }
+        if( !auth()->user()->can('hr add departments')  && !auth()->user()->can('hr edit departments') ){
+            return response()->error('没有权限!', 4011);
         }
         $id = $params['id'] ?? 0;
         isset($params['parent_id']) || $params['parent_id'] = null;
