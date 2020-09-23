@@ -42,12 +42,25 @@ class DingTalk extends Command
 
     public function _syncDepartments($parent, $dingSubs)
     {
+
+        $beforeSubIds = $parent->children->map(function($child){
+            return $child->id;
+        })->toArray();
+
+        $afterSubIds = [];
+
         foreach ($dingSubs as $dingSub){
             $child = Department::updateOrCreate(['id' => $dingSub->id, 'name' => $dingSub->name]);
             $child->makeChildOf($parent);
+            $afterSubIds[] = $child->id;
             if($dingSub->subs){
                 $this->_syncDepartments($child, $dingSub->subs);
             }
+        }
+
+        $diffIds = array_diff($beforeSubIds, $afterSubIds);
+        if($diffIds){
+            Department::destroy($diffIds);
         }
     }
     /**
@@ -56,6 +69,7 @@ class DingTalk extends Command
     public function handle(DingService $ding)
     {
             $act = $this->argument('act');
+            //同步数据到DingUser表
             if($act == 'users'){
                 $departments = $ding->departments();
                 $departmentIds = $departments['departmentIds'];
@@ -131,7 +145,7 @@ class DingTalk extends Command
                         $user = User::create(['email' => $dingUser->orgEmail, 'name' => $dingUser->name, 'password' => bcrypt('111111')]);
                         $user->employee()->create([
                             'real_name' => $dingUser->name,
-                            'department_id' => $dingUser->department,
+                            'department_id' => $dingUser->department,//使用dingTalk自带的department编号插入
                             'avatar' => $dingUser->avatar
                             //'position_id' => null,
                             //'phone' => null,

@@ -13,4 +13,9 @@ class Department extends Node
     {
         return $this->belongsTo(Department::class, 'parent_id');
     }
+
+    public function children()
+    {
+        return $this->hasMany(Department::class, 'parent_id');
+    }
 }
