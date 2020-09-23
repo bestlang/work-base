@@ -32,11 +32,20 @@
                         width="160">
                 </el-table-column>
                 <el-table-column
+                        label="角色"
+                        width="260">
+                    <template slot-scope="scope">
+                        {{scope.row.roles.map((role) => {return role.name}).join(',')}}
+                    </template>
+                </el-table-column>
+                <el-table-column
                         fixed="right"
                         label="操作">
                     <template slot-scope="scope">
-                        <el-button class="l-inline-btn" @click="editUser(scope.row)" type="text" size="medium"><i class="iconfont">&#xe618;</i>编辑</el-button>
-                        <!--<el-button class="l-inline-btn" @click="editPassword(scope.row)" type="text" size="medium"><i class="iconfont">&#xe75b;</i>修改密码</el-button>-->
+                        <el-button class="l-inline-btn" @click="editUser(scope.row)" type="text" size="medium">
+                            <i class="iconfont">&#xe618;</i>
+                            编辑
+                        </el-button>
                     </template>
                 </el-table-column>
             </el-table>
@@ -53,6 +62,11 @@
                 </el-form-item>
                 <el-form-item label="邮箱">
                     <el-input v-model="form.email" autocomplete="off"></el-input>
+                </el-form-item>
+                <el-form-item label="角色">
+                    <el-checkbox-group v-model="form.roles">
+                        <el-checkbox v-for="role in roles" :label="role.name"></el-checkbox>
+                    </el-checkbox-group>
                 </el-form-item>
                 <el-form-item label="">
                     <el-divider content-position="left" v-if="form.id" class="l-inline-notes">不修改密码请留空</el-divider>
@@ -86,41 +100,51 @@
                 },
                 tableData: [],
                 formVisible: false,
+                roles:[],
                 formTitle: '',
                 form: {
-                    id: '',
-                    name: '',
-                    email: '',
-                    mobile: '',
-                    password: '',
-                    confirm_password: ''
+                    id: null,
+                    name: null,
+                    email: null,
+                    mobile: null,
+                    password: null,
+                    confirm_password: null,
+                    roles: []
                 }
             }
         },
         components:{
             pager
         },
+        watch: {
+            async formVisible(val){
+                if(val){
+                    await this.getRoles()
+                }
+            }
+        },
         methods: {
+            assignForm(data={}){
+                this.form.id = data.id ? data.id : null
+                this.form.name = data.name ? data.name : null
+                this.form.email = data.email ? data.email : null
+                this.form.mobile = data.mobile ? data.mobile : null
+                this.form.roles = data.roles ? data.roles.map((role) => {return role.name}) : []
+                this.form.password = null
+                this.form.confirm_password = null
+            },
             addUser(){
-                this.form.id = ''
-                this.form.name = ''
-                this.form.email = ''
-                this.form.mobile = ''
-                //this.$set(this.form, 'password', '')
-                //this.$set(this.form, 'confirm_password', '')
+                this.assignForm()
                 this.formTitle = '添加用户'
                 this.formVisible = true
             },
             editUser(row){
-                //this.$delete(this.form, 'password')
-                //this.$delete(this.form, 'confirm_password')
                 this.formTitle = '编辑用户'
                 this.formVisible = true
-                let {id, name, email, mobile} = row
-                this.form = Object.assign(this.form, {id, name, email, mobile, password: '', confirm_password: ''})
+                this.assignForm(row)
             },
             async handleSubmit(){
-                let res = null
+                let res = {}
                 if(this.form.id){
                     res = await api.updateUser(this.form)
                 }else{
@@ -128,11 +152,18 @@
                 }
                 if(res.hasError){
                     this.showMessage(res.error, 'warning')
+                }else{
+                    let msg = this.form.id ? '更新成功' : '新增成功'
+                    this.showMessage(msg, 'success')
                 }
                 if(res.success){
                     this.formVisible = false;
                     await this.loadUsers();
                 }
+            },
+            async getRoles(){
+                let {data} = await api.getRoles()
+                this.roles = data
             },
             async loadUsers(){
                 let {data} = await api.getUsers(this.params)

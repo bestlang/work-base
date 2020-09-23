@@ -43,8 +43,16 @@
                 <el-form-item label="邮箱">
                     <el-input v-model="form.email" autocomplete="off" class="l-w-200"></el-input>
                 </el-form-item>
+                <el-form-item label="昵称">
+                    <el-input v-model="form.name" autocomplete="off" class="l-w-200"></el-input>
+                </el-form-item>
                 <el-form-item label="手机号">
                     <el-input v-model="form.mobile" autocomplete="off" class="l-w-200"></el-input>
+                </el-form-item>
+                <el-form-item label="角色">
+                    <el-checkbox-group v-model="form.roles">
+                        <el-checkbox v-for="role in roles" :label="role.name"></el-checkbox>
+                    </el-checkbox-group>
                 </el-form-item>
                 <el-form-item label="密码">
                     <el-input v-model="form.password" autocomplete="off" class="l-w-200"></el-input>
@@ -52,9 +60,7 @@
                 <el-form-item label="确认密码">
                     <el-input v-model="form.confirm_password" autocomplete="off" class="l-w-200"></el-input>
                 </el-form-item>
-                <el-form-item label="昵称">
-                    <el-input v-model="form.name" autocomplete="off" class="l-w-200"></el-input>
-                </el-form-item>
+
             </el-form>
             <div slot="footer" class="dialog-footer">
                 <el-button @click="showForm = false">取 消</el-button>
@@ -79,19 +85,34 @@
                 tableData: [],
                 roleName: '',
                 role_id: null,
+                roles:[],
                 form: {
-                    role_id: null,
                     mobile: '',
                     password: '',
                     confirm_password: '',
                     name: '',
                     email: '',
+                    roles: []
                 }
             }
         },
         watch:{
-            role_id(val){
-                this.loadRoleUsers(val)
+            async role_id(val){
+                await this.loadRoleUsers(val)
+            },
+            async showForm(val){
+                if(val){
+                    await this.getRoles()
+                }
+            },
+            roles(val){
+                if(val){
+                    val.forEach((role) => {
+                        if(role.id == this.role_id){
+                            this.form.roles = [role.name]
+                        }
+                    })
+                }
             }
         },
         computed:{
@@ -103,6 +124,10 @@
             }
         },
         methods: {
+            async getRoles(){
+                let {data} = await api.getRoles()
+                this.roles = data
+            },
           addNewUser(){
             this.showForm = true;
             Object.assign(this.form, {
@@ -112,15 +137,16 @@
               name: ''
             });
           },
-          async doAddNewUser(){
-            let res = await api.createRoleUser(this.form)
-            if(res.success){
-              await this.loadRoleUsers()
-              this.showForm = false;
-            }else{
-              this.$message({type:'error', message: res.error});
-            }
-          },
+            async doAddNewUser(){
+                let res = await api.createRoleUser(this.form)
+                if(res.success){
+                    this.showMessage('添加成功！', 'success')
+                    await this.loadRoleUsers()
+                    this.showForm = false;
+                }else{
+                    this.showMessage( res.error)
+                }
+            },
           handleRemove(row){
               this.$confirm('确认移出该用户?', '提示', {
                 confirmButtonText: '确定',
@@ -143,7 +169,6 @@
         },
         async mounted() {
             this.role_id = parseInt(this.$route.query.role_id || 0);
-            this.form.role_id = this.role_id
             await this.loadRoleUsers()
         }
     }

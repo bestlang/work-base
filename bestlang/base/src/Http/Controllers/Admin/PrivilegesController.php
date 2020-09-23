@@ -39,6 +39,7 @@ class PrivilegesController extends Controller
 
         return response()->ajax(collect($permissions)->unique()->values()->all());
     }
+
     // assign permissions to a specific role
     public function givePermissionsTo(Request $request)
     {
@@ -58,6 +59,7 @@ class PrivilegesController extends Controller
 
         return response()->ajax();
     }
+
     // get permissions of a role
     public function rolePermissions(Request $request)
     {
@@ -65,6 +67,7 @@ class PrivilegesController extends Controller
         $role = Role::find($role_id);
         return response()->ajax($role->permissions()->pluck('id')->toArray());
     }
+
     // remove a user from role user list
     public function removeRoleModel(Request $request)
     {
@@ -85,6 +88,7 @@ class PrivilegesController extends Controller
         $user->removeRole($role);
         return response()->ajax();
     }
+
     public function roles()
     {
         return response()->ajax(Role::all());
@@ -103,7 +107,7 @@ class PrivilegesController extends Controller
         $page_size = $request->input('page_size', 10);
         $page = intval($page);
         $page_size = intval($page_size);
-        $query = User::query();
+        $query = User::with('roles');
         $total = $query->count();
         $users = $query->orderBy('id', 'asc')
         ->limit($page_size)
@@ -179,7 +183,6 @@ class PrivilegesController extends Controller
         })->toHierarchy();
         return response()->ajax($tree);
     }
-
 
     public function addPermission(Request $request)
     {

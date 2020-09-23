@@ -30,6 +30,7 @@ class UserController extends Controller
             'email' => 'email|unique:users,email',
             'password' => 'required',
             'confirm_password' => 'required|same:password',
+            'roles' => 'nullable|array'
         ];
         $info = [
             'name.required' => '昵称不得为空',
@@ -39,7 +40,7 @@ class UserController extends Controller
             'password.required' => '密码不得为空',
             'confirm_password.required' => '确认密码不得为空',
             'confirm_password.same' => '两次输入密码不一致',
-
+            'roles.array' => '数据不合法'
         ];
         $fields = [
             'name' => '昵称',
@@ -47,7 +48,7 @@ class UserController extends Controller
             'email' => '邮箱',
             'password' => '密码',
             'confirm_password' => '确认密码',
-
+            'roles' => '角色'
         ];
         $validator = Validator::make($params, $rules , $info , $fields);
         if($validator->fails()){
@@ -60,6 +61,10 @@ class UserController extends Controller
         $user->email = $params['email'];
         $user->password = bcrypt($params['password']);
         $user->save();
+        if($params['roles']){
+            $roleIds = Role::whereIn('name', $params['roles'])->pluck('id')->toArray();
+            $user->roles()->sync($roleIds);
+        }
         return response()->ajax($user);
     }
 
@@ -73,6 +78,7 @@ class UserController extends Controller
             'email' => 'email|unique:users,email,'.$params['id'].',id',
             'password' => 'nullable',
             'confirm_password' => 'nullable|same:password',
+            'roles' => 'nullable|array'
         ];
         $info = [
             'id.required' => '参数缺失',
@@ -81,6 +87,7 @@ class UserController extends Controller
             'email.email' => '邮箱格式不正确',
             'email.unique' => '邮箱在系统中已存在',
             'confirm_password.same' => '两次输入密码不一致',
+            'roles.array' => '数据不合法'
         ];
         $fields = [
             'id' => 'ID',
@@ -89,7 +96,7 @@ class UserController extends Controller
             'email' => '邮箱',
             'password' => '密码',
             'confirm_password' => '确认密码',
-
+            'roles' => '角色'
         ];
         $validator = Validator::make($params, $rules , $info , $fields);
         if($validator->fails()){
@@ -102,6 +109,10 @@ class UserController extends Controller
         $user->email = $params['email'];
         isset($params['mobile']) && $user->password = bcrypt($params['password']);
         $user->save();
+        if($params['roles']){
+            $roleIds = Role::whereIn('name', $params['roles'])->pluck('id')->toArray();
+            $user->roles()->sync($roleIds);
+        }
         return response()->ajax($user);
     }
 
@@ -109,27 +120,28 @@ class UserController extends Controller
     {
         $params = $request->all();
         $rules = [
-            'role_id' => 'required|integer',
             'email' => 'required',
             'mobile' => 'required',
             'password' => 'required',
-            'confirm_password' => 'required',
-            'name' => 'required'
+            'confirm_password' => 'required|same:password',
+            'name' => 'required',
+            'roles' => 'nullable|array'
         ];
         $info = [
-            'role_id.required' => '参数错误',
-            'role_id.integer' => '参数错误',
             'email.required' => '邮箱必填',
             'mobile.required' => '手机号必填',
             'password.required' => '密码必填',
             'confirm_password.required' => '确认密码必填',
+            'confirm_password.same' => '两次输入密码不一致',
+            'roles.array' => '数据不合法'
         ];
         $fields = [
-            'role_id' => '角色ID',
+            'email' => '邮箱',
             'mobile' => '手机号',
             'password' => '密码',
             'confirm_password' => '确认密码',
-            'name' => '昵称'
+            'name' => '昵称',
+            'roles' => '角色'
         ];
         $validator = Validator::make($params, $rules , [] , $fields);
         if($validator->fails()){
@@ -140,14 +152,16 @@ class UserController extends Controller
         if($password != $confirm_password){
             return response()->error('两次输入密码不一致!');
         }
-        $arr = Arr::only($params, ['name', 'mobile', 'password']);
+        $arr = Arr::only($params, ['name', 'mobile', 'password', 'email']);
         $arr['password'] = bcrypt($arr['password']);
         $arr['type'] = 1;
         DB::beginTransaction();
         try{
             $user = User::create($arr);
-            $role = Role::where('id', $params['role_id'])->firstOrFail();
-            $user->assignRole($role);
+            if($params['roles']){
+                $roleIds = Role::whereIn('name', $params['roles'])->pluck('id')->toArray();
+                $user->roles()->sync($roleIds);
+            }
         }catch (\Exception $e){
             DB::rollBack();
             return response()->error($e->getMessage());

@@ -1,7 +1,7 @@
 <style scoped lang="less">
     .ls-top-logo{
         /*color: #00a2d4;*/
-        color: gray;
+        color: #6D6D6D;
     }
     .ls-top-logo, .ls-top-logo-narrow{
         line-height: 50px;
