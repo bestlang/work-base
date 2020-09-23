@@ -1,10 +1,10 @@
 <template>
     <div>
-        <div class="top-buttons" style="display: flex;flex-flow: row nowrap;justify-content: space-between;">
-          <div style="display: flex;flex-flow: row nowrap;">
-            <router-link to="/privileges/roles" tag="div"><span class="iconfont">&#xe601;</span>返回</router-link>
-            <el-divider direction="vertical"></el-divider>
-            <div>所属「{{roleName}}」用户列表</div>
+        <div class="top-buttons l-flex">
+          <div>
+                <router-link to="/privileges/roles" tag="span"><span class="iconfont">&#xe601;</span>返回</router-link>
+                <el-divider direction="vertical"></el-divider>
+                <span>所属「{{roleName}}」用户列表</span>
           </div>
           <div>
             <el-button type="primary" @click="addNewUser"><i class="iconfont">&#xe641;</i> 添加</el-button>
@@ -39,24 +39,27 @@
         </el-table>
         <div class="l-delimiter"></div>
         <el-dialog title="添加用户" :visible.sync="showForm" :close-on-click-modal="false">
-          <el-form :model="form" label-width="80px">
-            <el-form-item label="手机号">
-              <el-input v-model="form.mobile" autocomplete="off" class="l-w-200"></el-input>
-            </el-form-item>
-            <el-form-item label="密码">
-              <el-input v-model="form.password" autocomplete="off" class="l-w-200"></el-input>
-            </el-form-item>
-            <el-form-item label="确认密码">
-              <el-input v-model="form.confirm_password" autocomplete="off" class="l-w-200"></el-input>
-            </el-form-item>
-            <el-form-item label="昵称">
-              <el-input v-model="form.name" autocomplete="off" class="l-w-200"></el-input>
-            </el-form-item>
-          </el-form>
-          <div slot="footer" class="dialog-footer">
-            <el-button @click="showForm = false">取 消</el-button>
-            <el-button type="primary" @click="doAddNewUser">确 定</el-button>
-          </div>
+            <el-form :model="form" label-width="80px">
+                <el-form-item label="邮箱">
+                    <el-input v-model="form.email" autocomplete="off" class="l-w-200"></el-input>
+                </el-form-item>
+                <el-form-item label="手机号">
+                    <el-input v-model="form.mobile" autocomplete="off" class="l-w-200"></el-input>
+                </el-form-item>
+                <el-form-item label="密码">
+                    <el-input v-model="form.password" autocomplete="off" class="l-w-200"></el-input>
+                </el-form-item>
+                <el-form-item label="确认密码">
+                    <el-input v-model="form.confirm_password" autocomplete="off" class="l-w-200"></el-input>
+                </el-form-item>
+                <el-form-item label="昵称">
+                    <el-input v-model="form.name" autocomplete="off" class="l-w-200"></el-input>
+                </el-form-item>
+            </el-form>
+            <div slot="footer" class="dialog-footer">
+                <el-button @click="showForm = false">取 消</el-button>
+                <el-button type="primary" @click="doAddNewUser">确 定</el-button>
+            </div>
         </el-dialog>
     </div>
 
@@ -77,11 +80,12 @@
                 roleName: '',
                 role_id: null,
                 form: {
-                  role_id: null,
-                  mobile: '',
-                  password: '',
-                  confirm_password: '',
-                  name: ''
+                    role_id: null,
+                    mobile: '',
+                    password: '',
+                    confirm_password: '',
+                    name: '',
+                    email: '',
                 }
             }
         },

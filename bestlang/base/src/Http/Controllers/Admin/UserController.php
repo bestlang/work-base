@@ -110,10 +110,19 @@ class UserController extends Controller
         $params = $request->all();
         $rules = [
             'role_id' => 'required|integer',
+            'email' => 'required',
             'mobile' => 'required',
             'password' => 'required',
             'confirm_password' => 'required',
             'name' => 'required'
+        ];
+        $info = [
+            'role_id.required' => '参数错误',
+            'role_id.integer' => '参数错误',
+            'email.required' => '邮箱必填',
+            'mobile.required' => '手机号必填',
+            'password.required' => '密码必填',
+            'confirm_password.required' => '确认密码必填',
         ];
         $fields = [
             'role_id' => '角色ID',
