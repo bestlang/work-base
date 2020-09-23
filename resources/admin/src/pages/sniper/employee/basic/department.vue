@@ -204,12 +204,12 @@
                 box-shadow: 3px 3px 6px #FAFAFA;
                 background: #fcf8e3;
                 h1{
-                    color: #555;
+                    color: #888;
                 }
             }
             h1{
-                font-size: 16px;
-                color: #777;
+                font-size: 14px;
+                color: #888;
                 padding: 10px 0 0 10px;
                 font-weight: bold;
             }

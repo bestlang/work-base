@@ -1,7 +1,7 @@
 <template>
   <div>
     <div v-title="'权限管理'"></div>
-    <div style="width:90%;">
+    <div>
       <div class="l-block">
         <div class="l-block-header">所有权限</div>
         <div class="l-block-body">
