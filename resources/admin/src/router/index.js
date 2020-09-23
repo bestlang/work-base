@@ -346,7 +346,7 @@ export default new VueRouter({
                       path: "/cms/setting",
                       component: () => import("../components/via.vue"),
                       meta: {
-                          can: 'cms list contents',
+                          can: 'cms setting',
                           show: true,
                           name: '设置',
                           font: '&#xe764;'
@@ -356,7 +356,7 @@ export default new VueRouter({
                               path: "/cms/setting/siteSetting",
                               component: () => import("../pages/cms/setting/siteSetting.vue"),
                               meta: {
-                                  can: 'dashboard',
+                                  can: 'cms setting site',
                                   show: true,
                                   name: '站点设置',
                                   font: '&#xe764;'
@@ -366,7 +366,7 @@ export default new VueRouter({
                               path: "/cms/setting/model",
                               component: () => import("../pages/cms/setting/model.vue"),
                               meta: {
-                                  can: 'dashboard',
+                                  can: 'cms setting model',
                                   show: true,
                                   name: '模型管理',
                                   font: '&#xe764;'
@@ -376,7 +376,7 @@ export default new VueRouter({
                               path: "/cms/setting/model/add",
                               component: () => import("../pages/cms/setting/modelEdit.vue"),
                               meta: {
-                                  can: 'dashboard',
+                                  can: 'cms setting model',
                                   show: false,
                                   name: '添加模型',
                                   font: '&#xe764;'
@@ -386,7 +386,7 @@ export default new VueRouter({
                               path: "/cms/setting/model/edit",
                               component: () => import("../pages/cms/setting/modelEdit.vue"),
                               meta: {
-                                  can: 'dashboard',
+                                  can: 'cms setting model',
                                   show: false,
                                   name: '编辑模型',
                                   font: '&#xe764;'
@@ -396,7 +396,7 @@ export default new VueRouter({
                               path: "/cms/setting/field/types",
                               component: () => import("../pages/cms/setting/fieldTypes.vue"),
                               meta: {
-                                  can: 'dashboard',
+                                  can: 'cms setting fields',
                                   show: true,
                                   name: '字段类型',
                                   font: '&#xe764;'

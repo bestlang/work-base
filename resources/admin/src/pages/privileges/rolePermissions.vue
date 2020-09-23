@@ -24,7 +24,7 @@
                                 :expand-on-click-node="false"
                                 :check-on-click-node="false">
                                 <span class="custom-tree-node" slot-scope="{ node, data }">
-                                    <span :style="{letterSpacing: node.isLeaf ? '0.2px': Math.abs(node.level - 10)*0.2+'px', fontSize: node.isLeaf ? '13px' : Math.max((22 - node.level*2), 13)+'px'}">{{ node.label }}</span>
+                                    <span :style="{letterSpacing: node.isLeaf ? '0.2px': Math.abs(node.level - 10)*0.2+'px', fontSize:Math.max((22 - node.level*2), 13)+'px'}">{{ node.label }}</span>
                                 </span>
                         </el-tree>
                     </div>
