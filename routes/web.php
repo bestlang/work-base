@@ -17,10 +17,10 @@ Route::any('/', function(){
 
 Route::get('/info', function(){echo phpinfo();});
 //测试微信支付
-Route::get('/pay', 'Pdd\IndexController@wePay');
-Route::get('/notify', 'Pdd\IndexController@notify');
-Route::get('/test/jwt/token', 'Pdd\IndexController@testJwtToken');
-Route::get('/test', 'Pdd\IndexController@test');
+//Route::get('/pay', 'Pdd\IndexController@wePay');
+//Route::get('/notify', 'Pdd\IndexController@notify');
+//Route::get('/test/jwt/token', 'Pdd\IndexController@testJwtToken');
+//Route::get('/test', 'Pdd\IndexController@test');
 //小程序code换openid session_key等信息
 Route::get('/mp/code/session', 'MpController@codeSession');
 Route::any('/mp/serve', 'MpController@serve');
