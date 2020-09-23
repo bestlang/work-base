@@ -33,11 +33,6 @@ Route::get('/decrypt', 'IndexController@decrypt');
 Route::get('/test/permission/guard', 'IndexController@testPermissionGuard');
 
 
-// for test purpose
-Route::get('/activity/zero/benifits', 'ActivityController@zeroBenifits');
-Route::get('/activity/applicables', 'Admin\ActivityController@applicables');
-
-
 //Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
