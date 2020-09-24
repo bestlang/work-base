@@ -1,23 +1,8 @@
-<style scoped lang="less">
-    .ls-top-logo{
-        /*color: #00a2d4;*/
-        color: #6D6D6D;
-    }
-    .ls-top-logo, .ls-top-logo-narrow{
-        line-height: 50px;
-        font-size: 18px;
-        padding: 0 20px;
-        background: #f8f8f8;
-        /*background: #f5f5f5;*/
-        /*border-bottom: 1px solid #e6e6e6;*/
-    }
-</style>
-
 <template>
     <div class="l-menu-wrap">
         <!--™-->
         <div class="ls-top-logo" v-show="!isCollapse">
-            <b>{{appName}}</b><b>管理面板</b>
+            <p>{{appName}}管理面板</p>
         </div>
         <div class="ls-top-logo-narrow" v-show="isCollapse">{{appShortName}}</div>
         <el-menu
@@ -40,22 +25,65 @@
     </div>
 </template>
 
-<style scoped>
-    .l-menu-wrap{
+<style scoped lang="less">
+    .ls-top-logo{
+        font-size: 18px;
     }
+
+    .ls-top-logo, .ls-top-logo-narrow{
+        color: #f1f1f1;
+        height: 50px;
+        line-height: 50px;
+        padding: 0 20px;
+        background: #293c55;
+    }
+
+    .ls-top-logo-narrow{
+        font-size: 14px;
+    }
+
+    .l-menu-wrap{
+        /deep/ .el-menu{
+            background: #293c55;
+            .el-menu-item{
+                color: #f1f1f1;
+                &.is-active, &:hover{
+                    color: #2d2d2d;
+                    background: #8c939d;
+                    i{
+                        color: inherit;
+                    }
+                }
+            }
+            .el-submenu{
+                .el-submenu__title{
+                    color: #f1f1f1;
+                    &:hover{
+                        color: #2d2d2d;
+                        i{
+                            color: inherit;
+                        }
+                    }
+                }
+            }
+        }
+        .el-menu-vertical{
+            min-height: calc(100vh - 50px);
+            background: #293c55;
+            border-right: none;
+            &:not(.el-menu--collapse) {
+                width: 200px;
+                overflow-y: auto;
+                border-right: none;
+            }
+        }
+    }
+
     .el-menu{
-        border-right: 1px solid transparent;
-        height:calc(100vh - 50px);
         overflow: hidden;
     }
 
-    .el-menu-vertical{
-        min-height: calc(100vh - 50px);
-    }
-    .el-menu-vertical:not(.el-menu--collapse) {
-        width: 200px;
-        overflow-y: auto;
-    }
+
 
 </style>
 

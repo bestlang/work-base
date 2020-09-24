@@ -206,6 +206,7 @@
                 color: #888;
                 padding: 10px 0 0 10px;
                 font-weight: bold;
+                font-weight: lighter;
             }
             .l-employee-count{
                 color: #555;

@@ -42,7 +42,7 @@ export default {
     }
     .ls-aside{
         flex-shrink: 0;
-        border-right: 1px solid #e6e6e6;
+        /*border-right: 1px solid #e6e6e6;*/
     }
     .ls-top{
         /*box-shadow: 0 1px 5px rgba(0, 0, 0, 0.10);*/

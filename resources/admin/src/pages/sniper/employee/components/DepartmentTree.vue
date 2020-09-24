@@ -4,7 +4,10 @@
         border-right: 1px solid #f4f4f4;
         min-height: calc(100vh - 50px - 20px);
         box-sizing: border-box;
-
+        .el-tree{
+            color: #2d2d2d;
+            font-weight: lighter;
+        }
     }
     .custom-tree-node{
         flex: 1;

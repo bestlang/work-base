@@ -60,8 +60,8 @@
               <el-table-column
                 label="操作">
                 <template slot-scope="scope">
-                  <el-button type="text" @click="editContent(scope.row)">编辑</el-button>
-                  <el-button type="text" @click="deleteContent(scope.row)">删除</el-button>
+                  <el-button class="l-lighter" type="text" @click="editContent(scope.row)">编辑</el-button>
+                  <el-button class="l-lighter" type="text" @click="deleteContent(scope.row)">删除</el-button>
                 </template>
               </el-table-column>
             </el-table>

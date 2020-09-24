@@ -35,10 +35,10 @@
                     <el-table-column
                             label="操作">
                         <template slot-scope="scope">
-                            <el-button type="text" @click="handleEdit(scope.row)">编辑</el-button>
-                            <el-button type="text" @click="handleDelete(scope.row)">删除</el-button>
-                            <el-button type="text" @click="viewContents(scope.row)">内容管理</el-button>
-                            <el-button v-if="scope.row.is_channel" type="text" @click="viewSubPositions(scope.row)">内容推荐位</el-button>
+                            <el-button class="l-lighter" type="text" @click="handleEdit(scope.row)">编辑</el-button>
+                            <el-button class="l-lighter" type="text" @click="handleDelete(scope.row)">删除</el-button>
+                            <el-button class="l-lighter" type="text" @click="viewContents(scope.row)">内容管理</el-button>
+                            <el-button class="l-lighter" v-if="scope.row.is_channel" type="text" @click="viewSubPositions(scope.row)">内容推荐位</el-button>
                         </template>
                     </el-table-column>
                 </el-table>

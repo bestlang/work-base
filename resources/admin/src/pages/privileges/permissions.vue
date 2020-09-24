@@ -27,17 +27,17 @@
                     label="操作">
               <template slot-scope="scope">
             <span>
-              <el-button
+              <el-button class="l-lighter"
                       type="text"
                       @click="() => edit(scope.row)">
                 编辑
               </el-button>
-              <el-button
+              <el-button class="l-lighter"
                       type="text"
                       @click="() => add(scope.row)">
                 新增
               </el-button>
-              <el-button
+              <el-button class="l-lighter"
                       type="text"
                       @click="() => remove(scope.row)">
                 删除

@@ -1,17 +1,3 @@
-<style lang="less">
-    .custom-tree-node {
-        flex: 1;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        font-size: 17px;
-        /*padding-right: 8px;*/
-    }
-    .el-tree-node__content{
-        box-sizing: content-box;
-        padding: 2px 0;
-    }
-</style>
 <template>
     <div class="l-tree-container">
         <view v-if="title">{{title}}</view>
@@ -31,6 +17,19 @@
         </el-tree>
     </div>
 </template>
+<style lang="less">
+    .custom-tree-node {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+       font-weight: lighter;
+    }
+    .el-tree-node__content{
+        box-sizing: content-box;
+        padding: 2px 0;
+    }
+</style>
 <script>
     import api from "@/api/index"
     import {mapGetters} from 'vuex'

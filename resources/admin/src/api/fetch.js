@@ -11,7 +11,7 @@ axios.interceptors.request.use(config => {
     let accessToken = localStorage.getItem('accessToken')
     config.baseURL = app.SITE_URL + '/' + getPrefix() + '/'
     config.withCredentials = true
-    config.timeout = 6000
+    config.timeout = 10000
     if (accessToken && getPrefix() == 'api') {
         config.headers = {
             'Authorization': 'Bearer ' + accessToken,
@@ -74,7 +74,7 @@ axios.interceptors.response.use(response => {
         }else{
             location.href = '/login'
         }
-        if (error.response.status === 401) {
+        if (error.response && error.response.status === 401) {
             app.showMessage('请重新登录');
             app.$router.replace('/login');
         }

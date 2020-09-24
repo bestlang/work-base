@@ -42,7 +42,7 @@
                         fixed="right"
                         label="操作">
                     <template slot-scope="scope">
-                        <el-button class="l-inline-btn" @click="editUser(scope.row)" type="text" size="medium">
+                        <el-button class="l-inline-btn l-lighter" @click="editUser(scope.row)" type="text" size="medium">
                             <i class="iconfont">&#xe618;</i>
                             编辑
                         </el-button>

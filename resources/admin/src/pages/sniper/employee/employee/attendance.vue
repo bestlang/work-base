@@ -10,14 +10,14 @@
                     <div class="l-user-wrap">
                             <div v-for="(user, index) in users" :key="index" class="l-user" @click="viewDetail(user)">
                                 <div style="border-bottom: 1px solid #f1f1f1;padding-bottom: 10px;">
-                                <div><b>{{user.name}}</b><small style="color: #fff;display: none;">{{user.userid}}</small></div>
+                                <div><p>{{user.name}}</p><small style="color: #fff;display: none;">{{user.userid}}</small></div>
                                 <div><small style="color: #afafaf">{{user.orgEmail ? user.orgEmail : '-'}}</small></div>
                                 </div>
                                 <!--<div><small>本周：正常1次 迟到1次 早退1次</small></div>-->
                                 <div>
                                     <div v-if="user.result">
                                         <small>本月：
-                                            <span style="font-weight: 700" v-html="resultHtml(user.result)"></span>
+                                            <span style="font-weight: lighter" v-html="resultHtml(user.result)"></span>
                                             <span v-if="user.leave && user.leave.length" :title="user.leaveStr"><small  style="color: darkorange;font-weight: normal;"><span class="iconfont">&#xe60b;</span>请假{{user.leave.length}}次</small></span>
                                         </small>
                                     </div>
