@@ -3,6 +3,8 @@
 // see http://vuejs-templates.github.io/webpack for documentation.
 
 const path = require('path')
+const dev = require('./dev.env')
+const prod = require('./prod.env')
 
 module.exports = {
   dev: {
@@ -12,7 +14,7 @@ module.exports = {
     assetsPublicPath: '/',
     proxyTable: {
         '/': {
-            target: 'http://127.0.0.1:8000',  //目标接口域名
+            target: dev.SITE_URL,  //目标接口域名
             changeOrigin: true,  //是否跨域
             pathRewrite: {
                 '^/': '/'   //重写接口
@@ -24,7 +26,7 @@ module.exports = {
     // Various Dev Server settings
     host: '127.0.0.1', // can be overwritten by process.env.HOST
     port: 8080, // can be overwritten by process.env.PORT, if port is in use, a free one will be determined
-    autoOpenBrowser: true,
+    autoOpenBrowser: false,
     errorOverlay: true,
     notifyOnErrors: true,
     poll: false, // https://webpack.js.org/configuration/dev-server/#devserver-watchoptions-
@@ -62,7 +64,7 @@ module.exports = {
     assetsPublicPath: '/admin/',
     proxyTable: {
         '/': {
-            target: 'http://127.0.0.1:8000',  //目标接口域名
+            target: prod.SITE_URL,  //目标接口域名
             changeOrigin: true,  //是否跨域
             pathRewrite: {
                 '^/': '/'   //重写接口

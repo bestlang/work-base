@@ -3,7 +3,7 @@ import store from './store/index'//路由
 
 router.beforeEach((to, from, next) => {
   let loginPath = '/login';
-    let accessToken = localStorage.getItem('accessToken');//登录标示
+    let accessToken = localStorage.getItem('accessToken');//登录标识
     if (!accessToken && to.path != loginPath) {
         next(loginPath);
     } else {

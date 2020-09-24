@@ -1,4 +1,4 @@
-import "babel-polyfill"
+import "babel-polyfill" //ie低版本不支持Promise.
 import Vue from "vue"
 import ElementUI from "element-ui"
 
@@ -23,7 +23,7 @@ Vue.prototype.fetch = fetch
 Vue.prototype.$types = types
 Vue.prototype.SITE_URL = process.env.SITE_URL
 Vue.prototype.ADMIN_URL = process.env.ADMIN_URL
-Vue.prototype.showMessage = (value, type='error') => { // success/warning/info/error
+Vue.prototype.showMessage = (value, type='error') => { // type in [success, warning, info, error]
     /*手动关闭所有实例*/
     ElementUI.Message.closeAll()
     return ElementUI.Message({
@@ -41,7 +41,7 @@ Vue.directive('title', {
         try{
             el.remove()
         }catch (e) {
-            el.removeNode(true)
+            el.removeNode(true)//ie
         }
     }
 })
