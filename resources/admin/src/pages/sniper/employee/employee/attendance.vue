@@ -140,7 +140,7 @@
         overflow-x: hidden;
         .l-tree{
             width: 280px;
-            padding: 20px;
+            padding: 10px 20px;
             border-right: 1px solid #f4f4f4;
             flex-shrink: 0;
             overflow-y: auto;
