@@ -5,7 +5,7 @@
                 <div style="display: inline-block;">
                     <router-link to="/privileges/roles" tag="span"><span class="iconfont">&#xe601;</span>返回</router-link>
                     <el-divider direction="vertical"></el-divider>
-                    <span><b v-if="currentRole">{{currentRole.name}}</b>权限</span>
+                    <span><span v-if="currentRole">「{{currentRole.name}}」</span>权限</span>
                 </div>
                 <div><el-button @click="saveRolePermissions" type="primary">保存</el-button></div>
             </div>
@@ -66,10 +66,7 @@
       computed:{
         types(){
           return this.$store.getters.activityTypes;
-        },
-        // currentRole(){
-        //   return this.$store.getters.currentRole;
-        // }
+        }
       },
       watch:{
           async role_id(val){
@@ -98,7 +95,6 @@
             this.currentRole = data
         },
         async loadRolePermissions(role_id){
-//          let role_id = this.currentRole.id;
           let res = await api.getRolePermissions({role_id})
           this.defaultCheckedKeys = res.data;
         },
@@ -109,7 +105,6 @@
       },
       async mounted() {
         this.role_id = parseInt(this.$route.query.role_id || 0);
-        //await this.loadRolePermissions();
         await this.loadPermissionsTree();
       }
     }

@@ -28,23 +28,13 @@
 
 </template>
 <script>
-  // import VueUeditorWrap from 'vue-ueditor-wrap';
-  // import ueditorConfig from "../store/ueditor";
-  // import TreeChart from "vue-tree-chart";
-  import Vue from 'vue'
-  // import jm from 'vue-jsmind'
-
-  // Vue.use(jm)
-
   export default {
     data(){
       return {
       }
     },
     computed: {
-      // ueditorConfig(){
-      //   return ueditorConfig
-      // }
+
     },
     components: {
     },

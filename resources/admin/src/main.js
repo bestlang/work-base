@@ -1,3 +1,4 @@
+import "babel-polyfill"
 import Vue from "vue"
 import ElementUI from "element-ui"
 
@@ -9,6 +10,7 @@ import * as types from "./store/types"
 import App from "./App"
 import {fetch} from "@/api/fetch"
 import {getPrefix} from "@/api/util"
+
 
 window.$ = require("jquery")
 
@@ -36,7 +38,11 @@ Vue.prototype.showMessage = (value, type='error') => { // success/warning/info/e
 Vue.directive('title', {
     inserted: function (el, binding) {
         document.title = binding.value
-        el.remove()
+        try{
+            el.remove()
+        }catch (e) {
+            el.removeNode(true)
+        }
     }
 })
 

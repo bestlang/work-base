@@ -1,17 +1,17 @@
 <style lang="less">
-    .l-tree-containner{
-        min-width: 200px;
-        padding: 20px;
+    .l-tree-container{
+        padding: 10px 20px;
         border-right: 1px solid #f4f4f4;
-        flex-shrink: 0;
+        min-height: calc(100vh - 50px - 20px);
+        box-sizing: border-box;
+
     }
-    .custom-tree-node {
+    .custom-tree-node{
         flex: 1;
         display: flex;
         align-items: center;
         justify-content: space-between;
         font-size: 17px;
-        /*padding-right: 8px;*/
     }
     .el-tree-node__content{
         box-sizing: content-box;
@@ -19,7 +19,7 @@
     }
 </style>
 <template>
-    <div class="l-tree-containner">
+    <div class="l-tree-container">
         <view v-if="title">{{title}}</view>
         <el-tree
                 @node-click="handleNodeClick"

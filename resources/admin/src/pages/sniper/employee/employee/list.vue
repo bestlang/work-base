@@ -1,7 +1,7 @@
 <template>
 	<div class="l-position-list">
 		<div v-title="'员工列表'"></div>
-		<department-tree  :selectedKey="2" @nodeClick="handleNodeClick" @treeLoaded="performTreeLoaded"></department-tree>
+		<department-tree class="l-tree" :selectedKey="2" @nodeClick="handleNodeClick" @treeLoaded="performTreeLoaded"></department-tree>
 		<div class="l-block">
 			<div class="l-block-header">
 				<div class="l-flex">
@@ -77,9 +77,9 @@
 		min-height: calc(100vh - 50px - 20px);
 		margin:-20px 0 -20px -20px;
 		overflow-x: hidden;
-		.l-tree-container{
-			min-width: 200px;
-			padding: 20px;
+		.l-tree{
+			width: 300px;
+			padding: 10px 20px;
 			border-right: 1px solid #f4f4f4;
 			flex-shrink: 0;
 			overflow-y: auto;
@@ -90,7 +90,8 @@
 			display: flex;
 			flex-flow: row nowrap;
 			box-sizing: border-box;
-			width: calc(100% - 240px);
+			width: 1800px;
+			flex-shrink: 20;
 		}
 	}
 	.l-block{
@@ -104,7 +105,6 @@
 			padding: 10px;
 			position: relative;
 			box-shadow: #67C23A;
-			/*height: 140px;*/
 			border:1px solid #eee;
 			width: 200px;
 			height: 140px;
@@ -112,12 +112,6 @@
 			border-radius: 5px;
 			cursor: pointer;
 			background: #F2F8FE;
-			/*
-			 height: 140px;
-            border:1px solid #f1f1f1;
-            width: 220px;
-            margin: 20px 30px 0 0;
-			*/
 			img{
 				width: 60px;
 				height: 60px;

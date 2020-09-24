@@ -1,8 +1,8 @@
 <template>
-	<div class="l-position-list">
+	<div class="l-department-list">
         <div v-title="'部门管理'"></div>
         <!--:selectedKey="2"-->
-        <department-tree @nodeClick="handleNodeClick" @treeLoaded="performTreeLoaded" :updated="updated"></department-tree>
+        <department-tree class="l-tree" @nodeClick="handleNodeClick" @treeLoaded="performTreeLoaded" :updated="updated"></department-tree>
         <div class="l-block">
             <div class="l-block-header">
                 <div class="l-flex">
@@ -161,30 +161,24 @@
 	}
 </script>
 <style scoped lang="less">
-    .l-position-list{
+    .l-department-list{
         display: flex;
         flex-flow: row nowrap;
         min-height: calc(100vh - 50px - 20px);
         margin:-20px 0 -20px -20px;
         overflow-x: hidden;
-        .l-tree-container{
-            min-width: 200px;
-            padding: 20px;
-            border-right: 1px solid #f4f4f4;
+        .l-tree{
             flex-shrink: 0;
+            padding: 10px 20px;
+            border-right: 1px solid #f4f4f4;
             overflow-y: auto;
-        }
-        .l-tree-content{
-            padding: 20px;
-            flex-grow: 1;
-            display: flex;
-            flex-flow: row nowrap;
-            box-sizing: border-box;
-            width: calc(100% - 240px);
+            width: 280px;
         }
     }
     .l-block{
+        flex-shrink: 20;
         padding-left: 20px;
+        width: 1800px;
     }
     .l-department-wrap{
         display: flex;

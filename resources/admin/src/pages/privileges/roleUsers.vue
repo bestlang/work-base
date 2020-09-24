@@ -4,7 +4,7 @@
           <div>
                 <router-link to="/privileges/roles" tag="span"><span class="iconfont">&#xe601;</span>返回</router-link>
                 <el-divider direction="vertical"></el-divider>
-                <span>所属「{{roleName}}」用户列表</span>
+                <span>「{{roleName}}」用户列表</span>
           </div>
           <div>
             <el-button type="primary" @click="addNewUser"><i class="iconfont">&#xe641;</i> 添加</el-button>
@@ -71,9 +71,6 @@
 
 </template>
 <style lang="less" scoped>
-  .l-w-200{
-    /*width: 280px;*/
-  }
 </style>
 <script>
     import api from '../../api/index'
