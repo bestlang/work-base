@@ -61,6 +61,9 @@ class DingTalkController
     //获取特定用户列表本月考勤状况
     public function usersAttendance(Request $request)
     {
+        if(!auth()->user()->can('hr attendance')){
+            return response()->error('没有权限!', 4012);
+        }
         $userIds = $request->input('userIds');
         $month = $request->input('month');
         //$userIds = explode(',', $userIds);

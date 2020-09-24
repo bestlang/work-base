@@ -9,6 +9,9 @@ class PositionController
 {
     public function delete(Request $request)
     {
+        if(!auth()->user()->can('hr delete positions')){
+            return response()->error('没有权限!', 4012);
+        }
         $id = $request->input('id');
         if(!$id){
             return response()->error('参数错误');
@@ -32,7 +35,7 @@ class PositionController
     public function getDescendants(Request $request)
     {
         if(!auth()->user()->can('hr list positions')){
-            return response()->error('没有权限!', 4011);
+            return response()->error('没有权限!', 4012);
         }
         $tree = Position::with(['department', 'parent'])->get()->toHierarchy();
         return response()->ajax($tree);
@@ -52,6 +55,10 @@ class PositionController
 
     public function save(Request $request)
     {
+        $user = auth()->user();
+        if( !$user->can('hr add positions')  && !$user->can('hr edit positions') ){
+            return response()->error('没有权限!', 4012);
+        }
         $params = $request->all();
         $rules = [
             'id' => 'numeric|nullable',

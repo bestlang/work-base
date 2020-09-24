@@ -10,6 +10,9 @@ class DepartmentController
 {
     public function delete(Request $request)
     {
+        if(!auth()->user()->can('hr delete departments')){
+            return response()->error('没有权限!', 4012);
+        }
         $id = $request->input('id');
         if(!$id){
             return response()->error('参数错误');
@@ -33,7 +36,7 @@ class DepartmentController
     public function getDescendants(Request $request)
     {
         if(!auth()->user()->can('hr list departments')){
-            return response()->error('没有权限!', 4011);
+            return response()->error('没有权限!', 4012);
         }
         $tree = Department::with('parent')->get()->toHierarchy();
         return response()->ajax($tree);
@@ -61,6 +64,10 @@ class DepartmentController
 
     public function save(Request $request)
     {
+        $user = auth()->user();
+        if( !$user->can('hr add departments')  && !$user->can('hr edit departments') ){
+            return response()->error('没有权限!', 4012);
+        }
        $params = $request->all();
         $rules = [
           'id' => 'numeric|nullable',
@@ -82,9 +89,6 @@ class DepartmentController
         $validator = Validator::make($params, $rules , $info , $names);
         if($validator->fails()){
             return response()->error($validator->errors()->first());
-        }
-        if( !auth()->user()->can('hr add departments')  && !auth()->user()->can('hr edit departments') ){
-            return response()->error('没有权限!', 4011);
         }
         $id = $params['id'] ?? 0;
         isset($params['parent_id']) || $params['parent_id'] = null;
