@@ -59,10 +59,17 @@
 		methods:{
             async getOptionalThemes(){
                 let res = await api.getOptionalThemes()
-                this.themes = res.data;
+				if(!res.hasError){
+                    this.themes = res.data;
+				}else{
+                    this.showMessage(res.error)
+				}
 			},
             async getSiteSetting(){
                 let res = await api.getSiteSetting()
+				if(res.hasError){
+                    this.showMessage(res.error)
+				}
                 this.site = Object.assign({}, this.site, res.data)
             },
 		    async saveContent(){

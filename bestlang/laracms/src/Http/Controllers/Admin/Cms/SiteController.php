@@ -3,7 +3,8 @@
 
 namespace Bestlang\Laracms\Http\Controllers\Admin\Cms;
 use Bestlang\Laracms\Http\Controllers\Controller;
-use Bestlang\Laracms\Models\Cms\Config;
+use Bestlang\Base\Models\HashConfig as Config;
+
 use Illuminate\Http\Request;
 
 class SiteController extends Controller

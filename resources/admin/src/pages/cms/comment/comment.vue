@@ -12,7 +12,7 @@
                 <div class="l-comment"><span class="lighter">评论内容:</span>{{comment.content}}</div>
                 <div class="l-comment-foot">
                     <el-row>
-                    <el-col :span="3"><span class="lighter">评论者:</span> {{comment.user.name}}</el-col>
+                    <el-col :span="3"><span class="lighter">评论者:</span> {{comment.user?comment.user.name:'-'}}</el-col>
                     <el-col :span="6"><span class="lighter">评论时间:</span> {{comment.created_at}}</el-col>
                     <el-col :span="6"><span class="lighter">评论IP:{{comment.ip}}</span></el-col>
                     </el-row>
