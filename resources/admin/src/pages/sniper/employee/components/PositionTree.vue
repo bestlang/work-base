@@ -1,10 +1,4 @@
 <style lang="less">
-    /*.l-tree-container{*/
-        /*min-width: 200px;*/
-        /*padding: 20px;*/
-        /*border-right: 1px solid #f4f4f4;*/
-        /*flex-shrink: 0;*/
-    /*}*/
     .custom-tree-node {
         flex: 1;
         display: flex;

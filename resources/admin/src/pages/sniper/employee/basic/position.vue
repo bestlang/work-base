@@ -1,7 +1,7 @@
 <template>
 	<div class="l-position-list">
 		<div v-title="'职位管理'"></div>
-			<position-tree  class="l-tree" :selectedKey="2" @nodeClick="handleNodeClick" @treeLoaded="performTreeLoaded"></position-tree>
+		<position-tree  class="l-tree" :selectedKey="2" @nodeClick="handleNodeClick" @treeLoaded="performTreeLoaded"></position-tree>
 		<div class="l-tree-content">
 			<div class="l-block">
 				<div class="l-block-header" style="padding-right: 20px;">
@@ -119,15 +119,16 @@
 		min-height: calc(100vh - 50px - 20px);
 		margin:-20px 0 -20px -20px;
 		overflow-x: hidden;
+		box-sizing: border-box;
 		.l-tree{
-			padding: 20px;
+			padding: 10px 20px;
 			border-right: 1px solid #f4f4f4;
 			flex-shrink: 0;
 			overflow:auto;
 			width: 300px;
 		}
 		.l-tree-content{
-			padding: 20px;
+			/*padding: 20px;*/
 			flex-grow: 1;
 			display: flex;
 			flex-flow: row nowrap;
