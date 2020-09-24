@@ -2,7 +2,7 @@ const prod = require('./../../config/prod.env')
 export const getPrefix = function() {
     const origin = location.origin
     //是否正式环境
-    if(origin.indexOf(prod.SITE_URL) !== -1){
+    if(origin.indexOf(prod.SITE_URL.slice(1,-1)) !== -1){
         return 'ajax'
     }else{
         // 本地环境
