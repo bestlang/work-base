@@ -41,7 +41,6 @@
 <header class="header">
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <div class="container">
-
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">
                     <span class="sr-only">Toggle navigation</span>
@@ -54,7 +53,6 @@
                     <img src="/vendor/sniper/logo.png" alt="Sniper">
                 </a>
             </div>
-
             <div class="collapse navbar-collapse" id="navbar-collapse">
                 <ul class="nav navbar-nav" data-current="0">
                     {{--<li class="">--}}
@@ -87,8 +85,7 @@
                                         @csrf
                                     </form>
                                 </li>
-                                @if(auth()->user()->type == 1)
-                                    {{--{{ Gate::allows('system') }}--}}
+                                @if(1 || auth()->user()->type == 1)
                                     <li><a class="dropdown-item" href="/admin">
                                             {{ __('管理') }}
                                         </a></li>
