@@ -32,7 +32,7 @@
                 :highlight-current="true"
                 :expand-on-click-node="false">
                 <span class="custom-tree-node" slot-scope="{ node, data }">
-                  <span><span v-if="!data.children.length" class="iconfont">&#xe92a;</span>{{ node.label }}</span>
+                  <span><span v-if="!data.children && !data.children.length" class="iconfont">&#xe92a;</span>{{ node.label }}</span>
                 </span>
         </el-tree>
     </div>
@@ -78,8 +78,10 @@
             },
             async updateTree(){
                 let res = await  api.sniperDingGetDepartments()
-                this.treeData = [res.data];
-                this.$emit('treeLoaded', this.treeData[0])
+                if(!res.hasError){
+                    this.treeData = [res.data];
+                    this.$emit('treeLoaded', this.treeData[0])
+                }
             }
         },
         async mounted() {

@@ -81,7 +81,7 @@
             },
             async updateTree(){
                 let res = await  api.sniperGetDepartmentDescendants()
-                if(res.data){
+                if(!res.hasError){
                     this.treeData = [Object.values(res.data)[0]]
                     this.$emit('treeLoaded', this.treeData[0])
                 }

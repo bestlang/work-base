@@ -64,8 +64,10 @@
         },
         async mounted() {
             let res = await  api.sniperGetPositionDescendants()
-            this.treeData =  [Object.values(res.data)[0]];
-            this.$emit('treeLoaded', this.treeData[0])
+            if(!res.hasError){
+                this.treeData =  [Object.values(res.data)[0]];
+                this.$emit('treeLoaded', this.treeData[0])
+            }
         }
     }
 </script>

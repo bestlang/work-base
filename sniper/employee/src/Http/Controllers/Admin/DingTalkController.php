@@ -13,6 +13,9 @@ class DingTalkController
     //所有部门
     public function departments(Request $request)
     {
+        if(!auth()->user()->can('hr list departments')){
+            return response()->error('没有权限!', 4012);
+        }
         $departments = DingDepartment::all();
         $rootKey = 0;
         foreach ($departments as $key => &$department){
@@ -36,6 +39,9 @@ class DingTalkController
     //所属部门的用户
     public function departmentUsers(Request $request)
     {
+        if(!auth()->user()->can('hr attendance')){
+            return response()->error('没有权限!', 4012);
+        }
         $departmentIdArr = [];
         $id = $request->input('id');
         if($id){

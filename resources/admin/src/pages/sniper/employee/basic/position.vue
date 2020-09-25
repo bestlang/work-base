@@ -7,7 +7,7 @@
 				<div class="l-block-header" style="padding-right: 20px;width: 100%;">
 					<div class="l-flex">
 						<!--<span>员工系统 / 职位管理</span>-->
-						<span><i class="iconfont">&#xe611;</i> {{position.hasOwnProperty('name') ? position.name : ''}}</span>
+						<span><i class="iconfont">&#xe611;</i> {{position.name ? position.name : ''}}</span>
 						<el-button-group>
 							<el-button type="primary" size="small" @click="edit"><i class="iconfont">&#xe618;</i>编辑</el-button>
 							<el-button type="success" size="small" @click="add"><i class="iconfont">&#xe663;</i>新增</el-button>
@@ -16,6 +16,7 @@
 				</div>
 				<div class="l-block-body">
 					<el-table
+							v-show="position"
 							v-loading="loading"
 							:data="position.children"
 							empty-text="暂无下级职位"
