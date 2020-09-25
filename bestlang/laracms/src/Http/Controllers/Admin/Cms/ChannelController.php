@@ -17,6 +17,9 @@ class ChannelController extends Controller
     // get channels in tree format
     public function tree(Request $request)
     {
+        if(!auth()->user()->can('cms list channels')){
+            return response()->error('需要读取栏目列表权限!', 4012);
+        }
         $params = $request->all();
         $disabled = Arr::get($params, 'disabled', false);
         $has_contents = Arr::get($params, 'has_contents', false);
@@ -33,6 +36,9 @@ class ChannelController extends Controller
     // get direct children channel
     public function children(Request $request)
     {
+        if(!auth()->user()->can('cms list channels')){
+            return response()->error('需要读取栏目列表权限!', 4012);
+        }
         $params = $request->validate([
             'parent_id' => 'nullable|numeric',
         ]);
@@ -77,6 +83,9 @@ class ChannelController extends Controller
         }
 
         if($id){
+            if(!auth()->user()->can('cms edit channels')){
+                return response()->error('没有权限!', 4012);
+            }
             $channel = Channel::find($id);
             if($parent_id){
                 $parent = Channel::find($parent_id);
@@ -87,6 +96,9 @@ class ChannelController extends Controller
             }
             Channel::where('id', $id)->update($data);
         }else{
+            if(!auth()->user()->can('cms add channels')){
+                return response()->error('没有权限!', 4012);
+            }
             if($parent_id){
                 $parent = Channel::find($parent_id);
                 $has = $parent->getDescendants(1)->contains(function($item)use($name){return $item->name == $name;});
@@ -149,6 +161,9 @@ class ChannelController extends Controller
 
     public function delete(Request $request)
     {
+        if(!auth()->user()->can('cms delete channels')){
+            return response()->error('没有权限!', 4012);
+        }
         $id = $request->input('id');
         if(!$id){
             return response()->error('参数错误');
@@ -172,6 +187,9 @@ class ChannelController extends Controller
 
     public function whole(Request $request)
     {
+        if(!auth()->user()->can('cms list channels')){
+            return response()->error('需要读取栏目列表权限!', 4012);
+        }
         $id = $request->input('id', 0);
         if(!$id){
             return response()->error('参数错误!');

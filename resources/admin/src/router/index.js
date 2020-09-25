@@ -137,34 +137,6 @@ export default new VueRouter({
                           font: '&#xe629;'
                       }
                   },*/
-                  // {
-                  //     path: "/basic",
-                  //     component: () => import("../components/via.vue"),
-                  //     meta: {
-                  //         can: 'cms',
-                  //         show: true,
-                  //         name: '基础数据',
-                  //         font: '&#xe612;',
-                  //         type: 'title'
-                  //     },
-                  //     children: [
-                  //
-                  //     ]
-                  // },
-                  // {
-                  //     path: "/arch",
-                  //     component: () => import("../components/via.vue"),
-                  //     meta: {
-                  //         can: 'cms',
-                  //         show: true,
-                  //         name: '人员管理',
-                  //         font: '&#xe612;',
-                  //         type: 'title'
-                  //     },
-                  //     children: [
-                  //
-                  //     ]
-                  // },
               ]
           },
         {

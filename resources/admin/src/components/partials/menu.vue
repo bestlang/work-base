@@ -119,10 +119,11 @@
       },
       watch:{
           privileges(newVal){
-              if(newVal.length){
-                  let routes = this.router.options.routes;
-                  this.resetVisible(routes, newVal)
+              if(!newVal){
+                  newVal = []
               }
+              let routes = this.router.options.routes;
+              this.resetVisible(routes, newVal)
           }
       },
       methods: {

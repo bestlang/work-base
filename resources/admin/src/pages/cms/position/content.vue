@@ -5,7 +5,7 @@
                 <div>
                     <router-link class="l-cursor" to="/cms/position/position" tag="span"><span class="iconfont">&#xe601;</span> 返回</router-link>
                     <el-divider direction="vertical"></el-divider>
-                    <span>推荐位「{{position.name}}」下属内容</span>
+                    <span>「{{position.name}}」下属内容</span>
                 </div>
                 <!--<el-button type="primary" size="small" @click="handleAdd">新增</el-button>-->
             </div>

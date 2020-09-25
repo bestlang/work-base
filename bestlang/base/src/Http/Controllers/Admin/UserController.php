@@ -23,6 +23,9 @@ class UserController extends Controller
 
     public function create(Request $request)
     {
+        if(!auth()->user()->can('privileges add users')){
+            return response()->error('无权限！', 4012);
+        }
         $params = $request->all();
         $rules = [
             'name' => 'required',
@@ -70,6 +73,9 @@ class UserController extends Controller
 
     public function update(Request $request)
     {
+        if(!auth()->user()->can('privileges edit users')){
+            return response()->error('无权限！', 4012);
+        }
         $params = $request->all();
         $rules = [
             'id' => 'required',
@@ -107,7 +113,7 @@ class UserController extends Controller
         $user->name = $params['name'];
         isset($params['mobile']) && $user->mobile = $params['mobile'];
         $user->email = $params['email'];
-        isset($params['mobile']) && $user->password = bcrypt($params['password']);
+        isset($params['password']) && $user->password = bcrypt($params['password']);
         $user->save();
         if($params['roles']){
             $roleIds = Role::whereIn('name', $params['roles'])->pluck('id')->toArray();
@@ -118,6 +124,9 @@ class UserController extends Controller
 
     public function createRoleUser(Request $request)
     {
+        if(!auth()->user()->can('privileges add role users')){
+            return response()->error('无权限！', 4012);
+        }
         $params = $request->all();
         $rules = [
             'email' => 'required',

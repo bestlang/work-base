@@ -17,7 +17,7 @@ class ContentController extends Controller
     public function index(Request $request)
     {
         if(!auth()->user()->can('cms list contents')){
-            return response()->ajax('没有读取文章权限!', 401);
+            return response()->error('没有读取文章权限!', 4012);
         }
         $channelId = $request->input('channel_id', 0);
         $page = $request->input('page', 0);
@@ -95,6 +95,9 @@ class ContentController extends Controller
         // 执行更新逻辑
         $id = $request->input('id', 0);
         if($id){
+            if(!auth()->user()->can('cms edit contents')){
+                return response()->error('没有读取文章权限!', 4012);
+            }
             $content = Content::find($id);
 
             Content::where('id', $id)->update($arr);
@@ -137,6 +140,9 @@ class ContentController extends Controller
                 }
             }
         }else{
+            if(!auth()->user()->can('cms add contents')){
+                return response()->error('没有读取文章权限!', 4012);
+            }
             // 执行插入逻辑
             $arr['user_id'] = auth()->user()->id;
             $arr['status'] = 1;
@@ -178,6 +184,9 @@ class ContentController extends Controller
 
     public function whole(Request $request)
     {
+        if(!auth()->user()->can('cms list contents')){
+            return response()->error('没有读取文章权限!', 4012);
+        }
         $id = $request->input('id', 0);
         if(!$id){
             return response()->error('参数错误!');
@@ -238,6 +247,9 @@ class ContentController extends Controller
 
     public function delete(Request $request)
     {
+        if(!auth()->user()->can('cms delete contents')){
+            return response()->error('没有读取文章权限!', 4012);
+        }
         $id = $request->input('id', 0);
         Content::destroy($id);
         return response()->ajax();

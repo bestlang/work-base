@@ -15,6 +15,7 @@ class PrivilegesController extends Controller
     //get login user's full permission
     public function userPermissions()
     {
+        //不验证权限
         $user = Auth::user();
         $userPermissions = $user->getPermissionsViaRoles();
 
@@ -43,6 +44,9 @@ class PrivilegesController extends Controller
     // assign permissions to a specific role
     public function givePermissionsTo(Request $request)
     {
+        if(!auth()->user()->can('privileges edit role permissions')){
+            return response()->error('没有权限!', 4012);
+        }
         $params = $request->all();
         $role_id = Arr::get($params, 'role_id', 0);
         $currentPermissions = Arr::get($params, 'permissions', 0);
@@ -63,6 +67,9 @@ class PrivilegesController extends Controller
     // get permissions of a role
     public function rolePermissions(Request $request)
     {
+        if(!auth()->user()->can('privileges list role permissions')){
+            return response()->error('没有权限!', 4012);
+        }
         $role_id = $request->input('role_id', 0);
         $role = Role::find($role_id);
         return response()->ajax($role->permissions()->pluck('id')->toArray());
@@ -71,6 +78,9 @@ class PrivilegesController extends Controller
     // remove a user from role user list
     public function removeRoleModel(Request $request)
     {
+        if(!auth()->user()->can('privileges remove role users')){
+            return response()->error('没有权限!', 4012);
+        }
         $params = $request->all();
 
         $role_id = Arr::get($params, 'role_id', 0);
@@ -91,11 +101,17 @@ class PrivilegesController extends Controller
 
     public function roles()
     {
+        if(!auth()->user()->can('privileges list roles')){
+            return response()->error('没有权限!', 4012);
+        }
         return response()->ajax(Role::all());
     }
 
     public function role(Request $request)
     {
+        if(!auth()->user()->can('privileges list roles')){
+            return response()->error('没有权限!', 4012);
+        }
         $role_id = $request->input('role_id');
         $role = Role::find($role_id);
         return response()->ajax($role);
@@ -103,6 +119,9 @@ class PrivilegesController extends Controller
 
     public function users(Request $request)
     {
+        if(!auth()->user()->can('privileges list users')){
+            return response()->error('没有权限!', 4012);
+        }
         $page = $request->input('page', 0);
         $page_size = $request->input('page_size', 10);
         $page = intval($page);
@@ -118,6 +137,9 @@ class PrivilegesController extends Controller
 
     public function roleUsers(Request $request)
     {
+        if(!auth()->user()->can('privileges list role users')){
+            return response()->error('没有权限!', 4012);
+        }
         $params = $request->all();
         $id = Arr::get($params, 'id', 0);
         if($id){
@@ -134,20 +156,23 @@ class PrivilegesController extends Controller
         $id = Arr::get($params, 'id');
         $name = Arr::get($params, 'name');
         if($id){
+            if(!auth()->user()->can('privileges edit roles')){
+                return response()->error('没有权限!', 4012);
+            }
             try{
                 if($user->can('privileges edit roles')){
                     $role = Role::find($id);
                     $role->name = $name;
                     $role->save();
                 }else{
-                    return response()->ajax('无权限！', 401);
+                    return response()->error('无权限！', 4012);
                 }
             }catch (\Exception $e){
                 return response()->error('error occur:'.$e->getMessage());
             }
         }else{
             if(!$user->can('privileges add roles')){
-                return response()->ajax('无权限！', 401);
+                return response()->error('无权限！', 4012);
             }
             $role = new Role(['name' => $name, 'guard_name' => 'api']);
             $role->save();
@@ -157,6 +182,9 @@ class PrivilegesController extends Controller
 
     public function deleteRole(Request $request)
     {
+        if(!auth()->user()->can('privileges delete roles')){
+            response()->error('无权限！', 4012);
+        }
         $id = $request->input('id', 0);
         $role = Role::find($id);
         $count = Role::where('id', '<', $id)->count();
@@ -173,6 +201,9 @@ class PrivilegesController extends Controller
      */
     public function permissionsTree(Request $request)
     {
+        if(!auth()->user()->can('privileges list permissions')){
+            response()->error('无权限！', 4012);
+        }
         $params = $request->all();
         $disabled = Arr::get($params, 'disabled', false);
         $tree = Permission::all()->map(function($item)use($disabled){
@@ -186,6 +217,9 @@ class PrivilegesController extends Controller
 
     public function addPermission(Request $request)
     {
+        if(!auth()->user()->can('privileges add permissions')){
+            response()->error('无权限！', 4012);
+        }
         $params = $request->all();
         $parent_id = Arr::get($params, 'parent_id', 0);
         $name = Arr::get($params, 'name', 0);
@@ -203,19 +237,22 @@ class PrivilegesController extends Controller
 
     public function editPermission(Request $request)
     {
+        if(!auth()->user()->can('privileges edit permissions')){
+            response()->error('无权限！', 4012);
+        }
         $params = $request->all();
         $id = Arr::get($params, 'id', 0);
         $name = Arr::get($params, 'name', 0);
         $show_name = Arr::get($params, 'show_name', 0);
-        $permission = Permission::find($id);
-//        $permission->name = $name;
-//        $permission->show_name = $show_name;
         Permission::where('id', $id)->update(['name'=>$name, 'show_name'=>$show_name]);
         return response()->ajax();
     }
 
     public function deletePermission(Request $request)
     {
+        if(!auth()->user()->can('privileges delete permissions')){
+            response()->error('无权限！', 4012);
+        }
         $id = $request->get('id', 0);
         if($id){
             $permission = Permission::find($id);

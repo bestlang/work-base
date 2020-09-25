@@ -38,9 +38,6 @@ class EmployeeController
     public function save(Request $request)
     {
         $user = auth()->user();
-        if( !$user->can('hr add employee')  && !$user->can('hr edit employee') ){
-            return response()->error('没有权限!', 4012);
-        }
         $params = $request->all();
         $msg = '参数不合法';
         $rules = [
@@ -101,6 +98,9 @@ class EmployeeController
         $user_id = $request->input('user_id');
         $password = $request->input('password');
         if($user_id){//更新
+            if(!$user->can('hr edit employee') ){
+                return response()->error('没有权限!', 4012);
+            }
             $user = User::find($user_id);
             $dingUser = $user->dingUser;
             $userData = [
@@ -167,6 +167,9 @@ class EmployeeController
             ///
             return response()->ajax();
         }else{//新增
+            if( !$user->can('hr add employee') ){
+                return response()->error('没有权限!', 4012);
+            }
             $user = new User;
             $user->name = $params['real_name'];
             $user->password = bcrypt($params['password']);

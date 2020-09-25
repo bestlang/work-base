@@ -56,9 +56,6 @@ class PositionController
     public function save(Request $request)
     {
         $user = auth()->user();
-        if( !$user->can('hr add positions')  && !$user->can('hr edit positions') ){
-            return response()->error('没有权限!', 4012);
-        }
         $params = $request->all();
         $rules = [
             'id' => 'numeric|nullable',
@@ -89,6 +86,9 @@ class PositionController
         $id = $params['id'] ?? 0;
         // 更新
         if($id){
+            if(!$user->can('hr edit positions') ){
+                return response()->error('没有权限!', 4012);
+            }
             $position = Position::find($id);
             if($params['parent_id'] == $id){
                 return response()->error('更新失败！上级职位不可以是自身.');
@@ -100,6 +100,9 @@ class PositionController
 
             $position->update(['parent_id' => $params['parent_id'], 'department_id' => $params['department_id'], 'name' => $params['name'], 'desiring' => $params['desiring'], 'jd' => $params['jd']]);
         }else{ // 新增
+            if( !$user->can('hr add positions')){
+                return response()->error('没有权限!', 4012);
+            }
             //判断是否存在同级同名
             $exists = Position::where( [ 'parent_id' => $params['parent_id'], 'department_id' => $params['department_id'],  'name'=>$params['name'] ] )->exists();
             if($exists){

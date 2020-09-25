@@ -65,9 +65,7 @@ class DepartmentController
     public function save(Request $request)
     {
         $user = auth()->user();
-        if( !$user->can('hr add departments')  && !$user->can('hr edit departments') ){
-            return response()->error('没有权限!', 4012);
-        }
+
        $params = $request->all();
         $rules = [
           'id' => 'numeric|nullable',
@@ -94,6 +92,9 @@ class DepartmentController
         isset($params['parent_id']) || $params['parent_id'] = null;
         // 更新
         if($id){
+            if(!$user->can('hr edit departments') ){
+                return response()->error('没有权限!', 4012);
+            }
             $department = Department::find($id);
             $exists = Department::where([ 'parent_id' => $params['parent_id'],  'name'=>$params['name'] ])->where('id', '!=', $params['id'])->exists();
             if($exists){
@@ -101,6 +102,9 @@ class DepartmentController
             }
             $department->update(['parent_id' => $params['parent_id'], 'name' => $params['name'], 'manager' => $params['manager']]);
         }else{ // 新增
+            if(!$user->can('hr add departments') ){
+                return response()->error('没有权限!', 4012);
+            }
             //判断是否存在同级同名
             $exists = Department::where( [ 'parent_id' => $params['parent_id'],  'name'=>$params['name'] ] )->exists();
             if($exists){
