@@ -61,11 +61,6 @@ class AppServiceProvider extends ServiceProvider
             __DIR__.'/../../config/permission.php' => config_path('permission.php'),
         ], 'bestlang-base-config');
 
-        /*
-        $this->publishes([
-            __DIR__.'/../../foo/bar/' => resource_path('bar')
-        ], 'admin');
-        */
 
         Validator::extend('mobile', function ($attribute, $value, $parameters, $validator) {
             if(preg_match("/^1\d{10}$/",$value)){
