@@ -1,5 +1,5 @@
 import main from '../main'
-import Vue from 'vue'
+
 export  default {
   // 编辑器不自动被内容撑高
   autoHeightEnabled: false,

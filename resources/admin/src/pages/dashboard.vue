@@ -24,15 +24,78 @@
         </el-row>
       </div>
     </el-card>
+    <el-card>
+      <v-chart :options="polar"/>
+    </el-card>
   </div>
 
 </template>
 <script>
+    import Vue from 'vue'
+    import ECharts from 'vue-echarts' // refers to components/ECharts.vue in webpack
+
+    // import ECharts modules manually to reduce bundle size
+    import 'echarts/lib/chart/line'
+    import 'echarts/lib/component/tooltip'
+    import 'echarts/lib/component/polar'
+    import 'echarts/lib/component/angleAxis'
+
+    /*
+    // If you want to use ECharts extensions, just import the extension package, and it will work
+    // Taking ECharts-GL as an example:
+    // You only need to install the package with `npm install --save echarts-gl` and import it as follows
+    import 'echarts-gl'
+    */
+    // register component to use
+    Vue.component('v-chart', ECharts)
+
   export default {
     data(){
-      return {
-      }
-    },
+        let data = []
+
+        for (let i = 0; i <= 360; i++) {
+            let t = i / 180 * Math.PI
+            let r = Math.sin(2 * t) * Math.cos(2 * t)
+            data.push([r, i])
+        }
+
+        return {
+            polar: {
+                title: {
+                    text: '极坐标双数值轴'
+                },
+                legend: {
+                    data: ['line']
+                },
+                polar: {
+                    center: ['50%', '54%']
+                },
+                tooltip: {
+                    trigger: 'axis',
+                    axisPointer: {
+                        type: 'cross'
+                    }
+                },
+                angleAxis: {
+                    type: 'value',
+                    startAngle: 0
+                },
+                radiusAxis: {
+                    min: 0
+                },
+                series: [
+                    {
+                        coordinateSystem: 'polar',
+                        name: 'line',
+                        type: 'line',
+                        showSymbol: false,
+                        data: data
+                    }
+                ],
+                animationDuration: 2000
+            }
+        }
+        },
     computed: {
 
     },
@@ -43,9 +106,6 @@
     methods:{
 
     },
-    created() {
-
-    }
   }
 </script>
 <style lang="less" scoped>

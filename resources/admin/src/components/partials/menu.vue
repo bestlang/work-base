@@ -28,6 +28,7 @@
 <style scoped lang="less">
     .ls-top-logo{
         font-size: 18px;
+        letter-spacing: 1px;
     }
 
     .ls-top-logo, .ls-top-logo-narrow{

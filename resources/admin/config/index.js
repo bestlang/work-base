@@ -4,7 +4,6 @@
 
 const path = require('path')
 const dev = require('./dev.env')
-const prod = require('./prod.env')
 
 module.exports = {
   dev: {
@@ -14,7 +13,7 @@ module.exports = {
     assetsPublicPath: '/',
     proxyTable: {
         '/': {
-            target: dev.SITE_URL,  //目标接口域名
+            target: dev.SERVER_URL,//实际服务器地址
             changeOrigin: true,  //是否跨域
             pathRewrite: {
                 '^/': '/'   //重写接口
@@ -62,16 +61,6 @@ module.exports = {
     assetsRoot: path.resolve(__dirname, '../../../public/admin'),
     assetsSubDirectory: 'static',
     assetsPublicPath: '/admin/',
-    proxyTable: {
-        '/': {
-            target: prod.SITE_URL,  //目标接口域名
-            changeOrigin: true,  //是否跨域
-            pathRewrite: {
-                '^/': '/'   //重写接口
-            }
-        }
-    },
-
     /**
      * Source Maps
      */
