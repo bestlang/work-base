@@ -297,8 +297,8 @@ a {
 }
 .btn-primary {
     color: #fff;
-    background-color: #007bff;
-    border-color: #007bff;
+    /*background-color: #007bff;*/
+    /*border-color: #007bff;*/
 }
 .btn-primary:hover {
     color: #fff;

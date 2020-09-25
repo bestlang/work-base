@@ -15,7 +15,7 @@ Route::any('/', function(){
         // return redirect('/cms');
 });
 
-Route::get('/info', function(){echo phpinfo();});
+//Route::get('/info', function(){echo phpinfo();});
 //测试微信支付
 //Route::get('/pay', 'Pdd\IndexController@wePay');
 //Route::get('/notify', 'Pdd\IndexController@notify');
