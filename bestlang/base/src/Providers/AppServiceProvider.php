@@ -22,7 +22,7 @@ class AppServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->bind('hashconfig', 'Bestlang\Base\Models\HashConfig');
-        $this->app['router']->aliasMiddleware('auth.jwt', Authenticate::class);
+//        $this->app['router']->aliasMiddleware('auth.jwt', Authenticate::class);
         $this->app->singleton(
             ExceptionHandler::class,
             CustomExceptionHandler::class
@@ -37,6 +37,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Gate::before(function ($user, $ability) {
+            /*
             foreach ($user->getPermissionsViaRoles() as $permission){
                 $user->givePermissionTo($permission->name);
             }
@@ -48,7 +49,7 @@ class AppServiceProvider extends ServiceProvider
                 return true;
             }else{
                 return null;
-            }
+            }*/
         });
         // migrations
         $this->loadMigrationsFrom(__DIR__.'/../../database/migrations');

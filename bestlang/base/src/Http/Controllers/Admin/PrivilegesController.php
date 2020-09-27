@@ -155,15 +155,15 @@ class PrivilegesController extends Controller
         $params = $request->all();
         $id = Arr::get($params, 'id');
         $name = Arr::get($params, 'name');
+        $guard_name = Arr::get($params,'guard_name', 'api');
         if($id){
-            if(!auth()->user()->can('privileges edit roles')){
+            if(!$user->can('privileges edit roles')){
                 return response()->error('没有权限!', 4012);
             }
             try{
                 if($user->can('privileges edit roles')){
                     $role = Role::find($id);
-                    $role->name = $name;
-                    $role->save();
+                    $role->update(['name' => $name, 'guard_name' => $guard_name]);
                 }else{
                     return response()->error('无权限！', 4012);
                 }
@@ -174,7 +174,7 @@ class PrivilegesController extends Controller
             if(!$user->can('privileges add roles')){
                 return response()->error('无权限！', 4012);
             }
-            $role = new Role(['name' => $name, 'guard_name' => 'api']);
+            $role = new Role(['name' => $name, 'guard_name' => $guard_name]);
             $role->save();
         }
         return response()->ajax();

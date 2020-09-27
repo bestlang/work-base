@@ -163,7 +163,6 @@ class UserController extends Controller
         }
         $arr = Arr::only($params, ['name', 'mobile', 'password', 'email']);
         $arr['password'] = bcrypt($arr['password']);
-        $arr['type'] = 1;
         DB::beginTransaction();
         try{
             $user = User::create($arr);

@@ -1,5 +1,4 @@
 <?php
-
 Route::group(['prefix' => 'ajax'], function($router){
 
     Route::any('/csrf', 'IndexController@csrf');
@@ -16,7 +15,7 @@ Route::group(['prefix' => 'ajax'], function($router){
 Route::group(['namespace'=>'Auth'], function(){
     Route::get('login', 'LoginController@showLoginForm')->name('login');
     Route::post('login', 'LoginController@login');
-    Route::post('logout', 'LoginController@logout')->name('logout');
+    Route::any('logout', 'LoginController@logout')->name('logout');
     // Registration Routes...
     if(env('APP_ALLOW_REGISTER', false)){
     Route::get('register', 'RegisterController@showRegistrationForm')->name('register');

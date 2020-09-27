@@ -11,7 +11,6 @@ Controller中的action里面
 出错了请手工调用 Illuminate\Contracts\Debug\ExceptionHandler::class -> render方法
 
 
-使用Route macro来避免api方式和session方式造成的路由定义重复
 
 个人(非商家)接入微信支付原理:https://pay.weixin.qq.com/wiki/doc/api/xiaowei.php?chapter=19_1
 
@@ -68,10 +67,12 @@ if(substr($hex, 0, 2) === '0x'){
 官网参照: 站点1: https://laradoc.com/
 
 
-
 ---------------------------
 "Bestlang\\Laracms\\":"packages/bestlang/laracms/src/"
 
 
 ---------------------------
 try 使用带参数的中间来验证管理员 role:administrator
+
+修改app\Http\Middleware\RedirectIfAuthenticated.php里面跳转到/home的代码为/ 
+app\Http\Middleware\VerifyCsrfToken.php 加入微信支付宝回调排除

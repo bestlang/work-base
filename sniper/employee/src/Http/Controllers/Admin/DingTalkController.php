@@ -13,7 +13,7 @@ class DingTalkController
     //所有部门
     public function departments(Request $request)
     {
-        if(!auth()->user()->can('hr list departments')){
+        if(auth()->user()->cant('hr list departments')){
             return response()->error('没有权限!', 4012);
         }
         $departments = DingDepartment::all();
@@ -39,7 +39,8 @@ class DingTalkController
     //所属部门的用户
     public function departmentUsers(Request $request)
     {
-        if(!auth()->user()->can('hr attendance')){
+        $user = auth()->user();
+        if($user->cant('hr attendance')){
             return response()->error('没有权限!', 4012);
         }
         $departmentIdArr = [];
@@ -67,7 +68,7 @@ class DingTalkController
     //获取特定用户列表本月考勤状况
     public function usersAttendance(Request $request)
     {
-        if(!auth()->user()->can('hr attendance')){
+        if(auth()->user()->cant('hr attendance')){
             return response()->error('没有权限!', 4012);
         }
         $userIds = $request->input('userIds', []);
