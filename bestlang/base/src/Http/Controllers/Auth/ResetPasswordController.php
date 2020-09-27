@@ -5,7 +5,7 @@ namespace Bestlang\Base\Http\Controllers\Auth;
 use Bestlang\Laracms\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ResetsPasswords;
 use Illuminate\Support\Facades\Auth;
-
+use Illuminate\Http\Request;
 
 class ResetPasswordController extends Controller
 {
@@ -43,4 +43,12 @@ class ResetPasswordController extends Controller
     {
         return Auth::guard('web');
     }
+
+    public function showResetForm(Request $request, $token = null)
+    {
+        return view(session('project', 'base').'::auth.passwords.reset')->with(
+            ['token' => $token, 'email' => $request->email]
+        );
+    }
+
 }

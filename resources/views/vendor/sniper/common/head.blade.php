@@ -69,6 +69,7 @@
                         <ul class="dropdown-menu">
                             @guest
                             <li><a href="{{route('login')}}"><i class="fa fa-sign-in fa-fw"></i>登录</a></li>
+                            <li><a href="{{route('password.request')}}"><i class="fa fa-key fa-fw"></i>找回密码</a></li>
                             @if (Route::has('register'))
                                 <li><a href="{{route('register')}}"><i class="fa fa-user-o fa-fw"></i>注册</a></li>
                             @endif
