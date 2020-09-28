@@ -41,7 +41,9 @@ class AppServiceProvider extends ServiceProvider
             foreach ($user->getPermissionsViaRoles() as $permission){
                 $user->givePermissionTo($permission->name);
             }
-            if($user->hasRole('administrator')){
+            */
+            //白名单得所有权限
+            if($user->white){
                 $permissions = Permission::all();
                 foreach ($permissions as $permission){
                     $user->givePermissionTo($permission->name);
@@ -49,7 +51,8 @@ class AppServiceProvider extends ServiceProvider
                 return true;
             }else{
                 return null;
-            }*/
+            }
+
         });
         // migrations
         $this->loadMigrationsFrom(__DIR__.'/../../database/migrations');

@@ -67,7 +67,7 @@ class PrivilegesController extends Controller
     // get permissions of a role
     public function rolePermissions(Request $request)
     {
-        if(!auth()->user()->can('privileges list role permissions')){
+        if(auth()->user()->cant('privileges list role permissions')){
             return response()->error('没有权限!', 4012);
         }
         $role_id = $request->input('role_id', 0);
@@ -119,7 +119,7 @@ class PrivilegesController extends Controller
 
     public function users(Request $request)
     {
-        if(!auth()->user()->can('privileges list users')){
+        if(auth()->user()->cant('privileges list users')){
             return response()->error('没有权限!', 4012);
         }
         $page = $request->input('page', 0);

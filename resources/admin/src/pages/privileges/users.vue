@@ -39,12 +39,23 @@
                     </template>
                 </el-table-column>
                 <el-table-column
+                        label="白名单">
+                    <template slot="header" slot-scope="scope">
+                        <el-tooltip class='item' effect='dark' content='拥有所有权限' placement='top-start'>
+                            <div>白名单<i class="iconfont">&#xe67d;</i></div>
+
+                        </el-tooltip>
+                    </template>
+                    <template slot-scope="scope">
+                        {{scope.row.white ? '是':''}}
+                    </template>
+                </el-table-column>
+                <el-table-column
                         fixed="right"
                         label="操作">
                     <template slot-scope="scope">
                         <el-button class="l-inline-btn l-lighter" @click="editUser(scope.row)" type="text" size="medium">
-                            <i class="iconfont">&#xe618;</i>
-                            编辑
+                            <i class="iconfont">&#xe618;</i>编辑
                         </el-button>
                     </template>
                 </el-table-column>

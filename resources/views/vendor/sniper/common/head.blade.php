@@ -54,13 +54,13 @@
                 </a>
             </div>
             <div class="collapse navbar-collapse" id="navbar-collapse">
-                <ul class="nav navbar-nav" data-current="0">
-                    <li class="">
-                        <a href="/">{{auth()->user() ? auth()->user()->type : ''}}</a>
+                {{--<ul class="nav navbar-nav" data-current="0">--}}
+                    {{--<li class="">--}}
+                        {{--<a href="/"></a>--}}
                         {{--<ul class="dropdown-menu" role="menu">--}}
                         {{--</ul>--}}
-                    </li>
-                </ul>
+                    {{--</li>--}}
+                {{--</ul>--}}
                 <ul class="nav navbar-nav navbar-right">
                     <li class="dropdown">
                         <a href="" class="dropdown-toggle" data-toggle="dropdown">
@@ -86,11 +86,11 @@
                                         @csrf
                                     </form>
                                 </li>
-                                {{--@if(1 || auth()->user()->type == 1)--}}
-                                    {{--<li><a class="dropdown-item" href="/admin">--}}
-                                            {{--{{ __('管理') }}--}}
-                                        {{--</a></li>--}}
-                                {{--@endif--}}
+                                @if(auth()->user()->type)
+                                    <li><a class="dropdown-item" href="/admin">
+                                            {{ __('管理') }}
+                                        </a></li>
+                                @endif
                              @endguest
                         </ul>
                     </li>

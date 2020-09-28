@@ -31,6 +31,7 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
+        $schedule->command('sniper:dingTalk attendance')->dailyAt('09:00');
         $schedule->command('sniper:dingTalk attendance')->dailyAt('10:00');
         $schedule->command('sniper:dingTalk attendance')->dailyAt('20:00');
         $schedule->command('sniper:dingTalk users')->dailyAt('22:00');

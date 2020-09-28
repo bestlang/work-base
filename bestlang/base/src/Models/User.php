@@ -69,6 +69,8 @@ class User extends Authenticatable implements JWTSubject
 
     public function getTypeAttribute()
     {
-
+        return self::roles()->get()->some(function($role){
+            return $role->id > 0;
+        });
     }
 }
