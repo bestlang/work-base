@@ -121,7 +121,10 @@
                         },
                         formatter(params){
                             let result = []
-                            params.forEach(function(item) {
+                            params.forEach(function(item, index) {
+                                if(index>1){
+                                    return
+                                }
                                 let now = new Date(new Date(anyDate).getTime() + item.value[1])
                                 let str = ''
                                 let x =  now.getHours() + now.toLocaleTimeString().substr(-6,3)
