@@ -25,7 +25,7 @@
       </div>
     </el-card>
     <!--<el-card>-->
-      <v-chart :options="options" style="width: 1200px;height: 600px;"/>
+      <v-chart :options="options" style="width: 1200px;height: 600px;display: none;"/>
     <!--</el-card>-->
   </div>
 
