@@ -26,22 +26,24 @@
             <div><b style="color: #555;">{{user.name}}</b><i style="color: #aaa;"><{{user.orgEmail}}></i> <span style="color: #fff;">{{user.userid}}</span></div>
             <div style="color: #555;font-style: italic">{{user.department_info?user.department_info.name:''}}</div>
         </div>
-        <el-card v-if="graph" shadow="hover" ondragover="allowDrop(event)">
+        <el-card v-if="graph" shadow="hover">
+            <el-button @click="filterWeed">-周末</el-button>
+            <el-button @click="plusWeed">+周末</el-button>
             <v-chart :options="options" style="width: 100%;height: 600px;"/>
         </el-card>
-        <div class="l-choose-employee" @click="chooseEmployee"><i class="iconfont">&#xe602;</i></div>
+        <div class="l-choose-employee" title="选人查看" @click="chooseEmployee"><i class="iconfont">&#xe602;</i></div>
         <el-drawer
-                title="我是标题"
+                title="人员选择"
                 :visible.sync="drawer"
                 :with-header="false"
                 :append-to-body="true"
                 :show-close="true"
                 size="80%">
-            <div style="padding: 20px;overflow-y: scroll;height: 100%;">
+            <div style="padding: 0 20px;overflow-y: scroll;height: 100%;">
                 <div v-for="(gu, dept) in groupedUser">
                     <h4 style="color: #5d5d5d;padding: 5px 0;">{{dept}}</h4>
                     <p>
-                        <span style="cursor:pointer;display: inline-block;margin-right: 20px;border-radius: 6px;padding: 5px 20px;background-color: #f1f1f1;border: 1px solid #e1e1e1" v-for="u in gu">
+                        <span @click="viewUser(u.userid)" style="cursor:pointer;display: inline-block;margin-right: 20px;border-radius: 6px;padding: 5px 20px;background-color: #f1f1f1;border: 1px solid #e1e1e1" v-for="u in gu">
                             {{u.name}}
                             <!-- -{{u.userid}}-->
                         </span>
@@ -136,6 +138,7 @@
                             symbolSize:12,
                             stack: '上班',
                             data: onDuty,
+                            dataBak: []
                         },
                         {
                             name: '下班',
@@ -144,6 +147,7 @@
                             symbolSize:12,
                             stack: '下班',
                             data: offDuty,
+                            dataBak: []
                         },
 
                     ]
@@ -154,11 +158,17 @@
 
         },
         watch:{
+            async '$route'(to, from){
+                if(to.path == '/sniper/employee/employee/attendance/detail'){
+                    await this.getUser(to.query.userId)
+                    await this.getUserAttendance(to.query.userId, this.month)
+                }
+            },
             users(val){
                 let groupedUser = {}
                 val.forEach((user) => {
-                    groupedUser[user.department_info.name] || (groupedUser[user.department_info.name] = [])
-                    groupedUser[user.department_info.name].push(user)
+                    groupedUser[user.department_info] || (groupedUser[user.department_info] = [])
+                    groupedUser[user.department_info].push(user)
                 });
                 this.groupedUser = groupedUser
                 console.log(groupedUser)
@@ -174,6 +184,28 @@
             }
         },
         methods:{
+            filterWeed(){
+                console.log(this.options)
+                if(!this.options.series[0].dataBak.length && !this.options.series[1].dataBak.length){
+                    this.options.series[0].dataBak = JSON.parse(JSON.stringify(this.options.series[0].data))
+                    this.options.series[1].dataBak = JSON.parse(JSON.stringify(this.options.series[1].data))
+                }
+                let ex = d => {
+                    return d.value[0].indexOf('日') == -1 && d.value[0].indexOf('六') == -1
+                }
+                this.options.series[0].data = this.options.series[0].data.filter(ex)
+                this.options.series[1].data = this.options.series[1].data.filter(ex)
+            },
+            plusWeed(){
+                if(this.options.series[0].dataBak.length && this.options.series[1].dataBak.length){
+                    this.options.series[0].data = this.options.series[0].dataBak
+                    this.options.series[1].data = this.options.series[1].dataBak
+                }
+            },
+            viewUser(userid){
+                this.$router.push(`/sniper/employee/employee/attendance/detail?userId=${userid}&month=2020-09`)
+                this.drawer = false
+            },
             chooseEmployee(){
                 this.drawer = true
             },
@@ -288,14 +320,16 @@
                     for(let d in this.attendances){
                         let day = this.attendances[d]
                         day.OnDuty && OnDuty.push({
-                                value: [day.OnDuty.ymd, parseInt(day.OnDuty.userCheckTime) - new Date(`${day.OnDuty.ymd} 00:00:00`)]
+                                value: [day.OnDuty.ymd.slice(5).replace('-','/')+day.OnDuty.w, parseInt(day.OnDuty.userCheckTime) - new Date(`${day.OnDuty.ymd} 00:00:00`)]
                             })
                         day.OffDuty &&OffDuty.push({
-                            value: [day.OffDuty.ymd, parseInt(day.OffDuty.userCheckTime) - new Date(`${day.OffDuty.ymd} 00:00:00`)]
+                            value: [day.OffDuty.ymd.slice(5).replace('-', '/')+day.OffDuty.w, parseInt(day.OffDuty.userCheckTime) - new Date(`${day.OffDuty.ymd} 00:00:00`)]
                         })
                     }
                     this.options.series[0].data = OnDuty
                     this.options.series[1].data = OffDuty
+                    this.options.series[0].dataBak = []
+                    this.options.series[1].dataBak = []
                 }
             },
             async getDepartmentUsers(){
@@ -332,7 +366,7 @@
         height: 60px;
         box-sizing: border-box;
         border-radius: 100px;
-        background: #00a2d4;
+        background: #293c55;
         text-align: center;
         color: #fff;
         line-height: 60px;
