@@ -74,6 +74,8 @@
         data(){
             let onDuty =[]
             let offDuty = []
+            let onBase = []
+            let offBase = []
             let anyDate = '2020/9/28 00:00:00'
             return {
                 drawer: false,
@@ -149,7 +151,24 @@
                             data: offDuty,
                             dataBak: []
                         },
-
+                        {
+                            name: 'AM基准',
+                            type: 'line',
+                            showSymbol: true,
+                            symbolSize:12,
+                            stack: 'AM基准',
+                            data: onBase,
+                            dataBak: []
+                        },
+                        {
+                            name: 'PM基准',
+                            type: 'line',
+                            showSymbol: true,
+                            symbolSize:12,
+                            stack: 'PM基准',
+                            data: offBase,
+                            dataBak: []
+                        },
                     ]
                 }
             }
@@ -185,21 +204,26 @@
         },
         methods:{
             filterWeed(){
-                console.log(this.options)
                 if(!this.options.series[0].dataBak.length && !this.options.series[1].dataBak.length){
                     this.options.series[0].dataBak = JSON.parse(JSON.stringify(this.options.series[0].data))
                     this.options.series[1].dataBak = JSON.parse(JSON.stringify(this.options.series[1].data))
+                    this.options.series[2].dataBak = JSON.parse(JSON.stringify(this.options.series[2].data))
+                    this.options.series[3].dataBak = JSON.parse(JSON.stringify(this.options.series[3].data))
                 }
                 let ex = d => {
                     return d.value[0].indexOf('日') == -1 && d.value[0].indexOf('六') == -1
                 }
                 this.options.series[0].data = this.options.series[0].data.filter(ex)
                 this.options.series[1].data = this.options.series[1].data.filter(ex)
+                this.options.series[2].data = this.options.series[2].data.filter(ex)
+                this.options.series[3].data = this.options.series[3].data.filter(ex)
             },
             plusWeed(){
                 if(this.options.series[0].dataBak.length && this.options.series[1].dataBak.length){
                     this.options.series[0].data = this.options.series[0].dataBak
                     this.options.series[1].data = this.options.series[1].dataBak
+                    this.options.series[2].data = this.options.series[2].dataBak
+                    this.options.series[3].data = this.options.series[3].dataBak
                 }
             },
             viewUser(userid){
@@ -317,17 +341,32 @@
                 if(true){
                     let OnDuty = []
                     let OffDuty = []
+                    let OnBase = []
+                    let OffBase = []
                     for(let d in this.attendances){
                         let day = this.attendances[d]
-                        day.OnDuty && OnDuty.push({
+                        if(day.OnDuty){
+                            OnDuty.push({
                                 value: [day.OnDuty.ymd.slice(5).replace('-','/')+day.OnDuty.w, parseInt(day.OnDuty.userCheckTime) - new Date(`${day.OnDuty.ymd} 00:00:00`)]
                             })
-                        day.OffDuty &&OffDuty.push({
-                            value: [day.OffDuty.ymd.slice(5).replace('-', '/')+day.OffDuty.w, parseInt(day.OffDuty.userCheckTime) - new Date(`${day.OffDuty.ymd} 00:00:00`)]
-                        })
+                            OnBase.push({
+                                value: [day.OnDuty.ymd.slice(5).replace('-','/')+day.OnDuty.w, 9 * 60 * 60 * 1000]
+                            })
+                        }
+                        if(day.OffDuty){
+                            OffDuty.push({
+                                value: [day.OffDuty.ymd.slice(5).replace('-', '/')+day.OffDuty.w, parseInt(day.OffDuty.userCheckTime) - new Date(`${day.OffDuty.ymd} 00:00:00`)]
+                            })
+                            OffBase.push({
+                                value: [day.OffDuty.ymd.slice(5).replace('-','/')+day.OffDuty.w, 18 * 60 * 60 * 1000]
+                            })
+                        }
                     }
                     this.options.series[0].data = OnDuty
                     this.options.series[1].data = OffDuty
+                    this.options.series[2].data = OnBase
+                    this.options.series[3].data = OffBase
+
                     this.options.series[0].dataBak = []
                     this.options.series[1].dataBak = []
                 }
@@ -371,8 +410,8 @@
         color: #fff;
         line-height: 60px;
         font-size: 26px;
-        right: -30px;
-        bottom: 0;
+        right: 2px;
+        bottom: 3px;
         &:hover{
             right: 0;
         }
