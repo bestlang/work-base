@@ -45,12 +45,22 @@ class DingTalkController
         }
         $departmentIdArr = [];
         $id = $request->input('id');
+        if(!$id){
+            $id = DingDepartment::whereNull('parentid')->first()->id;
+        }
         if($id){
             $department = DingDepartment::with('subs')->where('id', $id)->first();
             $this->_getUnder($department, $departmentIdArr);
         }
-        //$users = DingUser::whereIn('department', $departmentIdArr)->get();
         $users = DB::connection('proxy')->table('sniper_employee_ding_users')->whereIn('department', $departmentIdArr)->get();
+        $departmentsMap = [];
+        $dingDepartments = DingDepartment::all();
+        $dingDepartments->each(function($dd)use(&$departmentsMap){
+            $departmentsMap[$dd->id] = $dd->name;
+        });
+        $users->map(function($user)use($departmentsMap){
+            $user->department_info = $departmentsMap[$user->department];
+        });
         return response()->ajax($users);
     }
 

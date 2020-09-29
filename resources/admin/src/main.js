@@ -2,7 +2,8 @@ import "babel-polyfill" //ie低版本不支持Promise.
 import Vue from "vue"
 import ElementUI from "element-ui"
 
-import "./css/ele-default-theme/theme/index.css"
+// import "./css/ele-default-theme/theme/index.css"
+import "element-ui/lib/theme-chalk/index.css"
 import "@/css/index.scss"
 import router from "./router"
 import store from "./store"

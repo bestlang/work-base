@@ -24,6 +24,9 @@ class EmployeeController
         }
         $query = Employee::query();
         $departmentId = $request->input('departmentId');
+        if(!$departmentId){
+            $departmentId = Department::whereNull('parent_id')->first()->id;
+        }
         $departmentIdArr = [];
         $departmentIdArr = Department::find($departmentId)
             ->getDescendantsAndSelf()
@@ -32,7 +35,7 @@ class EmployeeController
         if(count($departmentIdArr)){
             array_push($departmentIdArr, ...$departmentIdArr);
         }
-        $employee = Employee::with(['user', 'position'])->whereIn('department_id', $departmentIdArr)->get();
+        $employee = Employee::with(['user', 'position', 'department'])->whereIn('department_id', $departmentIdArr)->orderBy('department_id', 'asc')->get();
         return response()->ajax($employee);
     }
     public function save(Request $request)
