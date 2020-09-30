@@ -95,7 +95,15 @@ class DingTalkController
         $attendances = DingAttendance::whereIn('userId', $userIds)->whereBetween('baseCheckTime', [$start, $end])->orderBy('baseCheckTime', 'asc')->orderBy('userId', 'desc')->get();
         $lastArr = [];
         foreach ($attendances as &$at){
-            $at->w = '('.['日','一','二','三','四','五','六'][date('w', strtotime($at->ymd))].')';
+            $w = ['日','一','二','三','四','五','六'][date('w', strtotime($at->ymd))];
+            $t = ['休','班'][$at->workType];
+            if(in_array($w, ['六','日']) && $t == '班'){
+                    $at->w = $w . $t;
+            }else if(in_array($w, ['一','二','三','四','五']) && $t == '休'){
+                    $at->w = $w . $w;
+            }else{
+                $at->w = $w;
+            }
             if($at->checkType == 'OnDuty'){
                 $at->baseCheckTime = $at->workDate + 9 * 60 * 60 * 1000;
             }else{

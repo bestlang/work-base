@@ -29,6 +29,7 @@ class CreateSniperEmployeeDingAttendanceTable extends Migration
             $table->string('workDate')->nullable();
             $table->string('procInstId')->nullable();
             $table->string('approveId')->nullable();
+            $table->tinyInteger('workType')->default(1)->comment('0法休1法工');
             $table->nullableTimestamps();
         });
     }

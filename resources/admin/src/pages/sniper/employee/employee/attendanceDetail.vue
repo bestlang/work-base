@@ -27,8 +27,8 @@
             <div style="color: #555;font-style: italic">{{user.department_info?user.department_info.name:''}}</div>
         </div>
         <el-card v-if="graph" shadow="hover">
-            <el-button @click="filterWeed">-周末</el-button>
-            <el-button @click="plusWeed">+周末</el-button>
+            <el-button @click="filterRest">-法休日</el-button>
+            <el-button @click="plusRest">+法休日</el-button>
             <v-chart :options="options" style="width: 100%;height: 600px;"/>
         </el-card>
         <div class="l-choose-employee" title="选人查看" @click="chooseEmployee"><i class="iconfont">&#xe602;</i></div>
@@ -122,15 +122,14 @@
                         formatter(params){
                             let result = []
                             params.forEach(function(item, index) {
-                                if(index>1){
-                                    return
+                                if(index <= 1) {
+                                    let now = new Date(new Date(anyDate).getTime() + item.value[1])
+                                    let str = ''
+                                    let x = now.getHours() + now.toLocaleTimeString().substr(-6, 3)
+                                    str += '<span style="display:inline-block;margin-right:5px;border-radius:10px;width:9px;height:9px;background-color:' + item.color + '"></span>';
+                                    str += '<span style="font-size: 10px;">' + item.value[0] + item.seriesName + ":" + x + '</span>'
+                                    result.push(str)
                                 }
-                                let now = new Date(new Date(anyDate).getTime() + item.value[1])
-                                let str = ''
-                                let x =  now.getHours() + now.toLocaleTimeString().substr(-6,3)
-                                str += '<span style="display:inline-block;margin-right:5px;border-radius:10px;width:9px;height:9px;background-color:' + item.color + '"></span>';
-                                str += '<span style="font-size: 10px;">'+item.value[0] + item.seriesName + ":" + x + '</span>'
-                                result.push(str)
                             });
                             return result.join('<br>')
                         }
@@ -206,27 +205,27 @@
             }
         },
         methods:{
-            filterWeed(){
-                if(!this.options.series[0].dataBak.length && !this.options.series[1].dataBak.length){
+            filterRest(){
+                if(!this.options.series[0].dataBak.length){
                     this.options.series[0].dataBak = JSON.parse(JSON.stringify(this.options.series[0].data))
                     this.options.series[1].dataBak = JSON.parse(JSON.stringify(this.options.series[1].data))
                     this.options.series[2].dataBak = JSON.parse(JSON.stringify(this.options.series[2].data))
                     this.options.series[3].dataBak = JSON.parse(JSON.stringify(this.options.series[3].data))
                 }
                 let ex = d => {
-                    return d.value[0].indexOf('日') == -1 && d.value[0].indexOf('六') == -1
+                   return d.value[2] == 1
                 }
                 this.options.series[0].data = this.options.series[0].data.filter(ex)
                 this.options.series[1].data = this.options.series[1].data.filter(ex)
                 this.options.series[2].data = this.options.series[2].data.filter(ex)
                 this.options.series[3].data = this.options.series[3].data.filter(ex)
             },
-            plusWeed(){
-                if(this.options.series[0].dataBak.length && this.options.series[1].dataBak.length){
-                    this.options.series[0].data = this.options.series[0].dataBak
-                    this.options.series[1].data = this.options.series[1].dataBak
-                    this.options.series[2].data = this.options.series[2].dataBak
-                    this.options.series[3].data = this.options.series[3].dataBak
+            plusRest(){
+                if(this.options.series[0].dataBak.length){
+                    this.options.series[0].data = JSON.parse(JSON.stringify(this.options.series[0].dataBak))
+                    this.options.series[1].data = JSON.parse(JSON.stringify(this.options.series[1].dataBak))
+                    this.options.series[2].data = JSON.parse(JSON.stringify(this.options.series[2].dataBak))
+                    this.options.series[3].data = JSON.parse(JSON.stringify(this.options.series[3].dataBak))
                 }
             },
             viewUser(userid){
@@ -350,18 +349,18 @@
                         let day = this.attendances[d]
                         if(day.OnDuty){
                             OnDuty.push({
-                                value: [day.OnDuty.ymd.slice(5).replace('-','/')+day.OnDuty.w, parseInt(day.OnDuty.userCheckTime) - new Date(`${day.OnDuty.ymd} 00:00:00`)]
+                                value: [day.OnDuty.ymd.slice(8)+day.OnDuty.w, parseInt(day.OnDuty.userCheckTime) - new Date(`${day.OnDuty.ymd} 00:00:00`), day.OnDuty.workType]
                             })
                             OnBase.push({
-                                value: [day.OnDuty.ymd.slice(5).replace('-','/')+day.OnDuty.w, 9 * 60 * 60 * 1000]
+                                value: [day.OnDuty.ymd.slice(8)+day.OnDuty.w, 9 * 60 * 60 * 1000, day.OnDuty.workType]
                             })
                         }
                         if(day.OffDuty){
                             OffDuty.push({
-                                value: [day.OffDuty.ymd.slice(5).replace('-', '/')+day.OffDuty.w, parseInt(day.OffDuty.userCheckTime) - new Date(`${day.OffDuty.ymd} 00:00:00`)]
+                                value: [day.OffDuty.ymd.slice(8)+day.OffDuty.w, parseInt(day.OffDuty.userCheckTime) - new Date(`${day.OffDuty.ymd} 00:00:00`), day.OffDuty.workType]
                             })
                             OffBase.push({
-                                value: [day.OffDuty.ymd.slice(5).replace('-','/')+day.OffDuty.w, 18 * 60 * 60 * 1000]
+                                value: [day.OffDuty.ymd.slice(8)+day.OffDuty.w, 18 * 60 * 60 * 1000, day.OffDuty.workType]
                             })
                         }
                     }
@@ -372,6 +371,8 @@
 
                     this.options.series[0].dataBak = []
                     this.options.series[1].dataBak = []
+                    this.options.series[2].dataBak = []
+                    this.options.series[3].dataBak = []
                 }
             },
             async getDepartmentUsers(){
