@@ -51,6 +51,9 @@
                 </div>
             </div>
         </el-drawer>
+        <!--<el-card>-->
+            <!--<v-chart :options="optionsTM" style="width: 100%;height: 600px;"/>-->
+        <!--</el-card>-->
     </div>
 </template>
 <script>
@@ -64,6 +67,7 @@
     import 'echarts/lib/component/tooltip'
     import 'echarts/lib/component/polar'
     import 'echarts/lib/component/angleAxis'
+    import 'echarts/lib/component/legend'
 
     // register component to use
     Vue.component('v-chart', ECharts)
@@ -72,10 +76,6 @@
 
     export default {
         data(){
-            let onDuty =[]
-            let offDuty = []
-            let onBase = []
-            let offBase = []
             let anyDate = '2020/9/28 00:00:00'
             return {
                 drawer: false,
@@ -89,13 +89,48 @@
                 attendances:{},
                 users: [],
                 groupedUser: {},
-                options:{
+                optionsTM:{
                     grid:{
                         x:'2.2%',
                         y:'5%',
                         x2:'2.4%',
                         y2:'12%',
-                        width: '100%'
+                        width: '97%'
+                    },
+                    yAxis:{},
+                    xAxis:{
+                        type:'category',
+                        boundaryGap: false
+                    },
+                    series:[
+                        {
+                            name: '上班时间',
+                            type: 'line',
+                            showSymbol: true,
+                            symbolSize:12,
+                            stack: '上班时间',
+                            data: [],
+                            dataBak: []
+                        }
+                    ],
+                    tooltip:{
+                        trigger: 'axis',
+                        axisPointer: {
+                            type: 'cross',
+                            label: {
+                                backgroundColor: '#6a7985'
+                            }
+                        }
+                    },
+                },
+                options:{
+                    color: ['#001871','#001871','#fff1ac','#fff1ac'],
+                    grid:{
+                        x:'2.2%',
+                        y:'5%',
+                        x2:'2.4%',
+                        y2:'12%',
+                        width: '97%',
                     },
                     yAxis:{
                         interval: 1800000,
@@ -110,6 +145,9 @@
                     xAxis:{
                         type:'category',
                         boundaryGap: false
+                    },
+                    legend: {
+                        data: ['上班打卡', '下班打卡', '上班时间', '下班时间']
                     },
                     tooltip:{
                         trigger: 'axis',
@@ -136,39 +174,27 @@
                     },
                     series:[
                         {
-                            name: '上班',
+                            name: '上班打卡',
                             type: 'line',
-                            showSymbol: true,
-                            symbolSize:12,
-                            stack: '上班',
-                            data: onDuty,
+                            data: [],
                             dataBak: []
                         },
                         {
-                            name: '下班',
+                            name: '下班打卡',
                             type: 'line',
-                            showSymbol: true,
-                            symbolSize:12,
-                            stack: '下班',
-                            data: offDuty,
+                            data: [],
                             dataBak: []
                         },
                         {
-                            name: 'AM基准',
+                            name: '上班时间',
                             type: 'line',
-                            showSymbol: true,
-                            symbolSize:12,
-                            stack: 'AM基准',
-                            data: onBase,
+                            data: [],
                             dataBak: []
                         },
                         {
-                            name: 'PM基准',
+                            name: '下班时间',
                             type: 'line',
-                            showSymbol: true,
-                            symbolSize:12,
-                            stack: 'PM基准',
-                            data: offBase,
+                            data: [],
                             dataBak: []
                         },
                     ]
@@ -181,6 +207,7 @@
         watch:{
             async '$route'(to, from){
                 if(to.path == '/sniper/employee/employee/attendance/detail'){
+                    this.erase()
                     await this.getUser(to.query.userId)
                     await this.getUserAttendance(to.query.userId, this.month)
                 }
@@ -196,40 +223,46 @@
             },
             async userId(val){
                 if(val){
+                    this.erase()
                     await this.getUser(val)
                 }
             },
             async month(val){
-                if(this.userId)
+                if(this.userId) {
+                    this.erase()
                     await this.getUserAttendance(this.userId, val)
+                }
             }
         },
         methods:{
+            erase(){
+                [0,1,2,3].forEach((i) =>{
+                    this.options.series[i].data = []
+                    this.options.series[i].dataBak = []
+                })
+            },
             filterRest(){
                 if(!this.options.series[0].dataBak.length){
-                    this.options.series[0].dataBak = JSON.parse(JSON.stringify(this.options.series[0].data))
-                    this.options.series[1].dataBak = JSON.parse(JSON.stringify(this.options.series[1].data))
-                    this.options.series[2].dataBak = JSON.parse(JSON.stringify(this.options.series[2].data))
-                    this.options.series[3].dataBak = JSON.parse(JSON.stringify(this.options.series[3].data))
+                    [0,1,2,3].forEach((i) =>{
+                        this.options.series[i].dataBak = JSON.parse(JSON.stringify(this.options.series[i].data))
+                    })
                 }
                 let ex = d => {
                    return d.value[2] == 1
                 }
-                this.options.series[0].data = this.options.series[0].data.filter(ex)
-                this.options.series[1].data = this.options.series[1].data.filter(ex)
-                this.options.series[2].data = this.options.series[2].data.filter(ex)
-                this.options.series[3].data = this.options.series[3].data.filter(ex)
+                [0,1,2,3].forEach((i) =>{
+                    this.options.series[i].data = this.options.series[i].data.filter(ex)
+                })
             },
             plusRest(){
                 if(this.options.series[0].dataBak.length){
-                    this.options.series[0].data = JSON.parse(JSON.stringify(this.options.series[0].dataBak))
-                    this.options.series[1].data = JSON.parse(JSON.stringify(this.options.series[1].dataBak))
-                    this.options.series[2].data = JSON.parse(JSON.stringify(this.options.series[2].dataBak))
-                    this.options.series[3].data = JSON.parse(JSON.stringify(this.options.series[3].dataBak))
+                    [0,1,2,3].forEach((i) =>{
+                        this.options.series[i].data = JSON.parse(JSON.stringify(this.options.series[i].dataBak))
+                    })
                 }
             },
             viewUser(userid){
-                this.$router.push(`/sniper/employee/employee/attendance/detail?userId=${userid}&month=2020-09`)
+                this.$router.push(`/sniper/employee/employee/attendance/detail?userId=${userid}`)
                 this.drawer = false
             },
             chooseEmployee(){
@@ -345,34 +378,43 @@
                     let OffDuty = []
                     let OnBase = []
                     let OffBase = []
+                    //let tm = []
                     for(let d in this.attendances){
                         let day = this.attendances[d]
+                        // let x = null
+                        // let start = 0
+                        // let end = 0
                         if(day.OnDuty){
+                            //x = day.OnDuty.w+day.OnDuty.ymd.slice(8)
+                            //start = parseInt(day.OnDuty.userCheckTime)
                             OnDuty.push({
-                                value: [day.OnDuty.ymd.slice(8)+day.OnDuty.w, parseInt(day.OnDuty.userCheckTime) - new Date(`${day.OnDuty.ymd} 00:00:00`), day.OnDuty.workType]
+                                value: [day.OnDuty.w+day.OnDuty.ymd.slice(8), parseInt(day.OnDuty.userCheckTime) - new Date(`${day.OnDuty.ymd} 00:00:00`), day.OnDuty.workType]
                             })
                             OnBase.push({
-                                value: [day.OnDuty.ymd.slice(8)+day.OnDuty.w, 9 * 60 * 60 * 1000, day.OnDuty.workType]
+                                value: [day.OnDuty.w+day.OnDuty.ymd.slice(8), 9 * 60 * 60 * 1000, day.OnDuty.workType]
                             })
                         }
                         if(day.OffDuty){
+                            //x = day.OffDuty.w+day.OffDuty.ymd.slice(8)
+                            //end = parseInt(day.OffDuty.userCheckTime)
                             OffDuty.push({
-                                value: [day.OffDuty.ymd.slice(8)+day.OffDuty.w, parseInt(day.OffDuty.userCheckTime) - new Date(`${day.OffDuty.ymd} 00:00:00`), day.OffDuty.workType]
+                                value: [day.OffDuty.w+day.OffDuty.ymd.slice(8), parseInt(day.OffDuty.userCheckTime) - new Date(`${day.OffDuty.ymd} 00:00:00`), day.OffDuty.workType]
                             })
                             OffBase.push({
-                                value: [day.OffDuty.ymd.slice(8)+day.OffDuty.w, 18 * 60 * 60 * 1000, day.OffDuty.workType]
+                                value: [day.OffDuty.w+day.OffDuty.ymd.slice(8), 18 * 60 * 60 * 1000, day.OffDuty.workType]
                             })
                         }
+                        // tm.push({
+                        //     value: [x, (end - start)/3600000]
+                        // })
                     }
+                    this.erase()
                     this.options.series[0].data = OnDuty
                     this.options.series[1].data = OffDuty
                     this.options.series[2].data = OnBase
                     this.options.series[3].data = OffBase
 
-                    this.options.series[0].dataBak = []
-                    this.options.series[1].dataBak = []
-                    this.options.series[2].dataBak = []
-                    this.options.series[3].dataBak = []
+                    //this.optionsTM.series[0].data = tm
                 }
             },
             async getDepartmentUsers(){

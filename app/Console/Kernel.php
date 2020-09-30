@@ -39,6 +39,8 @@ class Kernel extends ConsoleKernel
         $schedule->command('sniper:dingTalk syncUsers')->dailyAt('22:20');
         $schedule->command('sniper:dingTalk departments')->dailyAt('22:30');
         $schedule->command('sniper:dingTalk syncDepartments')->dailyAt('22:40');
+        $schedule->command('sniper:dingTalk workType')->dailyAt('23:00');
+        $schedule->command('sniper:dingTalk workTime')->dailyAt('23:50');
 //        ///////////////////////////////////////////////////
 //        // 抓取成交的订单
 //        $schedule->call(function () {
