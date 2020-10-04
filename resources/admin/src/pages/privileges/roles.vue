@@ -13,11 +13,13 @@
                 style="width: 100%">
             <el-table-column
                   prop="id"
-                  label="ID">
+                  label="ID"
+                  width="120">
             </el-table-column>
             <el-table-column
                     prop="name"
-                    label="角色名">
+                    label="角色名"
+                    width="120">
             </el-table-column>
             <el-table-column
                     prop="guard_name"

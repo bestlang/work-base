@@ -1,4 +1,4 @@
-import "babel-polyfill" //ie低版本不支持Promise.
+import "babel-polyfill"
 import Vue from "vue"
 import ElementUI from "element-ui"
 

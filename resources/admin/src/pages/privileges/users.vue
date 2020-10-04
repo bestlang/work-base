@@ -19,7 +19,7 @@
                 <el-table-column
                         prop="name"
                         label="用户昵称"
-                        width="240">
+                        width="120">
                 </el-table-column>
                 <el-table-column
                         prop="email"
@@ -29,7 +29,7 @@
                 <el-table-column
                         prop="mobile"
                         label="手机"
-                        width="160">
+                        width="120">
                 </el-table-column>
                 <el-table-column
                         label="角色"

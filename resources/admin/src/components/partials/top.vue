@@ -4,11 +4,7 @@
             <div class="ls-icon-collapse" @click="toggleCollapse">
                 <i class="iconfont l-color">&#xe954;</i>
             </div>
-            <!--
-            <div class="l-top-item" :class="{active: true}" style="margin-left: 60px;"><i class="iconfont">&#xe618;</i> CMS</div>
-            <div class="l-top-item"><i class="iconfont">&#xe92a;</i> 问答</div>
-            <div class="l-top-item"><i class="iconfont">&#xe62f;</i> 商城</div>
-            -->
+            <slot name="top-items"></slot>
         </div>
         <div class="ls-top-right">
           <el-dropdown>
@@ -88,11 +84,12 @@ export default {
             padding: 0 20px;
             color: #303133;
             &:hover{
-                background: #f1f1f1;
-                color: #2d2d2d;
-                cursor: pointer;
+                 background: #f1f1f1;
+                 color: #2d2d2d;
+                 cursor: pointer;
              }
         }
+
     }
     .ls-top-right{
         line-height: 50px;

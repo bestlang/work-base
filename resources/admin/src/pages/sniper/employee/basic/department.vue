@@ -217,4 +217,11 @@
             }
         }
     }
+    @media screen and (max-width: 1500px) {
+        .l-department-wrap{
+            .l-department{
+                width: 192px;
+            }
+        }
+    }
 </style>

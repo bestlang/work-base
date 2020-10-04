@@ -2,6 +2,7 @@ import Vue from "vue"
 import VueRouter from "vue-router"
 import backend from "@/components/backend"
 Vue.use(VueRouter)
+import rv from "../components/rv.vue"
 
 export default new VueRouter({
   mode: "hash",// "hash" | "history" | "abstract"
@@ -29,7 +30,7 @@ export default new VueRouter({
         },
         {
               path: "/sniper/employee",
-              component: () => import("../components/via.vue"),
+              component: rv,
               meta: {
                   can: 'hr',
                   show: true,
@@ -141,7 +142,7 @@ export default new VueRouter({
           },
         {
           path: "/privileges",
-          component: () => import("../components/via.vue"),
+          component: rv,
           meta: {
             can: 'privileges',
             show: true,
@@ -204,7 +205,7 @@ export default new VueRouter({
         },
         {
               path: "/cms",
-              component: () => import("../components/via.vue"),
+              component: rv,
               meta: {
                   can: 'cms',
                   show:true,
@@ -254,7 +255,7 @@ export default new VueRouter({
                   },
                   {
                       path: "/cms/position",
-                      component: () => import("../components/via.vue"),
+                      component: rv,
                       meta: {
                           can: 'cms list contents',
                           show: true,
@@ -316,7 +317,7 @@ export default new VueRouter({
                   },
                   {
                       path: "/cms/setting",
-                      component: () => import("../components/via.vue"),
+                      component: rv,
                       meta: {
                           can: 'cms setting',
                           show: true,
@@ -378,7 +379,7 @@ export default new VueRouter({
                   },
                   {
                       path: "/cms/operation",
-                      component: () => import("../components/via.vue"),
+                      component: rv,
                       meta: {
                           can: 'cms operations',
                           show: true,

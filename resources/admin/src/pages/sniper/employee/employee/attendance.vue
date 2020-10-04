@@ -182,4 +182,16 @@
             }
         }
     }
+    @media screen and (max-width: 1500px) {
+        .l-block{
+            .l-block-body{
+                .l-user-wrap{
+                    .l-user{
+                        width: 200px;
+                        height: 120px;
+                    }
+                }
+            }
+        }
+    }
 </style>

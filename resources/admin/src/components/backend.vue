@@ -7,10 +7,18 @@
         </div>
         <div class="ls-content">
             <div class="ls-top">
-                <backend-top></backend-top>
+                <backend-top>
+                    <template slot="top-items">
+                        <!--
+                        <div class="l-top-item" :class="{active: true}" style="margin-left: 60px;"><i class="iconfont">&#xe618;</i> CMS</div>
+                        <div class="l-top-item"><i class="iconfont">&#xe92a;</i> 问答</div>
+                        <div class="l-top-item"><i class="iconfont">&#xe62f;</i> 商城</div>
+                        -->
+                    </template>
+                </backend-top>
             </div>
             <div class="ls-main">
-                <div style="box-sizing: border-box;background: #fff;padding: 20px;box-sizing: border-box;min-height: 100%;">
+                <div class="ls-main-inner">
                     <router-view></router-view>
                 </div>
             </div>
@@ -68,5 +76,12 @@ export default {
         overflow-y: scroll;
         /*background: rgb(244, 244, 244);*/
         /*background-color: #F5F7FA;*/
+        .ls-main-inner{
+            box-sizing: border-box;
+            background: #fff;
+            padding: 20px;
+            box-sizing: border-box;
+            min-height: 100%;
+        }
     }
 </style>

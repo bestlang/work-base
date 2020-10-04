@@ -1,7 +1,7 @@
 <template>
 	<div class="l-position-list">
 		<div v-title="'职位管理'"></div>
-		<position-tree  class="l-tree" :selectedKey="2" @nodeClick="handleNodeClick" @treeLoaded="performTreeLoaded"></position-tree>
+		<position-tree class="l-tree" :selectedKey="2" @nodeClick="handleNodeClick" @treeLoaded="performTreeLoaded"></position-tree>
 		<div class="l-tree-content">
 			<div class="l-block">
 				<div class="l-block-header" style="padding-right: 20px;width: 100%;">
@@ -43,6 +43,7 @@
 								label="所需员工">
 						</el-table-column>
 						<el-table-column
+								width="220"
 								label="操作">
 							<template slot-scope="scope">
 								<el-button class="l-lighter" type="text" @click="editPosition(scope.row)">编辑</el-button>
@@ -135,7 +136,7 @@
 			display: flex;
 			flex-flow: row nowrap;
 			box-sizing: border-box;
-			min-width: 1200px;
+			/*min-width: 1200px;*/
 			flex-shrink: 20;
 		}
 	}
