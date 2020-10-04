@@ -131,4 +131,11 @@
 			}
 		}
 	}
+	@media screen and (max-width: 1500px){
+		.l-employee-wrap{
+			.l-employee{
+				width: 180px;
+			}
+		}
+	}
 </style>
