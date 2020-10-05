@@ -29,116 +29,116 @@ export default new VueRouter({
           }
         },
         {
-              path: "/sniper/employee",
-              component: rv,
-              meta: {
-                  can: 'hr',
-                  show: true,
-                  name: '人力资源',
-                  font: '&#xe612;'
+          path: "/sniper/employee",
+          component: rv,
+          meta: {
+              can: 'hr',
+              show: true,
+              name: '人力资源',
+              font: '&#xe612;'
+          },
+          children: [
+              {
+                  path: "/sniper/employee/department",
+                  component: () => import("../pages/sniper/employee/basic/department.vue"),
+                  meta: {
+                      can: 'hr list departments',
+                      show: true,
+                      name: '部门管理',
+                      font: '&#xe69a;'
+                  }
               },
-              children: [
-                  {
-                      path: "/sniper/employee/department",
-                      component: () => import("../pages/sniper/employee/basic/department.vue"),
-                      meta: {
-                          can: 'hr list departments',
-                          show: true,
-                          name: '部门管理',
-                          font: '&#xe69a;'
-                      }
-                  },
-                  {
-                      path: "/sniper/employee/department/edit",
-                      component: () => import("../pages/sniper/employee/basic/departmentEdit.vue"),
-                      meta: {
-                          can: 'hr add departments',
-                          show: false,
-                          name: '新增部门',
-                          font: '&#xe612;'
-                      }
-                  },
-                  {
-                      path: "/sniper/employee/department/detail",
-                      component: () => import("../pages/sniper/employee/basic/departmentDetail.vue"),
-                      meta: {
-                          can: 'hr list departments',
-                          show: false,
-                          name: '部门详情',
-                          font: '&#xe612;'
-                      }
-                  },
-                  {
-                      path: "/sniper/employee/position",
-                      component: () => import("../pages/sniper/employee/basic/position.vue"),
-                      meta: {
-                          can: 'hr positions',
-                          show: true,
-                          name: '职位管理',
-                          font: '&#xe611;'
-                      }
-                  },
-                  {
-                      path: "/sniper/employee/position/edit",
-                      component: () => import("../pages/sniper/employee/basic/positionEdit.vue"),
-                      meta: {
-                          can: 'hr positions',
-                          show: false,
-                          name: '编辑职位',
-                          font: '&#xe612;'
-                      }
-                  },
-                  {
-                      path: "/sniper/employee/employee/list",
-                      component: () => import("../pages/sniper/employee/employee/list.vue"),
-                      meta: {
-                          can: 'hr employee',
-                          show: true,
-                          name: '员工列表',
-                          font: '&#xe614;'
-                      }
-                  },
-                  {
-                      path: "/sniper/employee/employee/edit",
-                      component: () => import("../pages/sniper/employee/employee/edit.vue"),
-                      meta: {
-                          can: 'hr employee',
-                          show: false,
-                          name: '新增/编辑员工',
-                          font: '&#xe614;'
-                      }
-                  },
-                  {
-                      path: "/sniper/employee/employee/attendance",
-                      component: () => import("../pages/sniper/employee/employee/attendance.vue"),
-                      meta: {
-                          can: 'hr attendance',
-                          show: true,
-                          name: '考勤记录',
-                          font: '&#xe629;'
-                      }
-                  },
-                  {
-                      path: "/sniper/employee/employee/attendance/detail",
-                      component: () => import("../pages/sniper/employee/employee/attendanceDetail.vue"),
-                      meta: {
-                          can: 'hr attendance',
-                          show: false,
-                          name: '考勤详情',
-                          font: '&#xe629;'
-                      }
-                  },
-                  /*{
-                      path: "/graph",
-                      component: () => import("../pages/sniper/employee/employee/graph.vue"),
-                      meta: {
-                          can: 'cms',
-                          show: true,
-                          name: '组织架构',
-                          font: '&#xe629;'
-                      }
-                  },*/
-              ]
+              {
+                  path: "/sniper/employee/department/edit",
+                  component: () => import("../pages/sniper/employee/basic/departmentEdit.vue"),
+                  meta: {
+                      can: 'hr add departments',
+                      show: false,
+                      name: '新增部门',
+                      font: '&#xe612;'
+                  }
+              },
+              {
+                  path: "/sniper/employee/department/detail",
+                  component: () => import("../pages/sniper/employee/basic/departmentDetail.vue"),
+                  meta: {
+                      can: 'hr list departments',
+                      show: false,
+                      name: '部门详情',
+                      font: '&#xe612;'
+                  }
+              },
+              {
+                  path: "/sniper/employee/position",
+                  component: () => import("../pages/sniper/employee/basic/position.vue"),
+                  meta: {
+                      can: 'hr positions',
+                      show: true,
+                      name: '职位管理',
+                      font: '&#xe611;'
+                  }
+              },
+              {
+                  path: "/sniper/employee/position/edit",
+                  component: () => import("../pages/sniper/employee/basic/positionEdit.vue"),
+                  meta: {
+                      can: 'hr positions',
+                      show: false,
+                      name: '编辑职位',
+                      font: '&#xe612;'
+                  }
+              },
+              {
+                  path: "/sniper/employee/employee/list",
+                  component: () => import("../pages/sniper/employee/employee/list.vue"),
+                  meta: {
+                      can: 'hr employee',
+                      show: true,
+                      name: '员工列表',
+                      font: '&#xe614;'
+                  }
+              },
+              {
+                  path: "/sniper/employee/employee/edit",
+                  component: () => import("../pages/sniper/employee/employee/edit.vue"),
+                  meta: {
+                      can: 'hr employee',
+                      show: false,
+                      name: '新增/编辑员工',
+                      font: '&#xe614;'
+                  }
+              },
+              {
+                  path: "/sniper/employee/employee/attendance",
+                  component: () => import("../pages/sniper/employee/employee/attendance.vue"),
+                  meta: {
+                      can: 'hr attendance',
+                      show: true,
+                      name: '考勤记录',
+                      font: '&#xe629;'
+                  }
+              },
+              {
+                  path: "/sniper/employee/employee/attendance/detail",
+                  component: () => import("../pages/sniper/employee/employee/attendanceDetail.vue"),
+                  meta: {
+                      can: 'hr attendance',
+                      show: false,
+                      name: '考勤详情',
+                      font: '&#xe629;'
+                  }
+              },
+              /*{
+                  path: "/graph",
+                  component: () => import("../pages/sniper/employee/employee/graph.vue"),
+                  meta: {
+                      can: 'cms',
+                      show: true,
+                      name: '组织架构',
+                      font: '&#xe629;'
+                  }
+              },*/
+          ]
           },
         {
           path: "/privileges",
@@ -448,6 +448,19 @@ export default new VueRouter({
             name: 'test',
             show: false
         },
+    },
+    {
+        path:"/noPerm",
+        component: () => import("../pages/noPerm.vue"),
+        meta: {
+            can: "",
+            name: 'test',
+            show: false
+        },
+    },
+    {
+      path: '*',
+        component: () => import("../pages/notFound.vue"),
     }
 
   ]

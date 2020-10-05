@@ -1,5 +1,8 @@
 import router from './router/index'//路由
 import store from './store/index'//路由
+import Vue from 'vue'
+
+const privileges = localStorage.getItem('privileges')
 
 router.beforeEach((to, from, next) => {
   let loginPath = '/login';
@@ -11,7 +14,23 @@ router.beforeEach((to, from, next) => {
             localStorage.setItem('accessToken', '');
             next();
         } else {
+            const can = to.meta.can
+            if(privileges.indexOf(can) === -1){
+                next({path:'/noPerm'})
+            }
             next();
         }
     }
 })
+
+Vue.directive('permission',
+    // {
+    // update:
+        (el, binding) => {
+        const can = binding.value
+        if(privileges.indexOf(can) === -1){
+            el.parentNode.removeChild(el)
+        }
+    // }
+    }
+)

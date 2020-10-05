@@ -21,7 +21,7 @@ class PrivilegesController extends Controller
 
         $allPermissions = Permission::all();
 
-        if($user->white){
+        if(false && $user->white){
             $userPermissions = $allPermissions;
         }
         $permissionIds = $userPermissions->map(function ($item){ return $item->id;})->toArray();

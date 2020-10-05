@@ -5,21 +5,21 @@ import {getPrefix} from './util'
 // function getPrefix(){
 //     return location.origin === process.env.SITE_URL ? 'ajax' : 'api'
 // }
-axios.defaults.timeout = 50000;
+// axios.defaults.timeout = 50000;
 
 axios.interceptors.request.use(config => {
     let accessToken = localStorage.getItem('accessToken')
     config.baseURL = app.SITE_URL + '/' + getPrefix() + '/'
     config.withCredentials = true
     config.timeout = 10000
-    if (accessToken && getPrefix() == 'api') {
+    if(accessToken && getPrefix() == 'api'){
         config.headers = {
             'Authorization': 'Bearer ' + accessToken,
             'Content-Type': 'application/json',
             'Accept': 'application/json'
         }
     }
-    // Laravel判断是否ajax请求的标准
+    // Laravel判断是否ajax请求的标准'X-Requested-With'
     config.headers['X-Requested-With'] = 'XMLHttpRequest';
     return config
 }, error => {

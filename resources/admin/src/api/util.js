@@ -1,14 +1,13 @@
 const prod = require('./../../config/prod.env')
-export const getPrefix = function() {
+export const getPrefix = function(){
     const origin = location.origin
     //是否正式环境
     if(origin.indexOf(prod.SITE_URL.slice(1,-1)) !== -1){
         return 'ajax'
     }else{
         // 本地环境
-        return location.origin.indexOf('8000') > 0 ? 'ajax' : 'api'
+        return location.origin.indexOf('8000') !== -1 ? 'ajax' : 'api'
     }
-
 }
 
 export const formatDateTime = function(str){

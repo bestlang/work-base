@@ -44,7 +44,7 @@ class AppServiceProvider extends ServiceProvider
             */
             //白名单得所有权限
             //取消白名单的时候删除model_has_permissions对应的记录
-            if($user->white){
+            if(false && $user->white){
                 $permissions = Permission::all();
                 foreach ($permissions as $permission){
                     $user->givePermissionTo($permission->name);

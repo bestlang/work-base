@@ -51,7 +51,7 @@
                         </el-form>
                     </el-tab-pane>
                     <el-tab-pane label="扩展信息" name="extend">
-                        <el-form ref="form" :model="form" label-width="130px" style="width: 50%;overflow-y: visible;padding-top: 20px;">
+                        <el-form ref="form" :model="form" label-width="130px" style="width: 80%;overflow-y: visible;padding-top: 20px;">
                             <el-form-item label="婚姻状况">
                                 <el-radio-group v-model="form.marital">
                                     <el-radio :label="3" border>单身</el-radio>

@@ -9,10 +9,10 @@
                     <!--<span>员工系统 / 部门管理</span>-->
                     <span><i class="iconfont">&#xe69a;</i> {{department.hasOwnProperty('name') ? department.name : ''}}</span>
                     <el-button-group>
-                    <el-button v-if="showForm" type="primary" @click="save" size="small">保存</el-button>
-                    <el-button v-if="!showForm" type="primary" @click="edit" size="small">编辑</el-button>
-                    <el-button type="danger" @click="remove" size="small">删除</el-button>
-                    <el-button type="success" @click="add" size="small"><i class="iconfont">&#xe663;</i>新增</el-button>
+                    <el-button v-permission="'hr add departments'" v-if="showForm" type="primary" @click="save" size="small">保存</el-button>
+                    <el-button v-permission="'hr edit departments'" v-if="!showForm" type="primary" @click="edit" size="small">编辑</el-button>
+                    <el-button v-permission="'hr delete departments'" type="danger" @click="remove" size="small">删除</el-button>
+                    <el-button v-permission="'hr add departments'" type="success" @click="add" size="small"><i class="iconfont">&#xe663;</i>新增</el-button>
                     </el-button-group>
                 </div>
             </div>
