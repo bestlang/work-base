@@ -20,6 +20,7 @@
 <script>
 import api from '../../api/index'
 import { getPrefix } from '../../api/util'
+import Cookies from 'js-cookie'
 
 export default {
   computed: {
@@ -34,9 +35,10 @@ export default {
     async logout(){
         let res = await api.logout()
         if(getPrefix() == 'api'){
-            localStorage.removeItem('user')
+            localStorage.removeItem(this.$types.user)
             localStorage.removeItem(this.$types.privileges)
-            this.$store.commit('accessToken', null);
+            this.$store.commit('accessToken', null)
+            Cookies.remove(this.$types.logined)
             this.$router.push('/login')
         }else{
             if(res.code == 200 || res.code == 401){

@@ -5,9 +5,6 @@ import {getPrefix} from './util'
 import Cookies from 'js-cookie'
 import types from '../store/types'
 
-// function getPrefix(){
-//     return location.origin === process.env.SITE_URL ? 'ajax' : 'api'
-// }
 // axios.defaults.timeout = 50000;
 
 axios.interceptors.request.use(config => {
@@ -58,7 +55,7 @@ axios.interceptors.response.use(response => {
                 if(getPrefix() == 'api'){
                     app.showMessage('请重新登录!')
                     localStorage.setItem('accessToken', '')
-                    Cookies.set(types.logined, false)
+                    Cookies.remove(types.logined)
                     app.$router.push('/login')
                 }else{
                     location.href = '/login'

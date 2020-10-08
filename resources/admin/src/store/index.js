@@ -16,9 +16,10 @@ const store = new Vuex.Store({
   mutations: {
     accessToken(state, payload){
       state.accessToken = payload
-      localStorage.setItem("accessToken", payload)
       if(!payload){
-      localStorage.removeItem('accessToken')
+        localStorage.removeItem('accessToken')
+      }else{
+        localStorage.setItem("accessToken", payload)
       }
     }
   },
