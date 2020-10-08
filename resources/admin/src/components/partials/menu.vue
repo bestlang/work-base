@@ -103,7 +103,7 @@
             defaultActive:'',
             router: $router,
 //            privileges: []
-          };
+          }
       },
       computed:{
           appName(){
@@ -118,12 +118,16 @@
           ])
       },
       watch:{
-          privileges(newVal){
-              if(!newVal){
-                  newVal = []
-              }
-              let routes = this.router.options.routes;
-              this.resetVisible(routes, newVal)
+          privileges:{
+              handler(newVal){
+                  if(!newVal){
+                      newVal = []
+                  }
+                  let routes = this.router.options.routes
+                  this.resetVisible(routes, newVal)
+              },
+              immediate: true,
+              deep: true
           }
       },
       methods: {
@@ -154,19 +158,21 @@
           }
       },
     async created() {
-        this.defaultActive = this.$route.path;
+        this.defaultActive = this.$route.path
         if(!this.privileges.length){
             let perm = await api.getUserPermissions()
             let user = await api.getUserInfo()
             let csrf = await api.csrf()
             if(perm && perm.data){
-                this.$store.commit(this.$types.PRIVILEGES, perm.data)
+                this.$store.commit(this.$types.privileges, perm.data)
+                let routes = this.router.options.routes
+                this.resetVisible(routes, perm.data)
             }
             if(user && user.data){
-                this.$store.commit(this.$types.USER, user.data);
+                this.$store.commit('user', user.data)
             }
             if(csrf && csrf.data){
-                this.$store.commit(this.$types.CSRF, csrf.data);
+                this.$store.commit(this.$types.CSRF, csrf.data)
             }
         }
       }

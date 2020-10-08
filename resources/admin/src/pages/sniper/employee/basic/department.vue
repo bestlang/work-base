@@ -151,8 +151,10 @@
                         }
                     }
                 }
-                removeEmptyChildren(root)
-                this.departments = [root]
+                if(root){
+                    removeEmptyChildren(root)
+                    this.departments = [root]
+                }
             },
         },
         async mounted(){

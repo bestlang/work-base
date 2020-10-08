@@ -10,7 +10,7 @@ const privilegeConfig = {
     currentRole(state){
       return state.currentRole
     },
-    privileges(state){
+    [types.privileges](state){
         return state.privileges
     }
   },
@@ -18,9 +18,13 @@ const privilegeConfig = {
     [types.PRIVILEGE_CURRENT_ROLE] (state, payload) {
       state.currentRole = payload;
     },
-    [types.PRIVILEGES](state, payload){
+    [types.privileges](state, payload){
         state.privileges = payload;
-        localStorage.setItem("privileges", JSON.stringify(payload))
+        if(!payload){
+          localStorage.removeItem(types.privileges)
+        }else{
+          localStorage.setItem(types.privileges, JSON.stringify(payload))
+        }
     }
   },
   actions: {

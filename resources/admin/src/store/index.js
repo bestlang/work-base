@@ -14,13 +14,16 @@ const store = new Vuex.Store({
     accessToken: ""
   },
   mutations: {
-    [types.ACCESS_TOKEN] (state, payload) {
+    accessToken(state, payload){
       state.accessToken = payload
       localStorage.setItem("accessToken", payload)
+      if(!payload){
+      localStorage.removeItem('accessToken')
+      }
     }
   },
   getters: {
-    accessToken (state) {
+    accessToken(state){
       return localStorage.getItem("accessToken")
     }
   },

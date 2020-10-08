@@ -37,9 +37,7 @@ export default {
     computed: {
         isCollapse() {return this.$store.state.system.isCollapse}
     },
-    mounted(){
-
-    }
+    mounted(){}
 }
 </script>
 <style scoped lang="less">

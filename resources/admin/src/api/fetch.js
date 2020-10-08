@@ -2,12 +2,19 @@ import axios from 'axios'
 import { Message } from 'element-ui'
 import app from '../main.js'
 import {getPrefix} from './util'
+import Cookies from 'js-cookie'
+import types from '../store/types'
+
 // function getPrefix(){
 //     return location.origin === process.env.SITE_URL ? 'ajax' : 'api'
 // }
 // axios.defaults.timeout = 50000;
 
 axios.interceptors.request.use(config => {
+    let logined = Cookies.get(types.logined)
+    if(!logined){
+        app.$router.push('/login')
+    }
     let accessToken = localStorage.getItem('accessToken')
     config.baseURL = app.SITE_URL + '/' + getPrefix() + '/'
     config.withCredentials = true
@@ -28,57 +35,55 @@ axios.interceptors.request.use(config => {
 
 /**响应拦截器 */
 axios.interceptors.response.use(response => {
-        let res = response.data;
+        let res = response.data
         let code = parseInt(res.code)
         // 伪状态码
         switch (code) {
             case 200:
-                break;
+                break
             case 301:
-                break;
+                break
             case 304:
-                break;
+                break
             case 401:
                 if(res.data.length){ //有提示字符串直接显示, 无需跳转到登录页面. 相反地: '' 或者 [] 则跳转到登录
-                    app.showMessage(res.data);
-                    break;
+                    app.showMessage(res.data)
+                    break
                 }else{
-                    app.showMessage('请重新登录!');
-                    localStorage.setItem('accessToken', '');
-                    app.$router.push('/login');
+                    app.showMessage('请重新登录!')
+                    localStorage.setItem('accessToken', '')
+                    app.$router.push('/login')
                 }
             case 0:
                 if(getPrefix() == 'api'){
-                    let accessToken = localStorage.getItem('accessToken')
-                    if(!accessToken){
-                        app.showMessage('请重新登录!');
-                        localStorage.setItem('accessToken', '');
-                        app.$router.push('/login');
-                    }
+                    app.showMessage('请重新登录!')
+                    localStorage.setItem('accessToken', '')
+                    Cookies.set(types.logined, false)
+                    app.$router.push('/login')
                 }else{
-                    location.href = '/login';
+                    location.href = '/login'
                 }
-                break;
+                break
             case 402:
-                app.showMessage(res.code + res.error);
-                break;
+                app.showMessage(res.code + res.error)
+                break
             default:
-                app.showMessage(res.code + res.error);
-                break;
+                app.showMessage(res.code + res.error)
+                break
         }
-        return response.data;
+        return response.data
     },
     error => {
         if(getPrefix() == 'api'){
-            app.$router.push('/login');
+            app.$router.push('/login')
         }else{
             location.href = '/login'
         }
-        if (error.response && error.response.status === 401) {
-            app.showMessage('请重新登录');
-            app.$router.replace('/login');
+        if (error.response && error.response.status === 401){
+            app.showMessage('请重新登录')
+            app.$router.replace('/login')
         }
-        Promise.reject(error);// 错误提示
+        Promise.reject(error)// 错误提示
     }
 );
 

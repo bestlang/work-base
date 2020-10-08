@@ -24,7 +24,7 @@ import { getPrefix } from '../../api/util'
 export default {
   computed: {
       user(){
-          return this.$store.getters[this.$types.USER]
+          return this.$store.getters.user
       }
   },
   methods: {
@@ -34,9 +34,9 @@ export default {
     async logout(){
         let res = await api.logout()
         if(getPrefix() == 'api'){
-            localStorage.removeItem(this.$types.USER)
-            localStorage.removeItem('privileges')
-            this.$store.commit(this.$types.ACCESS_TOKEN, null);
+            localStorage.removeItem('user')
+            localStorage.removeItem(this.$types.privileges)
+            this.$store.commit('accessToken', null);
             this.$router.push('/login')
         }else{
             if(res.code == 200 || res.code == 401){

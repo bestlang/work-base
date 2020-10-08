@@ -18,30 +18,29 @@ const systemConfig = {
     isCollapse(state){
       return state.isCollapse
     },
-    [types.USER](state){
+    user(state){
       if(state.user){
-          return state.user;
+          return state.user
       }
-      let user = localStorage.getItem(types.USER)
+      let user = localStorage.getItem('user')
       return JSON.parse(user)
     },
     [types.CSRF](state){
         let csrf = localStorage.getItem(types.CSRF)
         return csrf;
     },
-
   },
   mutations: {
     toggleState(state) {
       state.isCollapse = !state.isCollapse
     },
-    [types.USER](state, payload) {
-      state.user = payload;
-      localStorage.setItem(types.USER, JSON.stringify(payload));
+    user(state, payload) {
+      state.user = payload
+      localStorage.setItem('user', JSON.stringify(payload))
     },
     [types.CSRF](state, payload){
-      state.csrf = payload;
-      localStorage.setItem(types.CSRF, payload);
+      state.csrf = payload
+      localStorage.setItem(types.CSRF, payload)
     }
   },
   actions: {
@@ -49,10 +48,10 @@ const systemConfig = {
       commit("toggleState")
     },
     collapse({state}){
-      state.isCollapse = true;
+      state.isCollapse = true
     },
-    [types.USER]({commit}, payload){
-      commit(types.USER, payload)
+    user({commit}, payload){
+      commit('user', payload)
     }
   }
 }

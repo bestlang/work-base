@@ -27,17 +27,18 @@
 
 import api from "../api/index"
 import config from "../../config/prod.env"
+import Cookies from 'js-cookie'
 
 export default {
-    data() {
+    data(){
         return {
             loading: false,
             loginFont: "登录",
-            params: {
+            params:{
                 mobile: '13222988085',
                 password: '11111111'
             },
-            rules: {
+            rules:{
 
             }
         }
@@ -57,39 +58,44 @@ export default {
     },
     methods: {
         requireMobile(){
-            if(this.params.mobile == ""){
-                $("#mobile").addClass("error").text("input mobile");
+            if(this.params.mobile == ''){
+                $('#mobile').addClass('error').text('input mobile')
             }else{
-                $("#mobile").removeClass("error").text(" ");
+                $('#mobile').removeClass('error').text('')
             }
         },
         requirePassword(){
-            if(this.params.password == ""){
-                $("#password").addClass("error").text("input password");
+            if(this.params.password == ''){
+                $('#password').addClass('error').text('input password')
             }else{
-                $("#password").removeClass("error").text(" ");
+                $('#password').removeClass('error').text('')
             }
         },
         changePassword(){
-            $("#password").removeClass("error").text("");
+            $('#password').removeClass('error').text('')
         },
-        async login() {
+        async login(){
             if(!this.params.mobile || !this.params.password){
-                this.requireMobile();
-                this.requirePassword();
+                this.requireMobile()
+                this.requirePassword()
             }else{
                 this.loading = true;
-                this.loginFont = "logining...";
+                this.loginFont = 'logining...'
                 let res = await api.login(this.params)
-                if (res.code == 200) {
-                    res.data.access_token && this.$store.commit(this.$types.ACCESS_TOKEN, res.data.access_token);
-                    res.data.user && this.$store.commit(this.$types.USER, res.data.user);
+                if (res.code == 200){
+                    const {access_token, user} = res.data
+                    if(access_token){
+                        this.$store.commit('accessToken', access_token)
+                    }
+                    if(user){
+                        this.$store.commit('user', user)
+                    }
                     let perm = await api.getUserPermissions()
                     if(perm && perm.data){
-                        this.$store.commit(this.$types.PRIVILEGES, perm.data)
+                        this.$store.commit(this.$types.privileges, perm.data)
                     }
-                    this.$router.push("/dashboard");
-
+                    Cookies.set(this.$types.logined, true, new Date(new Date().getTime() + 10 * 60 * 1000))
+                    this.$router.push('/dashboard')
                 }else if(res.code == 4011){
                    this.reset()
                 }
@@ -98,8 +104,8 @@ export default {
         },
         reset() {
             this.loading = false;
-            this.loginFont = "Login";
-            this.params.password = "";
+            this.loginFont = 'Login'
+            this.params.password = ''
         }
     }
 }

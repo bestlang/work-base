@@ -1,11 +1,7 @@
-export const ACCESS_TOKEN = 'ACCESS_TOKEN'
-
-export const ACTIVITY_TYPES = 'ACTIVITY_TYPES'
-export const ACTIVITY_APPLICABLES = 'ACTIVITY_APPLICABLES'
-
-export const PRIVILEGES = 'PRIVILEGES'
+export const privileges = 'privileges'
+export const logined = 'logined'
+export const user = 'user'
 export const PRIVILEGE_CURRENT_ROLE = 'PRIVILEGE_CURRENT_ROLE'
-export const USER = 'USER'
 export const CSRF = 'CSRF'
 
 export const LOADING = 'LOADING'
@@ -18,4 +14,22 @@ export const CMS_CURRENT_MODEL = 'CMS_CURRENT_MODEL'
 export const CMS_CONTENTS = 'CMS_CONTENTS'
 export const CMS_CURRENT_CHANNEL_POSITION = 'CMS_CURRENT_CHANNEL_POSITION'
 export const CMS_CURRENT_POSITION = 'CMS_CURRENT_POSITION'
+
+export default {
+    privileges,
+    user,
+    logined,
+    PRIVILEGE_CURRENT_ROLE,
+    CSRF,
+    LOADING,
+    CMS_MODELS,
+    CMS_CHANNELS,
+    CMS_CHANNEL_CHILDREN,
+    CMS_PARENT_CHANNEL,
+    CMS_CURRENT_CHANNEL,
+    CMS_CURRENT_MODEL,
+    CMS_CONTENTS,
+    CMS_CURRENT_CHANNEL_POSITION,
+    CMS_CURRENT_POSITION
+}
 
