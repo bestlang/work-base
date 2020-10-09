@@ -76,7 +76,7 @@
 
     export default {
         data(){
-            let anyDate = '2020/9/28 00:00:00'
+            let anyDate = '2020/9/27 00:00:00'
             return {
                 drawer: false,
                 direction: 'rtl',
@@ -202,7 +202,16 @@
             }
         },
         computed:{
-
+            currentMonth(){
+                let d = new Date()
+                let str = d.getFullYear()
+                let m = d.getMonth() + 1
+                if(m < 10){
+                    m = '0'+m
+                }
+                str += '-' + m
+                return str
+            }
         },
         watch:{
             async '$route'(to, from){
@@ -228,9 +237,12 @@
                 }
             },
             async month(val){
+                if(!val){
+                    this.month = this.currentMonth
+                }
                 if(this.userId) {
                     this.erase()
-                    await this.getUserAttendance(this.userId, val)
+                    await this.getUserAttendance(this.userId)
                 }
             }
         },
@@ -369,10 +381,13 @@
                     offDutyTime
                 }
             },
-            async getUserAttendance(userId, month){
-                let {data} = await api.sniperDingGetUsersAttendance({userIds:[userId], month})
+            async getUserAttendance(userId){
+                if(!this.month){
+                    this.month = this.currentMonth
+                }
+                let {data} = await api.sniperDingGetUsersAttendance({userIds:[userId], month: this.month})
                 let values = Object.values(data)
-                this.attendances = values[0]
+                this.attendances = values.length > 0 ? values[0] : {}
                 if(true){
                     let OnDuty = []
                     let OffDuty = []
@@ -427,9 +442,6 @@
         async mounted(){
 
             let month = this.$route.query.month || null
-            if(month){
-                this.month = month
-            }
             let userId = this.$route.query.userId || null
             if(userId){
                 this.userId = userId

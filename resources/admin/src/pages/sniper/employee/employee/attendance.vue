@@ -69,7 +69,14 @@
             },
             viewDetail(user){
                 let userId = user.userid
-                this.$router.push('/sniper/employee/employee/attendance/detail?userId='+user.userid+'&month=2020-09')
+                let d = new Date()
+                let str = d.getFullYear()
+                let m = d.getMonth() + 1
+                if(m < 10){
+                    m = '0'+m
+                }
+                str += '-' + m
+                this.$router.push(`/sniper/employee/employee/attendance/detail?userId=`+user.userid+`&month=`+str)
             },
             handleNodeClick(node){
                 this.department = node
@@ -112,7 +119,6 @@
                     }
                 }
                 for(let userId in lastArr){
-                    console.log(userId, "\n")
                     for(let idx in this.users){
                         if(this.users[idx].userid == userId) {
                             this.$set(this.users[idx], 'result', lastArr[userId])
