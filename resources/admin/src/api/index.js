@@ -91,5 +91,6 @@ export default {
     sniperDingGetDepartments(data){ return fetch('/admin/sniper/employee/ding/get/departments', data)},
     sniperDingGetDepartmentUsers(data){ return fetch('/admin/sniper/employee/ding/get/department/users', data)},
     sniperDingGetUsersAttendance(data){ return fetch('/admin/sniper/employee/ding/get/users/attendance', data)},
+    sniperDingGetWeekAvgAttendance(data){ return fetch('/admin/sniper/employee/ding/get/user/week/attendance/avg', data)},
     sniperDingGetUser(data){ return fetch('/admin/sniper/employee/ding/get/user', data)},
 }

@@ -9,8 +9,8 @@
                         {{ data.day.split('-').slice(1).join('/') }}
                     </p>
                     <div v-show="showResult(data.day) && timeLine(data.day)">
-                        <el-progress  :percentage="50"  :show-text="false" stroke-linecap="square" :stroke-width="4" color="#ddd"></el-progress>
-                        <el-progress  style="margin-top: 2px" :percentage="timeLine(data.day) * 50"  :show-text="false" stroke-linecap="square" :stroke-width="4"></el-progress>
+                        <el-progress  :percentage="50"  :show-text="false" stroke-linecap="square" :stroke-width="4" color="#ccc"></el-progress>
+                        <el-progress  style="margin-top: 2px" :percentage="timeLine(data.day) * 50"  :show-text="false" stroke-linecap="square" :stroke-width="4" color="#293c55"></el-progress>
                     </div>
                     <div v-show="showResult(data.day)" style="font-size: 12px;color: #5a5e66">
                         <p><span v-html="readable(data.day).onDutyTimeResult"></span><span>{{readable(data.day).onDutyTime}}</span></p>
@@ -51,9 +51,9 @@
                 </div>
             </div>
         </el-drawer>
-        <!--<el-card>-->
-            <!--<v-chart :options="optionsTM" style="width: 100%;height: 600px;"/>-->
-        <!--</el-card>-->
+        <el-card>
+            <v-chart :options="optionsTM" style="width: 100%;height: 600px;"/>
+        </el-card>
     </div>
 </template>
 <script>
@@ -90,41 +90,39 @@
                 users: [],
                 groupedUser: {},
                 optionsTM:{
+                    color: ['#293c55'],
                     grid:{
                         x:'2.2%',
                         y:'5%',
                         x2:'2.4%',
                         y2:'12%',
-                        width: '97%'
+                        width: '97%',
                     },
-                    yAxis:{},
-                    xAxis:{
-                        type:'category',
-                        boundaryGap: false
+                    title: {
+                        text: 'ECharts 入门示例'
                     },
-                    series:[
-                        {
-                            name: '上班时间',
-                            type: 'line',
-                            showSymbol: true,
-                            symbolSize:12,
-                            stack: '上班时间',
-                            data: [],
-                            dataBak: []
-                        }
-                    ],
-                    tooltip:{
-                        trigger: 'axis',
-                        axisPointer: {
-                            type: 'cross',
-                            label: {
-                                backgroundColor: '#6a7985'
-                            }
-                        }
+                    tooltip: {},
+                    legend: {
+                        data:['平均工作时间']
                     },
+                    xAxis: {
+                        data: [
+                            '本月第1周',
+                            '本月第2周',
+                            '本月第3周',
+                            '本月第4周',
+                            '本月第5周'
+                        ]
+                    },
+                    yAxis: {},
+                    series: [{
+                        name: '平均工作时长',
+                        type: 'bar',
+                        data: []
+                    }]
                 },
                 options:{
-                    color: ['#001871','#001871','#fff1ac','#fff1ac'],
+                    color: ['#001871','#fff1ac','#fff1ac','#001871'],
                     grid:{
                         x:'2.2%',
                         y:'5%',
@@ -217,8 +215,10 @@
             async '$route'(to, from){
                 if(to.path == '/sniper/employee/employee/attendance/detail'){
                     this.erase()
+                    this.userId = to.query.userId
                     await this.getUser(to.query.userId)
                     await this.getUserAttendance(to.query.userId, this.month)
+                    await this.getWeekAvgAttendance()
                 }
             },
             users(val){
@@ -243,6 +243,7 @@
                 if(this.userId) {
                     this.erase()
                     await this.getUserAttendance(this.userId)
+                    await this.getWeekAvgAttendance()
                 }
             }
         },
@@ -437,6 +438,10 @@
                 if(res && res.data){
                     this.users = res.data
                 }
+            },
+            async getWeekAvgAttendance(){
+                let res = await api.sniperDingGetWeekAvgAttendance({month: this.month, userId: this.userId})
+                this.optionsTM.series[0].data =Object.values(res.data)
             }
         },
         async mounted(){
@@ -448,6 +453,7 @@
                 await this.getUserAttendance(userId, this.month)
             }
             await this.getDepartmentUsers()
+            await this.getWeekAvgAttendance()
         }
     }
 </script>

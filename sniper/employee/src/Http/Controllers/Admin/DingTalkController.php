@@ -10,6 +10,13 @@ use DB;
 
 class DingTalkController
 {
+    protected function _nthWeek($day)
+    {
+        $time = strtotime($day);
+        $wk_day = date('w', strtotime(date('Y-m-1 00:00:00', $time))) ? : 7; //今天周几
+        $d = date('d', $time) - (8 - $wk_day); //今天几号
+        return $d <= 0 ? 1 : ceil($d / 7) + 1;
+    }
     //所有部门
     public function departments(Request $request)
     {
@@ -129,6 +136,50 @@ class DingTalkController
         return response()->ajax($lastArr);
     }
 
+    public function weekAvg(Request $request)
+    {
+        if(auth()->user()->cant('hr attendance')){
+            return response()->error('没有权限!', 4012);
+        }
+        $month = $request->input('month');
+        $userId = $request->input('userId');
+        if(!$month){
+            $month = date('Y-m');
+        }
+        $weekWorkDays = [];
+        $types = DingAttendance::select('ymd', 'workType')->where('ymd', 'like', $month.'%')->groupBy('ymd')->groupBy('workType')->get()->toArray();
+        foreach ($types as $type){
+            $nth = $this->_nthWeek($type['ymd']);
+            if(!isset($weekWorkDays[$nth])){
+                $weekWorkDays[$nth] = 0;
+            }
+            $weekWorkDays[$nth] += $type['workType'];
+        }
+        $grp = [];
+
+        $attendances = DB::connection('proxy')->table('sniper_employee_ding_attendance')->where('ymd', 'like', $month.'%')->where('userId', $userId)->get();
+        foreach ($attendances as $at){
+            $grp[$at->userId][$at->ymd][] = $at->userCheckTime/1000;
+        }
+        $udt = [];
+        foreach ($grp as $_userId => $daily){
+            foreach ($daily as $day => $data){
+                if(isset($data[0]) && isset($data[1])) {
+                    $udt[$_userId][$this->_nthWeek($day)][$day] = abs($data[1] - $data[0]);
+                }
+            }
+        }
+        $lastArr = [];
+        foreach ($udt as $_userId => $data){
+            //echo $_userId, "\n";
+            foreach ($data as $nth => $val){
+                //echo $nth, "\n";
+                //echo $weekWorkDays[$nth],",", array_sum($val), "\n";
+                $lastArr[$_userId][$nth] = $weekWorkDays[$nth] ? round(array_sum($val) / ($weekWorkDays[$nth] * 60 * 60) - 1, 2) : 0;
+            }
+        }
+        return response()->ajax(isset($lastArr[$userId]) ? $lastArr[$userId] : []);
+    }
     public function user(Request $request)
     {
         $userId = $request->input('userId');

@@ -63,6 +63,14 @@ class DingTalk extends Command
             Department::destroy($diffIds);
         }
     }
+
+    public function _nthWeek($day)
+    {
+        $time = strtotime($day);
+        $wk_day = date('w', strtotime(date('Y-m-1 00:00:00', $time))) ? : 7; //今天周几
+        $d = date('d', $time) - (8 - $wk_day); //今天几号
+        return $d <= 0 ? 1 : ceil($d / 7) + 1;
+    }
     /**
      * @param DingService $ding
      */
@@ -239,11 +247,6 @@ class DingTalk extends Command
                      ->where('checkType', 'OnDuty')
                      ->groupBy('ymd')
                      ->orderBy('ymd', 'asc')->get();
-//                 $map = [];
-//                 foreach ($temp as $t){
-//                     $map[$t->ymd] = $t->ct;
-//                 }
-//                 print_r($map);
                 $count = count($temp);
                 for($i = 0; $i<$count; $i++){
 
@@ -291,7 +294,40 @@ class DingTalk extends Command
                     echo "\n";
                 }
             }else if($act == 'workTime'){
+                $month = '2020-09';
+                $weekWorkDays = [];
+                $types = Attendance::select('ymd', 'workType')->where('ymd', 'like', $month.'%')->groupBy('ymd')->groupBy('workType')->get()->toArray();
+                foreach ($types as $type){
+                    $nth = $this->_nthWeek($type['ymd']);
+                    if(!isset($weekWorkDays[$nth])){
+                        $weekWorkDays[$nth] = 0;
+                    }
+                    $weekWorkDays[$nth] += $type['workType'];
+                }
+                $grp = [];
 
+                $attendances = Attendance::where('ymd', 'like', $month.'%')->get();
+                foreach ($attendances as $at){
+                    $grp[$at->userId][$at->ymd][] = $at->userCheckTime/1000;
+                }
+                $udt = [];
+                foreach ($grp as $userId => $daily){
+                    foreach ($daily as $day => $data){
+                        if(isset($data[0]) && isset($data[1])) {
+                            $udt[$userId][$this->_nthWeek($day)][$day] = abs($data[1] - $data[0]);
+                        }
+                    }
+                }
+                $lastArr = [];
+                foreach ($udt as $userId => $data){
+//                    echo $userId, "\n";
+                    foreach ($data as $nth => $val){
+//                        echo $nth, "\n";
+//                        echo $weekWorkDays[$nth],",", array_sum($val), "\n";
+                        $lastArr[$userId][$nth] = array_sum($val) / ($weekWorkDays[$nth] * 60 * 60);
+                    }
+                }
+                print_r($lastArr);
             }
     }
 }
