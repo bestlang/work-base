@@ -51,7 +51,7 @@
                 </div>
             </div>
         </el-drawer>
-        <el-card>
+        <el-card style="margin-top: 20px;" shadow="hover">
             <div>平均每周工作小时</div>
             <v-chart :options="optionsTM" style="width: 100%;height: 600px;"/>
         </el-card>
