@@ -28,7 +28,7 @@
                 uploadUrl: this.SITE_URL + '/' + getPrefix() + '/admin/file/upload',
                 headers: {
                     'Authorization': 'Bearer ' + accessToken,
-                    'X-CSRF-TOKEN': this.$store.getters[this.$types.CSRF]
+                    'X-CSRF-TOKEN': this.$store.getters[this.$types.csrf]
                 },
                 disabled: false,
                 vals: [],

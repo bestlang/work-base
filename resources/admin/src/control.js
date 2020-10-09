@@ -11,7 +11,7 @@ router.beforeEach((to, from, next) => {
         next(loginPath)
     }else{
         if(to.path == loginPath){
-            localStorage.setItem('accessToken', '')
+            localStorage.removeItem('accessToken')
             next()
         }else{
             const can = to.meta.can
@@ -27,12 +27,13 @@ router.beforeEach((to, from, next) => {
     }
 })
 
-Vue.directive('permission',
-        (el, binding) => {
+
+Vue.directive('permission', {
+    inserted:(el, binding) => {
         const can = binding.value
         const privileges = localStorage.getItem(types.privileges)
         if(privileges.indexOf(can) === -1){
             el.parentNode.removeChild(el)
         }
     }
-)
+})

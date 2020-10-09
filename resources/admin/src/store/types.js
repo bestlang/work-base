@@ -1,8 +1,9 @@
 export const privileges = 'privileges'
+export const logout = 'logout'
 export const logined = 'logined'
 export const user = 'user'
+export const csrf = 'csrf'
 export const PRIVILEGE_CURRENT_ROLE = 'PRIVILEGE_CURRENT_ROLE'
-export const CSRF = 'CSRF'
 
 export const LOADING = 'LOADING'
 export const CMS_MODELS = 'CMS_MODELS'
@@ -18,9 +19,10 @@ export const CMS_CURRENT_POSITION = 'CMS_CURRENT_POSITION'
 export default {
     privileges,
     user,
+    logout,
     logined,
     PRIVILEGE_CURRENT_ROLE,
-    CSRF,
+    csrf,
     LOADING,
     CMS_MODELS,
     CMS_CHANNELS,

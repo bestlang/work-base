@@ -14,7 +14,7 @@ class UserController extends Controller
 {
     public function info(Request $request)
     {
-        $user = auth()->user();
+        $user = auth()->user()->with('roles')->get();
         if(!$user){
             return response()->error("login required", 401);
         }

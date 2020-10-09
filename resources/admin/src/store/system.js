@@ -1,12 +1,17 @@
-import * as types from './types'
+import types from './types'
+import api from '../api'
+import { getPrefix } from '../api/util'
+import Cookies from 'js-cookie'
+
 
 const systemConfig = {
   state: {
     appName: 'LARACMS',
     appShortName: 'LC',
-    user: null,
+    user: {},
     isCollapse: false,
-    csrf: null
+    csrf: null,
+    accessToken: ''
   },
   getters:{
     appName(state){
@@ -18,29 +23,40 @@ const systemConfig = {
     isCollapse(state){
       return state.isCollapse
     },
-    user(state){
-      if(state.user){
-          return state.user
-      }
-      let user = localStorage.getItem('user')
-      return JSON.parse(user)
+    [types.user](state){
+        let user = Object.keys(state.user).length ? state.user : JSON.parse(localStorage.getItem(types.user))
+        if(!user){
+            user = {}
+        }
+        return user
     },
-    [types.CSRF](state){
-        let csrf = localStorage.getItem(types.CSRF)
-        return csrf;
+    [types.csrf](state){
+        let csrf = localStorage.getItem(types.csrf)
+        return csrf
     },
+    accessToken(state){
+        return state.accessToken || localStorage.getItem('accessToken')
+    }
   },
   mutations: {
     toggleState(state) {
       state.isCollapse = !state.isCollapse
     },
-    user(state, payload) {
+    [types.user](state, payload) {
       state.user = payload
       localStorage.setItem('user', JSON.stringify(payload))
     },
-    [types.CSRF](state, payload){
+    [types.csrf](state, payload){
       state.csrf = payload
-      localStorage.setItem(types.CSRF, payload)
+      localStorage.setItem(types.csrf, payload)
+    },
+    accessToken(state, payload){
+        state.accessToken = payload
+        if(!payload){
+            localStorage.removeItem('accessToken')
+        }else{
+            localStorage.setItem("accessToken", payload)
+        }
     }
   },
   actions: {
@@ -50,8 +66,32 @@ const systemConfig = {
     collapse({state}){
       state.isCollapse = true
     },
-    user({commit}, payload){
-      commit('user', payload)
+    async [types.user]({commit}, payload){
+      if(payload) {
+          commit(types.user, payload)
+      }else{
+          commit(types.user, {})
+          let user = await api.getUserInfo()
+          if(user && user.data){
+              commit(types.user, user.data)
+          }
+      }
+    },
+    async [types.csrf]({commit}){
+        let csrf = await api.csrf()
+        if(csrf && csrf.data){
+            commit(types.csrf, csrf.data)
+        }
+    },
+    async [types.logout]({commit}){
+        const res = await api.logout()
+        if(getPrefix() == 'api'){
+            commit(types.user, {})
+            localStorage.removeItem(types.user)
+            localStorage.removeItem(types.privileges)
+            commit('accessToken', null)
+            Cookies.remove(types.logined)
+        }
     }
   }
 }

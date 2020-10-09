@@ -94,6 +94,7 @@
     import api from "../../api/index"
     import {mapGetters} from 'vuex'
     import config from "../../../config/prod.env"
+
     export default {
       components:{
         cell
@@ -101,8 +102,7 @@
       data() {
           return {
             defaultActive:'',
-            router: $router,
-//            privileges: []
+            router: $router
           }
       },
       computed:{
@@ -120,8 +120,8 @@
       watch:{
           privileges:{
               handler(newVal){
-                  if(!newVal){
-                      newVal = []
+                  if(!newVal || !newVal.length){
+                      return
                   }
                   let routes = this.router.options.routes
                   this.resetVisible(routes, newVal)
@@ -137,12 +137,9 @@
           showOrNot(item){
               return ( !item.children || item.children && item.children.filter(x=>x.meta.show).length )
           },
-
           handleOpen(key, keyPath) {
-
           },
           handleClose(key, keyPath) {
-
           },
           resetVisible(routes, privileges){
             routes.map((route, index) => {
@@ -151,29 +148,21 @@
                   if(privileges.indexOf(route.children[idx].meta.can) === -1){
                     route.children[idx].meta.show = false
                   }
-                });
+                })
                 this.resetVisible(route.children, privileges)
               }
-            });
+            })
           }
       },
-    async created() {
+    async created(){
         this.defaultActive = this.$route.path
         if(!this.privileges.length){
-            let perm = await api.getUserPermissions()
-            let user = await api.getUserInfo()
-            let csrf = await api.csrf()
-            if(perm && perm.data){
-                this.$store.commit(this.$types.privileges, perm.data)
-                let routes = this.router.options.routes
-                this.resetVisible(routes, perm.data)
-            }
-            if(user && user.data){
-                this.$store.commit('user', user.data)
-            }
-            if(csrf && csrf.data){
-                this.$store.commit(this.$types.CSRF, csrf.data)
-            }
+            /////////////////////this.$store.dispatch(this.$types.privileges)
+            /////////////////////await this.$store.dispatch(this.$types.user)
+            await this.$store.dispatch(this.$types.csrf)
+        }else{
+            let routes = this.router.options.routes
+            this.resetVisible(routes, this.privileges)
         }
       }
     }

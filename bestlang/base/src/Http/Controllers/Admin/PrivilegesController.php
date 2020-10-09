@@ -44,7 +44,8 @@ class PrivilegesController extends Controller
     // assign permissions to a specific role
     public function givePermissionsTo(Request $request)
     {
-        if(!auth()->user()->can('privileges edit role permissions')){
+        $user = auth()->user();
+        if(!$user->can('privileges edit role permissions')){
             return response()->error('没有权限!', 4012);
         }
         $params = $request->all();
@@ -59,9 +60,11 @@ class PrivilegesController extends Controller
 
         $role->permissions()->detach($oldPermissions);//[]
         $role->permissions()->attach($currentPermissions);//[]
-
-
-        return response()->ajax();
+        $res = ['logout' => 0];
+        if($user->hasRole($role->name)){
+            $res = ['logout' => 1];
+        }
+        return response()->ajax($res);
     }
 
     // get permissions of a role

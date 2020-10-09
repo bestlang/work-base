@@ -37,6 +37,9 @@
 </template>
 <script>
     import api from '../../api/index'
+    import {mapGetters} from 'vuex'
+    import types from '../../store/types'
+
     export default {
       data() {
         return {
@@ -64,9 +67,7 @@
         }
       },
       computed:{
-        types(){
-          return this.$store.getters.activityTypes;
-        }
+          ...mapGetters(['user'])
       },
       watch:{
           async role_id(val){
@@ -76,19 +77,24 @@
       },
       methods: {
         async saveRolePermissions(){
-          let nodes = this.$refs['role-permission-tree'].getCheckedNodes();
-          let permissions = nodes.filter((n)=>n.children.length == 0).map((n) => n.id ? n.id : '');
-          let role_id = this.currentRole.id
-          let res = await api.givePermissionsTo({permissions, role_id})
-          this.$message({
-            type: 'success',
-            message: '设置成功!'
-          });
-          setTimeout(function(){location.reload()}, 1500)
+            let nodes = this.$refs['role-permission-tree'].getCheckedNodes()
+            let permissions = nodes.filter((n)=>n.children.length == 0).map((n) => n.id ? n.id : '')
+            let role_id = this.currentRole.id
+            let res = await api.givePermissionsTo({permissions, role_id})
+            let {logout} = res.data
+            let msg = '设置成功!'
+            if(logout){
+                this.$store.dispatch(types.logout)
+                msg += ' 请重新登录'
+            }
+            this.$message({
+                type: 'success',
+                message: msg
+            })
         },
         async loadPermissionsTree(){
           let res = await api.getPermissionsTree()
-          this.treeData = [res.data[Object.keys(res.data)[0]]];
+          this.treeData = [res.data[Object.keys(res.data)[0]]]
         },
         async getRole(role_id){
             let {data} = await api.getRole({role_id})
@@ -96,16 +102,16 @@
         },
         async loadRolePermissions(role_id){
           let res = await api.getRolePermissions({role_id})
-          this.defaultCheckedKeys = res.data;
+          this.defaultCheckedKeys = res.data
         },
         async loadUserPermissions(){
           let res = await api.getUserPermissions()
-          localStorage.setItem(`privileges`, JSON.stringify(res));
+          localStorage.setItem(`privileges`, JSON.stringify(res))
         }
       },
       async mounted() {
-        this.role_id = parseInt(this.$route.query.role_id || 0);
-        await this.loadPermissionsTree();
+        this.role_id = parseInt(this.$route.query.role_id || 0)
+        await this.loadPermissionsTree()
       }
     }
 </script>

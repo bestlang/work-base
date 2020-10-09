@@ -11,7 +11,7 @@ import * as types from "./store/types"
 import App from "./App"
 import {fetch} from "@/api/fetch"
 import {getPrefix} from "@/api/util"
-import "./permissions"
+import "./control"
 
 
 window.$ = require("jquery")

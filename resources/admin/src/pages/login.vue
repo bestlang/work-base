@@ -28,6 +28,7 @@
 import api from "../api/index"
 import config from "../../config/prod.env"
 import Cookies from 'js-cookie'
+import types from '../store/types'
 
 export default {
     data(){
@@ -79,8 +80,8 @@ export default {
                 this.requireMobile()
                 this.requirePassword()
             }else{
-                this.loading = true;
-                this.loginFont = 'logining...'
+                this.loading = true
+                this.loginFont = 'login...'
                 let res = await api.login(this.params)
                 if (res.code == 200){
                     const {access_token, user} = res.data
@@ -90,10 +91,7 @@ export default {
                     if(user){
                         this.$store.commit('user', user)
                     }
-                    let perm = await api.getUserPermissions()
-                    if(perm && perm.data){
-                        this.$store.commit(this.$types.privileges, perm.data)
-                    }
+                    await this.$store.dispatch(types.privileges)
                     Cookies.set(this.$types.logined, true, new Date(new Date().getTime() + 10 * 60 * 1000))
                     this.$router.push('/dashboard')
                 }else if(res.code == 4011){

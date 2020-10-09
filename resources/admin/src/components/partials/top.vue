@@ -20,12 +20,23 @@
 <script>
 import api from '../../api/index'
 import { getPrefix } from '../../api/util'
-import Cookies from 'js-cookie'
+import {mapGetters} from 'vuex'
 
 export default {
   computed: {
-      user(){
-          return this.$store.getters.user
+      ...mapGetters(['user', 'accessToken'])
+  },
+  watch:{
+      accessToken:{
+          handler(newVal){
+                if(!newVal){
+                    if(getPrefix() == 'api'){
+                        this.$router.push('/login')
+                    }else{
+                        location.href='/login';
+                    }
+                }
+          }
       }
   },
   methods: {
@@ -33,18 +44,7 @@ export default {
       this.$store.dispatch("toggleState")
     },
     async logout(){
-        let res = await api.logout()
-        if(getPrefix() == 'api'){
-            localStorage.removeItem(this.$types.user)
-            localStorage.removeItem(this.$types.privileges)
-            this.$store.commit('accessToken', null)
-            Cookies.remove(this.$types.logined)
-            this.$router.push('/login')
-        }else{
-            if(res.code == 200 || res.code == 401){
-                location.href='/login';
-            }
-        }
+        await this.$store.dispatch('logout')
     }
   }
 }
