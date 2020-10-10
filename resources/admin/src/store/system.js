@@ -90,10 +90,10 @@ const systemConfig = {
         localStorage.removeItem(types.privileges)
         Cookies.remove(types.logined)
         const res = await api.logout()
-        alert(JSON.stringify(res))
         if(getPrefix() == 'api'){
             commit('accessToken', null)
         }else{
+            alert('登出成功！')
             location.href='/login';
         }
     }
