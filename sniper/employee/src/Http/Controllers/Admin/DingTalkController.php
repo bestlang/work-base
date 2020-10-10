@@ -132,11 +132,13 @@ class DingTalkController
         $lastArr = [];
         foreach ($attendances as &$at){
             $w = ['日','一','二','三','四','五','六'][date('w', strtotime($at->ymd))];
+
             $t = ['休','班'][$at->workType];
+
             if(in_array($w, ['六','日']) && $t == '班'){
                     $at->w = $w . $t;
             }else if(in_array($w, ['一','二','三','四','五']) && $t == '休'){
-                    $at->w = $w . $w;
+                    $at->w = $w . $t;
             }else{
                 $at->w = $w;
             }

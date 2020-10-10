@@ -27,8 +27,8 @@
             <div style="color: #555;font-style: italic">{{user.department_info?user.department_info.name:''}}</div>
         </div>
         <el-card v-if="graph" shadow="hover">
-            <el-button @click="filterRest">-法休日</el-button>
-            <el-button @click="plusRest">+法休日</el-button>
+            <el-button @click="filterRest">-法休</el-button>
+            <el-button @click="plusRest">+法休</el-button>
             <v-chart :options="options" style="width: 100%;height: 600px;"/>
         </el-card>
         <div class="l-choose-employee" title="选人查看" @click="chooseEmployee"><i class="iconfont">&#xe602;</i></div>
@@ -119,10 +119,10 @@
                     color:  ['#fdc4b6','#fdc4b6','#001871','#001871'],
                     grid:{
                         x:'2.2%',
-                        y:'5%',
+                        y:'6%',
                         x2:'2.4%',
                         y2:'12%',
-                        width: '97%',
+                        width: '96.5%',
                     },
                     yAxis:{
                         interval: 1800000,
