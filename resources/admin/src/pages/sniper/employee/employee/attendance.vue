@@ -54,7 +54,7 @@
             resultHtml(result){
                 let html = ''
                 if(result.Late){
-                    html += '<span style="color: red">'+'迟到'+result.Late+'次</span>'
+                    html += '<span style="color: #dd7777">'+'迟到'+result.Late+'次</span>'
                 }
                 if(result.Early){
                     html += '<span style="color: orange">'+'早退'+result.Early+'次</span>'
