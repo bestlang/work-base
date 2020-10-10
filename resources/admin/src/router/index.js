@@ -19,6 +19,15 @@ export default new VueRouter({
       },
       children:[
         {
+          path: "",
+          component:  () => import("../pages/dashboard.vue"),
+          meta: {
+            can: 'dashboard',
+            show:false,
+            name: '面板',
+            font: '&#xe764;'
+          }
+        },{
           path: "/dashboard",
           component:  () => import("../pages/dashboard.vue"),
           meta: {

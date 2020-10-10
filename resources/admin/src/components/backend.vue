@@ -83,3 +83,10 @@ export default {
         }
     }
 </style>
+<style lang="less" scoped>
+    .grid-content{
+        color: #fff;
+        border-radius: 6px;
+        padding: 20px 30px;
+    }
+</style>
