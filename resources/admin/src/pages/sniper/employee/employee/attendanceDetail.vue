@@ -52,7 +52,7 @@
             </div>
         </el-drawer>
         <el-card style="margin-top: 20px;" shadow="hover">
-            <div>平均每周工作小时</div>
+            <!--<div>平均每周工作小时</div>-->
             <v-chart :options="optionsTM" style="width: 100%;height: 600px;"/>
         </el-card>
     </div>
@@ -91,7 +91,10 @@
                 users: [],
                 groupedUser: {},
                 optionsTM:{
-                    color: ['#293c55'],
+                    dataset: {
+                        source: [['', '个人平均出勤（小时）', '小组平均出勤（小时）']]
+                    },
+                    color: ['#293c55', '#348498'],
                     grid:{
                         x:'2.2%',
                         y:'5%',
@@ -100,30 +103,20 @@
                         width: '97%',
                     },
                     title: {
-                        text: 'ECharts 入门示例'
+                        text: '出勤对比'
                     },
                     tooltip: {},
                     legend: {
-                        data:['平均工作时间']
+                        data: ['个人平均出勤（小时）', '小组平均出勤（小时）']
                     },
                     xAxis: {
-                        data: [
-                            '本月第1周',
-                            '本月第2周',
-                            '本月第3周',
-                            '本月第4周',
-                            '本月第5周'
-                        ]
+                        type: 'category'
                     },
                     yAxis: {},
-                    series: [{
-                        name: '平均工作时长',
-                        type: 'bar',
-                        data: []
-                    }]
+                    series: [{type: 'bar'},{type: 'bar'}]
                 },
                 options:{
-                    color:  ['#001871','#001871','#fff1ac','#fff1ac'],
+                    color:  ['#fff1ac','#fff1ac','#001871','#001871'],
                     grid:{
                         x:'2.2%',
                         y:'5%',
@@ -173,18 +166,6 @@
                     },
                     series:[
                         {
-                            name: '上班打卡',
-                            type: 'line',
-                            data: [],
-                            dataBak: []
-                        },
-                        {
-                            name: '下班打卡',
-                            type: 'line',
-                            data: [],
-                            dataBak: []
-                        },
-                        {
                             name: '上班时间',
                             type: 'line',
                             data: [],
@@ -196,6 +177,21 @@
                             data: [],
                             dataBak: []
                         },
+                        {
+                            name: '上班打卡',
+                            type: 'line',
+                            // areaStyle:{color: '#fff'},
+                            data: [],
+                            dataBak: []
+                        },
+                        {
+                            name: '下班打卡',
+                            type: 'line',
+                            // areaStyle:{color: '#293c55'},
+                            data: [],
+                            dataBak: []
+                        },
+
                     ]
                 }
             }
@@ -426,12 +422,10 @@
                         // })
                     }
                     this.erase()
-                    this.options.series[0].data = OnDuty
-                    this.options.series[1].data = OffDuty
-                    this.options.series[2].data = OnBase
-                    this.options.series[3].data = OffBase
-
-                    //this.optionsTM.series[0].data = tm
+                    this.options.series[2].data = OnDuty
+                    this.options.series[3].data = OffDuty
+                    this.options.series[0].data = OnBase
+                    this.options.series[1].data = OffBase
                 }
             },
             async getDepartmentUsers(){
@@ -442,7 +436,12 @@
             },
             async getWeekAvgAttendance(){
                 let res = await api.sniperDingGetWeekAvgAttendance({month: this.month, userId: this.userId})
-                this.optionsTM.series[0].data =Object.values(res.data)
+                let formed  = []
+                res.data.forEach(function (item) {
+                    formed.push(item)
+                })
+                this.optionsTM.dataset.source = []
+                this.optionsTM.dataset.source.push(...res.data)
             }
         },
         async mounted(){

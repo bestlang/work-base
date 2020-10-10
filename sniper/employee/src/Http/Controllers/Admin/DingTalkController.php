@@ -17,6 +17,20 @@ class DingTalkController
         $d = date('d', $time) - (8 - $wk_day); //今天几号
         return $d <= 0 ? 1 : ceil($d / 7) + 1;
     }
+
+    public function _weekWorkDay($month)
+    {
+        $weekWorkDays = [];
+        $types = DingAttendance::select('ymd', 'workType')->where('ymd', 'like', $month.'%')->where('checkType', 'OffDuty')->groupBy('ymd')->groupBy('workType')->get()->toArray();
+        foreach ($types as $type){
+            $nth = $this->_nthWeek($type['ymd']);
+            if(!isset($weekWorkDays[$nth])){
+                $weekWorkDays[$nth] = 0;
+            }
+            $weekWorkDays[$nth] += $type['workType'];
+        }
+        return $weekWorkDays;
+    }
     //所有部门
     public function departments(Request $request)
     {
@@ -143,21 +157,25 @@ class DingTalkController
         }
         $month = $request->input('month');
         $userId = $request->input('userId');
+
         if(!$month){
             $month = date('Y-m');
         }
-        $weekWorkDays = [];
-        $types = DingAttendance::select('ymd', 'workType')->where('ymd', 'like', $month.'%')->where('checkType', 'OffDuty')->groupBy('ymd')->groupBy('workType')->get()->toArray();
-        foreach ($types as $type){
-            $nth = $this->_nthWeek($type['ymd']);
-            if(!isset($weekWorkDays[$nth])){
-                $weekWorkDays[$nth] = 0;
-            }
-            $weekWorkDays[$nth] += $type['workType'];
+        if(!$userId){
+            return response()->error('参数错误');
         }
+        $user = DingUser::where('userid', $userId)->first();
+        $department = $user->department;
+        $userIds = [];
+        $fellow = [];
+            DingUser::where('department', $department)->get()->each(function($user)use(&$userIds, &$fellow){
+            $userIds[] = $user->userid;
+            $fellow[$user->userid] = $user->name;
+        });
+        $weekWorkDays = $this->_weekWorkDay($month);
         $grp = [];
 
-        $attendances = DB::connection('proxy')->table('sniper_employee_ding_attendance')->where('ymd', 'like', $month.'%')->where('userId', $userId)->get();
+        $attendances = DB::connection('proxy')->table('sniper_employee_ding_attendance')->where('ymd', 'like', $month.'%')->whereIn('userId', $userIds)->get();
         foreach ($attendances as $at){
             $grp[$at->userId][$at->ymd][] = $at->userCheckTime/1000;
         }
@@ -171,15 +189,32 @@ class DingTalkController
         }
         $lastArr = [];
         foreach ($udt as $_userId => $data){
-            //echo $_userId, "\n";
             foreach ($data as $nth => $val){
-                //echo $nth, "\n";
-                //echo $weekWorkDays[$nth],",", array_sum($val), "\n";
-                $lastArr[$_userId][$nth] = $weekWorkDays[$nth] ? round(array_sum($val) / ($weekWorkDays[$nth] * 60 * 60) - 1, 2) : 0;
+                $h = $weekWorkDays[$nth] ? round(array_sum($val) / ($weekWorkDays[$nth] * 60 * 60) - 1, 2) : 0;
+                $lastArr[$_userId][$nth] = $h;
             }
         }
-        return response()->ajax(isset($lastArr[$userId]) ? $lastArr[$userId] : []);
+        $avg = [];
+        $count = count($lastArr);
+        collect([1,2,3,4,5,6])->each(function($i)use($lastArr, &$avg, $count){
+            $sum = 0;
+            foreach ($lastArr as $v){
+                $sum += isset($v[$i]) ? $v[$i] : 0;
+            }
+            $avg[$i] = round($sum / $count, 2);
+        });
+
+        $res = [];
+        collect([1,2,3,4,5,6])->each(function($i)use(&$res,$avg, $userId, $lastArr){
+            $h = 0;
+            if(isset($lastArr[$userId]) && isset($lastArr[$userId][$i])){
+                $h = $lastArr[$userId][$i];
+            }
+            $res[] = ['第'.$i.'周', $h, isset($avg[$i]) ? $avg[$i] : 0];
+        });
+        return response()->ajax($res);
     }
+
     public function user(Request $request)
     {
         $userId = $request->input('userId');
