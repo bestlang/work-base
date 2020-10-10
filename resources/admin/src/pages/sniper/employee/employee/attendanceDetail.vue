@@ -116,7 +116,7 @@
                     series: [{type: 'bar'},{type: 'bar'}]
                 },
                 options:{
-                    color:  ['#fff1ac','#fff1ac','#001871','#001871'],
+                    color:  ['#fdc4b6','#fdc4b6','#001871','#001871'],
                     grid:{
                         x:'2.2%',
                         y:'5%',
