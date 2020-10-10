@@ -84,13 +84,17 @@ const systemConfig = {
         }
     },
     async [types.logout]({commit}){
+        commit(types.user, {})
+        localStorage.removeItem(types.csrf)
+        localStorage.removeItem(types.user)
+        localStorage.removeItem(types.privileges)
+        Cookies.remove(types.logined)
         const res = await api.logout()
+        alert(JSON.stringify(res))
         if(getPrefix() == 'api'){
-            commit(types.user, {})
-            localStorage.removeItem(types.user)
-            localStorage.removeItem(types.privileges)
             commit('accessToken', null)
-            Cookies.remove(types.logined)
+        }else{
+            location.href='/login';
         }
     }
   }

@@ -17,8 +17,6 @@ export const formatDateTime = function(str){
     }catch(e){
         date = new Date()
     }
-    var seperator1 = "-";
-    var seperator2 = ":";
     var month = date.getMonth() + 1;
     var strDate = date.getDate();
     if (month >= 1 && month <= 9) {

@@ -114,7 +114,8 @@
           },
           ...mapGetters([
               'isCollapse',
-              'privileges'
+              'privileges',
+              'csrf'
           ])
       },
       watch:{
@@ -156,14 +157,11 @@
       },
     async created(){
         this.defaultActive = this.$route.path
-        if(!this.privileges.length){
-            /////////////////////this.$store.dispatch(this.$types.privileges)
-            /////////////////////await this.$store.dispatch(this.$types.user)
-            await this.$store.dispatch(this.$types.csrf)
-        }else{
+        if(this.privileges && this.privileges.length)
+        {
             let routes = this.router.options.routes
             this.resetVisible(routes, this.privileges)
         }
-      }
+     }
     }
 </script>

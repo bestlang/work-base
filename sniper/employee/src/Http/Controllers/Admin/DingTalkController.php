@@ -147,7 +147,7 @@ class DingTalkController
             $month = date('Y-m');
         }
         $weekWorkDays = [];
-        $types = DingAttendance::select('ymd', 'workType')->where('ymd', 'like', $month.'%')->groupBy('ymd')->groupBy('workType')->get()->toArray();
+        $types = DingAttendance::select('ymd', 'workType')->where('ymd', 'like', $month.'%')->where('checkType', 'OffDuty')->groupBy('ymd')->groupBy('workType')->get()->toArray();
         foreach ($types as $type){
             $nth = $this->_nthWeek($type['ymd']);
             if(!isset($weekWorkDays[$nth])){

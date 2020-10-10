@@ -21,10 +21,11 @@
 import api from '../../api/index'
 import { getPrefix } from '../../api/util'
 import {mapGetters} from 'vuex'
+import Cookies from 'js-cookie'
 
 export default {
   computed: {
-      ...mapGetters(['user', 'accessToken'])
+      ...mapGetters(['user','privileges', 'accessToken', 'csrf'])
   },
   watch:{
       accessToken:{
@@ -33,7 +34,7 @@ export default {
                     if(getPrefix() == 'api'){
                         this.$router.push('/login')
                     }else{
-                        location.href='/login';
+                        location.href='/login'
                     }
                 }
           }
@@ -46,6 +47,23 @@ export default {
     async logout(){
         await this.$store.dispatch('logout')
     }
+  },
+  async created(){
+        if(getPrefix() == 'ajax'){
+            //做api方式登录成功后做的操作
+            if(!this.user || !this.user.length){
+                await this.$store.dispatch(this.$types.user)
+            }
+            if(!this.privileges || !this.privileges.length){
+                await this.$store.dispatch(this.$types.privileges)
+            }
+            if(!this.csrf){
+                await this.$store.dispatch(this.$types.csrf)
+            }
+            if(!Cookies.get(this.$types.logined)){
+                Cookies.set(this.$types.logined, true, new Date(new Date().getTime() + 10 * 60 * 1000))
+            }
+        }
   }
 }
 </script>
