@@ -85,14 +85,14 @@
 
                 userId: null,
                 month: null,
-                user: null,
+                user: {},
                 value : new Date(),
                 attendances:{},
                 users: [],
                 groupedUser: {},
                 optionsTM:{
                     dataset: {
-                        source: [['', '个人平均出勤（小时）', '小组平均出勤（小时）']]
+                        source: [['','个人平均出勤（小时）', '部门平均出勤（小时）']]
                     },
                     color: ['#293c55', '#348498'],
                     grid:{
@@ -107,7 +107,7 @@
                     },
                     tooltip: {},
                     legend: {
-                        data: ['个人平均出勤（小时）', '小组平均出勤（小时）']
+                        data: ['个人平均出勤（小时）', '部门平均出勤（小时）']
                     },
                     xAxis: {
                         type: 'category'
@@ -152,7 +152,7 @@
                         formatter(params){
                             let result = []
                             params.forEach(function(item, index) {
-                                if(index <= 1) {
+                                if(index >= 2) {
                                     let now = new Date(new Date(anyDate).getTime() + item.value[1])
                                     let str = ''
                                     let x = now.getHours() + now.toLocaleTimeString().substr(-6, 3)
@@ -391,15 +391,9 @@
                     let OffDuty = []
                     let OnBase = []
                     let OffBase = []
-                    //let tm = []
                     for(let d in this.attendances){
                         let day = this.attendances[d]
-                        // let x = null
-                        // let start = 0
-                        // let end = 0
                         if(day.OnDuty){
-                            //x = day.OnDuty.w+day.OnDuty.ymd.slice(8)
-                            //start = parseInt(day.OnDuty.userCheckTime)
                             OnDuty.push({
                                 value: [day.OnDuty.w+day.OnDuty.ymd.slice(8), parseInt(day.OnDuty.userCheckTime) - new Date(`${day.OnDuty.ymd} 00:00:00`), day.OnDuty.workType]
                             })
@@ -408,8 +402,6 @@
                             })
                         }
                         if(day.OffDuty){
-                            //x = day.OffDuty.w+day.OffDuty.ymd.slice(8)
-                            //end = parseInt(day.OffDuty.userCheckTime)
                             OffDuty.push({
                                 value: [day.OffDuty.w+day.OffDuty.ymd.slice(8), parseInt(day.OffDuty.userCheckTime) - new Date(`${day.OffDuty.ymd} 00:00:00`), day.OffDuty.workType]
                             })
@@ -417,15 +409,13 @@
                                 value: [day.OffDuty.w+day.OffDuty.ymd.slice(8), 18 * 60 * 60 * 1000, day.OffDuty.workType]
                             })
                         }
-                        // tm.push({
-                        //     value: [x, (end - start)/3600000]
-                        // })
                     }
                     this.erase()
-                    this.options.series[2].data = OnDuty
-                    this.options.series[3].data = OffDuty
                     this.options.series[0].data = OnBase
                     this.options.series[1].data = OffBase
+                    this.options.series[2].data = OnDuty
+                    this.options.series[3].data = OffDuty
+
                 }
             },
             async getDepartmentUsers(){
@@ -445,7 +435,6 @@
             }
         },
         async mounted(){
-
             let month = this.$route.query.month || null
             let userId = this.$route.query.userId || null
             if(userId){

@@ -96,6 +96,21 @@ class DingTalkController
         }
     }
 
+    public function _getLeaves($userId, $month)
+    {
+        //未指定 本月
+        $start = strtotime(date('Y-m-01')) * 1000;
+        $end = ( strtotime(date('Y-m-t')) + 86400 ) * 1000;
+        //指定了月份
+        if($month){
+            $start = strtotime(date($month.'-01')) * 1000;
+            $end = ( strtotime(date($month.'-t')) + 86400 ) * 1000;
+        }
+        $leaves = Leave::where('userId', $userId)->where(function ($query)use($start, $end){
+            $query->where([['end_time', '>', $start], ['end_time', '<=', $end]])->orWhere([['start_time', '>=', $start], ['start_time', '<', $end]]);
+        })->get();
+        return $leaves;
+    }
     //获取特定用户列表本月考勤状况
     public function usersAttendance(Request $request)
     {
@@ -134,9 +149,10 @@ class DingTalkController
             $lastArr[$at->userId][$at->ymd][$at->checkType] = $at;
         }
         foreach ($lastArr as $userId => &$v){
-            $leaves = Leave::where('userId', $userId)->where(function ($query)use($start, $end){
-                    $query->where([['end_time', '>', $start], ['end_time', '<=', $end]])->orWhere([['start_time', '>=', $start], ['start_time', '<', $end]]);
-                })->get();
+//            $leaves = Leave::where('userId', $userId)->where(function ($query)use($start, $end){
+//                    $query->where([['end_time', '>', $start], ['end_time', '<=', $end]])->orWhere([['start_time', '>=', $start], ['start_time', '<', $end]]);
+//                })->get();
+            $leaves = $this->_getLeaves($userId, $month);
             $lastArr[$userId]['leave'] = [];
             foreach ($leaves as $leave){
                 $record = [
@@ -168,7 +184,7 @@ class DingTalkController
         $department = $user->department;
         $userIds = [];
         $fellow = [];
-            DingUser::where('department', $department)->get()->each(function($user)use(&$userIds, &$fellow){
+        DingUser::where('department', $department)->get()->each(function($user)use(&$userIds, &$fellow){
             $userIds[] = $user->userid;
             $fellow[$user->userid] = $user->name;
         });
@@ -180,37 +196,53 @@ class DingTalkController
             $grp[$at->userId][$at->ymd][] = $at->userCheckTime/1000;
         }
         $udt = [];
+        $leaves = $this->_getLeaves($userId, $month);
+        $hit = [];
+        foreach ($leaves as $leave){
+            $hit[date('Y-m-d', $leave['start_time']/1000)] = 1;
+        }
         foreach ($grp as $_userId => $daily){
             foreach ($daily as $day => $data){
-                if(isset($data[0]) && isset($data[1])) {
+                if(isset($hit[$day])){//关联了请假
+                    $udt[$_userId][$this->_nthWeek($day)][$day]  = 9 * 60 * 60;
+                }else if(isset($data[0]) && isset($data[1])) {
                     $udt[$_userId][$this->_nthWeek($day)][$day] = abs($data[1] - $data[0]);
                 }
             }
         }
-        $lastArr = [];
+        $temp = [];
         foreach ($udt as $_userId => $data){
             foreach ($data as $nth => $val){
-                $h = $weekWorkDays[$nth] ? round(array_sum($val) / ($weekWorkDays[$nth] * 60 * 60) - 1, 2) : 0;
-                $lastArr[$_userId][$nth] = $h;
+                //$h = $weekWorkDays[$nth] ? round(array_sum($val) / ($weekWorkDays[$nth] * 60 * 60) - 1, 2) : 0;
+                $b = min(count($val),$weekWorkDays[$nth]);
+                $h = $b ? round(array_sum($val) / ($b * 60 * 60) - 1, 2) : 0;
+                $temp[$_userId][$nth] = $h;
             }
         }
         $avg = [];
-        $count = count($lastArr);
-        collect([1,2,3,4,5,6])->each(function($i)use($lastArr, &$avg, $count){
+        collect([1,2,3,4,5,6])->each(function($i)use($temp, &$avg){
             $sum = 0;
-            foreach ($lastArr as $v){
+            $count = 0;
+            foreach ($temp as $id => $v){
                 $sum += isset($v[$i]) ? $v[$i] : 0;
+                if(isset($v[$i]) && $v[$i]){
+                    $count += 1;
+                }
             }
-            $avg[$i] = round($sum / $count, 2);
+
+            $avg[$i] = $count ? round($sum / $count, 2) : 0;
         });
 
         $res = [];
-        collect([1,2,3,4,5,6])->each(function($i)use(&$res,$avg, $userId, $lastArr){
+        collect([1,2,3,4,5,6])->each(function($i)use(&$res,$avg, $userId, $temp){
             $h = 0;
-            if(isset($lastArr[$userId]) && isset($lastArr[$userId][$i])){
-                $h = $lastArr[$userId][$i];
+            if(isset($temp[$userId]) && isset($temp[$userId][$i])){
+                $h = $temp[$userId][$i];
             }
-            $res[] = ['第'.$i.'周', $h, isset($avg[$i]) ? $avg[$i] : 0];
+            if($h || isset($avg[$i]) && $avg[$i]){
+                $res[] = ['第'.$i.'周', $h, isset($avg[$i]) ? $avg[$i] : 0];
+            }
+
         });
         return response()->ajax($res);
     }
