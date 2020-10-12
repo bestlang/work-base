@@ -437,6 +437,9 @@
         async mounted(){
             let month = this.$route.query.month || null
             let userId = this.$route.query.userId || null
+            // if(month){
+            //     this.month = month
+            // }
             if(userId){
                 this.userId = userId
                 await this.getUserAttendance(userId, this.month)

@@ -50,7 +50,7 @@
             return {
                 months:['2020-05', '2020-06', '2020-07', '2020-08', '2020-09', '2020-10'],
                 month: '2020-10',
-                eventCats: ['所有', '迟到', '早退', '请假', '缺卡'],
+                eventCats: ['所有', '迟到', '请假', '缺卡', '早退'],
                 eventCat: '所有',
                 updated: 0,
                 department: null,
@@ -144,8 +144,8 @@
                 }else{
                     str = this.month
                 }
-
-                this.$router.push(`/sniper/employee/employee/attendance/detail?userId=`+user.userid+`&month=`+str)
+                //+`&month=`+str
+                this.$router.push(`/sniper/employee/employee/attendance/detail?userId=`+user.userid)
             },
             handleNodeClick(node){
                 this.department = node
