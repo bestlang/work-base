@@ -93,7 +93,6 @@ const systemConfig = {
         if(getPrefix() == 'api'){
             commit('accessToken', null)
         }else{
-            alert('登出成功！')
             location.href='/login';
         }
     }

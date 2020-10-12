@@ -84,8 +84,8 @@
             let {logout} = res.data
             let msg = '设置成功!'
             if(logout){
-                this.$store.dispatch(types.logout)
                 msg += ' 请重新登录'
+                setTimeout(() => {this.$store.dispatch(types.logout)}, 1500)
             }
             this.$message({
                 type: 'success',
@@ -110,7 +110,7 @@
         }
       },
       async mounted() {
-        this.role_id = parseInt(this.$route.query.role_id || 0)
+        this.role_id = parseInt(this.$route.query.role_id)  || 0
         await this.loadPermissionsTree()
       }
     }

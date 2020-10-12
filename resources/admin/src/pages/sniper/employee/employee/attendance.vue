@@ -7,23 +7,29 @@
                 {{department ? department.name : ''}}
             </div>
             <div class="l-block-body">
+                    <div class="l-month-select">
+                        <ul style="width: 50%; border-bottom: 1px solid #f1f1f1;padding-bottom: 10px;margin-bottom: 10px;">
+                            <li style="border:none;cursor: default">月份</li>
+                            <li v-for="m in months" @click="viewMonth" :class="{active: month == m}">{{m}}</li>
+                        </ul>
+                        <ul style="width: 50%">
+                            <li style="border:none;cursor: default">分类</li>
+                            <li v-for="ec in eventCats" @click="viewCat" :class="{active: eventCat == ec}">{{ec}}</li>
+                        </ul>
+                    </div>
                     <div class="l-user-wrap">
-                            <div v-for="(user, index) in users" :key="index" class="l-user" @click="viewDetail(user)">
+                            <div v-for="(user, index) in specUsers" :key="index" class="l-user" @click="viewDetail(user)">
                                 <div style="border-bottom: 1px solid #f1f1f1;padding-bottom: 10px;">
                                 <div><p>{{user.name}}</p><small style="color: #fff;display: none;">{{user.userid}}</small></div>
                                 <div><small style="color: #afafaf">{{user.orgEmail ? user.orgEmail : '-'}}</small></div>
                                 </div>
-                                <!--<div><small>本周：正常1次 迟到1次 早退1次</small></div>-->
                                 <div>
                                     <div v-if="user.result">
-                                        <small>本月：
-                                            <span style="font-weight: lighter" v-html="resultHtml(user.result)"></span>
-                                            <span v-if="user.leave && user.leave.length" :title="user.leaveStr"><small  style="color: darkorange;font-weight: normal;"><span class="iconfont">&#xe60b;</span>请假{{user.leave.length}}次</small></span>
+                                        <small><span style="font-weight: lighter" v-html="resultHtml(user)"></span>
+                                            <!--<span v-if="user.leave && user.leave.length" :title="user.leaveStr"><small  style="color: darkorange;font-weight: normal;"><span class="iconfont">&#xe60b;</span>请假{{user.leave.length}}次</small></span>-->
                                         </small>
                                     </div>
                                 </div>
-                                <!--<div><small>{{user.result}}</small></div>-->
-                                <div></div>
                             </div>
                     </div>
             </div>
@@ -34,24 +40,78 @@
 <script>
     import api from "../../../../api/index"
     import DingDepartmentTree from "../components/DingDepartmentTree"
+    import { Loading } from 'element-ui'
+
     export default {
         components:{
             DingDepartmentTree
         },
         data(){
             return {
+                months:['2020-05', '2020-06', '2020-07', '2020-08', '2020-09', '2020-10'],
+                month: '2020-10',
+                eventCats: ['所有', '迟到', '早退', '请假', '缺卡'],
+                eventCat: '所有',
                 updated: 0,
                 department: null,
-                users: []
+                users: [],
+                specUsers: [],
+                lateUser: [],
+                earlyUsers: [],
+                holidayUsers: [],
+                notSignedUsers: []
             }
         },
         watch:{
             async ['department.id'](id){
                 await this.getDepartmentUsers({id})
+            },
+            async month(val){
+                await this.getDepartmentUsers(this.department)
+            },
+            eventCat(val){
+                this.assignUsers(val)
             }
         },
         methods:{
-            resultHtml(result){
+            assignUsers(val){
+                if(val == '迟到'){
+                    this.specUsers = this.lateUsers
+                }else if(val == '早退'){
+                    this.specUsers = this.earlyUsers
+                }else if(val == '请假'){
+                    this.specUsers = this.holidayUsers
+                }else if(val == '缺卡'){
+                    this.specUsers = this.notSignedUsers
+                }else{
+                    this.specUsers = this.users
+                }
+            },
+            viewMonth(el){
+                this.month = el.target.innerText
+            },
+            viewCat(el){
+                this.eventCat = el.target.innerText
+            },
+            // disp(user){
+            //     let result = user.result
+            //     if(this.eventCat == '所有'){
+            //         return true
+            //     }else if(result){
+            //         if(this.eventCat == '迟到' && result.Late){
+            //             return true
+            //         }else if(this.eventCat == '早退' && result.Early){
+            //             return true
+            //         }else if(this.eventCat == '请假' && user.leave && user.leave.length){
+            //             return true
+            //         }else if(this.eventCat == '缺卡' && result.NotSigned){
+            //             return true
+            //         }
+            //     }
+            //     return false
+            // },
+            resultHtml(user){
+                let result = user.result
                 let html = ''
                 if(result.Late){
                     html += '<span style="color: #dd7777">'+'迟到'+result.Late+'次</span>'
@@ -60,7 +120,10 @@
                     html += '<span style="color: orange">'+'早退'+result.Early+'次</span>'
                 }
                 if(result.NotSigned){
-                    html += '<span style="color: gray">'+'未打卡'+result.NotSigned+'次</span>'
+                    html += '<span style="color: gray">'+'缺卡'+result.NotSigned+'次</span>'
+                }
+                if(user.leave && user.leave.length){
+                    html += '<span title="'+user.leaveStr+'"><span  style="color: darkorange;font-weight: normal;"><span class="iconfont">&#xe60b;</span>请假'+user.leave.length+'次</span></span>'
                 }
                 if(!html){
                     html = '<span style="color: green">正常</span>'
@@ -69,37 +132,43 @@
             },
             viewDetail(user){
                 let userId = user.userid
-                let d = new Date()
-                let str = d.getFullYear()
-                let m = d.getMonth() + 1
-                if(m < 10){
-                    m = '0'+m
+                let str
+                if(!this.month){
+                    let d = new Date()
+                    let str = d.getFullYear()
+                    let m = d.getMonth() + 1
+                    if(m < 10){
+                        m = '0'+m
+                    }
+                    str += '-' + m
+                }else{
+                    str = this.month
                 }
-                str += '-' + m
+
                 this.$router.push(`/sniper/employee/employee/attendance/detail?userId=`+user.userid+`&month=`+str)
             },
             handleNodeClick(node){
                 this.department = node
-                // this.assignForm(node)
-                console.log('node click:'+JSON.stringify(node))
+                //console.log('node click:'+JSON.stringify(node))
             },
             performTreeLoaded(department){
-                console.log('performTreeLoaded:'+JSON.stringify(department))
                 this.department = department
-                // this.assignForm(department)
             },
             async getDepartmentUsers({id}){
+                let startLoad = Loading.service({ fullscreen: true, text: '获取中...', background: 'rgba(255,255,255,0.8)' })
                 let res = await api.sniperDingGetDepartmentUsers({id})
                 let userIds = res.data.map(function(user){
                     return user.userid
                 })
                 this.users = res.data
                 await this.getUsersAttendance({userIds})
+                startLoad.close()
 
             },
             async getUsersAttendance({userIds}){
-                let {data} = await api.sniperDingGetUsersAttendance({userIds})
-                let lastArr = {};
+                let month = this.month
+                let {data} = await api.sniperDingGetUsersAttendance({userIds, month})
+                let lastArr = {}
                 for(let userId in data){
 
                     for(let dt in data[userId]){
@@ -113,7 +182,7 @@
                                 lastArr[userId][data[userId][dt][tp].timeResult] = 0
                             }
                             if(!data[userId][dt][tp].approveId && !data[userId][dt][tp].procInstId){
-                                lastArr[userId][data[userId][dt][tp].timeResult] +=1
+                                lastArr[userId][data[userId][dt][tp].timeResult] += 1
                             }
                         }
                     }
@@ -125,15 +194,39 @@
                             this.$set(this.users[idx], 'leave', data[userId].leave)
                             let leaveStr = ''
                             for(let id in data[userId].leave){
-                                leaveStr += '['+data[userId].leave[id].start_time+'~'+data[userId].leave[id].end_time+'],';
+                                leaveStr += '['+data[userId].leave[id].start_time+'~'+data[userId].leave[id].end_time+'],'
                             }
 
                             this.$set(this.users[idx], 'leaveStr', leaveStr.slice(0,-1))
                         }
                     }
                 }
-                console.log("lastArr:"+JSON.stringify(lastArr));
+                this.lateUsers = this.users.filter((user) => {
+                    return user.result && user.result.Late
+                }).sort((a, b) => {
+                    return b.result.Late - a.result.Late
+                })
+                this.earlyUsers = this.users.filter((user) => {
+                    return user.result && user.result.Early
+                }).sort((a, b) => {
+                    return b.result.Early - a.result.Early
+                })
+                this.holidayUsers = this.users.filter((user) => {
+                    return user.leave && user.leave.length
+                }).sort((a, b) => {
+                    return b.leave.length - a.leave.length
+                })
+                this.notSignedUsers = this.users.filter((user) => {
+                    return user.result && user.result.NotSigned
+                }).sort((a, b) => {
+                    return b.result.NotSigned - a.result.NotSigned
+                })
+                this.assignUsers(this.eventCat)
+                //console.log("lastArr:"+JSON.stringify(lateUsers))
             }
+        },
+        created(){
+
         }
     }
 </script>
@@ -164,6 +257,29 @@
     .l-block{
         padding-left: 20px;
         .l-block-body{
+            .l-month-select{
+                border-bottom: 1px solid #f1f1f1;
+                padding-bottom: 10px;
+                margin-bottom: 10px;
+                ul{
+                    display: flex;
+                    flex-flow: row nowrap;
+                    justify-content: flex-start;
+                    li{
+                        float: left;
+                        cursor: pointer;
+                        border: 1px solid #eee;
+                        border-radius: 3px;
+                        padding: 3px 8px;
+                        margin-right: 10px;
+                        &.active{
+                            color: #fff;
+                            border-color: #293c55;
+                            background-color: #293c55;
+                        }
+                    }
+                }
+            }
             .l-user-wrap{
                 display: flex;
                 flex-flow: row wrap;
