@@ -98,7 +98,16 @@ class PositionController
                 return response()->error('更新失败！同级同名职位已存在.');
             }
 
-            $position->update(['parent_id' => $params['parent_id'], 'department_id' => $params['department_id'], 'name' => $params['name'], 'desiring' => $params['desiring'], 'jd' => $params['jd']]);
+            $position->update([
+                'parent_id' => $params['parent_id'],
+                'department_id' => $params['department_id'],
+                'name' => $params['name'],
+                'desiring' => $params['desiring'],
+                'jd' => $params['jd']??'',
+                'basicAbility' => $params['basicAbility']??'',
+                'highAbility' => $params['highAbility']??'',
+                'affordAbility' => $params['affordAbility']??''
+            ]);
         }else{ // 新增
             if( !$user->can('hr add positions')){
                 return response()->error('没有权限!', 4012);
@@ -109,10 +118,26 @@ class PositionController
                 return response()->error('添加失败！同级同名职位已存在.');
             }
             if(!$params['parent_id']){//根节点
-                $root = Position::create(['name' => $params['name'], 'department_id' => $params['department_id'],  'desiring' => $params['desiring'],  'jd' => $params['jd']]);
+                $root = Position::create([
+                    'name' => $params['name'],
+                    'department_id' => $params['department_id'],
+                    'desiring' => $params['desiring'],
+                    'jd' => $params['jd']??'',
+                    'basicAbility' => $params['basicAbility']??'',
+                    'highAbility' => $params['highAbility']??'',
+                    'affordAbility' => $params['affordAbility']??''
+                ]);
             }else{//非根节点
                 $parent = Position::find($params['parent_id']);
-                $child = Position::create(['name' => $params['name'], 'department_id' => $params['department_id'], 'desiring' => $params['desiring'],  'jd' => $params['jd']]);
+                $child = Position::create([
+                    'name' => $params['name'],
+                    'department_id' => $params['department_id'],
+                    'desiring' => $params['desiring'],
+                    'jd' => $params['jd']??'',
+                    'basicAbility' => $params['basicAbility']??'',
+                    'highAbility' => $params['highAbility']??'',
+                    'affordAbility' => $params['affordAbility']??''
+                ]);
                 $child->makeChildOf($parent);
             }
         }

@@ -21,6 +21,9 @@ class CreateSniperEmployeePositionTable extends Migration
             $table->nestedSet();
             $table->integer('desiring')->comment('所需员工数')->default(0);
             $table->text('jd')->nullable()->comment('工作描述');
+            $table->text('basicAbility')->nullable()->comment('基本技能要求');
+            $table->text('highAbility')->nullable()->comment('高级技能要求');
+            $table->text('affordAbility')->nullable()->comment('胜任能力要求');
             $table->nullableTimestamps();
             $table->softDeletes();
         });

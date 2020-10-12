@@ -23,8 +23,17 @@
                     <el-form-item label="所需员工数">
                         <el-input v-model="form.desiring"></el-input>
                     </el-form-item>
-                    <el-form-item label="工作描述">
+                    <el-form-item label="职位描述">
                         <el-input type="textarea" v-model="form.jd"></el-input>
+                    </el-form-item>
+                    <el-form-item label="基本技能要求">
+                        <el-input type="textarea" v-model="form.basicAbility"></el-input>
+                    </el-form-item>
+                    <el-form-item label="高级技能要求">
+                        <el-input type="textarea" v-model="form.highAbility"></el-input>
+                    </el-form-item>
+                    <el-form-item label="胜任能力要求">
+                        <el-input type="textarea" v-model="form.affordAbility"></el-input>
                     </el-form-item>
                 </el-form>
             </div>
@@ -58,7 +67,10 @@
                     department_id: null,
                     parent_id: null,
                     desiring: '',
-                    jd: ''
+                    jd: '',
+                    basicAbility: '',
+                    highAbility: '',
+                    affordAbility: '',
                 },
                 departments: [],
                 positions: []
@@ -79,6 +91,9 @@
                 this.form.parent_id = position.parent_id
                 this.form.desiring = position.desiring
                 this.form.jd = position.jd
+                this.form.basicAbility = position.basicAbility
+                this.form.highAbility = position.highAbility
+                this.form.affordAbility = position.affordAbility
             },
             async getPositionDetail(id){
                 let {data} = await api.sniperGetPositionDetail({id});

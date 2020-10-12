@@ -20,6 +20,7 @@
 							v-loading="loading"
 							:data="position.children"
 							empty-text="暂无下级职位"
+							border
 							style="width: 100%">
 						<el-table-column
 								prop="id"
