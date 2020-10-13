@@ -11,9 +11,10 @@ try {
     // window.$ = window.jQuery = require('jquery');
 
     require('bootstrap/dist/css/bootstrap.min.css')
+    require('font-awesome/css/font-awesome.min.css')
     // require('normalize.css')
     require('swiper/dist/css/swiper.min.css')
-    // window.Swiper = require('swiper/js/swiper')
+    window.Swiper = require('swiper/dist/js/swiper')
     // require('animate.css')
 } catch (e) {}
 

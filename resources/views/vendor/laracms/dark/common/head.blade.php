@@ -20,7 +20,7 @@
 
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon"/>
     {{--<link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">--}}
-    <link href="https://cdn.bootcdn.net/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    {{--<link href="https://cdn.bootcdn.net/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">--}}
     {{--<link href="https://cdn.bootcdn.net/ajax/libs/Swiper/4.5.0/css/swiper.min.css" rel="stylesheet">--}}
     <link rel="stylesheet" media="screen" href="/vendor/laracms/dark/front.css" />
     @stack('css')
