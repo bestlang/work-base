@@ -96,8 +96,11 @@ class DingTalkController
         }
     }
 
-    public function _getLeaves($userId, $month)
+    public function _getLeaves($userIds, $month)
     {
+        if(!is_array($userIds)){
+            $userIds = [$userIds];
+        }
         //未指定 本月
         $start = strtotime(date('Y-m-01')) * 1000;
         $end = ( strtotime(date('Y-m-t')) + 86400 ) * 1000;
@@ -106,7 +109,11 @@ class DingTalkController
             $start = strtotime(date($month.'-01')) * 1000;
             $end = ( strtotime(date($month.'-t')) + 86400 ) * 1000;
         }
-        $leaves = Leave::where('userId', $userId)->where(function ($query)use($start, $end){
+        $query = Leave::query();
+        if(count($userIds)){
+            $query = $query->whereIn('userId', $userIds);
+        }
+        $leaves = $query->where(function ($query)use($start, $end){
             $query->where([['end_time', '>', $start], ['end_time', '<=', $end]])->orWhere([['start_time', '>=', $start], ['start_time', '<', $end]]);
         })->get();
         return $leaves;
@@ -185,10 +192,8 @@ class DingTalkController
         $user = DingUser::where('userid', $userId)->first();
         $department = $user->department;
         $userIds = [];
-        $fellow = [];
-        DingUser::where('department', $department)->get()->each(function($user)use(&$userIds, &$fellow){
+        DingUser::where('department', $department)->get()->each(function($user)use(&$userIds){
             $userIds[] = $user->userid;
-            $fellow[$user->userid] = $user->name;
         });
         $weekWorkDays = $this->_weekWorkDay($month);
         $grp = [];
@@ -198,14 +203,14 @@ class DingTalkController
             $grp[$at->userId][$at->ymd][] = $at->userCheckTime/1000;
         }
         $udt = [];
-        $leaves = $this->_getLeaves($userId, $month);
+        $leaves = $this->_getLeaves($userIds, $month);
         $hit = [];
         foreach ($leaves as $leave){
-            $hit[date('Y-m-d', $leave['start_time']/1000)] = 1;
+            $hit[$leave->userid][date('Y-m-d', $leave['start_time']/1000)] = 1;
         }
         foreach ($grp as $_userId => $daily){
             foreach ($daily as $day => $data){
-                if(isset($hit[$day])){//关联了请假
+                if(isset($hit[$_userId][$day])){//关联了请假
                     $udt[$_userId][$this->_nthWeek($day)][$day]  = 9 * 60 * 60;
                 }else if(isset($data[0]) && isset($data[1])) {
                     $udt[$_userId][$this->_nthWeek($day)][$day] = abs($data[1] - $data[0]);
@@ -248,6 +253,74 @@ class DingTalkController
         });
         return response()->ajax($res);
     }
+    public function departmentsWeekAvg(Request $request)
+    {
+        if(auth()->user()->cant('hr attendance')){
+            return response()->error('没有权限!', 4012);
+        }
+        $month = $request->input('month');
+        if(!$month){
+            $month = date('Y-m');
+        }
+        $departments = DingDepartment::with(['subs', 'users'])->has('users')->get()->filter(function($department){
+            return !count($department->subs);
+        });
+        $leaves = $this->_getLeaves([], $month);
+        $hit = [];
+        foreach ($leaves as $leave){
+            $hit[$leave->userid][date('Y-m-d', $leave['start_time']/1000)] = 1;
+        }
+        $weekWorkDays = $this->_weekWorkDay($month);
+        $res = [];
+        $departmentNames = [];
+        foreach ($departments as $department){
+            $departmentNames[] = $department->name;
+            $userIds = $department->users->map(function($user){
+                return $user->userid;
+            });
+            $grp = [];
+            $attendances = DB::connection('proxy')->table('sniper_employee_ding_attendance')->where('ymd', 'like', $month.'%')->whereIn('userId', $userIds)->get();
+            foreach ($attendances as $at){
+                $grp[$at->userId][$at->ymd][] = $at->userCheckTime/1000;
+            }
+            $udt = [];
+            foreach ($grp as $_userId => $daily){
+                foreach ($daily as $day => $data){
+                    if(isset($hit[$_userId][$day])){//关联了请假
+                        $udt[$_userId][$this->_nthWeek($day)][$day]  = 9 * 60 * 60;
+                    }else if(isset($data[0]) && isset($data[1])) {
+                        $udt[$_userId][$this->_nthWeek($day)][$day] = abs($data[1] - $data[0]);
+                    }
+                }
+            }
+            $temp = [];
+            foreach ($udt as $_userId => $data){
+                foreach ($data as $nth => $val){
+                    $b = min(count($val),$weekWorkDays[$nth]);
+                    $h = $b ? round(array_sum($val) / ($b * 60 * 60) - 1, 2) : 0;
+                    $temp[$_userId][$nth] = $h;
+                }
+            }
+
+            collect([1,2,3,4,5,6])->each(function($i)use($temp, &$res){
+                $sum = 0;
+                $count = 0;
+                foreach ($temp as $_uid => $v){
+                    $sum += isset($v[$i]) ? $v[$i] : 0;
+                    if(isset($v[$i]) && $v[$i]){
+                        $count += 1;
+                    }
+                }
+                $depVal = $count ? round($sum / $count, 2) : 0;
+                if(!isset($res[$i]) || !count($res[$i])){
+                    $res[$i][] = '第'.$i.'周';
+                }
+                $res[$i][] = $depVal;
+            });
+        }
+        return response()->ajax(['departmentNames' => $departmentNames, 'values' => array_values($res)]);
+    }
+
 
     public function user(Request $request)
     {

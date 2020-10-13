@@ -59,7 +59,7 @@
                 lateUser: [],
                 earlyUsers: [],
                 holidayUsers: [],
-                notSignedUsers: []
+                notSignedUsers: [],
             }
         },
         watch:{
@@ -68,6 +68,7 @@
             },
             async month(val){
                 await this.getDepartmentUsers(this.department)
+                await this.getDepartmentWeekAvgAttendance()
             },
             eventCat(val){
                 this.assignUsers(val)
@@ -93,23 +94,6 @@
             viewCat(el){
                 this.eventCat = el.target.innerText
             },
-            // disp(user){
-            //     let result = user.result
-            //     if(this.eventCat == '所有'){
-            //         return true
-            //     }else if(result){
-            //         if(this.eventCat == '迟到' && result.Late){
-            //             return true
-            //         }else if(this.eventCat == '早退' && result.Early){
-            //             return true
-            //         }else if(this.eventCat == '请假' && user.leave && user.leave.length){
-            //             return true
-            //         }else if(this.eventCat == '缺卡' && result.NotSigned){
-            //             return true
-            //         }
-            //     }
-            //     return false
-            // },
             resultHtml(user){
                 let result = user.result
                 let html = ''
@@ -223,10 +207,7 @@
                 })
                 this.assignUsers(this.eventCat)
                 //console.log("lastArr:"+JSON.stringify(lateUsers))
-            }
-        },
-        created(){
-
+            },
         }
     }
 </script>
