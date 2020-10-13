@@ -1,6 +1,6 @@
 <?php
 
-Route::get('/cms', 'IndexController@index');
+Route::get('/cms', 'IndexController@index')->name('cms');
 Route::get('/about', 'IndexController@about');
 Route::get('/contact', 'IndexController@contact');
 Route::get('/content/{id}', 'ContentController@index')->name('content');
