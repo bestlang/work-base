@@ -166,7 +166,7 @@ class DingTalk
             $options = [RequestOptions::JSON => $attr];
             $response = $client->request('POST', $url,  $options);
             $content = $response->getBody()->getContents();
-            print_r(json_decode($content)['result']);
+            print_r(json_decode($content)->result);
         }
     }
 }
