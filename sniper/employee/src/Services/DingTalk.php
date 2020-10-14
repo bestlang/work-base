@@ -169,10 +169,10 @@ class DingTalk
             $content = $response->getBody()->getContents();
             foreach(json_decode($content)->result as $user){
                 if($user->status == 2){
-                    $offJobUserIds[] = "'".$user->userid."'";
+                    $offJobUserIds[] = $user->userid;
                 }
             }
         }
-        DB::connection('proxy')->table('sniper_employee_ding_users')->whereIn('userid', $offJobUserIds)->update(['onJob', 0]);
+        DB::connection('proxy')->table('sniper_employee_ding_users')->whereIn('userid', implode(',', $offJobUserIds))->update(['onJob', 0]);
     }
 }
