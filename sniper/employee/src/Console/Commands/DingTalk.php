@@ -244,6 +244,13 @@ class DingTalk extends Command
 //                echo json_encode(Arr::flatten($leave_status));
             }else if($act == 'offJob'){
                 $ding->_offJob();
+            }else if($act == 'updateUser'){
+                $ding->_updateUser(
+                    [
+                        'userid' => '542706561157841',
+                        'name' => '路之章'
+                    ]
+                );
             }
 //            else if($act == 'test'){
 //                $leaves = DingDepartment::with('subs')->get()->filter(function($dep){

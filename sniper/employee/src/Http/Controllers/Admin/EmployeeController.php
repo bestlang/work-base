@@ -48,12 +48,9 @@ class EmployeeController
             'position_id' => 'required|numeric',
             'real_name' => 'required',
             'gender' => 'numeric|required',
-            //'avatar' => 'nullable',
             'phone' => 'required|phone',
             'id_card' => 'required',
             'email' => 'required|email',
-            //'password' => 'nullable',
-            //'emergency' => 'nullable',
             'emergency_phone' => 'nullable|phone',
             //教育信息
             'educationHistory.*.start_time' => 'required',
