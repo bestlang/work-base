@@ -23,7 +23,6 @@
         "jellybool/flysystem-upyun": "^1.0",
         "laravel/framework": "5.8.*",
         "laravel/tinker": "^1.0",
-        "league/omnipay": "^3.0",
         "mpociot/laravel-apidoc-generator": "^3.9",
         "overtrue/laravel-wechat": "~5.0",
         "sniper/employee": "dev-master",
