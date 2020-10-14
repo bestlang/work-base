@@ -10,10 +10,11 @@ try {
     // window.Popper = require('popper.js').default;
     // window.$ = window.jQuery = require('jquery');
 
-    // require('bootstrap/dist/css/bootstrap.min.css')
+    require('bootstrap/dist/css/bootstrap.min.css')
+    require('font-awesome/css/font-awesome.min.css')
     // require('normalize.css')
-    // require('swiper/css/swiper.min.css')
-    // window.Swiper = require('swiper/js/swiper')
+    require('swiper/dist/css/swiper.min.css')
+    window.Swiper = require('swiper/dist/js/swiper')
     // require('animate.css')
 } catch (e) {}
 

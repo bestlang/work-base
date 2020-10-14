@@ -19,25 +19,17 @@
     <meta name="csrf-token" content="{{csrf_token()}}">
 
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon"/>
-    <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdn.bootcdn.net/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-    <link href="https://cdn.bootcdn.net/ajax/libs/Swiper/4.5.0/css/swiper.min.css" rel="stylesheet">
-    <link rel="stylesheet" media="screen" href="/vendor/laracms/dark/common.css" />
+    {{--<link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">--}}
+    {{--<link href="https://cdn.bootcdn.net/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">--}}
+    {{--<link href="https://cdn.bootcdn.net/ajax/libs/Swiper/4.5.0/css/swiper.min.css" rel="stylesheet">--}}
     <link rel="stylesheet" media="screen" href="/vendor/laracms/dark/front.css" />
-
-    <link rel="stylesheet" href="//at.alicdn.com/t/font_1104524_z1zcv22ej09.css">
     @stack('css')
     <!--[if lt IE 9]>
     <script src="https://cdn.bootcdn.net/ajax/libs/html5shiv/3.6.2/html5shiv.js"></script>
     <script src="https://cdn.bootcdn.net/ajax/libs/respond.js/1.4.0/respond.min.js"></script>
     <![endif]-->
     <script src="/vendor/laracms/dark/app.js"></script>
-    <style>
-        .l-content-title{
-            font-size: 24px;
-            line-height: 150%;
-        }
-    </style>
+
 </head>
 <body class="group-page">
 <header class="header">
@@ -51,7 +43,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="/"><img src="/logo.png" width="180" alt="LaraCMS"></a>
+                <a class="navbar-brand" href="{{route('cms')}}"><img src="/logo.png" width="180" alt="LaraCMS"></a>
             </div>
 
             <div class="collapse navbar-collapse" id="navbar-collapse">
@@ -59,7 +51,7 @@
                     <!--如果你需要自定义NAV,可使用channellist标签来完成,这里只设置了2级,如果显示无限级,请使用cms:nav标签-->
                     <!--判断是否有子级或高亮当前栏目-->
                     <li class="">
-                        <a href="/">首页</a>
+                        <a href="{{route('cms')}}">首页</a>
                         <ul class="dropdown-menu" role="menu">
                         </ul>
                     </li>

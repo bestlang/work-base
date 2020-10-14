@@ -107,10 +107,6 @@
     #comment_submit{
         margin-top: 10px;
     }
-    .l-content-title{
-        font-size: 30px;
-        margin-bottom: 20px;
-    }
     .swiper-container {
         width: 100%;
         height: 640px;
