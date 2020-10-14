@@ -19,6 +19,7 @@
                     </div>
                     <div class="l-user-wrap">
                             <div v-for="(user, index) in specUsers" :key="index" class="l-user" @click="viewDetail(user)">
+                                <div v-if="!user.onJob" style="position: absolute;top:0;left:0;width: 100%;height: 100%;background: rgba(255,255,255,0.7);"></div>
                                 <div style="border-bottom: 1px solid #f1f1f1;padding-bottom: 10px;">
                                 <div><p>{{user.name}}</p><small style="color: #fff;display: none;">{{user.userid}}</small></div>
                                 <div><small style="color: #afafaf">{{user.orgEmail ? user.orgEmail : '-'}}</small></div>
@@ -266,6 +267,7 @@
                 flex-flow: row wrap;
                 justify-content: flex-start;
                 .l-user{
+                    position: relative;
                     cursor: pointer;
                     width: 220px;
                     height: 140px;
