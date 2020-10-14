@@ -149,4 +149,18 @@ class DingTalk
         $content = $response->getBody()->getContents();
         return json_decode($content);
     }
+
+    public function _offJob($userIdList = [])
+    {
+        $access_token = $this->_getAccessToken();
+        $client = new Client();
+        $url = "https://oapi.dingtalk.com/topapi/smartwork/hrm/employee/listdimission?access_token={$access_token}";
+        $attr = [
+            'userid_list' => implode(',', ['0545575937846583', '083109455227476553']),
+        ];
+        $options = [RequestOptions::JSON => $attr];
+        $response = $client->request('POST', $url,  $options);
+        $content = $response->getBody()->getContents();
+        return json_decode($content);
+    }
 }

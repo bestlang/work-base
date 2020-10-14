@@ -244,6 +244,8 @@ class DingTalk extends Command
             }else if($act == 'onJobUsers'){
                 $onJobUsers = $ding->_onJobUsers();
                 print_r($onJobUsers);
+                $offJob = $ding->_offJob();
+                print_r($offJob);
             }else if($act == 'test'){
 //                $leaves = DingDepartment::with('subs')->get()->filter(function($dep){
 //                    return !count($dep->subs);
