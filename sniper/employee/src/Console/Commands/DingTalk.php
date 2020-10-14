@@ -118,6 +118,7 @@ class DingTalk extends Command
                         ]);
                     }
                 }
+                $ding->_offJob();
             }else if($act == 'departments'){
                 $departments = $ding->departments();
                 $rawDepartments = $departments['rawDepartments'];
