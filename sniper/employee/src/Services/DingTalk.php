@@ -158,6 +158,7 @@ class DingTalk
         $url = "https://oapi.dingtalk.com/topapi/smartwork/hrm/employee/listdimission?access_token={$access_token}";
         $userIds = DB::connection('proxy')->table('sniper_employee_ding_users')->pluck('userid')->toArray();
         $offset = 0;
+        $result = [];
         while($s = array_slice($userIds, $offset, 20)){
             $offset += 20;
             $attr = [
@@ -166,7 +167,12 @@ class DingTalk
             $options = [RequestOptions::JSON => $attr];
             $response = $client->request('POST', $url,  $options);
             $content = $response->getBody()->getContents();
-            print_r(json_decode($content)->result);
+            foreach(json_decode($content)->result as $user){
+                if($user->status == 2){
+                    $result[] = $user->userid;
+                }
+            }
         }
+        return $result;
     }
 }
