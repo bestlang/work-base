@@ -19,16 +19,14 @@
     <meta name="csrf-token" content="{{csrf_token()}}">
 
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon"/>
-    {{--<link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">--}}
-    {{--<link href="https://cdn.bootcdn.net/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">--}}
-    {{--<link href="https://cdn.bootcdn.net/ajax/libs/Swiper/4.5.0/css/swiper.min.css" rel="stylesheet">--}}
+    <script src="/vendor/laracms/dark/app.js"></script>
     <link rel="stylesheet" media="screen" href="/vendor/laracms/dark/front.css" />
     @stack('css')
     <!--[if lt IE 9]>
     <script src="https://cdn.bootcdn.net/ajax/libs/html5shiv/3.6.2/html5shiv.js"></script>
     <script src="https://cdn.bootcdn.net/ajax/libs/respond.js/1.4.0/respond.min.js"></script>
     <![endif]-->
-    <script src="/vendor/laracms/dark/app.js"></script>
+
 
 </head>
 <body class="group-page">

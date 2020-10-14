@@ -50,27 +50,6 @@
         </div>
     </div>
 </footer>
-
-<div id="floatbtn">
-    <!-- S 浮动按钮 -->
-    <a id="back-to-top" class="hover" href="javascript:;">
-        <i class="iconfont icon-backtotop"></i>
-        <em>返回<br>顶部</em>
-    </a>
-    <!-- E 浮动按钮 -->
-</div>
-
-
-{{--<script type="text/javascript" src="https://cdn.demo.fastadmin.net/assets/libs/jquery/dist/jquery.min.js"></script>--}}
-<script src="https://cdn.bootcdn.net/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-{{--<script type="text/javascript" src="https://cdn.demo.fastadmin.net/assets/libs/bootstrap/dist/js/bootstrap.min.js"></script>--}}
-<script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js"></script>
-{{--<script type="text/javascript" src="https://cdn.demo.fastadmin.net/assets/libs/fastadmin-layer/dist/layer.js"></script>--}}
-{{--<script type="text/javascript" src="https://cdn.demo.fastadmin.net/assets/libs/art-template/dist/template-native.js"></script>--}}
-{{--<script type="text/javascript" src="https://cdn.demo.fastadmin.net/assets/addons/cms/js/jquery.autocomplete.js"></script>--}}
-{{--<script type="text/javascript" src="https://cdn.demo.fastadmin.net/assets/addons/cms/js/swiper.min.js"></script>--}}
-<script src="https://cdn.bootcdn.net/ajax/libs/Swiper/4.5.0/js/swiper.min.js"></script>
-{{--<script src="https://cdn.bootcdn.net/ajax/libs/axios/0.19.2/axios.min.js"></script>--}}
 @stack('script')
 </body>
 </html>
