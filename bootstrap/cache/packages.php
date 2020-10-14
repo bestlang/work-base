@@ -66,13 +66,6 @@
       0 => 'JellyBool\\Flysystem\\Upyun\\UpyunServiceProvider',
     ),
   ),
-  'jeroen-g/laravel-packager' => 
-  array (
-    'providers' => 
-    array (
-      0 => 'JeroenG\\Packager\\PackagerServiceProvider',
-    ),
-  ),
   'laravel/tinker' => 
   array (
     'providers' => 
