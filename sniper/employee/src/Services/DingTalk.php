@@ -173,6 +173,6 @@ class DingTalk
                 }
             }
         }
-        DB::connection('proxy')->table('sniper_employee_ding_users')->whereIn('userid', implode(',', $offJobUserIds))->update(['onJob', 0]);
+        DB::connection('proxy')->table('sniper_employee_ding_users')->whereRaw('userid in ('.implode(',', $offJobUserIds).')')->update(['onJob', 0]);
     }
 }
