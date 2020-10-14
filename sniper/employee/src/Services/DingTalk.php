@@ -156,7 +156,7 @@ class DingTalk
         $client = new Client();
         $url = "https://oapi.dingtalk.com/topapi/smartwork/hrm/employee/listdimission?access_token={$access_token}";
         $attr = [
-            'userid_list' => implode(',', ['062607220030018250','0545575937846583']),
+            'userid_list' => implode(',', ['162861094026248386','062607220030018250','0545575937846583']),
         ];
         $options = [RequestOptions::JSON => $attr];
         $response = $client->request('POST', $url,  $options);
