@@ -4,6 +4,7 @@ namespace Sniper\Employee\Services;
 use GuzzleHttp\Client;
 use GuzzleHttp\RequestOptions;
 use Sniper\Employee\Models\DingTalk\Department as DingDepartment;
+use DB;
 
 class DingTalk
 {
@@ -155,12 +156,17 @@ class DingTalk
         $access_token = $this->_getAccessToken();
         $client = new Client();
         $url = "https://oapi.dingtalk.com/topapi/smartwork/hrm/employee/listdimission?access_token={$access_token}";
-        $attr = [
-            'userid_list' => implode(',', ['162861094026248386','062607220030018250','0545575937846583']),
-        ];
-        $options = [RequestOptions::JSON => $attr];
-        $response = $client->request('POST', $url,  $options);
-        $content = $response->getBody()->getContents();
-        return json_decode($content);
+        $userIds = DB::connection('proxy')->table('sniper_employee_ding_users')->pluck('userid')->toArray();
+        $offset = 0;
+        while($s = array_slice($userIds, $offset, 20)){
+            $offset += 20;
+            $attr = [
+                'userid_list' => implode(',', $s)
+            ];
+            $options = [RequestOptions::JSON => $attr];
+            $response = $client->request('POST', $url,  $options);
+            $content = $response->getBody()->getContents();
+            print_r(json_decode($content)['result']);
+        }
     }
 }
