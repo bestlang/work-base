@@ -118,7 +118,6 @@ class DingTalk
         $client = new Client();
         $url = "https://oapi.dingtalk.com/topapi/attendance/getleavestatus?access_token={$access_token}";
         $options = [RequestOptions::JSON => compact(['userid_list', 'start_time', 'end_time', 'offset', 'size'])];
-        echo json_encode($options);
         $response = $client->request('POST', $url,  $options);
         $content = $response->getBody()->getContents();
         return json_decode($content);
@@ -135,4 +134,19 @@ class DingTalk
         return json_decode($content);
     }
 
+    public function _onJobUsers()
+    {
+        $access_token = $this->_getAccessToken();
+        $client = new Client();
+        $url = "https://oapi.dingtalk.com/topapi/smartwork/hrm/employee/queryonjob?access_token={$access_token}";
+        $attr = [
+            'status_list' => '2,3,5,-1',
+            'offset' => 0,
+            'size' => 50
+        ];
+        $options = [RequestOptions::JSON => $attr];
+        $response = $client->request('POST', $url,  $options);
+        $content = $response->getBody()->getContents();
+        return json_decode($content);
+    }
 }

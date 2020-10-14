@@ -241,6 +241,9 @@ class DingTalk extends Command
                     ]);
                 }
 //                echo json_encode(Arr::flatten($leave_status));
+            }else if($act == 'onJobUsers'){
+                $onJobUsers = $ding->_onJobUsers();
+                print_r($onJobUsers);
             }else if($act == 'test'){
 //                $leaves = DingDepartment::with('subs')->get()->filter(function($dep){
 //                    return !count($dep->subs);
