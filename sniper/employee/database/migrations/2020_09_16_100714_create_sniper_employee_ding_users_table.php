@@ -41,6 +41,7 @@ class CreateSniperEmployeeDingUsersTable extends Migration
             $table->string('stateCode')->nullable();
             $table->string('position')->nullable();
             $table->string('roles')->nullable();// array cast to string
+            $table->tinyInteger('onJob')->default(1);
             $table->nullableTimestamps();
         });
     }
