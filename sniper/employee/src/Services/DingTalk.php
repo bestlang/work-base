@@ -169,7 +169,7 @@ class DingTalk
             $content = $response->getBody()->getContents();
             foreach(json_decode($content)->result as $user){
                 if($user->status == 2){
-                    $offJobUserIds[] = $user->userid;
+                    $offJobUserIds[] = `'`.$user->userid.`'`;
                 }
             }
         }
