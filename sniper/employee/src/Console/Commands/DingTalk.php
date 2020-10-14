@@ -245,12 +245,13 @@ class DingTalk extends Command
             }else if($act == 'offJob'){
                 $ding->_offJob();
             }else if($act == 'updateUser'){
-                $ding->_updateUser(
+                $res = $ding->_updateUser(
                     [
                         'userid' => '542706561157841',
                         'name' => '路之章'
                     ]
                 );
+                print_r($res);
             }
 //            else if($act == 'test'){
 //                $leaves = DingDepartment::with('subs')->get()->filter(function($dep){

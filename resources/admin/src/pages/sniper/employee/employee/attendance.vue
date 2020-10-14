@@ -69,7 +69,6 @@
             },
             async month(val){
                 await this.getDepartmentUsers(this.department)
-                await this.getDepartmentWeekAvgAttendance()
             },
             eventCat(val){
                 this.assignUsers(val)
