@@ -150,13 +150,13 @@ class DingTalk
         return json_decode($content);
     }
 
-    public function _offJob($userIdList = [])
+    public function _offJob()
     {
         $access_token = $this->_getAccessToken();
         $client = new Client();
         $url = "https://oapi.dingtalk.com/topapi/smartwork/hrm/employee/listdimission?access_token={$access_token}";
         $attr = [
-            'userid_list' => implode(',', ['0545575937846583', '083109455227476553']),
+            'userid_list' => implode(',', ['062607220030018250','0545575937846583']),
         ];
         $options = [RequestOptions::JSON => $attr];
         $response = $client->request('POST', $url,  $options);

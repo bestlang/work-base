@@ -241,22 +241,21 @@ class DingTalk extends Command
                     ]);
                 }
 //                echo json_encode(Arr::flatten($leave_status));
-            }else if($act == 'onJobUsers'){
-                $onJobUsers = $ding->_onJobUsers();
-                print_r($onJobUsers);
-                $offJob = $ding->_offJob();
-                print_r($offJob);
-            }else if($act == 'test'){
+            }else if($act == 'offJob'){
+                $offJobUsers = $ding->_offJob();
+                print_r($offJobUsers);
+            }
+//            else if($act == 'test'){
 //                $leaves = DingDepartment::with('subs')->get()->filter(function($dep){
 //                    return !count($dep->subs);
 //                });
 //                print_r($leaves->toArray());
-                $depMap = [];
-                DB::connection('proxy')->table('sniper_employee_ding_users')->get()->each(function($user)use(&$depMap){
-                    $depMap[$user->userid] = $user->department;
-                });
-                print_r($depMap);
-            }
+//                $depMap = [];
+//                DB::connection('proxy')->table('sniper_employee_ding_users')->get()->each(function($user)use(&$depMap){
+//                    $depMap[$user->userid] = $user->department;
+//                });
+//                print_r($depMap);
+//            }
 //            else if($act == 'workType'){//智能判断一天是否为法定工作日/法定休息日
 //                 $temp = DB::connection('proxy')->table('sniper_employee_ding_attendance')
 //                     ->select(DB::raw('`ymd`, count(1) as ct'))
