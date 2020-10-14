@@ -36,9 +36,9 @@
     </div>
 </template>
 <script>
-    import api from '../../api/index'
+    import api from 'sysApi'
     import {mapGetters} from 'vuex'
-    import types from '../../store/types'
+    import types from 'sysType'
 
     export default {
       data() {

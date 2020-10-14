@@ -40,7 +40,7 @@
 
 </template>
 <script>
-  import api from '../api'
+  import api from 'sysApi'
   import Vue from 'vue'
   import { Loading } from 'element-ui'
   import ECharts from 'vue-echarts' // refers to components/ECharts.vue in webpack

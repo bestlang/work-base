@@ -34,7 +34,7 @@
     </div>
 </template>
 <script>
-    import api from '../../../api/index'
+    import api from 'sysApi'
     import pager from "@/components/pager"
 
     export default {

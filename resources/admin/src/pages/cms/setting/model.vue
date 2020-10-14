@@ -92,7 +92,7 @@
 </template>
 
 <script>
-  import api from '../../../api/index'
+  import api from 'sysApi'
   export default {
     data(){
       return {

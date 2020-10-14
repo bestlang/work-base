@@ -49,7 +49,7 @@
 <script>
     import DepartmentTree from "../components/DepartmentTree"
     import TreeSelect from '@riophae/vue-treeselect'
-    import api from "@/api/index"
+    import api from "sysApi"
     import '@riophae/vue-treeselect/dist/vue-treeselect.css'
 
 	export default {

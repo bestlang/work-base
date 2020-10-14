@@ -25,10 +25,10 @@
 
 <script type="text/javascript">
 
-import api from "../api/index"
-import config from "../../config/prod.env"
+import api from "sysApi"
+import {mapGetters} from 'vuex'
 import Cookies from 'js-cookie'
-import types from '../store/types'
+import types from 'sysType'
 
 export default {
     data(){
@@ -45,12 +45,13 @@ export default {
         }
     },
     computed:{
-        appName(){
-            return config.APP_NAME
-        },
+        // appName(){
+        //     return config.APP_NAME
+        // },
         accessToken(){
             return this.$store.getters.accessToken
-        }
+        },
+        ...mapGetters(['appName'])
     },
     watch:{
         accessToken(newVal){

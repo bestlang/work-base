@@ -91,9 +91,7 @@
 <script>
     import $router from "@/router"
     import cell from "./cell"
-    import api from "../../api/index"
     import {mapGetters} from 'vuex'
-    import config from "../../../config/prod.env"
 
     export default {
       components:{
@@ -106,13 +104,9 @@
           }
       },
       computed:{
-          appName(){
-              return config.APP_NAME
-          },
-          appShortName(){
-              return config.APP_SHORT_NAME
-          },
           ...mapGetters([
+              'appName',
+              'appShortName',
               'isCollapse',
               'privileges',
               'csrf'

@@ -30,7 +30,7 @@
 </template>
 <script>
     import DepartmentTree from "../components/DepartmentTree"
-    import api from "@/api/index"
+    import api from "sysApi"
 
     export default {
         components: { DepartmentTree },

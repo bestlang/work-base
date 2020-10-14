@@ -1,6 +1,5 @@
-import  types from './types'
-import api from '../api'
-import Vue from 'vue'
+import  types from 'sysType'
+import api from 'sysApi'
 
 const privilegeConfig = {
   state: {

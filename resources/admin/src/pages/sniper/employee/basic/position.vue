@@ -61,7 +61,7 @@
 
 <script>
     import PositionTree from "../components/PositionTree"
-    import api from '@/api/index'
+    import api from 'sysApi'
 
 	export default {
         components: { PositionTree },

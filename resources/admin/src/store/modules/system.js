@@ -1,13 +1,13 @@
-import types from './types'
-import api from '../api'
-import { getPrefix } from '../api/util'
+import types from 'sysType'
+import api from 'sysApi'
+import { getPrefix } from 'sysApi/util'
 import Cookies from 'js-cookie'
 
 
 const systemConfig = {
   state: {
-    appName: 'LARACMS',
-    appShortName: 'LC',
+    appName: '思纳福',
+    appShortName: 'SN',
     user: {},
     isCollapse: false,
     csrf: null,

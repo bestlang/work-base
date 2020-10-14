@@ -1,5 +1,5 @@
-import * as types from './types'
-import api from '../api/index'
+import types from 'sysType'
+import api from 'sysApi'
 
 const cmsConfig = {
   state: {

@@ -76,3 +76,6 @@ try 使用带参数的中间来验证管理员 role:administrator
 
 修改app\Http\Middleware\RedirectIfAuthenticated.php里面跳转到/home的代码为/ 
 app\Http\Middleware\VerifyCsrfToken.php 加入微信支付宝回调排除
+
+
+php artisan queue:work --queue=updateDingTalkUser

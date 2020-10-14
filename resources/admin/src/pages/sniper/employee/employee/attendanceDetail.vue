@@ -76,7 +76,7 @@
     // register component to use
     Vue.component('v-chart', ECharts)
 
-    import api from "../../../../api/index"
+    import api from "sysApi"
 
     export default {
         data(){
@@ -283,7 +283,6 @@
                     this.erase()
                     await this.getUserAttendance(this.userId)
                     await this.getWeekAvgAttendance()
-                    await this.getDepartmentWeekAvgAttendance()
                 }
             }
         },
@@ -501,7 +500,6 @@
             }
             await this.getDepartmentUsers()
             await this.getWeekAvgAttendance()
-            // await this.getDepartmentWeekAvgAttendance()
         }
     }
 </script>

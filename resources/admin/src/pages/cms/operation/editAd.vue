@@ -104,7 +104,7 @@
     import ueditorConfig from "../../../store/ueditor";
     import imageUpload from "@/components/imageUpload"
     import attachment from "@/components/attachment"
-    import api from '../../../api/index'
+    import api from 'sysApi'
     import {formatDateTime} from "../../../api/util"
 
     export default {

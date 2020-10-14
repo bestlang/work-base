@@ -42,7 +42,7 @@
 </template>
 
 <script>
-    import api from '@/api/index'
+    import api from 'sysApi'
     import TreeSelect from '@riophae/vue-treeselect'
     import '@riophae/vue-treeselect/dist/vue-treeselect.css'
 
