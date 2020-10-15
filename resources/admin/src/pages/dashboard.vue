@@ -1,31 +1,31 @@
 <template>
   <div>
     <div v-title="'面板'"></div>
-    <el-alert
-            title="提醒"
-            type="warning"
-            style="margin-bottom: 20px;">
-      <div slot="defalut">
-            <p>这里放一些提醒信息</p>
-      </div>
-    </el-alert>
+    <!--<el-alert-->
+            <!--title="提醒"-->
+            <!--type="warning"-->
+            <!--style="margin-bottom: 20px;">-->
+      <!--<div slot="defalut">-->
+            <!--<p>这里放一些提醒信息</p>-->
+      <!--</div>-->
+    <!--</el-alert>-->
     <div>
     </div>
     <el-card class="row-20" shadow="hover">
       <div slot="header" class="clearfix">
-        <span>今日概况</span>
+        <span>出勤概况</span>
       </div>
       <div>
         <el-row :gutter="20">
-          <el-col :span="6"><div class="grid-content" style="background: #4fa8ed">总人数: <h1 style="display: inline">{{today.totalEmployeeCount}}</h1></div></el-col>
-          <el-col :span="6"><div class="grid-content" style="background: #ad97da">出勤:<h1 style="display: inline">{{today.todayAttendanceCount}}</h1></div></el-col>
+          <el-col :span="6"><div class="grid-content" style="background: #4fa8ed"><h1 style="display: inline">{{today.totalEmployeeCount}}</h1>总人数</div></el-col>
+          <el-col :span="6"><div class="grid-content" style="background: #ad97da"><h1 style="display: inline">{{today.todayAttendanceCount}}</h1>今日出勤</div></el-col>
           <el-col :span="6">
             <el-popover
                     placement="top-start"
                     width="200"
                     trigger="hover"
                     :content="today.todayLate.length?today.todayLate.join('\n'):''">
-              <div slot="reference" class="grid-content" style="background: #3fc0c2">迟到:<h1 style="display: inline">{{today.todayLate?today.todayLate.length:''}}</h1></div>
+              <div slot="reference" class="grid-content" style="background: #3fc0c2"><h1 style="display: inline">{{today.todayLate?today.todayLate.length:''}}</h1>今日迟到</div>
             </el-popover>
           </el-col>
           <el-col :span="6">
@@ -34,7 +34,7 @@
                     width="200"
                     trigger="hover"
                     :content="today.NotSigned.length?today.NotSigned.join('\n'):''">
-              <div  slot="reference" class="grid-content" style="background: #f6d33a">缺卡:<h1 style="display: inline">{{today.NotSigned?today.NotSigned.length:''}}</h1></div>
+              <div  slot="reference" class="grid-content" style="background: #f6d33a"><h1 style="display: inline">{{today.NotSigned?today.NotSigned.length:''}}</h1>今日缺卡</div>
             </el-popover>
           </el-col>
         </el-row>
@@ -49,9 +49,9 @@
       </div>
       <v-chart :options="options2" style="width: 100%;height: 600px;"/>
     </el-card>
-    <!--<el-card>-->
-      <!--<v-chart :options="options" style="width: 1200px;height: 600px;display: none;"/>-->
-    <!--</el-card>-->
+    <el-card>
+      <v-chart :options="options3" style="width: 100%;height: 600px;"/>
+    </el-card>
   </div>
 
 </template>
@@ -65,6 +65,7 @@
   import 'echarts/lib/chart/line'
   import 'echarts/lib/chart/bar'
   import 'echarts/lib/component/tooltip'
+  import 'echarts/lib/component/title'
   import 'echarts/lib/component/polar'
   import 'echarts/lib/component/angleAxis'
   import 'echarts/lib/component/legend'
@@ -120,7 +121,7 @@
                     width: '97%',
                 },
                 title: {
-                    text: '出勤对比'
+                    text: '小组平均出勤时间'
                 },
                 tooltip: {},
                 legend: {
@@ -131,8 +132,44 @@
                 },
                 yAxis: {},
                 series: []
+            },
+            options3 : {
+                title: {
+                    text: '本月平均工时<调试中>',
+                    subtext: '2020-10'
+                },
+                tooltip: {
+                    trigger: 'axis',
+                    axisPointer: {
+                        type: 'shadow'
+                    }
+                },
+                legend: {
+                    data: ['月平均工时']
+                },
+                grid: {
+                    left: '3%',
+                    right: '4%',
+                    bottom: '3%',
+                    containLabel: true
+                },
+                xAxis: {
+                    type: 'value',
+                    boundaryGap: [0, 0.01]
+                },
+                yAxis: {
+                    type: 'category',
+                    data: ['巴西', '印尼', '美国', '印度', '中国', '世界人口(万)']
+                },
+                series: [
+                    {
+                        name: '月平均工时',
+                        type: 'bar',
+                        data: [19325, 23438, 31000, 121594, 134141, 681807]
+                    }
+                ]
             }
-        }
+    }
     },
     components: {
     },

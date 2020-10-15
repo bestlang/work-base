@@ -16,7 +16,7 @@
     export default {
         data(){
             return {
-                defaultPage: '/'
+                defaultPage: '/dashboard'
             }
         },
         computed: {
