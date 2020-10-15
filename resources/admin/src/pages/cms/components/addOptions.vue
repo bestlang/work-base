@@ -39,13 +39,6 @@
         }
       }
     },
-    // created() {
-    //   if(this.initOptions.length>0){
-    //     this.options = this.initOptions
-    //   }else{
-    //     this.options = [{name: '', value:''}]
-    //   }
-    // }
   }
 </script>
 <style lang="less" scoped>

@@ -179,10 +179,10 @@
   </div>
 </template>
 <script>
-  import ueditorConfig from "../../store/ueditor";
+  import ueditorConfig from "sysStore/ueditor";
   import VueUeditorWrap from 'vue-ueditor-wrap';
   import {mapState, mapGetters} from 'vuex'
-  import api from '../../api/index'
+  import api from 'sysApi'
 
   export default {
     data() {

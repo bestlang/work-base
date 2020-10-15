@@ -28,7 +28,7 @@
 import api from "sysApi"
 import {mapGetters} from 'vuex'
 import Cookies from 'js-cookie'
-import types from 'sysType'
+import types from 'sysStore/types'
 
 export default {
     data(){

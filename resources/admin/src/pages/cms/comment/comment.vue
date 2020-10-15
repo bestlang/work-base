@@ -52,7 +52,6 @@
                 this.loadComments()
             },
             viewContentComment(comment){
-//                console.log(`*******************`, JSON.stringify(comment))
                 this.$router.push('/cms/comment/content?content_id='+comment.content_id);
             }
         },

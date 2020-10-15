@@ -1,5 +1,5 @@
 <style lang="less">
-  .l-tree-containner{
+  .l-tree-container{
     min-width: 200px;
     padding: 20px;
     border-right: 1px solid #f4f4f4;
@@ -23,7 +23,7 @@
   }
 </style>
 <template>
-      <div class="l-tree-containner">
+      <div class="l-tree-container">
           <view v-if="title">{{title}}</view>
           <el-tree
           @node-click="handleNodeClick"

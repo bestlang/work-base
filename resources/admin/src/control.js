@@ -1,7 +1,6 @@
 import router from './router/index'//路由
-import store from './store/index'//路由
 import Vue from 'vue'
-import types from './store/types'
+import types from 'sysStore/types'
 import Cookies from 'js-cookie'
 import {getPrefix} from './api/util'
 

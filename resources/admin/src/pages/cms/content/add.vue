@@ -94,7 +94,7 @@
 <script>
     import channelTree from "../components/channelTree";
     import VueUeditorWrap from 'vue-ueditor-wrap';
-    import ueditorConfig from "../../../store/ueditor";
+    import ueditorConfig from "sysStore/ueditor";
     import imageUpload from "@/components/imageUpload"
     import multipleImageUpload from "@/components/multipleImageUpload"
     import attachment from "@/components/attachment"

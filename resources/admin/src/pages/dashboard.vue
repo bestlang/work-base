@@ -26,7 +26,7 @@
     </el-card>
     <el-card style="margin-top: 20px;" shadow="hover">
       <div class="l-month-select">
-        <ul style="width: 50%; border-bottom: 1px solid #f1f1f1;padding-bottom: 10px;margin-bottom: 10px;">
+        <ul style="width: 70%; border-bottom: 1px solid #f1f1f1;padding-bottom: 10px;margin-bottom: 10px;">
           <li style="border:none;cursor: default">月份</li>
           <li v-for="m in months" @click="viewMonth" :class="{active: month == m}">{{m}}</li>
         </ul>

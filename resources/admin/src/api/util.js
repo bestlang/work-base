@@ -1,4 +1,4 @@
-const prod = require('./../../config/prod.env')
+const prod = require('sysEnv/prod.env')
 export const getPrefix = function(){
     const origin = location.origin
     //是否正式环境

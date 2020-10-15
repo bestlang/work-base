@@ -74,12 +74,12 @@
 <script>
   import channelTree from "./components/channelTree";
   import VueUeditorWrap from 'vue-ueditor-wrap';
-  import ueditorConfig from "../../store/ueditor";
+  import ueditorConfig from "sysStore/ueditor";
   import imageUpload from "@/components/imageUpload"
   import multipleImageUpload from "@/components/multipleImageUpload"
   import pager from "@/components/pager"
   import {mapGetters} from 'vuex'
-  import api from '../../api/index'
+  import api from 'sysApi'
 
   export default {
     data() {

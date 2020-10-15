@@ -1,9 +1,7 @@
 import cms from './cms'
-import privileges from './privileges'
-import system from './system'
+import normal from './normal'
 
 export default {
     cms,
-    privileges,
-    system
+    normal
 }

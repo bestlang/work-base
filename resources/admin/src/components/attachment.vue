@@ -17,7 +17,7 @@
     </el-upload>
 </template>
 <script>
-    import { getPrefix } from '../api/util'
+    import { getPrefix } from 'sysApi/util'
 
     export default {
         props:['value'],

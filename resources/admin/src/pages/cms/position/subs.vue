@@ -137,7 +137,7 @@
             },
         },
         async mounted(){
-            this.channel_position_id = parseInt(this.$route.query.channel_position_id || 0);
+            this.channel_position_id = parseInt(this.$route.query.channel_position_id) || 0;
             await this.getSubPositions(this.channel_position_id)
             await this.getPosition(this.channel_position_id)
         }
