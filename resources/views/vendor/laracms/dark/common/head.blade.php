@@ -46,15 +46,13 @@
 
             <div class="collapse navbar-collapse" id="navbar-collapse">
                 <ul class="nav navbar-nav" data-current="0">
-                    <!--如果你需要自定义NAV,可使用channellist标签来完成,这里只设置了2级,如果显示无限级,请使用cms:nav标签-->
-                    <!--判断是否有子级或高亮当前栏目-->
                     <li class="">
                         <a href="{{route('cms')}}">首页</a>
                         <ul class="dropdown-menu" role="menu">
                         </ul>
                     </li>
                     <li class="dropdown">
-                        <a href="javascript:;" data-toggle="dropdown" >新闻中心 <b class="caret"></b></a>
+                        <a href="javascript:;" data-toggle="dropdown">新闻中心 <b class="caret"></b></a>
                         <ul class="dropdown-menu" role="menu">
                             <li><a href="{{route('channel', 7)}}">抖音攻略</a></li>
                             <li><a href="{{route('channel', 17)}}">防疫指南</a></li>

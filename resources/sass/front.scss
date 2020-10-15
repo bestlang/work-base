@@ -372,27 +372,6 @@ footer a:hover {
     border-color: inherit !important;
   }
 }
-/*
-.panel-default {
-  border: none;
-  padding: 0 15px;
-  -webkit-box-shadow: none;
-  -moz-box-shadow: none;
-  box-shadow: none;
-  -webkit-border-radius: 2px;
-  -webkit-background-clip: padding-box;
-  -moz-border-radius: 2px;
-  -moz-background-clip: padding;
-  border-radius: 2px;
-  background-clip: padding-box;
-}
-.panel-default > .panel-heading {
-  position: relative;
-  padding: 15px 0;
-  background: #fff;
-  border-bottom: 1px solid #f5f5f5;
-}
-*/
 .panel-default > .panel-heading .panel-title {
   font-size: 16px;
 }
@@ -432,55 +411,6 @@ footer a:hover {
   right: 0;
   display: block;
 }
-/*
-.panel-default > .panel-footer {
-  padding: 15px 0;
-  background: none;
-}
-.panel-default > .panel-body {
-  position: relative;
-  padding: 15px 0;
-}
-
-.panel-primary > .panel-heading {
-  background-color: #46c37b;
-  color: #fff;
-}
-.panel-primary > .panel-body {
-  background: #fafafa;
-  border-bottom-left-radius: 2px;
-  border-bottom-right-radius: 2px;
-}
-.panel-gray {
-  -webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
-  -moz-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
-}
-.panel-gray > .panel-heading {
-  background-color: #f5f5f5;
-  color: #919191;
-}
-.panel-gray > .panel-body {
-  color: #919191;
-  background: #fff;
-  border-bottom-left-radius: 4px;
-  border-bottom-right-radius: 4px;
-}
-.panel-page {
-  padding: 45px 50px 50px;
-  min-height: 500px;
-}
-.panel-page .panel-heading {
-  background: transparent;
-  border-bottom: none;
-  margin: 0 0 30px 0;
-  padding: 0;
-}
-.panel-page .panel-heading h2 {
-  font-size: 25px;
-  margin-top: 0;
-}
-*/
 .tabs-wrapper {
   -webkit-border-radius: 4px;
   -webkit-background-clip: padding-box;
@@ -1820,4 +1750,16 @@ h1 .breadcrumb li {
 }
 .index-focus {
   margin-bottom: 20px!important;
+}
+@font-face {
+  font-family: 'iconfont';  /* project id 2133805 */
+  src: url('//at.alicdn.com/t/font_2133805_21rh3tvgzsz.eot');
+  src: url('//at.alicdn.com/t/font_2133805_21rh3tvgzsz.eot?#iefix') format('embedded-opentype'),
+  url('//at.alicdn.com/t/font_2133805_21rh3tvgzsz.woff2') format('woff2'),
+  url('//at.alicdn.com/t/font_2133805_21rh3tvgzsz.woff') format('woff'),
+  url('//at.alicdn.com/t/font_2133805_21rh3tvgzsz.ttf') format('truetype'),
+  url('//at.alicdn.com/t/font_2133805_21rh3tvgzsz.svg#iconfont') format('svg');
+}
+.iconfont{
+  font-family: iconfont;
 }
