@@ -50,7 +50,7 @@
                 <div v-for="(gu, dept) in groupedUser">
                     <h4 style="color: #5d5d5d;padding: 5px 0;">{{dept}}</h4>
                     <p>
-                        <span @click="viewUser(u.userid)" style="cursor:pointer;display: inline-block;margin-right: 20px;border-radius: 6px;padding: 5px 20px;background-color: #f1f1f1;border: 1px solid #e1e1e1" v-for="u in gu">
+                        <span @click="viewUser(u.userid)" style="cursor:pointer;display: inline-block;margin-right: 20px;padding: 5px 20px;background-color: #f1f1f1;border: 1px solid #e1e1e1" v-for="u in gu">
                             {{u.name}}
                             <!-- -{{u.userid}}-->
                         </span>

@@ -2,7 +2,7 @@
     <div class="tag-nav">
         <scroll-bar ref="scrollBar">
             <router-link ref="tag" class="tag-nav-li" :class="{'cur':isActive(item)}" v-for="(item, index) in tagNavList"
-                         :to="item.path" :key="index">
+                         :to="item.fullPath" :key="index">
                 {{item.title}}
                 <span style="line-height: 0" class='el-icon-close' @click.prevent.stop="closeTheTag(item, index)"></span>
             </router-link>
@@ -37,10 +37,13 @@
         methods: {
             addTagNav(){
                 let mcs = this.$router.getMatchedComponents()
+                    // ["name","meta","path","hash","query","params","fullPath","matched"]
+                console.log(this.$route.fullPath)
                 // 如果需要缓存则必须使用组件自身的name，而不是router的name
                 this.$store.commit("tagNav/addTagNav", {
                     name: mcs[mcs.length-1].name,
                     path: this.$route.path,
+                    fullPath: this.$route.fullPath,
                     title: this.$route.meta.name
                 })
             },
