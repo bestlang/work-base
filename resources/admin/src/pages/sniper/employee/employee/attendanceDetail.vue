@@ -1,5 +1,12 @@
 <template>
     <div>
+        <div class="l-block">
+            <div class="l-block-header">
+                <div class="l-flex">
+                    <span>人力资源 / <router-link to="/sniper/employee/employee/attendance">考勤记录</router-link>  / 考勤详情</span>
+                </div>
+            </div>
+        </div>
         <el-card shadow="hover">
             <el-calendar @input="dateChange">
                 <template

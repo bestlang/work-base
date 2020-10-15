@@ -4,7 +4,7 @@
             <router-link ref="tag" class="tag-nav-li" :class="{'cur':isActive(item)}" v-for="(item, index) in tagNavList"
                          :to="item.path" :key="index">
                 {{item.title}}
-                <sup><span style="line-height: 0" class='el-icon-close' @click.prevent.stop="closeTheTag(item, index)"></span></sup>
+                <span style="line-height: 0" class='el-icon-close' @click.prevent.stop="closeTheTag(item, index)"></span>
             </router-link>
         </scroll-bar>
     </div>
@@ -79,12 +79,13 @@
 <style lang="less" scoped>
     .tag-nav-li{
         height: 30px;
-        line-height: 20px;
+        line-height: 30px;
         display: inline-block;
         padding: 0 8px;
         border: 1px solid #eee;
         box-sizing: border-box;
         margin-right: 5px;
+        font-weight: lighter;
         &:hover{
             text-decoration: none;
          }

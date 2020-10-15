@@ -29,6 +29,7 @@
     .ls-top-logo{
         font-size: 18px;
         letter-spacing: 1px;
+        font-weight: lighter;
     }
 
     .ls-top-logo, .ls-top-logo-narrow{
