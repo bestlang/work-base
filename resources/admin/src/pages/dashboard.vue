@@ -63,6 +63,7 @@
   Vue.component('v-chart', ECharts)
 
   export default {
+      name: 'dashboard',
     data(){
         return {
             months:['2020-05', '2020-06', '2020-07', '2020-08', '2020-09', '2020-10'],

@@ -15,6 +15,9 @@
                         <div class="l-top-item"><i class="iconfont">&#xe62f;</i> 商城</div>
                         -->
                     </template>
+                    <template slot="center-nav">
+                        <tag-nav style="line-height: 50px"></tag-nav>
+                    </template>
                 </backend-top>
             </div>
             <div class="ls-main">
@@ -26,13 +29,15 @@
     </el-container>
 </template>
 <script>
-import top from "./partials/top.vue"
-import menu from "./partials/menu.vue"
+import top from './partials/top'
+import menu from './partials/menu'
+import tagNav from './tagNav'
 
 export default {
     components: {
-        "backend-top": top,
-        "backend-menu": menu
+        'backend-top': top,
+        'backend-menu': menu,
+        tagNav
     },
     computed: {
         isCollapse() {return this.$store.state.system.isCollapse}

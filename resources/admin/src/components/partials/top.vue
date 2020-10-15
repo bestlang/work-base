@@ -4,8 +4,9 @@
             <div class="ls-icon-collapse" @click="toggleCollapse">
                 <i class="iconfont l-color">&#xe954;</i>
             </div>
-            <slot name="top-items"></slot>
+            <slot name="top-items" style="display: inline-block"></slot>
         </div>
+        <slot name="center-nav"></slot>
         <div class="ls-top-right">
           <el-dropdown>
             <div class="logout"><i class="iconfont">&#xe60d; </i>{{user.name}}</div>
@@ -85,16 +86,17 @@ export default {
         background: #f8f8f8;
         height: 100%;
     }
-    .ls-left{
-        display: flex;
-        flex-flow: row nowrap;
-        justify-content: flex-start;
-        padding: 0;
-    }
     .ls-top-left{
         text-align: right;
         box-sizing: border-box;
         position: relative;
+        .ls-icon-collapse{
+            cursor: pointer;
+            line-height: 50px;
+            padding: 0 16px;
+            font-size: 22px;
+            display: inline-block;
+        }
         >div{
             display: inline-block;
         }
@@ -112,6 +114,9 @@ export default {
 
     }
     .ls-top-right{
+        text-align: right;
+        padding-right: 30px;
+        min-width: 100px;
         line-height: 50px;
         cursor: pointer;
         font-size:14px;
@@ -120,14 +125,5 @@ export default {
             padding-right: 20px;
         }
     }
-    .ls-icon-collapse{
-        cursor: pointer;
-        line-height: 50px;
-        padding: 0 16px;
-        font-size: 22px;
-        display: inline-block;
-        position: absolute;
-        left: 0;
-        top: 0;
-    }
+
 </style>
