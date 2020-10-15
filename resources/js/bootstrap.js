@@ -7,14 +7,16 @@
  */
 
 try {
+
     // window.Popper = require('popper.js').default;
     window.$ = window.jQuery = require('jquery')
 
     require('bootstrap/dist/css/bootstrap.min.css')
     require('bootstrap/dist/js/bootstrap.min')
-    // require('normalize.css')
-    // require('swiper/dist/css/swiper.min.css')
+    require('normalize.css')
+    require('swiper/dist/css/swiper.min.css')
     window.Swiper = require('swiper/dist/js/swiper')
+
 } catch (e) {}
 
 /**
