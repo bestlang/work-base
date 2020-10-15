@@ -13,14 +13,30 @@
     </div>
     <el-card class="row-20" shadow="hover">
       <div slot="header" class="clearfix">
-        <span>系统技术栈</span>
+        <span>今日概况</span>
       </div>
       <div>
         <el-row :gutter="20">
-          <el-col :span="6"><div class="grid-content" style="background: #4fa8ed">Laravel</div></el-col>
-          <el-col :span="6"><div class="grid-content" style="background: #ad97da">Javascript</div></el-col>
-          <el-col :span="6"><div class="grid-content" style="background: #3fc0c2">Mysql</div></el-col>
-          <el-col :span="6"><div class="grid-content" style="background: #f6d33a">CSS</div></el-col>
+          <el-col :span="6"><div class="grid-content" style="background: #4fa8ed">总人数: <h1 style="display: inline">{{today.totalEmployeeCount}}</h1></div></el-col>
+          <el-col :span="6"><div class="grid-content" style="background: #ad97da">出勤:<h1 style="display: inline">{{today.todayAttendanceCount}}</h1></div></el-col>
+          <el-col :span="6">
+            <el-popover
+                    placement="top-start"
+                    width="200"
+                    trigger="hover"
+                    :content="today.todayLate.length?today.todayLate.join('\n'):''">
+              <div slot="reference" class="grid-content" style="background: #3fc0c2">迟到:<h1 style="display: inline">{{today.todayLate?today.todayLate.length:''}}</h1></div>
+            </el-popover>
+          </el-col>
+          <el-col :span="6">
+            <el-popover
+                    placement="top-start"
+                    width="200"
+                    trigger="hover"
+                    :content="today.NotSigned.length?today.NotSigned.join('\n'):''">
+              <div  slot="reference" class="grid-content" style="background: #f6d33a">缺卡:<h1 style="display: inline">{{today.NotSigned?today.NotSigned.length:''}}</h1></div>
+            </el-popover>
+          </el-col>
         </el-row>
       </div>
     </el-card>
@@ -66,6 +82,12 @@
       name: 'dashboard',
     data(){
         return {
+            today:{
+              totalEmployeeCount:0,
+              todayAttendanceCount:0,
+              todayLate:[],
+              NotSigned:[]
+            },
             months:['2020-05', '2020-06', '2020-07', '2020-08', '2020-09', '2020-10'],
             month: '2020-10',
             options2:{
@@ -141,10 +163,15 @@
                 this.options2.series.push({type: 'bar'})
             })
             this.options2.dataset.source.push(...items)
+        },
+        async getToday(){
+            let res = await api.sniperDingGetToday()
+            this.today = res.data
         }
     },
     async created(){
         await this.getDepartmentWeekAvgAttendance()
+        await this.getToday()
     }
   }
 </script>

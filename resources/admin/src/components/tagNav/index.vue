@@ -16,7 +16,7 @@
     export default {
         data(){
             return {
-                defaultPage: '/home'
+                defaultPage: '/'
             }
         },
         computed: {
@@ -56,7 +56,7 @@
                 this.$store.commit("tagNav/removeTagNav", item)
                 if(this.$route.path == item.path){
                     if(index){
-                        this.$router.push(this.tagNavList[index-1].path)
+                            this.$router.push(this.tagNavList[index - 1].path)
                     } else {
                         this.$router.push(this.defaultPage)
                         if(this.$route.path == "/home"){

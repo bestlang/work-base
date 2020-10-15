@@ -333,4 +333,37 @@ class DingTalkController
         }
         return response()->ajax($user);
     }
+
+    //员工总数 出勤人数 请假人数
+    public function today()
+    {
+        if(auth()->user()->cant('hr attendance')){
+            return response()->error('没有权限!', 4012);
+        }
+        $totalEmployeeCount = DingUser::where('onJob', 1)->count();
+        $todayAttendanceCount = DingAttendance::where('ymd', date('Y-m-d'))->where('checkType', 'OnDuty')->count();
+        $baseOnDutyCheckTime = strtotime(date('Y-m-d 9:05'));
+        $todayLate = DB::connection('proxy')->table('sniper_employee_ding_attendance as attendance')->leftJoin('sniper_employee_ding_users as user', 'attendance.userid', '=', 'user.userid')->where('attendance.ymd', date('Y-m-d'))->where('attendance.checkType', 'OnDuty')->where('attendance.userCheckTime', '>', $baseOnDutyCheckTime * 1000)->select('user.name')->get();
+        $todayLate = collect($todayLate)->map(function($user){
+            return $user->name;
+        });
+        $NotSigned = [];
+        try {
+            DB::connection('proxy')->statement('drop table _attendance;');
+        }catch (\Exception $e){}
+        try {
+            DB::connection('proxy')->statement('CREATE TEMPORARY TABLE _attendance AS (select * from `sniper-tech`.sniper_employee_ding_attendance where `sniper-tech`.sniper_employee_ding_attendance.ymd = "' . date('Y-m-d') . '");');
+            $NotSigned = DB::connection('proxy')->select('SELECT user.name FROM sniper_employee_ding_users user left join _attendance on _attendance.userid = user.userid where user.onJob = 1 and _attendance.userCheckTime is null;');
+            $NotSigned = collect($NotSigned)->map(function($user){
+                return $user->name;
+            });
+            DB::connection('proxy')->statement('drop table _attendance;');
+        }catch (\Exception $e){}
+        return response()->ajax([
+            'totalEmployeeCount' => $totalEmployeeCount,
+            'todayAttendanceCount' => $todayAttendanceCount,
+            'todayLate' => $todayLate,
+            'NotSigned' => $NotSigned
+        ]);
+    }
 }
