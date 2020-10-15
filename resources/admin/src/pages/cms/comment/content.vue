@@ -38,6 +38,7 @@
     import pager from "@/components/pager"
 
     export default {
+        name: 'cmsCommentContent',
         data(){
             return {
                 content: {},

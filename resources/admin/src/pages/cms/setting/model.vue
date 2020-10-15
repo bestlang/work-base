@@ -94,6 +94,7 @@
 <script>
   import api from 'sysApi'
   export default {
+      name: 'cmsSettingModel',
     data(){
       return {
         loading: true,

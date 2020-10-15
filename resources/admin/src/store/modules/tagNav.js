@@ -9,14 +9,12 @@ const state = {
 
 const mutations = {
     addTagNav(state, data){
-        console.log(data)
         if (state.openedPageList.some(v => v.path === data.path)) return
         if(state.cachedPageName.includes(data.name)){
             console.error(`${data.name} 组件出现命名重复，请检查组件中的name字段。当前组件所在的路由地址为：${data.path}`)
             return
         }
         state.openedPageList.push(data)
-        console.log(JSON.stringify(state.openedPageList))
         if(state.cachePage){
             state.cachedPageName.push(data.name)
         }

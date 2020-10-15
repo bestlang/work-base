@@ -200,6 +200,7 @@
     }
 
     export default {
+        name: 'sniperEmployeeEdit',
         components: { TreeSelect, imageUpload, Education, Job },
         data(){
             return {

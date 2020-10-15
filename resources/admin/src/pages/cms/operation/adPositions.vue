@@ -60,6 +60,7 @@
 <script>
     import api from 'sysApi'
     export default {
+        name: 'cmsOperationAdPositions',
         data(){
             return {
                 w: '80px',

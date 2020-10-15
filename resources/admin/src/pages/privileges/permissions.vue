@@ -68,6 +68,7 @@
 <script>
   import api from 'sysApi'
   export default {
+    name: 'privilegesPermissions',
     data() {
       return {
         tableData: [],

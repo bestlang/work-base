@@ -44,6 +44,7 @@
     import { Loading } from 'element-ui'
 
     export default {
+        name: 'sniperEmployeeAttendance',
         components:{
             DingDepartmentTree
         },

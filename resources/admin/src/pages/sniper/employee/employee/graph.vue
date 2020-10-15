@@ -15,6 +15,7 @@
     Vue.use(jm)
 
 	export default {
+        name: 'sniperEmployeeGraph',
 		data(){
 		    return {
                 mind: {

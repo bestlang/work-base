@@ -53,6 +53,7 @@
     import '@riophae/vue-treeselect/dist/vue-treeselect.css'
 
 	export default {
+        name: 'sniperEmployeeBasicDepartment',
         components: { DepartmentTree, TreeSelect },
         data(){
             return {

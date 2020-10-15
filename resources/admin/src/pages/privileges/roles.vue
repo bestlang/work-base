@@ -57,6 +57,7 @@
 <script>
     import api from 'sysApi'
     export default {
+        name: 'privilegesRoles',
         data() {
             return {
                 total: 0,

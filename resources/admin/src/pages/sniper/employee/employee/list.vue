@@ -33,6 +33,7 @@
     import api from "sysApi"
 
     export default {
+        name: 'sniperEmployeeList',
         components: { DepartmentTree },
         data(){
             return {

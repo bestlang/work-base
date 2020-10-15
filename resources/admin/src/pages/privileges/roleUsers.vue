@@ -75,6 +75,7 @@
 <script>
     import api from 'sysApi'
     export default {
+        name: 'privilegesRoleUsers',
         data() {
             return {
                 showForm: false,

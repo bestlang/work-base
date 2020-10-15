@@ -1,10 +1,10 @@
 <template>
     <div class="tag-nav">
         <scroll-bar ref="scrollBar">
-            <router-link ref="tag" class="tag-nav-li" :class="isActive(item) ? 'cur' : ''" v-for="(item, index) in tagNavList"
+            <router-link ref="tag" class="tag-nav-li" :class="{'cur':isActive(item)}" v-for="(item, index) in tagNavList"
                          :to="item.path" :key="index">
                 {{item.title}}
-                <span class='el-icon-close' @click.prevent.stop="closeTheTag(item, index)"></span>
+                <sup><span style="line-height: 0" class='el-icon-close' @click.prevent.stop="closeTheTag(item, index)"></span></sup>
             </router-link>
         </scroll-bar>
     </div>
@@ -36,9 +36,10 @@
         },
         methods: {
             addTagNav(){
+                let mcs = this.$router.getMatchedComponents()
                 // 如果需要缓存则必须使用组件自身的name，而不是router的name
                 this.$store.commit("tagNav/addTagNav", {
-                    name: this.$router.getMatchedComponents()[1].name,
+                    name: mcs[mcs.length-1].name,
                     path: this.$route.path,
                     title: this.$route.meta.name
                 })
@@ -78,13 +79,12 @@
 <style lang="less" scoped>
     .tag-nav-li{
         height: 30px;
-        line-height: 30px;
+        line-height: 20px;
         display: inline-block;
         padding: 0 8px;
         border: 1px solid #eee;
         box-sizing: border-box;
-        margin-right: 10px;
-        border-radius: 3px;
+        margin-right: 5px;
         &:hover{
             text-decoration: none;
          }

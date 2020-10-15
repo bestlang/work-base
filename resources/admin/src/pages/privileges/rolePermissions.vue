@@ -41,6 +41,7 @@
     import types from 'sysStore/types'
 
     export default {
+      name: 'privilegesRolePermissions',
       data() {
         return {
           emptyText: 'loading...',

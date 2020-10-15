@@ -70,6 +70,7 @@
 <script>
     import api from 'sysApi'
     export default {
+        name: 'cmsPositionPosition',
         data(){
             return {
                 loading: true,

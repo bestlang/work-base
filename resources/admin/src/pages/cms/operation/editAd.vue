@@ -108,6 +108,7 @@
     import {formatDateTime} from "../../../api/util"
 
     export default {
+        name: 'cmsOperationEditAd',
         data() {
             return {
                 formTitle: '添加广告',

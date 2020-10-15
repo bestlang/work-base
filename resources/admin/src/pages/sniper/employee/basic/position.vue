@@ -64,6 +64,7 @@
     import api from 'sysApi'
 
 	export default {
+        name: 'sniperEmployeeBasicPosition',
         components: { PositionTree },
 	    data(){
 	        return {

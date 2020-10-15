@@ -138,6 +138,7 @@
   import api from 'sysApi'
   import {mapGetters} from 'vuex'
   export default {
+      name: 'cmsSettingModelEdit',
     components:{
       'add-options': addOptions
     },

@@ -77,6 +77,7 @@
     import api from 'sysApi'
     import pager from "@/components/pager"
     export default {
+        name: 'cmsOperationOrders',
         data(){
             return {
                 loading: false,

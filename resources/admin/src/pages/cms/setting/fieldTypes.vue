@@ -56,6 +56,7 @@
 <script>
   import api from 'sysApi'
   export default {
+      name: 'cmsSettingFieldTypes',
     data(){
       return {
         w: '80px',

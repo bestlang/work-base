@@ -39,7 +39,9 @@
 </template>
 <script>
     import api from 'sysApi'
+
 	export default {
+        name: 'cmsSettingSiteSetting',
 	    data(){
 	        return {
 	            themes: [],

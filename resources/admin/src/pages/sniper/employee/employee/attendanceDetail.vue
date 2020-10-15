@@ -79,6 +79,7 @@
     import api from "sysApi"
 
     export default {
+        name: 'sniperEmployeeAttendanceDetail',
         data(){
             let anyDate = '2020/9/27 00:00:00'
             return {

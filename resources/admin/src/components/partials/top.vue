@@ -115,7 +115,7 @@ export default {
     }
     .ls-top-right{
         text-align: right;
-        padding-right: 30px;
+        padding-right: 10px;
         min-width: 100px;
         line-height: 50px;
         cursor: pointer;

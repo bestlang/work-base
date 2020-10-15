@@ -27,6 +27,7 @@
     import pager from "@/components/pager"
 
     export default {
+        name: 'cmsCommentComment',
         data(){
             return {
                 comments: [],

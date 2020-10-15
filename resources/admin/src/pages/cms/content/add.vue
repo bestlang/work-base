@@ -103,6 +103,7 @@
     import api from 'sysApi'
 
     export default {
+        name: 'cmsContentAdd',
         data() {
             return {
                 checkList:[],

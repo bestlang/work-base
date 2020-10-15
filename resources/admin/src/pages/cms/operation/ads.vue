@@ -73,6 +73,7 @@
 <script>
     import api from 'sysApi'
     export default {
+        name: 'cmsOperationAds',
         data(){
             return {
                 w: '80px',

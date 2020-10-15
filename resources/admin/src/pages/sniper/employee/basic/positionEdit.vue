@@ -57,6 +57,7 @@
     }
 
     export default {
+        name: 'sniperEmployeeBasicPositionEdit',
         components: { TreeSelect },
         data(){
             return {

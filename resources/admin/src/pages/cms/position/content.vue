@@ -50,6 +50,7 @@
     import api from 'sysApi'
     import {mapGetters} from 'vuex'
     export default {
+        name: 'cmsPositionContent',
         data(){
             return {
                 tableData: [],

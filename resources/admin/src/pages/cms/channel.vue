@@ -185,6 +185,7 @@
   import api from 'sysApi'
 
   export default {
+      name: 'cmsChannel',
     data() {
       return {
         checkList:[],

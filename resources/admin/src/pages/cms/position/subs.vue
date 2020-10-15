@@ -58,6 +58,7 @@
     import api from 'sysApi'
     import {mapGetters} from 'vuex'
     export default {
+        name: 'cmsPositionSubs',
         data(){
             return {
                 formVisible: false,

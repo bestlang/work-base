@@ -82,6 +82,7 @@
   import api from 'sysApi'
 
   export default {
+      name: 'cmsContent',
     data() {
       return {
         checkList:[],

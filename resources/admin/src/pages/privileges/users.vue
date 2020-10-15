@@ -102,6 +102,7 @@
     import api from 'sysApi'
     import pager from "@/components/pager"
     export default {
+        name: 'privilegesUsers',
         data() {
             return {
                 total: 0,
