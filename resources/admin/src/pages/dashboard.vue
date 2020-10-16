@@ -162,7 +162,7 @@
                     type: 'category',
                     axisLabel: {
                         interval:0,
-                        rotate:20
+                        // rotate:20
                     },
                     data: []//['巴西', '印尼', '美国', '印度', '中国', '世界人口(万)']
                 },
