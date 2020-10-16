@@ -342,7 +342,7 @@ class DingTalkController
         }
         $totalEmployeeCount = DingUser::where('onJob', 1)->count();
         $todayAttendanceCount = DingAttendance::where('ymd', date('Y-m-d'))->where('checkType', 'OnDuty')->count();
-        $baseOnDutyCheckTime = strtotime(date('Y-m-d 9:05'));
+        $baseOnDutyCheckTime = strtotime(date('Y-m-d 9:06'));
         $todayLate = DB::connection('proxy')->table('sniper_employee_ding_attendance as attendance')->leftJoin('sniper_employee_ding_users as user', 'attendance.userid', '=', 'user.userid')->where('attendance.ymd', date('Y-m-d'))->where('attendance.checkType', 'OnDuty')->where('attendance.userCheckTime', '>', $baseOnDutyCheckTime * 1000)->select('user.name')->get();
         $todayLate = collect($todayLate)->map(function($user){
             return $user->name;
