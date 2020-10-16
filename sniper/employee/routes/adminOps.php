@@ -24,6 +24,7 @@ Route::group(['prefix'=>'admin/sniper/employee', 'namespace'=>'Admin'], function
         Route::any('/ding/get/department/users', 'DingTalkController@departmentUsers');
         Route::any('/ding/get/users/attendance', 'DingTalkController@usersAttendance');
         Route::any('/ding/get/user/week/attendance/avg', 'DingTalkController@weekAvg');
+        Route::any('/ding/get/user/month/attendance/avg', 'DingTalkController@monthAvg');
         Route::any('/ding/get/user/department/week/attendance/avg', 'DingTalkController@departmentsWeekAvg');//
         Route::any('/ding/get/user', 'DingTalkController@user');
         Route::any('/ding/get/today', 'DingTalkController@today');
