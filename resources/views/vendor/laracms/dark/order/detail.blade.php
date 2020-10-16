@@ -9,7 +9,8 @@
                     <div class="panel panel-default article-content">
                         <div class="l-article-body">
                             <h1 style="font-size: 20px;margin-top: 0;padding-top: 10px;line-height: 30px;">
-                                <i style="color: green;font-size: 30px;display: inline-block;vertical-align: bottom;" class="fa fa-check-circle" aria-hidden="true"></i>
+                                {{--<i style="color: green;font-size: 30px;display: inline-block;vertical-align: bottom;" class="fa fa-check-circle" aria-hidden="true"></i>--}}
+                                <span class="iconfont" style="color: green">&#xe634;</span>
                                 <span style="line-height: 30px;">订单创建成功,请您尽快完成支付</span>
                             </h1>
                             <div style="border: 1px solid #f1f1f1;padding: 20px;">
@@ -41,10 +42,6 @@
                                         <div class="tab-pane fade" id="identifier2">
                                             支付金额: ¥{{$order->money}}
                                             <input type="button" id="perform_alipay" value="确认支付">
-                                            {{--<p>--}}
-                                                {{--iOS 是一个由苹果公司开发和发布的手机操作系统。最初是于 2007 年首次发布 iPhone、iPod Touch 和 Apple--}}
-                                                {{--TV。iOS 派生自 OS X，它们共享 Darwin 基础。OS X 操作系统是用在苹果电脑上，iOS 是苹果的移动版本。--}}
-                                            {{--</p>--}}
                                         </div>
                                     </div>
                                 </div>
