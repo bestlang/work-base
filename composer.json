@@ -35,7 +35,8 @@
         "filp/whoops": "^2.0",
         "mockery/mockery": "^1.0",
         "nunomaduro/collision": "^3.0",
-        "phpunit/phpunit": "^7.5.18"
+        "phpunit/phpunit": "^7.5.18",
+        "jeroen-g/laravel-packager": "2.5.1"
     },
     "config": {
         "optimize-autoloader": true,
