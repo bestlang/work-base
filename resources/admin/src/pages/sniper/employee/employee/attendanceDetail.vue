@@ -62,9 +62,6 @@
             <!--<div>平均每周工作小时</div>-->
             <v-chart :options="optionsTM" style="width: 100%;height: 600px;"/>
         </el-card>
-        <!--<el-card style="margin-top: 20px;" shadow="hover">-->
-            <!--<v-chart :options="options2" style="width: 100%;height: 600px;"/>-->
-        <!--</el-card>-->
     </div>
 </template>
 <script>
@@ -75,6 +72,7 @@
     import 'echarts/lib/chart/line'
     import 'echarts/lib/chart/bar'
     import 'echarts/lib/chart/scatter'
+    import 'echarts/lib/component/title'
     import 'echarts/lib/component/tooltip'
     import 'echarts/lib/component/polar'
     import 'echarts/lib/component/angleAxis'
@@ -114,7 +112,7 @@
                         width: '97%',
                     },
                     title: {
-                        text: '出勤对比'
+                        text: '个人/部门平均出勤对比'
                     },
                     tooltip: {},
                     legend: {
@@ -126,46 +124,10 @@
                     yAxis: {},
                     series: [{type: 'bar'},{type: 'bar'}]
                 },
-                options2:{
-                    dataset: {
-                        source: [['']]
-                    },
-                    //color: ['#293c55', '#348498'],
-                    grid:{
-                        x:'2.2%',
-                        y:'5%',
-                        x2:'2.4%',
-                        y2:'12%',
-                        width: '97%',
-                    },
-                    title: {
-                        text: '出勤对比'
-                    },
-                    tooltip: {},
-                    legend: {
-                        data: []//['个人平均出勤（小时）', '部门平均出勤（小时）']
-                    },
-                    xAxis: {
-                        type: 'category'
-                    },
-                    yAxis: {},
-                    series: [
-                        {type: 'bar'},
-                        {type: 'bar'},
-                        {type: 'bar'},
-                        {type: 'bar'},
-                        {type: 'bar'},
-                        {type: 'bar'},
-                        {type: 'bar'},
-                        {type: 'bar'},
-                        {type: 'bar'},
-                        {type: 'bar'},
-                        {type: 'bar'},
-                        {type: 'bar'},
-                        {type: 'bar'},
-                        {type: 'bar'}]
-                },
                 options:{
+                    title:{
+                        text: '打卡趋势'
+                    },
                     color:  ['#fdc4b6','#fdc4b6','#001871','#001871'],
                     grid:{
                         x:'2.2%',
@@ -482,19 +444,7 @@
                 })
                 this.optionsTM.dataset.source = []
                 this.optionsTM.dataset.source.push(...res.data)
-            },
-            // async getDepartmentWeekAvgAttendance(){
-            //     let res = await api.sniperDingGetDepartmentWeekAvgAttendance({month: this.month})
-            //     // let formed  = []
-            //     // res.data.forEach(function (item) {
-            //     //     formed.push(item)
-            //     // })
-            //     //this.options2.dataset.source = []
-            //     this.options2.dataset.source[0].push(...res.data.departmentNames)
-            //     this.options2.legend = {data:[...res.data.departmentNames]}
-            //     this.options2.dataset.source.push(...res.data.values)
-            // }
-
+            }
         },
         async created(){
             let month = this.$route.query.month || null

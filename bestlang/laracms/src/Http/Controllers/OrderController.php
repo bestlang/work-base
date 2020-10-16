@@ -47,10 +47,8 @@ class OrderController
     public function native1(Request $request, NativePay $nativePay)
     {
         $order_no = $request->input('order_no');
-        $url1 = $nativePay->GetPrePayUrl($order_no);
-        $qrCode = new QrCode($url1);
-//        echo $url1;
-//        echo "<img src=\"".$qrCode->writeDataUri()."\" />";
+        $url = $nativePay->GetPrePayUrl($order_no);
+        $qrCode = new QrCode($url);
         return response()->ajax($qrCode->writeDataUri());
     }
     //native1 需要调用统一下单api的
@@ -97,8 +95,8 @@ class OrderController
         $this->wxPayUnifiedOrder->SetProduct_id($order->id);
 
         $result = $this->nativePay->GetPayUrl($this->wxPayUnifiedOrder);
-        $url2 = $result["code_url"];
-        $qrCode = new QrCode($url2);
+        $url = $result["code_url"];
+        $qrCode = new QrCode($url);
         return response()->ajax($qrCode->writeDataUri());
     }
 

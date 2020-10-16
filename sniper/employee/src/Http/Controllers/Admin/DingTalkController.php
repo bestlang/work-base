@@ -18,6 +18,14 @@ class DingTalkController
         return $d <= 0 ? 1 : ceil($d / 7) + 1;
     }
 
+    protected function _userName(){
+        $idNameMap = [];
+        DB::connection('proxy')->table('sniper_employee_ding_users')->select('userid', 'name')->get()->each(function($user)use(&$idNameMap){
+            $idNameMap[$user->userid] = $user->name;
+        });
+        return $idNameMap;
+    }
+
     public function _weekWorkDay($month)
     {
         $weekWorkDays = [];
@@ -220,7 +228,6 @@ class DingTalkController
         $temp = [];
         foreach ($udt as $_userId => $data){
             foreach ($data as $nth => $val){
-                //$h = $weekWorkDays[$nth] ? round(array_sum($val) / ($weekWorkDays[$nth] * 60 * 60) - 1, 2) : 0;
                 $b = min(count($val),$weekWorkDays[$nth]);
                 $h = $b ? round(array_sum($val) / ($b * 60 * 60) - 1, 2) : 0;
                 $temp[$_userId][$nth] = $h;
@@ -252,6 +259,48 @@ class DingTalkController
 
         });
         return response()->ajax($res);
+    }
+
+    public function monthAvg(Request $request)
+    {
+        if(auth()->user()->cant('hr attendance')){
+            return response()->error('没有权限!', 4012);
+        }
+        $month = $request->input('month');
+        if(!$month){
+            $month = date('Y-m');
+        }
+        $weekWorkDays = $this->_weekWorkDay($month);
+        $grp = [];
+
+        $attendances = DB::connection('proxy')->table('sniper_employee_ding_attendance')->where('ymd', 'like', $month.'%')->get();
+        foreach ($attendances as $at){
+            $grp[$at->userId][$at->ymd][] = $at->userCheckTime/1000;
+        }
+        $udt = [];
+        $leaves = $this->_getLeaves([], $month);
+        $hit = [];
+        foreach ($leaves as $leave){
+            $hit[$leave->userid][date('Y-m-d', $leave['start_time']/1000)] = 1;
+        }
+        foreach ($grp as $_userId => $daily){
+            foreach ($daily as $day => $data){
+                if(isset($hit[$_userId][$day])){//关联了请假
+                    $udt[$_userId][$day]  = 9 * 60 * 60;
+                }else if(isset($data[0]) && isset($data[1])) {
+                    $udt[$_userId][$day] = abs($data[1] - $data[0]);
+                }
+            }
+        }
+        $userName = $this->_userName();
+        $userMonthAvg = [];
+        foreach ($udt as $_userId => $data){
+                $daysLaw = min(count($data),array_sum($weekWorkDays));
+                $avgHour = $data ? round(array_sum($data) / ($daysLaw * 60 * 60) - 1, 2) : 0;
+                $userMonthAvg[] = ['name' => $userName[$_userId], 'hour' => $avgHour];
+        }
+        $sorted = collect($userMonthAvg)->sortBy('hour')->values()->all();
+        return response()->ajax($sorted);
     }
     public function departmentsWeekAvg(Request $request)
     {
@@ -342,7 +391,7 @@ class DingTalkController
         }
         $totalEmployeeCount = DingUser::where('onJob', 1)->count();
         $todayAttendanceCount = DingAttendance::where('ymd', date('Y-m-d'))->where('checkType', 'OnDuty')->count();
-        $baseOnDutyCheckTime = strtotime(date('Y-m-d 9:05'));
+        $baseOnDutyCheckTime = strtotime(date('Y-m-d 9:06'));
         $todayLate = DB::connection('proxy')->table('sniper_employee_ding_attendance as attendance')->leftJoin('sniper_employee_ding_users as user', 'attendance.userid', '=', 'user.userid')->where('attendance.ymd', date('Y-m-d'))->where('attendance.checkType', 'OnDuty')->where('attendance.userCheckTime', '>', $baseOnDutyCheckTime * 1000)->select('user.name')->get();
         $todayLate = collect($todayLate)->map(function($user){
             return $user->name;

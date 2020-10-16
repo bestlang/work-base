@@ -8,7 +8,7 @@
             </div>
             <div class="l-block-body">
                     <div class="l-month-select">
-                        <ul style="width: 50%; border-bottom: 1px solid #f1f1f1;padding-bottom: 10px;margin-bottom: 10px;">
+                        <ul style="width: 80%; border-bottom: 1px solid #f1f1f1;padding-bottom: 10px;margin-bottom: 10px;">
                             <li style="border:none;cursor: default">月份</li>
                             <li v-for="m in months" @click="viewMonth" :class="{active: month == m}">{{m}}</li>
                         </ul>
@@ -50,7 +50,7 @@
         },
         data(){
             return {
-                months:['2020-05', '2020-06', '2020-07', '2020-08', '2020-09', '2020-10'],
+                months:['2020-03', '2020-04', '2020-05', '2020-06', '2020-07', '2020-08', '2020-09', '2020-10'],
                 month: '2020-10',
                 eventCats: ['所有', '迟到', '请假', '缺卡', '早退'],
                 eventCat: '所有',

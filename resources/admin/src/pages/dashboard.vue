@@ -49,8 +49,8 @@
       </div>
       <v-chart :options="options2" style="width: 100%;height: 600px;"/>
     </el-card>
-    <el-card>
-      <v-chart :options="options3" style="width: 100%;height: 600px;"/>
+    <el-card style="margin-top: 20px;">
+      <v-chart :options="options3" style="width: 100%;height: 800px;"/>
     </el-card>
   </div>
 
@@ -89,7 +89,7 @@
               todayLate:[],
               NotSigned:[]
             },
-            months:['2020-05', '2020-06', '2020-07', '2020-08', '2020-09', '2020-10'],
+            months:['2020-03', '2020-04', '2020-05', '2020-06', '2020-07', '2020-08', '2020-09', '2020-10'],
             month: '2020-10',
             options2:{
                 color:[
@@ -134,9 +134,10 @@
                 series: []
             },
             options3 : {
+                color: ['#293c55'],
                 title: {
-                    text: '本月平均工时<调试中>',
-                    subtext: '2020-10'
+                    text: '月份日平均工时',
+                    subtext: ''
                 },
                 tooltip: {
                     trigger: 'axis',
@@ -144,9 +145,9 @@
                         type: 'shadow'
                     }
                 },
-                legend: {
-                    data: ['月平均工时']
-                },
+                // legend: {
+                //     data: ['月平均工时']
+                // },
                 grid: {
                     left: '3%',
                     right: '4%',
@@ -159,13 +160,18 @@
                 },
                 yAxis: {
                     type: 'category',
-                    data: ['巴西', '印尼', '美国', '印度', '中国', '世界人口(万)']
+                    axisLabel: {
+                        interval:0,
+                        // rotate:20
+                    },
+                    data: []//['巴西', '印尼', '美国', '印度', '中国', '世界人口(万)']
                 },
+
                 series: [
                     {
                         name: '月平均工时',
                         type: 'bar',
-                        data: [19325, 23438, 31000, 121594, 134141, 681807]
+                        data: []//[19325, 23438, 31000, 121594, 134141, 681807]
                     }
                 ]
             }
@@ -176,6 +182,7 @@
     watch:{
         async month(val){
             await this.getDepartmentWeekAvgAttendance()
+            await this.getMonthAvgAttendance()
         },
     },
     methods:{
@@ -201,6 +208,22 @@
             })
             this.options2.dataset.source.push(...items)
         },
+        async getMonthAvgAttendance(){
+            let res = await api.sniperDingGetMonthAvgAttendance({month: this.month})
+            let data = res.data
+            console.log(JSON.stringify(data))
+            let names = []
+            let hours = []
+            data.forEach((row) => {
+                names.push(row.name)
+                hours.push(row.hour)
+            });
+
+            this.options3.yAxis.data.splice(0,1000, ...names)
+            this.options3.series[0].data.splice(0,1000, ...hours)
+
+            this.options3.title.subtext = this.month
+        },
         async getToday(){
             let res = await api.sniperDingGetToday()
             this.today = res.data
@@ -209,6 +232,7 @@
     async created(){
         await this.getDepartmentWeekAvgAttendance()
         await this.getToday()
+        await this.getMonthAvgAttendance()
     }
   }
 </script>

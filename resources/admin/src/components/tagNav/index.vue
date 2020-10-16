@@ -37,13 +37,19 @@
         methods: {
             addTagNav(){
                 let mcs = this.$router.getMatchedComponents()
+                let path = this.$route.path
+                let fullPath = this.$route.fullPath
+                //对'/'特殊处理
+                if(path == '/'){
+                    path = this.defaultPage
+                    fullPath = this.defaultPage
+                }
                     // ["name","meta","path","hash","query","params","fullPath","matched"]
-                console.log(this.$route.fullPath)
                 // 如果需要缓存则必须使用组件自身的name，而不是router的name
                 this.$store.commit("tagNav/addTagNav", {
                     name: mcs[mcs.length-1].name,
-                    path: this.$route.path,
-                    fullPath: this.$route.fullPath,
+                    path: path,
+                    fullPath: fullPath,
                     title: this.$route.meta.name
                 })
             },
