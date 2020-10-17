@@ -15,7 +15,8 @@
     "baum/baum": "v2.x-dev",
     "bestlang/base": "dev-master",
     "bestlang/laravel-ueditor": "dev-master",
-    "bestlang/wxpay": "dev-master"
+    "bestlang/wxpay": "dev-master",
+    "bestlang/alipay-easysdk": "dev-master"
   },
   "require-dev": {
     "phpunit/phpunit": "^8.0",
