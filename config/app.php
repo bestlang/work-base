@@ -178,8 +178,7 @@ return [
         Tymon\JWTAuth\Providers\LaravelServiceProvider::class,
         Spatie\Permission\PermissionServiceProvider::class,
         Jacobcyl\AliOSS\AliOssServiceProvider::class,
-        JellyBool\Flysystem\Upyun\UpyunServiceProvider::class,
-        Overtrue\LaravelWeChat\ServiceProvider::class,
+        JellyBool\Flysystem\Upyun\UpyunServiceProvider::class
     ],
 
     /*
