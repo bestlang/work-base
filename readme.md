@@ -83,6 +83,9 @@ php artisan queue:work --queue=updateDingTalkUser
 
 逆向 Seed 生成器 orangehill/iseed
 
-"jeroen-g/laravel-packager": "2.5.1"
+"overtrue/laravel-wechat": "~5.0",
+
+"jeroen-g/laravel-packager": "2.5.1",
+"beyondcode/laravel-dump-server": "^1.0",
 
 
