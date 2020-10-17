@@ -97,6 +97,10 @@
         "bestlang/wxpay": {
             "type": "path",
             "url": "./bestlang/wxpay"
+        },
+        "bestlang/laravel-ueditor": {
+            "type": "path",
+            "url": "./bestlang/laravel-ueditor"
         }
     }
 }
