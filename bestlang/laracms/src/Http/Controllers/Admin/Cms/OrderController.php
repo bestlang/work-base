@@ -1,8 +1,8 @@
 <?php
-namespace Bestlang\Laracms\Http\Controllers\Admin\Cms;
+namespace BestLang\Laracms\Http\Controllers\Admin\Cms;
 
-use Bestlang\Laracms\Http\Controllers\Controller;
-use Bestlang\Laracms\Models\Cms\Order;
+use BestLang\Laracms\Http\Controllers\Controller;
+use BestLang\Laracms\Models\Cms\Order;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller

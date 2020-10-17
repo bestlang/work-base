@@ -1,6 +1,6 @@
 <?php
 
-namespace Bestlang\WxPay;
+namespace BestLang\WxPay;
 
 use Illuminate\Support\ServiceProvider;
 

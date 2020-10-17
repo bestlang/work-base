@@ -1,6 +1,6 @@
 <?php
 
-namespace Bestlang\Laracms\Http\Controllers;
+namespace BestLang\Laracms\Http\Controllers;
 
 use Illuminate\Http\Request;
 

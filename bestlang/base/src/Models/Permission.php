@@ -1,6 +1,6 @@
 <?php
 
-namespace Bestlang\Base\Models;
+namespace BestLang\Base\Models;
 
 use Baum\NestedSet\Node as WorksAsNestedSet;
 use Spatie\Permission\Models\Permission as SpatiePermission;

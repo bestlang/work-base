@@ -1,14 +1,14 @@
 <?php
 
-namespace Bestlang\Base\Http\Controllers\Admin;
+namespace BestLang\Base\Http\Controllers\Admin;
 
-use Bestlang\Base\Models\User;
+use BestLang\Base\Models\User;
 use Illuminate\Http\Request;
-use Bestlang\Base\Http\Controllers\Controller;
+use BestLang\Base\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Spatie\Permission\Models\Role;
 use Illuminate\Support\Arr;
-use Bestlang\Base\Models\Permission;
+use BestLang\Base\Models\Permission;
 
 class PrivilegesController extends Controller
 {

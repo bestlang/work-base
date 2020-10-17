@@ -20,21 +20,21 @@
     },
     "autoload": {
         "psr-4": {
-            "Bestlang\\WxPay\\": "src/"
+            "BestLang\\WxPay\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Bestlang\\WxPay\\Tests\\": "tests"
+            "BestLang\\WxPay\\Tests\\": "tests"
         }
     },
     "extra": {
         "laravel": {
             "providers": [
-                "Bestlang\\WxPay\\WxPayServiceProvider"
+                "BestLang\\WxPay\\WxPayServiceProvider"
             ],
             "aliases": {
-                "WxPay": "Bestlang\\WxPay\\Facades\\WxPay"
+                "WxPay": "BestLang\\WxPay\\Facades\\WxPay"
             }
         }
     }

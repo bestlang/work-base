@@ -1,8 +1,8 @@
 <?php
-namespace Bestlang\Laracms;
+namespace BestLang\Laracms;
 
-use Bestlang\Laracms\Models\Cms\Content;
-use Bestlang\Laracms\Models\Cms\Position;
+use BestLang\Laracms\Models\Cms\Content;
+use BestLang\Laracms\Models\Cms\Position;
 
 if(!function_exists('metas_get')){
     function metas_get($content, $field){

@@ -1,7 +1,7 @@
 <?php
 namespace Sniper\Employee\Models;
 
-use Bestlang\Base\Models\User as BaseUser;
+use BestLang\Base\Models\User as BaseUser;
 use Sniper\Employee\Models\Employee;
 
 class User extends BaseUser

@@ -1,5 +1,5 @@
 <?php
-namespace Bestlang\WxPay\Pay\Contracts;
+namespace BestLang\WxPay\Pay\Contracts;
 
 abstract class WxPayConfigInterface
 {

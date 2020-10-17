@@ -1,8 +1,8 @@
 <?php
 
-namespace Bestlang\Laracms\Http\Controllers;
+namespace BestLang\Laracms\Http\Controllers;
 
-use Bestlang\Base\Http\Controllers\Controller as BaseController;
+use BestLang\Base\Http\Controllers\Controller as BaseController;
 
 class Controller extends BaseController
 {

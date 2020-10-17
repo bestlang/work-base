@@ -1,8 +1,8 @@
 <?php
-namespace Bestlang\WxPay\Pay;
+namespace BestLang\WxPay\Pay;
 
-use Bestlang\WxPay\Pay\Data\WxPayNotifyReply;
-use Bestlang\WxPay\Pay\WxPayApi;
+use BestLang\WxPay\Pay\Data\WxPayNotifyReply;
+use BestLang\WxPay\Pay\WxPayApi;
 /**
  *
  * 回调基础类

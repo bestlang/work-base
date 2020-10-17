@@ -1453,33 +1453,33 @@ CREATE TABLE `model_has_permissions`  (
 -- ----------------------------
 -- Records of model_has_permissions
 -- ----------------------------
-INSERT INTO `model_has_permissions` VALUES (3, 'Bestlang\\Base\\Models\\User', 3);
-INSERT INTO `model_has_permissions` VALUES (31, 'Bestlang\\Base\\Models\\User', 3);
-INSERT INTO `model_has_permissions` VALUES (32, 'Bestlang\\Base\\Models\\User', 3);
-INSERT INTO `model_has_permissions` VALUES (33, 'Bestlang\\Base\\Models\\User', 3);
-INSERT INTO `model_has_permissions` VALUES (34, 'Bestlang\\Base\\Models\\User', 3);
-INSERT INTO `model_has_permissions` VALUES (35, 'Bestlang\\Base\\Models\\User', 3);
-INSERT INTO `model_has_permissions` VALUES (36, 'Bestlang\\Base\\Models\\User', 3);
-INSERT INTO `model_has_permissions` VALUES (37, 'Bestlang\\Base\\Models\\User', 3);
-INSERT INTO `model_has_permissions` VALUES (38, 'Bestlang\\Base\\Models\\User', 3);
-INSERT INTO `model_has_permissions` VALUES (39, 'Bestlang\\Base\\Models\\User', 3);
-INSERT INTO `model_has_permissions` VALUES (40, 'Bestlang\\Base\\Models\\User', 3);
-INSERT INTO `model_has_permissions` VALUES (41, 'Bestlang\\Base\\Models\\User', 3);
-INSERT INTO `model_has_permissions` VALUES (42, 'Bestlang\\Base\\Models\\User', 3);
-INSERT INTO `model_has_permissions` VALUES (46, 'Bestlang\\Base\\Models\\User', 3);
-INSERT INTO `model_has_permissions` VALUES (47, 'Bestlang\\Base\\Models\\User', 3);
-INSERT INTO `model_has_permissions` VALUES (48, 'Bestlang\\Base\\Models\\User', 3);
-INSERT INTO `model_has_permissions` VALUES (49, 'Bestlang\\Base\\Models\\User', 3);
-INSERT INTO `model_has_permissions` VALUES (50, 'Bestlang\\Base\\Models\\User', 3);
-INSERT INTO `model_has_permissions` VALUES (51, 'Bestlang\\Base\\Models\\User', 3);
-INSERT INTO `model_has_permissions` VALUES (52, 'Bestlang\\Base\\Models\\User', 3);
-INSERT INTO `model_has_permissions` VALUES (53, 'Bestlang\\Base\\Models\\User', 3);
-INSERT INTO `model_has_permissions` VALUES (55, 'Bestlang\\Base\\Models\\User', 3);
-INSERT INTO `model_has_permissions` VALUES (56, 'Bestlang\\Base\\Models\\User', 3);
-INSERT INTO `model_has_permissions` VALUES (58, 'Bestlang\\Base\\Models\\User', 3);
-INSERT INTO `model_has_permissions` VALUES (59, 'Bestlang\\Base\\Models\\User', 3);
-INSERT INTO `model_has_permissions` VALUES (60, 'Bestlang\\Base\\Models\\User', 3);
-INSERT INTO `model_has_permissions` VALUES (61, 'Bestlang\\Base\\Models\\User', 3);
+INSERT INTO `model_has_permissions` VALUES (3, 'BestLang\\Base\\Models\\User', 3);
+INSERT INTO `model_has_permissions` VALUES (31, 'BestLang\\Base\\Models\\User', 3);
+INSERT INTO `model_has_permissions` VALUES (32, 'BestLang\\Base\\Models\\User', 3);
+INSERT INTO `model_has_permissions` VALUES (33, 'BestLang\\Base\\Models\\User', 3);
+INSERT INTO `model_has_permissions` VALUES (34, 'BestLang\\Base\\Models\\User', 3);
+INSERT INTO `model_has_permissions` VALUES (35, 'BestLang\\Base\\Models\\User', 3);
+INSERT INTO `model_has_permissions` VALUES (36, 'BestLang\\Base\\Models\\User', 3);
+INSERT INTO `model_has_permissions` VALUES (37, 'BestLang\\Base\\Models\\User', 3);
+INSERT INTO `model_has_permissions` VALUES (38, 'BestLang\\Base\\Models\\User', 3);
+INSERT INTO `model_has_permissions` VALUES (39, 'BestLang\\Base\\Models\\User', 3);
+INSERT INTO `model_has_permissions` VALUES (40, 'BestLang\\Base\\Models\\User', 3);
+INSERT INTO `model_has_permissions` VALUES (41, 'BestLang\\Base\\Models\\User', 3);
+INSERT INTO `model_has_permissions` VALUES (42, 'BestLang\\Base\\Models\\User', 3);
+INSERT INTO `model_has_permissions` VALUES (46, 'BestLang\\Base\\Models\\User', 3);
+INSERT INTO `model_has_permissions` VALUES (47, 'BestLang\\Base\\Models\\User', 3);
+INSERT INTO `model_has_permissions` VALUES (48, 'BestLang\\Base\\Models\\User', 3);
+INSERT INTO `model_has_permissions` VALUES (49, 'BestLang\\Base\\Models\\User', 3);
+INSERT INTO `model_has_permissions` VALUES (50, 'BestLang\\Base\\Models\\User', 3);
+INSERT INTO `model_has_permissions` VALUES (51, 'BestLang\\Base\\Models\\User', 3);
+INSERT INTO `model_has_permissions` VALUES (52, 'BestLang\\Base\\Models\\User', 3);
+INSERT INTO `model_has_permissions` VALUES (53, 'BestLang\\Base\\Models\\User', 3);
+INSERT INTO `model_has_permissions` VALUES (55, 'BestLang\\Base\\Models\\User', 3);
+INSERT INTO `model_has_permissions` VALUES (56, 'BestLang\\Base\\Models\\User', 3);
+INSERT INTO `model_has_permissions` VALUES (58, 'BestLang\\Base\\Models\\User', 3);
+INSERT INTO `model_has_permissions` VALUES (59, 'BestLang\\Base\\Models\\User', 3);
+INSERT INTO `model_has_permissions` VALUES (60, 'BestLang\\Base\\Models\\User', 3);
+INSERT INTO `model_has_permissions` VALUES (61, 'BestLang\\Base\\Models\\User', 3);
 
 -- ----------------------------
 -- Table structure for model_has_roles
@@ -1497,12 +1497,12 @@ CREATE TABLE `model_has_roles`  (
 -- ----------------------------
 -- Records of model_has_roles
 -- ----------------------------
-INSERT INTO `model_has_roles` VALUES (4, 'Bestlang\\Base\\Models\\User', 3);
-INSERT INTO `model_has_roles` VALUES (7, 'Bestlang\\Base\\Models\\User', 3);
-INSERT INTO `model_has_roles` VALUES (4, 'Bestlang\\Base\\Models\\User', 156);
-INSERT INTO `model_has_roles` VALUES (4, 'Bestlang\\Base\\Models\\User', 157);
-INSERT INTO `model_has_roles` VALUES (7, 'Bestlang\\Base\\Models\\User', 160);
-INSERT INTO `model_has_roles` VALUES (4, 'Bestlang\\Base\\Models\\User', 166);
+INSERT INTO `model_has_roles` VALUES (4, 'BestLang\\Base\\Models\\User', 3);
+INSERT INTO `model_has_roles` VALUES (7, 'BestLang\\Base\\Models\\User', 3);
+INSERT INTO `model_has_roles` VALUES (4, 'BestLang\\Base\\Models\\User', 156);
+INSERT INTO `model_has_roles` VALUES (4, 'BestLang\\Base\\Models\\User', 157);
+INSERT INTO `model_has_roles` VALUES (7, 'BestLang\\Base\\Models\\User', 160);
+INSERT INTO `model_has_roles` VALUES (4, 'BestLang\\Base\\Models\\User', 166);
 
 -- ----------------------------
 -- Table structure for password_resets

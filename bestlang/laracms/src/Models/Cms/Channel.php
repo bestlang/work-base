@@ -1,10 +1,10 @@
 <?php
 
-namespace Bestlang\Laracms\Models\Cms;
+namespace BestLang\Laracms\Models\Cms;
 
 use Baum\Node;
-use Bestlang\Laracms\Models\Cms\Content;
-use Bestlang\Laracms\Models\Cms\ChannelMeta;
+use BestLang\Laracms\Models\Cms\Content;
+use BestLang\Laracms\Models\Cms\ChannelMeta;
 
 class Channel extends Node
 {

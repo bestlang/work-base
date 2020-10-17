@@ -1,7 +1,7 @@
 <?php
 namespace Sniper\Employee\Http\Controllers;
 
-use Bestlang\Base\Http\Controllers\Controller;
+use BestLang\Base\Http\Controllers\Controller;
 
 class EmployeeController extends Controller
 {

@@ -650,7 +650,7 @@ CREATE TABLE `model_has_roles` (
 
 LOCK TABLES `model_has_roles` WRITE;
 /*!40000 ALTER TABLE `model_has_roles` DISABLE KEYS */;
-INSERT INTO `model_has_roles` VALUES (4,'Bestlang\\Base\\Models\\User',156),(4,'Bestlang\\Base\\Models\\User',157),(7,'Bestlang\\Base\\Models\\User',160),(4,'Bestlang\\Base\\Models\\User',166),(7,'Bestlang\\Base\\Models\\User',195),(8,'Bestlang\\Base\\Models\\User',195),(4,'Bestlang\\Base\\Models\\User',222);
+INSERT INTO `model_has_roles` VALUES (4,'BestLang\\Base\\Models\\User',156),(4,'BestLang\\Base\\Models\\User',157),(7,'BestLang\\Base\\Models\\User',160),(4,'BestLang\\Base\\Models\\User',166),(7,'BestLang\\Base\\Models\\User',195),(8,'BestLang\\Base\\Models\\User',195),(4,'BestLang\\Base\\Models\\User',222);
 /*!40000 ALTER TABLE `model_has_roles` ENABLE KEYS */;
 UNLOCK TABLES;
 

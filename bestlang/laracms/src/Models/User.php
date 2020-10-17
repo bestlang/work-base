@@ -1,11 +1,11 @@
 <?php
 
-namespace Bestlang\Laracms\Models;
+namespace BestLang\Laracms\Models;
 
-use Bestlang\Base\Models\User as BaseUser;
+use BestLang\Base\Models\User as BaseUser;
 
-use Bestlang\Laracms\Models\Cms\Comment;
-use Bestlang\Laracms\Models\Cms\Order;
+use BestLang\Laracms\Models\Cms\Comment;
+use BestLang\Laracms\Models\Cms\Order;
 
 class User extends BaseUser
 {

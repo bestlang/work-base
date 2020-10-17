@@ -1,7 +1,7 @@
 <?php
-namespace Bestlang\WxPay\Pay\Log;
+namespace BestLang\WxPay\Pay\Log;
 
-use Bestlang\WxPay\Pay\Contracts\ILogHandler;
+use BestLang\WxPay\Pay\Contracts\ILogHandler;
 
 class CLogFileHandler implements ILogHandler
 {

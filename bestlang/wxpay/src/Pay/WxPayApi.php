@@ -1,10 +1,10 @@
 <?php
-namespace Bestlang\WxPay\Pay;
+namespace BestLang\WxPay\Pay;
 
-use Bestlang\WxPay\Pay\Exceptions\WxPayException;
-use Bestlang\WxPay\Pay\Data\WxPayResults;
-use Bestlang\WxPay\Pay\Data\WxPayNotifyResults;
-use Bestlang\WxPay\Pay\Data\WxPayReport;
+use BestLang\WxPay\Pay\Exceptions\WxPayException;
+use BestLang\WxPay\Pay\Data\WxPayResults;
+use BestLang\WxPay\Pay\Data\WxPayNotifyResults;
+use BestLang\WxPay\Pay\Data\WxPayReport;
 /**
  *
  * 接口访问类，包含所有微信支付API列表的封装，类中方法为static方法，

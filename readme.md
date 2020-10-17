@@ -68,7 +68,7 @@ if(substr($hex, 0, 2) === '0x'){
 
 
 ---------------------------
-"Bestlang\\Laracms\\":"packages/bestlang/laracms/src/"
+"BestLang\\Laracms\\":"packages/bestlang/laracms/src/"
 
 
 ---------------------------
@@ -79,3 +79,8 @@ app\Http\Middleware\VerifyCsrfToken.php 加入微信支付宝回调排除
 
 
 php artisan queue:work --queue=updateDingTalkUser
+
+
+逆向 Seed 生成器 orangehill/iseed
+
+

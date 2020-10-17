@@ -1,5 +1,5 @@
 <?php
-namespace Bestlang\WxPay\Pay\Data;
+namespace BestLang\WxPay\Pay\Data;
 /**
  *
  * 关闭订单输入对象

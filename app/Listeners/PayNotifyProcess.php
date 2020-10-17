@@ -2,8 +2,8 @@
 
 namespace App\Listeners;
 
-use Bestlang\Laracms\Events\PayNotify;
-use Bestlang\Laracms\Models\Cms\Order;
+use BestLang\Laracms\Events\PayNotify;
+use BestLang\Laracms\Models\Cms\Order;
 use App\Pay\Log\Log;
 
 class PayNotifyProcess

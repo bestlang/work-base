@@ -1,8 +1,8 @@
 <?php
 
-namespace Bestlang\Base\Http\Controllers\Auth;
+namespace BestLang\Base\Http\Controllers\Auth;
 
-use Bestlang\Laracms\Http\Controllers\Controller;
+use BestLang\Laracms\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ResetsPasswords;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;

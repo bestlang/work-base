@@ -1,5 +1,5 @@
 <?php
-namespace Bestlang\WxPay\Pay\Data;
+namespace BestLang\WxPay\Pay\Data;
 /**
  *
  * 提交退款输入对象

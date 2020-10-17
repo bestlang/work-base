@@ -1,6 +1,6 @@
 <?php
 
-namespace Bestlang\Base\Exceptions;
+namespace BestLang\Base\Exceptions;
 
 use Exception;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;

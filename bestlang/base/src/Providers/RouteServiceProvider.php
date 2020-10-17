@@ -1,6 +1,6 @@
 <?php
 
-namespace Bestlang\Base\Providers;
+namespace BestLang\Base\Providers;
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
@@ -14,7 +14,7 @@ class RouteServiceProvider extends ServiceProvider
      *
      * @var string
      */
-    protected $namespace = 'Bestlang\Base\Http\Controllers';
+    protected $namespace = 'BestLang\Base\Http\Controllers';
 
     /**
      * Define your route model bindings, pattern filters, etc.

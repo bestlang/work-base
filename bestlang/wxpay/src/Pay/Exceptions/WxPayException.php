@@ -1,5 +1,5 @@
 <?php
-namespace Bestlang\WxPay\Pay\Exceptions;
+namespace BestLang\WxPay\Pay\Exceptions;
 
 class WxPayException extends \Exception {
     public function errorMessage()

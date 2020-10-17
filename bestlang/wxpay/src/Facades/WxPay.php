@@ -1,6 +1,6 @@
 <?php
 
-namespace Bestlang\WxPay\Facades;
+namespace BestLang\WxPay\Facades;
 
 use Illuminate\Support\Facades\Facade;
 

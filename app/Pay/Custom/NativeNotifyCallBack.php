@@ -6,7 +6,7 @@ use App\Pay\Log\Log;
 use App\Pay\WxPayConfig;
 use App\Pay\WxPayNotify;
 
-use Bestlang\Laracms\Models\Cms\Order;
+use BestLang\Laracms\Models\Cms\Order;
 use App\Pay\WxPayApi;
 
 //native第一种支付方式, 需要调用统一下单Api

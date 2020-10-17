@@ -1,13 +1,13 @@
 <?php
 
-namespace Bestlang\Laracms\Http\Controllers\Admin\Cms;
+namespace BestLang\Laracms\Http\Controllers\Admin\Cms;
 
-use Bestlang\Laracms\Models\Cms\Channel;
-use Bestlang\Laracms\Models\Cms\Position;
-use Bestlang\Laracms\Models\Cms\PositionContent;
+use BestLang\Laracms\Models\Cms\Channel;
+use BestLang\Laracms\Models\Cms\Position;
+use BestLang\Laracms\Models\Cms\PositionContent;
 use function foo\func;
 use Illuminate\Http\Request;
-use Bestlang\Laracms\Http\Controllers\Controller;
+use BestLang\Laracms\Http\Controllers\Controller;
 use Arr;
 
 class PositionController extends Controller

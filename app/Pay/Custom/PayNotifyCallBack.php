@@ -3,7 +3,7 @@ namespace App\Pay\Custom;
 use App\Pay\Log\Log;
 use App\Pay\Data\WxPayOrderQuery;
 use App\Pay\WxPayNotify;
-use Bestlang\Laracms\Events\PayNotify;
+use BestLang\Laracms\Events\PayNotify;
 use App\Pay\WxPayConfig;
 use App\Pay\WxPayApi;
 

@@ -25,7 +25,7 @@
   },
   "autoload": {
     "psr-4": {
-      "Bestlang\\Base\\": "src/"
+      "BestLang\\Base\\": "src/"
     },
     "files": [
       "src/helpers.php"
@@ -38,12 +38,12 @@
   "extra": {
     "laravel": {
       "providers": [
-        "Bestlang\\Base\\Providers\\AppServiceProvider",
-        "Bestlang\\Base\\Providers\\ResponseServiceProvider",
-        "Bestlang\\Base\\Providers\\RouteServiceProvider"
+        "BestLang\\Base\\Providers\\AppServiceProvider",
+        "BestLang\\Base\\Providers\\ResponseServiceProvider",
+        "BestLang\\Base\\Providers\\RouteServiceProvider"
       ],
       "aliases": {
-        "hashconfig": "Bestlang\\Base\\Facades\\HashConfig"
+        "hashconfig": "BestLang\\Base\\Facades\\HashConfig"
       }
     }
   }

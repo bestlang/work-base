@@ -1,5 +1,5 @@
 <?php
-namespace Bestlang\Laracms\Events;
+namespace BestLang\Laracms\Events;
 
 use Illuminate\Queue\SerializesModels;
 

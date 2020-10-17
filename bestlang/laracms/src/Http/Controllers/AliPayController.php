@@ -1,10 +1,10 @@
 <?php
-namespace Bestlang\Laracms\Http\Controllers;
+namespace BestLang\Laracms\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Alipay\EasySDK\Kernel\Factory;
 use Alipay\EasySDK\Kernel\Config;
-use Bestlang\Laracms\Models\Cms\Order;
+use BestLang\Laracms\Models\Cms\Order;
 
 class AliPayController
 {

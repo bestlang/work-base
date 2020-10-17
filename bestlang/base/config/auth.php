@@ -67,7 +67,7 @@ return [
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
-            'model' => Bestlang\Base\Models\User::class,
+            'model' => BestLang\Base\Models\User::class,
         ],
 
         // 'users' => [

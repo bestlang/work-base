@@ -1,10 +1,10 @@
 <?php
 
-namespace Bestlang\Base\Http\Controllers;
+namespace BestLang\Base\Http\Controllers;
 
-use Bestlang\Base\Http\Controllers\Controller;
+use BestLang\Base\Http\Controllers\Controller;
 
-use Bestlang\Base\Models\User;
+use BestLang\Base\Models\User;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use JWTAuth;
 

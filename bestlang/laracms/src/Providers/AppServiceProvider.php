@@ -1,13 +1,13 @@
 <?php
 
-namespace Bestlang\Laracms\Providers;
+namespace BestLang\Laracms\Providers;
 
 use Illuminate\Support\ServiceProvider;
 //use Illuminate\Support\Facades\Gate;
-//use Bestlang\Laracms\Models\Permission;
+//use BestLang\Laracms\Models\Permission;
 
-use Bestlang\Laracms\Models\Cms\Order;
-use Bestlang\Laracms\Observers\Cms\OrderObserver;
+use BestLang\Laracms\Models\Cms\Order;
+use BestLang\Laracms\Observers\Cms\OrderObserver;
 use Illuminate\Support\Facades\Blade;
 
 class AppServiceProvider extends ServiceProvider
@@ -19,7 +19,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->bind('laracms', 'Bestlang\Laracms\Laracms');
+        $this->app->bind('laracms', 'BestLang\Laracms\Laracms');
     }
 
     /**

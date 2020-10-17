@@ -1,5 +1,5 @@
 <?php
-namespace Bestlang\Base\Http\Controllers;
+namespace BestLang\Base\Http\Controllers;
 
 
 class IndexController extends Controller

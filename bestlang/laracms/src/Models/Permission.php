@@ -1,6 +1,6 @@
 <?php
 
-namespace Bestlang\Laracms\Models;
+namespace BestLang\Laracms\Models;
 
 use Baum\NestedSet\Node as WorksAsNestedSet;
 use Spatie\Permission\Models\Permission as SpatiePermission;

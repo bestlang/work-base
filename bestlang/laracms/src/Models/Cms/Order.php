@@ -1,8 +1,8 @@
 <?php
 
-namespace Bestlang\Laracms\Models\Cms;
+namespace BestLang\Laracms\Models\Cms;
 
-use Bestlang\Laracms\Models\User;
+use BestLang\Laracms\Models\User;
 use Illuminate\Database\Eloquent\Model;
 
 class Order extends Model

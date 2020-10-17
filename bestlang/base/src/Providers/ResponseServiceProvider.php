@@ -1,6 +1,6 @@
 <?php
 
-namespace Bestlang\Base\Providers;
+namespace BestLang\Base\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Response;

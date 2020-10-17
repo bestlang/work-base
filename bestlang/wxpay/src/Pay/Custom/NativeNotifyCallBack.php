@@ -1,13 +1,13 @@
 <?php
-namespace Bestlang\WxPay\Pay\Custom;
+namespace BestLang\WxPay\Pay\Custom;
 
-use Bestlang\WxPay\Pay\Data\WxPayUnifiedOrder;
-use Bestlang\WxPay\Pay\Log\Log;
-use Bestlang\WxPay\Pay\WxPayConfig;
-use Bestlang\WxPay\Pay\WxPayNotify;
+use BestLang\WxPay\Pay\Data\WxPayUnifiedOrder;
+use BestLang\WxPay\Pay\Log\Log;
+use BestLang\WxPay\Pay\WxPayConfig;
+use BestLang\WxPay\Pay\WxPayNotify;
 
-use Bestlang\Laracms\Models\Cms\Order;
-use Bestlang\WxPay\Pay\WxPayApi;
+use BestLang\Laracms\Models\Cms\Order;
+use BestLang\WxPay\Pay\WxPayApi;
 
 //native第一种支付方式, 需要调用统一下单Api
 class NativeNotifyCallBack extends WxPayNotify

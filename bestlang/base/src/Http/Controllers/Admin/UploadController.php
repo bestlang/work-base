@@ -1,10 +1,10 @@
 <?php
-namespace Bestlang\Base\Http\Controllers\Admin;
+namespace BestLang\Base\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use Upyun\Upyun;
 use Upyun\Config;
-use Bestlang\Base\Http\Controllers\Controller;
+use BestLang\Base\Http\Controllers\Controller;
 
 class UploadController extends Controller
 {

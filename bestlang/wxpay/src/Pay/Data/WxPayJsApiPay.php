@@ -1,5 +1,5 @@
 <?php
-namespace Bestlang\WxPay\Pay\Data;
+namespace BestLang\WxPay\Pay\Data;
 
 /**
  *

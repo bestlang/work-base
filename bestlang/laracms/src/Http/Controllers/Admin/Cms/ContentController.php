@@ -1,15 +1,15 @@
 <?php
 
-namespace Bestlang\Laracms\Http\Controllers\Admin\Cms;
+namespace BestLang\Laracms\Http\Controllers\Admin\Cms;
 
-use Bestlang\Laracms\Models\Cms\Channel;
-use Bestlang\Laracms\Models\Cms\ContentContent;
-use Bestlang\Laracms\Models\Cms\ContentMeta;
-use Bestlang\Laracms\Models\Cms\Tag;
+use BestLang\Laracms\Models\Cms\Channel;
+use BestLang\Laracms\Models\Cms\ContentContent;
+use BestLang\Laracms\Models\Cms\ContentMeta;
+use BestLang\Laracms\Models\Cms\Tag;
 use Illuminate\Http\Request;
-use Bestlang\Laracms\Http\Controllers\Controller;
-use Bestlang\Laracms\Models\Cms\Content;
-use Bestlang\Laracms\Models\Cms\Model;
+use BestLang\Laracms\Http\Controllers\Controller;
+use BestLang\Laracms\Models\Cms\Content;
+use BestLang\Laracms\Models\Cms\Model;
 use Arr;
 
 class ContentController extends Controller

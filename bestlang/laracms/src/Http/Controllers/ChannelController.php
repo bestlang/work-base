@@ -1,9 +1,9 @@
 <?php
 
-namespace Bestlang\Laracms\Http\Controllers;
+namespace BestLang\Laracms\Http\Controllers;
 
-use Bestlang\Laracms\Models\Cms\Channel;
-use Bestlang\Laracms\Models\Cms\Content;
+use BestLang\Laracms\Models\Cms\Channel;
+use BestLang\Laracms\Models\Cms\Content;
 use Illuminate\Http\Request;
 
 class ChannelController extends Controller

@@ -1,9 +1,9 @@
 <?php
 
-namespace Bestlang\Base\Http\Controllers\Auth;
+namespace BestLang\Base\Http\Controllers\Auth;
 
-use Bestlang\Base\Models\User;
-use Bestlang\Base\Http\Controllers\Controller;
+use BestLang\Base\Models\User;
+use BestLang\Base\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;

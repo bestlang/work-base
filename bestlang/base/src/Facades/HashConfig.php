@@ -1,6 +1,6 @@
 <?php
 
-namespace Bestlang\Base\Facades;
+namespace BestLang\Base\Facades;
 
 use Illuminate\Support\Facades\Facade;
 

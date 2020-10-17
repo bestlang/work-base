@@ -1,5 +1,5 @@
 <?php
-namespace Bestlang\WxPay\Pay\Log;
+namespace BestLang\WxPay\Pay\Log;
 
 class Log
 {

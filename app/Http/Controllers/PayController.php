@@ -12,7 +12,7 @@ use App\Pay\Custom\NativeNotifyCallBack;
 use App\Pay\WxPayConfig;
 use App\Pay\Custom\PayNotifyCallBack;
 
-use Bestlang\Laracms\Models\Cms\Order;
+use BestLang\Laracms\Models\Cms\Order;
 use Endroid\QrCode\QrCode;
 
 class PayController extends Controller

@@ -1,7 +1,7 @@
 <?php
-namespace Bestlang\WxPay\Pay;
+namespace BestLang\WxPay\Pay;
 
-use Bestlang\WxPay\Pay\Contracts\WxPayConfigInterface;
+use BestLang\WxPay\Pay\Contracts\WxPayConfigInterface;
 
 /**
  *

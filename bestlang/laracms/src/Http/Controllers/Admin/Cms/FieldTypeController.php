@@ -1,10 +1,10 @@
 <?php
 
-namespace Bestlang\Laracms\Http\Controllers\Admin\Cms;
+namespace BestLang\Laracms\Http\Controllers\Admin\Cms;
 
-use Bestlang\Laracms\Models\Cms\FieldType;
+use BestLang\Laracms\Models\Cms\FieldType;
 use Illuminate\Http\Request;
-use Bestlang\Laracms\Http\Controllers\Controller;
+use BestLang\Laracms\Http\Controllers\Controller;
 use Validator;
 use Arr;
 

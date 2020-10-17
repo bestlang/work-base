@@ -1,5 +1,5 @@
 <?php
-namespace Bestlang\Laracms\Models\Cms;
+namespace BestLang\Laracms\Models\Cms;
 
 use Illuminate\Database\Eloquent\Model;
 

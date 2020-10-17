@@ -1,11 +1,11 @@
 <?php
-namespace Bestlang\WxPay\Pay\Custom;
-use Bestlang\WxPay\Pay\Log\Log;
-use Bestlang\WxPay\Pay\Data\WxPayOrderQuery;
-use Bestlang\WxPay\Pay\WxPayNotify;
-use Bestlang\Laracms\Events\PayNotify;
-use Bestlang\WxPay\Pay\WxPayConfig;
-use Bestlang\WxPay\Pay\WxPayApi;
+namespace BestLang\WxPay\Pay\Custom;
+use BestLang\WxPay\Pay\Log\Log;
+use BestLang\WxPay\Pay\Data\WxPayOrderQuery;
+use BestLang\WxPay\Pay\WxPayNotify;
+use BestLang\Laracms\Events\PayNotify;
+use BestLang\WxPay\Pay\WxPayConfig;
+use BestLang\WxPay\Pay\WxPayApi;
 
 // 处理支付成功回调
 class PayNotifyCallBack extends WxPayNotify

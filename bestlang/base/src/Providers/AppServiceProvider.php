@@ -1,16 +1,16 @@
 <?php
 
-namespace Bestlang\Base\Providers;
+namespace BestLang\Base\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Gate;
 
 use Illuminate\Contracts\Debug\ExceptionHandler;
 use Tymon\JWTAuth\Http\Middleware\Authenticate;
-use Bestlang\Base\Exceptions\Handler as CustomExceptionHandler;
+use BestLang\Base\Exceptions\Handler as CustomExceptionHandler;
 use Illuminate\Database\Eloquent\Collection;
 use Validator;
-use Bestlang\Base\Models\Permission;
+use BestLang\Base\Models\Permission;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -21,7 +21,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->bind('hashconfig', 'Bestlang\Base\Models\HashConfig');
+        $this->app->bind('hashconfig', 'BestLang\Base\Models\HashConfig');
 //        $this->app['router']->aliasMiddleware('auth.jwt', Authenticate::class);
         $this->app->singleton(
             ExceptionHandler::class,

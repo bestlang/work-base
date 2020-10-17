@@ -1,6 +1,6 @@
 <?php
 
-namespace Bestlang\WxPay;
+namespace BestLang\WxPay;
 
 class WxPay
 {

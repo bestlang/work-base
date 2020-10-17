@@ -1,21 +1,21 @@
 <?php
-namespace Bestlang\Laracms\Http\Controllers;
+namespace BestLang\Laracms\Http\Controllers;
 
 
 use Illuminate\Http\Request;
-use Bestlang\Laracms\Models\Cms\Order;
-use Bestlang\Laracms\Services\OrderGenerator;
+use BestLang\Laracms\Models\Cms\Order;
+use BestLang\Laracms\Services\OrderGenerator;
 
-use Bestlang\WxPay\Pay\Data\WxPayUnifiedOrder;
-use Bestlang\WxPay\Pay\Gateway\NativePay;
-use Bestlang\WxPay\Pay\WxPayConfig;
+use BestLang\WxPay\Pay\Data\WxPayUnifiedOrder;
+use BestLang\WxPay\Pay\Gateway\NativePay;
+use BestLang\WxPay\Pay\WxPayConfig;
 use Endroid\QrCode\QrCode;
 
-use Bestlang\WxPay\Pay\Log\CLogFileHandler;
-use Bestlang\WxPay\Pay\Custom\NativeNotifyCallBack;
-use Bestlang\WxPay\Pay\Log\Log;
+use BestLang\WxPay\Pay\Log\CLogFileHandler;
+use BestLang\WxPay\Pay\Custom\NativeNotifyCallBack;
+use BestLang\WxPay\Pay\Log\Log;
 
-use Bestlang\WxPay\Pay\Custom\PayNotifyCallBack;
+use BestLang\WxPay\Pay\Custom\PayNotifyCallBack;
 
 class OrderController
 {

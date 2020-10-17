@@ -1,10 +1,10 @@
 <?php
-namespace Bestlang\WxPay\Pay\Gateway;
+namespace BestLang\WxPay\Pay\Gateway;
 
-use Bestlang\WxPay\Pay\Data\WxPayBizPayUrl;
-use Bestlang\WxPay\Pay\WxPayConfig;
-use Bestlang\WxPay\Pay\WxPayApi;
-use Bestlang\WxPay\Pay\Log\Log;
+use BestLang\WxPay\Pay\Data\WxPayBizPayUrl;
+use BestLang\WxPay\Pay\WxPayConfig;
+use BestLang\WxPay\Pay\WxPayApi;
+use BestLang\WxPay\Pay\Log\Log;
 use \Exception;
 /**
  *
