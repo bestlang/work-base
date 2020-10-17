@@ -1,0 +1,41 @@
+{
+    "name": "bestlang/wxpay",
+    "description": ":package_description",
+    "license": "license",
+    "authors": [
+        {
+            "name": "author name",
+            "email": "author email",
+            "homepage": "author homepage"
+        }
+    ],
+    "homepage": "https://github.com/bestlang/wxpay",
+    "keywords": ["Laravel", "WxPay"],
+    "require": {
+        "illuminate/support": "~7|~8"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~9.0",
+        "orchestra/testbench": "~5|~6"
+    },
+    "autoload": {
+        "psr-4": {
+            "Bestlang\\WxPay\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Bestlang\\WxPay\\Tests\\": "tests"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Bestlang\\WxPay\\WxPayServiceProvider"
+            ],
+            "aliases": {
+                "WxPay": "Bestlang\\WxPay\\Facades\\WxPay"
+            }
+        }
+    }
+}

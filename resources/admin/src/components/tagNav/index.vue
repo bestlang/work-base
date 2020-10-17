@@ -91,12 +91,13 @@
         line-height: 30px;
         display: inline-block;
         padding: 0 8px;
-        border: 1px solid #eee;
-        box-sizing: border-box;
+        border: 1px solid #f1f1f1;
+        box-sizing: content-box;
         margin-right: 5px;
         font-weight: lighter;
         &:hover{
             text-decoration: none;
+             border: 1px solid #F0F0EE;
          }
     }
     .cur{

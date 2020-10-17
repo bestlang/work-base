@@ -6,16 +6,16 @@ use Illuminate\Http\Request;
 use Bestlang\Laracms\Models\Cms\Order;
 use Bestlang\Laracms\Services\OrderGenerator;
 
-use App\Pay\Data\WxPayUnifiedOrder;
-use App\Pay\Gateway\NativePay;
-use App\Pay\WxPayConfig;
+use BestLang\WxPay\Pay\Data\WxPayUnifiedOrder;
+use BestLang\WxPay\Pay\Gateway\NativePay;
+use BestLang\WxPay\Pay\WxPayConfig;
 use Endroid\QrCode\QrCode;
 
-use App\Pay\Log\CLogFileHandler;
-use App\Pay\Custom\NativeNotifyCallBack;
-use App\Pay\Log\Log;
+use BestLang\WxPay\Pay\Log\CLogFileHandler;
+use BestLang\WxPay\Pay\Custom\NativeNotifyCallBack;
+use BestLang\WxPay\Pay\Log\Log;
 
-use App\Pay\Custom\PayNotifyCallBack;
+use BestLang\WxPay\Pay\Custom\PayNotifyCallBack;
 
 class OrderController
 {
