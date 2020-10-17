@@ -24,7 +24,6 @@
         "jellybool/flysystem-upyun": "^1.0",
         "laravel/framework": "5.8.*",
         "laravel/tinker": "^1.0",
-        "mpociot/laravel-apidoc-generator": "^3.9",
         "overtrue/laravel-wechat": "~5.0",
         "sniper/employee": "dev-master",
         "spatie/laravel-permission": "^2.38",
@@ -36,8 +35,7 @@
         "filp/whoops": "^2.0",
         "mockery/mockery": "^1.0",
         "nunomaduro/collision": "^3.0",
-        "phpunit/phpunit": "^7.5.18",
-        "jeroen-g/laravel-packager": "2.5.1"
+        "phpunit/phpunit": "^7.5.18"
     },
     "config": {
         "optimize-autoloader": true,
