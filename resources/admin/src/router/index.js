@@ -147,16 +147,16 @@ export default new VueRouter({
                       font: '&#xe629;'
                   }
               },
-              /*{
-                  path: "/graph",
-                  component: () => import("../pages/sniper/employee/employee/graph.vue"),
-                  meta: {
-                      can: 'cms',
-                      show: true,
-                      name: '组织架构',
-                      font: '&#xe629;'
-                  }
-              },*/
+              {
+                   path: "/graph",
+                   component: () => import("../pages/sniper/employee/employee/graph.vue"),
+                   meta: {
+                       can: 'hr attendance',
+                       show: true,
+                       name: '组织架构',
+                       font: '&#xe629;'
+                   }
+              },
           ]
           },
         {
