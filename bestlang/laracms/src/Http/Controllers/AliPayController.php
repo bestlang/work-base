@@ -67,6 +67,7 @@ class AliPayController
 
     public function notify(Request $request)
     {
+        //https://www.xxx.com/notify/alipay?charset=UTF-8&out_trade_no=20201017223143239893&method=alipay.trade.page.pay.return&total_amount=0.01&sign=K9tSpJRli2YKAAiy4HiX0vTZow%2BI2An6BA8Q26%2BPp%2FUh%2FOlDd9qRzLYiQJKKtZf79CLyu3MRFIN0apehsQbfrIHUHwDZnmMTpWq5lR3pXaT5dgclfmeRJQY%2BosvG48rtS8za%2FirSklkWEOReqnxtzAkU8ERdxKMOCJM%2BswaYPKlMGpdTOwc5pol3wzMI22T%2B6pZsLDohCZV2YSTcuiDlAX9oPwliDC9D0xO7yormuY35aME1UDg%2F%2BBicSeOETZu9v5x7Ntmb5TcZKc7rl7bBPUTQ1jg6c8MuXx4s7rCZi6wih%2F3dDt1uT6uJtLaZqVutv01XcgT6HJz32TAPc3pIDA%3D%3D&trade_no=2020101722001495931407744519&auth_app_id=2021001165602449&version=1.0&app_id=2021001165602449&sign_type=RSA2&seller_id=2088831621177204&timestamp=2020-10-17+22%3A32%3A23
         info('***** alipay notify *****', [$request->all()]);
     }
 

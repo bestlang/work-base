@@ -1,6 +1,6 @@
 {
 	"name":"bestlang/alipay-easysdk",
-	"description":"支付宝官方 Alipay Easy SDK",
+	"description":"支付宝官方 Alipay Easy SDK 2.0.1",
 	"type":"library",
 	"version":"dev-master",
 	"authors":[
