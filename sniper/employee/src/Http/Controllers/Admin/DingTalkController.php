@@ -263,7 +263,7 @@ class DingTalkController
 
     public function monthAvg(Request $request)
     {
-        if(auth()->user()->cant('hr attendance')){
+        if(auth()->user()->cant('hr attendance overview')){
             return response()->error('没有权限!', 4012);
         }
         $month = $request->input('month');
@@ -304,7 +304,7 @@ class DingTalkController
     }
     public function departmentsWeekAvg(Request $request)
     {
-        if(auth()->user()->cant('hr attendance')){
+        if(auth()->user()->cant('hr attendance overview')){
             return response()->error('没有权限!', 4012);
         }
         $month = $request->input('month');
@@ -386,7 +386,7 @@ class DingTalkController
     //员工总数 出勤人数 请假人数
     public function today()
     {
-        if(auth()->user()->cant('hr attendance')){
+        if(auth()->user()->cant('hr attendance overview')){
             return response()->error('没有权限!', 4012);
         }
         $totalEmployeeCount = DingUser::where('onJob', 1)->count();

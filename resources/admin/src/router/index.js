@@ -121,7 +121,7 @@ export default new VueRouter({
                   path: "/sniper/employee/employee/attendanceOverview",
                   component: () => import("../pages/sniper/employee/employee/attendanceOverview.vue"),
                   meta: {
-                      can: 'hr attendance',
+                      can: 'hr attendance overview',
                       show: true,
                       name: '考勤概况',
                       font: '&#xe92a;'
