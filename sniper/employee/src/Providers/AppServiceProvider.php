@@ -18,15 +18,25 @@ class AppServiceProvider extends ServiceProvider
     {
         //写入项目信息
         session(['project'=>'sniper'], 'base');
-        $this->loadViewsFrom(resource_path('views/vendor/sniper'), 'sniper');
+
         if ($this->app->runningInConsole()) {
             $this->commands([
                 DingTalk::class
             ]);
-
+            $this->publishes([
+                __DIR__.'/../../config/ding.php' => config_path('ding.php'),
+            ], 'sniper-config');
+            // static file
+            $this->publishes([
+                __DIR__ . '/../../resources/assets/dist/public/vendor/sniper' => public_path('vendor/sniper')
+            ], 'sniper-assets');
+            // views
+            $this->publishes([
+                __DIR__.'/../../resources/views/sniper' => resource_path('views/vendor/sniper')
+            ], 'sniper-views');
         }
-        $this->publishes([
-            __DIR__.'/../../config/ding.php' => config_path('ding.php'),
-        ]);
+        $this->loadViewsFrom(__DIR__.'/../../resources/views/sniper', 'sniper');
+        //$this->loadViewsFrom(resource_path('views/vendor/sniper'), 'sniper');
+
     }
 }

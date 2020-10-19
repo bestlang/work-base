@@ -30,29 +30,31 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Order::observe(OrderObserver::class);
-        // config
-        $this->publishes([
-            __DIR__.'/../../config/ueditor.php' => config_path('ueditor.php'),
-        ], 'laracms-config');
+        if ($this->app->runningInConsole()) {
+            // config
+            $this->publishes([
+                __DIR__.'/../../config/ueditor.php' => config_path('ueditor.php'),
+            ], 'laracms-config');
 
-        // static file
-        $this->publishes([
-            __DIR__ . '/../../resources/vendor/' => public_path('vendor/')
-        ], 'laracms-static');
+            // static file
+            $this->publishes([
+                __DIR__ . '/../../resources/assets/dist/public/vendor/laracms' => public_path('vendor/laracms')
+            ], 'laracms-assets');
 
-        // migrations
-        $this->loadMigrationsFrom(__DIR__.'/../../database/migrations');
-        // seeder
-        $this->publishes([
-            __DIR__ . '/../../database/seeds/InitTableSeeder.php' => database_path('seeds/InitTableSeeder.php')
-        ], 'laracms-seeds');
-
+            // migrations
+            $this->loadMigrationsFrom(__DIR__.'/../../database/migrations');
+            // seeder
+            $this->publishes([
+                __DIR__ . '/../../database/seeds/InitTableSeeder.php' => database_path('seeds/InitTableSeeder.php')
+            ], 'laracms-seeds');
+            // views
+            $this->publishes([
+                __DIR__.'/../../resources/views/laracms' => resource_path('views/vendor/laracms')
+            ], 'laracms-views');
+        }
         $this->loadViewsFrom(__DIR__.'/../../resources/views/laracms', 'laracms');
+        //$this->loadViewsFrom(resource_path('vendor/laracms'), 'laracms');
 
-        // views
-//        $this->publishes([
-//            __DIR__.'/../../resources/views/laracms' => resource_path('views/vendor/laracms')
-//        ], 'laracms-views');
 
         Blade::directive('channelLink', function ($expression) {
             @list($channelName, $channelId, $as) = explode('-', $expression);
