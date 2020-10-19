@@ -264,59 +264,60 @@ class DingTalk extends Command
 //                });
 //                print_r($depMap);
 //            }
-//            else if($act == 'workType'){//智能判断一天是否为法定工作日/法定休息日
-//                 $temp = DB::connection('proxy')->table('sniper_employee_ding_attendance')
-//                     ->select(DB::raw('`ymd`, count(1) as ct'))
-//                     ->where('checkType', 'OnDuty')
-//                     ->groupBy('ymd')
-//                     ->orderBy('ymd', 'asc')->get();
-//                $count = count($temp);
-//                for($i = 0; $i<$count; $i++){
-//
-//                    if($i < 5){
-//                        $max = max([
-//                           $temp[0]->ct,
-//                           $temp[1]->ct,
-//                           $temp[2]->ct,
-//                           $temp[3]->ct,
-//                           $temp[4]->ct,
-//                           $temp[5]->ct,
-//                           $temp[6]->ct,
-//                           $temp[7]->ct,
-//                           $temp[8]->ct
-//                        ]);
-//                    }else if($i+4>=$count-1){
-//                        $max = max([
-//                            $temp[$count - 1]->ct,
-//                            $temp[$count - 2]->ct,
-//                            $temp[$count - 3]->ct,
-//                            $temp[$count - 4]->ct,
-//                            $temp[$count - 5]->ct,
-//                            $temp[$count - 6]->ct,
-//                            $temp[$count - 7]->ct,
-//                            $temp[$count - 8]->ct,
-//                            $temp[$count - 9]->ct,
-//                        ]);
-//                    }else{
-//                        $max = max([
-//                            $temp[$i - 4]->ct,
-//                            $temp[$i - 3]->ct,
-//                            $temp[$i - 2]->ct,
-//                            $temp[$i - 1]->ct,
-//                            $temp[$i]->ct,
-//                            $temp[$i + 1]->ct,
-//                            $temp[$i + 2]->ct,
-//                            $temp[$i + 3]->ct,
-//                            $temp[$i + 4]->ct
-//                        ]);
-//                    }
-//                    echo  $temp[$i]->ymd, ":", (100 * $temp[$i]->ct /$max) < 66;
-//                    if((100 * $temp[$i]->ct /$max) < 66){
-//                        Attendance::where('ymd', $temp[$i]->ymd)->update(['workType' => '0']);
-//                    }
-//                    echo "\n";
-//                }
-//            }else if($act == 'workTime'){
+            else if($act == 'workType'){//智能判断一天是否为法定工作日/法定休息日
+                 $temp = DB::connection('proxy')->table('sniper_employee_ding_attendance')
+                     ->select(DB::raw('`ymd`, count(1) as ct'))
+                     ->where('checkType', 'OnDuty')
+                     ->groupBy('ymd')
+                     ->orderBy('ymd', 'asc')->get();
+                $count = count($temp);
+                for($i = 0; $i<$count; $i++){
+
+                    if($i < 5){
+                        $max = max([
+                           $temp[0]->ct,
+                           $temp[1]->ct,
+                           $temp[2]->ct,
+                           $temp[3]->ct,
+                           $temp[4]->ct,
+                           $temp[5]->ct,
+                           $temp[6]->ct,
+                           $temp[7]->ct,
+                           $temp[8]->ct
+                        ]);
+                    }else if($i+4>=$count-1){
+                        $max = max([
+                            $temp[$count - 1]->ct,
+                            $temp[$count - 2]->ct,
+                            $temp[$count - 3]->ct,
+                            $temp[$count - 4]->ct,
+                            $temp[$count - 5]->ct,
+                            $temp[$count - 6]->ct,
+                            $temp[$count - 7]->ct,
+                            $temp[$count - 8]->ct,
+                            $temp[$count - 9]->ct,
+                        ]);
+                    }else{
+                        $max = max([
+                            $temp[$i - 4]->ct,
+                            $temp[$i - 3]->ct,
+                            $temp[$i - 2]->ct,
+                            $temp[$i - 1]->ct,
+                            $temp[$i]->ct,
+                            $temp[$i + 1]->ct,
+                            $temp[$i + 2]->ct,
+                            $temp[$i + 3]->ct,
+                            $temp[$i + 4]->ct
+                        ]);
+                    }
+                    echo  $temp[$i]->ymd, ":", (100 * $temp[$i]->ct /$max) < 66;
+                    if((100 * $temp[$i]->ct /$max) < 66){
+                        Attendance::where('ymd', $temp[$i]->ymd)->update(['workType' => '0']);
+                    }
+                    echo "\n";
+                }
+            }
+//else if($act == 'workTime'){
 //                $month = '2020-09';
 //                $weekWorkDays = [];
 //                $types = Attendance::select('ymd', 'workType')->where('ymd', 'like', $month.'%')->groupBy('ymd')->groupBy('workType')->get()->toArray();

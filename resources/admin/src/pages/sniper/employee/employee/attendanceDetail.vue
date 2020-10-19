@@ -28,8 +28,8 @@
                 </template>
             </el-calendar>
         </el-card>
-        <div><i style="color: #555;">{{month}}月份</i></div>
-        <div style="border-top: 1px solid #ccc;display: flex;flex-flow: row nowrap;justify-content: space-between" v-if="user">
+        <div style="width: 30%;border-bottom: 1px solid #f1f1f1;"><i>{{month}}月份</i></div>
+        <div style="display: flex;flex-flow: row nowrap;justify-content: space-between;margin-bottom: 5px;" v-if="user">
             <div><b style="color: #555;">{{user.name}}</b><i style="color: #aaa;"><{{user.orgEmail}}></i> <span style="color: #fff;">{{user.userid}}</span></div>
             <div style="color: #555;font-style: italic">{{user.department_info?user.department_info.name:''}}</div>
         </div>
@@ -58,7 +58,12 @@
                 </div>
             </div>
         </el-drawer>
-        <el-card style="margin-top: 20px;" shadow="hover">
+        <div style="width: 30%;border-bottom: 1px solid #f1f1f1;"><i>{{month}}月份</i></div>
+        <div style="display: flex;flex-flow: row nowrap;justify-content: space-between;margin-bottom: 5px;" v-if="user">
+            <div><b style="color: #555;">{{user.name}}</b><i style="color: #aaa;"><{{user.orgEmail}}></i> <span style="color: #fff;">{{user.userid}}</span></div>
+            <div style="color: #555;font-style: italic">{{user.department_info?user.department_info.name:''}}</div>
+        </div>
+        <el-card shadow="hover">
             <!--<div>平均每周工作小时</div>-->
             <v-chart :options="optionsTM" style="width: 100%;height: 600px;"/>
         </el-card>

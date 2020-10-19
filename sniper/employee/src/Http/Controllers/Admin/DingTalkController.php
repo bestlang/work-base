@@ -297,7 +297,7 @@ class DingTalkController
         foreach ($udt as $_userId => $data){
                 $daysLaw = min(count($data),array_sum($weekWorkDays));
                 $avgHour = $data ? round(array_sum($data) / ($daysLaw * 60 * 60) - 1, 2) : 0;
-                $userMonthAvg[] = ['name' => $userName[$_userId], 'hour' => $avgHour];
+                $userMonthAvg[] = ['name' => $userName[$_userId].$avgHour, 'hour' => $avgHour];
         }
         $sorted = collect($userMonthAvg)->sortBy('hour')->values()->all();
         return response()->ajax($sorted);

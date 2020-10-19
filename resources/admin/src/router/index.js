@@ -118,7 +118,7 @@ export default new VueRouter({
                   }
               },
               {
-                  path: "/sniper/employee/employee/attendanceOverview",
+                  path: "/sniper/employee/employee/attendance/overview",
                   component: () => import("../pages/sniper/employee/employee/attendanceOverview.vue"),
                   meta: {
                       can: 'hr attendance overview',
