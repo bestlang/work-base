@@ -64,6 +64,16 @@
                 </div>
             </div>
         </div>
+        <div class="row">
+            <div id="app">
+                <index></index>
+            </div>
+        </div>
+        <script>
+            new Vue({
+                el: '#app'
+            })
+        </script>
     </div>
 @endsection
 

@@ -7,8 +7,6 @@ try {
     require('bootstrap/dist/js/bootstrap.min')
     require('normalize.css')
     require('../css/front.css')
-    //require('swiper/dist/css/swiper.min.css')
-    //window.Swiper = require('swiper/dist/js/swiper')
 
 } catch (e) {}
 
