@@ -64,10 +64,6 @@ class AppServiceProvider extends ServiceProvider
                 __DIR__.'/../../config/jwt.php' => config_path('jwt.php'),
                 __DIR__.'/../../config/permission.php' => config_path('permission.php'),
             ], 'base-config');
-            // views
-//            $this->publishes([
-//                __DIR__.'/../../resources/views/base' => resource_path('views/vendor/base')
-//            ], 'base-views');
             // static file
             $this->publishes([
                 __DIR__ . '/../../resources/assets/dist/' => public_path('vendor/')

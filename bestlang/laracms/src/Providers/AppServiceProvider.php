@@ -35,26 +35,14 @@ class AppServiceProvider extends ServiceProvider
             $this->publishes([
                 __DIR__.'/../../config/ueditor.php' => config_path('ueditor.php'),
             ], 'laracms-config');
-
-            // static file
-            $this->publishes([
-                base_path().'/bestlang/base/resources/assets/dist/public/vendor/laracms'  => public_path('vendor/laracms')
-            ], 'laracms-assets');
-
             // migrations
             $this->loadMigrationsFrom(__DIR__.'/../../database/migrations');
             // seeder
             $this->publishes([
                 __DIR__ . '/../../database/seeds/InitTableSeeder.php' => database_path('seeds/InitTableSeeder.php')
             ], 'laracms-seeds');
-            // views
-//            $this->publishes([
-//                __DIR__.'/../../resources/views/laracms' => resource_path('views/vendor/laracms')
-//            ], 'laracms-views');
         }
         $this->loadViewsFrom(__DIR__.'/../../resources/views/laracms', 'laracms');
-        //$this->loadViewsFrom(resource_path('vendor/laracms'), 'laracms');
-
 
         Blade::directive('channelLink', function ($expression) {
             @list($channelName, $channelId, $as) = explode('-', $expression);
