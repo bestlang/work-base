@@ -16,3 +16,6 @@ mix.js('./vendor/base/js/app.js', 'dist/base/')
 mix.js('./vendor/laracms/dark/js/app.js', 'dist/laracms/dark/')
     .sass('./vendor/laracms/dark/sass/front.scss', 'dist/laracms/dark/')
 
+mix.js('./vendor/sniper/js/app.js', 'dist/sniper/')
+    .copy('./vendor/sniper/images', 'dist/sniper/images/')
+
