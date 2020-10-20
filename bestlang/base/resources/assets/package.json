@@ -1,11 +1,9 @@
 {
-  "name": "laracms",
+  "name": "assets",
   "version": "1.0.0",
-  "description": "laracms assets",
-  "author": "laracms",
-  "license": "ISC",
+  "description": "all bestlang package assets compiles here",
   "private": true,
-  "main": "index.js",
+  "author": "bestlang",
   "scripts": {
     "dev": "npm run development",
     "development": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",

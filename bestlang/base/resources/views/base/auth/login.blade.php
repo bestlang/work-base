@@ -8,7 +8,7 @@
                 <div>
                     <div class="l-login-title l-flex-row text-center">
                         <div class="l-flex-1 active">{{ __('登录') }}</div>
-                        <div class="l-flex-1"><a href="{{route('register')}}">{{ __('注册') }}</a></div>
+{{--                        <div class="l-flex-1"><a href="{{route('register')}}">{{ __('注册') }}</a></div>--}}
                     </div>
                 </div>
 

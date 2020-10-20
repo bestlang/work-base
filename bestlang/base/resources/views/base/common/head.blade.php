@@ -1,13 +1,5 @@
-
 <!DOCTYPE html>
-<!--[if lt IE 7]>
-<html class="lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>
-<html class="lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>
-<html class="lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!-->
-<html class=""> <!--<![endif]-->
+<html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1">
@@ -19,13 +11,7 @@
     <meta name="csrf-token" content="{{csrf_token()}}">
 
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon"/>
-    <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
-    {{--<link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">--}}
-    <link href="https://cdn.bootcdn.net/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-    <link rel="stylesheet" media="screen" href="/vendor/laracms/dark/common.css" />
-    <link rel="stylesheet" media="screen" href="/vendor/laracms/dark/front.css" />
-
-    <link rel="stylesheet" href="//at.alicdn.com/t/font_1104524_z1zcv22ej09.css">
+    <script src="/vendor/base/app.js"></script>
     @stack('css')
     <!--[if lt IE 9]>
     <script src="https://cdn.bootcdn.net/ajax/libs/html5shiv/3.6.2/html5shiv.js"></script>
@@ -50,7 +36,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="/"><img src="/logo.png" width="180" alt="LaraCMS"></a>
+                <a class="navbar-brand" href="/"><img src="/logo.png" width="180"></a>
             </div>
 
             <div class="collapse navbar-collapse" id="navbar-collapse">

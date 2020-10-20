@@ -65,14 +65,15 @@ class AppServiceProvider extends ServiceProvider
                 __DIR__.'/../../config/permission.php' => config_path('permission.php'),
             ], 'base-config');
             // views
+//            $this->publishes([
+//                __DIR__.'/../../resources/views/base' => resource_path('views/vendor/base')
+//            ], 'base-views');
+            // static file
             $this->publishes([
-                __DIR__.'/../../resources/views/base' => resource_path('views/vendor/base')
-            ], 'base-views');
+                __DIR__ . '/../../resources/assets/dist/' => public_path('vendor/')
+            ], 'base-assets');
         }
         $this->loadViewsFrom(__DIR__.'/../../resources/views/base', 'base');
-        //$this->loadViewsFrom(resource_path('vendor/base'), 'base');
-
-
 
         Validator::extend('mobile', function ($attribute, $value, $parameters, $validator) {
             if(preg_match("/^1\d{10}$/",$value)){

@@ -16,8 +16,8 @@ class AppServiceProvider extends ServiceProvider
 
     public function boot()
     {
-        //写入项目信息
-        session(['project'=>'sniper'], 'base');
+        //登录注册模板命名空间
+        session(['authViewNamespace'=>'sniper']);
 
         if ($this->app->runningInConsole()) {
             $this->commands([
@@ -28,12 +28,12 @@ class AppServiceProvider extends ServiceProvider
             ], 'sniper-config');
             // static file
             $this->publishes([
-                __DIR__ . '/../../resources/assets/dist/public/vendor/sniper' => public_path('vendor/sniper')
+                __DIR__ . '/../../resources/assets/dist/' => public_path('vendor/')
             ], 'sniper-assets');
             // views
-            $this->publishes([
-                __DIR__.'/../../resources/views/sniper' => resource_path('views/vendor/sniper')
-            ], 'sniper-views');
+//            $this->publishes([
+//                __DIR__.'/../../resources/views/sniper' => resource_path('views/vendor/sniper')
+//            ], 'sniper-views');
         }
         $this->loadViewsFrom(__DIR__.'/../../resources/views/sniper', 'sniper');
         //$this->loadViewsFrom(resource_path('views/vendor/sniper'), 'sniper');

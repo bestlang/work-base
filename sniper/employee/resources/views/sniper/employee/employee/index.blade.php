@@ -28,16 +28,16 @@
             margin: 5px 0 10px;
         }
         .l-attendance{
-            background: url("/vendor/sniper/attendance.png") no-repeat scroll center / 80%;
+            background: url("/vendor/sniper/images/attendance.png") no-repeat scroll center / 80%;
         }
         .l-stock{
-            background: url("/vendor/sniper/stock.png") no-repeat scroll center / 80%;
+            background: url("/vendor/sniper/images/stock.png") no-repeat scroll center / 80%;
         }
         .l-flow{
-            background: url("/vendor/sniper/flow.png") no-repeat scroll center / 80%;
+            background: url("/vendor/sniper/images/flow.png") no-repeat scroll center / 80%;
         }
         .l-fellow{
-            background: url("/vendor/sniper/fellow.png") no-repeat scroll center / 80%;
+            background: url("/vendor/sniper/images/fellow.png") no-repeat scroll center / 80%;
         }
 
     </style>

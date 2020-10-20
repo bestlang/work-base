@@ -11,5 +11,5 @@ const mix = require('laravel-mix')
  |
  */
 
-mix.js('./js/app.js', 'dist/public/vendor/sniper/')
-    .copy('./images/*', 'dist/public/vendor/sniper/')
+mix.js('./js/app.js', 'dist/sniper/')
+    .copy('./images/*', 'dist/sniper/images/')

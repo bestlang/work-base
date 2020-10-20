@@ -12,7 +12,6 @@
     <meta name="csrf-token" content="{{csrf_token()}}">
 
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon"/>
-    <link rel="stylesheet" media="screen" href="/vendor/sniper/front.css" />
     <script src="/vendor/sniper/app.js"></script>
     @stack('css')
     <!--[if lt IE 9]>
@@ -39,7 +38,7 @@
                 </button>
                 <a class="navbar-brand" href="/">
                     <span class="text-logo">Sniper</span>
-                    <img src="/vendor/sniper/logo.png" alt="Sniper">
+                    <img src="/vendor/sniper/images/logo.png" alt="Sniper">
                 </a>
             </div>
             <div class="collapse navbar-collapse" id="navbar-collapse">

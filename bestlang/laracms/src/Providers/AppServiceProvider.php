@@ -38,7 +38,7 @@ class AppServiceProvider extends ServiceProvider
 
             // static file
             $this->publishes([
-                __DIR__ . '/../../resources/assets/dist/public/vendor/laracms' => public_path('vendor/laracms')
+                base_path().'/bestlang/base/resources/assets/dist/public/vendor/laracms'  => public_path('vendor/laracms')
             ], 'laracms-assets');
 
             // migrations
@@ -48,9 +48,9 @@ class AppServiceProvider extends ServiceProvider
                 __DIR__ . '/../../database/seeds/InitTableSeeder.php' => database_path('seeds/InitTableSeeder.php')
             ], 'laracms-seeds');
             // views
-            $this->publishes([
-                __DIR__.'/../../resources/views/laracms' => resource_path('views/vendor/laracms')
-            ], 'laracms-views');
+//            $this->publishes([
+//                __DIR__.'/../../resources/views/laracms' => resource_path('views/vendor/laracms')
+//            ], 'laracms-views');
         }
         $this->loadViewsFrom(__DIR__.'/../../resources/views/laracms', 'laracms');
         //$this->loadViewsFrom(resource_path('vendor/laracms'), 'laracms');
