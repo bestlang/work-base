@@ -1,0 +1,1 @@
+##### mix.js('js/app.js', 'public/vendor/base/')

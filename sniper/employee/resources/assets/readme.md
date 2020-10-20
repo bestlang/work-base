@@ -1,0 +1,1 @@
+#####mix.js('js/app.js', 'public/vendor/sniper/').copy('images', 'public/vendor/sniper/images/')

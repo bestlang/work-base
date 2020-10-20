@@ -1,0 +1,1 @@
+##### mix.js('dark/js/app.js', 'public/vendor/laracms/dark/').sass('dark/sass/front.scss', 'public/vendor/laracms/dark/')
