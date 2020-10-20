@@ -32,7 +32,7 @@ class UEditorServiceProvider extends ServiceProvider
 
         $this->publishes([
             __DIR__.'/config/ueditor.php' => config_path('ueditor.php'),
-        ], 'config');
+        ], 'ueditor-config');
 
 //        $this->publishes([
 //            __DIR__.'/assets/ueditor' => public_path('vendor/ueditor'),
@@ -41,7 +41,7 @@ class UEditorServiceProvider extends ServiceProvider
         $this->publishes([
 //            __DIR__.'/views' => base_path('resources/views/vendor/ueditor'),
             __DIR__.'/translations' => base_path('resources/lang/vendor/ueditor'),
-        ], 'resources');
+        ], 'ueditor-resources');
 
         $this->registerRoute($router);
     }
