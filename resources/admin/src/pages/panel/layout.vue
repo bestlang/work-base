@@ -60,9 +60,6 @@
                 if(!this.user || !this.user.length){
                     await this.$store.dispatch(this.$types.user)
                 }
-                if(!this.privileges || !this.privileges.length){
-                    await this.$store.dispatch(this.$types.privileges)
-                }
                 if(!this.csrf){
                     await this.$store.dispatch(this.$types.csrf)
                 }

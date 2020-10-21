@@ -15,13 +15,11 @@
             <el-table-column
                     prop="show_name"
                     label="权限"
-                    sortable
                     width="240">
             </el-table-column>
             <el-table-column
                     prop="name"
-                    label="权限字符串"
-                    sortable>
+                    label="权限字符串">
             </el-table-column>
             <el-table-column
                     label="操作">

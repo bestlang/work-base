@@ -22,7 +22,7 @@ router.beforeEach((to, from, next) => {
                 next(loginPath)
             }
             if (can && privileges.indexOf(can) === -1) {
-                next({path: '/noPerm'})
+                next({path: '/no/permission'})
             }
             next()
         }

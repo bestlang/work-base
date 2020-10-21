@@ -125,11 +125,14 @@ const normalConfig = {
         [types.PRIVILEGE_CURRENT_ROLE] ({commit}, payload) {
             commit(types.PRIVILEGE_CURRENT_ROLE, payload)
         },
-        async [types.privileges]({commit}){
+        async [types.privileges]({commit, dispatch}){
             commit(types.privileges, [])
             let perm = await api.getUserPermissions()
-            if(perm && perm.data){
+            if(perm && perm.data && perm.data.length){
                 commit(types.privileges, perm.data)
+            }else{
+                //在admin下面希望无权限就登出
+                dispatch(types.logout)
             }
         }
     }

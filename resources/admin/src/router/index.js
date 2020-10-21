@@ -472,7 +472,7 @@ export default new VueRouter({
         },
     },
     {
-        path:"/noPerm",
+        path:"/no/permission",
         component: () => import("../pages/noPerm.vue"),
         meta: {
             can: "",

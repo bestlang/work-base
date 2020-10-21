@@ -70,9 +70,9 @@
             </div>
         </div>
         <script>
-            new Vue({
-                el: '#app'
-            })
+            // new Vue({
+            //     el: '#app'
+            // })
         </script>
     </div>
 @endsection

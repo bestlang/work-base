@@ -45,7 +45,7 @@ class PrivilegesController extends Controller
     public function givePermissionsTo(Request $request)
     {
         $user = auth()->user();
-        if(!$user->can('privileges edit role permissions')){
+        if($user->cant('privileges edit role permissions')){
             return response()->error('没有权限!', 4012);
         }
         $params = $request->all();
@@ -81,7 +81,7 @@ class PrivilegesController extends Controller
     // remove a user from role user list
     public function removeRoleModel(Request $request)
     {
-        if(!auth()->user()->can('privileges remove role users')){
+        if(auth()->user()->cant('privileges remove role users')){
             return response()->error('没有权限!', 4012);
         }
         $params = $request->all();
@@ -104,7 +104,7 @@ class PrivilegesController extends Controller
 
     public function roles()
     {
-        if(!auth()->user()->can('privileges list roles')){
+        if(auth()->user()->cant('privileges list roles')){
             return response()->error('没有权限!', 4012);
         }
         return response()->ajax(Role::all());
@@ -112,7 +112,7 @@ class PrivilegesController extends Controller
 
     public function role(Request $request)
     {
-        if(!auth()->user()->can('privileges list roles')){
+        if(auth()->user()->cant('privileges list roles')){
             return response()->error('没有权限!', 4012);
         }
         $role_id = $request->input('role_id');
@@ -140,7 +140,7 @@ class PrivilegesController extends Controller
 
     public function roleUsers(Request $request)
     {
-        if(!auth()->user()->can('privileges list role users')){
+        if(auth()->user()->cant('privileges list role users')){
             return response()->error('没有权限!', 4012);
         }
         $params = $request->all();
@@ -160,21 +160,21 @@ class PrivilegesController extends Controller
         $name = Arr::get($params, 'name');
         $guard_name = Arr::get($params,'guard_name', 'api');
         if($id){
-            if(!$user->can('privileges edit roles')){
+            if($user->cant('privileges edit roles')){
                 return response()->error('没有权限!', 4012);
             }
             try{
-                if($user->can('privileges edit roles')){
+                if($user->cant('privileges edit roles')){
+                    return response()->error('无权限！', 4012);
+                }else{
                     $role = Role::find($id);
                     $role->update(['name' => $name, 'guard_name' => $guard_name]);
-                }else{
-                    return response()->error('无权限！', 4012);
                 }
             }catch (\Exception $e){
                 return response()->error('error occur:'.$e->getMessage());
             }
         }else{
-            if(!$user->can('privileges add roles')){
+            if($user->cant('privileges add roles')){
                 return response()->error('无权限！', 4012);
             }
             $role = new Role(['name' => $name, 'guard_name' => $guard_name]);
@@ -185,8 +185,8 @@ class PrivilegesController extends Controller
 
     public function deleteRole(Request $request)
     {
-        if(!auth()->user()->can('privileges delete roles')){
-            response()->error('无权限！', 4012);
+        if(auth()->user()->cant('privileges delete roles')){
+            return response()->error('无权限！', 4012);
         }
         $id = $request->input('id', 0);
         $role = Role::find($id);
@@ -204,8 +204,8 @@ class PrivilegesController extends Controller
      */
     public function permissionsTree(Request $request)
     {
-        if(!auth()->user()->can('privileges list permissions')){
-            response()->error('无权限！', 4012);
+        if(auth()->user()->cant('privileges list permissions')){
+            return response()->error('无权限！', 4012);
         }
         $params = $request->all();
         $disabled = Arr::get($params, 'disabled', false);
@@ -220,8 +220,8 @@ class PrivilegesController extends Controller
 
     public function addPermission(Request $request)
     {
-        if(!auth()->user()->can('privileges add permissions')){
-            response()->error('无权限！', 4012);
+        if(auth()->user()->cant('privileges add permissions')){
+            return response()->error('无权限！', 4012);
         }
         $params = $request->all();
         $parent_id = Arr::get($params, 'parent_id', 0);
@@ -240,8 +240,8 @@ class PrivilegesController extends Controller
 
     public function editPermission(Request $request)
     {
-        if(!auth()->user()->can('privileges edit permissions')){
-            response()->error('无权限！', 4012);
+        if(auth()->user()->cant('privileges edit permissions')){
+            return response()->error('无权限！', 4012);
         }
         $params = $request->all();
         $id = Arr::get($params, 'id', 0);
@@ -253,8 +253,8 @@ class PrivilegesController extends Controller
 
     public function deletePermission(Request $request)
     {
-        if(!auth()->user()->can('privileges delete permissions')){
-            response()->error('无权限！', 4012);
+        if(auth()->user()->cant('privileges delete permissions')){
+            return response()->error('无权限！', 4012);
         }
         $id = $request->get('id', 0);
         if($id){
