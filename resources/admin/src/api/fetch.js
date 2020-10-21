@@ -2,7 +2,7 @@ import axios from 'axios'
 import { Message } from 'element-ui'
 import app from '../main.js'
 import {getPrefix} from './util'
-import Cookies from 'js-cookie'
+// import Cookies from 'js-cookie'
 import types from  'sysStore/types'
 
 const loginPath = '/login'
@@ -34,35 +34,24 @@ axios.interceptors.response.use(response => {
         // 伪状态码
         switch (code) {
             case 0://token信息过期
+            case 401:
                 if(getPrefix() == 'api'){
+                    let msg = '请重新登录!'
+                    if(res.data.length){
+                        msg = res.data
+                    }
                     app.showMessage('请重新登录!')
                     localStorage.removeItem('accessToken')
-                    Cookies.remove(types.logined)
+                    //Cookies.remove(types.logined)
                     app.$router.push(loginPath)
                 }else{
                     location.href = loginPath
                 }
                 break
-            case 200:
-                break
-            case 301:
-                break
-            case 304:
-                break
-            case 401:
-                if(res.data.length){ //有提示字符串直接显示, 无需跳转到登录页面. 相反地: '' 或者 [] 则跳转到登录
-                    app.showMessage(res.data)
-                    break
-                }else{
-                    app.showMessage('请重新登录!')
-                    localStorage.removeItem('accessToken')
-                    app.$router.push(loginPath)
-                }
             case 402:
                 app.showMessage(res.code + res.error)
                 break
             default:
-                app.showMessage(res.code + res.error)
                 break
         }
         return response.data
@@ -79,24 +68,21 @@ axios.interceptors.response.use(response => {
         }
         Promise.reject(error)// 错误提示
     }
-);
+)
 
 export const fetch = (url, data={}, method='get', headers=null) => {
     const config = {
         url,
         method
     }
-
     if(method === 'get'){
         Object.assign(config, {params: data})
     }else{
         Object.assign(config, {data})
     }
-
     if(headers){
         Object.assign(config, {headers})
     }
-
     return axios(config)
 }
 

@@ -22,7 +22,7 @@
 import api from '../../api/index'
 import { getPrefix } from '../../api/util'
 import {mapGetters} from 'vuex'
-import Cookies from 'js-cookie'
+// import Cookies from 'js-cookie'
 
 export default {
   computed: {
@@ -61,9 +61,9 @@ export default {
             if(!this.csrf){
                 await this.$store.dispatch(this.$types.csrf)
             }
-            if(!Cookies.get(this.$types.logined)){
-                Cookies.set(this.$types.logined, true, new Date(new Date().getTime() + 10 * 60 * 1000))
-            }
+            // if(!Cookies.get(this.$types.logined)){
+            //     Cookies.set(this.$types.logined, true, new Date(new Date().getTime() + 10 * 60 * 1000))
+            // }
         }
   }
 }

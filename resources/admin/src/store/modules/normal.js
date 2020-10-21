@@ -1,7 +1,7 @@
 import types from 'sysStore/types'
 import api from 'sysApi'
 import { getPrefix } from 'sysApi/util'
-import Cookies from 'js-cookie'
+//import Cookies from 'js-cookie'
 
 
 const normalConfig = {
@@ -114,7 +114,7 @@ const normalConfig = {
             localStorage.removeItem(types.csrf)
             localStorage.removeItem(types.user)
             localStorage.removeItem(types.privileges)
-            Cookies.remove(types.logined)
+            //Cookies.remove(types.logined)
             const res = await api.logout()
             if(getPrefix() == 'api'){
                 commit('accessToken', null)

@@ -1,7 +1,7 @@
 import router from './router/index'//路由
 import Vue from 'vue'
 import types from 'sysStore/types'
-import Cookies from 'js-cookie'
+// import Cookies from 'js-cookie'
 import {getPrefix} from './api/util'
 
 router.beforeEach((to, from, next) => {
@@ -9,10 +9,11 @@ router.beforeEach((to, from, next) => {
     if(getPrefix() == 'ajax' && to.path == '/'){
         next()
     }else {
-        let logined = Cookies.get(types.logined)
-        if (!logined && to.path != loginPath) {
-            next(loginPath)
-        } else if (to.path == loginPath) {
+        // let logined = Cookies.get(types.logined)
+        // if (!logined && to.path != loginPath) {
+        //     next(loginPath)
+        // } else
+        if (to.path == loginPath) {
             localStorage.removeItem('accessToken')
             next()
         } else {

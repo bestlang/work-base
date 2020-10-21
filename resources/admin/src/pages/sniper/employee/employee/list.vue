@@ -15,7 +15,7 @@
 				<div class="l-employee-wrap">
 					<template v-if="employee.length">
 						<div class="l-employee" v-for="(em, index) in employee"  :key="index" @click="viewEmployee(em)">
-							<img :src="em.avatar?em.avatar : '/vendor/sniper/user.png'" alt="" style="border-radius: 100em;">
+							<img :src="em.avatar?em.avatar : '/vendor/sniper/images/user.png'" alt="" style="border-radius: 100em;">
 							<h1 class="l-title">{{em.real_name}}</h1>
 							<!--({{em.position.name}})-->
 							<div style="font-size: 10px;">{{em.user?em.user.email:''}}</div>
