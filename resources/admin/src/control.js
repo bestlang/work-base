@@ -17,11 +17,11 @@ router.beforeEach((to, from, next) => {
             next()
         } else {
             const can = to.meta.can
-            const privileges = localStorage.getItem(types.privileges)
+            const privileges = JSON.parse(localStorage.getItem(types.privileges))
             if (!privileges || !privileges.length) {
                 next(loginPath)
             }
-            if (privileges.indexOf(can) === -1) {
+            if (can && privileges.indexOf(can) === -1) {
                 next({path: '/noPerm'})
             }
             next()
@@ -33,8 +33,8 @@ router.beforeEach((to, from, next) => {
 Vue.directive('permission', {
     inserted:(el, binding) => {
         const can = binding.value
-        const privileges = localStorage.getItem(types.privileges)
-        if(privileges.indexOf(can) === -1){
+        const privileges = JSON.parse(localStorage.getItem(types.privileges))
+        if(can && privileges.indexOf(can) === -1){
             el.parentNode.removeChild(el)
         }
     }

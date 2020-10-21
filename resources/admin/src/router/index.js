@@ -3,12 +3,14 @@ import VueRouter from "vue-router"
 import backend from "@/components/backend"
 Vue.use(VueRouter)
 import rv from "../components/rv.vue"
+import panel from './panel'
 
 export default new VueRouter({
   mode: "hash",// "hash" | "history" | "abstract"
   base: "/",
   saveScrollPosition: "true",
   routes: [
+      ...panel,
     {
       path: "/",
       component: backend,
@@ -22,7 +24,7 @@ export default new VueRouter({
           path: "",
           component:  () => import("../pages/dashboard.vue"),
           meta: {
-            can: 'dashboard',
+            can: '',
             show:false,
             name: '面板',
             font: '&#xe764;'

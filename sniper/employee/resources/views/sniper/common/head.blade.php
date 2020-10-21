@@ -75,6 +75,7 @@
                                     </form>
                                 </li>
                                 @if(auth()->user()->type)
+                                    {{--被分配任何一个role--}}
                                     <li><a class="dropdown-item" href="/admin">
                                             {{ __('管理') }}
                                         </a></li>

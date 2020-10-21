@@ -143,3 +143,6 @@ a {
         display: none;
     }
 }
+.l-login-panel .panel-body{
+    padding: 30px 60px;
+}
