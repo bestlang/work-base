@@ -374,9 +374,24 @@ class DingTalkController
     public function user(Request $request)
     {
         $userId = $request->input('userId');
+        $email = $request->input('email');
+        if(!$userId && !$email){
+            return response()->error('参数缺失');
+        }
+        $where = [];
+        if($userId){
+            $where[] = ['userid', $userId];
+        }
+        if($email){
+            $where[] = ['orgEmail', $email];
+        }
         $user = null;
         try {
-            $user = DingUser::with('departmentInfo')->where('userid', $userId)->firstOrFail();
+            $user = DB::connection('proxy')->table('sniper_employee_ding_users')->where($where)->first();
+            if($user){
+                $user->departmentInfo = DingDepartment::find($user->department);
+            }
+            //$user = DingUser::with('departmentInfo')->where($where)->firstOrFail();
         }catch (\Exception $e){
             return response()->error($e->getMessage());
         }

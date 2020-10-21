@@ -10,7 +10,8 @@ export default [
         children:[
             {
                 path: "",
-                component:  () => import("../pages/panel/index.vue"),
+                // component:  () => import("../pages/panel/index.vue"),
+                component:  () => import("../pages/sniper/employee/employee/attendanceOverview.vue"),
                 meta: {
                     can: '',
                     show:false,
@@ -20,7 +21,7 @@ export default [
             },
             {
                 path: "/panel/attendance",
-                component:  () => import("../pages/panel/attendance.vue"),
+                component:  () => import("../pages/panel/attendanceOfMine.vue"),//() => import("../pages/panel/attendance.vue"),
                 meta: {
                     can: '',
                     show:false,

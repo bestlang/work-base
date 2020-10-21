@@ -7,6 +7,11 @@ class EmployeeController extends Controller
 {
     public function index()
     {
-        return view('sniper::employee.employee.index');
+        if(auth()->user()){
+            return redirect('/admin#/panel');
+        }else{
+            return view('sniper::auth.login');
+        }
+        //return view('sniper::employee.employee.index');
     }
 }

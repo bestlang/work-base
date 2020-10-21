@@ -52,7 +52,7 @@
                 <ul class="nav navbar-nav navbar-right">
                     <li class="dropdown">
                         <a href="" class="dropdown-toggle" data-toggle="dropdown">
-                            {{auth()->user()->name??'个人'}}<span class="hidden-sm">
+                            {{auth()->user()->name??'账号'}}<span class="hidden-sm">
                                 {{--中心--}}
                             </span> <b class="caret"></b>
                         </a>

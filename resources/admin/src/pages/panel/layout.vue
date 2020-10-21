@@ -1,8 +1,8 @@
 <template>
     <div>
         <el-menu router :default-active="activeIndex" class="el-menu-demo" mode="horizontal" @select="handleSelect">
-            <el-menu-item index="/panel">主界面</el-menu-item>
             <el-menu-item index="/panel/attendance">我的考勤</el-menu-item>
+            <el-menu-item index="/panel">公告</el-menu-item>
             <el-menu-item style="float: right">
                 <el-dropdown>
                     <div class="logout"><i class="iconfont">&#xe60d; </i>{{user.name}}</div>
@@ -22,7 +22,7 @@
     import api from '../../api/index'
     import { getPrefix } from '../../api/util'
     import {mapGetters} from 'vuex'
-    import Cookies from 'js-cookie'
+    //import Cookies from 'js-cookie'
 
     export default {
         computed: {
@@ -30,7 +30,7 @@
         },
         data() {
             return {
-                activeIndex: '/panel'
+                activeIndex: '/panel/attendance'
             };
         },
         methods: {
