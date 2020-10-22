@@ -51,4 +51,12 @@ class ResetPasswordController extends Controller
         );
     }
 
+    protected function validationErrorMessages(){
+        return [
+            'password.min' => '密码不得低于8位',
+            'password.confirmed' => '两次密码不一致',
+            'password.required' => '请输入密码'
+        ];
+    }
+
 }
