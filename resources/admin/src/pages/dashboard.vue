@@ -24,8 +24,8 @@
                     placement="top-start"
                     width="200"
                     trigger="hover"
-                    :content="today.todayLate.length?today.todayLate.join('\n'):''">
-              <div slot="reference" class="grid-content" style="background: #3fc0c2"><h1 style="display: inline">{{today.todayLate?today.todayLate.length:''}}</h1>今日迟到</div>
+                    :content="today.todayLate && today.todayLate.length ? today.todayLate.join('\n') : ''">
+              <div slot="reference" class="grid-content" style="background: #3fc0c2"><h1 style="display: inline">{{today.todayLate ? today.todayLate.length : ''}}</h1>今日迟到</div>
             </el-popover>
           </el-col>
           <el-col :span="6">
@@ -33,8 +33,8 @@
                     placement="top-start"
                     width="200"
                     trigger="hover"
-                    :content="today.NotSigned.length?today.NotSigned.join('\n'):''">
-              <div  slot="reference" class="grid-content" style="background: #f6d33a"><h1 style="display: inline">{{today.NotSigned?today.NotSigned.length:''}}</h1>今日缺卡</div>
+                    :content="today.NotSigned && today.NotSigned.length ? today.NotSigned.join('\n') : ''">
+              <div  slot="reference" class="grid-content" style="background: #f6d33a"><h1 style="display: inline">{{today.NotSigned ? today.NotSigned.length : ''}}</h1>今日缺卡</div>
             </el-popover>
           </el-col>
         </el-row>

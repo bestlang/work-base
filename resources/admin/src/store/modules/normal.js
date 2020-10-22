@@ -1,8 +1,6 @@
 import types from 'sysStore/types'
 import api from 'sysApi'
 import { getPrefix } from 'sysApi/util'
-//import Cookies from 'js-cookie'
-
 
 const normalConfig = {
     state: {
@@ -96,7 +94,7 @@ const normalConfig = {
             if(payload) {
                 commit(types.user, payload)
             }else{
-                commit(types.user, {})
+                //commit(types.user, {})
                 let user = await api.getUserInfo()
                 if(user && user.data){
                     commit(types.user, user.data)
@@ -114,7 +112,7 @@ const normalConfig = {
             localStorage.removeItem(types.csrf)
             localStorage.removeItem(types.user)
             localStorage.removeItem(types.privileges)
-            //Cookies.remove(types.logined)
+            localStorage.removeItem('accessToken')
             const res = await api.logout()
             if(getPrefix() == 'api'){
                 commit('accessToken', null)

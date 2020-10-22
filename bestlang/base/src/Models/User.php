@@ -14,6 +14,8 @@ class User extends Authenticatable implements JWTSubject
 {
     use Notifiable,HasRoles;
 
+    protected $appends = ['type'];
+
     //https://docs.spatie.be/laravel-permission/v2/basic-usage/multiple-guards/#main
     protected $guard_name = 'api';
 
@@ -71,6 +73,6 @@ class User extends Authenticatable implements JWTSubject
     {
         return self::roles()->get()->some(function($role){
             return $role->id > 0;
-        });
+        }) ? 1 : 0;
     }
 }

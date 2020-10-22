@@ -7,6 +7,7 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
+use BestLang\Base\Models\User;
 
 
 class LoginController extends Controller
@@ -81,7 +82,7 @@ class LoginController extends Controller
 
         $this->clearLoginAttempts($request);
         if($request->ajax()){
-            return response()->ajax(['user' => auth()->user()]);
+            return response()->ajax(['user' => User::find(auth()->user()->id)]);
         }else{
             return $this->authenticated($request, $this->guard()->user())
                 ?: redirect()->intended($this->redirectPath());

@@ -5,6 +5,11 @@ Vue.use(VueRouter)
 import rv from "../components/rv.vue"
 import panel from './panel'
 
+const originalPush = VueRouter.prototype.push
+VueRouter.prototype.push = function push(location) {
+    return originalPush.call(this, location).catch(err => err)
+}
+
 export default new VueRouter({
   mode: "hash",// "hash" | "history" | "abstract"
   base: "/",

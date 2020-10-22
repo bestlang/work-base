@@ -1,23 +1,15 @@
 import router from './router/index'//路由
 import Vue from 'vue'
 import types from 'sysStore/types'
-// import Cookies from 'js-cookie'
 import {getPrefix} from './api/util'
 
 router.beforeEach((to, from, next) => {
     let loginPath = '/login'
-    if(getPrefix() == 'ajax' && to.path == '/'){
-        next()
-    }else {
-        // let logined = Cookies.get(types.logined)
-        // if (!logined && to.path != loginPath) {
-        //     next(loginPath)
-        // } else
-        if (to.path == loginPath) {
-            localStorage.removeItem('accessToken')
-            next()
-        } else {
-            const can = to.meta.can
+    if ([loginPath, '/'].indexOf(to.path) !== -1) {//不验权
+        next();
+    }else{//验权
+        const can = to.meta.can
+        if(can){//需要验权
             const privileges = JSON.parse(localStorage.getItem(types.privileges))
             if (!privileges || !privileges.length) {
                 next(loginPath)
@@ -25,8 +17,8 @@ router.beforeEach((to, from, next) => {
             if (can && privileges.indexOf(can) === -1) {
                 next({path: '/no/permission'})
             }
-            next()
         }
+        next()
     }
 })
 

@@ -35,17 +35,17 @@ axios.interceptors.response.use(response => {
         switch (code) {
             case 0://token信息过期
             case 401:
+                let msg = '请重新登录!'
+                if(res.data.length){
+                    msg = res.data
+                }
                 if(getPrefix() == 'api'){
-                    let msg = '请重新登录!'
-                    if(res.data.length){
-                        msg = res.data
-                    }
-                    app.showMessage('请重新登录!')
+                    app.showMessage(msg)
                     localStorage.removeItem('accessToken')
-                    //Cookies.remove(types.logined)
                     app.$router.push(loginPath)
                 }else{
-                    location.href = loginPath
+                    app.showMessage(msg)
+                    setTimeout(() => {location.href = loginPath}, 1500)
                 }
                 break
             case 402:

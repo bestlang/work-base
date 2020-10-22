@@ -1,13 +1,13 @@
 <template>
     <div>
         <div v-title="'我的考勤'"></div>
-        <div class="l-block">
-            <div class="l-block-header">
-                <div class="l-flex">
-                    <!--<span>人力资源 / <router-link to="/sniper/employee/employee/attendance">考勤记录</router-link>  / {{user.name ? user.name:''}}考勤详情</span>-->
-                </div>
-            </div>
-        </div>
+        <!--<div class="l-block">-->
+            <!--<div class="l-block-header">-->
+                <!--<div class="l-flex">-->
+                    <!--{{user}}-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
         <el-card shadow="hover">
             <el-calendar @input="dateChange">
                 <template
@@ -39,26 +39,6 @@
             <el-button @click="plusRest">+法休</el-button>
             <v-chart :options="options" style="width: 100%;height: 600px;"/>
         </el-card>
-        <!--<div class="l-choose-employee" title="选人查看" @click="chooseEmployee"><i class="iconfont">&#xe602;</i></div>-->
-        <!--<el-drawer-->
-                <!--title="人员选择"-->
-                <!--:visible.sync="drawer"-->
-                <!--:with-header="false"-->
-                <!--:append-to-body="true"-->
-                <!--:show-close="true"-->
-                <!--size="80%">-->
-            <!--<div style="padding: 0 20px;overflow-y: scroll;height: 100%;">-->
-                <!--<div v-for="(gu, dept) in groupedUser">-->
-                    <!--<h4 style="color: #5d5d5d;padding: 5px 0;">{{dept}}</h4>-->
-                    <!--<p>-->
-                        <!--<span @click="viewUser(u.userid)" style="cursor:pointer;display: inline-block;margin-right: 20px;padding: 5px 20px;background-color: #efefef;border: 1px solid #f1f1f1" v-for="u in gu">-->
-                            <!--{{u.name}}-->
-                            <!--&lt;!&ndash; -{{u.userid}}&ndash;&gt;-->
-                        <!--</span>-->
-                    <!--</p>-->
-                <!--</div>-->
-            <!--</div>-->
-        <!--</el-drawer>-->
         <div style="width: 30%;border-bottom: 1px solid #f1f1f1;"><i>{{month}}月份</i></div>
         <div style="display: flex;flex-flow: row nowrap;justify-content: space-between;margin-bottom: 5px;" v-if="user">
             <div><b style="color: #555;">{{user.name}}</b><i style="color: #aaa;"><{{dingUser.orgEmail}}></i> <span style="color: #fff;">{{user.userid}}</span></div>
@@ -229,23 +209,10 @@
             }
         },
         watch:{
-            // async '$route'(to, from){
-            //     if(to.path == '/sniper/employee/employee/attendance/detail'){
-            //         this.erase()
-            //         this.userId = to.query.userId
-            //         await this.getUser(to.query.userId)
-            //         await this.getUserAttendance(to.query.userId, this.month)
-            //         await this.getWeekAvgAttendance()
-            //     }
-            // },
-            users(val){
-                let groupedUser = {}
-                val.forEach((user) => {
-                    groupedUser[user.department_info] || (groupedUser[user.department_info] = [])
-                    groupedUser[user.department_info].push(user)
-                });
-                this.groupedUser = groupedUser
-                console.log(groupedUser)
+            async ['user.id'](val){
+                if(val){
+                    await this.reloadData()
+                }
             },
             async userId(val){
                 if(val){
@@ -438,12 +405,6 @@
 
                 }
             },
-            async getDepartmentUsers(){
-                let res = await api.sniperDingGetDepartmentUsers()
-                if(res && res.data){
-                    this.users = res.data
-                }
-            },
             async getWeekAvgAttendance(){
                 let res = await api.sniperDingGetWeekAvgAttendance({month: this.month, userId: this.userId})
                 let formed  = []
@@ -456,25 +417,20 @@
             async getDingUser(){
                 let {data} = await api.sniperDingGetUser({ email: this.user.email})
                 this.userId = data.userid
-                await this.getUserAttendance(this.userId, this.month)
-                await this.getWeekAvgAttendance()
-                //await this.getDingUser()
                 this.dingUser = data
-            }
+            },
+            async reloadData(){
+                if(this.user.id){
+                    await this.getDingUser()
+                    await this.getUserAttendance(this.userId, this.month)
+                    await this.getWeekAvgAttendance()
+                }
+
+            },
         },
+
         async created(){
-            let month = this.$route.query.month || null
-            let userId = this.$route.query.userId || null
-            // if(month){
-            //     this.month = month
-            // }
-            if(userId){
-                this.userId = userId
-                //await this.getUserAttendance(userId, this.month)
-            }
-            //await this.getDepartmentUsers()
-            //await this.getWeekAvgAttendance()
-            await this.getDingUser()
+            await this.reloadData()
         }
     }
 </script>

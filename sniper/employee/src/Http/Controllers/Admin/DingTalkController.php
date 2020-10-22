@@ -129,9 +129,10 @@ class DingTalkController
     //获取特定用户列表本月考勤状况
     public function usersAttendance(Request $request)
     {
-        if(auth()->user()->cant('hr attendance')){
-            return response()->error('没有权限!', 4012);
-        }
+        //员工端使用 暂时放开
+//        if(auth()->user()->cant('hr attendance')){
+//            return response()->error('没有权限!', 4012);
+//        }
         $userIds = $request->input('userIds', []);
         $month = $request->input('month');
         //$userIds = explode(',', $userIds);
@@ -185,9 +186,10 @@ class DingTalkController
 
     public function weekAvg(Request $request)
     {
-        if(auth()->user()->cant('hr attendance')){
-            return response()->error('没有权限!', 4012);
-        }
+        //员工端使用 暂时放开
+//        if(auth()->user()->cant('hr attendance')){
+//            return response()->error('没有权限!', 4012);
+//        }
         $month = $request->input('month');
         $userId = $request->input('userId');
 

@@ -13,7 +13,6 @@ import {fetch} from "@/api/fetch"
 import {getPrefix} from "@/api/util"
 import "./control"
 
-
 window.$ = require("jquery")
 
 

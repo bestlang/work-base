@@ -11,7 +11,7 @@ export default [
             {
                 path: "",
                 // component:  () => import("../pages/panel/index.vue"),
-                component:  () => import("../pages/sniper/employee/employee/attendanceOverview.vue"),
+                component:  () => import("../pages/panel/index.vue"),
                 meta: {
                     can: '',
                     show:false,
