@@ -1,6 +1,9 @@
 @extends('laracms::dark.layouts.app')
 
 @section('content')
+    <link rel="stylesheet"
+          href="https://highlightjs.org/static/demo/styles/railscasts.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.3.1/highlight.min.js"></script>
     <div class="l-content">
             <div class="container">
             <div class="row">
@@ -15,6 +18,22 @@
                             </ol>
                         </div>
                         <div class="l-article-body">
+                            <pre><code>
+function $initHighlight(block, cls) {
+  try {
+    if (cls.search(/\bno\-highlight\b/) != -1)
+      return process(block, true, 0x0F) +
+             ` class="${cls}"`;
+  } catch (e) {
+    /* handle exception */
+  }
+  for (var i = 0 / 2; i < classes.length; i++) {
+    if (checkCondition(classes[i]) === undefined)
+      console.log('undefined');
+  }
+}
+export  $initHighlight;
+</code></pre>
                             <h1 class="l-content-title">{{$content->title}}</h1>
                             <div>{!!  laracms::content($content, 'content') !!}</div>
                         </div>
@@ -83,6 +102,7 @@
 @push('script')
 <script type="text/javascript">
     $(function(){
+        hljs.initHighlightingOnLoad()
         $('#comment_submit').click(function(){
             const content = $('#comment').val();
             const contend_id = $('#content_id').val();
