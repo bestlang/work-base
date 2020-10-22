@@ -17,7 +17,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         //登录注册模板命名空间
-        session(['authViewNamespace'=>'sniper']);
+        //session(['authViewNamespace'=>'sniper']);
 
         if ($this->app->runningInConsole()) {
             $this->commands([

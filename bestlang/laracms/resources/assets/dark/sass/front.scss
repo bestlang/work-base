@@ -1,3 +1,4 @@
+@import "iconfont";
 body {
   font-weight: 400;
   background: #f6f8f8;
@@ -1750,16 +1751,4 @@ h1 .breadcrumb li {
 }
 .index-focus {
   margin-bottom: 20px!important;
-}
-//@font-face {
-//  font-family: 'iconfont';  /* project id 2133805 */
-//  src: url('//at.alicdn.com/t/font_2133805_21rh3tvgzsz.eot');
-//  src: url('//at.alicdn.com/t/font_2133805_21rh3tvgzsz.eot?#iefix') format('embedded-opentype'),
-//  url('//at.alicdn.com/t/font_2133805_21rh3tvgzsz.woff2') format('woff2'),
-//  url('//at.alicdn.com/t/font_2133805_21rh3tvgzsz.woff') format('woff'),
-//  url('//at.alicdn.com/t/font_2133805_21rh3tvgzsz.ttf') format('truetype'),
-//  url('//at.alicdn.com/t/font_2133805_21rh3tvgzsz.svg#iconfont') format('svg');
-//}
-.iconfont{
-  font-family: iconfont;
 }
