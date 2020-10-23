@@ -55,11 +55,13 @@ class AppServiceProvider extends ServiceProvider
             }
 
         });
+
         if ($this->app->runningInConsole()) {
             // migrations
             $this->loadMigrationsFrom(__DIR__.'/../../database/migrations');
             // config
             $this->publishes([
+                __DIR__.'/../../config/bestlang.php' => config_path('bestlang.php'),
                 __DIR__.'/../../config/auth.php' => config_path('auth.php'),
                 __DIR__.'/../../config/jwt.php' => config_path('jwt.php'),
                 __DIR__.'/../../config/permission.php' => config_path('permission.php'),
@@ -69,7 +71,11 @@ class AppServiceProvider extends ServiceProvider
                 __DIR__ . '/../../resources/assets/dist/' => public_path('vendor/')
             ], 'base-assets');
         }
+
         $this->loadViewsFrom(__DIR__.'/../../resources/views/base', 'base');
+
+        //登录注册模板命名空间
+        session(['authViewNamespace'=>config('bestlang.authViewNamespace')]);
 
         Validator::extend('mobile', function ($attribute, $value, $parameters, $validator) {
             if(preg_match("/^1\d{10}$/",$value)){

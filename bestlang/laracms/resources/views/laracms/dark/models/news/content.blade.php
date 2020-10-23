@@ -18,22 +18,6 @@
                             </ol>
                         </div>
                         <div class="l-article-body">
-                            <pre><code>
-function $initHighlight(block, cls) {
-  try {
-    if (cls.search(/\bno\-highlight\b/) != -1)
-      return process(block, true, 0x0F) +
-             ` class="${cls}"`;
-  } catch (e) {
-    /* handle exception */
-  }
-  for (var i = 0 / 2; i < classes.length; i++) {
-    if (checkCondition(classes[i]) === undefined)
-      console.log('undefined');
-  }
-}
-export  $initHighlight;
-</code></pre>
                             <h1 class="l-content-title">{{$content->title}}</h1>
                             <div>{!!  laracms::content($content, 'content') !!}</div>
                         </div>
@@ -102,6 +86,13 @@ export  $initHighlight;
 @push('script')
 <script type="text/javascript">
     $(function(){
+        var allPreTags = document.getElementsByTagName("pre");
+        for(var i = 0; i < allPreTags.length; i++)
+        {
+            var item = document.getElementsByTagName("pre")[i];
+            var itemCode = document.getElementsByTagName("pre")[i].innerHTML;
+            item.innerHTML = '<code>'+itemCode+'</code>';
+        }
         hljs.initHighlightingOnLoad()
         $('#comment_submit').click(function(){
             const content = $('#comment').val();

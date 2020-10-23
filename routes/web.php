@@ -11,8 +11,7 @@
 |
 */
 Route::any('/', function(){
-        //return redirect('/sniper');
-        return redirect('/cms');
+        return redirect(config('bestlang.defaultApplicationPath'));
 });
 
 //Route::get('/info', function(){echo phpinfo();});
