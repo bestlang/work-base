@@ -109,7 +109,7 @@
                                 </li>
                                 @if(auth()->user()->type == 1)
                                     {{--{{Gate::allows('system')}}--}}
-                                    <li><a class="dropdown-item" href="/admin">
+                                    <li><a class="dropdown-item" href="/admin/#/">
                                             {{ __('Management') }}
                                         </a></li>
                                 @endif
