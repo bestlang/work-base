@@ -11,7 +11,7 @@
 |
 */
 Route::any('/', function(){
-        return redirect(config('bestlang.defaultApplicationPath'));
+        return redirect('/'.config('bestlang.defaultApplicationPath'));
 });
 
 //Route::get('/info', function(){echo phpinfo();});

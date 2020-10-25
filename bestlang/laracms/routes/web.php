@@ -19,6 +19,9 @@ Route::any('/notify/wechat/native', 'OrderController@wechatNativeNotify');
 Route::any('/notify/wechat/async', 'OrderController@wechatAsyncNotify');
 Route::any('/notify/alipay', 'AliPayController@notify');
 
+Route::any('/pay/wxpay', 'PayController@wxpay');
+Route::any('/pay/alipay', 'PayController@alipay');
+
 Route::group(['prefix' => 'ajax'], function($router){
 
     Route::group(['middleware' => 'auth'], function(){

@@ -134,7 +134,7 @@ class ModelController extends Controller
 
     public function templatePath(Request $request)
     {
-        $base = app_path().'/bestlang/laracms/resources/views/laracms/dark/';
+        $base = base_path().'/bestlang/laracms/resources/views/laracms/dark/';
         $model_id = $request->input('model_id');
         $model = Model::find($model_id);
         if(!$model){
