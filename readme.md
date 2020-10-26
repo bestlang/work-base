@@ -53,3 +53,5 @@ php artisan queue:work --queue=updateDingTalkUser
 "overtrue/laravel-wechat": "~5.0",
 "jeroen-g/laravel-packager": "2.5.1",
 "beyondcode/laravel-dump-server": "^1.0",
+
+chmod -R a+w public/.cache
