@@ -26,8 +26,11 @@
         "vue-template-compiler": "^2.6.12"
     },
     "dependencies": {
+        "@babel/polyfill": "^7.12.1",
         "animate.css": "^3.7.2",
+        "laravel-echo": "^1.9.0",
         "normalize.css": "^8.0.1",
+        "socket.io-client": "^2.3.1",
         "swiper": "4.5.0"
     }
 }

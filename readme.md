@@ -55,3 +55,6 @@ php artisan queue:work --queue=updateDingTalkUser
 "beyondcode/laravel-dump-server": "^1.0",
 
 chmod -R a+w public/.cache
+
+Laravel 5.8 Laravel-echo-server教程
+https://blog.csdn.net/sym134/article/details/100569257

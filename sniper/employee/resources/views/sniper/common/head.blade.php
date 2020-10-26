@@ -90,5 +90,10 @@
 
         </div>
     </nav>
-
+    <script>
+        window.Echo.channel('user1')
+            .listen('ExampleEvent', function(e) {
+                alert(JSON.stringify(e));
+            });
+    </script>
 </header>
