@@ -94,8 +94,12 @@
         async getToday(){
             let startLoad = Loading.service({ fullscreen: true, text: '获取中...', background: 'rgba(255,255,255,0.8)' })
             let res = await api.sniperDingGetToday()
-            this.today = res.data
-            startLoad.close()
+            if(!res){
+                startLoad.close();
+            }else{
+              this.today = res.data
+              startLoad.close()
+            }
         }
     },
     async created(){

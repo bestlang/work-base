@@ -1,12 +1,16 @@
 const prod = require('sysEnv/prod.env')
+const dev = require('sysEnv/dev.env')
 export const getPrefix = function(){
     const origin = location.origin
     //是否正式环境
-    if(origin.indexOf(prod.SITE_URL.slice(1,-1)) !== -1){
+    if(origin.indexOf(prod.SITE_URL.slice(1,-1)) !== -1){//在域名目录下访问
         return 'ajax'
     }else{
-        // 本地环境
-        return location.origin.indexOf('8000') !== -1 ? 'ajax' : 'api'
+        if(origin.indexOf(dev.SERVER_URL) !== -1){//在域名目录下访问
+            return 'ajax'
+        }else{ //远程访问
+            return 'api'
+        }
     }
 }
 
