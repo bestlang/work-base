@@ -65,5 +65,12 @@ window.Echo = new Echo({
 
 window.Echo.channel('user1')
     .listen('ExampleEvent', function(e) {
-        alert(JSON.stringify(e));
+        ElementUI.Notification({
+            title: '您有一条消息',
+            message: e.data,
+            position: 'bottom-right',
+            showClose: true,
+            duration: 0
+        })
+        //alert(JSON.stringify(e));
     });
