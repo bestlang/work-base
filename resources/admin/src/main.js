@@ -55,3 +55,15 @@ export default new Vue({
   template: "<App/>"
 })
 
+import Echo from 'laravel-echo'
+
+window.io = require('socket.io-client');
+window.Echo = new Echo({
+    broadcaster: 'socket.io',
+    host: window.location.hostname + ':6001'
+});
+
+window.Echo.channel('user1')
+    .listen('ExampleEvent', function(e) {
+        alert(JSON.stringify(e));
+    });

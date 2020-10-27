@@ -27,6 +27,8 @@
             jump(path){
                 this.$router.push(path)
             }
+        },
+        mounted(){
         }
     }
 </script>
