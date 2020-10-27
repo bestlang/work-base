@@ -58,3 +58,6 @@ chmod -R a+w public/.cache
 
 Laravel 5.8 Laravel-echo-server教程
 https://blog.csdn.net/sym134/article/details/100569257
+
+模板制作参考主题
+https://www.wpcom.cn/
