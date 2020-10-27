@@ -14,14 +14,15 @@ class ExampleEvent implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
+    protected $msg;
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($msg)
     {
-        //
+        $this->msg = $msg;
     }
 
     /**
@@ -38,7 +39,7 @@ class ExampleEvent implements ShouldBroadcast
     public function broadcastWith()
     {
         return [
-            'data' => '老雷啊 坑满满'
+            'data' => $this->msg
         ];
     }
 }
