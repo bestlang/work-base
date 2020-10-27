@@ -8,6 +8,7 @@ storage/framework/cache/data
 composer.lock
 package-lock.json
 alipayCerts
+laravel-echo-server.json
 
 # Laravel 5 & Lumen specific
 public/storage
