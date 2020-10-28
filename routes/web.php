@@ -10,9 +10,6 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::any('/', function(){
-        return redirect(config('bestlang.defaultApplicationPath'));
-});
 
 //Route::get('/info', function(){echo phpinfo();});
 //测试微信支付

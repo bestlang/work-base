@@ -1,10 +1,10 @@
 try {
 
     // window.Popper = require('popper.js').default;
-    window.$ = window.jQuery = require('jquery')
+    // window.$ = window.jQuery = require('jquery')
     //require('@babel/polyfill')
-    require('bootstrap/dist/css/bootstrap.min.css')
-    require('bootstrap/dist/js/bootstrap.min')
+    // require('bootstrap/dist/css/bootstrap.min.css')
+    // require('bootstrap/dist/js/bootstrap.min')
     require('normalize.css')
     require('../css/front.css')
 
@@ -42,7 +42,7 @@ if (token) {
  * allows your team to easily build robust real-time web applications.
  */
 
-import Echo from 'laravel-echo'
+/*import Echo from 'laravel-echo'
 window.io = require('socket.io-client')
 // window.Pusher = require('pusher-js');
 
@@ -50,3 +50,4 @@ window.Echo = new Echo({
     broadcaster: 'socket.io',
     host: window.location.hostname + ':6001'
 });
+*/

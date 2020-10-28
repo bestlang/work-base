@@ -12,6 +12,7 @@
     <meta name="csrf-token" content="{{csrf_token()}}">
 
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon"/>
+    <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
     <script src="/vendor/sniper/app.js"></script>
     @stack('css')
     <!--[if lt IE 9]>
@@ -91,9 +92,11 @@
         </div>
     </nav>
     <script>
+        /*
         window.Echo.channel('user1')
             .listen('ExampleEvent', function(e) {
                 alert(JSON.stringify(e));
             });
+        * */
     </script>
 </header>

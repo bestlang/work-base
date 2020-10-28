@@ -11,6 +11,7 @@
     <meta name="csrf-token" content="{{csrf_token()}}">
 
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon"/>
+    <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
     <script src="/vendor/base/app.js"></script>
     @stack('css')
     <!--[if lt IE 9]>

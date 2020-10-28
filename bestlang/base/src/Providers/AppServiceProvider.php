@@ -67,9 +67,9 @@ class AppServiceProvider extends ServiceProvider
                 __DIR__.'/../../config/permission.php' => config_path('permission.php'),
             ], 'base-config');
             // static file
-            $this->publishes([
-                __DIR__ . '/../../resources/assets/dist/' => public_path('vendor/')
-            ], 'base-assets');
+//            $this->publishes([
+//                __DIR__ . '/../../resources/assets/dist/' => public_path('vendor/')
+//            ], 'base-assets');
         }
 
         $this->loadViewsFrom(__DIR__.'/../../resources/views/base', 'base');

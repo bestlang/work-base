@@ -38,10 +38,10 @@ class UEditorServiceProvider extends ServiceProvider
 //            __DIR__.'/assets/ueditor' => public_path('vendor/ueditor'),
 //        ], 'assets');
 
-        $this->publishes([
+        /*$this->publishes([
 //            __DIR__.'/views' => base_path('resources/views/vendor/ueditor'),
             __DIR__.'/translations' => base_path('resources/lang/vendor/ueditor'),
-        ], 'ueditor-resources');
+        ], 'ueditor-resources');*/
 
         $this->registerRoute($router);
     }

@@ -1,0 +1,38 @@
+拷贝bestlang、sniper目录
+编辑composer.json的repositories
+composer require bestlang/laracms
+composer require sniper/employee
+composer dump-autoload
+npm install node-sass sass sass-loader less less-loader normalize.css swiper -D
+npm install
+编辑webpack.mix.js
+	const basePath = 'bestlang/base/resources/assets'
+	const laraCMSPath = 'bestlang/laracms/resources/assets'
+	const sniperPath = 'sniper/employee/resources/assets'
+	mix.js(basePath + '/js/app.js', 'public/vendor/base/')
+	mix.js(laraCMSPath + '/dark/js/app.js', 'public/vendor/laracms/dark/')
+		.sass(laraCMSPath + '/dark/sass/front.scss', 'public/vendor/laracms/dark/front.css')
+		.copy(laraCMSPath + '/dark/images', 'public/')
+	mix.js(sniperPath + '/js/app.js', 'public/vendor/sniper/')
+		.copy(sniperPath + '/images', 'public/vendor/sniper/images/')
+
+npm run prod
+修改.env
+	-DB
+	-PROXY_DB
+
+
+拷贝resources/admin
+npm install
+npm run dev
+修改./config/prod.env.js中SITE_URL
+npm run build
+
+发布资源
+composer dump-autoload
+php artisan vendor:publish --provider="BestLang\Base\Providers\AppServiceProvider" --force
+php artisan vendor:publish --provider="BestLang\Laracms\Providers\AppServiceProvider"
+php artisan vendor:publish --provider="BestLang\LaravelUEditor\UEditorServiceProvider"
+php artisan vendor:publish --provider="BestLang\WxPay\WxPayServiceProvider"
+php artisan vendor:publish --provider="Sniper\Employee\Providers\AppServiceProvider"
+php artisan vendor:publish --provider="Spatie\Permission\PermissionServiceProvider"

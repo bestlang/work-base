@@ -59,24 +59,6 @@ class WxPayServiceProvider extends ServiceProvider
         // Publishing the configuration file.
         $this->publishes([
             __DIR__.'/../config/wxpay.php' => config_path('wxpay.php'),
-        ], 'wxpay.config');
-
-        // Publishing the views.
-        /*$this->publishes([
-            __DIR__.'/../resources/views' => base_path('resources/views/vendor/bestlang'),
-        ], 'wxpay.views');*/
-
-        // Publishing assets.
-        /*$this->publishes([
-            __DIR__.'/../resources/assets' => public_path('vendor/bestlang'),
-        ], 'wxpay.views');*/
-
-        // Publishing the translation files.
-        /*$this->publishes([
-            __DIR__.'/../resources/lang' => resource_path('lang/vendor/bestlang'),
-        ], 'wxpay.views');*/
-
-        // Registering package commands.
-        // $this->commands([]);
+        ], 'wxpay-config');
     }
 }

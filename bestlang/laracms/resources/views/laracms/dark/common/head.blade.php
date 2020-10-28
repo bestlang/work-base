@@ -13,6 +13,7 @@
 
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon"/>
     <script src="/vendor/laracms/dark/app.js"></script>
+    <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" media="screen" href="/vendor/laracms/dark/front.css" />
     @stack('css')
     <!--[if lt IE 9]>
