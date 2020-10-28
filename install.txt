@@ -35,4 +35,3 @@ php artisan vendor:publish --provider="BestLang\Laracms\Providers\AppServiceProv
 php artisan vendor:publish --provider="BestLang\LaravelUEditor\UEditorServiceProvider"
 php artisan vendor:publish --provider="BestLang\WxPay\WxPayServiceProvider"
 php artisan vendor:publish --provider="Sniper\Employee\Providers\AppServiceProvider"
-php artisan vendor:publish --provider="Spatie\Permission\PermissionServiceProvider"

@@ -21,6 +21,7 @@
         "jellybool/flysystem-upyun": "^1.0",
         "laravel/framework": "5.8.*",
         "laravel/tinker": "^1.0",
+        "orangehill/iseed": "^2.6",
         "predis/predis": "^1.1",
         "sniper/employee": "dev-master",
         "spatie/laravel-permission": "^2.38",

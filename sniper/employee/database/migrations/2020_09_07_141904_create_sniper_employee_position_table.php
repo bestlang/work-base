@@ -17,7 +17,6 @@ class CreateSniperEmployeePositionTable extends Migration
             $table->bigIncrements('id');
             $table->string('name')->comment('职务名称');
             $table->unsignedBigInteger('department_id')->comment('所属部门ID');
-//            $table->unsignedBigInteger('parent_id')->comment('上级职务')->nullable();
             $table->nestedSet();
             $table->integer('desiring')->comment('所需员工数')->default(0);
             $table->text('jd')->nullable()->comment('工作描述');

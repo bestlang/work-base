@@ -17,6 +17,7 @@ class CreateCmsFieldTypesTable extends Migration
             $table->increments('id');
             $table->string('type')->comment('类型字符串标识');
             $table->string('name')->comment('类型名字');
+            $table->string('extra', 5000)->nullable()->comment('附加信息');
         });
     }
 

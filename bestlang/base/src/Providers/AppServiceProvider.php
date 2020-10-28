@@ -75,7 +75,7 @@ class AppServiceProvider extends ServiceProvider
         $this->loadViewsFrom(__DIR__.'/../../resources/views/base', 'base');
 
         //登录注册模板命名空间
-        session(['authViewNamespace'=>config('bestlang.authViewNamespace')]);
+        session(['authViewNamespace'=>config('bestlang.authViewNamespace', 'base')]);
 
         Validator::extend('mobile', function ($attribute, $value, $parameters, $validator) {
             if(preg_match("/^1\d{10}$/",$value)){
