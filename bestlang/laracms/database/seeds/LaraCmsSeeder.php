@@ -1,5 +1,6 @@
 <?php
-class LaraCmsSeeder
+use Illuminate\Database\Seeder;
+class LaraCmsSeeder extends Seeder
 {
     public function run()
     {

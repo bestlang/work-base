@@ -15,6 +15,7 @@ class ModifyUsersTable extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->string('mobile', 255)->nullable()->after('password');
+            $table->smallInteger('white', 255)->nullable()->default(0)->comment('是否白名单0否1是');
         });
     }
 
@@ -27,6 +28,7 @@ class ModifyUsersTable extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->dropColumn('mobile');
+            $table->dropColumn('white');
         });
     }
 }

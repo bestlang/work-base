@@ -1,5 +1,6 @@
 <?php
-class SniperSeeder
+use Illuminate\Database\Seeder;
+class SniperSeeder extends Seeder
 {
     public function run()
     {

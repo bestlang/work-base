@@ -1,5 +1,6 @@
 <?php
-class BestLangBaseSeeder
+use Illuminate\Database\Seeder;
+class BestLangBaseSeeder extends Seeder
 {
     public function run()
     {
