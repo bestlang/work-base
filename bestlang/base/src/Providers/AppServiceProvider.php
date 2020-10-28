@@ -71,6 +71,10 @@ class AppServiceProvider extends ServiceProvider
 //                __DIR__ . '/../../resources/assets/dist/' => public_path('vendor/')
 //            ], 'base-assets');
         }
+        // seeder
+        $this->publishes([
+            __DIR__ . '/../../database/seeds' => database_path('seeds/')
+        ], 'bestlang-seeds');
 
         $this->loadViewsFrom(__DIR__.'/../../resources/views/base', 'base');
 

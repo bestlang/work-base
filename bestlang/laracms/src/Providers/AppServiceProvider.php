@@ -38,9 +38,9 @@ class AppServiceProvider extends ServiceProvider
             // migrations
             $this->loadMigrationsFrom(__DIR__.'/../../database/migrations');
             // seeder
-//            $this->publishes([
-//                __DIR__ . '/../../database/seeds/InitTableSeeder.php' => database_path('seeds/InitTableSeeder.php')
-//            ], 'laracms-seeds');
+            $this->publishes([
+                __DIR__ . '/../../database/seeds' => database_path('seeds/')
+            ], 'laracms-seeds');
         }
         $this->loadViewsFrom(__DIR__.'/../../resources/views/laracms', 'laracms');
 
