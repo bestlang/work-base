@@ -3,6 +3,7 @@
 namespace BestLang\Laracms\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use BestLang\Laracms\Console\Commands\BestLang;
 //use Illuminate\Support\Facades\Gate;
 //use BestLang\Laracms\Models\Permission;
 
@@ -31,6 +32,9 @@ class AppServiceProvider extends ServiceProvider
     {
         Order::observe(OrderObserver::class);
         if ($this->app->runningInConsole()) {
+            $this->commands([
+                BestLang::class
+            ]);
             // config
             $this->publishes([
                 __DIR__.'/../../config/ueditor.php' => config_path('ueditor.php'),
