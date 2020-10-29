@@ -15,6 +15,7 @@ class CreateCmsOrdersTable extends Migration
     {
         Schema::create('cms_orders', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->unsignedBigInteger('user_id')->comment('用户ID')->nullable();
             $table->string('name')->comment('购买商品名称')->nullable();
             $table->string('order_no')->comment('订单号');
             $table->string('product_id')->comment('商品ID')->nullable();

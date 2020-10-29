@@ -28,7 +28,6 @@ class UsersTableSeeder extends Seeder
                 'mobile' => '15201509017',
                 'created_at' => '2020-09-18 13:37:05',
                 'updated_at' => '2020-09-23 17:55:20',
-                'parent_id' => NULL,
                 'white' => NULL,
             ),
             1 => 
@@ -42,7 +41,6 @@ class UsersTableSeeder extends Seeder
                 'mobile' => '11111111111',
                 'created_at' => '2020-09-18 13:37:05',
                 'updated_at' => '2020-09-18 13:37:05',
-                'parent_id' => NULL,
                 'white' => NULL,
             ),
             2 => 
@@ -56,7 +54,6 @@ class UsersTableSeeder extends Seeder
                 'mobile' => NULL,
                 'created_at' => '2020-09-18 13:37:05',
                 'updated_at' => '2020-09-18 13:37:05',
-                'parent_id' => NULL,
                 'white' => NULL,
             ),
             3 => 
@@ -70,7 +67,6 @@ class UsersTableSeeder extends Seeder
                 'mobile' => NULL,
                 'created_at' => '2020-09-18 13:37:05',
                 'updated_at' => '2020-09-18 13:37:05',
-                'parent_id' => NULL,
                 'white' => NULL,
             ),
             4 => 
@@ -84,7 +80,6 @@ class UsersTableSeeder extends Seeder
                 'mobile' => NULL,
                 'created_at' => '2020-09-18 13:37:05',
                 'updated_at' => '2020-09-18 13:37:05',
-                'parent_id' => NULL,
                 'white' => NULL,
             ),
             5 => 
@@ -98,7 +93,6 @@ class UsersTableSeeder extends Seeder
                 'mobile' => NULL,
                 'created_at' => '2020-09-18 13:37:05',
                 'updated_at' => '2020-09-18 13:37:05',
-                'parent_id' => NULL,
                 'white' => NULL,
             ),
             6 => 
@@ -112,7 +106,6 @@ class UsersTableSeeder extends Seeder
                 'mobile' => '13255874587',
                 'created_at' => '2020-09-18 13:37:05',
                 'updated_at' => '2020-10-14 15:43:42',
-                'parent_id' => NULL,
                 'white' => NULL,
             ),
             7 => 
@@ -126,7 +119,6 @@ class UsersTableSeeder extends Seeder
                 'mobile' => NULL,
                 'created_at' => '2020-09-18 13:37:05',
                 'updated_at' => '2020-09-18 13:37:05',
-                'parent_id' => NULL,
                 'white' => NULL,
             ),
             8 => 
@@ -140,7 +132,6 @@ class UsersTableSeeder extends Seeder
                 'mobile' => NULL,
                 'created_at' => '2020-09-18 13:37:06',
                 'updated_at' => '2020-09-18 13:37:06',
-                'parent_id' => NULL,
                 'white' => NULL,
             ),
             9 => 
@@ -154,7 +145,6 @@ class UsersTableSeeder extends Seeder
                 'mobile' => NULL,
                 'created_at' => '2020-09-18 13:37:06',
                 'updated_at' => '2020-09-18 13:37:06',
-                'parent_id' => NULL,
                 'white' => NULL,
             ),
             10 => 
@@ -168,7 +158,6 @@ class UsersTableSeeder extends Seeder
                 'mobile' => NULL,
                 'created_at' => '2020-09-18 13:37:06',
                 'updated_at' => '2020-09-18 13:37:06',
-                'parent_id' => NULL,
                 'white' => NULL,
             ),
             11 => 
@@ -182,7 +171,6 @@ class UsersTableSeeder extends Seeder
                 'mobile' => NULL,
                 'created_at' => '2020-09-18 13:37:06',
                 'updated_at' => '2020-09-18 13:37:06',
-                'parent_id' => NULL,
                 'white' => NULL,
             ),
             12 => 
@@ -196,7 +184,6 @@ class UsersTableSeeder extends Seeder
                 'mobile' => NULL,
                 'created_at' => '2020-09-18 13:37:06',
                 'updated_at' => '2020-09-18 13:37:06',
-                'parent_id' => NULL,
                 'white' => NULL,
             ),
             13 => 
@@ -210,7 +197,6 @@ class UsersTableSeeder extends Seeder
                 'mobile' => NULL,
                 'created_at' => '2020-09-18 13:37:06',
                 'updated_at' => '2020-09-18 13:37:06',
-                'parent_id' => NULL,
                 'white' => NULL,
             ),
             14 => 
@@ -224,7 +210,6 @@ class UsersTableSeeder extends Seeder
                 'mobile' => NULL,
                 'created_at' => '2020-09-18 13:37:06',
                 'updated_at' => '2020-09-18 13:37:06',
-                'parent_id' => NULL,
                 'white' => NULL,
             ),
             15 => 
@@ -238,7 +223,6 @@ class UsersTableSeeder extends Seeder
                 'mobile' => NULL,
                 'created_at' => '2020-09-18 13:37:06',
                 'updated_at' => '2020-09-18 13:37:06',
-                'parent_id' => NULL,
                 'white' => NULL,
             ),
             16 => 
@@ -252,7 +236,6 @@ class UsersTableSeeder extends Seeder
                 'mobile' => NULL,
                 'created_at' => '2020-09-18 13:37:06',
                 'updated_at' => '2020-09-18 13:37:06',
-                'parent_id' => NULL,
                 'white' => NULL,
             ),
             17 => 
@@ -266,7 +249,6 @@ class UsersTableSeeder extends Seeder
                 'mobile' => NULL,
                 'created_at' => '2020-09-18 13:37:06',
                 'updated_at' => '2020-09-18 13:37:06',
-                'parent_id' => NULL,
                 'white' => NULL,
             ),
             18 => 
@@ -280,7 +262,6 @@ class UsersTableSeeder extends Seeder
                 'mobile' => NULL,
                 'created_at' => '2020-09-18 13:37:06',
                 'updated_at' => '2020-09-18 13:37:06',
-                'parent_id' => NULL,
                 'white' => NULL,
             ),
             19 => 
@@ -294,7 +275,6 @@ class UsersTableSeeder extends Seeder
                 'mobile' => NULL,
                 'created_at' => '2020-09-18 13:37:06',
                 'updated_at' => '2020-09-18 13:37:06',
-                'parent_id' => NULL,
                 'white' => NULL,
             ),
             20 => 
@@ -308,7 +288,6 @@ class UsersTableSeeder extends Seeder
                 'mobile' => NULL,
                 'created_at' => '2020-09-18 13:37:06',
                 'updated_at' => '2020-09-18 13:37:06',
-                'parent_id' => NULL,
                 'white' => NULL,
             ),
             21 => 
@@ -322,7 +301,6 @@ class UsersTableSeeder extends Seeder
                 'mobile' => NULL,
                 'created_at' => '2020-09-18 13:37:06',
                 'updated_at' => '2020-09-18 13:37:06',
-                'parent_id' => NULL,
                 'white' => NULL,
             ),
             22 => 
@@ -336,7 +314,6 @@ class UsersTableSeeder extends Seeder
                 'mobile' => NULL,
                 'created_at' => '2020-09-18 13:37:06',
                 'updated_at' => '2020-09-18 13:37:06',
-                'parent_id' => NULL,
                 'white' => NULL,
             ),
             23 => 
@@ -350,7 +327,6 @@ class UsersTableSeeder extends Seeder
                 'mobile' => NULL,
                 'created_at' => '2020-09-18 13:37:06',
                 'updated_at' => '2020-09-18 13:37:06',
-                'parent_id' => NULL,
                 'white' => NULL,
             ),
             24 => 
@@ -364,7 +340,6 @@ class UsersTableSeeder extends Seeder
                 'mobile' => NULL,
                 'created_at' => '2020-09-18 13:37:06',
                 'updated_at' => '2020-09-18 13:37:06',
-                'parent_id' => NULL,
                 'white' => NULL,
             ),
             25 => 
@@ -378,7 +353,6 @@ class UsersTableSeeder extends Seeder
                 'mobile' => NULL,
                 'created_at' => '2020-09-18 13:37:06',
                 'updated_at' => '2020-09-18 13:37:06',
-                'parent_id' => NULL,
                 'white' => NULL,
             ),
             26 => 
@@ -392,7 +366,6 @@ class UsersTableSeeder extends Seeder
                 'mobile' => NULL,
                 'created_at' => '2020-09-18 13:37:06',
                 'updated_at' => '2020-09-18 13:37:06',
-                'parent_id' => NULL,
                 'white' => NULL,
             ),
             27 => 
@@ -406,7 +379,6 @@ class UsersTableSeeder extends Seeder
                 'mobile' => '13222988085',
                 'created_at' => '2020-09-18 13:37:06',
                 'updated_at' => '2020-09-27 10:30:42',
-                'parent_id' => NULL,
                 'white' => 1,
             ),
             28 => 
@@ -420,7 +392,6 @@ class UsersTableSeeder extends Seeder
                 'mobile' => NULL,
                 'created_at' => '2020-09-18 13:37:07',
                 'updated_at' => '2020-09-18 13:37:07',
-                'parent_id' => NULL,
                 'white' => NULL,
             ),
             29 => 
@@ -434,7 +405,6 @@ class UsersTableSeeder extends Seeder
                 'mobile' => NULL,
                 'created_at' => '2020-09-18 13:37:07',
                 'updated_at' => '2020-09-18 13:37:07',
-                'parent_id' => NULL,
                 'white' => NULL,
             ),
             30 => 
@@ -448,7 +418,6 @@ class UsersTableSeeder extends Seeder
                 'mobile' => NULL,
                 'created_at' => '2020-09-18 13:37:07',
                 'updated_at' => '2020-09-18 13:37:07',
-                'parent_id' => NULL,
                 'white' => NULL,
             ),
             31 => 
@@ -462,7 +431,6 @@ class UsersTableSeeder extends Seeder
                 'mobile' => NULL,
                 'created_at' => '2020-09-18 13:37:07',
                 'updated_at' => '2020-09-18 13:37:07',
-                'parent_id' => NULL,
                 'white' => NULL,
             ),
             32 => 
@@ -476,7 +444,6 @@ class UsersTableSeeder extends Seeder
                 'mobile' => NULL,
                 'created_at' => '2020-09-18 13:37:07',
                 'updated_at' => '2020-09-18 13:37:07',
-                'parent_id' => NULL,
                 'white' => NULL,
             ),
             33 => 
@@ -490,7 +457,6 @@ class UsersTableSeeder extends Seeder
                 'mobile' => NULL,
                 'created_at' => '2020-09-18 13:37:07',
                 'updated_at' => '2020-09-18 13:37:07',
-                'parent_id' => NULL,
                 'white' => NULL,
             ),
             34 => 
@@ -504,7 +470,6 @@ class UsersTableSeeder extends Seeder
                 'mobile' => NULL,
                 'created_at' => '2020-09-18 13:37:07',
                 'updated_at' => '2020-09-18 13:37:07',
-                'parent_id' => NULL,
                 'white' => NULL,
             ),
             35 => 
@@ -518,7 +483,6 @@ class UsersTableSeeder extends Seeder
                 'mobile' => NULL,
                 'created_at' => '2020-09-18 13:37:07',
                 'updated_at' => '2020-09-18 13:37:07',
-                'parent_id' => NULL,
                 'white' => NULL,
             ),
             36 => 
@@ -532,7 +496,6 @@ class UsersTableSeeder extends Seeder
                 'mobile' => NULL,
                 'created_at' => '2020-09-18 13:37:07',
                 'updated_at' => '2020-09-18 13:37:07',
-                'parent_id' => NULL,
                 'white' => NULL,
             ),
             37 => 
@@ -546,7 +509,6 @@ class UsersTableSeeder extends Seeder
                 'mobile' => NULL,
                 'created_at' => '2020-09-18 13:37:07',
                 'updated_at' => '2020-09-18 13:37:07',
-                'parent_id' => NULL,
                 'white' => NULL,
             ),
             38 => 
@@ -560,7 +522,6 @@ class UsersTableSeeder extends Seeder
                 'mobile' => NULL,
                 'created_at' => '2020-09-18 13:37:07',
                 'updated_at' => '2020-09-18 13:37:07',
-                'parent_id' => NULL,
                 'white' => NULL,
             ),
             39 => 
@@ -574,7 +535,6 @@ class UsersTableSeeder extends Seeder
                 'mobile' => NULL,
                 'created_at' => '2020-09-18 13:37:07',
                 'updated_at' => '2020-09-18 13:37:07',
-                'parent_id' => NULL,
                 'white' => NULL,
             ),
             40 => 
@@ -588,7 +548,6 @@ class UsersTableSeeder extends Seeder
                 'mobile' => NULL,
                 'created_at' => '2020-09-18 13:37:07',
                 'updated_at' => '2020-09-18 13:37:07',
-                'parent_id' => NULL,
                 'white' => NULL,
             ),
             41 => 
@@ -602,7 +561,6 @@ class UsersTableSeeder extends Seeder
                 'mobile' => NULL,
                 'created_at' => '2020-09-18 13:37:07',
                 'updated_at' => '2020-09-18 13:37:07',
-                'parent_id' => NULL,
                 'white' => NULL,
             ),
             42 => 
@@ -616,7 +574,6 @@ class UsersTableSeeder extends Seeder
                 'mobile' => NULL,
                 'created_at' => '2020-09-18 13:37:07',
                 'updated_at' => '2020-09-18 13:37:07',
-                'parent_id' => NULL,
                 'white' => NULL,
             ),
             43 => 
@@ -630,7 +587,6 @@ class UsersTableSeeder extends Seeder
                 'mobile' => NULL,
                 'created_at' => '2020-09-18 13:37:07',
                 'updated_at' => '2020-09-18 13:37:07',
-                'parent_id' => NULL,
                 'white' => NULL,
             ),
             44 => 
@@ -644,7 +600,6 @@ class UsersTableSeeder extends Seeder
                 'mobile' => NULL,
                 'created_at' => '2020-09-18 20:10:13',
                 'updated_at' => '2020-09-18 20:10:13',
-                'parent_id' => NULL,
                 'white' => NULL,
             ),
             45 => 
@@ -658,7 +613,6 @@ class UsersTableSeeder extends Seeder
                 'mobile' => NULL,
                 'created_at' => '2020-09-18 20:10:13',
                 'updated_at' => '2020-09-18 20:10:13',
-                'parent_id' => NULL,
                 'white' => NULL,
             ),
             46 => 
@@ -672,7 +626,6 @@ class UsersTableSeeder extends Seeder
                 'mobile' => NULL,
                 'created_at' => '2020-09-18 20:10:13',
                 'updated_at' => '2020-09-18 20:10:13',
-                'parent_id' => NULL,
                 'white' => NULL,
             ),
         ));

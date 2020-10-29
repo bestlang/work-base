@@ -35,3 +35,8 @@ php artisan vendor:publish --provider="BestLang\Laracms\Providers\AppServiceProv
 php artisan vendor:publish --provider="BestLang\LaravelUEditor\UEditorServiceProvider"
 php artisan vendor:publish --provider="BestLang\WxPay\WxPayServiceProvider"
 php artisan vendor:publish --provider="Sniper\Employee\Providers\AppServiceProvider"
+
+php artisan migrate
+php artisan db:seed --class=BestLangBaseSeeder
+php artisan db:seed --class=LaraCmsSeeder
+php artisan db:seed --class=SniperSeeder
