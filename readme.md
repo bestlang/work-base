@@ -30,7 +30,7 @@ fastcgi_pass unix:/run/php-fpm/www.sock;
 php artisan migrate --path=packages/bestlang/laracms/database/migrations/2020_06_14_153336_create_cms_tags_table.php
 C:\Users\sniper\PhpProjects\sniper\sniper\employee\database\migrations\2020_09_11_150535_create_sniper_employee_education_table.php
 php -d memory_limit=-1 /usr/local/bin/composer update
-php -d memory_limit=-1 C:\composer\composer.phar update
+php -d memory_limit=-1 C:\composer\composer.phar
 
 ========
 php7.4之下 支付宝包(easysdk) 中方法函数hex2dec报错:

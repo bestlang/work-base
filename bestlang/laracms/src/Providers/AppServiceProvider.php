@@ -41,6 +41,11 @@ class AppServiceProvider extends ServiceProvider
             $this->publishes([
                 __DIR__ . '/../../database/seeds' => database_path('seeds/')
             ], 'laracms-seeds');
+            // static file
+            $this->publishes([
+                __DIR__ . '/../../resources/assets/dark/front.css' => public_path('vendor/laracms/dark/front.css'),
+                __DIR__ . '/../../resources/assets/dark/images/' => public_path('vendor/laracms/dark/images/')
+            ], 'laracms-assets');
         }
         $this->loadViewsFrom(__DIR__.'/../../resources/views/laracms', 'laracms');
 

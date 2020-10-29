@@ -10,10 +10,28 @@
     {{--<title>首页 - {{config('app.name')}}</title>--}}
     <meta name="description" content=""/>
     <meta name="csrf-token" content="{{csrf_token()}}">
-
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon"/>
+
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
-    <script src="/vendor/sniper/app.js"></script>
+    {{--<script src="/vendor/sniper/app.js"></script>--}}
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/swiper.js@1.0.0/index.js"></script>
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script>
+        if(window.axios){
+            window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+        }
+        var token = document.head.querySelector('meta[name="csrf-token"]');
+        if (token) {
+            window.axios.defaults.headers.common['X-CSRF-TOKEN'] = token.content;
+        }
+    </script>
+    <link href="https://unpkg.com/normalize.css@8.0.1/normalize.css" rel="stylesheet">
+    <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+    <link rel="stylesheet" media="screen" href="/vendor/sniper/front.css" />
     @stack('css')
     <!--[if lt IE 9]>
     <script src="https://cdn.bootcdn.net/ajax/libs/html5shiv/3.6.2/html5shiv.js"></script>
