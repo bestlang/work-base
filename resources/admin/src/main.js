@@ -2,7 +2,6 @@ import "babel-polyfill"
 import Vue from "vue"
 import ElementUI from "element-ui"
 
-// import "./css/ele-default-theme/theme/index.css"
 import "element-ui/lib/theme-chalk/index.css"
 import "@/css/index.scss"
 import router from "./router"
@@ -55,7 +54,8 @@ export default new Vue({
   template: "<App/>"
 })
 
-/*import Echo from 'laravel-echo'
+/*
+import Echo from 'laravel-echo'
 
 window.io = require('socket.io-client');
 window.Echo = new Echo({
