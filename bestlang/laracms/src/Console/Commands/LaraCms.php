@@ -3,22 +3,19 @@
 namespace BestLang\Laracms\Console\Commands;
 
 use Illuminate\Console\Command;
-use Arr;
-use DB;
-
 class LaraCms extends Command
 {
     /**
      * The name and signature of the console command.
      */
-    protected $signature = 'LaraCMS:install';
+    protected $signature = 'LaraCms:install';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'LaraCMS,install';
+    protected $description = 'LaraCms,install';
 
     /**
      * Create a new command instance.
