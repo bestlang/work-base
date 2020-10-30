@@ -40,7 +40,8 @@
       "providers": [
         "BestLang\\Base\\Providers\\AppServiceProvider",
         "BestLang\\Base\\Providers\\ResponseServiceProvider",
-        "BestLang\\Base\\Providers\\RouteServiceProvider"
+        "BestLang\\Base\\Providers\\RouteServiceProvider",
+        "BestLang\\Base\\Providers\\EventServiceProvider"
       ],
       "aliases": {
         "hashconfig": "BestLang\\Base\\Facades\\HashConfig"

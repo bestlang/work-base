@@ -64,7 +64,7 @@ export default {
     saveSiteSetting(data){ return fetch('/admin/cms/save/site/setting', data, 'post') },
     getSiteSetting(data){ return fetch('/admin/cms/get/site/setting', data) },
 
-
+    getHistories(data){return fetch('/admin/histories', data) },
 
     sniperGetDepartmentLevel1(data){ return fetch('/admin/sniper/employee/departments/level1', data) },
     sniperGetDepartmentsTreeSelect(data){ return  fetch('/admin/sniper/employee/departments/tree/select', data) },

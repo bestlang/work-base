@@ -1,11 +1,9 @@
 <?php
 
-namespace App\Listeners;
+namespace BestLang\Laracms\Listeners;
 
 use BestLang\Laracms\Events\PayNotify;
 use BestLang\Laracms\Models\Cms\Order;
-use App\Pay\Log\Log;
-use Illuminate\Contracts\Queue\ShouldQueue;
 
 class PayNotifyProcess
 {

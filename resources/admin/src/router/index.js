@@ -458,6 +458,16 @@ export default new VueRouter({
                   }
               ]
           },
+        {
+            path: "/history",
+            component:  () => import("../pages/history.vue"),
+            meta: {
+                can: 'dashboard',
+                show:true,
+                name: '历史痕迹',
+                font: '&#xe74d;'
+            }
+        },
       ]
     },
     {
