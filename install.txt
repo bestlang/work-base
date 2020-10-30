@@ -1,8 +1,8 @@
 拷贝bestlang和sniper目录
 编辑composer.json的repositories
-composer require bestlang/laracms
-composer require sniper/employee
-composer dump-autoload
+php -d memory_limit=-1 /usr/local/bin/composer require bestlang/laracms
+php -d memory_limit=-1 /usr/local/bin/composer require sniper/employee
+##composer dump-autoload
 修改.env
 	-DB
 	-PROXY_DB
@@ -15,14 +15,14 @@ npm run dev
 npm run build
 
 发布资源
-composer dump-autoload
-php artisan vendor:publish --provider="BestLang\Base\Providers\AppServiceProvider" --force
-php artisan vendor:publish --provider="BestLang\Laracms\Providers\AppServiceProvider"
-php artisan vendor:publish --provider="BestLang\LaravelUEditor\UEditorServiceProvider"
-php artisan vendor:publish --provider="BestLang\WxPay\WxPayServiceProvider"
-php artisan vendor:publish --provider="Sniper\Employee\Providers\AppServiceProvider"
+php artisan BestLang:install
+#php artisan vendor:publish --provider="BestLang\Base\Providers\AppServiceProvider" --force
+#php artisan vendor:publish --provider="BestLang\Laracms\Providers\AppServiceProvider"
+#php artisan vendor:publish --provider="BestLang\LaravelUEditor\UEditorServiceProvider"
+#php artisan vendor:publish --provider="BestLang\WxPay\WxPayServiceProvider"
+#php artisan vendor:publish --provider="Sniper\Employee\Providers\AppServiceProvider"
 
-php artisan migrate
-php artisan db:seed --class=BestLangBaseSeeder
-php artisan db:seed --class=LaraCmsSeeder
-php artisan db:seed --class=SniperSeeder
+#php artisan migrate
+#php artisan db:seed --class=BestLangBaseSeeder
+#php artisan db:seed --class=LaraCmsSeeder
+#php artisan db:seed --class=SniperSeeder
