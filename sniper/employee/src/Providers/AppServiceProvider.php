@@ -32,7 +32,7 @@ class AppServiceProvider extends ServiceProvider
             $this->publishes([
                 __DIR__ . '/../../resources/assets/front.css' => public_path('vendor/sniper/front.css'),
                 __DIR__ . '/../../resources/assets/images/' => public_path('vendor/sniper/images/')
-            ], 'base-assets');
+            ], 'sniper-assets');
         }
         $this->loadViewsFrom(__DIR__.'/../../resources/views/sniper', 'sniper');
     }
