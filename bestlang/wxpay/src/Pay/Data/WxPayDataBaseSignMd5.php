@@ -10,12 +10,12 @@ class WxPayDataBaseSignMd5 extends WxPayDataBase
 {
     /**
      * 生成签名 - 重写该方法
-     * @param WxPayConfigInterface $config  配置对象
      * @param bool $needSignType  是否需要补signtype
      * @return 签名，本函数不覆盖sign成员变量，如要设置签名需要调用SetSign方法赋值
      */
-    public function MakeSign($config, $needSignType = false)
+    public function MakeSign($needSignType = false)
     {
+        $config = app()['wxConfig'];
         if($needSignType) {
             $this->SetSignType($config->GetSignType());
         }

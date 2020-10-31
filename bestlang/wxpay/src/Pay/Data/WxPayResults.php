@@ -12,12 +12,12 @@ class WxPayResults extends WxPayDataBase
 {
     /**
      * 生成签名 - 重写该方法
-     * @param WxPayConfigInterface $config  配置对象
      * @param bool $needSignType  是否需要补signtype
      * @return 签名，本函数不覆盖sign成员变量，如要设置签名需要调用SetSign方法赋值
      */
-    public function MakeSign($config, $needSignType = false)
+    public function MakeSign($needSignType = false)
     {
+        $config = app()['wxConfig'];
         //签名步骤一：按字典序排序参数
         ksort($this->values);
         $string = $this->ToUrlParams();
@@ -41,16 +41,15 @@ class WxPayResults extends WxPayDataBase
      * 检测签名
      */
     /**
-     * @param $config
      * @return bool
      */
-    public function CheckSign($config)
+    public function CheckSign()
     {
         if(!$this->IsSignSet()){
             throw new WxPayException("签名错误！");
         }
 
-        $sign = $this->MakeSign($config, false);
+        $sign = $this->MakeSign(false);
         if($this->GetSign() == $sign){
             //签名正确
             return true;
@@ -114,6 +113,7 @@ class WxPayResults extends WxPayDataBase
      */
     public static function Init($config, $xml)
     {
+        $config = app()['wxConfig'];
         $obj = new self();
         $obj->FromXml($xml);
         //失败则直接返回失败

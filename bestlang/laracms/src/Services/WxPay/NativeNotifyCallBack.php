@@ -3,7 +3,6 @@ namespace BestLang\Laracms\Services\WxPay;
 
 use BestLang\WxPay\Pay\Data\WxPayUnifiedOrder;
 use BestLang\WxPay\Pay\Log\Log;
-use BestLang\WxPay\Pay\WxPayConfig;
 use BestLang\WxPay\Pay\WxPayNotify;
 
 use BestLang\Laracms\Models\Cms\Order;
@@ -14,7 +13,7 @@ class NativeNotifyCallBack extends WxPayNotify
 {
     public function unifiedOrder($openId, $order_no)
     {
-        $config = new WxPayConfig();
+        $config = app()['wxConfig'];
         $order = Order::where('order_no', $order_no)->first();
         //统一下单
         $input = new WxPayUnifiedOrder();
@@ -30,7 +29,7 @@ class NativeNotifyCallBack extends WxPayNotify
         $input->SetOpenid($openId);
         $input->SetProduct_id($order->product_id);
         try {
-            $result = WxPayApi::unifiedOrder($config, $input);
+            $result = WxPayApi::unifiedOrder($input);
             Log::DEBUG("unifiedorder:" . json_encode($result));
         } catch(Exception $e) {
             Log::ERROR(json_encode($e));

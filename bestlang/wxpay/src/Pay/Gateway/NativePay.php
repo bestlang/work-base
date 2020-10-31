@@ -2,7 +2,6 @@
 namespace BestLang\WxPay\Pay\Gateway;
 
 use BestLang\WxPay\Pay\Data\WxPayBizPayUrl;
-use BestLang\WxPay\Pay\WxPayConfig;
 use BestLang\WxPay\Pay\WxPayApi;
 use BestLang\WxPay\Pay\Log\Log;
 use \Exception;
@@ -28,8 +27,7 @@ class NativePay
         $biz = new WxPayBizPayUrl();
         $biz->SetProduct_id($productId);
         try{
-            $config = new WxPayConfig();
-            $values = WxpayApi::bizpayurl($config, $biz);
+            $values = WxpayApi::bizpayurl($biz);
         } catch(Exception $e) {
             Log::ERROR(json_encode($e));
         }
@@ -72,8 +70,7 @@ class NativePay
         if($input->GetTrade_type() == "NATIVE")
         {
             try{
-                $config = new WxPayConfig();
-                $result = WxPayApi::unifiedOrder($config, $input);
+                $result = WxPayApi::unifiedOrder($input);
                 return $result;
             } catch(Exception $e) {
                 Log::ERROR(json_encode($e));

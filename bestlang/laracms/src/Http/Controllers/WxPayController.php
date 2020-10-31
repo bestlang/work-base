@@ -7,13 +7,11 @@ use BestLang\Laracms\Models\Cms\Order;
 
 use BestLang\WxPay\Pay\Data\WxPayUnifiedOrder;
 use BestLang\WxPay\Pay\Gateway\NativePay;
-use BestLang\WxPay\Pay\WxPayConfig;
 use Endroid\QrCode\QrCode;
 use BestLang\WxPay\Pay\Log\CLogFileHandler;
 use BestLang\WxPay\Pay\Log\Log;
 
 use BestLang\Laracms\Services\WxPay\NativeNotifyCallBack;
-use BestLang\Laracms\Services\OrderGenerator;
 use BestLang\Laracms\Services\WxPay\PayNotifyCallBack;
 
 
@@ -29,29 +27,32 @@ class WxPayController
         return response()->ajax($qrCode->writeDataUri());
     }
     //native1 需要调用统一下单api的
-    public function wechatNativeNotify(WxPayConfig $config, NativeNotifyCallBack $nativeNotifyCallBack)
+    public function wechatNativeNotify(NativeNotifyCallBack $nativeNotifyCallBack)
     {
         //初始化日志
         $logHandler = new CLogFileHandler(storage_path()."/logs/".date('Y-m-d').'.log');
         $log = Log::Init($logHandler, 15);
         Log::DEBUG("begin notify native1 !");
+        $config = app()['wxConfig'];
         $nativeNotifyCallBack->Handle($config, true);
     }
 
-    public function wechatAsyncNotify(Request $request, PayNotifyCallBack $payNotifyCallBack, WxPayConfig $config)
+    public function wechatAsyncNotify(Request $request, PayNotifyCallBack $payNotifyCallBack)
     {
         $logHandler = new CLogFileHandler(storage_path()."/logs/".'notify-'.date('Y-m-d').'.log');
         $log = Log::Init($logHandler, 15);
         Log::DEBUG("begin notify");
+        $config = app()['wxConfig'];
         $payNotifyCallBack->Handle($config, false);
     }
 
     //微信支付的native2
-    public function native2(Request $request, WxPayUnifiedOrder $wxPayUnifiedOrder, NativePay $nativePay, WxPayConfig $wxPayConfig)
+    public function native2(Request $request, WxPayUnifiedOrder $wxPayUnifiedOrder, NativePay $nativePay)
     {
         $order_no = $request->input('order_no');
         $order = Order::where('order_no', $order_no)->first();
         $user = auth()->user();
+        $config = app()['wxConfig'];
         if(!$user){
             return response()->error('请先登录', 401);
         }
@@ -63,7 +64,7 @@ class WxPayController
         $wxPayUnifiedOrder->SetTime_start(date("YmdHis"));
         $wxPayUnifiedOrder->SetTime_expire(date("YmdHis", time() + 600));
         //$wxPayUnifiedOrder->SetGoods_tag("xxx");
-        $wxPayUnifiedOrder->SetNotify_url($wxPayConfig->GetNotifyUrl());
+        $wxPayUnifiedOrder->SetNotify_url($config->GetNotifyUrl());
         $wxPayUnifiedOrder->SetTrade_type("NATIVE");
         $wxPayUnifiedOrder->SetProduct_id($order->id);
 

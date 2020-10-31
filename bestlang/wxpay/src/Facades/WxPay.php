@@ -13,6 +13,6 @@ class WxPay extends Facade
      */
     protected static function getFacadeAccessor(): string
     {
-        return 'wxpay';
+        return 'wxPay';
     }
 }

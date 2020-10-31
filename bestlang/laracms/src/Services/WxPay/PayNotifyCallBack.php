@@ -4,7 +4,6 @@ use BestLang\WxPay\Pay\Log\Log;
 use BestLang\WxPay\Pay\Data\WxPayOrderQuery;
 use BestLang\WxPay\Pay\WxPayNotify;
 use BestLang\Laracms\Events\PayNotify;
-use BestLang\WxPay\Pay\WxPayConfig;
 use BestLang\WxPay\Pay\WxPayApi;
 
 // 处理支付成功回调
@@ -15,9 +14,7 @@ class PayNotifyCallBack extends WxPayNotify
     {
         $input = new WxPayOrderQuery();
         $input->SetTransaction_id($transaction_id);
-
-        $config = new WxPayConfig();
-        $result = WxPayApi::orderQuery($config, $input);
+        $result = WxPayApi::orderQuery($input);
         Log::DEBUG("query:" . json_encode($result));
         if(array_key_exists("return_code", $result)
             && array_key_exists("result_code", $result)

@@ -25,12 +25,11 @@ class WxPayDataBase
 
     /**
      * 设置签名，详见签名生成算法
-     * @param string $config
      * @return mixed
      **/
-    public function SetSign($config)
+    public function SetSign()
     {
-        $sign = $this->MakeSign($config);
+        $sign = $this->MakeSign();
         $this->values['sign'] = $sign;
         return $sign;
     }
@@ -114,12 +113,12 @@ class WxPayDataBase
 
     /**
      * 生成签名
-     * @param WxPayConfigInterface $config  配置对象
      * @param bool $needSignType  是否需要补signtype
      * @return 签名，本函数不覆盖sign成员变量，如要设置签名需要调用SetSign方法赋值
      */
-    public function MakeSign($config, $needSignType = true)
+    public function MakeSign($needSignType = true)
     {
+        $config = app()['wxConfig'];
         if($needSignType) {
             $this->SetSignType($config->GetSignType());
         }

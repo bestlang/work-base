@@ -3,6 +3,7 @@
 namespace BestLang\WxPay;
 
 use Illuminate\Support\ServiceProvider;
+use BestLang\WxPay\Pay\WxPayConfig;
 
 class WxPayServiceProvider extends ServiceProvider
 {
@@ -34,7 +35,10 @@ class WxPayServiceProvider extends ServiceProvider
         $this->mergeConfigFrom(__DIR__.'/../config/wxpay.php', 'wxpay');
 
         // Register the service the package provides.
-        $this->app->singleton('wxpay', function ($app) {
+        $this->app->singleton('wxConfig', function(){
+            return new WxPayConfig;
+        });
+        $this->app->singleton('wxPay', function ($app) {
             return new WxPay;
         });
     }
