@@ -33,8 +33,7 @@ class WxPayController
         $logHandler = new CLogFileHandler(storage_path()."/logs/".date('Y-m-d').'.log');
         $log = Log::Init($logHandler, 15);
         Log::DEBUG("begin notify native1 !");
-        $config = app()['wxConfig'];
-        $nativeNotifyCallBack->Handle($config, true);
+        $nativeNotifyCallBack->Handle(true);
     }
 
     public function wechatAsyncNotify(Request $request, PayNotifyCallBack $payNotifyCallBack)
