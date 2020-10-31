@@ -21,10 +21,15 @@ class WxPayController
     //native1
     public function native1(Request $request, NativePay $nativePay)
     {
+        /*
         $order_no = $request->input('order_no');
         $url = $nativePay->GetPrePayUrl($order_no);
         $qrCode = new QrCode($url);
         return response()->ajax($qrCode->writeDataUri());
+        */
+        $order_no = $request->input('order_no');
+        $url = app()['wxPay']->native1($order_no);
+        return response()->ajax($url);
     }
     //native1 需要调用统一下单api的
     public function wechatNativeNotify(NativeNotifyCallBack $nativeNotifyCallBack)
@@ -33,7 +38,7 @@ class WxPayController
         $logHandler = new CLogFileHandler(storage_path()."/logs/".date('Y-m-d').'.log');
         $log = Log::Init($logHandler, 15);
         Log::DEBUG("begin notify native1 !");
-        $nativeNotifyCallBack->Handle(true);
+        $nativeNotifyCallBack->Handle();
     }
 
     public function wechatAsyncNotify(Request $request, PayNotifyCallBack $payNotifyCallBack)
@@ -41,8 +46,7 @@ class WxPayController
         $logHandler = new CLogFileHandler(storage_path()."/logs/".'notify-'.date('Y-m-d').'.log');
         $log = Log::Init($logHandler, 15);
         Log::DEBUG("begin notify");
-        $config = app()['wxConfig'];
-        $payNotifyCallBack->Handle($config, false);
+        $payNotifyCallBack->Handle();
     }
 
     //微信支付的native2
