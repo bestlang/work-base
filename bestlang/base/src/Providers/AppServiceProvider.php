@@ -56,7 +56,7 @@ class AppServiceProvider extends ServiceProvider
 
         });
 
-        if ($this->app->runningInConsole()) {
+        if ($this->app->runningInConsole()){
             // migrations
             $this->loadMigrationsFrom(__DIR__.'/../../database/migrations');
             // config
