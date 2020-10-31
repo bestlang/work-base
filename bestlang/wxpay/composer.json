@@ -12,7 +12,8 @@
     "homepage": "https://github.com/bestlang/wxpay",
     "keywords": ["Laravel", "WxPay"],
     "require": {
-        "illuminate/support": "~5|~6"
+        "illuminate/support": "~5|~6",
+        "endroid/qr-code": "^3.5"
     },
     "require-dev": {
         "phpunit/phpunit": "~8.0",

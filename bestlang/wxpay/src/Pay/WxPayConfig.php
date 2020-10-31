@@ -24,11 +24,11 @@ class WxPayConfig extends WxPayConfigInterface
      */
     public function GetAppId()
     {
-        return 'wx49a724deab97c52b';
+        return config('wxpay.appId');
     }
     public function GetMerchantId()
     {
-        return '1542382061';
+        return config('wxpay.merchantId');
     }
 
     //=======【支付相关配置：支付成功回调地址/签名方式】===================================
@@ -38,7 +38,7 @@ class WxPayConfig extends WxPayConfigInterface
      **/
     public function GetNotifyUrl()
     {
-        return "https://www.laracms.com/notify/wechat/async";
+        return config('wxpay.notifyUrl');
     }
     public function GetSignType()
     {
@@ -87,11 +87,11 @@ class WxPayConfig extends WxPayConfigInterface
      */
     public function GetKey()
     {
-        return 'odkj90LyLEgq7ewanhdd8t1wHbvc7b39';
+        return config('wxpay.key');
     }
     public function GetAppSecret()
     {
-        return '';
+        return config('wxpay.appSecret');
     }
 
 
@@ -108,7 +108,7 @@ class WxPayConfig extends WxPayConfigInterface
      */
     public function GetSSLCertPath(&$sslCertPath, &$sslKeyPath)
     {
-        $sslCertPath = '../cert/apiclient_cert.pem';
-        $sslKeyPath = '../cert/apiclient_key.pem';
+        $sslCertPath = config('wxpay.sslCertPath');//'../cert/apiclient_cert.pem';
+        $sslKeyPath = config('wxpay.sslKeyPath');//'../cert/apiclient_key.pem';
     }
 }
