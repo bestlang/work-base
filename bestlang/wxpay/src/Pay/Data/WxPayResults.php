@@ -37,7 +37,6 @@ class WxPayResults extends WxPayDataBase
     }
 
     /**
-     * @param WxPayConfigInterface $config  配置对象
      * 检测签名
      */
     /**
@@ -74,17 +73,16 @@ class WxPayResults extends WxPayDataBase
      * @param 是否检测签名 $noCheckSign
      */
     /**
-     * @param $config
      * @param $array
      * @param bool $noCheckSign
      * @return WxPayResults
      */
-    public static function InitFromArray($config, $array, $noCheckSign = false)
+    public static function InitFromArray($array, $noCheckSign = false)
     {
         $obj = new self();
         $obj->FromArray($array);
         if($noCheckSign == false){
-            $obj->CheckSign($config);
+            $obj->CheckSign();
         }
         return $obj;
     }
@@ -102,18 +100,15 @@ class WxPayResults extends WxPayDataBase
 
     /**
      * 将xml转为array
-     * @param WxPayConfigInterface $config  配置对象
      * @param string $xml
      * @throws WxPayException
      */
     /**
-     * @param $config
      * @param $xml
      * @return array|bool
      */
-    public static function Init($config, $xml)
+    public static function Init($xml)
     {
-        $config = app()['wxConfig'];
         $obj = new self();
         $obj->FromXml($xml);
         //失败则直接返回失败
@@ -127,7 +122,7 @@ class WxPayResults extends WxPayDataBase
             }
             return $obj->GetValues();
         }
-        $obj->CheckSign($config);
+        $obj->CheckSign();
         return $obj->GetValues();
     }
 }
