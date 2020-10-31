@@ -1,5 +1,5 @@
 <?php
-namespace BestLang\WxPay\Pay\Custom;
+namespace BestLang\Laracms\Services\WxPay;
 
 use BestLang\WxPay\Pay\Data\WxPayUnifiedOrder;
 use BestLang\WxPay\Pay\Log\Log;
