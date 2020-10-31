@@ -42,11 +42,10 @@ class PayNotifyCallBack extends WxPayNotify
     //重写回调处理函数
     /**
      * @param WxPayNotifyResults $data 回调解释出的参数
-     * @param WxPayConfigInterface $config
      * @param string $msg 如果回调处理失败，可以将错误信息输出到该方法
      * @return true回调出来完成不需要继续回调，false回调处理未完成需要继续回调
      */
-    public function NotifyProcess($objData, $config, &$msg)
+    public function NotifyProcess($objData, &$msg)
     {
         $data = $objData->GetValues();
         //1、进行参数校验
@@ -64,7 +63,7 @@ class PayNotifyCallBack extends WxPayNotify
 
         //2、进行签名验证
         try {
-            $checkResult = $objData->CheckSign($config);
+            $checkResult = $objData->CheckSign();
             if($checkResult == false){
                 //签名错误
                 Log::ERROR("签名错误...");
