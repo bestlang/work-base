@@ -480,7 +480,6 @@ class WxPayApi
     /**
      *
      * 上报数据， 上报的时候将屏蔽所有异常流程
-     * @param WxPayConfigInterface $config  配置对象
      * @param string $usrl
      * @param int $startTimeStamp
      * @param array $data
@@ -491,7 +490,7 @@ class WxPayApi
      * @param $startTimeStamp
      * @param $data
      */
-    private static function reportCostTime($config, $url, $startTimeStamp, $data)
+    private static function reportCostTime($url, $startTimeStamp, $data)
     {
         $config = app()['wxConfig'];
         //如果不需要上报数据
@@ -544,7 +543,7 @@ class WxPayApi
         }
 
         try{
-            self::report($config, $objInput);
+            self::report($objInput);
         } catch (WxPayException $e){
             //不做任何处理
         }
@@ -561,14 +560,13 @@ class WxPayApi
      * @throws WxPayException
      */
     /**
-     * @param $config
      * @param $xml
      * @param $url
      * @param bool $useCert
      * @param int $second
      * @return mixed
      */
-    private static function postXmlCurl($config, $xml, $url, $useCert = false, $second = 30)
+    private static function postXmlCurl($xml, $url, $useCert = false, $second = 30)
     {
         $config = app()['wxConfig'];
         $ch = curl_init();
