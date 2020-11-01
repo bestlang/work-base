@@ -17,7 +17,9 @@ Route::any('/order/{order_no}', 'OrderController@detail');
 //进入商户平台-->产品中心-->开发配置 填写此地址
 Route::any('/notify/wechat/native', 'WxPayController@wechatNativeNotify');
 Route::any('/notify/wechat/async', 'WxPayController@wechatAsyncNotify');
-Route::any('/notify/alipay', 'AliPayController@notify');
+
+Route::any('/return/alipay', 'AliPayController@returnUrl');
+Route::any('/notify/alipay', 'AliPayController@asyncNotify');
 
 Route::any('/pay/wxpay', 'PayController@wxpay');
 Route::any('/pay/alipay', 'PayController@alipay');
@@ -30,6 +32,7 @@ Route::group(['prefix' => 'ajax'], function($router){
 
     Route::any('/pay/native1', 'WxPayController@native1');
     Route::any('/pay/native2', 'WxPayController@native2');
+
     Route::any('/pay/alipay/page', 'AliPayController@page');
 
 });

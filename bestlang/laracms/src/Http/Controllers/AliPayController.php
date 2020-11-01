@@ -19,10 +19,10 @@ class AliPayController
         try {
             //2. 发起API调用
             $result = Factory::payment()->page()->pay(
-                $order->name,
-                $order_no,
-                floatval($order->money),
-                env('APP_URL').'/notify/alipay'
+                $order->getName(),
+                $order->getOrderNo(),
+                floatval($order->getMoney()),
+                config('alipay.returnUrl')
             );
             //3. 处理响应或异常
             return response()->ajax($result);
@@ -55,7 +55,7 @@ class AliPayController
         // $options->alipayPublicKey = '<-- 请填写您的支付宝公钥，例如：MIIBIjANBg... -->';
 
         //可设置异步通知接收服务地址（可选）
-        //$options->notifyUrl = "<-- 请填写您的支付类接口异步通知接收服务地址，例如：https://www.test.com/callback -->";
+        $options->notifyUrl = config('alipay.asyncNotifyUrl');
 
         //可设置AES密钥，调用AES加解密相关接口时需要（可选）
         //$options->encryptKey = "<-- 请填写您的AES密钥，例如：aa4BtZ4tspm2wnXLb1ThQA== -->";
@@ -65,10 +65,16 @@ class AliPayController
         return $options;
     }
 
-    public function notify(Request $request)
+    public function returnUrl(Request $request)
+    {
+        echo '支付成功!';
+        print_r($request->all());
+        info('***** alipay return *****', [$request->all()]);
+    }
+
+    public function asyncNotify(Request $request)
     {
         //https://www.xxx.com/notify/alipay?charset=UTF-8&out_trade_no=20201017223143239893&method=alipay.trade.page.pay.return&total_amount=0.01&sign=K9tSpJRli2YKAAiy4HiX0vTZow%2BI2An6BA8Q26%2BPp%2FUh%2FOlDd9qRzLYiQJKKtZf79CLyu3MRFIN0apehsQbfrIHUHwDZnmMTpWq5lR3pXaT5dgclfmeRJQY%2BosvG48rtS8za%2FirSklkWEOReqnxtzAkU8ERdxKMOCJM%2BswaYPKlMGpdTOwc5pol3wzMI22T%2B6pZsLDohCZV2YSTcuiDlAX9oPwliDC9D0xO7yormuY35aME1UDg%2F%2BBicSeOETZu9v5x7Ntmb5TcZKc7rl7bBPUTQ1jg6c8MuXx4s7rCZi6wih%2F3dDt1uT6uJtLaZqVutv01XcgT6HJz32TAPc3pIDA%3D%3D&trade_no=2020101722001495931407744519&auth_app_id=2021001165602449&version=1.0&app_id=2021001165602449&sign_type=RSA2&seller_id=2088831621177204&timestamp=2020-10-17+22%3A32%3A23
-        echo '支付成功!';
         info('***** alipay notify *****', [$request->all()]);
     }
 
