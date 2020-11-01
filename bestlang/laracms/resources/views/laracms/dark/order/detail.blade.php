@@ -69,7 +69,7 @@
         </div>
     </div>
     <!-- 模态框（Modal） -->
-    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" backdrop="static">
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -100,7 +100,7 @@
         var order_no = "{{$order->order_no}}";
 
         $('#confirmPay').click(function(){
-            $('#myModal').modal();
+            $('#myModal').modal({backdrop: 'static'});
             var payMethod = $("[name='payMethod']:checked").val();
             if(payMethod == 'wxpay' || payMethod == 'alipay'){
                 window.open('/pay/'+payMethod+'?order_no='+order_no, '_blank');
