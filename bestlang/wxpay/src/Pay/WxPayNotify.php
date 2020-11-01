@@ -96,7 +96,7 @@ class WxPayNotify extends WxPayNotifyReply
         if($needSign == true &&
             $this->GetReturn_code() == "SUCCESS")
         {
-            $this->SetSign($this->config);
+            $this->SetSign();
         }
 
         $xml = $this->ToXml();
