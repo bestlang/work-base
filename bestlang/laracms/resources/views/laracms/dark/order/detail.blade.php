@@ -51,8 +51,8 @@
                                                 {{--<img src="" alt="" id="native1_code" style="width: 200px;height: 200px;margin: 10px auto 0;">--}}
                                             {{--</p>--}}
                                             {{--<p>--}}
-                                                <p>NATIVE2</p>
-                                                <img src="" alt="" id="native2_code" style="width: 200px;height: 200px;margin: 10px auto 0;">
+                                                {{--<p>NATIVE2</p>--}}
+                                                {{--<img src="" alt="" id="native2_code" style="width: 200px;height: 200px;margin: 10px auto 0;">--}}
                                             {{--</p>--}}
                                         {{--</div>--}}
                                         {{--<div class="tab-pane fade" id="identifier2">--}}
@@ -69,7 +69,7 @@
         </div>
     </div>
     <!-- 模态框（Modal） -->
-    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" backdrop="static">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -132,17 +132,17 @@
 //            })
 //        })
 
-        axios.post('/ajax/pay/native2', {order_no}).then(response => {
-            let res = response.data;
-            if(res.success){
-                $('#native2_code').attr('src', res.data)
-            }else{
-                if(res.code == 401){
-                    alert(res.error);
-                    top.location.href = '/login';
-                }
-            }
-        })
+//        axios.post('/ajax/pay/native2', {order_no}).then(response => {
+//            let res = response.data;
+//            if(res.success){
+//                $('#native2_code').attr('src', res.data)
+//            }else{
+//                if(res.code == 401){
+//                    alert(res.error);
+//                    top.location.href = '/login';
+//                }
+//            }
+//        })
 
 //        $('#pay_btn').click(function(){
 //            let content_id = $('#content_id').val();
