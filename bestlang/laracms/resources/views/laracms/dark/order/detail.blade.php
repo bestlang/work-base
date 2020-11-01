@@ -33,7 +33,7 @@
                                         <input type="radio" name="payMethod" id="optionsRadios2" value="alipay">支付宝
                                     </label>
                                 </div>
-                                <button class="btn btn-default" id="confirmPay">提交</button>
+                                <button class="btn btn-primary" id="confirmPay">点击付款</button>
                             </div>
                             {{--<nav class="navbar" role="navigation">--}}
                                 {{--<div style="padding-top: 20px;">--}}
@@ -51,8 +51,8 @@
                                                 {{--<img src="" alt="" id="native1_code" style="width: 200px;height: 200px;margin: 10px auto 0;">--}}
                                             {{--</p>--}}
                                             {{--<p>--}}
-                                                {{--<p>NATIVE2</p>--}}
-                                                {{--<img src="" alt="" id="native2_code" style="width: 200px;height: 200px;margin: 10px auto 0;">--}}
+                                                <p>NATIVE2</p>
+                                                <img src="" alt="" id="native2_code" style="width: 200px;height: 200px;margin: 10px auto 0;">
                                             {{--</p>--}}
                                         {{--</div>--}}
                                         {{--<div class="tab-pane fade" id="identifier2">--}}
@@ -132,17 +132,17 @@
 //            })
 //        })
 
-//        axios.post('/ajax/pay/native2', {order_no}).then(response => {
-//            let res = response.data;
-//            if(res.success){
-//                $('#native2_code').attr('src', res.data)
-//            }else{
-//                if(res.code == 401){
-//                    alert(res.error);
-//                    top.location.href = '/login';
-//                }
-//            }
-//        })
+        axios.post('/ajax/pay/native2', {order_no}).then(response => {
+            let res = response.data;
+            if(res.success){
+                $('#native2_code').attr('src', res.data)
+            }else{
+                if(res.code == 401){
+                    alert(res.error);
+                    top.location.href = '/login';
+                }
+            }
+        })
 
 //        $('#pay_btn').click(function(){
 //            let content_id = $('#content_id').val();

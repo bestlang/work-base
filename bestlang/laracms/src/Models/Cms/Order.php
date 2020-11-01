@@ -4,8 +4,9 @@ namespace BestLang\Laracms\Models\Cms;
 
 use BestLang\Laracms\Models\User;
 use Illuminate\Database\Eloquent\Model;
+use BestLang\WxPay\Pay\Contracts\OrderInterface;
 
-class Order extends Model
+class Order extends Model implements OrderInterface
 {
     const STATUS = [
         'UNPAID' => 0,
@@ -49,5 +50,29 @@ class Order extends Model
     public function getGatewayTextAttribute()
     {
         return self::GATEWAY_TEXT[$this->attributes['gateway']??0];
+    }
+
+    public function getId()
+    {
+        return $this->id;
+    }
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    public function getMoney()
+    {
+        return $this->money;
+    }
+
+    public function getOrderNo()
+    {
+        return $this->order_no;
+    }
+
+    public function getOrderByOrderNo($order_no)
+    {
+        return static::where('order_no', $order_no)->first();
     }
 }

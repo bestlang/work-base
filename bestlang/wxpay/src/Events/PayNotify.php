@@ -1,5 +1,5 @@
 <?php
-namespace BestLang\Laracms\Events;
+namespace BestLang\WxPay\Events;
 
 use Illuminate\Queue\SerializesModels;
 

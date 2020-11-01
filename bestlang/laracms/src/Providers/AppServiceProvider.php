@@ -10,6 +10,7 @@ use BestLang\Laracms\Console\Commands\LaraCms;
 use BestLang\Laracms\Models\Cms\Order;
 use BestLang\Laracms\Observers\Cms\OrderObserver;
 use Illuminate\Support\Facades\Blade;
+use BestLang\WxPay\Pay\Contracts\OrderInterface;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -21,6 +22,10 @@ class AppServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->bind('laracms', 'BestLang\Laracms\Laracms');
+        $this->app->singleton(
+            OrderInterface::class,
+            Order::class
+        );
     }
 
     /**

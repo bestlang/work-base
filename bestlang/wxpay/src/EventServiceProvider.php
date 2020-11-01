@@ -1,9 +1,9 @@
 <?php
-namespace BestLang\Laracms\Providers;
+namespace BestLang\WxPay;
 
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
-use BestLang\Laracms\Events\PayNotify;
-use BestLang\Laracms\Listeners\PayNotifyProcess;
+use BestLang\WxPay\Events\PayNotify;
+use BestLang\WxPay\Listeners\PayNotifyProcess;
 
 class EventServiceProvider extends ServiceProvider{
     /**

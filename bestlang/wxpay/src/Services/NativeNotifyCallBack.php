@@ -1,33 +1,32 @@
 <?php
-namespace BestLang\Laracms\Services\WxPay;
+namespace BestLang\WxPay\Services;
 
 use BestLang\WxPay\Pay\Data\WxPayUnifiedOrder;
 use BestLang\WxPay\Pay\Log\Log;
 use BestLang\WxPay\Pay\WxPayNotify;
 
-use BestLang\Laracms\Models\Cms\Order;
+use BestLang\WxPay\Pay\Contracts\OrderInterface;
 use BestLang\WxPay\Pay\WxPayApi;
 
 //native第一种支付方式, 需要调用统一下单Api
 class NativeNotifyCallBack extends WxPayNotify
 {
-    public function unifiedOrder($openId, $order_no)
+    public function unifiedOrder($openId, OrderInterface $order)
     {
         $config = app()['wxConfig'];
-        $order = Order::where('order_no', $order_no)->first();
         //统一下单
         $input = new WxPayUnifiedOrder();
-        $input->SetBody($order->name);
+        $input->SetBody($order->getName());
         //$input->SetAttach("xxx");
-        $input->SetOut_trade_no($order_no.'_'.time());
-        $input->SetTotal_fee($order->money * 100);
+        $input->SetOut_trade_no($order->getOrderNo().'_'.time());
+        $input->SetTotal_fee($order->getMoney() * 100);
         $input->SetTime_start(date("YmdHis"));
         $input->SetTime_expire(date("YmdHis", time() + 600));
         //$input->SetGoods_tag("xxx");
         $input->SetNotify_url($config->GetNotifyUrl());
         $input->SetTrade_type("NATIVE");
         $input->SetOpenid($openId);
-        $input->SetProduct_id($order->product_id);
+        $input->SetProduct_id($order->getId());
         try {
             $result = WxPayApi::unifiedOrder($input);
             Log::DEBUG("unifiedorder:" . json_encode($result));
@@ -82,11 +81,12 @@ class NativeNotifyCallBack extends WxPayNotify
         }
 
         $openid = $data["openid"];
-        $product_id = $data["product_id"];
+        $order_no = $data["product_id"];//为订单号
+        $order = app()[OrderInterface::class]->getOrderByOrderNo($order_no);
 
         //3、处理业务逻辑
         //统一下单
-        $result = $this->unifiedOrder($openid, $product_id);
+        $result = $this->unifiedOrder($openid, $order);
         if(!array_key_exists("appid", $result) ||
             !array_key_exists("mch_id", $result) ||
             !array_key_exists("prepay_id", $result))

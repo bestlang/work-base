@@ -73,7 +73,7 @@ class WxPayNotify extends WxPayNotifyReply
     final public function NotifyCallBack($data)
     {
         $msg = "OK";
-        $result = $this->NotifyProcess($data, $this->config, $msg);
+        $result = $this->NotifyProcess($data, $msg);
 
         if($result == true){
             $this->SetReturn_code("SUCCESS");

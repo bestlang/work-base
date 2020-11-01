@@ -433,7 +433,6 @@ class WxPayApi
      */
     public static function notify($callback, &$msg)
     {
-        $config = app()['wxConfig'];
         //获取通知的数据
         $xml = isset($GLOBALS['HTTP_RAW_POST_DATA']) ? $GLOBALS['HTTP_RAW_POST_DATA'] : file_get_contents("php://input");
         if (empty($xml)) {

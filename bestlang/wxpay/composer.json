@@ -32,7 +32,8 @@
     "extra": {
         "laravel": {
             "providers": [
-                "BestLang\\WxPay\\WxPayServiceProvider"
+                "BestLang\\WxPay\\WxPayServiceProvider",
+                "BestLang\\WxPay\\EventServiceProvider"
             ],
             "aliases": {
                 "WxPay": "BestLang\\WxPay\\Facades\\WxPay"

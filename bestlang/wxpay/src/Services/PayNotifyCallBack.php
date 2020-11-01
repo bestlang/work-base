@@ -1,9 +1,10 @@
 <?php
-namespace BestLang\Laracms\Services\WxPay;
+namespace BestLang\WxPay\Services;
+
 use BestLang\WxPay\Pay\Log\Log;
 use BestLang\WxPay\Pay\Data\WxPayOrderQuery;
 use BestLang\WxPay\Pay\WxPayNotify;
-use BestLang\Laracms\Events\PayNotify;
+use BestLang\WxPay\Events\PayNotify;
 use BestLang\WxPay\Pay\WxPayApi;
 
 // 处理支付成功回调
