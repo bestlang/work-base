@@ -4,8 +4,8 @@ if(!function_exists('render')){
         $theme = hashconfig::get('site', 'theme');
         $pathInfo = request()->getPathInfo();
         $cacheDir = '.cache';
-        $generate = trim($pathInfo, '/').'.html';
-        $fullPath = public_path().DIRECTORY_SEPARATOR.$cacheDir.DIRECTORY_SEPARATOR.$generate;
+        $generate = trim($pathInfo, '/') . '.html';
+        $fullPath = public_path() . DIRECTORY_SEPARATOR . $cacheDir . DIRECTORY_SEPARATOR . $generate;
         $expectDir = dirname($fullPath);
         if(!file_exists($expectDir)){
             mkdir($expectDir, 0777, true);
