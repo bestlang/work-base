@@ -8,6 +8,7 @@ use BestLang\Base\Models\User;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use JWTAuth;
 
+use BestLang\Base\Factory\HistoryEventFactory;
 
 class AuthController extends Controller
 {
@@ -41,6 +42,7 @@ class AuthController extends Controller
         }catch (\Exception $e){
             return response()->error($e->getMessage(), 4011);//暂时使用4011作为登录失败代码, 区别于登录信息失效401
         }
+        event(HistoryEventFactory::loginEvent());
         return $this->respondWithToken($token);
     }
 
@@ -61,6 +63,8 @@ class AuthController extends Controller
      */
     public function logout()
     {
+        event(HistoryEventFactory::logoutEvent());
+
         auth()->logout();
 
         return response()->ajax();

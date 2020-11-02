@@ -2,13 +2,15 @@
 
 namespace BestLang\Base\Http\Controllers\Auth;
 
+use BestLang\Base\Events\HistoryEvent;
 use BestLang\Base\Http\Controllers\Controller;
+use BestLang\Base\Models\History;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
 use BestLang\Base\Models\User;
-
+use BestLang\Base\Factory\HistoryEventFactory;
 
 class LoginController extends Controller
 {
@@ -81,6 +83,7 @@ class LoginController extends Controller
         $request->session()->regenerate();
 
         $this->clearLoginAttempts($request);
+        event(HistoryEventFactory::loginEvent());
         if($request->ajax()){
             return response()->ajax(['user' => User::find(auth()->user()->id)]);
         }else{
@@ -98,6 +101,13 @@ class LoginController extends Controller
                 $this->username() => [trans('auth.failed')],
             ]);
         }
+    }
+    public function logout(Request $request)
+    {
+        event(HistoryEventFactory::logoutEvent());
+        $this->guard()->logout();
+        $request->session()->invalidate();
+        return $this->loggedOut($request) ?: redirect('/');
     }
 
     protected function loggedOut(Request $request)

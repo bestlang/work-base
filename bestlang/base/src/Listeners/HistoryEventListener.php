@@ -16,6 +16,7 @@ class HistoryEventListener
 
     public function handle(HistoryEvent $event)
     {
-
+        $history = $event->history;
+        $history->save();
     }
 }

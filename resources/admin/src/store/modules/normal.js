@@ -108,12 +108,12 @@ const normalConfig = {
             }
         },
         async [types.logout]({commit}){
+            const res = await api.logout()
             commit(types.user, {})
             localStorage.removeItem(types.csrf)
             localStorage.removeItem(types.user)
             localStorage.removeItem(types.privileges)
             localStorage.removeItem('accessToken')
-            const res = await api.logout()
             if(getPrefix() == 'api'){
                 commit('accessToken', null)
             }else{

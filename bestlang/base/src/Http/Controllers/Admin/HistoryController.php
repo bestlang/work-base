@@ -19,7 +19,7 @@ class HistoryController extends Controller
         $query = History::query();
         $total = $query->count();
         $histories = $query
-            ->with(['channel'])
+            ->with('user')
             ->orderBy('id', 'desc')
             ->limit($page_size)
             ->offset(($page-1)*$page_size)
