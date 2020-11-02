@@ -72,44 +72,40 @@ const cmsConfig = {
       }
   },
   actions: {
-      async [types.cmsModels] ({commit}) {
+      async [types.cmsModels]({commit}){
         commit(types.loading, true)
         let res = await api.getCmsModels();
         commit(types.cmsModels, res.data);
         commit(types.loading, false)
       },
-      //payload = [parent, except_single_page]
-      async [types.cmsChannels] ({commit, dispatch}, payload={}) {
-          alert(JSON.stringify(payload))
+      /**
+       刷新栏目树并加载选定栏目栏目的子栏目
+       payload = [parent, except_single_page]
+       */
+      async [types.cmsChannels]({commit, dispatch}, payload=[null, 0]){
         commit(types.loading, true)
-        let res = await api.getCmsChannelTree({disabled: true, has_contents: false});
-        // 取到了数据
-        if(Object.keys(res.data).length > 0){
-          let node = res.data[Object.keys(res.data)[0]]
-          commit(types.cmsChannels, [node]);
-          // 设置第一个元素为父栏目 && 取得第一个元素的子栏目列表
-          dispatch(types.cmsChannelChildren, node);
-        }
+        let res = await api.getCmsChannelTree({disabled: true, has_contents: payload[1]});
+        let node = res.data[Object.keys(res.data)[0]]
+        commit(types.cmsChannels, [node])
+        let parentId = payload[0]||node.id
         // 设置父栏目 以及 父栏目的子栏目列表
-        if(payload.id){
-          dispatch(types.cmsParentChannel, payload.id)
-          dispatch(types.cmsChannelChildren, payload.id);
-        }
+        commit(types.cmsParentChannel, parentId)
+        dispatch(types.cmsChannelChildren, parentId);
         commit(types.loading, false);
       },
-      async [types.cmsChannelChildren] ({commit}, node) {
+      async [types.cmsChannelChildren]({commit}, payload){
         commit(types.loading, true)
-        let res = await api.getCmsChannelChildren({parent_id: node.id})
+        let res = await api.getCmsChannelChildren({parent_id: payload})
         commit(types.cmsChannelChildren, res.data)
         commit(types.loading, false)
       },
-      [types.cmsParentChannel] ({commit}, node) {
+      [types.cmsParentChannel]({commit}, node){
         commit(types.cmsParentChannel, node);
       },
-      [types.cmsCurrentChannel] ({commit}, node) {
+      [types.cmsCurrentChannel]({commit}, node){
         commit(types.cmsCurrentChannel, node);
       },
-      [types.cmsCurrentModel] ({commit}, node) {
+      [types.cmsCurrentModel]({commit}, node){
         commit(types.cmsCurrentModel, node);
       }
   }

@@ -258,7 +258,7 @@
         }).then(async () => {
           let res = await api.deleteCmsChannel({id: row.id})
           if(res.success){
-            this.$store.dispatch(this.$types.cmsChannels, {id: row.parent_id});
+            this.$store.dispatch(this.$types.cmsChannels, [row.parent_id, 0]);
             this.showChannelChildren = true;
             this.$message({
               type: 'success',
@@ -274,7 +274,7 @@
       },
       handleNodeClick(node, ...$params){
         if(node.children.length>0){
-          this.$store.dispatch(this.$types.cmsChannelChildren, node);
+          this.$store.dispatch(this.$types.cmsChannelChildren, node.id);
           this.showChannelChildren = true;
           this.$store.dispatch(this.$types.cmsParentChannel, node)
         }else{
@@ -297,7 +297,7 @@
         let res = await api.saveCmsChannel(this.channelForm)
         if(res.success){
           this.showChannelChildren = true;
-          this.$store.dispatch(this.$types.cmsChannels, this.parentChannel);
+          this.$store.dispatch(this.$types.cmsChannels, [this.parentChannel.id, 0]);
           this.$message({
             type: 'success',
             message: '添加成功!'
@@ -316,7 +316,7 @@
             type: 'success',
             message: '修改成功!'
           });
-          this.$store.dispatch(this.$types.cmsChannels, {id: this.channelForm.parent_id});
+          this.$store.dispatch(this.$types.cmsChannels, [this.channelForm.parent_id, 0]);
         }else{
           this.$message({
             type: 'warning',

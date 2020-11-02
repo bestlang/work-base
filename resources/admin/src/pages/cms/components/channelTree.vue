@@ -4,10 +4,7 @@
     padding: 20px;
     border-right: 1px solid #f4f4f4;
     flex-shrink: 0;
-      .el-tree{
-          color: #2d2d2d;
-          font-weight: lighter;
-      }
+
   }
   .custom-tree-node {
     flex: 1;
