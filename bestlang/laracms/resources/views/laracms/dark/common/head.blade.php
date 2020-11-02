@@ -7,8 +7,8 @@
     <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
     <meta name="renderer" content="webkit">
     <title>首页 - {{HashConfig::get('site','title')}}</title>
-    <meta name="keywords" content="laracms"/>
-    <meta name="generator" content="laraCMS"/>
+    <meta name="keywords" content="laraCms"/>
+    <meta name="generator" content="laraCms"/>
     <meta name="description" content=""/>
     <meta name="csrf-token" content="{{csrf_token()}}">
 

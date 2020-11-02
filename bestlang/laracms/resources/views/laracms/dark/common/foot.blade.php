@@ -15,8 +15,8 @@
                     <div class="row">
                         <div class="col-xs-4">
                             <ul class="links">
-                                <li><a href="/single/26">关于我们</a></li>
-                                <li><a href="/single/27">加入我们</a></li>
+                                <li><a href="{{route('single', 26)}}">关于我们</a></li>
+                                <li><a href="{{route('single', 27)}}">加入我们</a></li>
                                 <li><a href="#">服务项目</a></li>
                                 <li><a href="#">团队成员</a></li>
                             </ul>

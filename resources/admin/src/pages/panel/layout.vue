@@ -3,6 +3,7 @@
         <el-menu router :default-active="activeIndex" class="ls-el-menu" mode="horizontal" @select="handleSelect">
             <el-menu-item index="/panel"><i class="iconfont" style="font-size: 30px">&#xe60e;</i></el-menu-item>
             <el-menu-item index="/panel/attendance">我的考勤</el-menu-item>
+            <el-menu-item index="/panel/notice">人事公告</el-menu-item>
             <el-menu-item style="float: right">
                 <el-dropdown @command="commandHandler">
                     <div class="logout"><i class="iconfont">&#xe60d; </i>{{user.name}}</div>

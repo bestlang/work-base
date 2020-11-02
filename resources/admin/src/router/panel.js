@@ -21,11 +21,21 @@ export default [
             },
             {
                 path: "/panel/attendance",
-                component:  () => import("../pages/panel/attendanceOfMine.vue"),//() => import("../pages/panel/attendance.vue"),
+                component:  () => import("../pages/panel/attendanceOfMine.vue"),
                 meta: {
                     can: '',
                     show:false,
                     name: '面板',
+                    font: '&#xe764;'
+                }
+            },
+            {
+                path: "/panel/notice",
+                component:  () => import("../pages/panel/notice.vue"),
+                meta: {
+                    can: '',
+                    show:false,
+                    name: '人事公告',
                     font: '&#xe764;'
                 }
             },

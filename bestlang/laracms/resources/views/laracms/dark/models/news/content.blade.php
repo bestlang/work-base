@@ -113,6 +113,12 @@
 @endpush
 @push('css')
 <style>
+    pre{
+        border-radius: 0;
+        background: #fff;
+        padding: 0;
+        border: none;
+    }
     #comment_submit{
         margin-top: 10px;
     }
