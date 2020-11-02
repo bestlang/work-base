@@ -96,11 +96,11 @@
                 }
             },
             viewRoleUsers(row){
-              this.$store.dispatch(this.$types.PRIVILEGE_CURRENT_ROLE, row)
+              this.$store.dispatch(this.$types.privilegeCurrentRole, row)
               this.$router.push('/privileges/roles/users?role_id='+row.id)
             },
             editRolePermissions(row){
-              this.$store.dispatch(this.$types.PRIVILEGE_CURRENT_ROLE, row)
+              this.$store.dispatch(this.$types.privilegeCurrentRole, row)
               this.$router.push('/privileges/roles/permissions?role_id='+row.id)
             },
             handleDelete(row){

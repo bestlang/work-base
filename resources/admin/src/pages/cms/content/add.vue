@@ -137,7 +137,7 @@
             async channel_id(val){
                 if(val){
                     let {data} = await api.getCmsChannelWhole({id: val})
-                    this.$store.dispatch(this.$types.CMS_CURRENT_CHANNEL, data);
+                    this.$store.dispatch(this.$types.cmsCurrentChannel, data);
                     await this.loadModel(data.model_id)
                 }
             }
@@ -167,8 +167,8 @@
             async handleNodeClick(node, ...params){
                 let channel = node[0]
                 this.channel_id = channel.id
-                this.$store.dispatch(this.$types.CMS_CURRENT_CHANNEL, channel);
-                this.$store.dispatch(this.$types.CMS_PARENT_CHANNEL, channel);
+                this.$store.dispatch(this.$types.cmsCurrentChannel, channel);
+                this.$store.dispatch(this.$types.cmsParentChannel, channel);
                 await this.loadModel(channel.model.id)
                 await this.loadContentPositions()
             },
@@ -177,7 +177,7 @@
                 let currentModel = res.data;
                 // 过滤掉模型中属于栏目的字段
                 currentModel.fields = currentModel.fields.filter(item => { return !item.is_channel })
-                this.$store.dispatch(this.$types.CMS_CURRENT_MODEL, currentModel)
+                this.$store.dispatch(this.$types.cmsCurrentModel, currentModel)
                 for(let idx in this.currentModel.fields){
                     let item = this.currentModel.fields[idx];
                     // 重置表单

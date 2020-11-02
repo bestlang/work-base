@@ -266,7 +266,7 @@
       },
       async loadModel(id){
         let res = await api.getModel({id})
-        this.$store.dispatch(this.$types.CMS_CURRENT_MODEL, res.data);
+        this.$store.dispatch(this.$types.cmsCurrentModel, res.data);
         this.fields = res.data.fields;
         console.log(`this.fields:`,this.fields)
         this.fieldForm.model_id = res.data.id;

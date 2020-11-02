@@ -241,14 +241,14 @@
           name: null,
           positions: []
         });
-        this.$store.dispatch(this.$types.CMS_PARENT_CHANNEL, row)
+        this.$store.dispatch(this.$types.cmsParentChannel, row)
         this.customChannelFields = []
       },
       editChannel(row){
         this.loadWholeChannel(row)
         this.showChannelChildren = false;
 
-        this.$store.dispatch(this.$types.CMS_CURRENT_CHANNEL, row)
+        this.$store.dispatch(this.$types.cmsCurrentChannel, row)
       },
       deleteChannel(row){
         this.$confirm('确定删除“'+row.name+'”栏目?', '提示', {
@@ -258,7 +258,7 @@
         }).then(async () => {
           let res = await api.deleteCmsChannel({id: row.id})
           if(res.success){
-            this.$store.dispatch(this.$types.CMS_CHANNELS, {id: row.parent_id});
+            this.$store.dispatch(this.$types.cmsChannels, {id: row.parent_id});
             this.showChannelChildren = true;
             this.$message({
               type: 'success',
@@ -274,9 +274,9 @@
       },
       handleNodeClick(node, ...$params){
         if(node.children.length>0){
-          this.$store.dispatch(this.$types.CMS_CHANNEL_CHILDREN, node);
+          this.$store.dispatch(this.$types.cmsChannelChildren, node);
           this.showChannelChildren = true;
-          this.$store.dispatch(this.$types.CMS_PARENT_CHANNEL, node)
+          this.$store.dispatch(this.$types.cmsParentChannel, node)
         }else{
           this.showChannelChildren = false;
           this.loadWholeChannel(node)
@@ -297,7 +297,7 @@
         let res = await api.saveCmsChannel(this.channelForm)
         if(res.success){
           this.showChannelChildren = true;
-          this.$store.dispatch(this.$types.CMS_CHANNELS, this.parentChannel);
+          this.$store.dispatch(this.$types.cmsChannels, this.parentChannel);
           this.$message({
             type: 'success',
             message: '添加成功!'
@@ -316,7 +316,7 @@
             type: 'success',
             message: '修改成功!'
           });
-          this.$store.dispatch(this.$types.CMS_CHANNELS, {id: this.channelForm.parent_id});
+          this.$store.dispatch(this.$types.cmsChannels, {id: this.channelForm.parent_id});
         }else{
           this.$message({
             type: 'warning',
@@ -353,13 +353,12 @@
     async mounted() {
       console.log(`current meta:`,this.$route.meta)
       this.$store.dispatch('toggleState');
-      this.$store.dispatch(this.$types.CMS_CHANNELS);
-      this.$store.dispatch(this.$types.CMS_MODELS);
+      this.$store.dispatch(this.$types.cmsChannels);
+      this.$store.dispatch(this.$types.cmsModels);
       await this.loadChannelPositions()
     },
     watch:{
       async ['channelForm.model_id'](val){
-        console.log(`###########`, val);
         await this.loadTemplatePath(val)
         if(val){
           if(this.models.length > 0){

@@ -50,7 +50,7 @@
                     <el-input v-model="form.name" autocomplete="off"></el-input>
                 </el-form-item>
                 <el-form-item label="类型" label-width="100px">
-                    <el-radio-group v-model="form.is_channel" :disabled="form.id">
+                    <el-radio-group v-model="form.is_channel" :disabled="form.id?true:false">
                         <el-radio :label="1" :key="1">栏目</el-radio>
                         <el-radio :label="0" :key="0">内容</el-radio>
                     </el-radio-group>
@@ -99,11 +99,9 @@
                 this.formVisible = true;
             },
             viewContents(row){
-//                this.$store.commit(this.$types.CMS_CURRENT_POSITION, row)
                 this.$router.push('/cms/position/content?position_id='+row.id);
             },
             viewSubPositions(row){
-//                this.$store.commit(this.$types.CMS_CURRENT_CHANNEL_POSITION, row)
                 this.$router.push('/cms/position/subs?channel_position_id='+row.id)
             },
             handleDelete(row){

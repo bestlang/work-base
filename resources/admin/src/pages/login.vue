@@ -94,7 +94,6 @@ export default {
                         this.$store.commit('user', user)
                     }
                     await this.$store.dispatch(types.privileges)
-                    //Cookies.set(this.$types.logined, true, new Date(new Date().getTime() + 10 * 60 * 1000))
                     this.$router.push('/')
                 }else if(res.code == 4011){
                    this.reset()

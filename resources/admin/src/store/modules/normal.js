@@ -71,7 +71,7 @@ const normalConfig = {
                 localStorage.setItem("accessToken", payload)
             }
         },
-        [types.PRIVILEGE_CURRENT_ROLE] (state, payload) {
+        [types.currentRole] (state, payload) {
             state.currentRole = payload;
         },
         [types.privileges](state, payload){
@@ -120,8 +120,8 @@ const normalConfig = {
                 location.href='/login';
             }
         },
-        [types.PRIVILEGE_CURRENT_ROLE] ({commit}, payload) {
-            commit(types.PRIVILEGE_CURRENT_ROLE, payload)
+        [types.currentRole] ({commit}, payload) {
+            commit(types.currentRole, payload)
         },
         async [types.privileges]({commit, dispatch}){
             commit(types.privileges, [])

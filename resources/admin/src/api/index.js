@@ -63,7 +63,6 @@ export default {
     getOrders(data){ return fetch('/admin/cms/orders', data) },
     saveSiteSetting(data){ return fetch('/admin/cms/save/site/setting', data, 'post') },
     getSiteSetting(data){ return fetch('/admin/cms/get/site/setting', data) },
-
     getHistories(data){return fetch('/admin/histories', data) },
 
     sniperGetDepartmentLevel1(data){ return fetch('/admin/sniper/employee/departments/level1', data) },
@@ -71,23 +70,17 @@ export default {
     sniperSaveDepartment(data){ return fetch('/admin/sniper/employee/save/department', data, 'post') },
     sniperGetDepartmentDetail(data){ return fetch('/admin/sniper/employee/get/department/detail', data)},
     sniperGetDepartmentDescendants(data){ return fetch('/admin/sniper/employee/get/department/descendants', data) },
-
     sniperGetPositionsTreeSelect(data){ return  fetch('/admin/sniper/employee/positions/tree/select', data) },
     sniperSavePosition(data){ return fetch('/admin/sniper/employee/save/position', data, 'post') },
     sniperGetPositionDetail(data){ return fetch('/admin/sniper/employee/get/position/detail', data) },
     sniperGetPositionDescendants(data){ return fetch('/admin/sniper/employee/get/position/descendants', data) },
     sniperDeletePosition(data){ return fetch('/admin/sniper/employee/delete/position', data, 'post') },
-
-
     sniperSaveEmployee(data){ return fetch('/admin/sniper/employee/save/employee', data, 'post') },
     sniperGetDepartmentEmployee(data){ return fetch('/admin/sniper/employee/department/employee', data) },
     sniperDeleteDepartment(data){ return fetch('/admin/sniper/employee/delete/department', data, 'post') },
-
-
     sniperGetEmployeeDetail(data){ return fetch('/admin/sniper/employee/get/employee/detail', data)},
     sniperDeleteEmployeeEducation(data){ return fetch('/admin/sniper/employee/delete/employee/education', data, 'post')},
     sniperDeleteEmployeeJob(data){ return fetch('/admin/sniper/employee/delete/employee/job', data, 'post')},
-
     sniperDingGetDepartments(data){ return fetch('/admin/sniper/employee/ding/get/departments', data)},
     sniperDingGetDepartmentUsers(data){ return fetch('/admin/sniper/employee/ding/get/department/users', data)},
     sniperDingGetUsersAttendance(data){ return fetch('/admin/sniper/employee/ding/get/users/attendance', data)},
