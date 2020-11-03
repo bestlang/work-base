@@ -9,7 +9,7 @@ use BestLang\Laracms\Models\Cms\AdPosition;
 use BestLang\Laracms\Models\Cms\Tag;
 use Arr;
 
-class Laracms
+class LaraCms
 {
     public function hotTags()
     {

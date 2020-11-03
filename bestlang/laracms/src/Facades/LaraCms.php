@@ -4,7 +4,7 @@ namespace BestLang\Laracms\Facades;
 
 use Illuminate\Support\Facades\Facade;
 
-class Laracms extends Facade
+class LaraCms extends Facade
 {
     /**
      * Get the registered name of the component.

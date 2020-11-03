@@ -9,7 +9,7 @@
     }
   ],
   "homepage": "https://github.com/bestlang/laracms",
-  "keywords": ["Laravel", "laracms"],
+  "keywords": ["Laravel", "laraCms"],
   "require": {
     "illuminate/support": "~5|~6",
     "baum/baum": "v2.x-dev",
@@ -43,7 +43,7 @@
         "BestLang\\Laracms\\Providers\\RouteServiceProvider"
       ],
       "aliases": {
-        "laracms": "BestLang\\Laracms\\Facades\\Laracms"
+        "laracms": "BestLang\\Laracms\\Facades\\LaraCms"
       }
     }
   }
