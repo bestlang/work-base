@@ -2,7 +2,8 @@
 if(!function_exists('render')){
     function render($viewPath, $data=[]){
         $theme = hashconfig::get('site', 'theme');
-        $pathInfo = request()->getPathInfo();
+        /**
+         $pathInfo = request()->getPathInfo();
         $cacheDir = '.cache';
         $generate = trim($pathInfo, '/') . '.html';
         $fullPath = public_path() . DIRECTORY_SEPARATOR . $cacheDir . DIRECTORY_SEPARATOR . $generate;
@@ -10,8 +11,11 @@ if(!function_exists('render')){
         if(!file_exists($expectDir)){
             mkdir($expectDir, 0777, true);
         }
+         */
         $content = view("laracms::{$theme}.{$viewPath}", $data)->__toString();
-        file_put_contents($fullPath, $content);
+        /**
+         * file_put_contents($fullPath, $content);
+         */
         return $content;
     }
 }
