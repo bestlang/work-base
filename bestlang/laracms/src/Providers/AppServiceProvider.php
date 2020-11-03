@@ -21,7 +21,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->bind('laracms', 'BestLang\Laracms\Laracms');
+        $this->app->bind('laracms', 'BestLang\Laracms\LaraCms');
         $this->app->singleton(
             OrderInterface::class,
             Order::class
