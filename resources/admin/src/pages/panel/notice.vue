@@ -53,8 +53,7 @@
                 this.getNotices()
             },
             viewContentDetail({id}){
-                //this.$router.push('/panel/notice/detail?id='+id)
-                window.open('/#/panel/notice/detail?id='+id, '_blank')
+                this.$router.push('/panel/notice/detail?id='+id)
             }
         },
         created(){
