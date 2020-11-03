@@ -1,9 +1,9 @@
 <?php
 
-namespace BestLang\Laracms\Listeners;
+namespace BestLang\LaraCms\Listeners;
 
-use BestLang\Laracms\Events\PayNotify;
-use BestLang\Laracms\Models\Cms\Order;
+use BestLang\LaraCms\Events\PayNotify;
+use BestLang\LaraCms\Models\Cms\Order;
 
 class PayNotifyProcess
 {

@@ -1,8 +1,8 @@
 <?php
 
-namespace BestLang\Laracms\Http\Controllers;
+namespace BestLang\LaraCms\Http\Controllers;
 
-use BestLang\Laracms\Models\Cms\Content;
+use BestLang\LaraCms\Models\Cms\Content;
 use Illuminate\Http\Request;
 
 class SearchController extends Controller{

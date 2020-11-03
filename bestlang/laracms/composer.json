@@ -26,7 +26,7 @@
   },
   "autoload": {
     "psr-4": {
-      "BestLang\\Laracms\\": "src/"
+      "BestLang\\LaraCms\\": "src/"
     },
     "files": [
       "src/helpers.php"
@@ -39,11 +39,11 @@
   "extra": {
     "laravel": {
       "providers": [
-        "BestLang\\Laracms\\Providers\\AppServiceProvider",
-        "BestLang\\Laracms\\Providers\\RouteServiceProvider"
+        "BestLang\\LaraCms\\Providers\\AppServiceProvider",
+        "BestLang\\LaraCms\\Providers\\RouteServiceProvider"
       ],
       "aliases": {
-        "laracms": "BestLang\\Laracms\\Facades\\LaraCms"
+        "laracms": "BestLang\\LaraCms\\Facades\\LaraCms"
       }
     }
   }

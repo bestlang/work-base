@@ -1,5 +1,5 @@
 <?php
-namespace BestLang\Laracms\Http\Controllers;
+namespace BestLang\LaraCms\Http\Controllers;
 
 
 use Illuminate\Http\Request;

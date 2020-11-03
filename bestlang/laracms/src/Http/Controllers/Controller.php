@@ -1,6 +1,6 @@
 <?php
 
-namespace BestLang\Laracms\Http\Controllers;
+namespace BestLang\LaraCms\Http\Controllers;
 
 use BestLang\Base\Http\Controllers\Controller as BaseController;
 

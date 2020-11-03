@@ -1,10 +1,10 @@
 <?php
-namespace BestLang\Laracms\Http\Controllers\Admin\Cms;
+namespace BestLang\LaraCms\Http\Controllers\Admin\Cms;
 
 use Illuminate\Http\Request;
-use BestLang\Laracms\Http\Controllers\Controller;
-use BestLang\Laracms\Models\Cms\Ad;
-use BestLang\Laracms\Models\Cms\AdPosition;
+use BestLang\LaraCms\Http\Controllers\Controller;
+use BestLang\LaraCms\Models\Cms\Ad;
+use BestLang\LaraCms\Models\Cms\AdPosition;
 use Illuminate\Support\Arr;
 use Validator;
 

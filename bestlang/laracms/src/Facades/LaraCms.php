@@ -1,6 +1,6 @@
 <?php
 
-namespace BestLang\Laracms\Facades;
+namespace BestLang\LaraCms\Facades;
 
 use Illuminate\Support\Facades\Facade;
 

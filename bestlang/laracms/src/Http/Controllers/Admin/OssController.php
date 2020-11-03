@@ -1,8 +1,8 @@
 <?php
 
-namespace BestLang\Laracms\Http\Controllers\Admin;
+namespace BestLang\LaraCms\Http\Controllers\Admin;
 
-use BestLang\Laracms\Http\Controllers\Controller;
+use BestLang\LaraCms\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 

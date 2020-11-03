@@ -1,6 +1,6 @@
 <?php
 
-namespace BestLang\Laracms\Console\Commands;
+namespace BestLang\LaraCms\Console\Commands;
 
 use Illuminate\Console\Command;
 class LaraCms extends Command
@@ -33,7 +33,7 @@ class LaraCms extends Command
     public function handle()
     {
         $this->call('vendor:publish', ['--provider' => 'BestLang\Base\Providers\AppServiceProvider', '--force' => true]);
-        $this->call('vendor:publish', ['--provider' => 'BestLang\Laracms\Providers\AppServiceProvider']);
+        $this->call('vendor:publish', ['--provider' => 'BestLang\LaraCms\Providers\AppServiceProvider']);
         $this->call('vendor:publish', ['--provider' => 'BestLang\LaravelUEditor\UEditorServiceProvider']);
         $this->call('vendor:publish', ['--provider' => 'BestLang\WxPay\WxPayServiceProvider']);
         $this->call('vendor:publish', ['--provider' => 'Alipay\EasySDK\Providers\AliPayServiceProvider']);

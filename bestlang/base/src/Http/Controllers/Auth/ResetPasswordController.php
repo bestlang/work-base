@@ -2,7 +2,7 @@
 
 namespace BestLang\Base\Http\Controllers\Auth;
 
-use BestLang\Laracms\Http\Controllers\Controller;
+use BestLang\Base\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ResetsPasswords;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;

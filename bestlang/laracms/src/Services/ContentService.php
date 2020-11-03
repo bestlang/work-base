@@ -1,10 +1,10 @@
 <?php
-namespace BestLang\Laracms\Services;
+namespace BestLang\LaraCms\Services;
 
-use BestLang\Laracms\Models\Cms\Content;
-use BestLang\Laracms\Models\Cms\Channel;
-use BestLang\Laracms\Models\Cms\ContentMeta;
-use BestLang\Laracms\Models\Cms\ContentContent;
+use BestLang\LaraCms\Models\Cms\Content;
+use BestLang\LaraCms\Models\Cms\Channel;
+use BestLang\LaraCms\Models\Cms\ContentMeta;
+use BestLang\LaraCms\Models\Cms\ContentContent;
 use Arr;
 
 class ContentService

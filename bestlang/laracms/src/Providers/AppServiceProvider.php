@@ -1,14 +1,14 @@
 <?php
 
-namespace BestLang\Laracms\Providers;
+namespace BestLang\LaraCms\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use BestLang\Laracms\Console\Commands\LaraCms;
+use BestLang\LaraCms\Console\Commands\LaraCms;
 //use Illuminate\Support\Facades\Gate;
-//use BestLang\Laracms\Models\Permission;
+//use BestLang\LaraCms\Models\Permission;
 
-use BestLang\Laracms\Models\Cms\Order;
-use BestLang\Laracms\Observers\Cms\OrderObserver;
+use BestLang\LaraCms\Models\Cms\Order;
+use BestLang\LaraCms\Observers\Cms\OrderObserver;
 use Illuminate\Support\Facades\Blade;
 use BestLang\WxPay\Pay\Contracts\OrderInterface;
 
@@ -21,7 +21,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->bind('laracms', 'BestLang\Laracms\LaraCms');
+        $this->app->bind('laracms', 'BestLang\LaraCms\LaraCms');
         $this->app->singleton(
             OrderInterface::class,
             Order::class

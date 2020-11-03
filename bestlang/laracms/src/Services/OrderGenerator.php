@@ -1,8 +1,8 @@
 <?php
-namespace BestLang\Laracms\Services;
+namespace BestLang\LaraCms\Services;
 
-use BestLang\Laracms\Models\Cms\Order;
-use BestLang\Laracms\Models\Cms\Content;
+use BestLang\LaraCms\Models\Cms\Order;
+use BestLang\LaraCms\Models\Cms\Content;
 
 class OrderGenerator
 {

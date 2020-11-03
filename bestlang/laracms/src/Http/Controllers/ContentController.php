@@ -1,9 +1,9 @@
 <?php
 
-namespace BestLang\Laracms\Http\Controllers;
+namespace BestLang\LaraCms\Http\Controllers;
 
 use Illuminate\Http\Request;
-use BestLang\Laracms\Models\Cms\Content;
+use BestLang\LaraCms\Models\Cms\Content;
 
 class ContentController extends Controller
 {

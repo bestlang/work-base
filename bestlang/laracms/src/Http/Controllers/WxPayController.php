@@ -1,10 +1,10 @@
 <?php
-namespace BestLang\Laracms\Http\Controllers;
+namespace BestLang\LaraCms\Http\Controllers;
 
 
 use Illuminate\Http\Request;
 
-use BestLang\Laracms\Models\Cms\Order;
+use BestLang\LaraCms\Models\Cms\Order;
 
 
 class WxPayController

@@ -1,12 +1,12 @@
 <?php
-namespace BestLang\Laracms;
+namespace BestLang\LaraCms;
 
-use BestLang\Laracms\Models\Cms\Channel;
-use BestLang\Laracms\Models\Cms\Content;
-use BestLang\Laracms\Models\Cms\Position;
-use BestLang\Laracms\Models\Cms\Ad;
-use BestLang\Laracms\Models\Cms\AdPosition;
-use BestLang\Laracms\Models\Cms\Tag;
+use BestLang\LaraCms\Models\Cms\Channel;
+use BestLang\LaraCms\Models\Cms\Content;
+use BestLang\LaraCms\Models\Cms\Position;
+use BestLang\LaraCms\Models\Cms\Ad;
+use BestLang\LaraCms\Models\Cms\AdPosition;
+use BestLang\LaraCms\Models\Cms\Tag;
 use Arr;
 
 class LaraCms

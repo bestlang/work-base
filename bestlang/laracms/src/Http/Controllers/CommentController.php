@@ -1,8 +1,8 @@
 <?php
 
-namespace BestLang\Laracms\Http\Controllers;
+namespace BestLang\LaraCms\Http\Controllers;
 
-use BestLang\Laracms\Models\Cms\Comment;
+use BestLang\LaraCms\Models\Cms\Comment;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Arr;

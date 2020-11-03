@@ -1,11 +1,11 @@
 <?php
-namespace BestLang\Laracms\Http\Controllers;
+namespace BestLang\LaraCms\Http\Controllers;
 
 
 use Illuminate\Http\Request;
-use BestLang\Laracms\Models\Cms\Order;
+use BestLang\LaraCms\Models\Cms\Order;
 
-use BestLang\Laracms\Services\OrderGenerator;
+use BestLang\LaraCms\Services\OrderGenerator;
 
 
 

@@ -1,8 +1,8 @@
 <?php
 
-namespace BestLang\Laracms\Http\Controllers;
+namespace BestLang\LaraCms\Http\Controllers;
 
-use BestLang\Laracms\Models\Cms\Tag;
+use BestLang\LaraCms\Models\Cms\Tag;
 use Illuminate\Http\Request;
 
 class TagController extends Controller{

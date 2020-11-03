@@ -1,9 +1,9 @@
 <?php
 
-namespace BestLang\Laracms\Models\Cms;
+namespace BestLang\LaraCms\Models\Cms;
 
 use Illuminate\Database\Eloquent\Model;
-use BestLang\Laracms\Models\Cms\Model as CmsModel;
+use BestLang\LaraCms\Models\Cms\Model as CmsModel;
 
 class Content extends Model
 {

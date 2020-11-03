@@ -1,8 +1,8 @@
 <?php
 
-namespace BestLang\Laracms\Observers\Cms;
+namespace BestLang\LaraCms\Observers\Cms;
 
-use BestLang\Laracms\Models\Cms\Order;
+use BestLang\LaraCms\Models\Cms\Order;
 
 class OrderObserver
 {

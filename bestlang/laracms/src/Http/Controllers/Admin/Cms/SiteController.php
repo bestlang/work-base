@@ -1,8 +1,8 @@
 <?php
 
 
-namespace BestLang\Laracms\Http\Controllers\Admin\Cms;
-use BestLang\Laracms\Http\Controllers\Controller;
+namespace BestLang\LaraCms\Http\Controllers\Admin\Cms;
+use BestLang\LaraCms\Http\Controllers\Controller;
 use BestLang\Base\Models\HashConfig as Config;
 
 use Illuminate\Http\Request;

@@ -1,8 +1,8 @@
 <?php
 
-namespace BestLang\Laracms\Models\Cms;
+namespace BestLang\LaraCms\Models\Cms;
 
-use BestLang\Laracms\Models\User;
+use BestLang\LaraCms\Models\User;
 use Illuminate\Database\Eloquent\Model;
 use BestLang\WxPay\Pay\Contracts\OrderInterface;
 

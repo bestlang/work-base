@@ -2,12 +2,12 @@
 /**
  * @author 295322133@qq.com
  */
-namespace BestLang\Laracms\Http\Controllers\Admin\Cms;
+namespace BestLang\LaraCms\Http\Controllers\Admin\Cms;
 
-use BestLang\Laracms\Models\Cms\Model;
-use BestLang\Laracms\Models\Cms\ModelField;
+use BestLang\LaraCms\Models\Cms\Model;
+use BestLang\LaraCms\Models\Cms\ModelField;
 use Illuminate\Http\Request;
-use BestLang\Laracms\Http\Controllers\Controller;
+use BestLang\LaraCms\Http\Controllers\Controller;
 use Illuminate\Support\Arr;
 
 class ModelController extends Controller

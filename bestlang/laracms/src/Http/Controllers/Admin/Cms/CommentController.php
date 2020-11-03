@@ -1,10 +1,10 @@
 <?php
-namespace BestLang\Laracms\Http\Controllers\Admin\Cms;
+namespace BestLang\LaraCms\Http\Controllers\Admin\Cms;
 
-use BestLang\Laracms\Models\Cms\Content;
+use BestLang\LaraCms\Models\Cms\Content;
 use Illuminate\Http\Request;
-use BestLang\Laracms\Http\Controllers\Controller;
-use BestLang\Laracms\Models\Cms\Comment;
+use BestLang\LaraCms\Http\Controllers\Controller;
+use BestLang\LaraCms\Models\Cms\Comment;
 
 class CommentController extends Controller{
 

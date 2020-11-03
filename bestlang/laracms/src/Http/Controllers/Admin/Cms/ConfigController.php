@@ -1,8 +1,8 @@
 <?php
-namespace BestLang\Laracms\Http\Controllers\Admin\Cms;
+namespace BestLang\LaraCms\Http\Controllers\Admin\Cms;
 
 use Illuminate\Http\Request;
-use BestLang\Laracms\Http\Controllers\Controller;
+use BestLang\LaraCms\Http\Controllers\Controller;
 
 class ConfigController extends Controller{
 
