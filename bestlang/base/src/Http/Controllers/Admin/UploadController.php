@@ -24,7 +24,7 @@ class UploadController extends Controller
 
         return response()->json(['statusCode'=>'200', 'data'=>['file'=>config('upyun.cdnPath').'/'.$path]]);
         */
-        return response()->ajax(['file' => $destinationPath.$filename]);
+        return response()->ajax(['file' => DIRECTORY_SEPARATOR.$destinationPath.$filename]);
     }
 
     /*

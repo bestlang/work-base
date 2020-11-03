@@ -72,7 +72,7 @@
   </div>
 </template>
 <script>
-  import channelTree from "./components/channelTree";
+  import channelTree from "../components/channelTree";
   import VueUeditorWrap from 'vue-ueditor-wrap';
   import ueditorConfig from "sysStore/ueditor";
   import imageUpload from "@/components/imageUpload"
@@ -159,7 +159,6 @@
         });
       },
       async handleNodeClick(node, ...params){
-          console.log(...node)
           this.showForm = false
           let channel = node[0]
           this.channel_id = channel.id
@@ -183,7 +182,7 @@
       this.channel_id = parseInt(this.$route.query.channel_id || 0);
 
       await this.loadContents()
-      this.$store.dispatch('collapse');
+      // this.$store.dispatch('collapse');
     }
   }
 </script>

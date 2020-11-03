@@ -10,7 +10,7 @@
                 </div>
                 <div class="l-app-title">考勤</div>
             </div>
-            <div class="l-app">
+            <div class="l-app" @click="jump('/panel/notice')">
                 <div class="l-icon-wrap">
                     <svg class="l-app-icon" aria-hidden="true">
                         <use xlink:href="#icongonggao"></use>

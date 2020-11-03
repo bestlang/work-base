@@ -2,10 +2,10 @@
 
 namespace BestLang\Laracms\Http\Controllers\Admin\Cms;
 
-use BestLang\Laracms\Models\Cms\Channel;
 use BestLang\Laracms\Models\Cms\ContentContent;
 use BestLang\Laracms\Models\Cms\ContentMeta;
 use BestLang\Laracms\Models\Cms\Tag;
+use BestLang\Laracms\Services\ContentService;
 use Illuminate\Http\Request;
 use BestLang\Laracms\Http\Controllers\Controller;
 use BestLang\Laracms\Models\Cms\Content;
@@ -16,60 +16,15 @@ class ContentController extends Controller
 {
     public function index(Request $request)
     {
-        if(!auth()->user()->can('cms list contents')){
+        if(auth()->user()->cant('cms list contents')){
             return response()->error('没有读取文章权限!', 4012);
         }
         $channelId = $request->input('channel_id', 0);
         $page = $request->input('page', 0);
         $keyword = $request->input('keyword', null);
-        $page_size = $request->input('page_size', 10);
-
-        $channelId = intval($channelId);
-        $page = intval($page);
-        $page_size = intval($page_size);
-
-        $query = Content::query();
-        if($keyword){
-            $query = $query
-                ->where('title', 'like', "%{$keyword}%")
-                ->orWhere('keywords', 'like', "%{$keyword}%")
-                ->orWhere('description', 'like', "%{$keyword}%");
-        }
-        $total = $query->count();
-
-        if(!$channelId){
-            $contents = $query->with('channel')
-                ->orderBy('id', 'desc')
-                ->limit($page_size)
-                ->offset(($page-1)*$page_size)
-                ->get();
-//            return response()->ajax(compact(['contents', 'total']));
-        }else{
-            $channelIdArr = [];
-            $childrenIdArr = Channel::find($channelId)
-                ->getDescendantsAndSelf()
-                ->map(function($item){return $item->id;})
-                ->toArray();
-            if(count($childrenIdArr)){
-                array_push($channelIdArr, ...$childrenIdArr);
-            }
-            $query->whereIn('channel_id', $channelIdArr);
-            $total = $query->count();
-            $contents = $query
-                ->with(['channel'])
-                ->orderByRaw("case when `channel_id`=$channelId then 1 end desc")
-                ->orderBy('id', 'desc')
-                ->limit($page_size)
-                ->offset(($page-1)*$page_size)
-                ->get();
-        }
-        $contents->map(function($content){
-            $content->link = route('content', $content->id);
-            if(!$content->channel->content_template){
-                $content->link = '';
-            }
-        });
-        return response()->ajax(compact(['contents', 'total']));
+        $pageSize = $request->input('page_size', 10);
+        $res = ContentService::contents($channelId, $page, $pageSize, $keyword);
+        return response()->ajax($res);
     }
 
     public function save(Request $request)
@@ -95,7 +50,7 @@ class ContentController extends Controller
         // 执行更新逻辑
         $id = $request->input('id', 0);
         if($id){
-            if(!auth()->user()->can('cms edit contents')){
+            if(auth()->user()->cant('cms edit contents')){
                 return response()->error('没有读取文章权限!', 4012);
             }
             $content = Content::find($id);
@@ -140,7 +95,7 @@ class ContentController extends Controller
                 }
             }
         }else{
-            if(!auth()->user()->can('cms add contents')){
+            if(auth()->user()->cant('cms add contents')){
                 return response()->error('没有读取文章权限!', 4012);
             }
             // 执行插入逻辑
@@ -184,70 +139,20 @@ class ContentController extends Controller
 
     public function whole(Request $request)
     {
-        if(!auth()->user()->can('cms list contents')){
+        if(auth()->user()->cant('cms list contents')){
             return response()->error('没有读取文章权限!', 4012);
         }
         $id = $request->input('id', 0);
         if(!$id){
             return response()->error('参数错误!');
         }
-        $content = Content::with(['contents', 'metas', 'tags'])->find($id);
-
-        $filedTypeMap = [];
-        $content->model->fields->filter(function($item){
-            return !$item->is_channel;
-        })->each(function($modelField)use(&$filedTypeMap, &$content){
-            if($modelField->is_custom){
-                if($modelField->type == 'content'){
-                    //确保$content->contents里面包含此值
-                    $has = $content->contents->search(function($cc)use($modelField){
-                        return $cc->field == $modelField->field;
-                    });
-                    if($has === false){
-                        $cc = new ContentContent();
-                        $cc->content_id = $content->id;
-                        $cc->field = $modelField->field;
-                        $cc->value = '';
-                        $content->contents->push($cc);
-                    }
-                }else{
-                    //确保$content->metas里面此值存在,至少为空
-                    $has = $content->metas->search(function($cc)use($modelField){
-                        return $cc->field == $modelField->field;
-                    });
-                    if($has === false){
-                        $cm = new ContentMeta();
-                        $cm->content_id = $content->id;
-                        $cm->field = $modelField->field;
-                        $cm->value = '';
-                        $content->metas->push($cm);
-                    }
-                }
-                //
-                $filedTypeMap[$modelField->field] = $modelField->type;
-            }
-        });
-        $content->positions = $content->positions()->get()->map(function($position){
-            return $position->id;
-        });
-        /// checkbox特殊处理,数据库中1,2,3取出之后封装成[1,2,3]
-        /// 多图特殊处理,以json根式存储
-        $content->metas->map(function($meta)use($filedTypeMap){
-            $type = Arr::get($filedTypeMap, $meta->field, null);
-            if($type == 'checkbox' && $meta->value){
-                $meta->value = array_values(array_filter(explode(',', $meta->value)));
-            }
-            if($type == 'multiple-image' || $type == 'attachment'){
-                $meta->value = json_decode($meta->value);
-            }
-        });
-        ///
+        $content = ContentService::content($id);
         return response()->ajax($content);
     }
 
     public function delete(Request $request)
     {
-        if(!auth()->user()->can('cms delete contents')){
+        if(auth()->user()->cant('cms delete contents')){
             return response()->error('没有读取文章权限!', 4012);
         }
         $id = $request->input('id', 0);

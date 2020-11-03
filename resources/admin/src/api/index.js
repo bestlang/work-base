@@ -64,6 +64,8 @@ export default {
     saveSiteSetting(data){ return fetch('/admin/cms/save/site/setting', data, 'post') },
     getSiteSetting(data){ return fetch('/admin/cms/get/site/setting', data) },
     getHistories(data){return fetch('/admin/histories', data) },
+    getExternalContents(data){return fetch('/admin/cms/external/contents', data)},
+    getExternalContent(data){return fetch('/admin/cms/external/content', data)},
 
     sniperGetDepartmentLevel1(data){ return fetch('/admin/sniper/employee/departments/level1', data) },
     sniperGetDepartmentsTreeSelect(data){ return  fetch('/admin/sniper/employee/departments/tree/select', data) },
@@ -81,6 +83,7 @@ export default {
     sniperGetEmployeeDetail(data){ return fetch('/admin/sniper/employee/get/employee/detail', data)},
     sniperDeleteEmployeeEducation(data){ return fetch('/admin/sniper/employee/delete/employee/education', data, 'post')},
     sniperDeleteEmployeeJob(data){ return fetch('/admin/sniper/employee/delete/employee/job', data, 'post')},
+
     sniperDingGetDepartments(data){ return fetch('/admin/sniper/employee/ding/get/departments', data)},
     sniperDingGetDepartmentUsers(data){ return fetch('/admin/sniper/employee/ding/get/department/users', data)},
     sniperDingGetUsersAttendance(data){ return fetch('/admin/sniper/employee/ding/get/users/attendance', data)},

@@ -34,5 +34,4 @@ Route::group(['prefix' => 'ajax'], function($router){
     Route::any('/pay/native2', 'WxPayController@native2');
 
     Route::any('/pay/alipay/page', 'AliPayController@page');
-
 });

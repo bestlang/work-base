@@ -351,8 +351,8 @@
 
     },
     async mounted() {
-      console.log(`current meta:`,this.$route.meta)
-      this.$store.dispatch('toggleState');
+      //console.log(`current meta:`,this.$route.meta)
+      //this.$store.dispatch('toggleState');
       this.$store.dispatch(this.$types.cmsChannels);
       this.$store.dispatch(this.$types.cmsModels);
       await this.loadChannelPositions()

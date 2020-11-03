@@ -32,12 +32,12 @@ Route::get('/test/permission/guard', 'IndexController@testPermissionGuard');
 //Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-
-Route::get('wechat/order/native1', 'IndexController@native1');
-
-Route::get('wechat/order/native2', 'IndexController@native2');
-
-Route::any('alipay/create', 'Index2Controller@invoke');
+//
+//Route::get('wechat/order/native1', 'IndexController@native1');
+//
+//Route::get('wechat/order/native2', 'IndexController@native2');
+//
+//Route::any('alipay/create', 'Index2Controller@invoke');
 
 
 

@@ -39,6 +39,16 @@ export default [
                     font: '&#xe764;'
                 }
             },
+            {
+                path: "/panel/notice/detail",
+                component:  () => import("../pages/panel/noticeDetail.vue"),
+                meta: {
+                    can: '',
+                    show:false,
+                    name: '公告详情',
+                    font: '&#xe764;'
+                }
+            },
         ]
     },
 ]

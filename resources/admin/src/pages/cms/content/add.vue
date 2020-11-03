@@ -203,9 +203,9 @@
             }
         },
         async mounted() {
-            this.channel_id = parseInt(this.$route.query.channel_id || 0);
+            this.channel_id = parseInt(this.$route.query.channel_id) || 0;
             await this.loadContentPositions(this.channel_id);
-            this.$store.dispatch('collapse');
+            //this.$store.dispatch('collapse');
             this.$set(this.form, 'tags', [{id: 1, name: ''}])
         }
     }

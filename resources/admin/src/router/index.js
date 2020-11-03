@@ -242,7 +242,7 @@ export default new VueRouter({
               children: [
                   {
                       path: "/cms/content",
-                      component: () => import("../pages/cms/content.vue"),
+                      component: () => import("../pages/cms/content/content.vue"),
                       meta: {
                           can: 'cms list contents',
                           show: true,
@@ -272,7 +272,7 @@ export default new VueRouter({
                   },
                   {
                       path: "/cms/channel",
-                      component: () => import("../pages/cms/channel.vue"),
+                      component: () => import("../pages/cms/channel/channel.vue"),
                       meta: {
                           can: 'cms list channels',
                           show: true,

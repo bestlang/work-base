@@ -1,6 +1,5 @@
 <?php
 /**
- * @website https://www.laracms.com
  * @author 295322133@qq.com
  */
 namespace BestLang\Laracms\Http\Controllers\Admin\Cms;
@@ -121,7 +120,7 @@ class ModelController extends Controller
 
     public function templatePrefix(Request $request)
     {
-        $path = resource_path().'/views/vendor/laracms/dark/models/';
+        $path = base_path().'/bestlang/laracms/resources/views/laracms/dark/models/';
         $resource = opendir($path);
         $dirNameArr = [];
         while($file = readdir($resource)){
