@@ -28,7 +28,6 @@ fastcgi_pass unix:/run/php-fpm/www.sock;
 单页-特殊的栏目
 
 php artisan migrate --path=packages/bestlang/laracms/database/migrations/2020_06_14_153336_create_cms_tags_table.php
-C:\Users\sniper\PhpProjects\sniper\sniper\employee\database\migrations\2020_09_11_150535_create_sniper_employee_education_table.php
 php -d memory_limit=-1 /usr/local/bin/composer update
 php -d memory_limit=-1 C:\composer\composer.phar
 
@@ -60,4 +59,3 @@ Laravel 5.8 Laravel-echo-server教程
 https://blog.csdn.net/sym134/article/details/100569257
 
 模板制作参考主题
-https://www.wpcom.cn/

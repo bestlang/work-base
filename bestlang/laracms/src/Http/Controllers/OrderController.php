@@ -16,8 +16,14 @@ class OrderController
     public function orders(Request $request)
     {
         $user = auth()->user();
-        $orders = Order::where('user_id', $user->id)->paginate(5);
+        $orders = Order::where('user_id', $user->id)->orderBy('id', 'desc')->paginate(10);
         return render('ucenter.orders', ['orders' => $orders]);
+    }
+
+    public function detail($order_no, Request $request)
+    {
+        $order = Order::where('order_no', $order_no)->first();
+        return render('ucenter.orderDetail', ['order' => $order]);
     }
 
     public function generate(Request $request)
@@ -29,9 +35,9 @@ class OrderController
         return response()->ajax($order);
     }
 
-    public function detail($order_no,Request $request)
+    public function orderPay($order_no, Request $request)
     {
         $order = Order::where('order_no', $order_no)->first();
-        return render('order.detail', ['order' => $order]);
+        return render('order.pay', ['order' => $order]);
     }
 }

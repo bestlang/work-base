@@ -14,6 +14,7 @@
                         <th>订单号</th>
                         <th>订单金额</th>
                         <th>订单状态</th>
+                        <th>操作</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -24,6 +25,7 @@
                         <td>{{$order->order_no}}</td>
                         <td>{{$order->money}}</td>
                         <td>{{$order->status_text}}</td>
+                        <td><a href="{{route('orderDetail', $order->order_no)}}">查看</a></td>
                     </tr>
                     @endforeach
                     </tbody>

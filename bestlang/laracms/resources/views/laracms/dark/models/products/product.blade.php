@@ -109,7 +109,7 @@
                 axios.post('/order/generate', {content_id: content_id, num: num}).then(response => {
                     let res = response.data;
                     if(res.success){
-                        location.href = '/order/'+res.data.order_no;
+                        location.href = '/order/pay/'+res.data.order_no;
                     }else{
                         if(res.code == 401){
                             alert(res.error);
