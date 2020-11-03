@@ -118,16 +118,15 @@
                                 </li>
                                 <li><a href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
+                                        登出
                                     </a>
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                         @csrf
                                     </form>
                                 </li>
                                 @if(auth()->user()->type == 1)
-                                    {{--{{Gate::allows('system')}}--}}
                                     <li><a class="dropdown-item" href="/admin/#/">
-                                            {{ __('Management') }}
+                                            管理后台
                                         </a></li>
                                 @endif
                              @endguest
