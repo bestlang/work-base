@@ -5,10 +5,10 @@
             <li><router-link to="/panel/notice">公告</router-link></li>
             <li>正文</li>
         </ol>
-        <div>
+        <div class="l-notice-content">
             <div class="l-text-center" style="margin-bottom: 30px;"><h3>{{content?content.title:''}}</h3></div>
             <div class="l-text-center l-small">发布人:{{author}} 发布日期: {{date}}</div>
-            <div class="l-notice-content" v-html="contentContent"></div>
+            <div v-html="contentContent"></div>
         </div>
     </div>
 
@@ -64,6 +64,8 @@
 <style lang="less">
     .l-text-center{text-align: center;}
     .l-notice-content{
+        padding: 40px 20px;
+        /*background: #fff;*/
         width: 70%;
         margin: 20px auto;
         font-weight: lighter;

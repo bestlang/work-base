@@ -1,7 +1,7 @@
 {
-  "name": "LaraCMS",
+  "name": "admin",
   "version": "1.0.0",
-  "description": "LaraCMS",
+  "description": "admin",
   "author": "luzhang <295322133@qq.com>",
   "private": true,
   "scripts": {
