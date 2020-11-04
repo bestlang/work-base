@@ -2,6 +2,7 @@
 
 namespace BestLang\LaraCms\Models\Cms;
 
+use BestLang\LaraCms\Models\User;
 use Illuminate\Database\Eloquent\Model;
 use BestLang\LaraCms\Models\Cms\Model as CmsModel;
 
@@ -53,5 +54,10 @@ class Content extends Model
             $ext[$meta->field] = json_decode($meta->value) ? json_decode($meta->value, true) : $meta->value;
         }
         return $ext;
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 }

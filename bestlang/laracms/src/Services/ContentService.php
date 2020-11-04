@@ -61,7 +61,7 @@ class ContentService
 
     public static function content($contentId)
     {
-        $content = Content::with(['contents', 'metas', 'tags'])->find($contentId);
+        $content = Content::with(['contents', 'metas', 'tags', 'user'])->find($contentId);
 
         $filedTypeMap = [];
         $content->model->fields->filter(function($item){

@@ -1,7 +1,15 @@
 <template>
     <div>
-        <div class="l-text-center" style="margin-bottom: 30px;"><h2>{{content?content.title:''}}</h2></div>
-        <div class="l-text-center" v-html="content?content.contents[0].value:''"></div>
+        <ol class="breadcrumb">
+            <li><router-link to="/panel">首页</router-link></li>
+            <li><router-link to="/panel/notice">公告</router-link></li>
+            <li>正文</li>
+        </ol>
+        <div>
+            <div class="l-text-center" style="margin-bottom: 30px;"><h3>{{content?content.title:''}}</h3></div>
+            <div class="l-text-center l-small">发布人:{{author}} 发布日期: {{date}}</div>
+            <div class="l-notice-content" v-html="contentContent"></div>
+        </div>
     </div>
 
 </template>
@@ -13,6 +21,23 @@
             return {
                 content_id: 0,
                 content: null
+            }
+        },
+        computed:{
+            date(){
+                if(this.content){
+                    return this.content.created_at
+                }
+            },
+            author(){
+                if(this.content && this.content.user){
+                    return this.content.user.name
+                }
+            },
+            contentContent(){
+                if(this.content){
+                    return this.content.contents.map((c) => { return c.value}).join('')
+                }
             }
         },
         watch:{
@@ -32,10 +57,19 @@
             }
         },
         mounted(){
-            this.content_id = parseInt(this.$route.query.id || 0);
+            this.content_id = parseInt(this.$route.query.id) || 0;
         }
     }
 </script>
 <style lang="less">
     .l-text-center{text-align: center;}
+    .l-notice-content{
+        width: 70%;
+        margin: 20px auto;
+        font-weight: lighter;
+        font-size: 14px!important;
+    }
+    .l-small{
+        font-size: 13px;
+    }
 </style>

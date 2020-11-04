@@ -15,7 +15,7 @@
                 </el-dropdown>
             </el-menu-item>
         </el-menu>
-        <div style="border-top: 10px solid #f1f1f1;padding: 10px;height: calc(100vh - 61px)">
+        <div style="padding: 10px;height: calc(100vh - 61px)">
             <router-view></router-view>
         </div>
     </div>

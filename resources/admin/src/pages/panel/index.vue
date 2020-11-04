@@ -40,7 +40,7 @@
                         <use xlink:href="#icon7liuchengtiaodumoban"></use>
                     </svg>
                 </div>
-                <div class="l-app-title">产品生命周期</div>
+                <div class="l-app-title">PLM</div>
             </div>
         </div>
     </div>
@@ -64,19 +64,17 @@
         justify-content: flex-start;
         .l-icon-wrap{
             text-align: center;
-            border: 1px solid #eee;
-            border-radius: 10px;
-            text-align: center;
+            font-size: 12px;
             .l-app-icon{
                 margin-top: 10px;
-                width: 60px;
-                height: 60px;
+                width: 50px;
+                height: 50px;
             }
         }
 
     }
     .l-app{
-        width: 100px;height: 100px;
+        width: 80px;
         cursor: pointer;
         margin-right: 20px;
     }
