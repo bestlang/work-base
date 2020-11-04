@@ -8,9 +8,9 @@
         <div class="l-notice-content">
             <div class="l-text-center" style="margin-bottom: 30px;"><h3>{{content?content.title:''}}</h3></div>
             <div class="l-text-center l-small" style="margin-bottom: 20px;font-style: italic;">发布人:{{author}} 发布日期: {{date}}</div>
-            <div v-html="contentContent"></div>
-            <h4>附件列表</h4>
-            <div v-for="att in attachments" :title="att.name"><a :href="att.url">{{att.url}}</a></div>
+            <div class="l-content" v-html="contentContent"></div>
+            <h4 class="l-attachment-title">附件列表</h4>
+            <div v-for="att in attachments" :title="att.name" class="l-attachment"><a :href="att.url">{{att.url}}</a></div>
         </div>
     </div>
 
@@ -77,6 +77,16 @@
         margin: 20px auto;
         font-weight: lighter;
         font-size: 14px!important;
+        .l-content{
+            margin-bottom: 20px;
+        }
+        .l-attachment-title{
+            margin-bottom: 10px;
+        }
+        .l-attachment{
+            line-height: 30px;
+            text-decoration: underline;
+        }
     }
     .l-small{
         font-size: 13px;
