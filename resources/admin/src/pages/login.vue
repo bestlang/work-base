@@ -37,8 +37,8 @@ export default {
             loading: false,
             loginFont: "登录",
             params:{
-                mobile: '13222988085',
-                password: '11111111'
+                mobile: '',
+                password: ''
             },
             rules:{
 
