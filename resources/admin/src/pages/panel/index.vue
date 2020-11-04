@@ -18,6 +18,14 @@
                 </div>
                 <div class="l-app-title">公告</div>
             </div>
+            <div class="l-app" @click="jump('/panel/download')">
+                <div class="l-icon-wrap">
+                    <svg class="l-app-icon" aria-hidden="true">
+                        <use xlink:href="#iconfile2"></use>
+                    </svg>
+                </div>
+                <div class="l-app-title">文件下载</div>
+            </div>
             <div class="l-app">
                 <div class="l-icon-wrap">
                     <svg class="l-app-icon" aria-hidden="true">

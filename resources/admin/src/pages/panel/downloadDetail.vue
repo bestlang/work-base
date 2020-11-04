@@ -2,13 +2,15 @@
     <div>
         <ol class="breadcrumb">
             <li><router-link to="/panel">首页</router-link></li>
-            <li><router-link to="/panel/notice">公告</router-link></li>
+            <li><router-link to="/panel/download">文件下载</router-link></li>
             <li>正文</li>
         </ol>
         <div class="l-notice-content">
             <div class="l-text-center" style="margin-bottom: 30px;"><h3>{{content?content.title:''}}</h3></div>
             <div class="l-text-center l-small" style="margin-bottom: 20px;font-style: italic;">发布人:{{author}} 发布日期: {{date}}</div>
             <div v-html="contentContent"></div>
+            <h4>附件列表</h4>
+            <div v-for="att in attachments" :title="att.name"><a :href="att.url">{{att.url}}</a></div>
         </div>
     </div>
 
@@ -24,6 +26,11 @@
             }
         },
         computed:{
+            attachments(){
+                if(this.content){
+                    return this.content.metas.filter((meta) => {return meta.field == 'attachments'})[0].value
+                }
+            },
             date(){
                 if(this.content){
                     return this.content.created_at
@@ -50,7 +57,7 @@
         methods:{
             async getContent(){
                 let params = {
-                        content_id: this.content_id
+                    content_id: this.content_id
                 }
                 let {data} = await api.getExternalContent(params)
                 this.content = data

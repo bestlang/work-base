@@ -7,7 +7,7 @@
                         :data="contents"
                         style="width: 100%">
                     <el-table-column
-                            label="人事公告">
+                            label="办事流程文件下载">
                         <template slot-scope="scope">
                             <a @click="viewContentDetail(scope.row)" target="_blank" class="l-cursor">{{scope.row.title}}</a>
                         </template>
@@ -34,7 +34,7 @@
                 contents:[],
                 page: 1,
                 page_size: 10,
-                channel_id: 37,//人事公告
+                channel_id: 38,//办事流程文件下载
                 keyword: ''
             }
         },
@@ -55,7 +55,7 @@
                 this.getNotices()
             },
             viewContentDetail({id}){
-                this.$router.push('/panel/notice/detail?id='+id)
+                this.$router.push('/panel/download/detail?id='+id)
             }
         },
         created(){

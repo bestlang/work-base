@@ -49,6 +49,26 @@ export default [
                     font: '&#xe764;'
                 }
             },
+            {
+                path: "/panel/download",
+                component:  () => import("../pages/panel/download.vue"),
+                meta: {
+                    can: '',
+                    show:false,
+                    name: '办事文件下载',
+                    font: '&#xe764;'
+                }
+            },
+            {
+                path: "/panel/download/detail",
+                component:  () => import("../pages/panel/downloadDetail.vue"),
+                meta: {
+                    can: '',
+                    show:false,
+                    name: '公告详情',
+                    font: '&#xe764;'
+                }
+            },
         ]
     },
 ]
