@@ -3,7 +3,6 @@ import Vue from "vue"
 import ElementUI from "element-ui"
 
 import "element-ui/lib/theme-chalk/index.css"
-import "bootstrap/"
 import "@/css/index.scss"
 import router from "./router"
 import store from "./store"
@@ -13,7 +12,7 @@ import {fetch} from "@/api/fetch"
 import {getPrefix} from "@/api/util"
 import "./control"
 
-window.$ = require("jquery")
+window.$  = require("jquery")
 
 
 Vue.config.productionTip = false
