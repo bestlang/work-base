@@ -54,7 +54,7 @@ export default new Vue({
   template: "<App/>"
 })
 
-/*
+
 import Echo from 'laravel-echo'
 
 window.io = require('socket.io-client');
@@ -74,4 +74,4 @@ window.Echo.channel('user1')
         })
         //alert(JSON.stringify(e));
     });
-*/
+
