@@ -16,7 +16,7 @@ class OrderController
     public function orders(Request $request)
     {
         $user = auth()->user();
-        $orders = Order::where('user_id', $user->id)->orderBy('id', 'desc')->paginate(10);
+        $orders = Order::where('user_id', $user->id)->orderBy('id', 'desc')->paginate(6);
         return render('ucenter.orders', ['orders' => $orders]);
     }
 

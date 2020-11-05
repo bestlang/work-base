@@ -5,7 +5,7 @@
             <h2 class="page-header">
                 订单详情
             </h2>
-            <div style="border: 1px solid #f1f1f1;padding: 20px;">
+            <div style="line-height: 30px;">
                 <div>商品名称: {{$order->name}}</div>
                 <div>商品描述: {{$order->descrition}}</div>
                 <div>订单号: {{$order->order_no}}</div>
@@ -13,7 +13,7 @@
             </div>
             <div style="margin-bottom: 20px;">
                 <label for="optionsRadios">
-                    <h2 style="font-size: 16px;margin: 0;padding-top: 10px;line-height: 30px;">
+                    <h2 style="font-size: 16px;font-weight: normal;margin: 0;padding-top: 10px;line-height: 30px;">
                         请选择支付方式
                     </h2>
                 </label>
@@ -49,7 +49,7 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">暂时放弃
                     </button>
-                    <button type="button" class="btn btn-primary">
+                    <button type="button" class="btn btn-primary" id="l_paid">
                         已支付
                     </button>
                 </div>
@@ -61,7 +61,6 @@
     <script>
         $(function(){
             $('.l-menu-order').addClass('active');
-
             var order_no = "{{$order->order_no}}";
             $('#confirmPay').click(function(){
                 $('#myModal').modal({backdrop: 'static'});
@@ -70,7 +69,10 @@
                     window.open('/pay/'+payMethod+'?order_no='+order_no, '_blank');
                 }
                 return false;
+            });
+            $('#l_paid').click(function(){
+                location.reload()
             })
-        })
+        });
     </script>
 @endsection

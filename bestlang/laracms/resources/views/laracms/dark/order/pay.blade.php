@@ -86,7 +86,7 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">暂时放弃
                     </button>
-                    <button type="button" class="btn btn-primary">
+                    <button type="button" class="btn btn-primary" id="l_pay">
                         已支付
                     </button>
                 </div>
@@ -106,7 +106,11 @@
                 window.open('/pay/'+payMethod+'?order_no='+order_no, '_blank');
             }
             return false;
+        });
+        $('#l_pay').click(function(){
+            location.href = '/ucenter/order/detail/'+order_no
         })
+
 //        axios.post('/ajax/pay/native1', {order_no}).then(response => {
 //            let res = response.data;
 //            if(res.success){
