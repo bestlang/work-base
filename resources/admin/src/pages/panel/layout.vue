@@ -84,6 +84,7 @@
             height: 50px;
             line-height: 50px;
             &.is-active{
+                border: none;
                 color: #fff;
             }
         }

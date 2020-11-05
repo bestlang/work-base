@@ -4,7 +4,7 @@
             <router-link ref="tag" class="tag-nav-li" :class="{'cur':isActive(item)}" v-for="(item, index) in tagNavList"
                          :to="item.fullPath" :key="index">
                 {{item.title}}
-                <span style="line-height: 0" class='el-icon-close' @click.prevent.stop="closeTheTag(item, index)"></span>
+                <span style="line-height: 0;font-size: 8px;color:#ccc;" class='el-icon-close' @click.prevent.stop="closeTheTag(item, index)"></span>
             </router-link>
         </scroll-bar>
     </div>
