@@ -22,7 +22,7 @@
     export default {
         props:['value'],
         data(){
-            let accessToken = localStorage.getItem('accessToken');
+            let accessToken = localStorage.getItem('accessToken')
             return {
                 uploadUrl: this.SITE_URL + '/' + getPrefix() + '/admin/file/upload',
                 headers: {
