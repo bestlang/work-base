@@ -7,6 +7,7 @@ use BestLang\Base\Http\Controllers\Controller;
 use BestLang\Base\Models\User;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use JWTAuth;
+use Hash;
 
 use BestLang\Base\Factory\HistoryEventFactory;
 
@@ -31,7 +32,7 @@ class AuthController extends Controller
             $mobile = request()->input('mobile');
             $password = request()->input('password');
             $token = JWTAuth::attempt(['mobile' => $mobile, 'password' => $password]);
-            if(!$token){
+            if($token === false){
                 $exists = User::where('mobile', $mobile)->first();
                 if($exists){
                     throw new \Exception('密码错误,请重试!');
@@ -51,10 +52,10 @@ class AuthController extends Controller
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    public function me()
-    {
-        return response()->ajax(auth()->user());
-    }
+//    public function me()
+//    {
+//        return response()->ajax(auth()->user());
+//    }
 
     /**
      * Log the user out (Invalidate the token).
@@ -68,6 +69,21 @@ class AuthController extends Controller
         auth()->logout();
 
         return response()->ajax();
+    }
+
+    public function passwordModify()
+    {
+        $user = auth()->user();
+        $password = request()->input('password');
+        $newPassword = request()->input('new_password');
+        if(Hash::check($password, $user->getAuthPassword())){
+            $user->password = bcrypt($newPassword);
+            $user->save();
+            return response()->ajax('密码修改成功！');
+        }else{
+            //密码不对
+            return response()->error('密码错误！');
+        }
     }
 
     /**

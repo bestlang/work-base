@@ -3,6 +3,7 @@ import {fetch} from './fetch'
 export default {
     login(data){ return fetch('auth/login', data, 'post') },
     logout(data){ return fetch('auth/logout', data, 'post') },
+    passwordModify(data){ return fetch('auth/password/modify', data, 'post') },
     getCmsModels(data){ return fetch('/admin/cms/model', data) },
     getCmsChannelTree(data){ return fetch('/admin/cms/channel/tree', data) },
     getCmsChannelChildren(data){ return fetch('/admin/cms/channel/children', data) },

@@ -12,7 +12,7 @@
             <div class="logout"><i class="iconfont">&#xe60d; </i>{{user.name}}</div>
             <el-dropdown-menu slot="dropdown">
               <el-dropdown-item command="panel"><div><i class="iconfont">&#xe614;</i>个人中心</div></el-dropdown-item>
-              <el-dropdown-item command="modifyPassword"><i class="iconfont">&#xe618; </i>修改密码</el-dropdown-item>
+              <el-dropdown-item command="passwordModify"><i class="iconfont">&#xe618; </i>密码修改</el-dropdown-item>
                 <el-dropdown-item command="logout"><div><i class="iconfont">&#xe84b; </i>登出</div></el-dropdown-item>
             </el-dropdown-menu>
           </el-dropdown>
@@ -48,8 +48,8 @@ export default {
             await this.logout()
         }else if(command == 'panel'){
             this.$router.push('/panel')
-        }else{
-            this.$message('还没做')
+        }else if(command == 'passwordModify'){
+            this.$router.push('/password/modify')
         }
     },
     toggleCollapse() {

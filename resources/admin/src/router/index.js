@@ -46,6 +46,14 @@ export default new VueRouter({
           }
         },
         {
+          path: "/password/modify",
+          component: () => import("../pages/passwordModify.vue"),
+          meta: {
+              name: '密码修改',
+              show: false
+          },
+        },
+        {
           path: "/sniper/employee",
           component: rv,
           meta: {
