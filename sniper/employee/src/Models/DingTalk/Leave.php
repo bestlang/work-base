@@ -8,4 +8,6 @@ class Leave extends Model
     protected $connection = 'proxy';
     protected $table = 'sniper_employee_ding_leave';
     protected $guarded = [];
+    protected $primaryKey = null;
+    public $incrementing = false;
 }

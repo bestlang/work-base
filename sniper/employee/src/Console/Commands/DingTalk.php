@@ -248,7 +248,7 @@ class DingTalk extends Command
                 $res = $ding->_updateUser(
                     [
                         'userid' => '542706561157841',
-                        'name' => '路之章'
+                        'name' => '路章'
                     ]
                 );
                 print_r($res);

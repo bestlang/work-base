@@ -42,7 +42,7 @@
                 window.open(file.response.data.file)
             },
             handleRemove(file, fl){
-                this.fileList = this.fileList.filter( item => { return item.url != file.url} );
+                this.fileList = this.fileList.filter( item => { return item.url != file.url} )
                 this.$emit('input', this.fileList)
             },
             uploadSuccess(response, file, fl){
