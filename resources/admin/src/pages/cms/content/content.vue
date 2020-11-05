@@ -73,7 +73,6 @@
 </template>
 <script>
   import channelTree from "../components/channelTree";
-  import VueUeditorWrap from 'vue-ueditor-wrap';
   import ueditorConfig from "sysStore/ueditor";
   import imageUpload from "@/components/imageUpload"
   import multipleImageUpload from "@/components/multipleImageUpload"
@@ -104,7 +103,6 @@
     },
     components:{
         'channel-tree': channelTree,
-        VueUeditorWrap,
         imageUpload,
         multipleImageUpload,
         pager

@@ -1,5 +1,5 @@
 <template>
-      <div :is="type" :index="item.path" class="unselectable" v-if="item.meta.show">
+      <div :is="type"  :popperAppendToBody="false" :index="item.path" class="unselectable" v-if="item.meta.show">
           <slot></slot>
           <template v-if="type==='el-submenu'">
               <template slot="title">

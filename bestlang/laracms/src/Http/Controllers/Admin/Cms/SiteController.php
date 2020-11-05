@@ -1,7 +1,6 @@
 <?php
-
-
 namespace BestLang\LaraCms\Http\Controllers\Admin\Cms;
+
 use BestLang\LaraCms\Http\Controllers\Controller;
 use BestLang\Base\Models\HashConfig as Config;
 
@@ -42,7 +41,7 @@ class SiteController extends Controller
 
     public function themes(Request $request)
     {
-        $path = resource_path().'/views/vendor/laracms/';
+        $path = base_path().'/bestlang/laracms/resources/views/laracms/';
         $resource = opendir($path);
         $themes = [];
         while($file = readdir($resource)){

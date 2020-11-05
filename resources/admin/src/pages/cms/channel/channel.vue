@@ -180,7 +180,6 @@
 </template>
 <script>
   import ueditorConfig from "sysStore/ueditor";
-  import VueUeditorWrap from 'vue-ueditor-wrap';
   import {mapState, mapGetters} from 'vuex'
   import api from 'sysApi'
 
@@ -213,9 +212,7 @@
             this.loadTemplatePath(val)
         }
     },
-    components:{
-      VueUeditorWrap
-    },
+    components:{},
     computed:{
         ...mapGetters([
             'loading',
