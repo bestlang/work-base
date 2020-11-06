@@ -1,9 +1,10 @@
 @extends('laracms::dark.layouts.app')
 
 @section('content')
-    <link rel="stylesheet"
-          href="https://highlightjs.org/static/demo/styles/railscasts.css">
-    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.3.1/highlight.min.js"></script>
+    {{--dracula, solarized-dark, monokai-sublime, railscasts, agate, androidstudio--}}
+    <link rel="stylesheet" href="https://highlightjs.org/static/demo/styles/monokai-sublime.css">
+    {{--<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.3.1/highlight.min.js"></script>--}}
+    <script src="https://cdn.bootcdn.net/ajax/libs/highlight.js/10.3.1/highlight.min.js"></script>
     <div class="l-content">
             <div class="container">
             <div class="row">
