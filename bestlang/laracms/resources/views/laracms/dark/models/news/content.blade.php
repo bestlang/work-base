@@ -113,6 +113,10 @@
 @endpush
 @push('css')
 <style>
+    code{
+        line-height: 26px;
+        font-family: Monaco,Menlo,Consolas,"Courier New",monospace;
+    }
     pre{
         border-radius: 0;
         background: #fff;

@@ -6,8 +6,7 @@
     <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
     <meta name="renderer" content="webkit">
     <title>首页 - {{config('app.name')}}</title>
-    <meta name="generator" content="laraCMS"/>
-    <meta name="keywords" content="laraCMS"/>
+    <meta name="keywords" content=""/>
     <meta name="description" content=""/>
     <meta name="csrf-token" content="{{csrf_token()}}">
 
