@@ -13,4 +13,9 @@ class UCenterController extends Controller
         }
         return render('ucenter.index');
     }
+
+    public function passwordModifyForm(Request $request)
+    {
+        return render('ucenter.passwordModifyForm');
+    }
 }

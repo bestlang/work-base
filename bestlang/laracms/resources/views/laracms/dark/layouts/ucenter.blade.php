@@ -34,7 +34,7 @@
                     <li class="list-group-item l-menu-member"> <a href="/ucenter"><i class="fa fa-user-circle fa-fw"></i> 会员信息</a> </li>
                     <li class="list-group-item l-menu-order"> <a href="/ucenter/orders"><i class="fa fa-shopping-bag fa-fw"></i> 订单记录</a> </li>
                     {{--<li class="list-group-item"> <a href=""><i class="fa fa-user-o fa-fw"></i> 个人资料</a> </li>--}}
-                    <li class="list-group-item"> <a href=""><i class="fa fa-key fa-fw"></i> 修改密码</a> </li>
+                    <li class="list-group-item l-menu-password-modify"> <a href="/ucenter/password/modify"><i class="fa fa-key fa-fw"></i> 修改密码</a> </li>
                     <li class="list-group-item"> <a href=""><i class="fa fa-sign-out fa-fw"></i> 注 销</a> </li>
                 </ul>
             </div>

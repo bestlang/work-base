@@ -11,6 +11,7 @@ Route::get('/tag/{name}', 'TagController@contents')->name('tag');
 Route::get('/search/{keyword}', 'SearchController@contents')->name('search');
 Route::get('/ucenter', 'UCenterController@index');
 Route::get('/ucenter/orders', 'OrderController@orders');
+Route::get('/ucenter/password/modify', 'UCenterController@passwordModifyForm');
 Route::get('/ucenter/order/detail/{order_no}', 'OrderController@detail')->name('orderDetail');
 Route::any('/order/generate', 'OrderController@generate');
 Route::any('/order/pay/{order_no}', 'OrderController@orderPay')->name('orderPay');
