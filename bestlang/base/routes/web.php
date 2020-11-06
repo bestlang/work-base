@@ -8,6 +8,7 @@ Route::group(['prefix' => 'ajax'], function($router){
     Route::group(['namespace'=>'Auth', 'prefix'=>'auth'], function(){
         Route::any('login', 'LoginController@login');
         Route::any('logout', 'LoginController@logout');
+        Route::any('password/modify', 'LoginController@passwordModify');
     });
     Route::group(['middleware' => 'auth'], function(){
         include('adminOps.php');
@@ -21,8 +22,8 @@ Route::group(['namespace'=>'Auth'], function(){
     Route::any('logout', 'LoginController@logout')->name('logout');
     // Registration Routes...
     if(env('APP_ALLOW_REGISTER', false)){
-    Route::get('register', 'RegisterController@showRegistrationForm')->name('register');
-    Route::post('register', 'RegisterController@register');
+        Route::get('register', 'RegisterController@showRegistrationForm')->name('register');
+        Route::post('register', 'RegisterController@register');
     }
     Route::get('password/reset', 'ForgotPasswordController@showLinkRequestForm')->name('password.request');
     Route::post('password/email', 'ForgotPasswordController@sendResetLinkEmail')->name('password.email');

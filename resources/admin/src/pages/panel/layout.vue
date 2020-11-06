@@ -10,7 +10,7 @@
                     <el-dropdown-menu slot="dropdown">
                         <el-dropdown-item command="logout"><div><i class="iconfont">&#xe84b; </i>登出</div></el-dropdown-item>
                         <el-dropdown-item v-if="user.type" command="admin"><i class="iconfont">&#xe60a;</i> 管理后台</el-dropdown-item>
-                        <el-dropdown-item command="modifyPassword"><i class="iconfont">&#xe618; </i>修改密码</el-dropdown-item>
+                        <el-dropdown-item command="passwordModify"><i class="iconfont">&#xe618; </i>修改密码</el-dropdown-item>
                     </el-dropdown-menu>
                 </el-dropdown>
             </el-menu-item>
@@ -40,8 +40,8 @@
                     await this.logout()
                 }else if(command == 'admin'){
                     this.$router.push('/')
-                }else if(command == 'modifyPassword'){
-                    this.$message('还没做')
+                }else if(command == 'passwordModify'){
+                    this.$router.push('/panel/password/modify')
                 }
             },
             handleSelect(key, keyPath) {

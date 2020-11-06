@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
 use BestLang\Base\Models\User;
 use BestLang\Base\Factory\HistoryEventFactory;
+use BestLang\Base\Http\Traits\PasswordModifyTrait;
 
 class LoginController extends Controller
 {
@@ -26,6 +27,7 @@ class LoginController extends Controller
     */
 
     use AuthenticatesUsers;
+    use PasswordModifyTrait;
 
     /**
      * Where to redirect users after login.
@@ -41,7 +43,7 @@ class LoginController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest')->except(['logout', 'login']);
+        $this->middleware('guest')->except(['logout', 'login', 'passwordModify']);
     }
 
     protected function guard()

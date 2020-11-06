@@ -20,6 +20,14 @@ export default [
                 }
             },
             {
+                path: "/panel/password/modify",
+                component: () => import("../pages/passwordModify.vue"),
+                meta: {
+                    name: '密码修改',
+                    show: false
+                },
+            },
+            {
                 path: "/panel/attendance",
                 component:  () => import("../pages/panel/attendanceOfMine.vue"),
                 meta: {

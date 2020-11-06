@@ -1,7 +1,4 @@
 <?php
-/**
- * @author 295322133@qq.com
- */
 namespace BestLang\LaraCms\Http\Controllers\Admin\Cms;
 
 use BestLang\LaraCms\Models\Cms\Model;

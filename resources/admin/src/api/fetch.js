@@ -31,13 +31,19 @@ axios.interceptors.request.use(config => {
 axios.interceptors.response.use(response => {
         let res = response.data
         let code = parseInt(res.code)
-        // 伪状态码
         switch (code) {
-            case 0://token信息过期
+            case 0://各种Exception导致的返回异常，包括登录超时token错误
+                if(res.error !== 'Unauthenticated.'){//非登录超时异常
+                    break;
+                }else{
+                    res.error = '登录超时，请重新登录！'
+                }
             case 401:
                 let msg = '请重新登录!'
                 if(res.data.length){
                     msg = res.data
+                }else{
+                    msg = res.error
                 }
                 if(getPrefix() == 'api'){
                     app.showMessage(msg)
@@ -51,10 +57,8 @@ axios.interceptors.response.use(response => {
             case 402:
                 app.showMessage(res.code + res.error)
                 break
-            default:
-                break
         }
-        return response.data
+        return res
     },
     error => {
         if(getPrefix() == 'api'){

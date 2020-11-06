@@ -27,7 +27,6 @@
 
 import api from "sysApi"
 import {mapGetters} from 'vuex'
-// import Cookies from 'js-cookie'
 import { Loading } from 'element-ui'
 import types from 'sysStore/types'
 
@@ -37,8 +36,8 @@ export default {
             loading: false,
             loginFont: "登录",
             params:{
-                mobile: '',
-                password: ''
+                mobile: '13222988085',
+                password: '11111111'
             },
             rules:{
 

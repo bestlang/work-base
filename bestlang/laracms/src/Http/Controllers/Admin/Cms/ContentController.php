@@ -2,8 +2,6 @@
 
 namespace BestLang\LaraCms\Http\Controllers\Admin\Cms;
 
-use BestLang\LaraCms\Models\Cms\ContentContent;
-use BestLang\LaraCms\Models\Cms\ContentMeta;
 use BestLang\LaraCms\Models\Cms\Tag;
 use BestLang\LaraCms\Services\ContentService;
 use Illuminate\Http\Request;
