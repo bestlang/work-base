@@ -1,11 +1,11 @@
 @extends('laracms::dark.layouts.ucenter')
 @section('content')
-    <div class="panel panel-default">
-        <div class="panel-body">
+    {{--<div class="panel panel-default">--}}
+        {{--<div class="panel-body">--}}
             {{--<h2 class="page-header">--}}
                 {{--订单记录--}}
             {{--</h2>--}}
-            <div>
+            <div style="padding: 20px;">
                 <table class="table">
                     <thead>
                     <tr>
@@ -19,7 +19,7 @@
                     <tbody>
                     @foreach($orders as $order)
                     <tr>
-                        <td><i>{{$order->order_no}}</i></td>
+                        <td>{{$order->order_no}}</td>
                         <td>{{$order->name}}</td>
                         <td>{{$order->money}}</td>
                         <td>{{$order->status_text}}</td>
@@ -30,8 +30,8 @@
                 </table>
                 {{ $orders->links() }}
             </div>
-        </div>
-    </div>
+        {{--</div>--}}
+    {{--</div>--}}
 @endsection
 @section('javascript')
     <script>

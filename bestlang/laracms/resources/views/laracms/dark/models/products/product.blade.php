@@ -1,5 +1,7 @@
 @extends('laracms::dark.layouts.app')
-
+@section('title')
+    {{$content->title}}
+@endsection
 @section('content')
     {{--<div class="container">--}}
     <div class="l-content">
@@ -34,7 +36,6 @@
                                 </div>
                             </div>
                             <div style="padding: 15px 0;border-top: 1px solid #f1f1f1;">
-                                <div>{{json_encode($content->getExt())}}</div>
                                 <div>{!!  laracms::content($content, 'content') !!}</div>
                             </div>
                         </div>

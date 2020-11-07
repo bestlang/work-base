@@ -1,36 +1,41 @@
 @extends('laracms::dark.layouts.ucenter')
+@section('css')
+    <style>
+        .btn{
+            border-radius: 0;
+        }
+    </style>
+@endsection
 @section('content')
-    <div class="panel panel-default">
-        <div class="panel-body">
-            <h2 class="page-header">
-                订单详情
-            </h2>
-            <div style="line-height: 30px;">
-                <div>商品名称: {{$order->name}}</div>
-                <div>商品描述: {{$order->descrition}}</div>
-                <div>订单号: {{$order->order_no}}</div>
-                <div>交易金额: {{$order->money}}元</div>
-            </div>
-            <div style="margin-bottom: 20px;">
-                <label for="optionsRadios">
-                    <h2 style="font-size: 16px;font-weight: normal;margin: 0;padding-top: 10px;line-height: 30px;">
-                        请选择支付方式
-                    </h2>
-                </label>
-                <div class="radio">
-                    <label>
-                        <input type="radio" name="payMethod" id="optionsRadios1" value="wxpay" checked> 微信
-                    </label>
-                </div>
-                <div class="radio">
-                    <label>
-                        <input type="radio" name="payMethod" id="optionsRadios2" value="alipay">支付宝
-                    </label>
-                </div>
-                <button class="btn btn-primary" id="confirmPay">点击付款</button>
-            </div>
-        </div>
+<div style="padding: 20px">
+    <h2 class="page-header">
+        订单详情
+    </h2>
+    <div style="line-height: 30px;">
+        <div>商品名称: {{$order->name}}</div>
+        <div>商品描述: {{$order->descrition}}</div>
+        <div>订单号: {{$order->order_no}}</div>
+        <div>交易金额: {{$order->money}}元</div>
     </div>
+    <div style="margin-bottom: 20px;">
+        <label for="optionsRadios">
+            <h2 style="font-size: 16px;font-weight: normal;margin: 0;padding-top: 10px;line-height: 30px;">
+                请选择支付方式
+            </h2>
+        </label>
+        <div class="radio">
+            <label>
+                <input type="radio" name="payMethod" id="optionsRadios1" value="wxpay" checked> 微信
+            </label>
+        </div>
+        <div class="radio">
+            <label>
+                <input type="radio" name="payMethod" id="optionsRadios2" value="alipay">支付宝
+            </label>
+        </div>
+        <button class="btn btn-primary" id="confirmPay">点击付款</button>
+    </div>
+</div>
     <!-- 模态框（Modal） -->
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">

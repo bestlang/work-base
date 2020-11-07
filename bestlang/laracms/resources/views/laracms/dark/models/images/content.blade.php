@@ -1,5 +1,7 @@
 @extends('laracms::dark.layouts.app')
-
+@section('title')
+    {{$content->title}}
+@endsection
 @section('content')
     <div class="l-content container">
         <div class="l-content-inner l-min-height">

@@ -3,8 +3,6 @@
 @section('content')
 
     <div class="container" id="content-container">
-        {{--{{ auth()->user()->can('privileges permissions') }}--}}
-        {{--{{ auth()->user()->can('cms list contents') }}--}}
 
         <div class="row">
             <main class="col-md-8">
@@ -91,7 +89,7 @@
                                 <article class="article-item">
                                     <div class="gallery-article">
                                         <h3 class="article-title">
-                                            <a href="{{route('content', $content->id)}}" >{{$content->title}}</a>
+                                            <a href="{{route('content', $content->id)}}">{{$content->title}}</a>
                                         </h3>
                                         <div class="row">
                                             @foreach($content->ext['album'] as $index => $album)
@@ -134,7 +132,7 @@
                                             </a>
                                         </div>
                                         <div class="media-body">
-                                            <h3 class="article-title">
+                                            <h3 class="article-title underline">
                                                 <a href="{{route('content', $content->id)}}">[{{$content->channel->name}}]{{$content->title}}</a>
                                             </h3>
                                             <div class="article-intro hidden-xs">
@@ -263,53 +261,4 @@
             </aside>
         </div>
     </div>
-
-    {{--<div class="container hidden-xs j-partner">--}}
-        {{--<div class="panel panel-default">--}}
-            {{--<!-- S 合作伙伴 -->--}}
-            {{--<div class="panel-heading">--}}
-                {{--<h3 class="panel-title">--}}
-                    {{--合作伙伴--}}
-                    {{--<small>感谢以下的合作伙伴的大力支持</small>--}}
-                    {{--<a href="https://wpa.qq.com/msgrd?v=3&uin=&site=&menu=yes" target="_blank" class="more">联系我们</a>--}}
-                {{--</h3>--}}
-            {{--</div>--}}
-            {{--<div class="panel-body">--}}
-                {{--<ul class="list-unstyled list-partner">--}}
-                    {{--<li><a href="/"><img src="https://cdn.demo.fastadmin.net/assets/addons/cms/img/logo/58.png" /></a></li>--}}
-                    {{--<li><a href="/"><img src="https://cdn.demo.fastadmin.net/assets/addons/cms/img/logo/360.png" /></a></li>--}}
-                    {{--<li><a href="/"><img src="https://cdn.demo.fastadmin.net/assets/addons/cms/img/logo/alipay.png" /></a></li>--}}
-                    {{--<li><a href="/"><img src="https://cdn.demo.fastadmin.net/assets/addons/cms/img/logo/baidu.png" /></a></li>--}}
-                    {{--<li><a href="/"><img src="https://cdn.demo.fastadmin.net/assets/addons/cms/img/logo/boc.png" /></a></li>--}}
-                    {{--<li><a href="/"><img src="https://cdn.demo.fastadmin.net/assets/addons/cms/img/logo/cctv.png" /></a></li>--}}
-                    {{--<li><a href="/"><img src="https://cdn.demo.fastadmin.net/assets/addons/cms/img/logo/didi.png" /></a></li>--}}
-                    {{--<li><a href="/"><img src="https://cdn.demo.fastadmin.net/assets/addons/cms/img/logo/iqiyi.png" /></a></li>--}}
-                    {{--<li><a href="/"><img src="https://cdn.demo.fastadmin.net/assets/addons/cms/img/logo/qq.png" /></a></li>--}}
-                    {{--<li><a href="/"><img src="https://cdn.demo.fastadmin.net/assets/addons/cms/img/logo/suning.png" /></a></li>--}}
-                    {{--<li><a href="/"><img src="https://cdn.demo.fastadmin.net/assets/addons/cms/img/logo/taobao.png" /></a></li>--}}
-                    {{--<li><a href="/"><img src="https://cdn.demo.fastadmin.net/assets/addons/cms/img/logo/tuniu.png" /></a></li>--}}
-                    {{--<li><a href="/"><img src="https://cdn.demo.fastadmin.net/assets/addons/cms/img/logo/weibo.png" /></a></li>--}}
-                {{--</ul>--}}
-            {{--</div>--}}
-            {{--<!-- E 合作伙伴 -->--}}
-
-            {{--<!-- S 友情链接 -->--}}
-            {{--<div class="panel-heading">--}}
-                {{--<h3 class="panel-title">友情链接--}}
-                    {{--<small>申请友情链接请务必先做好本站链接</small>--}}
-                    {{--<a href="https://wpa.qq.com/msgrd?v=3&uin=&site=&menu=yes" target="_blank" class="more">申请友链</a></h3>--}}
-            {{--</div>--}}
-            {{--<div class="panel-body">--}}
-                {{--<div class="list-unstyled list-links">--}}
-                    {{--<a href="" title="码云 - 码云">码云</a>--}}
-                    {{--<a href="https://gitee.com" title="码云">码云</a>--}}
-                    {{--<a href="https://github.com" title="码云">码云</a>--}}
-                    {{--<a href="" title="码云 - 码云">码云</a>--}}
-                    {{--<a href="" title="码云 - 码云">码云</a>--}}
-                {{--</div>--}}
-            {{--</div>--}}
-            {{--<!-- E 友情链接 -->--}}
-        {{--</div>--}}
-
-    {{--</div>--}}
 @endsection

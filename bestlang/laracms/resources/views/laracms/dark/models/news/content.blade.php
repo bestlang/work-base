@@ -1,5 +1,7 @@
 @extends('laracms::dark.layouts.app')
-
+@section('title')
+    {{$content->title}}
+@endsection
 @section('content')
     {{--dracula, solarized-dark, monokai-sublime, railscasts, agate, androidstudio--}}
     <link rel="stylesheet" href="https://highlightjs.org/static/demo/styles/monokai-sublime.css">

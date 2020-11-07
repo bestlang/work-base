@@ -17,13 +17,13 @@ class OrderController
     {
         $user = auth()->user();
         $orders = Order::where('user_id', $user->id)->orderBy('id', 'desc')->paginate(6);
-        return render('ucenter.orders', ['orders' => $orders]);
+        return render('order.orders', ['orders' => $orders]);
     }
 
     public function detail($order_no, Request $request)
     {
         $order = Order::where('order_no', $order_no)->first();
-        return render('ucenter.orderDetail', ['order' => $order]);
+        return render('order.orderDetail', ['order' => $order]);
     }
 
     public function generate(Request $request)

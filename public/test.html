@@ -5,7 +5,7 @@
     <title>鼠标移入下划线展开</title>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <style type="text/css">
-        #underline{
+        .underline{
             width: 200px;
             height: 50px;
             background: #ddd;
@@ -13,7 +13,7 @@
             position: relative;
         }
 
-        #underline:after{
+        .underline:after{
             content: "";
             width: 0;
             height: 1px;
@@ -24,7 +24,7 @@
             transition: all .8s;
         }
 
-        #underline:hover:after{
+        .underline:hover:after{
             left: 0%;
             width: 100%;
         }

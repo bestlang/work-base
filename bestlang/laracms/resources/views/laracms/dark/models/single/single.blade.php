@@ -1,4 +1,7 @@
 @extends('laracms::dark.layouts.app')
+@section('title')
+    {{$channel->name}}
+@endsection
 @section('content')
     <div class="container">
         <div class="row">

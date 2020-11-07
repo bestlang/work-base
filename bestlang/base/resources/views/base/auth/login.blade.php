@@ -20,7 +20,7 @@
                         <div class="form-group">
                             <label for="email">{{ __('E-Mail邮箱') }}</label>
                             <div>
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="" required autocomplete="email" autofocus>
+                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="luzhang@sniper-tech.com" required autocomplete="email" autofocus>
                                 @error('email')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -33,7 +33,7 @@
                             <label for="password" class="">{{ __('密码') }}</label>
 
                             <div>
-                                <input value="" id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
+                                <input value="11111111" id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
 
                                 @error('password')
                                     <span class="invalid-feedback" role="alert">
