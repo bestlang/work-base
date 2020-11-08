@@ -14,9 +14,6 @@ class SearchController extends Controller{
             ->orWhere('description', 'like', "%{$keyword}%")
             ->orWhere('keywords', 'like', "%{$keyword}%")
             ->with(['metas', 'tags'])->get();
-        $contents->map(function($content){
-            $content->ext = $content->getExt();
-        });
         return render('search.search', ['keyword' => $keyword, 'contents'=> $contents]);
     }
 }

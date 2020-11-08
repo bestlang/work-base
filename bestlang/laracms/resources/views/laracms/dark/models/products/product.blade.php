@@ -20,8 +20,8 @@
                         <div class="l-article-body">
                             <div class="row" style="padding: 0 15px 15px;margin-top: 20px;">
                                 <div class="col-sm-5 text-center">
-                                    @if(isset($content->ext['thumb']) && $thumb = $content->ext['thumb'])
-                                        <img src="{{$thumb}}" alt="{{$content->title}}" style="width: 100%;border: 1px solid #f1f1f1;" />
+                                    @if($content->thumb)
+                                        <img src="{{$content->thumb}}" alt="{{$content->title}}" style="width: 100%;border: 1px solid #f1f1f1;" />
                                     @endif
                                 </div>
                                 <div class="col-sm-7 l-buy-form" style="display: flex;flex-flow:column wrap;justify-content: space-between;">
@@ -30,7 +30,7 @@
                                         <input type="hidden" id="user_id" value="{{auth()->user()->id}}" />
                                     @endif
                                     <div><h1 style="font-size: 20px;margin-top: 0;">{{$content->title}}</h1></div>
-                                    <div><h4>¥ <span style="color: red;">{{ sprintf('%.2f', $content->ext['price'])}}</span></h4></div>
+                                    <div><h4>¥ <span style="color: red;">{{ sprintf('%.2f', $content->price)}}</span></h4></div>
                                     <div><h4>数量: <input name="num" id="num" class="num" type="number" min="1" value="1" step="1"></h4></div>
                                     <div><h4><button id="pay_btn" type="button" class="btn btn-primary">购买</button></h4></div>
                                 </div>
@@ -47,9 +47,6 @@
                         <div class="panel-body">
                             @foreach(laracms::position('文章详情右侧推荐一') as $key => $content)
                                 <div class="media">
-                                    {{--@if($thumb = $content->ext['thumb'])--}}
-                                    {{--<div><img src="{{$thumb}}" alt="" style="width: 100px;height: 100px;"></div>--}}
-                                    {{--@endif--}}
                                     <div class="media-left">{{$key+1}}</div>
                                     <div class="media-body">
                                         <div><a target="_self" href="{{route('content', $content->id)}}">{{$content->title}}</a></div>
@@ -65,9 +62,6 @@
                         <div class="panel-body">
                             @foreach(laracms::position('文章详情右侧推荐一') as $key => $content)
                                 <div class="media">
-                                    {{--@if($thumb = $content->ext['thumb'])--}}
-                                    {{--<div><img src="{{$thumb}}" alt="" style="width: 100px;height: 100px;"></div>--}}
-                                    {{--@endif--}}
                                     <div class="media-left">{{$key+1}}</div>
                                     <div class="media-body">
                                         <div><a target="_self" href="{{route('content', $content->id)}}">{{$content->title}}</a></div>

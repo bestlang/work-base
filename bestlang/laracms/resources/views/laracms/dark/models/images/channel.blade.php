@@ -43,8 +43,8 @@
                                             <div class="media-left">
                                                 <a href="{{route('content', $content->id)}}" style="width: 160px;display: block;">
                                                     <div class="embed-responsive embed-responsive-4by3 img-zoom">
-                                                        @if(isset($content->ext['thumb']) && $thumb = $content->ext['thumb'])
-                                                            <img src="{{$thumb}}" alt="{{$content->title}}"  />
+                                                        @if($content->thumb)
+                                                            <img src="{{$content->thumb}}" alt="{{$content->title}}"  />
                                                         @endif
                                                     </div>
                                                 </a>
@@ -85,9 +85,6 @@
                             <div class="panel-body">
                                 @foreach(laracms::position('文章详情右侧推荐一') as $key => $content)
                                     <div class="media">
-                                        {{--@if($thumb = $content->ext['thumb'])--}}
-                                        {{--<div><img src="{{$thumb}}" alt="" style="width: 100px;height: 100px;"></div>--}}
-                                        {{--@endif--}}
                                         <div class="media-left">{{$key+1}}</div>
                                         <div class="media-body">
                                             <div><a target="_self" href="{{route('content', $content->id)}}">{{$content->title}}</a></div>
@@ -103,9 +100,6 @@
                             <div class="panel-body">
                                 @foreach(laracms::position('文章详情右侧推荐一') as $key => $content)
                                     <div class="media">
-                                        {{--@if($thumb = $content->ext['thumb'])--}}
-                                        {{--<div><img src="{{$thumb}}" alt="" style="width: 100px;height: 100px;"></div>--}}
-                                        {{--@endif--}}
                                         <div class="media-left">{{$key+1}}</div>
                                         <div class="media-body">
                                             <div><a target="_self" href="{{route('content', $content->id)}}">{{$content->title}}</a></div>

@@ -8,11 +8,11 @@
             <div class="l-row">
                 <div class="l-block-content">
                     <h1 class="l-content-title">{{$content->title}}</h1>
-                    @if(isset($content->ext['album']) && $albums = $content->ext['album'])
+                    @if(isset($content->album))
                         <div class="swiper-container">
                             <div class="swiper-container gallery-top">
                                 <div class="swiper-wrapper">
-                                    @foreach($albums as $ab)
+                                    @foreach($content->album as $ab)
                                         <div class="swiper-slide" style="background-image:url('{{$ab['url']}}')">
                                         </div>
                                     @endforeach
@@ -22,7 +22,7 @@
                             </div>
                             <div class="swiper-container gallery-thumbs">
                                 <div class="swiper-wrapper">
-                                    @foreach($albums as $ab)
+                                    @foreach($content->album as $ab)
                                         <div class="swiper-slide" style="background-image:url('{{$ab['url']}}')"></div>
                                     @endforeach
                                 </div>

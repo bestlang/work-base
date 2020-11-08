@@ -44,9 +44,6 @@ class LaraCms
     public function channelContents($channelId, $count=5)
     {
         $contents = Content::where('channel_id', $channelId)->with(['metas', 'contents'])->limit($count)->get();
-        $contents->map(function($content){
-            $content->ext = $content->getExt();
-        });
         return $contents;
     }
 
@@ -57,9 +54,6 @@ class LaraCms
                 $query->where('channel.name','=',$channelName);
             });
         })->with(['metas', 'contents'])->limit($count)->get();
-        $contents->map(function($content){
-            $content->ext = $content->getExt();
-        });
         return $contents;
     }
 
@@ -79,9 +73,6 @@ class LaraCms
             return [];
         }
         $contents = Position::where('name', $name)->first()->contents()->with(['metas', 'contents'])->limit($count)->get();
-        $contents->map(function($content){
-            $content->ext = $content->getExt();
-        });
         return $contents;
     }
 
@@ -101,7 +92,6 @@ class LaraCms
         $groupContents = [];
         $positionContents = Arr::flatten($positionContents);
         foreach ($positionContents as $content){
-            $content->ext = $content->getExt();
             $groupContents[$content->channel_id][] = $content;
         }
         $channels->map(function($channel)use($groupContents){

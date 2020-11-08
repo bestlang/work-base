@@ -11,9 +11,6 @@ class TagController extends Controller{
     {
         $tag = Tag::where('name', $name)->first();
         $contents = $tag->contents()->with(['metas', 'tags'])->get();
-        $contents->map(function($content){
-            $content->ext = $content->getExt();
-        });
         return render('tag.tag', ['tag' => $tag, 'contents'=> $contents]);
     }
 }

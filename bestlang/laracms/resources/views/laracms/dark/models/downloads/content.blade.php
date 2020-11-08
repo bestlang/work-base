@@ -19,9 +19,9 @@
                         </div>
                         <div class="l-article-body">
                             <h1 class="l-content-title">{{$content->title}}</h1>
-                            <div>{!!  laracms::content($content, 'content') !!}</div>
+                            <div>{!! laracms::content($content, 'content') !!}</div>
                             <ul>
-                                @foreach($content->ext['attachment'] as $att)
+                                @foreach($content->attachment??[] as $att)
                                 <li><a href="{{$att['url']}}" target="_blank">{{$att['name']}}</a></li>
                                 @endforeach
                             </ul>
@@ -61,9 +61,6 @@
                         <div class="panel-body">
                             @foreach(laracms::position('文章详情右侧推荐一') as $key => $content)
                                 <div class="media">
-                                    {{--@if($thumb = $content->ext['thumb'])--}}
-                                        {{--<div><img src="{{$thumb}}" alt="" style="width: 100px;height: 100px;"></div>--}}
-                                    {{--@endif--}}
                                     <div class="media-left">{{$key+1}}</div>
                                     <div class="media-body">
                                         <div><a target="_self" href="{{route('content', $content->id)}}">{{$content->title}}</a></div>
@@ -79,9 +76,6 @@
                         <div class="panel-body">
                             @foreach(laracms::position('文章详情右侧推荐一') as $key => $content)
                                 <div class="media">
-                                    {{--@if($thumb = $content->ext['thumb'])--}}
-                                    {{--<div><img src="{{$thumb}}" alt="" style="width: 100px;height: 100px;"></div>--}}
-                                    {{--@endif--}}
                                     <div class="media-left">{{$key+1}}</div>
                                     <div class="media-body">
                                         <div><a target="_self" href="{{route('content', $content->id)}}">{{$content->title}}</a></div>

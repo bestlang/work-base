@@ -10,7 +10,7 @@ class OrderGenerator
     {
         try{
             $content = Content::find($content_id);
-            $price = $content->getExt()['price'];
+            $price = $content->price;
             $order = new Order;
             $order->user_id = auth()->user()->id;
             $order->name = $content->title;

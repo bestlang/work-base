@@ -16,8 +16,8 @@
                         <div class="carousel-inner" role="listbox">
                             @foreach(laracms::channelContents(32, 5) as $index => $content)
                                 <div class="item {{$index == 0 ? 'active':''}}">
-                                    <a href="{{$content->ext['url']}}">
-                                        <div class="carousel-img" style="background-image:url('{{$content->ext['image']}}');"></div>
+                                    <a href="{{$content->url}}">
+                                        <div class="carousel-img" style="background-image:url('{{$content->image}}');"></div>
                                         <div class="carousel-caption hidden-xs">
                                             <h3>{{$content->title}}</h3>
                                         </div>
@@ -53,9 +53,8 @@
                                     <div class="col-sm-3 col-xs-6">
                                         <a href="{{route('content', $content->id)}}" class="img-zoom">
                                             <div class="embed-responsive embed-responsive-4by3">
-                                                @if(isset($content->ext['thumb']) && $thumb = $content->ext['thumb'])
-                                                <img src="{{$thumb}}" alt="{{$content->title}}" class="embed-responsive-item">
-                                                @endif
+
+                                                <img src="{{$content->thumb}}" alt="{{$content->title}}" class="embed-responsive-item">
                                             </div>
                                         </a>
                                         <h5>{{$content->title}}</h5>
@@ -92,7 +91,7 @@
                                             <a href="{{route('content', $content->id)}}">{{$content->title}}</a>
                                         </h3>
                                         <div class="row">
-                                            @foreach($content->ext['album'] as $index => $album)
+                                            @foreach($content->album as $index => $album)
                                                 @if($index > 3)
                                                     @break
                                                 @endif
@@ -125,9 +124,7 @@
                                         <div class="media-left">
                                             <a href="{{route('content', $content->id)}}">
                                                 <div class="embed-responsive embed-responsive-4by3 img-zoom">
-                                                    @if(isset($content->ext['thumb']) && $thumb = $content->ext['thumb'])
-                                                    <img src="{{$thumb}}" alt="{{$content->title}}"  />
-                                                    @endif
+                                                    <img src="{{$content->thumb}}" alt="{{$content->title}}"  />
                                                 </div>
                                             </a>
                                         </div>
@@ -237,9 +234,6 @@
                         <div class="panel-body">
                             @foreach($channel->contents as $index => $content)
                                 <div class="media media-number">
-                                    {{--@if($thumb = $content->ext['thumb'])--}}
-                                        {{--<div><img src="{{$thumb}}" alt="" style="width: 100px;height: 100px;"></div>--}}
-                                    {{--@endif--}}
                                     <div class="media-left">
                                         <span class="num">{{$index+1}}</span>
                                     </div>

@@ -10,6 +10,7 @@ class Content extends Model
 {
     protected $table = 'cms_contents';
     protected $guarded = [];
+    protected $ext = [];
 
     public function channel()
     {
@@ -59,5 +60,13 @@ class Content extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function __get($key)
+    {
+        if(!count($this->ext)){
+            $this->ext = $this->getExt();
+        }
+        return $this->getAttribute($key) ?? $this->ext[$key] ?? '';
     }
 }
