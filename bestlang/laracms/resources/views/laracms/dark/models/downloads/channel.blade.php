@@ -10,11 +10,9 @@
                     {{$channel->name}}
                     <div class="more pull-right">
                         <ol class="breadcrumb">
-                            <!-- S 面包屑导航 -->
                             @foreach(laracms::breadcrumbs($channel) as $b)
                                 <li><a href="{{$b->url}}">{{$b->name}}</a></li>
                             @endforeach
-                            <!-- E 面包屑导航 -->
                         </ol>
                     </div>
                 </h1>
@@ -24,15 +22,6 @@
                             <div class="panel-heading">
                                 <h3 class="panel-title">
                                     <span>列表</span>
-                                    <div class="more">
-                                        <ul class="list-unstyled list-inline category-order clearfix">
-                                            <!-- S 排序 -->
-                                            <li><a href="?filter%5B0%5D=&amp;orderby=default&amp;orderway=asc" class="active">默认</a></li>
-                                            <li><a href="?filter%5B0%5D=&amp;orderby=views&amp;orderway=desc" class="">浏览次数</a></li>
-                                            <li><a href="?filter%5B0%5D=&amp;orderby=id&amp;orderway=desc" class="">发布日期</a></li>
-                                            <!-- E 排序 -->
-                                        </ul>
-                                    </div>
                                 </h3>
                             </div>
                             <div class="panel-body">

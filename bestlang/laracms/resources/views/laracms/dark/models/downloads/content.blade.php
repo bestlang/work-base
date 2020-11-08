@@ -20,11 +20,13 @@
                         <div class="l-article-body">
                             <h1 class="l-content-title">{{$content->title}}</h1>
                             <div>{!! laracms::content($content, 'content') !!}</div>
+                            @if(count($content->attachment))
                             <ul>
-                                @foreach($content->attachment??[] as $att)
+                                @foreach($content->attachment as $att)
                                 <li><a href="{{$att['url']}}" target="_blank">{{$att['name']}}</a></li>
                                 @endforeach
                             </ul>
+                            @endif
                         </div>
                     </div>
                     <div class="panel panel-default">

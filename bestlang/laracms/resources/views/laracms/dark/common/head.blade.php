@@ -16,7 +16,6 @@
     <script src="https://unpkg.zhimg.com/jquery@2.2.4/dist/jquery.js"></script>
     <script src="https://unpkg.zhimg.com/bootstrap@3.4.1/dist/js/bootstrap.min.js"></script>
     <script src="https://unpkg.zhimg.com/axios/dist/axios.min.js"></script>
-    {{--<script src="https://unpkg.zhimg.com/swiper.js@1.0.0/index.js"></script>--}}
     <script src="https://unpkg.zhimg.com/swiper/swiper-bundle.min.js"></script>
     <script>
         if(window.axios){
@@ -71,15 +70,12 @@
                             <li><a href="{{route('channel', 24)}}">苏州频道</a></li>
                         </ul>
                     </li>
-                    <li class="dropdown">
-                        <a href="javascript:" data-toggle="dropdown" >更多 <b class="caret"></b></a>
-                        <ul class="dropdown-menu" role="menu">
-                            <li><a href="">官网</a></li>
-                            <li><a href="">插件市场</a></li>
-                            <li><a href="">社区</a></li>
-                            <li><a href="">文档</a></li>
-                        </ul>
-                    </li>
+                    {{--<li class="dropdown">--}}
+                        {{--<a href="javascript:" data-toggle="dropdown" >更多 <b class="caret"></b></a>--}}
+                        {{--<ul class="dropdown-menu" role="menu">--}}
+                            {{--<li><a href=""></a></li>--}}
+                        {{--</ul>--}}
+                    {{--</li>--}}
                     <li>
                         <a href="{{route('channel', 25)}}">软件下载</a>
                     </li>

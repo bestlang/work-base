@@ -6,43 +6,57 @@
 
         <div class="row">
             <main class="col-md-8">
-                <div class="swiper-container index-focus">
-                    <div id="index-focus" class="carousel slide carousel-focus" data-ride="carousel">
-                        <ol class="carousel-indicators">
-                            @foreach(laracms::channelContents(32, 5) as $index => $content)
-                                <li data-target="#index-focus" data-slide-to="{{$index}}" class="{{$index == 0 ? 'active' : ''}}"></li>
-                            @endforeach
-                        </ol>
-                        <div class="carousel-inner" role="listbox">
-                            @foreach(laracms::channelContents(32, 5) as $index => $content)
-                                <div class="item {{$index == 0 ? 'active':''}}">
-                                    <a href="{{$content->url}}">
-                                        <div class="carousel-img" style="background-image:url('{{$content->image}}');"></div>
-                                        <div class="carousel-caption hidden-xs">
-                                            <h3>{{$content->title}}</h3>
-                                        </div>
-                                    </a>
-                                </div>
-                            @endforeach
-                        </div>
-                        <a class="left carousel-control" href="#index-focus" role="button" data-slide="prev">
-                            <span class="icon-prev fa fa-chevron-left" aria-hidden="true"></span>
-                            <span class="sr-only">Previous</span>
-                        </a>
-                        <a class="right carousel-control" href="#index-focus" role="button" data-slide="next">
-                            <span class="icon-next fa fa-chevron-right" aria-hidden="true"></span>
-                            <span class="sr-only">Next</span>
-                        </a>
+                <div class="swiper-container">
+                    <div class="swiper-wrapper">
+                        @foreach(laracms::channelContents(32, 4) as $index => $content)
+                            <div class="swiper-slide">
+                                <a href="{{$content->url}}">
+                                    <div style="height: 100%;background:url('{{$content->image}}') scroll center/cover;"></div>
+                                    {{--<div class="carousel-caption hidden-xs"><h3>{{$content->title}}</h3></div>--}}
+                                </a>
+                            </div>
+                        @endforeach
                     </div>
+                    <!-- Add Pagination -->
+                    <div class="swiper-pagination"></div>
                 </div>
+                {{--<div class="swiper-container index-focus">--}}
+                    {{--<div id="index-focus" class="carousel slide carousel-focus" data-ride="carousel">--}}
+                        {{--<ol class="carousel-indicators">--}}
+                            {{--@foreach(laracms::channelContents(32, 5) as $index => $content)--}}
+                                {{--<li data-target="#index-focus" data-slide-to="{{$index}}" class="{{$index == 0 ? 'active' : ''}}"></li>--}}
+                            {{--@endforeach--}}
+                        {{--</ol>--}}
+                        {{--<div class="carousel-inner" role="listbox">--}}
+                            {{--@foreach(laracms::channelContents(32, 5) as $index => $content)--}}
+                                {{--<div class="item {{$index == 0 ? 'active':''}}">--}}
+                                    {{--<a href="{{$content->url}}">--}}
+                                        {{--<div class="carousel-img" style="background-image:url('{{$content->image}}');"></div>--}}
+                                        {{--<div class="carousel-caption hidden-xs">--}}
+                                            {{--<h3>{{$content->title}}</h3>--}}
+                                        {{--</div>--}}
+                                    {{--</a>--}}
+                                {{--</div>--}}
+                            {{--@endforeach--}}
+                        {{--</div>--}}
+                        {{--<a class="left carousel-control" href="#index-focus" role="button" data-slide="prev">--}}
+                            {{--<span class="icon-prev fa fa-chevron-left" aria-hidden="true"></span>--}}
+                            {{--<span class="sr-only">Previous</span>--}}
+                        {{--</a>--}}
+                        {{--<a class="right carousel-control" href="#index-focus" role="button" data-slide="next">--}}
+                            {{--<span class="icon-next fa fa-chevron-right" aria-hidden="true"></span>--}}
+                            {{--<span class="sr-only">Next</span>--}}
+                        {{--</a>--}}
+                    {{--</div>--}}
+                {{--</div>--}}
 
                 <div class="panel panel-default index-gallary">
                     <div class="panel-heading">
                         <h3 class="panel-title">
                             <span>热门图集</span>
-                            <div class="more">
-                                @channelLink(热门图集-19-查看更多)
-                            </div>
+                            {{--<div class="more">--}}
+                                {{--<a href="{{route('channel', 19)}}">更多</a>--}}
+                            {{--</div>--}}
                         </h3>
 
                     </div>
@@ -72,18 +86,14 @@
 
                             <div class="more hidden-xs">
                                 <ul class="list-unstyled list-inline">
-                                    <li>@channelLink(抖音攻略-7)</li>
-                                    <li>@channelLink(防疫指南-17)</li>
-                                    <li>@channelLink(苏州频道-24)</li>
-                                    <li>@channelLink(五花八门-15)</li>
-                                    <li>@channelLink(宝宝相册-19)</li>
+                                    {{--<li><a href=""></a></li>--}}
                                 </ul>
                             </div>
                         </h3>
                     </div>
                     <div class="panel-body p-0">
                         <div class="article-list">
-                            @foreach(laracms::latest('', 15) as $index => $content)
+                            @foreach(laracms::latest(null,15) as $index => $content)
                                 @if($content->model->id == 2)
                                 <article class="article-item">
                                     <div class="gallery-article">
@@ -256,3 +266,49 @@
         </div>
     </div>
 @endsection
+@push('css')
+<style>
+    .swiper-container {
+        width: 100%;
+        height: 340px;
+    }
+
+    .swiper-slide {
+        text-align: center;
+        font-size: 18px;
+        background: #fff;
+
+        /* Center slide text vertically */
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        -webkit-justify-content: center;
+        justify-content: center;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        -webkit-align-items: center;
+        align-items: center;
+    }
+    .swiper-slide a{
+        display: inline-block;
+        width: 100%;
+        height: 100%;
+    }
+</style>
+@endpush
+@push('script')
+    <script>
+        var swiper = new Swiper('.swiper-container', {
+            autoplay: true,
+            loop: true,
+            direction: 'vertical',
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
+        });
+    </script>
+@endpush

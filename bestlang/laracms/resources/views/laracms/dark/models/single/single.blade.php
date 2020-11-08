@@ -9,7 +9,9 @@
                 <div class="panel panel-default">
                     <div class="panel-heading"><h3>{{$channel->title}}</h3></div>
                     <div class="panel-body">
-                        {!! $channel->content !!}
+                        @if($channel->content)
+                            {!! $channel->content !!}
+                        @endif
                     </div>
                 </div>
             </div>

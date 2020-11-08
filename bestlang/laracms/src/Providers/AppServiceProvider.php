@@ -9,7 +9,7 @@ use BestLang\LaraCms\Console\Commands\LaraCms;
 
 use BestLang\LaraCms\Models\Cms\Order;
 use BestLang\LaraCms\Observers\Cms\OrderObserver;
-use Illuminate\Support\Facades\Blade;
+use Blade;
 use BestLang\WxPay\Pay\Contracts\OrderInterface;
 
 class AppServiceProvider extends ServiceProvider
@@ -59,6 +59,7 @@ class AppServiceProvider extends ServiceProvider
         $this->loadViewsFrom(__DIR__.'/../../resources/views/laracms', 'laracms');
 
         Blade::directive('channelLink', function ($expression) {
+            $expression = strval($expression);
             @list($channelName, $channelId, $as) = explode('-', $expression);
             if($as){
                 $channelName = $as;
