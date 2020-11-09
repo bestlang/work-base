@@ -29,6 +29,14 @@
             <div class="l-app">
                 <div class="l-icon-wrap">
                     <svg class="l-app-icon" aria-hidden="true">
+                        <use xlink:href="#iconzuzhijiagou"></use>
+                    </svg>
+                </div>
+                <div class="l-app-title">组织架构</div>
+            </div>
+            <div class="l-app">
+                <div class="l-icon-wrap">
+                    <svg class="l-app-icon" aria-hidden="true">
                         <use xlink:href="#iconwodetongshiyong"></use>
                     </svg>
                 </div>
