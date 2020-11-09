@@ -13,7 +13,7 @@ class UploadController extends Controller
     {
         $file = $request->file('file');
         $destinationPath = 'uploads/';
-        $filename = $file->getClientOriginalName();
+        $filename = time().'_'.rand(1,99999).'_'.$file->getClientOriginalName();
         $file->move($destinationPath, $filename);
         /*$serviceConfig = new Config(config('upyun.serviceName'), config('upyun.operatorName'), config('upyun.operatorPassword'));
         $client = new Upyun($serviceConfig);

@@ -14,8 +14,12 @@ class EmployeeController
     public function detail(Request $request)
     {
         $id = $request->input('id');
-        $user = Employee::with(['user', 'education', 'job'])->find($id);
-        return response()->ajax($user);
+        $employee = Employee::with(['user', 'education', 'job'])->find($id);
+        $employee->leaving = json_decode($employee->leaving)??[];
+        $employee->physical = json_decode($employee->physical)??[];
+        $employee->certificate = json_decode($employee->certificate)??[];
+        $employee->interview = json_decode($employee->interview)??[];
+        return response()->ajax($employee);
     }
     public function departmentEmployee(Request $request)
     {
@@ -127,7 +131,11 @@ class EmployeeController
             $user->employee->birthday = $request->input('birthday');
             $user->employee->birthday = $request->input('birthday');
             $user->employee->tag = $request->input('tag');
-
+            //入职材料
+            $user->employee->leaving = json_encode($request->input('leaving',[]));
+            $user->employee->physical = json_encode($request->input('physical',[]));
+            $user->employee->certificate = json_encode($request->input('certificate', []));
+            $user->employee->interview = json_encode($request->input('interview',[]));
 
             $user->push();
              $attr = [

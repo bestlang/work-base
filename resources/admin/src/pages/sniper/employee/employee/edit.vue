@@ -11,7 +11,7 @@
             <div class="l-block-body">
                 <el-tabs v-model="activeName" @tab-click="handleClick" type="border-card">
                     <el-tab-pane label="基本信息" name="basic">
-                        <el-form ref="form" :model="form" label-width="130px" style="width: 50%;overflow-y: visible;padding-top: 20px;">
+                        <el-form ref="form" :model="form" label-width="130px" style="width: 80%;overflow-y: visible;padding-top: 20px;">
                             <el-form-item label="所属部门*">
                                 <tree-select v-model="form.department_id" :multiple="false" :options="departments"  :default-expand-level="10" :normalizer="normalizer" />
                             </el-form-item>
@@ -175,6 +175,25 @@
                             </el-table>
                         <job style="margin-top: 20px;" v-show="showJobFlag" :default-data="job" @cancel="hideJobForm" @submit="restoreJob"></job>
                     </el-tab-pane>
+                    <el-tab-pane label="入职材料" name="materials">
+                        <el-form ref="form" :model="form" label-width="130px" style="width: 50%;overflow-y: visible;padding-top: 20px;">
+                            <!--leaving: '',-->
+                            <!--physical: '',-->
+                            <!--certificate: ''-->
+                            <el-form-item label="离职证明">
+                                <multiple-image-upload v-model="form.leaving"></multiple-image-upload>
+                            </el-form-item>
+                            <el-form-item label="体检证明">
+                                <multiple-image-upload v-model="form.physical"></multiple-image-upload>
+                            </el-form-item>
+                            <el-form-item label="学历证明">
+                                <multiple-image-upload v-model="form.certificate"></multiple-image-upload>
+                            </el-form-item>
+                            <el-form-item label="面试记录">
+                                <multiple-image-upload v-model="form.interview"></multiple-image-upload>
+                            </el-form-item>
+                        </el-form>
+                    </el-tab-pane>
                 </el-tabs>
             </div>
         </div>
@@ -186,6 +205,7 @@
     import TreeSelect from '@riophae/vue-treeselect'
     import '@riophae/vue-treeselect/dist/vue-treeselect.css'
     import imageUpload from "@/components/imageUpload"
+    import multipleImageUpload from "@/components/multipleImageUpload"
     import Education from '../components/Education'
     import Job from '../components/Job'
 
@@ -201,7 +221,7 @@
 
     export default {
         name: 'sniperEmployeeEdit',
-        components: { TreeSelect, imageUpload, Education, Job },
+        components: { TreeSelect, imageUpload, Education, Job, multipleImageUpload },
         data(){
             return {
                 activeName: 'basic',
@@ -221,7 +241,7 @@
                     birthday: '',
                     id_card: '',
                     email: '',
-                    password: '111111',
+                    password: '11111111',
                     /*school: '',
                     study_duration: '',
                     degree: '',*/
@@ -232,7 +252,13 @@
                     emergency_phone:'',
                     avatar: '',
                     educationHistory: [],
-                    jobHistory: []
+                    jobHistory: [],
+
+                    leaving: [],
+                    physical: [],
+                    certificate: [],
+                    interview: []
+
                 },
                 departments: [],
                 positions: [],
@@ -449,6 +475,11 @@
                     this.form.educationHistory = employee.education
                     // job
                     this.form.jobHistory = employee.job
+                    // rz
+                    this.form.leaving = employee.leaving
+                    this.form.physical = employee.physical
+                    this.form.certificate = employee.certificate
+                    this.form.interview = employee.interview
 
             },
             async getEmployeeDetail(id){

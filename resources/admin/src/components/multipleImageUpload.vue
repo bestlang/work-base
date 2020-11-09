@@ -42,17 +42,15 @@
             uploadRemove(file, fileList){
                 this.updated = this.vals.filter( item => { return item.url != file.url} );
                 this.$emit('input', this.updated)
-//                this.vals = updated
             },
             uploadSuccess(response, file, fileList){
                 const item = {description: '', url: response.data.file}
                 this.updated = [...this.updated, item]
                 this.$emit('input', this.updated)
-//                this.vals = updated
             }
         },
-        mounted(){
-            if(this.value){
+        watch:{
+            value(newVal){
                 this.vals = [...this.value]
                 this.updated = [...this.value]
             }
