@@ -11,6 +11,7 @@ use BestLang\Base\Exceptions\Handler as CustomExceptionHandler;
 use Illuminate\Database\Eloquent\Collection;
 use Validator;
 use BestLang\Base\Models\Permission;
+use Illuminate\Support\Facades\Schema;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -36,6 +37,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        Schema::defaultStringLength(191);
         Gate::before(function ($user, $ability) {
             /*
             foreach ($user->getPermissionsViaRoles() as $permission){

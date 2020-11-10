@@ -1,7 +1,7 @@
 <?php
 if(!function_exists('render')){
     function render($viewPath, $data=[]){
-        $theme = hashconfig::get('site', 'theme');
+        $theme = HashConfig::get('site', 'theme');
         /**
          $pathInfo = request()->getPathInfo();
         $cacheDir = '.cache';
