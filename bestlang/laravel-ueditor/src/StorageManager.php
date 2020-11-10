@@ -4,11 +4,11 @@ namespace BestLang\LaravelUEditor;
 
 use Illuminate\Contracts\Filesystem\Filesystem;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
 use BestLang\LaravelUEditor\Events\Uploaded;
 use BestLang\LaravelUEditor\Events\Uploading;
 use BestLang\LaravelUEditor\Events\Catched;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Str;
 
 /**
  * Class StorageManager.
@@ -350,7 +350,7 @@ class StorageManager
         }
 
         if (!str_contains($path, $filename)) {
-            $path = str_finish($path, '/').$filename;
+            $path = Str::finish($path, '/').$filename;
         }
 
         return $path;
