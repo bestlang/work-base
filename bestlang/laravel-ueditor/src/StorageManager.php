@@ -121,10 +121,9 @@ class StorageManager
 
     /**
      * Download a file.
-     *
-     * @param \Illuminate\Http\Request $request
-     *
-     * @return Array $info
+     * @param $url
+     * @param $config
+     * @return array|\Illuminate\Http\JsonResponse
      */
     private function download($url, $config)
     {
@@ -162,7 +161,7 @@ class StorageManager
         fclose($file);
 
         $info['file'] = $content;
-        $info['siez'] = strlen($content);
+        $info['size'] = strlen($content);
         return $info;
     }
 

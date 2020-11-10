@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'default' => env('FILESYSTEM_DRIVER', 'local'),
+    'default' => env('FILESYSTEM_DRIVER', 'public'),
 
     /*
     |--------------------------------------------------------------------------
@@ -63,6 +63,7 @@ return [
             'bucket' => env('AWS_BUCKET'),
             'url' => env('AWS_URL'),
         ],
+
         'oss' => [
                 'driver'        => 'oss',
                 'access_id'     => env('OSS_ACCESS_ID',''),
@@ -74,6 +75,7 @@ return [
                 'isCName'       => false,
                 'debug'         => true
         ],
+
         'upyun' => [
             'driver'        => 'upyun',
             'bucket'        => env('UP_SERVICE_NAME', ''),// 服务名字
@@ -82,6 +84,6 @@ return [
             'domain'        => env('UP_DOMAIN'), // 服务分配的域名
             'protocol'     => env('UP_PROTOCOL')//'https', // 服务使用的协议，如需使用 http，在此配置 http
         ],
-    ],
+    ]
 
 ];
