@@ -28,13 +28,15 @@ class UEditorController extends Controller
                     $upload['imageManagerListPath'],
                     $request->get('start'),
                     $request->get('size'),
-                    $upload['imageManagerAllowFiles']);
+                    $upload['imageManagerAllowFiles']
+                );
             case $upload['fileManagerActionName']:
                 return $storage->listFiles(
                     $upload['fileManagerListPath'],
                     $request->get('start'),
                     $request->get('size'),
-                    $upload['fileManagerAllowFiles']);
+                    $upload['fileManagerAllowFiles']
+                );
             case $upload['catcherActionName']:
                 return $storage->fetch($request);
             default:

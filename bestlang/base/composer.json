@@ -44,7 +44,7 @@
         "BestLang\\Base\\Providers\\EventServiceProvider"
       ],
       "aliases": {
-        "hashconfig": "BestLang\\Base\\Facades\\HashConfig"
+        "HashConfig": "BestLang\\Base\\Facades\\HashConfig"
       }
     }
   }

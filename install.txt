@@ -15,7 +15,7 @@ npm run dev
 npm run build
 
 发布资源
-php artisan BestLang:install
+php artisan LaraCms:install
 #php artisan vendor:publish --provider="BestLang\Base\Providers\AppServiceProvider" --force
 #php artisan vendor:publish --provider="BestLang\LaraCms\Providers\AppServiceProvider"
 #php artisan vendor:publish --provider="BestLang\LaravelUEditor\UEditorServiceProvider"

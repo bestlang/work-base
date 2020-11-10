@@ -21,19 +21,19 @@ class CmsContentMetasTableSeeder extends Seeder
             array (
                 'content_id' => 3,
                 'field' => 'thumb',
-                'value' => 'http://jetcdn.larashop.com/uploads/nv.jpg',
+                'value' => 'https://static.laracms.com/uploads/nv.jpg',
             ),
             1 => 
             array (
                 'content_id' => 2,
                 'field' => 'thumb',
-                'value' => 'http://jetcdn.larashop.com/uploads/6.png',
+                'value' => 'https://static.laracms.com/uploads/6.png',
             ),
             2 => 
             array (
                 'content_id' => 4,
                 'field' => 'thumb',
-                'value' => 'http://jetcdn.larashop.com/uploads/11.jpg',
+                'value' => 'https://static.laracms.com/uploads/11.jpg',
             ),
             3 => 
             array (
@@ -45,7 +45,7 @@ class CmsContentMetasTableSeeder extends Seeder
             array (
                 'content_id' => 5,
                 'field' => 'thumb',
-                'value' => 'http://jetcdn.larashop.com/uploads/13.jpeg',
+                'value' => 'https://static.laracms.com/uploads/13.jpeg',
             ),
             5 => 
             array (
@@ -57,7 +57,7 @@ class CmsContentMetasTableSeeder extends Seeder
             array (
                 'content_id' => 6,
                 'field' => 'thumb',
-                'value' => 'http://jetcdn.larashop.com/uploads/12.jpeg',
+                'value' => 'https://static.laracms.com/uploads/12.jpeg',
             ),
             7 => 
             array (
@@ -69,7 +69,7 @@ class CmsContentMetasTableSeeder extends Seeder
             array (
                 'content_id' => 7,
                 'field' => 'thumb',
-                'value' => 'http://jetcdn.larashop.com/uploads/13.jpeg',
+                'value' => 'https://static.laracms.com/uploads/13.jpeg',
             ),
             9 => 
             array (
@@ -81,7 +81,7 @@ class CmsContentMetasTableSeeder extends Seeder
             array (
                 'content_id' => 12,
                 'field' => 'thumb',
-                'value' => 'http://jetcdn.larashop.com/uploads/xrk.jpg',
+                'value' => 'https://static.laracms.com/uploads/xrk.jpg',
             ),
             11 => 
             array (
@@ -105,97 +105,97 @@ class CmsContentMetasTableSeeder extends Seeder
             array (
                 'content_id' => 15,
                 'field' => 'thumb',
-                'value' => 'http://jetcdn.larashop.com/uploads/xrk.jpg',
+                'value' => 'https://static.laracms.com/uploads/xrk.jpg',
             ),
             15 => 
             array (
                 'content_id' => 6,
                 'field' => 'thumb',
-                'value' => 'http://jetcdn.larashop.com/uploads/12.jpeg',
+                'value' => 'https://static.laracms.com/uploads/12.jpeg',
             ),
             16 => 
             array (
                 'content_id' => 7,
                 'field' => 'thumb',
-                'value' => 'http://jetcdn.larashop.com/uploads/13.jpeg',
+                'value' => 'https://static.laracms.com/uploads/13.jpeg',
             ),
             17 => 
             array (
                 'content_id' => 8,
                 'field' => 'thumb',
-                'value' => 'http://jetcdn.larashop.com/uploads/b.jpg',
+                'value' => 'https://static.laracms.com/uploads/b.jpg',
             ),
             18 => 
             array (
                 'content_id' => 9,
                 'field' => 'thumb',
-                'value' => 'http://jetcdn.larashop.com/uploads/11.jpg',
+                'value' => 'https://static.laracms.com/uploads/11.jpg',
             ),
             19 => 
             array (
                 'content_id' => 11,
                 'field' => 'thumb',
-                'value' => 'http://jetcdn.larashop.com/uploads/b1.jpg',
+                'value' => 'https://static.laracms.com/uploads/b1.jpg',
             ),
             20 => 
             array (
                 'content_id' => 13,
                 'field' => 'thumb',
-                'value' => 'http://jetcdn.larashop.com/uploads/xrk.jpg',
+                'value' => 'https://static.laracms.com/uploads/xrk.jpg',
             ),
             21 => 
             array (
                 'content_id' => 17,
                 'field' => 'thumb',
-                'value' => 'http://jetcdn.larashop.com/uploads/1111.jpg',
+                'value' => 'https://static.laracms.com/uploads/1111.jpg',
             ),
             22 => 
             array (
                 'content_id' => 18,
                 'field' => 'thumb',
-                'value' => 'http://jetcdn.larashop.com/uploads/xrk.jpg',
+                'value' => 'https://static.laracms.com/uploads/xrk.jpg',
             ),
             23 => 
             array (
                 'content_id' => 25,
                 'field' => 'thumb',
-                'value' => 'http://jetcdn.larashop.com/uploads/12.jpeg',
+                'value' => 'https://static.laracms.com/uploads/12.jpeg',
             ),
             24 => 
             array (
                 'content_id' => 26,
                 'field' => 'thumb',
-                'value' => 'http://jetcdn.larashop.com/uploads/b-3.jpg',
+                'value' => 'https://static.laracms.com/uploads/b-3.jpg',
             ),
             25 => 
             array (
                 'content_id' => 27,
                 'field' => 'thumb',
-                'value' => 'http://jetcdn.larashop.com/uploads/12.jpeg',
+                'value' => 'https://static.laracms.com/uploads/12.jpeg',
             ),
             26 => 
             array (
                 'content_id' => 29,
                 'field' => 'thumb',
-                'value' => 'http://jetcdn.larashop.com/uploads/b-3.jpg',
+                'value' => 'https://static.laracms.com/uploads/b-3.jpg',
             ),
             27 => 
             array (
                 'content_id' => 30,
                 'field' => 'thumb',
-                'value' => 'http://jetcdn.larashop.com/uploads/11.jpg',
+                'value' => 'https://static.laracms.com/uploads/11.jpg',
             ),
             28 => 
             array (
                 'content_id' => 31,
                 'field' => 'thumb',
-                'value' => 'http://jetcdn.larashop.com/uploads/b1.jpg',
+                'value' => 'https://static.laracms.com/uploads/b1.jpg',
             ),
             29 => 
             array (
                 'content_id' => 32,
                 'field' => 'thumb',
-                'value' => 'http://jetcdn.larashop.com/uploads/11.jpg',
+                'value' => 'https://static.laracms.com/uploads/11.jpg',
             ),
             30 => 
             array (
@@ -207,7 +207,7 @@ class CmsContentMetasTableSeeder extends Seeder
             array (
                 'content_id' => 49,
                 'field' => 'thumb',
-                'value' => 'http://jetcdn.larashop.com/uploads/13.jpeg',
+                'value' => 'https://static.laracms.com/uploads/13.jpeg',
             ),
             32 => 
             array (
@@ -237,7 +237,7 @@ class CmsContentMetasTableSeeder extends Seeder
             array (
                 'content_id' => 53,
                 'field' => 'thumb',
-                'value' => 'http://jetcdn.larashop.com/uploads/11.jpg',
+                'value' => 'https://static.laracms.com/uploads/11.jpg',
             ),
             37 => 
             array (
@@ -273,7 +273,7 @@ class CmsContentMetasTableSeeder extends Seeder
             array (
                 'content_id' => 58,
                 'field' => 'thumb',
-                'value' => 'http://jetcdn.larashop.com/uploads/b-3.jpg',
+                'value' => 'https://static.laracms.com/uploads/b-3.jpg',
             ),
             43 => 
             array (
@@ -285,7 +285,7 @@ class CmsContentMetasTableSeeder extends Seeder
             array (
                 'content_id' => 59,
                 'field' => 'thumb',
-                'value' => 'http://jetcdn.larashop.com/uploads/b-3.jpg',
+                'value' => 'https://static.laracms.com/uploads/b-3.jpg',
             ),
             45 => 
             array (
@@ -297,7 +297,7 @@ class CmsContentMetasTableSeeder extends Seeder
             array (
                 'content_id' => 60,
                 'field' => 'thumb',
-                'value' => 'http://jetcdn.larashop.com/uploads/b-3.jpg',
+                'value' => 'https://static.laracms.com/uploads/b-3.jpg',
             ),
             47 => 
             array (
@@ -315,7 +315,7 @@ class CmsContentMetasTableSeeder extends Seeder
             array (
                 'content_id' => 61,
                 'field' => 'thumb',
-                'value' => 'http://jetcdn.larashop.com/uploads/12.jpeg',
+                'value' => 'https://static.laracms.com/uploads/12.jpeg',
             ),
             50 => 
             array (
@@ -327,13 +327,13 @@ class CmsContentMetasTableSeeder extends Seeder
             array (
                 'content_id' => 62,
                 'field' => 'thumb',
-                'value' => 'http://jetcdn.larashop.com/uploads/home-select-fill2.png',
+                'value' => 'https://static.laracms.com/uploads/home-select-fill2.png',
             ),
             52 => 
             array (
                 'content_id' => 63,
                 'field' => 'image',
-                'value' => 'http://jetcdn.larashop.com/uploads/屏幕快照 2020-07-10 下午9.53.39.png',
+                'value' => 'https://static.laracms.com/uploads/屏幕快照 2020-07-10 下午9.53.39.png',
             ),
             53 => 
             array (
@@ -345,7 +345,7 @@ class CmsContentMetasTableSeeder extends Seeder
             array (
                 'content_id' => 64,
                 'field' => 'image',
-                'value' => 'http://jetcdn.larashop.com/uploads/1000417-1.png',
+                'value' => 'https://static.laracms.com/uploads/1000417-1.png',
             ),
             55 => 
             array (
@@ -357,7 +357,7 @@ class CmsContentMetasTableSeeder extends Seeder
             array (
                 'content_id' => 65,
                 'field' => 'image',
-                'value' => 'http://jetcdn.larashop.com/uploads/1000417-3.png',
+                'value' => 'https://static.laracms.com/uploads/1000417-3.png',
             ),
             57 => 
             array (
@@ -369,25 +369,25 @@ class CmsContentMetasTableSeeder extends Seeder
             array (
                 'content_id' => 66,
                 'field' => 'thumb',
-                'value' => 'http://jetcdn.larashop.com/uploads/xrk.jpg',
+                'value' => 'https://static.laracms.com/uploads/xrk.jpg',
             ),
             59 => 
             array (
                 'content_id' => 67,
                 'field' => 'thumb',
-                'value' => 'http://jetcdn.larashop.com/uploads/xrk.jpg',
+                'value' => 'https://static.laracms.com/uploads/xrk.jpg',
             ),
             60 => 
             array (
                 'content_id' => 28,
                 'field' => 'thumb',
-                'value' => 'http://jetcdn.larashop.com/uploads/xrk.jpg',
+                'value' => 'https://static.laracms.com/uploads/xrk.jpg',
             ),
             61 => 
             array (
                 'content_id' => 23,
                 'field' => 'thumb',
-                'value' => 'http://jetcdn.larashop.com/uploads/xrk.jpg',
+                'value' => 'https://static.laracms.com/uploads/xrk.jpg',
             ),
             62 => 
             array (
@@ -423,13 +423,13 @@ class CmsContentMetasTableSeeder extends Seeder
             array (
                 'content_id' => 68,
                 'field' => 'thumb',
-                'value' => 'http://jetcdn.larashop.com/uploads/beau.png',
+                'value' => 'https://static.laracms.com/uploads/beau.png',
             ),
             68 => 
             array (
                 'content_id' => 69,
                 'field' => 'image',
-                'value' => 'http://jetcdn.larashop.com/uploads/屏幕快照 2020-07-10 下午9.27.49.png',
+                'value' => 'https://static.laracms.com/uploads/屏幕快照 2020-07-10 下午9.27.49.png',
             ),
             69 => 
             array (
@@ -441,7 +441,7 @@ class CmsContentMetasTableSeeder extends Seeder
             array (
                 'content_id' => 70,
                 'field' => 'image',
-                'value' => 'http://jetcdn.larashop.com/uploads/屏幕快照 2020-07-10 下午9.50.35.png',
+                'value' => 'https://static.laracms.com/uploads/屏幕快照 2020-07-10 下午9.50.35.png',
             ),
             71 => 
             array (
@@ -477,25 +477,25 @@ class CmsContentMetasTableSeeder extends Seeder
             array (
                 'content_id' => 74,
                 'field' => 'thumb',
-                'value' => 'http://jetcdn.larashop.com/uploads/xrk.jpg',
+                'value' => 'https://static.laracms.com/uploads/xrk.jpg',
             ),
             77 => 
             array (
                 'content_id' => 73,
                 'field' => 'thumb',
-                'value' => 'http://jetcdn.larashop.com/uploads/xrk.jpg',
+                'value' => 'https://static.laracms.com/uploads/xrk.jpg',
             ),
             78 => 
             array (
                 'content_id' => 72,
                 'field' => 'thumb',
-                'value' => 'http://jetcdn.larashop.com/uploads/xrk.jpg',
+                'value' => 'https://static.laracms.com/uploads/xrk.jpg',
             ),
             79 => 
             array (
                 'content_id' => 71,
                 'field' => 'thumb',
-                'value' => 'http://jetcdn.larashop.com/uploads/xrk.jpg',
+                'value' => 'https://static.laracms.com/uploads/xrk.jpg',
             ),
             80 => 
             array (

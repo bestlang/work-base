@@ -43,7 +43,7 @@ class UEditorServiceProvider extends ServiceProvider
     {
         $this->mergeConfigFrom(__DIR__.'/config/ueditor.php', 'ueditor');
         $this->app->singleton('ueditor.storage', function ($app) {
-            return new StorageManager(Storage::disk($app['config']->get('ueditor.disk', 'public')));
+            return new StorageManager(Storage::disk($app['config']->get('filesystems.default', 'local')));
         });
     }
 

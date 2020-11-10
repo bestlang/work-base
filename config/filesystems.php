@@ -79,8 +79,8 @@ return [
             'bucket'        => env('UP_SERVICE_NAME', ''),// 服务名字
             'operator'      => env('UP_OPERATOR_NAME', ''), // 操作员的名字
             'password'      => env('UP_OPERATOR_PASSWORD',''), // 操作员的密码
-            'domain'        => 'jetcdn.larashop.com', // 服务分配的域名
-            'protocol'     => 'https', // 服务使用的协议，如需使用 http，在此配置 http
+            'domain'        => env('UP_DOMAIN'), // 服务分配的域名
+            'protocol'     => env('UP_PROTOCOL')//'https', // 服务使用的协议，如需使用 http，在此配置 http
         ],
     ],
 
