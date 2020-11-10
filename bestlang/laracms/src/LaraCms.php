@@ -30,7 +30,7 @@ class LaraCms
         $ancestors->shift();
         $home = new Channel();
         $home->name = '首页';
-        $home->url = '/';
+        $home->url = route('cms');
         $ancestors->prepend($home);
         return $ancestors;
     }

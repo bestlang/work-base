@@ -200,9 +200,7 @@ class DingTalk extends Command
                                 ]);
                         }
                         $offset += $limit;
-                        //usleep(100);
                     }
-                    //usleep(200);
                 }
 
             }else if($act == 'process'){

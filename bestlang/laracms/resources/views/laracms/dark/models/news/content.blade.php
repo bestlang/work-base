@@ -125,6 +125,7 @@
         background: #fff;
         padding: 0;
         border: none;
+        max-height: 99999px!important;
     }
     #comment_submit{
         margin-top: 10px;

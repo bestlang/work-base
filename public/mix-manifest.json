@@ -1,6 +1,4 @@
 {
-    "/vendor/base/app.js": "/vendor/base/app.js",
     "/vendor/laracms/dark/front.css": "/vendor/laracms/dark/front.css",
-    "/vendor/laracms/dark/app.js": "/vendor/laracms/dark/app.js",
-    "/vendor/sniper/app.js": "/vendor/sniper/app.js"
+    "/bestlang/laracms/resources/assets/dark/front.css": "/bestlang/laracms/resources/assets/dark/front.css"
 }

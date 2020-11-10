@@ -19,11 +19,16 @@ const sniperPath = 'sniper/employee/resources/assets'
 
 // mix.less('resources/less/cms.less', 'public/css');
 
-mix.js(basePath + '/js/app.js', 'public/vendor/base/')
+//mix.js(basePath + '/js/app.js', 'public/vendor/base/')
 //
-mix.js(laraCMSPath + '/dark/js/app.js', 'public/vendor/laracms/dark/')
-    .sass(laraCMSPath + '/dark/sass/front.scss', 'public/vendor/laracms/dark/front.css')
-    .copy(laraCMSPath + '/dark/images', 'public/')
+mix//.js(laraCMSPath + '/dark/js/app.js', 'public/vendor/laracms/dark/')
+    //.sass(laraCMSPath + '/dark/sass/front.scss', 'public/vendor/laracms/dark/front.css')
+    //.copy(laraCMSPath + '/dark/images', 'public/')
 
-mix.js(sniperPath + '/js/app.js', 'public/vendor/sniper/')
-    .copy(sniperPath + '/images', 'public/vendor/sniper/images/')
+mix.less(laraCMSPath + '/dark/less/front.less', 'public/vendor/laracms/dark/front.css')
+    .copy('public/vendor/laracms/dark/front.css', laraCMSPath+'/dark/front.css')
+
+//mix.js(sniperPath + '/js/app.js', 'public/vendor/sniper/')
+    //.copy(sniperPath + '/images', 'public/vendor/sniper/images/')
+
+
