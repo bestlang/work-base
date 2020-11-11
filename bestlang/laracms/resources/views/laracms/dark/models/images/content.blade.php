@@ -40,7 +40,7 @@
                     <div class="panel-body">
                         <div>
                             @foreach($comments as $comment)
-                                <p>{{$comment->user->name}} says:{{$comment->content}}</p>
+                                <p>{{$comment->user?$comment->user->name:''}} says:{{$comment->content}}</p>
                             @endforeach
                         </div>
                         @guest
