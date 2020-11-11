@@ -1,4 +1,4 @@
-<script src="https://unpkg.zhimg.com/jquery@2.2.4/dist/jquery.js"></script>
+<script src="https://unpkg.zhimg.com/jquery@2.2.4/dist/jquery.min.js"></script>
 <script src="https://unpkg.zhimg.com/bootstrap@3.4.1/dist/js/bootstrap.min.js"></script>
 <link href="https://unpkg.zhimg.com/bootstrap@3.4.1/dist/css/bootstrap.min.css" rel="stylesheet">
 <script src="https://unpkg.zhimg.com/axios/dist/axios.min.js"></script>

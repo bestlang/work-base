@@ -20,35 +20,6 @@
                     <!-- Add Pagination -->
                     <div class="swiper-pagination"></div>
                 </div>
-                {{--<div class="swiper-container index-focus">--}}
-                    {{--<div id="index-focus" class="carousel slide carousel-focus" data-ride="carousel">--}}
-                        {{--<ol class="carousel-indicators">--}}
-                            {{--@foreach(laracms::channelContents(32, 5) as $index => $content)--}}
-                                {{--<li data-target="#index-focus" data-slide-to="{{$index}}" class="{{$index == 0 ? 'active' : ''}}"></li>--}}
-                            {{--@endforeach--}}
-                        {{--</ol>--}}
-                        {{--<div class="carousel-inner" role="listbox">--}}
-                            {{--@foreach(laracms::channelContents(32, 5) as $index => $content)--}}
-                                {{--<div class="item {{$index == 0 ? 'active':''}}">--}}
-                                    {{--<a href="{{$content->url}}">--}}
-                                        {{--<div class="carousel-img" style="background-image:url('{{$content->image}}');"></div>--}}
-                                        {{--<div class="carousel-caption hidden-xs">--}}
-                                            {{--<h3>{{$content->title}}</h3>--}}
-                                        {{--</div>--}}
-                                    {{--</a>--}}
-                                {{--</div>--}}
-                            {{--@endforeach--}}
-                        {{--</div>--}}
-                        {{--<a class="left carousel-control" href="#index-focus" role="button" data-slide="prev">--}}
-                            {{--<span class="icon-prev fa fa-chevron-left" aria-hidden="true"></span>--}}
-                            {{--<span class="sr-only">Previous</span>--}}
-                        {{--</a>--}}
-                        {{--<a class="right carousel-control" href="#index-focus" role="button" data-slide="next">--}}
-                            {{--<span class="icon-next fa fa-chevron-right" aria-hidden="true"></span>--}}
-                            {{--<span class="sr-only">Next</span>--}}
-                        {{--</a>--}}
-                    {{--</div>--}}
-                {{--</div>--}}
 
                 <div class="panel panel-default index-gallary">
                     <div class="panel-heading">

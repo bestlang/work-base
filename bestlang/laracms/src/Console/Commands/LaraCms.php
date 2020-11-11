@@ -15,7 +15,7 @@ class LaraCms extends Command
      *
      * @var string
      */
-    protected $description = 'LaraCms,install';
+    protected $description = 'LaraCms:install';
 
     /**
      * Create a new command instance.

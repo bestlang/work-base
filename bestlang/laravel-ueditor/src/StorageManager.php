@@ -9,6 +9,7 @@ use BestLang\LaravelUEditor\Events\Uploading;
 use BestLang\LaravelUEditor\Events\Catched;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Str;
+use Arr;
 
 /**
  * Class StorageManager.
@@ -303,11 +304,11 @@ class StorageManager
         foreach ($prefixes as $prefix) {
             if ($action == $upload[$prefix.'ActionName']) {
                 $config = [
-                    'action' => array_get($upload, $prefix.'ActionName'),
-                    'field_name' => array_get($upload, $prefix.'FieldName'),
-                    'max_size' => array_get($upload, $prefix.'MaxSize'),
-                    'allow_files' => array_get($upload, $prefix.'AllowFiles', []),
-                    'path_format' => array_get($upload, $prefix.'PathFormat'),
+                    'action' => Arr::get($upload, $prefix.'ActionName'),
+                    'field_name' => Arr::get($upload, $prefix.'FieldName'),
+                    'max_size' => Arr::get($upload, $prefix.'MaxSize'),
+                    'allow_files' => Arr::get($upload, $prefix.'AllowFiles', []),
+                    'path_format' => Arr::get($upload, $prefix.'PathFormat'),
                 ];
 
                 break;

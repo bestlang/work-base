@@ -2,7 +2,7 @@
     <div class="l-menu-wrap">
         <!--™-->
         <div class="ls-top-logo" v-show="!isCollapse">
-            <p>{{appName}}管理面板</p>
+            <p>{{appName}}</p>
         </div>
         <div class="ls-top-logo-narrow" v-show="isCollapse">{{appShortName}}</div>
         <el-menu

@@ -12,9 +12,10 @@
     <meta name="csrf-token" content="{{csrf_token()}}">
 
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon"/>
-    <script src="/vendor/laracms/dark/app.js"></script>
 </head>
 <body>
+<script src="https://unpkg.zhimg.com/jquery@2.2.4/dist/jquery.min.js"></script>
+<script src="https://unpkg.zhimg.com/axios/dist/axios.min.js"></script>
 <script type="text/javascript">
     var order_no = "{{$order_no}}"
     $(function(){
