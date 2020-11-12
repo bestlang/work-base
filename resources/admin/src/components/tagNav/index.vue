@@ -39,11 +39,6 @@
                 let mcs = this.$router.getMatchedComponents()
                 let path = this.$route.path
                 let fullPath = this.$route.fullPath
-                //对'/'特殊处理
-                if(path == '/'){
-                    path = this.defaultPage
-                    fullPath = this.defaultPage
-                }
                     // ["name","meta","path","hash","query","params","fullPath","matched"]
                 // 如果需要缓存则必须使用组件自身的name，而不是router的name
                 this.$store.commit("tagNav/addTagNav", {
@@ -105,7 +100,6 @@
     .cur{
         border-top: 2.5px solid #2e5f80;
         background: #fff;
-        font-weight: normal;
     }
     .tag-nav{
         width: 100%;

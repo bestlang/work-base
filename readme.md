@@ -84,5 +84,8 @@ mysql> SELECT * FROM `ware_item`;
 4 rows in set (0.00 sec)
 
 ----------------------
+一个比较好看的后台eleAdmin
+----------------------
 注册模板directive控制页面内容显示是否全面
-directive里面包含判断是否处于会员期内 或者是否已经购买
+directive里面包含判断是否处于会员期内
+

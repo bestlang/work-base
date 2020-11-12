@@ -86,6 +86,9 @@ class ChannelController extends Controller
             if(!auth()->user()->can('cms edit channels')){
                 return response()->error('没有权限!', 4012);
             }
+            if($id == $parent_id){
+                return response('更新失败！父栏目不能是自身');
+            }
             $channel = Channel::find($id);
             if($parent_id){
                 $parent = Channel::find($parent_id);

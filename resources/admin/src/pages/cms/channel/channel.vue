@@ -56,13 +56,13 @@
           </span>
         </el-tree>
       </div>
-      <div class="l-tree-content" v-if="showChannelChildren">
+      <div class="l-tree-content" v-if="showChildren">
         <div class="l-block">
             <div class="l-block-header" v-if="parentChannel && parentChannel.id">
-                <span><i class="iconfont">&#xe64c;</i> {{parentChannel.hasOwnProperty('name') ? parentChannel.name : ''}}</span>
+                <span><i class="iconfont">&#xe64c;</i> {{parentChannel.name ? parentChannel.name : ''}}</span>
                 <el-button-group>
                   <el-button style="padding: 3px 10px" type="text" @click="editChannel(parentChannel)">编辑</el-button>
-                  <el-button style="padding: 3px 10px" type="text" @click="addChannel(parentChannel)">新增子栏目</el-button>
+                  <el-button style="padding: 3px 10px" type="text" @click="addChannel(parentChannel)">新增栏目</el-button>
                 </el-button-group>
             </div>
             <div class="l-block-header" v-if="!channels.length">
@@ -94,22 +94,26 @@
             </div>
         </div>
       </div>
-      <div class="l-tree-content" v-if="!showChannelChildren">
-        <div class="l-block" v-if="!showChannelChildren">
+      <div class="l-tree-content" v-if="!showChildren">
+        <div class="l-block" v-if="!showChildren">
           <div class="l-block-header" v-if="parentChannel && parentChannel.id">
               <span>
                 <span v-if="channelForm.id"><i class="iconfont">&#xe64c;</i> {{channelForm.name}}</span>
                 <span v-else>
                     <!--「<i class="iconfont">&#xe64c;</i> 」-->
-                  在 <span style="font-weight: 700">“{{parentChannel.name}}”</span>下新增栏目</span>
+                  <!--在 <span style="font-weight: 700">“{{parentChannel.name}}”</span>下新增栏目-->
+                </span>
                 </span>
               <el-button-group>
-                <el-button style="padding: 3px 10px" type="text" @click="addChannel(channelForm)">新增子栏目</el-button>
+                <el-button style="padding: 3px 10px" type="text" @click="addChannel(channelForm)">新增栏目</el-button>
                 <el-button style="padding: 3px 10px" type="text" @click="deleteChannel(channelForm)">删除</el-button>
               </el-button-group>
           </div>
           <div class="l-block-body">
             <el-form :model="channelForm" label-width="100px">
+                <el-form-item label="上级栏目">
+                    <tree-select v-model="channelForm.parent_id" :multiple="false" :options="channelsTree"  :default-expand-level="10" :normalizer="normalizer" />
+                </el-form-item>
               <el-form-item label="模型">
                 <el-select v-model="channelForm.model_id" placeholder="请选择">
                   <el-option
@@ -124,7 +128,6 @@
                 <el-input v-model="channelForm.name" autocomplete="off"></el-input>
               </el-form-item>
             <el-form-item label="栏目模板">
-                <!--<el-input v-model="channelForm.template" autocomplete="off"></el-input>-->
                 <el-select v-model="channelForm.template" placeholder="请选择">
                     <el-option
                             v-for="(item, index) in optionalTemplatePath"
@@ -143,7 +146,6 @@
                                 :value="item">
                         </el-option>
                     </el-select>
-                    <!--<el-input v-model="channelForm.content_template" autocomplete="off"></el-input>-->
                 </el-form-item>
               <template v-for="(item, index) in customChannelFields">
                 <el-form-item v-if="item.type=='text'" :label="item.label">
@@ -159,7 +161,7 @@
                 </el-form-item>
                 <el-form-item v-if="item.type=='content'" class="l-mb-22" :label="item.label">
                   <div>
-                    <vue-ueditor-wrap v-model="channelForm[item.field]" :config="ueditorConfig"></vue-ueditor-wrap>
+                    <vue-ueditor-wrap v-model="channelForm[item.field]" :config="uConfig"></vue-ueditor-wrap>
                   </div>
                 </el-form-item>
               </template>
@@ -179,13 +181,16 @@
   </div>
 </template>
 <script>
-  import ueditorConfig from "sysStore/ueditor"
-  import VueUeditorWrap from 'vue-ueditor-wrap'
-  import {mapState, mapGetters} from 'vuex'
+  import uConfig from "sysStore/ueditor"
+  import VueUEditorWrap from 'vue-ueditor-wrap'
+  import {mapGetters} from 'vuex'
   import api from 'sysApi'
 
+  import TreeSelect from '@riophae/vue-treeselect'
+  import '@riophae/vue-treeselect/dist/vue-treeselect.css'
+
   export default {
-      name: 'cmsChannel',
+    name: 'cmsChannel',
     data() {
       return {
         checkList:[],
@@ -196,7 +201,7 @@
           label: 'name'
         },
         title: '添加子栏目',
-        showChannelChildren: true,
+        showChildren: true,
         channelForm:{
           id: null,
           model_id: '',
@@ -205,7 +210,8 @@
           positions:[]
         },
         customChannelFields: [],
-        ueditorConfig: ueditorConfig
+        uConfig: uConfig,
+        channelsTree: []
       }
     },
     watch:{
@@ -214,7 +220,8 @@
         }
     },
     components:{
-        VueUeditorWrap
+        'vue-ueditor-wrap':VueUEditorWrap,
+        TreeSelect
     },
     computed:{
         ...mapGetters([
@@ -226,13 +233,20 @@
         ])
     },
     methods: {
+        //tree select 节点数据适应
+        normalizer(node) {
+            return {
+                id: node.id,
+                label: node.name,
+                children: node.children
+            }
+        },
       async loadTemplatePath(model_id){
             let {data} = await api.getOptionalTemplatePath({model_id});
-            console.log(JSON.stringify(data))
             this.optionalTemplatePath = data;
         },
       addChannel(row){
-        this.showChannelChildren = false;
+        this.showChildren = false;
         this.channelForm = Object.assign({}, {
           id: null,
           parent_id: row.id,
@@ -245,8 +259,8 @@
         this.customChannelFields = []
       },
       editChannel(row){
-        this.loadWholeChannel(row)
-        this.showChannelChildren = false;
+        this.getChannelWhole(row)
+        this.showChildren = false;
 
         this.$store.dispatch(this.$types.cmsCurrentChannel, row)
       },
@@ -259,7 +273,7 @@
           let res = await api.deleteCmsChannel({id: row.id})
           if(res.success){
             this.$store.dispatch(this.$types.cmsChannels, [row.parent_id, 0]);
-            this.showChannelChildren = true;
+            this.showChildren = true;
             this.$message({
               type: 'success',
               message: '删除成功!'
@@ -275,11 +289,11 @@
       handleNodeClick(node, ...$params){
         if(node.children.length>0){
           this.$store.dispatch(this.$types.cmsChannelChildren, node.id);
-          this.showChannelChildren = true;
+          this.showChildren = true;
           this.$store.dispatch(this.$types.cmsParentChannel, node)
         }else{
-          this.showChannelChildren = false;
-          this.loadWholeChannel(node)
+          this.showChildren = false;
+          this.getChannelWhole(node)
         }
       },
       doSubmit(){
@@ -290,13 +304,13 @@
         }
       },
       doCancel(){
-        this.showChannelChildren = true;
+        this.showChildren = true;
       },
       async doAdd(){
-        this.showChannelChildren = false
+        this.showChildren = false
         let res = await api.saveCmsChannel(this.channelForm)
         if(res.success){
-          this.showChannelChildren = true;
+          this.showChildren = true;
           this.$store.dispatch(this.$types.cmsChannels, [this.parentChannel.id, 0]);
           this.$message({
             type: 'success',
@@ -324,7 +338,7 @@
           });
         }
       },
-      async loadWholeChannel({id}){
+      async getChannelWhole({id}){
         let res = await api.getCmsChannelWhole({id})
         let whole = res.data;
         this.channelForm = {}
@@ -351,13 +365,32 @@
 
     },
     async mounted() {
-      //console.log(`current meta:`,this.$route.meta)
-      //this.$store.dispatch('toggleState');
       this.$store.dispatch(this.$types.cmsChannels);
       this.$store.dispatch(this.$types.cmsModels);
       await this.loadChannelPositions()
     },
     watch:{
+        channels(val){
+
+            let root = JSON.parse(JSON.stringify(val))[0]
+            if(!Object.keys(this.parentChannel).length){
+                this.$store.dispatch(this.$types.cmsParentChannel, JSON.parse(JSON.stringify(root)))
+            }
+            //处理数据 适应TreeSelect组件
+            const removeEmptyChildren = function(data){
+                if(!data.children.length){
+                    data.children = undefined
+                }else{
+                    for(let child of data.children){
+                        removeEmptyChildren(child)
+                    }
+                }
+            }
+            if(root){
+                removeEmptyChildren(root)
+                this.channelsTree = [root]
+            }
+        },
       async ['channelForm.model_id'](val){
         await this.loadTemplatePath(val)
         if(val){
