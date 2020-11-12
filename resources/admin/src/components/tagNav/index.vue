@@ -82,8 +82,8 @@
 </script>
 <style lang="less" scoped>
     .tag-nav-li{
-        height: 50px;
-        line-height: 50px;
+        height: 40px;
+        line-height: 37.5px;
         display: inline-block;
         padding: 0 7px;
         border-left: 1px solid #f1f1f1;
@@ -103,6 +103,7 @@
     }
     .tag-nav{
         width: 100%;
-        height: 50px;
+        height: 40px;
+        line-height: 40px;
     }
 </style>

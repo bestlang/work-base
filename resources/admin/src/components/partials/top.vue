@@ -102,7 +102,7 @@ export default {
         position: relative;
         .ls-icon-collapse{
             cursor: pointer;
-            line-height: 50px;
+            line-height: 40px;
             padding: 0 16px;
             font-size: 22px;
             display: inline-block;
@@ -111,8 +111,8 @@ export default {
             display: inline-block;
         }
         .l-top-item{
-            height: 50px;
-            line-height: 50px;
+            height: 40px;
+            line-height: 40px;
             padding: 0 20px;
             color: #303133;
             &:hover{
@@ -127,7 +127,7 @@ export default {
         text-align: right;
         padding-right: 10px;
         min-width: 100px;
-        line-height: 50px;
+        line-height: 40px;
         cursor: pointer;
         font-size:14px;
         color:#409EFF;
