@@ -46,10 +46,8 @@
                 this.$emit('input', this.fileList)
             },
             uploadSuccess(response, file, fl){
-                console.log(JSON.stringify(file))
                 const item = {name: file.name, url: file.response.data.file}
                 this.fileList = [...this.fileList, item]
-                console.log(`-----------`, JSON.stringify(this.fileList))
                 this.$emit('input', this.fileList)
             }
         },

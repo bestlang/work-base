@@ -4,7 +4,7 @@
             <router-link ref="tag" class="tag-nav-li" :class="{'cur':isActive(item)}" v-for="(item, index) in tagNavList"
                          :to="item.fullPath" :key="index">
                 {{item.title}}
-                <span style="line-height: 0;font-size: 8px;color:#ccc;" class='el-icon-close' @click.prevent.stop="closeTheTag(item, index)"></span>
+                <span style="line-height: 0;font-size: 8px;color:#ccc;" class='el-icon-close' @click.prevent.stop="closeTheTag(item, index)" v-if="item.fullPath!==defaultPage"></span>
             </router-link>
         </scroll-bar>
     </div>
@@ -16,7 +16,7 @@
     export default {
         data(){
             return {
-                defaultPage: '/dashboard'
+                defaultPage: '/'
             }
         },
         computed: {
@@ -87,22 +87,25 @@
 </script>
 <style lang="less" scoped>
     .tag-nav-li{
-        height: 30px;
-        line-height: 30px;
+        height: 50px;
+        line-height: 50px;
         display: inline-block;
-        padding: 0 8px;
-        border: 1px solid #f1f1f1;
-        box-sizing: content-box;
+        padding: 0 7px;
+        border-left: 1px solid #f1f1f1;
+        border-right: 1px solid #f1f1f1;
+        box-sizing: border-box;
         margin-right: 5px;
         font-weight: lighter;
+        background: transparent;
         &:hover{
             text-decoration: none;
-             border: 1px solid #F0F0EE;
+            background: #fff;
          }
     }
     .cur{
-        background: #293c55;
-        color: #F0F0EE;
+        border-top: 2.5px solid #2e5f80;
+        background: #fff;
+        font-weight: normal;
     }
     .tag-nav{
         width: 100%;

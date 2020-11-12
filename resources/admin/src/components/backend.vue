@@ -8,13 +8,6 @@
         <div class="ls-content">
             <div class="ls-top">
                 <backend-top>
-                    <template slot="top-items">
-                        <!--
-                        <div class="l-top-item" :class="{active: true}" style="margin-left: 60px;"><i class="iconfont">&#xe618;</i> CMS</div>
-                        <div class="l-top-item"><i class="iconfont">&#xe92a;</i> 问答</div>
-                        <div class="l-top-item"><i class="iconfont">&#xe62f;</i> 商城</div>
-                        -->
-                    </template>
                     <template slot="center-nav">
                         <tag-nav style="line-height: 50px"></tag-nav>
                     </template>
