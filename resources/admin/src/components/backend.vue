@@ -46,15 +46,11 @@ export default {
     }
     .ls-aside{
         flex-shrink: 0;
-        /*border-right: 1px solid #e6e6e6;*/
     }
     .ls-top{
-        /*box-shadow: 0 1px 5px rgba(0, 0, 0, 0.10);*/
         height: 50px;
         background: #fff;
         width: 100%;
-        /*border-bottom:1px solid #e0e4e9;*/
-        z-index: 2;
     }
     .ls-content{
         width: 100%;
@@ -70,8 +66,6 @@ export default {
         height: calc(100vh - 50px);
         padding: 10px;
         overflow-y: scroll;
-        /*background: rgb(244, 244, 244);*/
-        /*background-color: #F5F7FA;*/
         .ls-main-inner{
             box-sizing: border-box;
             background: #fff;
