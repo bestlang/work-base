@@ -72,8 +72,7 @@
   </div>
 </template>
 <script>
-  import channelTree from "../components/channelTree";
-  import ueditorConfig from "sysStore/ueditor";
+  import channelTree from "../components/channelTree"
   import imageUpload from "@/components/imageUpload"
   import multipleImageUpload from "@/components/multipleImageUpload"
   import pager from "@/components/pager"
@@ -93,7 +92,6 @@
 //          positions:[]
             keyword: ''
         },
-        ueditorConfig: ueditorConfig,
 //        contentPositions: [],
         channel_id: 0,
         page:1,
@@ -112,14 +110,23 @@
           'parentChannel',
           'currentChannel',
           'currentModel',
+          'channels'
       ])
     },
     watch:{
-      currentChannel(val, oldVal){
-        this.loadContents()
+      channels(val){
+          let root = JSON.parse(JSON.stringify(val))[0]
+          if(!Object.keys(this.parentChannel).length){
+              this.$store.dispatch(this.$types.cmsParentChannel, JSON.parse(JSON.stringify(root)))
+          }
+      },
+      currentChannel(val){
+          if(val && Object.keys(val).length){
+              this.loadContents()
+          }
       },
       showForm(){
-        this.$store.dispatch('collapse');
+        //this.$store.dispatch('collapse')
       },
       async channel_id(val){
           if(val){
@@ -135,9 +142,6 @@
       search(){
         let keyword = this.form.keyword
         this.loadContents({keyword})
-      },
-      goback(){
-        this.showForm = false;
       },
       async editContent(row){
           this.$router.push('/cms/content/edit?content_id='+row.id);
@@ -176,8 +180,7 @@
       }
     },
     async created() {
-      console.log(`current meta:`,this.$route.meta)
-      this.channel_id = parseInt(this.$route.query.channel_id || 0);
+      this.channel_id = parseInt(this.$route.query.channel_id) || 0;
 
       await this.loadContents()
       // this.$store.dispatch('collapse');
