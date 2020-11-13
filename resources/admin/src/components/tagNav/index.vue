@@ -83,7 +83,7 @@
 <style lang="less" scoped>
     .tag-nav-li{
         height: 40px;
-        line-height: 37.5px;
+        line-height: 38px;
         display: inline-block;
         padding: 0 7px;
         border-left: 1px solid #f1f1f1;
@@ -98,7 +98,7 @@
          }
     }
     .cur{
-        border-top: 2.5px solid #2e5f80;
+        border-top: 2px solid #2e5f80;
         background: #fff;
     }
     .tag-nav{
