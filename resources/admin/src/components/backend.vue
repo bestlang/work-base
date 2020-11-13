@@ -2,7 +2,7 @@
     <el-container class="ls-container">
         <div class="ls-aside">
             <div class="ls-left">
-                <backend-menu></backend-menu>
+                        <backend-menu></backend-menu>
             </div>
         </div>
         <div class="ls-content">
@@ -33,7 +33,7 @@ export default {
         tagNav
     },
     computed: {
-        isCollapse() {return this.$store.state.system.isCollapse}
+        isCollapse() {return this.$store.state.normal.isCollapse}
     },
     mounted(){}
 }

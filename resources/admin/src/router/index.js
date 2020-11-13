@@ -62,6 +62,11 @@ export default new VueRouter({
     {
       path: '*',
         component: () => import("../pages/notFound.vue"),
+        meta: {
+            can: "",
+            name: 'wild',
+            show: false
+        },
     }
 
   ]

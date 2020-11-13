@@ -51,7 +51,6 @@
                     </template>
                 </el-table-column>
                 <el-table-column
-                        fixed="right"
                         label="操作">
                     <template slot-scope="scope">
                         <el-button class="l-inline-btn l-lighter" @click="editUser(scope.row)" type="text" size="medium">

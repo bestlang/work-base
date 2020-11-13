@@ -14,13 +14,17 @@
 			<div class="l-block-body">
 				<div class="l-employee-wrap">
 					<template v-if="employee.length">
-						<div class="l-employee" v-for="(em, index) in employee"  :key="index" @click="viewEmployee(em)">
-							<img :src="em.avatar?em.avatar : '/vendor/sniper/images/user.png'" alt="" style="border-radius: 100em;">
-							<h1 class="l-title">{{em.real_name}}</h1>
-							<!--({{em.position.name}})-->
-							<div style="font-size: 10px;">{{em.user?em.user.email:''}}</div>
-							<div v-if="em.user.ding_user && !em.user.ding_user.onJob" style="position: absolute;top:0;left:0;width: 100%;height: 100%;background: rgba(255,255,255,0.7);"></div>
-						</div>
+						<transition name="el-zoom-in-center" v-for="(em, index) in employee"  :key="index">
+							<div v-show="showEmployee">
+								<div class="l-employee"  @click="viewEmployee(em)">
+									<img :src="em.avatar?em.avatar : '/vendor/sniper/images/user.png'" alt="" style="border-radius: 100em;">
+									<h1 class="l-title">{{em.real_name}}</h1>
+									<!--({{em.position.name}})-->
+									<div style="font-size: 10px;">{{em.user?em.user.email:''}}</div>
+									<div v-if="em.user.ding_user && !em.user.ding_user.onJob" style="position: absolute;top:0;left:0;width: 100%;height: 100%;background: rgba(255,255,255,0.7);"></div>
+								</div>
+							</div>
+						</transition>
 					</template>
 					<div v-else style="text-align: center;color: #ccc;width: 100%;">暂无人员</div>
 				</div>
@@ -38,7 +42,8 @@
         data(){
             return {
                 department: {},
-				employee:[]
+				employee:[],
+                showEmployee: false
             }
         },
 		watch:{
@@ -62,13 +67,14 @@
                 this.department = department
             },
 			async getDepartmentEmployee(){
+                this.showEmployee = false
 			    let departmentId = this.department.id
 			    let {data} = await api.sniperGetDepartmentEmployee({departmentId})
 				this.employee = data
+				this.showEmployee = true
 			}
         },
         async mounted(){
-
         }
     }
 </script>

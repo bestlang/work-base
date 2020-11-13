@@ -133,7 +133,7 @@
         $('#comment_submit').click(function(){
             const content = $('#comment').val();
             const contend_id = $('#content_id').val();
-            axios.post('/comment/save', {content: content, content_id:contend_id}).then(response => {
+            axios.post('/comment/save', {content: content, content_id:contend_id}).then(function(response){
                 let res = response.data;
                 if(res.success){
                     alert('评论成功')
