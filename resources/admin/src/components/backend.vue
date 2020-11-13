@@ -9,7 +9,7 @@
             <div class="ls-top">
                 <backend-top>
                     <template slot="center-nav">
-                        <tag-nav style="line-height: 50px"></tag-nav>
+                        <tag-nav></tag-nav>
                     </template>
                 </backend-top>
             </div>
@@ -48,7 +48,7 @@ export default {
         flex-shrink: 0;
     }
     .ls-top{
-        height: 50px;
+        height: 40px;
         background: #fff;
         width: 100%;
     }
@@ -63,7 +63,7 @@ export default {
     }
 
     .ls-main{
-        height: calc(100vh - 50px);
+        height: calc(100vh - 40px);
         padding: 10px;
         overflow-y: scroll;
         .ls-main-inner{
