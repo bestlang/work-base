@@ -14,7 +14,7 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
-        font-size: 17px;
+        font-size: 16px;
     }
     .el-tree-node__content{
         box-sizing: content-box;

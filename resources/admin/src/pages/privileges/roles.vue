@@ -27,7 +27,6 @@
                     width="120">
             </el-table-column>
             <el-table-column
-                    fixed="right"
                     label="操作">
                 <template slot-scope="scope">
                       <el-button class="l-inline-btn l-lighter" @click="editRole(scope.row)" type="text" size="medium"><i class="iconfont">&#xe618;</i>编辑</el-button>

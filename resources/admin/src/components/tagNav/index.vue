@@ -82,6 +82,7 @@
 </script>
 <style lang="less" scoped>
     .tag-nav-li{
+        font-size: 14px;
         height: 40px;
         line-height: 38px;
         display: inline-block;
@@ -98,8 +99,9 @@
          }
     }
     .cur{
-        border-top: 2px solid #2e5f80;
+        border-top: 2px solid #293c55;
         background: #fff;
+        box-shadow: 0 20px 20px #f8f8f8 inset;
     }
     .tag-nav{
         width: 100%;
