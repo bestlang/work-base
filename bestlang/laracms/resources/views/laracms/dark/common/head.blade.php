@@ -99,6 +99,11 @@
                                 <li>
                                     <a href="/ucenter">个人中心</a>
                                 </li>
+                                @if(auth()->user()->type == 1)
+                                    <li><a class="dropdown-item" href="/admin/#/">
+                                            管理后台
+                                        </a></li>
+                                @endif
                                 <li><a href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                         登出
@@ -107,11 +112,6 @@
                                         @csrf
                                     </form>
                                 </li>
-                                @if(auth()->user()->type == 1)
-                                    <li><a class="dropdown-item" href="/admin/#/">
-                                            管理后台
-                                        </a></li>
-                                @endif
                              @endguest
                         </ul>
                     </li>

@@ -51,6 +51,7 @@ export default {
         height: 40px;
         background: #fff;
         width: 100%;
+        border-bottom: 1px solid #e4e7ed;
     }
     .ls-content{
         width: 100%;

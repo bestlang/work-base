@@ -84,24 +84,26 @@
     .tag-nav-li{
         font-size: 14px;
         height: 40px;
-        line-height: 38px;
+        line-height: 40px;
         display: inline-block;
         padding: 0 7px;
-        border-left: 1px solid #f1f1f1;
-        border-right: 1px solid #f1f1f1;
         box-sizing: border-box;
-        margin-right: 5px;
+        /*margin-right: 5px;*/
         font-weight: lighter;
         background: transparent;
+        /*+.tag-nav-li{*/
+            /*border-left: none;*/
+        /*}*/
         &:hover{
             text-decoration: none;
             background: #fff;
+            box-shadow: 0 20px 20px #f1f1f1 inset;
          }
     }
     .cur{
-        border-top: 2px solid #293c55;
         background: #fff;
-        box-shadow: 0 20px 20px #f8f8f8 inset;
+        border-left: 1px solid #e4e7ed;
+        border-right: 1px solid #e4e7ed;
     }
     .tag-nav{
         width: 100%;

@@ -91,6 +91,9 @@ const cmsConfig = {
         // 设置父栏目 以及 父栏目的子栏目列表
         commit(types.cmsParentChannel, parentId)
         dispatch(types.cmsChannelChildren, parentId);
+        if(!payload[0]){
+            commit(types.cmsCurrentChannel, node)
+        }
         commit(types.loading, false);
       },
       async [types.cmsChannelChildren]({commit}, payload){

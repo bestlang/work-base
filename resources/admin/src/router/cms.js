@@ -221,7 +221,7 @@ export default [
                         meta: {
                             can: 'cms ad operations',
                             show: false,
-                            name: '广告位',
+                            name: '新增/编辑广告位',
                             font: '&#xe764;'
                         }
                     }
