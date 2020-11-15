@@ -14,13 +14,13 @@
                 router
                 :default-active="defaultActive"
                 :collapse="isCollapse">
-              <template  v-for="(item , index) in router.options.routes">
-                <template  v-if="showOrNot(item)">
-                  <template v-for="child in item.children">
-                    <cell :item="child" :type="calType(child)" v-if="showOrNot(child)"></cell>
+                  <template v-for="(item , index) in router.options.routes">
+                    <template v-if="showOrNot(item)">
+                      <template v-for="child in item.children">
+                        <cell :item="child" :type="calType(child)" v-if="showOrNot(child)"></cell>
+                      </template>
+                    </template>
                   </template>
-                </template>
-              </template>
         </el-menu>
     </div>
 </template>
@@ -87,12 +87,12 @@
 
 <script>
     import $router from "@/router"
-    import cell from "./cell"
+    import cell from "./cell.vue"
     import {mapGetters} from 'vuex'
 
     export default {
       components:{
-        cell
+          cell: cell
       },
       data() {
           return {

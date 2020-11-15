@@ -28,6 +28,7 @@
     methods:{
     },
     async created(){
+        console.log(this.$parent.$options.componentName)
     }
   }
 </script>

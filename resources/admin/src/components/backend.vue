@@ -1,10 +1,8 @@
 <template>
     <el-container class="ls-container">
-        <div class="ls-aside">
-            <div class="ls-left">
-                        <backend-menu></backend-menu>
-            </div>
-        </div>
+        <el-aside class="ls-aside" :width="width">
+                <backend-menu></backend-menu>
+        </el-aside>
         <div class="ls-content">
             <div class="ls-top">
                 <backend-top>
@@ -33,6 +31,7 @@ export default {
         tagNav
     },
     computed: {
+        width(){ return this.isCollapse ? '64px' : '200px'},
         isCollapse() {return this.$store.state.normal.isCollapse}
     },
     mounted(){}
@@ -43,9 +42,6 @@ export default {
         margin: 0;
         display: flex;
         flex-flow: row nowrap;
-    }
-    .ls-aside{
-        flex-shrink: 0;
     }
     .ls-top{
         height: 40px;
