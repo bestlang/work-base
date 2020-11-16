@@ -6,6 +6,7 @@
         </div>
         <div class="ls-top-logo-narrow" v-show="isCollapse">{{appShortName}}</div>
         <el-menu
+                menu-trigger="click"
                 :unique-opened="true"
                 class="el-menu-vertical"
                 @open="handleOpen"
@@ -16,7 +17,7 @@
                   <template v-for="(item , index) in router.options.routes">
                     <template v-if="showOrNot(item)">
                       <template v-for="child in item.children">
-                        <cell :item="child" v-if="showOrNot(child)"></cell>
+                        <sub-menu :item="child" v-if="showOrNot(child)"></sub-menu>
                       </template>
                     </template>
                   </template>
@@ -26,12 +27,12 @@
 
 <script>
     import router from "@/router"
-    import cell from "./cell.vue"
+    import subMenu from "./subMenu.vue"
     import {mapGetters} from 'vuex'
 
     export default {
       components:{
-          cell: cell
+          subMenu
       },
       data() {
           return {
@@ -140,12 +141,12 @@
                 }
             }
         }
-        /*/deep/ .el-menu--collapse{*/
-            /*.el-submenu__title{*/
-                /*span{display: none}*/
-                /*.el-icon-arrow-right{display: none}*/
-            /*}*/
-        /*}*/
+        /deep/ .el-menu--collapse{
+            .el-submenu__title{
+                span{display: none}
+                .el-icon-arrow-right{display: none}
+            }
+        }
         .el-menu-vertical{
             min-height: calc(100vh - 50px);
             background: #293c55;
