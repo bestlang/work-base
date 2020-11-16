@@ -86,7 +86,7 @@
         height: 40px;
         line-height: 40px;
         display: inline-block;
-        padding: 0 7px;
+        padding: 0 10px;
         box-sizing: border-box;
         /*margin-right: 5px;*/
         font-weight: lighter;

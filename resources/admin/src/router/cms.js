@@ -51,7 +51,7 @@ export default [
             },
             {
                 path: "/cms/position",
-                component: rv,
+                component:  {template:`<router-view></router-view>`},
                 meta: {
                     can: 'cms list contents',
                     show: true,
@@ -113,7 +113,7 @@ export default [
             },
             {
                 path: "/cms/setting",
-                component: rv,
+                component:  {template:`<router-view></router-view>`},
                 meta: {
                     can: 'cms setting',
                     show: true,
@@ -175,7 +175,7 @@ export default [
             },
             {
                 path: "/cms/operation",
-                component: rv,
+                component:  {template:`<router-view></router-view>`},
                 meta: {
                     can: 'cms operations',
                     show: true,
