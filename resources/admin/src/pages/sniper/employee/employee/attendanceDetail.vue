@@ -38,7 +38,7 @@
             <el-button @click="plusRest">+法休</el-button>
             <v-chart :options="options" style="width: 100%;height: 600px;"/>
         </el-card>
-        <div class="l-choose-employee" title="选人查看" @click="chooseEmployee"><i class="iconfont">&#xe602;</i></div>
+        <!--<div class="l-choose-employee" title="选人查看" @click="chooseEmployee"><i class="iconfont">&#xe602;</i></div>-->
         <el-drawer
                 title="人员选择"
                 :visible.sync="drawer"
