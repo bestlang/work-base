@@ -12,7 +12,9 @@ class CommentController extends Controller{
         $per_page = $request->input('per_page', 10);
         $comments = Comment::with(['ref','ref.channel', 'user'])->paginate($per_page);
         $comments->map(function($comment){
-            $comment->ref->link = route('content', $comment->ref->id);
+            if($comment->ref){
+                $comment->ref->link = route('content', $comment->ref->id);
+            }
         });
         return response()->ajax($comments);
     }

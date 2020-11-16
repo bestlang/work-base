@@ -163,6 +163,12 @@ class DingTalk extends Command
                             //'avatar' => null,
                             //扩展信息
                         ]);
+                    }else if(!$user->emplyee){
+                        $user->employee()->create([
+                            'real_name' => $dingUser->name,
+                            'department_id' => $dingUser->department,//使用dingTalk自带的department编号插入
+                            'avatar' => $dingUser->avatar
+                        ]);
                     }else{
                         $user->employee->real_name = $dingUser->name;
                         $user->employee->department_id = $dingUser->department;
