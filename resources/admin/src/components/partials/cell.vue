@@ -1,19 +1,18 @@
 <template>
-      <div :is="type" :popperAppendToBody="false" :index="item.path" class="unselectable" v-if="item.meta.show">
-          <slot></slot>
-          <template v-if="type==='el-submenu'">
+      <div role="menuitem" class="el-submenu">
+          <el-submenu v-if="calType(item)==='el-submenu' && item.meta.show" :index="item.path">
               <template slot="title">
-                <i class="iconfont" v-html="item.meta.font"></i>
+                <i class="if" v-html="item.meta.font"></i>
                 <span slot="title">{{item.meta.name}}</span>
               </template>
               <template v-for="child in item.children">
-                <cell :item="child" :type="calType(child)" @mouseenter="handleMouseEnter"></cell>
+                <cell :item="child" @mouseenter="handleMouseEnter"></cell>
               </template>
-          </template>
-          <template v-if="type==='el-menu-item'" :index="item.path">
-              <i class="iconfont" v-html="item.meta.font"></i>
+          </el-submenu>
+          <el-menu-item v-if="calType(item)==='el-menu-item' && item.meta.show" :index="item.path">
+              <i class="if" v-html="item.meta.font"></i>
               <span slot="title">{{item.meta.name}}</span>
-          </template>
+          </el-menu-item>
       </div>
 </template>
 
@@ -25,10 +24,6 @@
       item: {
         type: Object,
         default: {}
-      },
-      type: {
-        type: String,
-        // default: 'el-submenu'
       }
     },
     methods:{

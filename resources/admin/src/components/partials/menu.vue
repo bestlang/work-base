@@ -7,7 +7,6 @@
         <div class="ls-top-logo-narrow" v-show="isCollapse">{{appShortName}}</div>
         <el-menu
                 :unique-opened="true"
-                ref="sidemenu"
                 class="el-menu-vertical"
                 @open="handleOpen"
                 @close="handleClose"
@@ -17,7 +16,7 @@
                   <template v-for="(item , index) in router.options.routes">
                     <template v-if="showOrNot(item)">
                       <template v-for="child in item.children">
-                        <cell :item="child" :type="calType(child)" v-if="showOrNot(child)"></cell>
+                        <cell :item="child" v-if="showOrNot(child)"></cell>
                       </template>
                     </template>
                   </template>
@@ -25,68 +24,8 @@
     </div>
 </template>
 
-<style scoped lang="less">
-    .ls-top-logo{
-        font-size: 18px;
-        letter-spacing: 1px;
-        font-weight: lighter;
-    }
-
-    .ls-top-logo, .ls-top-logo-narrow{
-        color: #f1f1f1;
-        height: 50px;
-        line-height: 50px;
-        padding: 0 20px;
-        background: #293c55;
-    }
-
-    .ls-top-logo-narrow{
-        font-size: 14px;
-    }
-
-    .l-menu-wrap{
-        /deep/ .el-menu{
-            background: #293c55;
-            .el-menu-item{
-                color: #f1f1f1;
-                &.is-active, &:hover{
-                    color: #2d2d2d;
-                    background: #8c939d;
-                    i{
-                        color: inherit;
-                    }
-                }
-            }
-            .el-submenu{
-                .el-submenu__title{
-                    color: #f1f1f1;
-                    &:hover{
-                        color: #2d2d2d;
-                        i{
-                            color: inherit;
-                        }
-                    }
-                }
-            }
-        }
-        .el-menu-vertical{
-            min-height: calc(100vh - 50px);
-            background: #293c55;
-            border-right: none;
-            &:not(.el-menu--collapse) {
-                width: 200px;
-                overflow-y: auto;
-                border-right: none;
-            }
-        }
-    }
-    .el-menu{
-        overflow: hidden;
-    }
-</style>
-
 <script>
-    import $router from "@/router"
+    import router from "@/router"
     import cell from "./cell.vue"
     import {mapGetters} from 'vuex'
 
@@ -97,7 +36,7 @@
       data() {
           return {
             defaultActive:'',
-            router: $router
+            router: router
           }
       },
       computed:{
@@ -156,3 +95,69 @@
      }
     }
 </script>
+
+<style scoped lang="less">
+    .ls-top-logo{
+        font-size: 18px;
+        letter-spacing: 1px;
+        font-weight: lighter;
+    }
+
+    .ls-top-logo, .ls-top-logo-narrow{
+        color: #f1f1f1;
+        height: 50px;
+        line-height: 50px;
+        padding: 0 20px;
+        background: #293c55;
+    }
+
+    .ls-top-logo-narrow{
+        font-size: 14px;
+    }
+
+    .l-menu-wrap{
+        /deep/ .el-menu{
+            background: #293c55;
+            .el-menu-item{
+                color: #f1f1f1;
+                &.is-active, &:hover{
+                    color: #2d2d2d;
+                    background: #8c939d;
+                    i{
+                        color: inherit;
+                    }
+                }
+            }
+            .el-submenu{
+                .el-submenu__title{
+                    color: #f1f1f1;
+                    &:hover{
+                        color: #2d2d2d;
+                        i{
+                            color: inherit;
+                        }
+                    }
+                }
+            }
+        }
+        /deep/ .el-menu--collapse{
+            .el-submenu__title{
+                span{display: none}
+                .el-icon-arrow-right{display: none}
+            }
+        }
+        .el-menu-vertical{
+            min-height: calc(100vh - 50px);
+            background: #293c55;
+            border-right: none;
+            &:not(.el-menu--collapse) {
+                width: 200px;
+                overflow-y: auto;
+                border-right: none;
+            }
+        }
+    }
+    .el-menu{
+        overflow: hidden;
+    }
+</style>
