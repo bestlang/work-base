@@ -4,7 +4,7 @@
         <div v-for="comment in comments">
             <div class="l-comment-item">
                 <div class="l-comment-head">
-                    <a class="l-content-title" target="_blank" :href="comment.ref.link">
+                    <a v-if="comment.ref" class="l-content-title" target="_blank" :href="comment.ref.link">
                         [{{comment.ref.channel.name}}]{{comment.ref.title}}
                     </a>
                     <span class="l-view-content" @click="viewContentComment(comment)">查看本文评论</span>
