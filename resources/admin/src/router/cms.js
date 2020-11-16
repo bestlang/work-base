@@ -1,9 +1,7 @@
-import rv from "../components/rv.vue"
-
 export default [
     {
         path: "/cms",
-        component: rv,
+        component: {template:`<router-view></router-view>`},
         meta: {
             can: 'cms',
             show:true,

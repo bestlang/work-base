@@ -1,9 +1,7 @@
-import rv from "../components/rv.vue"
-
 export default [
     {
         path: "/sniper/employee",
-        component: rv,
+        component: {template:`<router-view></router-view>`},
         meta: {
             can: 'hr',
             show: true,

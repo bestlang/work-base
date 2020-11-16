@@ -1,9 +1,7 @@
-import rv from "../components/rv.vue"
-
 export default [
     {
         path: "/privileges",
-        component: rv,
+        component: {template:`<router-view></router-view>`},
         meta: {
             can: 'privileges',
             show: true,
