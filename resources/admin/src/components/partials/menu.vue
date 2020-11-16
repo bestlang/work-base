@@ -140,12 +140,12 @@
                 }
             }
         }
-        /deep/ .el-menu--collapse{
-            .el-submenu__title{
-                span{display: none}
-                .el-icon-arrow-right{display: none}
-            }
-        }
+        /*/deep/ .el-menu--collapse{*/
+            /*.el-submenu__title{*/
+                /*span{display: none}*/
+                /*.el-icon-arrow-right{display: none}*/
+            /*}*/
+        /*}*/
         .el-menu-vertical{
             min-height: calc(100vh - 50px);
             background: #293c55;

@@ -28,10 +28,10 @@ export default new VueRouter({
         name: '根菜单'
       },
       children:[
-            ...sniper,
-            ...privileges,
-            ...cms,
-            ...base,
+        ...base,
+        ...sniper,
+        ...privileges,
+        ...cms
       ]
     },
     {

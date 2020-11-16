@@ -1,6 +1,5 @@
 <template>
-      <div role="menuitem" class="el-submenu">
-          <el-submenu v-if="calType(item)==='el-submenu' && item.meta.show" :index="item.path">
+          <el-submenu  role="submenu" v-if="calType(item)==='el-submenu' && item.meta.show" :index="item.path">
               <template slot="title">
                 <i class="if" v-html="item.meta.font"></i>
                 <span slot="title">{{item.meta.name}}</span>
@@ -9,11 +8,10 @@
                 <cell :item="child" @mouseenter="handleMouseEnter"></cell>
               </template>
           </el-submenu>
-          <el-menu-item v-if="calType(item)==='el-menu-item' && item.meta.show" :index="item.path">
+          <el-menu-item v-else-if="calType(item)==='el-menu-item' && item.meta.show" :index="item.path">
               <i class="if" v-html="item.meta.font"></i>
               <span slot="title">{{item.meta.name}}</span>
           </el-menu-item>
-      </div>
 </template>
 
 <script>
