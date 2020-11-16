@@ -3,7 +3,6 @@ import { Message } from 'element-ui'
 import app from '../main.js'
 import {getPrefix} from './util'
 // import Cookies from 'js-cookie'
-import types from  'sysStore/types'
 
 const loginPath = '/login'
 // axios.defaults.timeout = 50000;
