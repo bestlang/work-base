@@ -16,7 +16,7 @@
     "@riophae/vue-treeselect": "^0.4.0",
     "axios": "^0.19.2",
     "echarts": "^4.9.0",
-    "element-ui": "2.8.0",
+    "element-ui": "2.10.0",
     "jquery": "^3.4.1",
     "js-cookie": "^2.2.1",
     "laravel-echo": "^1.9.0",
