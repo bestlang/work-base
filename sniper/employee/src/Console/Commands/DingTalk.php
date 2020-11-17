@@ -149,7 +149,7 @@ class DingTalk extends Command
                     if(!$dingUser->orgEmail){
                         $dingUser->orgEmail = substr($dingUser->unionid, 0, 10).'@sniper-tech.com';
                     }
-                    $user = User::with('employee')->where(['email' => $dingUser->orgEmail, 'name' => $dingUser->name])->first();
+                    $user = User::where(['email' => $dingUser->orgEmail, 'name' => $dingUser->name])->first();
                     if(!$user){
                         $user = User::create(['email' => $dingUser->orgEmail, 'name' => $dingUser->name, 'password' => bcrypt('111111')]);
                         $user->employee()->create([
