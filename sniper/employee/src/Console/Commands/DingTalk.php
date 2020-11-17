@@ -156,18 +156,20 @@ class DingTalk extends Command
                             'real_name' => $dingUser->name,
                             'department_id' => $dingUser->department,//使用dingTalk自带的department编号插入
                             'avatar' => $dingUser->avatar
-                            //'position_id' => null,
-                            //'phone' => null,
-                            //'gender' => null,
-                            //'id_card' => null,
-                            //'avatar' => null,
-                            //扩展信息
                         ]);
                     }else{
-                        $user->employee->real_name = $dingUser->name;
-                        $user->employee->department_id = $dingUser->department;
-                        $user->employee->avatar = $dingUser->avatar;
-                        $user->push();
+                        if(!$user->employee){
+                            $user->employee()->create([
+                                'real_name' => $dingUser->name,
+                                'department_id' => $dingUser->department,//使用dingTalk自带的department编号插入
+                                'avatar' => $dingUser->avatar
+                            ]);
+                        }else {
+                            $user->employee->real_name = $dingUser->name;
+                            $user->employee->department_id = $dingUser->department;
+                            $user->employee->avatar = $dingUser->avatar;
+                            $user->push();
+                        }
                     }
                 }
             }else if($act == 'attendance'){
