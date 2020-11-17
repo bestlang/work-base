@@ -194,6 +194,16 @@ export default [
                         }
                     },
                     {
+                        path: "/cms/operation/order/detail",
+                        component: () => import("../pages/cms/operation/orderDetail.vue"),
+                        meta: {
+                            can: 'cms operations',
+                            show: false,
+                            name: '订单详情',
+                            font: '&#xe764;'
+                        }
+                    },
+                    {
                         path: "/cms/operation/ads",
                         component: () => import("../pages/cms/operation/ads.vue"),
                         meta: {

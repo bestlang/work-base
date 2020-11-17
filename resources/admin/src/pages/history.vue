@@ -2,7 +2,7 @@
     <div class="l-block">
         <div class="l-block-header">
         </div>
-        <div class="l-block-body">
+        <!--<div class="l-block-body">-->
             <el-table
                     :data="histories"
                     style="width: 100%">
@@ -30,7 +30,7 @@
                         label="IP地址">
                 </el-table-column>
             </el-table>
-        </div>
+        <!--</div>-->
         <pager :total="total" :page-size="page_size" @current-change="currentChange"></pager>
     </div>
 </template>

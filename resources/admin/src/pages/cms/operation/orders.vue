@@ -17,7 +17,7 @@
                     <el-table-column
                             prop="id"
                             label="ID"
-                            width="100">
+                            width="80">
                     </el-table-column>
                     <el-table-column
                             prop="user.name"
@@ -59,13 +59,12 @@
                     <!--{{scope.row.enabled?'已启用':'未启用'}}-->
                     <!--</template>-->
                     <!--</el-table-column>-->
-                    <!--<el-table-column-->
-                            <!--label="操作">-->
-                        <!--<template slot-scope="scope">-->
-                            <!--&lt;!&ndash;<el-button type="text" size="small" @click="handleEdit(scope.row)">编辑</el-button>&ndash;&gt;-->
-                            <!--&lt;!&ndash;<el-button type="text" size="small" @click="handleDelete(scope.row)">删除</el-button>&ndash;&gt;-->
-                        <!--</template>-->
-                    <!--</el-table-column>-->
+                    <el-table-column
+                            label="操作">
+                        <template slot-scope="scope">
+                            <el-button type="text" size="small" @click="viewOrder(scope.row)">查看</el-button>
+                        </template>
+                    </el-table-column>
                 </el-table>
             </div>
         </div>
@@ -91,6 +90,9 @@
             pager
         },
         methods:{
+            viewOrder({id}){
+                this.$router.push('/cms/operation/order/detail')
+            },
             async getOrders(){
                 let page = this.page;
                 let page_size = this.page_size;
