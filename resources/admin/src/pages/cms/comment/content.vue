@@ -1,7 +1,6 @@
 <template>
     <div class="l-comments l-block">
         <div v-title="'文章评论'"></div>
-        <!--<div v-for="comment in comments">-->
             <div class="l-block-header">
                 <div>
                     <span class="l-go-back" @click="goback"><span class="iconfont">&#xe601;</span>返回</span>
@@ -29,8 +28,6 @@
                     </div>
                 </template>
             </div>
-        <!--</div>-->
-        <!--<pager :total="total" :page-size="per_page" @current-change="currentChange"></pager>-->
     </div>
 </template>
 <script>
