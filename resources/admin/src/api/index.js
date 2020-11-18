@@ -62,6 +62,7 @@ export default {
     getOptionalTemplatePath(data){ return fetch('/admin/cms/get/optional/template/path', data) },
     getOptionalThemes(data){ return fetch('/admin/cms/get/optional/themes', data) },
     getOrders(data){ return fetch('/admin/cms/orders', data) },
+    getOrderDetail(data){ return fetch('/admin/cms/order/detail', data) },
     saveSiteSetting(data){ return fetch('/admin/cms/save/site/setting', data, 'post') },
     getSiteSetting(data){ return fetch('/admin/cms/get/site/setting', data) },
     getHistories(data){return fetch('/admin/histories', data) },

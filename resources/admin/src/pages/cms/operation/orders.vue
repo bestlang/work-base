@@ -90,8 +90,8 @@
             pager
         },
         methods:{
-            viewOrder({id}){
-                this.$router.push('/cms/operation/order/detail')
+            viewOrder({order_no}){
+                this.$router.push('/cms/operation/order/detail?order_no='+order_no)
             },
             async getOrders(){
                 let page = this.page;

@@ -21,4 +21,11 @@ class OrderController extends Controller
             ->get();
         return response()->ajax(compact(['orders', 'total']));
     }
+
+    public function detail(Request $request)
+    {
+        $order_no = $request->input('order_no');
+        $order = Order::where('order_no', $order_no)->first();
+        return response()->ajax($order);
+    }
 }
