@@ -8,7 +8,7 @@
             </div>
             <div class="l-block-body">
                     <div class="l-month-select">
-                        <ul style="width: 80%; border-bottom: 1px solid #f1f1f1;padding-bottom: 10px;margin-bottom: 10px;">
+                        <ul style="border-bottom: 1px solid #f1f1f1;padding-bottom: 10px;margin-bottom: 10px;">
                             <li style="border:none;cursor: default">月份</li>
                             <li v-for="m in months" @click="viewMonth" :class="{active: month == m}">{{m}}</li>
                         </ul>
