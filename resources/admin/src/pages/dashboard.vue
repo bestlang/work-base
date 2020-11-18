@@ -9,13 +9,15 @@
             <p>这里放一些提醒信息</p>
       </div>
     </el-alert>
+    <el-button @click="throttledArrowClick">点我</el-button>
     <div>
     </div>
   </div>
 
 </template>
 <script>
-  import Vue from 'vue'
+    import throttle from 'throttle-debounce/throttle';
+
   export default {
     name: 'dashboard',
     data(){
@@ -26,9 +28,14 @@
     watch:{
     },
     methods:{
+        doSomeThing(){
+            console.log(`-------------1234-------------\n`)
+        }
     },
     async created(){
-        console.log(this.$parent.$options.componentName)
+        this.throttledArrowClick = throttle(5000, true,  _ => {
+            this.doSomeThing()
+        });
     }
   }
 </script>

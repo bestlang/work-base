@@ -14,13 +14,7 @@
                 router
                 :default-active="defaultActive"
                 :collapse="isCollapse">
-                  <template v-for="(item , index) in router.options.routes">
-                    <template v-if="showOrNot(item)">
-                      <template v-for="child in item.children">
-                        <sub-menu :item="child" v-if="showOrNot(child)"></sub-menu>
-                      </template>
-                    </template>
-                  </template>
+                        <sub-menu :item="item" v-if="showOrNot(item)"></sub-menu>
         </el-menu>
     </div>
 </template>
@@ -47,7 +41,10 @@
               'isCollapse',
               'privileges',
               'csrf'
-          ])
+          ]),
+          item(){
+              return router.options.routes[0]
+          }
       },
       watch:{
           privileges:{

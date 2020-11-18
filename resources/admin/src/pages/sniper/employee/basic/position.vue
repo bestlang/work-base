@@ -44,7 +44,6 @@
 								label="所需员工">
 						</el-table-column>
 						<el-table-column
-								width="220"
 								label="操作">
 							<template slot-scope="scope">
 								<el-button class="l-lighter" type="text" @click="editPosition(scope.row)">编辑</el-button>

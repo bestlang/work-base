@@ -18,22 +18,23 @@ export default new VueRouter({
   base: "/",
   saveScrollPosition: "true",
   routes: [
-    ...panel,
     {
       path: "/",
       component: backend,
       meta: {
         can: '',
         show:false,
-        name: '根菜单'
+        name: '系统菜单',
+        font: '&#xe764;'
       },
       children:[
-        ...base,
         ...sniper,
         ...privileges,
-        ...cms
+        ...cms,
+        ...base
       ]
     },
+      ...panel,
     {
       path: "/login",
       component: () => import("../pages/login.vue"),

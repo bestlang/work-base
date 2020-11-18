@@ -1,17 +1,17 @@
 <template>
     <div>
-          <el-submenu role="submenu" v-if="calType(item)==='el-submenu' && item.meta.show" :index="item.path">
-              <template slot="title">
-                <i class="if" v-html="item.meta.font"></i>
-                <span slot="title">{{item.meta.name}}</span>
-              </template>
-              <template v-for="child in item.children">
-                <sub-menu :item="child" @mouseenter="handleMouseEnter"></sub-menu>
-              </template>
+          <el-submenu role="submenu" v-if="showSubMenu" :index="item.path">
+              <div slot="title">
+                <i class="if" v-html="font"></i>
+                <span slot="title">{{name}}</span>
+              </div>
+              <div v-for="child in item.children">
+                <sub-menu :item="child"></sub-menu>
+              </div>
           </el-submenu>
-          <el-menu-item v-else-if="calType(item)==='el-menu-item' && item.meta.show" :index="item.path">
-              <i class="if" v-html="item.meta.font"></i>
-              <span slot="title">{{item.meta.name}}</span>
+          <el-menu-item v-else-if="showMenuItem" :index="item.path">
+              <i class="if" v-html="font"></i>
+              <span slot="title">{{name}}</span>
           </el-menu-item>
     </div>
 </template>
@@ -26,12 +26,22 @@
         default: {}
       }
     },
-    methods:{
-        calType(item){
-            return item.children && item.children.filter(x=>x.meta.show).length ? 'el-submenu':'el-menu-item'
+    computed:{
+        font(){
+            let item = this.item
+            return item.meta && item.meta.font ? item.meta.font : ''
         },
-        handleMouseEnter(el){
-            el.target.stopPropagation()
+        name(){
+            let item = this.item
+            return item.meta && item.meta.name ? item.meta.name : ''
+        },
+        showSubMenu(){
+            let item = this.item
+            return item.children && item.children.filter(x=>x.meta.show).length
+        },
+        showMenuItem(){
+            let item = this.item
+            return (!item.children || !item.children.filter(x=>x.meta.show).length)  && item.meta && item.meta.show
         }
     }
   }
