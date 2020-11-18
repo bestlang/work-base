@@ -10,7 +10,6 @@ export default [
         children:[
             {
                 path: "",
-                // component:  () => import("../pages/panel/index.vue"),
                 component:  () => import("../pages/panel/index.vue"),
                 meta: {
                     can: '',

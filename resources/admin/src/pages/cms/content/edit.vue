@@ -26,7 +26,7 @@
             <div class="l-block" v-if="currentModel">
                 <div class="l-block-header">
                     <div>
-                        <span class="l-go-back" @click="goback"><span class="iconfont">&#xe601;</span>返回</span>
+                        <span class="l-go-back" @click="goBack"><span class="iconfont">&#xe601;</span>返回</span>
                         <el-divider direction="vertical"></el-divider>
                         <!--<i class="iconfont">&#xe64c;</i>「」-->
                         <span v-if="currentChannel">在<span style="font-weight: 700">“{{currentChannel.name}}”</span>下{{formTitle}}</span>
@@ -145,7 +145,7 @@
             }
         },
         methods: {
-            goback(){
+            goBack(){
                 this.$router.push('/cms/content?channel_id='+this.currentChannel.id)
             },
             async loadWholeContent(id){
@@ -196,7 +196,7 @@
                         type: 'success',
                         message: '添加成功!'
                     });
-                    this.goback()
+                    this.goBack()
                 }
             },
 

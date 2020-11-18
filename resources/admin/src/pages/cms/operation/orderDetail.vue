@@ -4,7 +4,7 @@
         <div class="l-block">
             <div class="l-block-header">
                 <div>
-                    <span class="l-go-back" @click="goback"><span class="iconfont">&#xe601;</span>返回</span>
+                    <span class="l-go-back" @click="goBack"><span class="iconfont">&#xe601;</span>返回</span>
                     <el-divider direction="vertical"></el-divider>
                     <span>订单详情</span>
                 </div>
@@ -17,7 +17,7 @@
 <script>
     export default {
         methods:{
-            goback(){
+            goBack(){
                 this.$router.push('/cms/operation/orders')
             }
         }

@@ -22,7 +22,7 @@
             <div class="l-block">
                 <div class="l-block-header">
                     <div>
-                        <span class="l-go-back" @click="goback"><span class="iconfont">&#xe601;</span>返回</span>
+                        <span class="l-go-back" @click="goBack"><span class="iconfont">&#xe601;</span>返回</span>
                         <el-divider direction="vertical"></el-divider>
                         <span>{{formTitle}}</span>
                     </div>
@@ -137,7 +137,7 @@
             attachment
         },
         methods: {
-            goback(){
+            goBack(){
                 this.$router.push('/cms/operation/ads')
             },
             async saveAd(){
@@ -151,7 +151,7 @@
                         type: 'success',
                         message: msg
                     });
-                    this.goback()
+                    this.goBack()
                 }else{
                     alert(JSON.stringify(res))
                 }

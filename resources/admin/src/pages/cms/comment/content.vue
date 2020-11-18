@@ -3,9 +3,8 @@
         <div v-title="'文章评论'"></div>
             <div class="l-block-header">
                 <div>
-                    <span class="l-go-back" @click="goback"><span class="iconfont">&#xe601;</span>返回</span>
+                    <span class="l-go-back" @click="goBack"><span class="iconfont">&#xe601;</span>返回</span>
                     <el-divider direction="vertical"></el-divider>
-                    <!--<i class="iconfont">&#xe64c;</i>「」-->
                     <span>文章下的评论</span>
                 </div>
             </div>
@@ -57,7 +56,7 @@
             }
         },
         methods:{
-            goback(){
+            goBack(){
                 this.$router.push('/cms/comment')
             },
             async getComments(){
@@ -67,8 +66,6 @@
                 const {data} = await api.getContentComments({page, per_page, content_id})
                 console.log(`特定文章`, JSON.stringify(data))
                 this.content = data;
-//                this.total = data.total;
-//                this.per_page = data.per_page;
             },
             async currentChange(page){
                 this.page = page
@@ -76,8 +73,7 @@
             }
         },
         async created() {
-            //await this.getComments()
-            this.content_id = parseInt(this.$route.query.content_id || 0);
+            this.content_id = parseInt(this.$route.query.content_id) || 0;
         }
     }
 </script>

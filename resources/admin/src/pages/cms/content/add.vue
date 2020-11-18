@@ -26,7 +26,7 @@
             <div class="l-block" v-if="currentModel">
                 <div class="l-block-header">
                     <div>
-                        <span class="l-go-back" @click="goback"><span class="iconfont">&#xe601;</span>返回</span>
+                        <span class="l-go-back" @click="goBack"><span class="iconfont">&#xe601;</span>返回</span>
                         <el-divider direction="vertical"></el-divider>
                         <!--<i class="iconfont">&#xe64c;</i>「」-->
                         <span>在<span style="font-weight: 700">“{{currentChannel.name}}”</span>下{{formTitle}}</span>
@@ -146,7 +146,7 @@
             assignTags(payload){
                 this.$set(this.form, 'tags', payload.map(tag => tag.name).join(','));
             },
-            goback(){
+            goBack(){
                 this.$router.push('/cms/content?channel_id='+this.channel_id)
             },
             async saveContent(){
@@ -160,7 +160,7 @@
                         type: 'success',
                         message: '添加成功!'
                     });
-                    this.goback()
+                    this.goBack()
                 }
             },
 

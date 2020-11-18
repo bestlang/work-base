@@ -100,10 +100,6 @@
           <div class="l-block-header" v-if="parentChannel && parentChannel.id">
               <span>
                 <span v-if="channelForm.id"><i class="iconfont">&#xe64c;</i> {{channelForm.name}}</span>
-                <span v-else>
-                    <!--「<i class="iconfont">&#xe64c;</i> 」-->
-                  <!--在 <span style="font-weight: 700">“{{parentChannel.name}}”</span>下新增栏目-->
-                </span>
                 </span>
               <el-button-group>
                 <el-button style="padding: 3px 10px" type="text" @click="addChannel(channelForm)">新增栏目</el-button>

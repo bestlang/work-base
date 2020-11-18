@@ -73,7 +73,6 @@
       }
     },
     async mounted() {
-      this.$store.dispatch('toggleState');
       await this.$store.dispatch(this.$types.cmsChannels, [null, 1]);
       this.$refs.tree.setCurrentKey(this.selectedKey)
     }
