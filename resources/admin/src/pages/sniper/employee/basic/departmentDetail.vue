@@ -65,7 +65,7 @@
             }
         },
         async mounted(){
-            this.id = parseInt(this.$route.query.id || 0);
+            this.id = parseInt(this.$route.query.id) || 0;
         }
     }
 </script>

@@ -72,7 +72,7 @@
                 this.getComments()
             }
         },
-        async created() {
+        async created(){
             this.content_id = parseInt(this.$route.query.content_id) || 0;
         }
     }

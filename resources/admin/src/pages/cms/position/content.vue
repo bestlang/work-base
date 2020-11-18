@@ -72,7 +72,7 @@
             }
         },
         async mounted(){
-            this.position_id = parseInt(this.$route.query.position_id || 0);
+            this.position_id = parseInt(this.$route.query.position_id) || 0;
             await this.loadContents(this.position_id)
             await this.getPosition(this.position_id)
         }

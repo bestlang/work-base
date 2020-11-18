@@ -239,7 +239,7 @@
             }
         },
         async mounted() {
-            this.content_id = parseInt(this.$route.query.content_id)|| 0;
+            this.content_id = parseInt(this.$route.query.content_id) || 0;
         }
     }
 </script>

@@ -9,7 +9,7 @@
             <p>这里放一些提醒信息</p>
       </div>
     </el-alert>
-    <el-button @click="throttledArrowClick">点我</el-button>
+    <!--<el-button @click="throttledArrowClick">点我</el-button>-->
     <div>
     </div>
   </div>

@@ -298,7 +298,7 @@
       }
     },
     async mounted(){
-      let model_id = parseInt(this.$route.query.model_id || 0);
+      let model_id = parseInt(this.$route.query.model_id) || 0;
       this.model_id = model_id;
       if(this.model_id){
           await this.loadModel(this.model_id);

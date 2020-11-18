@@ -166,7 +166,7 @@
             }
         },
         async mounted() {
-            this.role_id = parseInt(this.$route.query.role_id || 0);
+            this.role_id = parseInt(this.$route.query.role_id) || 0;
             await this.loadRoleUsers()
         }
     }
