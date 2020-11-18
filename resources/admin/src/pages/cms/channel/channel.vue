@@ -5,7 +5,7 @@
     min-height: calc(100vh - 50px - 20px);
     margin:-20px 0 -20px -20px;
     overflow-x: hidden;
-    .l-tree-containner{
+    .l-tree-container{
       min-width: 200px;
       padding: 20px;
       border-right: 1px solid #f4f4f4;
@@ -42,7 +42,7 @@
 <template>
   <div class="l-channel-list">
       <div v-title="'栏目管理'"></div>
-      <div class="l-tree-containner">
+      <div class="l-tree-container">
         <el-tree
           @node-click="handleNodeClick"
           icon-class="el-icon-caret-right"
