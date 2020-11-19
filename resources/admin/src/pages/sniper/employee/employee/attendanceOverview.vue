@@ -120,9 +120,9 @@
                     y2:'12%',
                     width: '97%',
                 },
-                title: {
-                    text: '小组平均出勤时间'
-                },
+                // title: {
+                //     text: '小组平均出勤时间'
+                // },
                 tooltip: {},
                 legend: {
                     data: []
