@@ -28,7 +28,7 @@ export default new VueRouter({
         font: '&#xe764;'
       },
       children:[
-        ...sniper,
+        //...sniper,
         ...privileges,
         ...cms,
         ...base

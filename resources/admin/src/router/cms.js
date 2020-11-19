@@ -176,7 +176,6 @@ export default [
                     }
                 ]
             },
-            /*
             {
                 path: "/cms/operation",
                 component:  {template:`<router-view></router-view>`},
@@ -238,7 +237,7 @@ export default [
                         }
                     }
                 ]
-            }*/
+            }
         ]
     }
 ]

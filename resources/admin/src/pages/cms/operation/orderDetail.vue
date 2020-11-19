@@ -10,11 +10,13 @@
                 </div>
             </div>
             <div class="l-block-body">
-                <div>{{order.name}}</div>
-                <div>{{order.product_id}}</div>
-                <div>{{order.order_no}}</div>
-                <div>{{order.money}}</div>
-                <div>{{order.user_id}}</div>
+                <div>商品名称:{{order.name}}</div>
+                <!--<div>商品编号:{{order.product_id}}</div>-->
+                <div>订单号:{{order.order_no}}</div>
+                <div>订单金额:{{order.money}}元</div>
+                <div>购买人:{{order.user.name}}</div>
+                <div>订单状态:{{order.status_text}}</div>
+                <div>支付方式:{{order.gateway_text}}</div>
             </div>
         </div>
     </div>

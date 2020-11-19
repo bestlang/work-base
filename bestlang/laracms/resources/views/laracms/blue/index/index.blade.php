@@ -72,18 +72,20 @@
                                             <a href="{{route('content', $content->id)}}">{{$content->title}}</a>
                                         </h3>
                                         <div class="row">
-                                            @foreach($content->album as $index => $album)
-                                                @if($index > 3)
-                                                    @break
-                                                @endif
-                                            <div class="col-sm-3 col-xs-6">
-                                                <a href="{{route('content', $content->id)}}" class="img-zoom">
-                                                    <div class="embed-responsive embed-responsive-4by3">
-                                                        <img src="{{$album['url']}}" alt="{{$album['description']}}" class="embed-responsive-item">
-                                                    </div>
-                                                </a>
-                                            </div>
-                                            @endforeach
+                                            @if($content->album)
+                                                @foreach($content->album as $index => $album)
+                                                    @if($index > 3)
+                                                        @break
+                                                    @endif
+                                                <div class="col-sm-3 col-xs-6">
+                                                    <a href="{{route('content', $content->id)}}" class="img-zoom">
+                                                        <div class="embed-responsive embed-responsive-4by3">
+                                                            <img src="{{$album['url']}}" alt="{{$album['description']}}" class="embed-responsive-item">
+                                                        </div>
+                                                    </a>
+                                                </div>
+                                                @endforeach
+                                            @endif
                                         </div>
                                         <div class="media">
                                             <div class="media-body ml-0">

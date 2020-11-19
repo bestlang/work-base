@@ -25,7 +25,7 @@ class OrderController extends Controller
     public function detail(Request $request)
     {
         $order_no = $request->input('order_no');
-        $order = Order::where('order_no', $order_no)->first();
+        $order = Order::with('user')->where('order_no', $order_no)->first();
         return response()->ajax($order);
     }
 }
