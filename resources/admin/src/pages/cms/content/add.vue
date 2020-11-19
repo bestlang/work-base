@@ -156,10 +156,7 @@
                 }
                 let res = await api.saveContent(this.form)
                 if(res.success){
-                    this.$message({
-                        type: 'success',
-                        message: '添加成功!'
-                    });
+                    this.$message.success('添加成功!');
                     this.goBack()
                 }
             },

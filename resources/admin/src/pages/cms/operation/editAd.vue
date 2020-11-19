@@ -147,10 +147,7 @@
                 if(res.success){
                     let msg = '修改成功!';
                     this.form.id || (msg = '添加成功!')
-                    this.$message({
-                        type: 'success',
-                        message: msg
-                    });
+                    this.$message.success(msg);
                     this.goBack()
                 }else{
                     alert(JSON.stringify(res))

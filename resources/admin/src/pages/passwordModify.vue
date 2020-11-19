@@ -45,7 +45,7 @@
                         }
                     });
                 }else{
-                    this.showMessage(res.error);
+                    this.$message.error(res.error);
                 }
 
             }

@@ -114,13 +114,13 @@
             async save(){
                 let res = await this.savePosition()
                 if(res.hasError){
-                    this.showMessage(res.error)
+                    this.$message.error(res.error)
                 }else{
                     let msg = '添加成功！';
                     if(this.form.id){
                         msg = '更新成功！';
                     }
-                    this.showMessage(msg, 'success')
+                    this.$message.success(msg)
                     this.$router.push('/sniper/employee/position')
                 }
             },

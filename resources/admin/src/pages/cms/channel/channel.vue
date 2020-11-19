@@ -271,15 +271,9 @@
           if(res.success){
             this.$store.dispatch(this.$types.cmsChannels, [row.parent_id, 0]);
             this.showChildren = true;
-            this.$message({
-              type: 'success',
-              message: '删除成功!'
-            });
+            this.$message.success('删除成功!');
           }else{
-            this.$message({
-              type: 'error',
-              message: res.error
-            });
+            this.$message.error(res.error);
           }
         }).catch(()=>{});
       },
@@ -309,30 +303,18 @@
         if(res.success){
           this.showChildren = true;
           this.$store.dispatch(this.$types.cmsChannels, [this.parentChannel.id, 0]);
-          this.$message({
-            type: 'success',
-            message: '添加成功!'
-          });
+          this.$message.success('添加成功!');
         }else{
-          this.$message({
-            type: 'error',
-            message: '添加失败!'+res.error
-          });
+          this.$message.error('添加失败!'+res.error);
         }
       },
       async doEdit(){
         let res = await api.saveCmsChannel(this.channelForm)
         if(res.success){
-          this.$message({
-            type: 'success',
-            message: '修改成功!'
-          });
+          this.$message.success('修改成功!');
           this.$store.dispatch(this.$types.cmsChannels, [this.channelForm.parent_id, 0]);
         }else{
-          this.$message({
-            type: 'warning',
-            message: '修改失败!'+res.error
-          });
+          this.$message.warning('修改失败!'+res.error);
         }
       },
       async getChannelWhole({id}){

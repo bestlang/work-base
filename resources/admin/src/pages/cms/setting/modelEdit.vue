@@ -208,18 +208,12 @@
           orders.push(item.order_factor)
         });
         if(!ids.length){
-          this.$message({
-            type: 'warning',
-            message: '无内容!'
-          });
+          this.$message.warning('无内容!');
           return false;
         }
         let res = await api.saveModelFieldOrder({ids, orders})
 
-        this.$message({
-          type: 'success',
-          message: '保存成功!'
-        });
+        this.$message.success('保存成功!');
       },
       handleEdit(row){
         this.fieldVisible = true
@@ -234,10 +228,7 @@
           let model_id = this.fieldForm.model_id
           let res = await api.deleteModelField({model_id: model_id, id: row.id})
           await this.loadModel(model_id);
-          this.$message({
-            type: 'success',
-            message: '删除成功!'
-          });
+          this.$message.success('删除成功!');
         });
       },
 
@@ -278,16 +269,10 @@
           let message = '添加成功!'
           if(this.fieldForm.id)
             message = '更新成功!';
-          this.$message({
-            message: message,
-            type: 'success'
-          });
+          this.$message.success(message);
           await this.loadModel(this.model_id);
         }else{
-          this.$message({
-            message: '出错了!请联系管理员',
-            type: 'warning'
-          });
+          this.$message.warning('出错了!请联系管理员');
         }
       },
       handleClick(tab, event){

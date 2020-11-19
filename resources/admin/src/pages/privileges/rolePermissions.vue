@@ -88,10 +88,7 @@
                 msg += ' 请重新登录'
                 setTimeout(() => {this.$store.dispatch(types.logout)}, 1500)
             }
-            this.$message({
-                type: 'success',
-                message: msg
-            })
+            this.$message.success(msg)
         },
         async loadPermissionsTree(){
           let res = await api.getPermissionsTree()

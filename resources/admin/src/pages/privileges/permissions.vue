@@ -135,10 +135,7 @@
         newChild.id = res.data.id;
         this.current.children.push(newChild);
         if(res.success){
-          this.$message({
-            type: 'success',
-            message: '添加成功!'
-          });
+          this.$message.success('添加成功!');
           this.reset()
         }else{
           this.formVisible = true
@@ -146,10 +143,7 @@
       },
       async doEdit(){
         let res = await api.editPermission({id: this.form.id, name: this.form.name, show_name: this.form.show_name})
-        this.$message({
-          type: 'success',
-          message: '修改成功!'
-        });
+        this.$message.success('修改成功!');
         this.current.name = this.form.name
         this.current.show_name = this.form.show_name
         this.reset()
@@ -163,14 +157,10 @@
         }).then(async () => {
           let res = await api.deletePermission({id: row.id})
           await this.loadPermissionsTree()
-          this.$message({
-            type: 'success',
-            message: '删除成功!'
-          });
+          this.$message.success('删除成功!');
         });
       },
       handleCheckChange(data, checked, indeterminate) {
-        console.log(data,`.............`, checked, `.............`, indeterminate);
         return true;
       },
       async loadPermissionsTree(){

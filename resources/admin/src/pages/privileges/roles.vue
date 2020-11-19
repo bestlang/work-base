@@ -90,7 +90,7 @@
                 let res = await api.saveRole(this.form)
                 if(res.success){
                     this.formVisible = false
-                    this.showMessage('操作成功！', 'success')
+                    this.$message.success('操作成功！')
                     await this.loadRoles()
                 }
             },
@@ -110,16 +110,10 @@
               }).then(async () => {
                 let res = await api.deleteRole({id: row.id})
                 if(res.success){
-                  this.$message({
-                    type: 'success',
-                    message: '删除成功!'
-                  });
+                  this.$message.success('删除成功!');
                   await this.loadRoles()
                 }else{
-                  this.$message({
-                    type: 'info',
-                    message: res.error
-                  });
+                  this.$message.info(res.error);
                 }
               }).catch(() => {})
             },

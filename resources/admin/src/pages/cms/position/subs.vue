@@ -89,15 +89,9 @@
 //                        .then(res => {
 //                            if(res.success){
 //                                this.loadModels()
-//                                this.$message({
-//                                    type: 'success',
-//                                    message: '删除成功!'
-//                                });
+//                                this.$message.success('删除成功!');
 //                            }else{
-//                                this.$message({
-//                                    type: 'error',
-//                                    message: res.error
-//                                });
+//                                this.$message.error(res.error);
 //                            }
 //
 //                        }).catch(()=>{});
@@ -130,10 +124,7 @@
                     if(this.form.id){
                         message = '更新成功!';
                     }
-                    this.$message({
-                        message: message,
-                        type: 'success'
-                    });
+                    this.$message.success(message);
                 }
             },
         },

@@ -93,10 +93,7 @@
                 }).then(async () => {
                     let res = await api.deleteAd({id: row.id})
                     if(res.success){
-                        this.$message({
-                            message: '操作成功',
-                            type: 'success'
-                        });
+                        this.$message.success('操作成功');
                         await this.loadAds()
                     }
                 })
@@ -117,15 +114,9 @@
                     if(this.form.id){
                         successMsg = '编辑成功!';
                     }
-                    this.$message({
-                        message: successMsg,
-                        type: 'success'
-                    });
+                    this.$message.success(successMsg);
                 }else{
-                    this.$message({
-                        message: res.error,
-                        type: 'warning'
-                    });
+                    this.$message.warning(res.error);
                 }
             },
             async loadAds(){

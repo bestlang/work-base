@@ -98,15 +98,9 @@
           if(this.form.id){
             successMsg = '编辑成功!';
           }
-          this.$message({
-            message: successMsg,
-            type: 'success'
-          });
+          this.$message.success(successMsg);
         }else{
-          this.$message({
-            message: res.error,
-            type: 'warning'
-          });
+          this.$message.warning(res.error);
         }
       },
       async loadTypes(){

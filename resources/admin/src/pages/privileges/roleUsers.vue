@@ -138,11 +138,11 @@
             async doAddNewUser(){
                 let res = await api.createRoleUser(this.form)
                 if(res.success){
-                    this.showMessage('添加成功！', 'success')
+                    this.$message.success('添加成功！')
                     await this.loadRoleUsers()
                     this.showForm = false;
                 }else{
-                    this.showMessage( res.error)
+                    this.$message.error( res.error)
                 }
             },
           handleRemove(row){
@@ -155,7 +155,7 @@
                 if(res.success){
                   await this.loadRoleUsers()
                 }else{
-                  this.$message({type:'error', message: res.error});
+                  this.$message.error(res.error);
                 }
               }).catch(() => {});
             },

@@ -115,15 +115,9 @@
 //                        .then(res => {
 //                            if(res.success){
 //                                this.loadModels()
-//                                this.$message({
-//                                    type: 'success',
-//                                    message: '删除成功!'
-//                                });
+//                                this.$message.success('删除成功!');
 //                            }else{
-//                                this.$message({
-//                                    type: 'error',
-//                                    message: res.error
-//                                });
+//                                this.$message.error(res.error);
 //                            }
 //
 //                        }).catch(()=>{});
@@ -135,10 +129,7 @@
                     this.loading = true;
                     await this.loadPositions();
                     this.formVisible = false;
-                    this.$message({
-                        message: '添加成功!',
-                        type: 'success'
-                    });
+                    this.$message.success('添加成功!');
                 }
             },
             async loadPositions(){

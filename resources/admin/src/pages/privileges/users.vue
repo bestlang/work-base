@@ -162,10 +162,10 @@
                     res = await api.createUser(this.form)
                 }
                 if(res.hasError){
-                    this.showMessage(res.error, 'warning')
+                    this.$message.warning(res.error)
                 }else{
                     let msg = this.form.id ? '更新成功' : '新增成功'
-                    this.showMessage(msg, 'success')
+                    this.$message.success(msg)
                 }
                 if(res.success){
                     this.formVisible = false;

@@ -45,16 +45,16 @@ axios.interceptors.response.use(response => {
                     msg = res.error
                 }
                 if(getPrefix() == 'api'){
-                    app.showMessage(msg)
+                    app.$message.info(msg)
                     localStorage.removeItem('accessToken')
                     app.$router.push(loginPath)
                 }else{
-                    app.showMessage(msg)
+                    app.$message.info(msg)
                     setTimeout(() => {location.href = loginPath}, 1500)
                 }
                 break
             case 402:
-                app.showMessage(res.code + res.error)
+                app.$message.info(res.code + res.error)
                 break
         }
         return res
@@ -66,7 +66,7 @@ axios.interceptors.response.use(response => {
             location.href = loginPath
         }
         if (error.response && error.response.status === 401){
-            app.showMessage('请重新登录')
+            app.$message.info('请重新登录')
             app.$router.replace(loginPath)
         }
         Promise.reject(error)// 错误提示

@@ -419,7 +419,7 @@
                 }
 
                 this.hideEducationForm()
-                this.showMessage('点击“保存”按钮存储教育经历', 'info')
+                this.$message.info('点击“保存”按钮存储教育经历')
             },
             restoreJob(job){
                 let found = false
@@ -442,7 +442,7 @@
                 }
 
                 this.hideJobForm()
-                this.showMessage('点击“保存”按钮存储工作经历', 'info')
+                this.$message.info('点击“保存”按钮存储工作经历')
             },
             handleClick(tab, event) {
                 console.log(tab, event);
@@ -501,10 +501,10 @@
                 let res = await api.sniperSaveEmployee(this.form)
                 if(!res.hasError){
                     let msg = !this.form.user_id ? '添加成功' : '更新成功'
-                    this.showMessage(msg, 'success')
+                    this.$message.success(msg)
                     this.$router.push('/sniper/employee/employee/list')
                 }else{
-                    this.showMessage(res.error, 'error')
+                    this.$message.error(res.error)
                 }
             },
             async getDepartments(){

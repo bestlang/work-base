@@ -59,28 +59,22 @@
 				if(!res.hasError){
                     this.themes = res.data;
 				}else{
-                    this.showMessage(res.error)
+                    this.$message.info(res.error)
 				}
 			},
             async getSiteSetting(){
                 let res = await api.getSiteSetting()
 				if(res.hasError){
-                    this.showMessage(res.error)
+                    this.$message.error(res.error)
 				}
                 this.site = Object.assign({}, this.site, res.data)
             },
 		    async saveContent(){
                 let res = await api.saveSiteSetting(this.site)
 				if(res.hasError){
-					this.$message({
-						type: 'error',
-						message: res.error
-					});
+					this.$message.error(res.error);
                 }else{
-                    this.$message({
-                        type: 'success',
-                        message: res.data
-                    });
+                    this.$message.success(res.data);
 				}
 				// console.log(JSON.stringify(this.site))
 			}

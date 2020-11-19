@@ -73,9 +73,9 @@
             async save(){
                 let res = await this.saveDepartment()
                 if(res.hasError){
-                    this.showMessage(res.error)
+                    this.$message.error(res.error)
                 }else{
-                    this.showMessage('添加成功！', 'success')
+                    this.$message.success('添加成功！')
                     this.$router.push('/sniper/employee/department')
                 }
             },

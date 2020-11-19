@@ -23,16 +23,16 @@ Vue.prototype.fetch = fetch
 Vue.prototype.$types = types
 Vue.prototype.SITE_URL = process.env.SITE_URL;//在config/dev.env中被覆盖
 Vue.prototype.ADMIN_URL = process.env.ADMIN_URL
-Vue.prototype.showMessage = (value, type='error') => { // type in [success, warning, info, error]
-    /*手动关闭所有实例*/
-    ElementUI.Message.closeAll()
-    return ElementUI.Message({
-        showClose: true,
-        message: value,
-        type: type,
-        duration: 3500
-    });
-}
+// Vue.prototype.showMessage = (value, type='error') => { // type in [success, warning, info, error]
+//     /*手动关闭所有实例*/
+//     ElementUI.Message.closeAll()
+//     return ElementUI.Message({
+//         showClose: true,
+//         message: value,
+//         type: type,
+//         duration: 3500
+//     });
+// }
 
 
 Vue.directive('title', {

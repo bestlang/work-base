@@ -88,20 +88,11 @@
                 }).then(async () => {
                     let res = await api.deleteAdPosition({id: row.id});
                     if(res.success){
-                        this.$message({
-                            message: '删除成功',
-                            type: 'success'
-                        });
+                        this.$message.success('删除成功');
                     }else{
-                        this.$message({
-                            message: res.error,
-                            type: 'error'
-                        });
+                        this.$message.error(res.error);
                     }
-                    this.$message({
-                        message: JSON.stringify(res),
-                        type: 'success'
-                    });
+                    this.$message.success(JSON.stringify(res));
                     this.getAdPositions();
                 })
             },
@@ -124,15 +115,9 @@
                     if(this.form.id){
                         successMsg = '编辑成功!';
                     }
-                    this.$message({
-                        message: successMsg,
-                        type: 'success'
-                    });
+                    this.$message.success(successMsg);
                 }else{
-                    this.$message({
-                        message: res.error,
-                        type: 'warning'
-                    });
+                    this.$message.warning(res.error);
                 }
             },
             async getAdPositions(){

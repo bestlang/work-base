@@ -88,7 +88,7 @@
                 }).then(async () => {
                     let res = await api.sniperDeleteDepartment({id})
                     if(!res.hasError){
-                        this.showMessage('删除成功！', 'success')
+                        this.$message.success('删除成功！')
                         this.updated = Math.random()
                     }
                 });
@@ -99,9 +99,9 @@
             async save(){
                 let res = await this.saveDepartment()
                 if(res.hasError){
-                    this.showMessage(res.error)
+                    this.$message.error(res.error)
                 }else{
-                    this.showMessage('更新成功！', 'success')
+                    this.$message.success('更新成功！')
                    this.updated = Math.random()//Math.floor(Math.random() * 999999)
                 }
             },

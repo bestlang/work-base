@@ -135,15 +135,9 @@
           let res = await api.deleteModel({id: row.id})
           if(res.success){
             await this.loadModels()
-            this.$message({
-              type: 'success',
-              message: '删除成功!'
-            });
+            this.$message.success('删除成功!');
           }else{
-            this.$message({
-              type: 'error',
-              message: res.error
-            });
+            this.$message.error(res.error);
           }
 
         });
@@ -155,10 +149,7 @@
                 if(this.modelForm.id){
                     message = '更新成功!';
                 }
-                this.$message({
-                    message: message,
-                    type: 'success'
-                });
+                this.$message.success('success');
                 Object.assign(this.modelForm, res.data);
                 this.id = res.data.id;
 //                await this.loadModel(this.id);
@@ -166,10 +157,7 @@
                 this.dialogFormVisible = false;
             }else{
                 let message = '出错了!请联系管理员';
-                this.$message({
-                    message: message,
-                    type: 'warning'
-                });
+                this.$message.warning(message);
             }
         },
       async loadModels(){
