@@ -14,7 +14,9 @@
                 router
                 :default-active="defaultActive"
                 :collapse="isCollapse">
+                    <template v-for="item in items">
                         <sub-menu :item="item" v-if="showOrNot(item)"></sub-menu>
+                    </template>
         </el-menu>
     </div>
 </template>
@@ -42,8 +44,8 @@
               'privileges',
               'csrf'
           ]),
-          item(){
-              return router.options.routes[0]
+          items(){
+              return router.options.routes[0].children
           }
       },
       watch:{

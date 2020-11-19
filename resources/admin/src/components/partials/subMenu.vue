@@ -8,6 +8,7 @@
               <div v-for="child in item.children">
                 <sub-menu :item="child"></sub-menu>
               </div>
+
           </el-submenu>
           <el-menu-item v-else-if="showMenuItem" :index="item.path">
               <i class="if" v-html="font"></i>
