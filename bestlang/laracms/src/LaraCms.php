@@ -50,9 +50,7 @@ class LaraCms
     public function latest($channelName='', $count=5)
     {
         $contents = Content::when($channelName, function($q) use ($channelName) {
-            return $q->whereHas('fans',function($query) use ($channelName) {
-                $query->where('channel.name','=',$channelName);
-            });
+            $q->where('channel.name','=',$channelName);
         })->with(['metas', 'contents'])->limit($count)->get();
         return $contents;
     }
