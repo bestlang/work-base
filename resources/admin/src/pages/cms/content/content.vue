@@ -166,6 +166,7 @@
           this.channel_id = channel.id
       },
       async addContent(){
+          let channel_id = this.currentChannel.id || this.channel_id
           this.$router.push('/cms/content/add?channel_id='+this.currentChannel.id)
       },
       async loadContents({...params}){
