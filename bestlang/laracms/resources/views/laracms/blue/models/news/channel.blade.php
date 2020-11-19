@@ -36,15 +36,15 @@
                                 @foreach($contents as $content)
                                     <article class="article-item" style="padding: 20px 0;border-bottom: 1px solid #efefef;">
                                         <div class="media">
-                                            <div class="media-left">
-                                                <a href="{{route('content', $content->id)}}" style="width: 160px;display: block;">
-                                                    <div class="embed-responsive embed-responsive-4by3 img-zoom">
-                                                        @if($content->thumb)
-                                                            <img src="{{$content->thumb}}" alt="{{$content->title}}"  />
-                                                        @endif
-                                                    </div>
-                                                </a>
-                                            </div>
+                                            {{--<div class="media-left">--}}
+                                                {{--<a href="{{route('content', $content->id)}}" style="width: 160px;display: block;">--}}
+                                                    {{--<div class="embed-responsive embed-responsive-4by3 img-zoom">--}}
+                                                        {{--@if($content->thumb)--}}
+                                                            {{--<img src="{{$content->thumb}}" alt="{{$content->title}}"  />--}}
+                                                        {{--@endif--}}
+                                                    {{--</div>--}}
+                                                {{--</a>--}}
+                                            {{--</div>--}}
                                             <div class="media-body" style="position: relative;">
                                                 <h3 class="article-title" style="margin: 0;font-size: 1.25em;">
                                                     <a href="{{route('content', $content->id)}}">{{$content->title}}</a>
