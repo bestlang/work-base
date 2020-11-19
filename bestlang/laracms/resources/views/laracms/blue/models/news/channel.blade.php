@@ -7,19 +7,19 @@
         <div class="">
             <div class="container">
                 <h1 class="category-title">
-                    {{$channel->name}}
-                    <div class="more pull-right">
-                        <ol class="breadcrumb">
-                            <!-- S 面包屑导航 -->
-                            @foreach(laracms::breadcrumbs($channel) as $b)
-                                <li><a href="{{$b->url}}">{{$b->name}}</a></li>
-                            @endforeach
-                            <!-- E 面包屑导航 -->
-                        </ol>
-                    </div>
+{{--                    {{$channel->name}}--}}
+                    {{--<div class="more pull-right">--}}
+                        {{--<ol class="breadcrumb">--}}
+                            {{--<!-- S 面包屑导航 -->--}}
+                            {{--@foreach(laracms::breadcrumbs($channel) as $b)--}}
+                                {{--<li><a href="{{$b->url}}">{{$b->name}}</a></li>--}}
+                            {{--@endforeach--}}
+                            {{--<!-- E 面包屑导航 -->--}}
+                        {{--</ol>--}}
+                    {{--</div>--}}
                 </h1>
                 <div class="row">
-                    <div class="col-md-8">
+                    <div class="col-md-12">
                         <div class="panel panel-default">
                             <div class="panel-heading">
                                 <h3 class="panel-title">
@@ -57,13 +57,13 @@
                                                         <a href="{{route('tag', $tag->name)}}" class="tag tag-primary">{{$tag->name}}</a>
                                                     @endforeach
                                                 </div>
-                                                <div style="position: absolute;bottom: 0;">
+                                                {{--<div style="position: absolute;bottom: 0;">--}}
 
-                                                    <span itemprop="date">{{laracms::dateFormat($content->created_at)}}</span>
-                                                    <span itemprop="likes" title="点赞次数"><i class="fa fa-thumbs-up"></i> 0 点赞</span>
-                                                    <span itemprop="comments"><a href="{{route('content', $content->id)}}#comments" target="_blank" title="评论数"><i class="fa fa-comments"></i> {{$content->comments()->count()}}</a> 评论</span>
-                                                    <span itemprop="views" title="浏览次数"><i class="fa fa-eye"></i> 7074 浏览</span>
-                                                </div>
+                                                    {{--<span itemprop="date">{{laracms::dateFormat($content->created_at)}}</span>--}}
+                                                    {{--<span itemprop="likes" title="点赞次数"><i class="fa fa-thumbs-up"></i> 0 点赞</span>--}}
+                                                    {{--<span itemprop="comments"><a href="{{route('content', $content->id)}}#comments" target="_blank" title="评论数"><i class="fa fa-comments"></i> {{$content->comments()->count()}}</a> 评论</span>--}}
+                                                    {{--<span itemprop="views" title="浏览次数"><i class="fa fa-eye"></i> 7074 浏览</span>--}}
+                                                {{--</div>--}}
                                             </div>
                                         </div>
                                     </article>
@@ -77,37 +77,37 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-4">
-                        <div class="panel panel-default">
-                            <div class="panel-heading"><h3 class="panel-title">文章推荐</h3></div>
-                            <div class="panel-body">
-                                @foreach(laracms::position('文章详情右侧推荐一') as $key => $content)
-                                    <div class="media">
-                                        <div class="media-left">{{$key+1}}</div>
-                                        <div class="media-body">
-                                            <div><a target="_self" href="{{route('content', $content->id)}}">{{$content->title}}</a></div>
+                    {{--<div class="col-md-4">--}}
+                        {{--<div class="panel panel-default">--}}
+                            {{--<div class="panel-heading"><h3 class="panel-title">文章推荐</h3></div>--}}
+                            {{--<div class="panel-body">--}}
+                                {{--@foreach(laracms::position('文章详情右侧推荐一') as $key => $content)--}}
+                                    {{--<div class="media">--}}
+                                        {{--<div class="media-left">{{$key+1}}</div>--}}
+                                        {{--<div class="media-body">--}}
+                                            {{--<div><a target="_self" href="{{route('content', $content->id)}}">{{$content->title}}</a></div>--}}
                                             {{--<p>{{$content->created_at}}</p>--}}
-                                        </div>
-                                    </div>
-                                @endforeach
-                            </div>
-                        </div>
+                                        {{--</div>--}}
+                                    {{--</div>--}}
+                                {{--@endforeach--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
                         {{----}}
-                        <div class="panel panel-default">
-                            <div class="panel-heading"><h3 class="panel-title">文章推荐</h3></div>
-                            <div class="panel-body">
-                                @foreach(laracms::position('文章详情右侧推荐一') as $key => $content)
-                                    <div class="media">
-                                        <div class="media-left">{{$key+1}}</div>
-                                        <div class="media-body">
-                                            <div><a target="_self" href="{{route('content', $content->id)}}">{{$content->title}}</a></div>
+                        {{--<div class="panel panel-default">--}}
+                            {{--<div class="panel-heading"><h3 class="panel-title">文章推荐</h3></div>--}}
+                            {{--<div class="panel-body">--}}
+                                {{--@foreach(laracms::position('文章详情右侧推荐一') as $key => $content)--}}
+                                    {{--<div class="media">--}}
+                                        {{--<div class="media-left">{{$key+1}}</div>--}}
+                                        {{--<div class="media-body">--}}
+                                            {{--<div><a target="_self" href="{{route('content', $content->id)}}">{{$content->title}}</a></div>--}}
                                             {{--<p>{{$content->created_at}}</p>--}}
-                                        </div>
-                                    </div>
-                                @endforeach
-                            </div>
-                        </div>
-                    </div>
+                                        {{--</div>--}}
+                                    {{--</div>--}}
+                                {{--@endforeach--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
+                    {{--</div>--}}
                 </div>
             </div>
         </div>
