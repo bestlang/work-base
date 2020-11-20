@@ -1,113 +1,91 @@
 <template>
-    <div class="tag-nav">
-        <scroll-bar ref="scrollBar">
-            <router-link ref="tag" class="tag-nav-li" :class="{'cur':isActive(item)}" v-for="(item, index) in tagNavList"
-                         :to="item.fullPath" :key="index">
-                {{item.title}}
-                <span style="line-height: 0;font-size: 8px;color:#ccc;" class='el-icon-close' @click.prevent.stop="closeTheTag(item, index)" v-if="item.fullPath!==defaultPage"></span>
-            </router-link>
-        </scroll-bar>
-    </div>
+    <el-tabs v-model="editableTabsValue" type="card" closable @tab-remove="removeTab" @tab-click="clickTab">
+        <el-tab-pane
+                v-for="(item, index) in editableTabs"
+                :key="item.name"
+                :label="item.title"
+                :name="item.name"
+        >
+        </el-tab-pane>
+    </el-tabs>
 </template>
 
 <script>
-    import scrollBar from './scrollBar'
-
     export default {
         data(){
             return {
-                defaultPage: '/'
+                editableTabsValue: 'dashboard',
+                editableTabs: [
+                    {
+                        title: '面板',
+                        name: 'dashboard',
+                        path: '/',
+                        fullPath: '/'
+                    }
+                ]
             }
         },
-        computed: {
-            tagNavList(){
-                return this.$store.state.tagNav.openedPageList
-            }
-        },
-        mounted(){
-            // 首次加载时将默认页面加入缓存
-            this.addTagNav()
-        },
-        watch: {
+        watch:{
             $route(){
-                this.addTagNav()
-                this.scrollToCurTag()
+                this.addTab()
             }
         },
-        methods: {
-            addTagNav(){
+        methods:{
+            addTab(){
                 let mcs = this.$router.getMatchedComponents()
                 let path = this.$route.path
                 let fullPath = this.$route.fullPath
-                    // ["name","meta","path","hash","query","params","fullPath","matched"]
-                // 如果需要缓存则必须使用组件自身的name，而不是router的name
-                this.$store.commit("tagNav/addTagNav", {
-                    name: mcs[mcs.length-1].name,
-                    path: path,
-                    fullPath: fullPath,
-                    title: this.$route.meta.name
-                })
-            },
-            isActive(item){
-                return item.path === this.$route.path
-            },
-            closeTheTag(item, index){
-                // 当关闭当前页面的Tag时，则自动加载前一个Tag所属的页面
-                // 如果没有前一个Tag，则加载默认页面
-                this.$store.commit("tagNav/removeTagNav", item)
-                if(this.$route.path == item.path){
-                    if(index){
-                            this.$router.push(this.tagNavList[index - 1].path)
-                    } else {
-                        this.$router.push(this.defaultPage)
-                        if(this.$route.path == "/home"){
-                            this.addTagNav()
-                        }
-                    }
+                let name = mcs[mcs.length-1].name
+                // ["name","meta","path","hash","query","params","fullPath","matched"]
+                const exists = this.editableTabs.map(tab => tab.name).includes(name)
+                if(!exists){
+                    this.editableTabs.push({
+                        title: this.$route.meta.name,
+                        name: name,
+                        path: path,
+                        fullPath: fullPath
+                    })
                 }
+                this.editableTabsValue = name
             },
-            scrollToCurTag(){
-                this.$nextTick(() =>{
-                    for (let item of this.$refs.tag) {
-                        if (item.to === this.$route.path) {
-                            this.$refs.scrollBar.scrollToCurTag(item.$el)
-                            break
+            clickTab(currentTab){
+                const [tab] = this.editableTabs.filter(tab => tab.name == currentTab.name)
+                this.$router.push(tab.fullPath)
+            },
+            removeTab(targetName) {
+                let tabs = this.editableTabs
+                let activeName = this.editableTabsValue
+                if (activeName === targetName) {
+                    tabs.forEach((tab, index) => {
+                        if (tab.name === targetName) {
+                            let nextTab = tabs[index + 1] || tabs[index - 1]
+                            if (nextTab) {
+                                activeName = nextTab.name
+                                const [tab] = this.editableTabs.filter(tab => tab.name == activeName)
+                                this.$router.replace(tab.fullPath)
+                            }else{
+                                this.$router.replace('/')
+                            }
                         }
-                    }
-                })
+                    });
+                }
+                this.editableTabsValue = activeName
+                this.editableTabs = tabs.filter(tab => tab.name !== targetName)
             }
         },
-        components: {scrollBar}
+        created(){
+           this.addTab()
+        }
+
     }
 </script>
 <style lang="less" scoped>
-    .tag-nav-li{
-        font-size: 14px;
-        height: 40px;
-        line-height: 40px;
-        display: inline-block;
-        padding: 0 10px;
-        box-sizing: border-box;
-        /*margin-right: 5px;*/
-        font-weight: lighter;
-        background: transparent;
-        /*+.tag-nav-li{*/
-            /*border-left: none;*/
-        /*}*/
-        &:hover{
-            text-decoration: none;
+    /deep/ .el-tabs__nav{
+        border-top: none!important;
+    }
+    /deep/ .el-tabs__nav .el-tabs__item{
+        &.is-active{
             background: #fff;
-            box-shadow: 0 20px 20px #f1f1f1 inset;
-         }
-    }
-    .cur{
-        background: #fff;
-        border-left: 1px solid #e4e7ed;
-        border-right: 1px solid #e4e7ed;
-    }
-    .tag-nav{
-        width: 100%;
-        height: 40px;
-        line-height: 40px;
+        }
     }
 </style>

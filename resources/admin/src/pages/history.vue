@@ -39,6 +39,7 @@
     import pager from "@/components/pager"
 
     export default {
+        name: 'history',
         components:{
             pager
         },

@@ -38,6 +38,9 @@ export default {
 }
 </script>
 <style scoped lang="less">
+    /deep/ .el-tabs{
+        width: 100%;
+    }
     .ls-container{
         margin: 0;
         display: flex;
@@ -47,7 +50,7 @@ export default {
         height: 40px;
         background: #fff;
         width: 100%;
-        border-bottom: 1px solid #e4e7ed;
+        border-bottom: 1px solid rgb(228, 231, 237);
     }
     .ls-content{
         width: 100%;
