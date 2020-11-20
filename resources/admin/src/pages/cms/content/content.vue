@@ -169,8 +169,12 @@
       async loadContents({...params}){
           let queryData = {channel_id: this.channel_id, page: this.page, page_size: this.page_size, ...params}
           let {data} = await api.getChannelContents(queryData)
-          this.contents = data.contents;
-          this.total = data.total;
+          if(data.contents && data.contents.length){
+              this.contents = data.contents;
+          }
+          if(data.total){
+              this.total = data.total;
+          }
       },
       async currentChange(page){
           this.page = page

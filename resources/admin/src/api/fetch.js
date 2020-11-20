@@ -1,11 +1,7 @@
 import axios from 'axios'
-import { Message } from 'element-ui'
 import app from '../main.js'
 import {getPrefix} from './util'
-// import Cookies from 'js-cookie'
-
 const loginPath = '/login'
-// axios.defaults.timeout = 50000;
 
 axios.interceptors.request.use(config => {
     let accessToken = localStorage.getItem('accessToken')
@@ -30,36 +26,44 @@ axios.interceptors.request.use(config => {
 axios.interceptors.response.use(response => {
         let res = response.data
         let code = parseInt(res.code)
-        switch (code) {
-            case 0://各种Exception导致的返回异常，包括登录超时token错误
-                if(res.error !== 'Unauthenticated.'){//非登录超时异常
-                    break;
-                }else{
-                    res.error = '登录超时，请重新登录！'
-                }
-            case 401:
-                let msg = '请重新登录!'
-                if(res.data.length){
-                    msg = res.data
-                }else{
-                    msg = res.error
-                }
+        app.$message.closeAll()
+        if(code === 0){
+            if(res.error == 'Unauthenticated.'){//非登录超时异常
+                res.error = '登录超时，请重新登录！'
                 if(getPrefix() == 'api'){
-                    app.$message.info(msg)
+                    app.$message.info(res.error)
                     localStorage.removeItem('accessToken')
                     app.$router.push(loginPath)
                 }else{
-                    app.$message.info(msg)
-                    setTimeout(() => {location.href = loginPath}, 1500)
+                    location.href = loginPath
                 }
-                break
-            case 402:
-                app.$message.info(res.code + res.error)
-                break
+            }
+        }else if(code === 401){
+            let msg = '请重新登录!'
+            if(res.data.length){
+                msg = res.data
+            }else{
+                msg = res.error
+            }
+            if(getPrefix() == 'api'){
+                app.$message.info(msg)
+                localStorage.removeItem('accessToken')
+                setTimeout(() => {app.$router.push(loginPath)}, 1500)
+            }else{
+                location.href = loginPath
+                setTimeout(() => {location.href = loginPath}, 1500)
+            }
+            res.error = msg
+        }else if(code === 402){
+            res.error = res.code + res.error
+        }
+        if(res.error){
+            app.$message.info(res.error)
         }
         return res
     },
     error => {
+        app.$message.closeAll()
         if(getPrefix() == 'api'){
             app.$router.push(loginPath)
         }else{

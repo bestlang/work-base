@@ -85,6 +85,11 @@ const cmsConfig = {
       async [types.cmsChannels]({commit, dispatch}, payload=[null, 0]){
         commit(types.loading, true)
         let res = await api.getCmsChannelTree({disabled: true, has_contents: payload[1]});
+        if(!res.data){
+            commit(types.cmsChannels, [])
+            commit(types.loading, false)
+            return
+        }
         let node = res.data[Object.keys(res.data)[0]]
         commit(types.cmsChannels, [node])
         let parentId = payload[0]||node.id
