@@ -176,68 +176,68 @@ export default [
                     }
                 ]
             },
-            {
-                path: "/cms/operation",
-                component:  {template:`<router-view></router-view>`},
-                meta: {
-                    can: 'cms operations',
-                    show: true,
-                    name: '运营管理',
-                    font: '&#xe764;'
-                },
-                children: [
-                    {
-                        path: "/cms/operation/orders",
-                        component: () => import("../pages/cms/operation/orders.vue"),
-                        meta: {
-                            can: 'cms operations',
-                            show: true,
-                            name: '订单管理',
-                            font: '&#xe764;'
-                        }
-                    },
-                    {
-                        path: "/cms/operation/order/detail",
-                        component: () => import("../pages/cms/operation/orderDetail.vue"),
-                        meta: {
-                            can: 'cms operations',
-                            show: false,
-                            name: '订单详情',
-                            font: '&#xe764;'
-                        }
-                    },
-                    {
-                        path: "/cms/operation/ads",
-                        component: () => import("../pages/cms/operation/ads.vue"),
-                        meta: {
-                            can: 'cms ad operations',
-                            show: true,
-                            name: '广告管理',
-                            font: '&#xe764;'
-                        }
-                    },
-                    {
-                        path: "/cms/operation/ad/positions",
-                        component: () => import("../pages/cms/operation/adPositions.vue"),
-                        meta: {
-                            can: 'cms ad operations',
-                            show: true,
-                            name: '广告位',
-                            font: '&#xe764;'
-                        }
-                    },
-                    {
-                        path: "/cms/operation/edit/ad",
-                        component: () => import("../pages/cms/operation/editAd.vue"),
-                        meta: {
-                            can: 'cms ad operations',
-                            show: false,
-                            name: '新增/编辑广告位',
-                            font: '&#xe764;'
-                        }
-                    }
-                ]
-            }
+            // {
+            //     path: "/cms/operation",
+            //     component:  {template:`<router-view></router-view>`},
+            //     meta: {
+            //         can: 'cms operations',
+            //         show: true,
+            //         name: '运营管理',
+            //         font: '&#xe764;'
+            //     },
+            //     children: [
+            //         {
+            //             path: "/cms/operation/orders",
+            //             component: () => import("../pages/cms/operation/orders.vue"),
+            //             meta: {
+            //                 can: 'cms operations',
+            //                 show: true,
+            //                 name: '订单管理',
+            //                 font: '&#xe764;'
+            //             }
+            //         },
+            //         {
+            //             path: "/cms/operation/order/detail",
+            //             component: () => import("../pages/cms/operation/orderDetail.vue"),
+            //             meta: {
+            //                 can: 'cms operations',
+            //                 show: false,
+            //                 name: '订单详情',
+            //                 font: '&#xe764;'
+            //             }
+            //         },
+            //         {
+            //             path: "/cms/operation/ads",
+            //             component: () => import("../pages/cms/operation/ads.vue"),
+            //             meta: {
+            //                 can: 'cms ad operations',
+            //                 show: true,
+            //                 name: '广告管理',
+            //                 font: '&#xe764;'
+            //             }
+            //         },
+            //         {
+            //             path: "/cms/operation/ad/positions",
+            //             component: () => import("../pages/cms/operation/adPositions.vue"),
+            //             meta: {
+            //                 can: 'cms ad operations',
+            //                 show: true,
+            //                 name: '广告位',
+            //                 font: '&#xe764;'
+            //             }
+            //         },
+            //         {
+            //             path: "/cms/operation/edit/ad",
+            //             component: () => import("../pages/cms/operation/editAd.vue"),
+            //             meta: {
+            //                 can: 'cms ad operations',
+            //                 show: false,
+            //                 name: '新增/编辑广告位',
+            //                 font: '&#xe764;'
+            //             }
+            //         }
+            //     ]
+            // }
         ]
     }
 ]
