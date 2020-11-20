@@ -27,51 +27,26 @@ axios.interceptors.response.use(response => {
         let res = response.data
         let code = parseInt(res.code)
         app.$message.closeAll()
-        if(code === 0){
-            if(res.error == 'Unauthenticated.'){//非登录超时异常
-                res.error = '登录超时，请重新登录！'
-                if(getPrefix() == 'api'){
-                    app.$message.info(res.error)
-                    localStorage.removeItem('accessToken')
-                    app.$router.push(loginPath)
-                }else{
-                    location.href = loginPath
-                }
-            }
-        }else if(code === 401){
-            let msg = '请重新登录!'
-            if(res.data.length){
-                msg = res.data
-            }else{
-                msg = res.error
-            }
+        if([0, 401].indexOf(code) > -1){
+            app.$message.info(res.error || '登录超时，请重新登录！')
             if(getPrefix() == 'api'){
-                app.$message.info(msg)
                 localStorage.removeItem('accessToken')
-                setTimeout(() => {app.$router.push(loginPath)}, 1500)
+                app.$router.push(loginPath)
             }else{
-                location.href = loginPath
-                setTimeout(() => {location.href = loginPath}, 1500)
+                setTimeout(() => location.href = loginPath, 1500)
             }
-            res.error = msg
         }else if(code === 402){
             res.error = res.code + res.error
-        }
-        if(res.error){
-            app.$message.info(res.error)
         }
         return res
     },
     error => {
         app.$message.closeAll()
+        app.$message.info('未知错误！请尝试重新登录')
         if(getPrefix() == 'api'){
             app.$router.push(loginPath)
         }else{
-            location.href = loginPath
-        }
-        if (error.response && error.response.status === 401){
-            app.$message.info('请重新登录')
-            app.$router.replace(loginPath)
+            setTimeout(() => location.href = loginPath, 1500)
         }
         Promise.reject(error)// 错误提示
     }
