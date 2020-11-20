@@ -1,7 +1,6 @@
 import axios from 'axios'
 import app from '../main.js'
 import {getPrefix} from './util'
-const loginPath = '/login'
 
 axios.interceptors.request.use(config => {
     let accessToken = localStorage.getItem('accessToken')
@@ -24,6 +23,7 @@ axios.interceptors.request.use(config => {
 
 /**响应拦截器 */
 axios.interceptors.response.use(response => {
+        const loginPath = '/login'
         let res = response.data
         let code = parseInt(res.code)
         app.$message.closeAll()
