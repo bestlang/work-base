@@ -11,6 +11,7 @@
     </el-alert>
     <!--<el-button @click="throttledArrowClick">点我</el-button>-->
     <div>
+        <!--
         <div style="margin-bottom: 20px;">
             <el-button
                     size="small"
@@ -29,6 +30,7 @@
               {{item.content}}
             </el-tab-pane>
         </el-tabs>
+        -->
     </div>
   </div>
 
