@@ -116,7 +116,7 @@
 			border:1px solid #eee;
 			width: 200px;
 			height: 140px;
-			margin: 20px 30px 0 0;
+			margin: 20px 20px 0 0;
 			border-radius: 5px;
 			cursor: pointer;
 			background: #F2F8FE;
@@ -142,7 +142,7 @@
 	@media screen and (max-width: 1500px){
 		.l-employee-wrap{
 			.l-employee{
-				width: 170px;
+				width: 190px;
 			}
 		}
 	}
