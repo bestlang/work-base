@@ -99,12 +99,16 @@
             background: #fff;
             box-shadow: 0 20px 20px #f1f1f1 inset;
          }
+        &.cur{
+            background: #fff;
+            border-top: 1px solid #e4e7ed;
+            border-left: 1px solid #e4e7ed;
+            border-right: 1px solid #e4e7ed;
+            border-top-left-radius: 3px;
+            border-top-right-radius: 3px;
+        }
     }
-    .cur{
-        background: #fff;
-        border-left: 1px solid #e4e7ed;
-        border-right: 1px solid #e4e7ed;
-    }
+
     .tag-nav{
         width: 100%;
         height: 40px;

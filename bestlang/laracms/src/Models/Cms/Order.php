@@ -5,18 +5,21 @@ namespace BestLang\LaraCms\Models\Cms;
 use BestLang\LaraCms\Models\User;
 use Illuminate\Database\Eloquent\Model;
 use BestLang\WxPay\Pay\Contracts\OrderInterface;
+use \Exception;
 
 class Order extends Model implements OrderInterface
 {
     const STATUS = [
         'UNPAID' => 0,
         'PAID' => 1,
-        'CANCELED' => 4
+        'CANCELED' => 4,
+        'CLOSED' => 5
     ];
     const STATUS_TEXT = [
         0 => '未支付',
         1 => '已支付',
-        4 => '已取消'
+        4 => '已取消',
+        5 => '已关闭'
     ];
     const GATEWAY = [
         'UNKNOWN' => 0,
@@ -44,12 +47,22 @@ class Order extends Model implements OrderInterface
 
     public function getStatusTextAttribute()
     {
-        return self::STATUS_TEXT[$this->attributes['status']??0];
+        $status = $this->attributes['status']??0;
+        if(isset(self::STATUS_TEXT[$status])){
+            return self::STATUS_TEXT[$status];
+        }else{
+            throw new Exception('unknown order status '.$status);
+        }
     }
 
     public function getGatewayTextAttribute()
     {
-        return self::GATEWAY_TEXT[$this->attributes['gateway']??0];
+        $gateway = $this->attributes['gateway']??0;
+        if(isset(self::GATEWAY_TEXT[$gateway])){
+            return self::GATEWAY_TEXT[$gateway];
+        }else{
+            throw new Exception('出错了');
+        }
     }
 
     public function getId()

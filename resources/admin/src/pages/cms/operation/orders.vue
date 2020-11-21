@@ -63,6 +63,7 @@
                             label="操作">
                         <template slot-scope="scope">
                             <el-button type="text" size="small" @click="viewOrder(scope.row)">查看</el-button>
+                            <el-button type="text" size="small" @click="closeOrder(scope.row)" v-if="scope.row.status===0">关闭</el-button>
                         </template>
                     </el-table-column>
                 </el-table>
@@ -92,6 +93,17 @@
         methods:{
             viewOrder({order_no}){
                 this.$router.push('/cms/operation/order/detail?order_no='+order_no)
+            },
+             closeOrder({order_no}){
+                this.$confirm('确认关闭未付款订单？')
+                    .then(async _ => {
+                        const status = 5
+                        await api.closeOrder({order_no, status})
+                        await this.getOrders()
+                    })
+                    .catch(_ => {
+                        //取消会触发
+                    });
             },
             async getOrders(){
                 let page = this.page;

@@ -27,7 +27,9 @@ axios.interceptors.response.use(response => {
         let res = response.data
         let code = parseInt(res.code)
         app.$message.closeAll()
-        if([0, 401].indexOf(code) > -1){
+        if(code === 0){
+            app.$message.info(res.error || '出错了')
+        }else if(code === 401){
             app.$message.info(res.error || '登录超时，请重新登录！')
             if(getPrefix() == 'api'){
                 localStorage.removeItem('accessToken')

@@ -63,6 +63,7 @@ export default {
     getOptionalThemes(data){ return fetch('/admin/cms/get/optional/themes', data) },
     getOrders(data){ return fetch('/admin/cms/orders', data) },
     getOrderDetail(data){ return fetch('/admin/cms/order/detail', data) },
+    closeOrder(data){ return fetch('/admin/cms/order/close', data, 'post') },
     saveSiteSetting(data){ return fetch('/admin/cms/save/site/setting', data, 'post') },
     getSiteSetting(data){ return fetch('/admin/cms/get/site/setting', data) },
     getHistories(data){return fetch('/admin/histories', data) },
