@@ -38,9 +38,9 @@ export default {
 }
 </script>
 <style scoped lang="less">
-    /deep/ .el-tabs{
-        width: 100%;
-    }
+    /*/deep/ .el-tabs{*/
+        /*width: 100%;*/
+    /*}*/
     .ls-container{
         margin: 0;
         display: flex;
