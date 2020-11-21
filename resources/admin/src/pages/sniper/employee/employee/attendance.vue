@@ -269,7 +269,7 @@
                 .l-user{
                     position: relative;
                     cursor: pointer;
-                    width: 220px;
+                    width: 200px;
                     height: 140px;
                     border: 1px solid #f1f1f1;
                     margin-bottom: 20px;
