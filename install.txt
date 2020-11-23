@@ -30,3 +30,8 @@ DEFAULT_APPLICATION_PATH='/cms'
 base login.blade.php
  admin login.vue
  admin router/index modules/normal
+
+ csrf排除
+'notify/wechat/native',
+'notify/wechat/async',
+'notify/alipay'

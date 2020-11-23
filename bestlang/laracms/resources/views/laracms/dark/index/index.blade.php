@@ -11,7 +11,9 @@
                         @foreach(laracms::channelContents(32, 4) as $index => $content)
                             <div class="swiper-slide">
                                 <a href="{{$content->url}}">
+                                    @if($content->image)
                                     <div style="height: 100%;background:url('{{$content->image}}') scroll center/cover;"></div>
+                                    @endif
                                     {{--<div class="carousel-caption hidden-xs"><h3>{{$content->title}}</h3></div>--}}
                                 </a>
                             </div>
@@ -38,8 +40,9 @@
                                     <div class="col-sm-3 col-xs-6">
                                         <a href="{{route('content', $content->id)}}" class="img-zoom">
                                             <div class="embed-responsive embed-responsive-4by3">
-
-{{--                                                <img src="{{$content->thumb}}" alt="{{$content->title}}" class="embed-responsive-item">--}}
+                                                @if($content->image)
+                                                <img src="{{$content->thumb}}" alt="{{$content->title}}" class="embed-responsive-item">
+                                                @endif
                                             </div>
                                         </a>
                                         <h5>{{$content->title}}</h5>
@@ -80,7 +83,9 @@
                                                 <div class="col-sm-3 col-xs-6">
                                                     <a href="{{route('content', $content->id)}}" class="img-zoom">
                                                         <div class="embed-responsive embed-responsive-4by3">
-{{--                                                            <img src="{{$album['url']}}" alt="{{$album['description']}}" class="embed-responsive-item">--}}
+                                                            @if($album['url'])
+                                                            <img src="{{$album['url']}}" alt="{{$album['description']}}" class="embed-responsive-item">
+                                                            @endif
                                                         </div>
                                                     </a>
                                                 </div>
@@ -107,7 +112,9 @@
                                         <div class="media-left">
                                             <a href="{{route('content', $content->id)}}">
                                                 <div class="embed-responsive embed-responsive-4by3 img-zoom">
-{{--                                                    <img src="{{$content->thumb}}" alt="{{$content->title}}"  />--}}
+                                                    @if($content->thumb)
+                                                    <img src="{{$content->thumb}}" alt="{{$content->title}}"  />
+                                                    @endif
                                                 </div>
                                             </a>
                                         </div>
@@ -167,7 +174,9 @@
                 @foreach(laracms::positionAds('首页右第一个广告位', 2) as $index => $ad)
                 <div class="panel panel-blockimg">
                     <a href="{{$ad->url}}" target="{{$ad->target}}">
-                        {{--<img src="{{$ad->image}}" class="img-responsive">--}}
+                        @if($ad->image)
+                        <img src="{{$ad->image}}" class="img-responsive">
+                        @endif
                     </a>
                 </div>
                 @endforeach
@@ -191,7 +200,9 @@
                 @foreach(laracms::positionAds('首页右第一个广告位', 2) as $index => $ad)
                 <div class="panel panel-blockimg">
                     <a href="{{$ad->url}}" rel="nofollow" title="{{$ad->name}}" target="{{$ad->target}}">
-                        {{--<img src="{{$ad->image}}" class="img-responsive" alt="">--}}
+                        @if($ad->image)
+                        <img src="{{$ad->image}}" class="img-responsive" alt="">
+                        @endif
                     </a>
                 </div>
                 @endforeach
@@ -231,7 +242,9 @@
                 @foreach(laracms::positionAds('首页右第一个广告位', 2) as $index => $ad)
                 <div class="panel panel-blockimg">
                     <a href="{{$ad->url}}" title="{{$ad->name}}">
-                        {{--<img src="{{$ad->image}}" alt="{{$ad->name}}" class="img-responsive"/>--}}
+                        @if($ad->image)
+                        <img src="{{$ad->image}}" alt="{{$ad->name}}" class="img-responsive"/>
+                        @endif
                     </a>
                 </div>
                 @endforeach
