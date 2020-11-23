@@ -12,9 +12,14 @@
 				</div>
 			</div>
 			<div class="l-block-body">
+				<div style="text-align: left"><el-switch
+						v-model="forceShow"
+						active-text="全部"
+						inactive-text="在职">
+				</el-switch></div>
 				<div class="l-employee-wrap">
 					<template v-if="employee.length">
-						<transition name="el-zoom-in-center" v-for="(em, index) in employee"  :key="index">
+						<transition name="el-zoom-in-center" v-for="(em, index) in employee"  :key="index" v-if="em.user.ding_user && em.user.ding_user.onJob || forceShow">
 							<div v-show="showEmployee">
 								<div class="l-employee"  @click="viewEmployee(em)">
 									<img :src="em.avatar?em.avatar : '/vendor/sniper/images/user.png'" alt="" style="border-radius: 100em;">
@@ -41,6 +46,7 @@
         components: { DepartmentTree },
         data(){
             return {
+                forceShow: false,
                 department: {},
 				employee:[],
                 showEmployee: false

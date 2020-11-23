@@ -50,10 +50,16 @@
         </div>
     </div>
 </footer>
-<!-- <script src="https://unpkg.zhimg.com/jquery@2.2.4/dist/jquery.min.js"></script>
+<!--
+<script src="https://unpkg.zhimg.com/jquery@2.2.4/dist/jquery.min.js"></script>
 <script src="https://unpkg.zhimg.com/bootstrap@3.4.1/dist/js/bootstrap.min.js"></script>
 <script src="https://unpkg.zhimg.com/axios/dist/axios.min.js"></script>
-<script src="https://unpkg.zhimg.com/swiper/swiper-bundle.min.js"></script> -->
+<script src="https://unpkg.zhimg.com/swiper/swiper-bundle.min.js"></script>
+-->
+<script src="https://static.laracms.com/unpkg/jquery.min.js"></script>
+<script src="https://static.laracms.com/unpkg/bootstrap.min.js"></script>
+<script src="https://static.laracms.com/unpkg/axios.min.js"></script>
+<script src="https://static.laracms.com/unpkg/swiper-bundle.min.js"></script>
 <script>
     if(window.axios){
         window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
