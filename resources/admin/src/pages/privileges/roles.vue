@@ -29,10 +29,10 @@
             <el-table-column
                     label="操作">
                 <template slot-scope="scope">
-                      <el-button class="l-inline-btn l-lighter" @click="editRole(scope.row)" type="text" size="medium"><i class="iconfont">&#xe618;</i>编辑</el-button>
-                      <el-button class="l-inline-btn l-lighter" type="text" size="medium" @click="handleDelete(scope.row)"><i class="iconfont">&#xe620;</i>删除</el-button>
-                      <el-button class="l-inline-btn l-lighter" type="text" size="medium" @click="editRolePermissions(scope.row)"><i class="iconfont">&#xe64a;</i>权限</el-button>
-                      <el-button class="l-inline-btn l-lighter" @click="viewRoleUsers(scope.row)" type="text" size="medium"><i class="iconfont">&#xe6b0;</i>成员</el-button>
+                      <el-button @click="editRole(scope.row)" type="primary" size="mini"><i class="iconfont">&#xe618;</i>编辑</el-button>
+                      <el-button type="danger" size="mini" @click="handleDelete(scope.row)"><i class="iconfont">&#xe620;</i>删除</el-button>
+                      <el-button type="warning" size="mini" @click="editRolePermissions(scope.row)"><i class="iconfont">&#xe64a;</i>权限</el-button>
+                      <el-button @click="viewRoleUsers(scope.row)" type="success" size="mini"><i class="iconfont">&#xe6b0;</i>成员</el-button>
                 </template>
             </el-table-column>
         </el-table>

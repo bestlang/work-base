@@ -28,7 +28,18 @@ axios.interceptors.response.use(response => {
         let code = parseInt(res.code)
         app.$message.closeAll()
         if(code === 0){
-            app.$message.info(res.error || '出错了')
+
+            if(res.error === 'Unauthenticated.'){
+                app.$message.info('登录信息过期，请重新登录')
+                if(getPrefix() == 'api'){
+                    localStorage.removeItem('accessToken')
+                    app.$router.push(loginPath)
+                }else{
+                    setTimeout(() => location.href = loginPath, 1500)
+                }
+            }else{
+                app.$message.info(res.error || '出错了')
+            }
         }else if(code === 401){
             app.$message.info(res.error || '登录超时，请重新登录！')
             if(getPrefix() == 'api'){

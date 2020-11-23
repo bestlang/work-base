@@ -53,7 +53,7 @@
                 <el-table-column
                         label="操作">
                     <template slot-scope="scope">
-                        <el-button class="l-inline-btn l-lighter" @click="editUser(scope.row)" type="text" size="medium">
+                        <el-button @click="editUser(scope.row)" type="primary" size="mini">
                             <i class="iconfont">&#xe618;</i>编辑
                         </el-button>
                     </template>

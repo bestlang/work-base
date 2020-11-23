@@ -9,7 +9,7 @@
     <title>@yield('title',HashConfig::get('site','title'))</title>
     <meta name="keywords" content="laraCms"/>
     <meta name="generator" content="laraCms"/>
-    <meta name="description" content=""/>
+    <meta name="description" content="laraCms"/>
     <meta name="csrf-token" content="{{csrf_token()}}">
 
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon"/>

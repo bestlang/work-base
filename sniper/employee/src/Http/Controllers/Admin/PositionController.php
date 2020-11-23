@@ -26,7 +26,7 @@ class PositionController
         if(!$id){
             return response()->error('参数错误');
         }
-        $position = Position::with('parent')->find($id);
+        $position = Position::with(['parent', 'employee','employee.user', 'employee.department'])->find($id);
         if($position){
             return response()->ajax($position);
         }

@@ -39,7 +39,7 @@
                                         <a href="{{route('content', $content->id)}}" class="img-zoom">
                                             <div class="embed-responsive embed-responsive-4by3">
 
-                                                <img src="{{$content->thumb}}" alt="{{$content->title}}" class="embed-responsive-item">
+{{--                                                <img src="{{$content->thumb}}" alt="{{$content->title}}" class="embed-responsive-item">--}}
                                             </div>
                                         </a>
                                         <h5>{{$content->title}}</h5>
@@ -80,7 +80,7 @@
                                                 <div class="col-sm-3 col-xs-6">
                                                     <a href="{{route('content', $content->id)}}" class="img-zoom">
                                                         <div class="embed-responsive embed-responsive-4by3">
-                                                            <img src="{{$album['url']}}" alt="{{$album['description']}}" class="embed-responsive-item">
+{{--                                                            <img src="{{$album['url']}}" alt="{{$album['description']}}" class="embed-responsive-item">--}}
                                                         </div>
                                                     </a>
                                                 </div>
@@ -107,7 +107,7 @@
                                         <div class="media-left">
                                             <a href="{{route('content', $content->id)}}">
                                                 <div class="embed-responsive embed-responsive-4by3 img-zoom">
-                                                    <img src="{{$content->thumb}}" alt="{{$content->title}}"  />
+{{--                                                    <img src="{{$content->thumb}}" alt="{{$content->title}}"  />--}}
                                                 </div>
                                             </a>
                                         </div>
@@ -167,7 +167,7 @@
                 @foreach(laracms::positionAds('首页右第一个广告位', 2) as $index => $ad)
                 <div class="panel panel-blockimg">
                     <a href="{{$ad->url}}" target="{{$ad->target}}">
-                        <img src="{{$ad->image}}" class="img-responsive">
+                        {{--<img src="{{$ad->image}}" class="img-responsive">--}}
                     </a>
                 </div>
                 @endforeach
@@ -191,7 +191,7 @@
                 @foreach(laracms::positionAds('首页右第一个广告位', 2) as $index => $ad)
                 <div class="panel panel-blockimg">
                     <a href="{{$ad->url}}" rel="nofollow" title="{{$ad->name}}" target="{{$ad->target}}">
-                        <img src="{{$ad->image}}" class="img-responsive" alt="">
+                        {{--<img src="{{$ad->image}}" class="img-responsive" alt="">--}}
                     </a>
                 </div>
                 @endforeach
@@ -231,7 +231,7 @@
                 @foreach(laracms::positionAds('首页右第一个广告位', 2) as $index => $ad)
                 <div class="panel panel-blockimg">
                     <a href="{{$ad->url}}" title="{{$ad->name}}">
-                        <img src="{{$ad->image}}" alt="{{$ad->name}}" class="img-responsive"/>
+                        {{--<img src="{{$ad->image}}" alt="{{$ad->name}}" class="img-responsive"/>--}}
                     </a>
                 </div>
                 @endforeach

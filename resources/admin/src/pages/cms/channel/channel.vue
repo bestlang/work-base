@@ -86,9 +86,9 @@
                 <el-table-column
                   label="操作">
                   <template slot-scope="scope">
-                    <el-button class="l-lighter" type="text" @click="editChannel(scope.row)">编辑</el-button>
-                    <el-button class="l-lighter" type="text" @click="addChannel(scope.row)">新增子栏目</el-button>
-                    <el-button class="l-lighter" type="text" @click="deleteChannel(scope.row)">删除</el-button>
+                    <el-button type="primary" size="mini" @click="editChannel(scope.row)">编辑</el-button>
+                    <el-button type="success" size="mini" @click="addChannel(scope.row)">新增子栏目</el-button>
+                    <el-button type="danger" size="mini" @click="deleteChannel(scope.row)">删除</el-button>
                   </template>
                 </el-table-column>
               </el-table>

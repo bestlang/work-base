@@ -39,7 +39,7 @@
         width="100"
       >
         <template slot-scope="scope">
-          <el-button class="l-lighter" type="text" @click="handleFieldManager(scope.row, 'channel')">管理</el-button>
+          <el-button size="mini" type="primary" @click="handleFieldManager(scope.row, 'channel')">管理</el-button>
         </template>
       </el-table-column>
       <el-table-column
@@ -47,15 +47,15 @@
         width="100"
       >
         <template slot-scope="scope">
-          <el-button class="l-lighter" v-if="scope.row.has_contents" type="text" @click="handleFieldManager(scope.row, 'content')">管理</el-button>
+          <el-button size="mini" v-if="scope.row.has_contents" type="primary" @click="handleFieldManager(scope.row, 'content')">管理</el-button>
         </template>
       </el-table-column>
       <el-table-column
         label="操作"
       >
         <template slot-scope="scope">
-          <el-button class="l-lighter" type="text" @click="handleEdit(scope.row)">编辑</el-button>
-          <el-button class="l-lighter" type="text" @click="handleDelete(scope.row)">删除</el-button>
+          <el-button size="mini" type="primary" @click="handleEdit(scope.row)">编辑</el-button>
+          <el-button size="mini" type="danger" @click="handleDelete(scope.row)">删除</el-button>
         </template>
       </el-table-column>
   </el-table>

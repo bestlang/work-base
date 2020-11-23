@@ -24,7 +24,7 @@
           <div class="l-block-header" v-if="parentChannel">
             <div>
               <i class="iconfont">&#xe64c;</i> {{parentChannel.hasOwnProperty('name') ? parentChannel.name : ''}} <span style="color: #fff;">{{parentChannel.id}}</span>
-              <el-button type="default" size="small" @click="addContent">+新增</el-button>
+              <el-button type="primary" size="small" @click="addContent">+新增</el-button>
             </div>
           </div>
           <div class="l-block-body">
@@ -34,7 +34,7 @@
                   <el-input v-model="form.keyword" style="width: 200px;"></el-input>
                 </el-form-item>
                 <el-form-item>
-                  <el-button type="primary" size="small" @click="search">搜索</el-button>
+                  <el-button type="default" size="small" @click="search">搜索</el-button>
                 </el-form-item>
               </el-form>
             </div>
@@ -60,8 +60,8 @@
               <el-table-column
                 label="操作">
                 <template slot-scope="scope">
-                  <el-button class="l-lighter" type="text" @click="editContent(scope.row)">编辑</el-button>
-                  <el-button class="l-lighter" type="text" @click="deleteContent(scope.row)">删除</el-button>
+                  <el-button type="primary" @click="editContent(scope.row)" size="mini">编辑</el-button>
+                  <el-button type="danger" @click="deleteContent(scope.row)" size="mini">删除</el-button>
                 </template>
               </el-table-column>
             </el-table>
