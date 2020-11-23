@@ -13,10 +13,10 @@
     <meta name="csrf-token" content="{{csrf_token()}}">
 
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon"/>
-    <link href="https://unpkg.zhimg.com/normalize.css@8.0.1/normalize.css" rel="stylesheet">
+    <!-- <link href="https://unpkg.zhimg.com/normalize.css@8.0.1/normalize.css" rel="stylesheet">
     <link href="https://unpkg.zhimg.com/bootstrap@3.4.1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.zhimg.com/swiper/swiper-bundle.min.css">
-    <link rel="stylesheet" media="screen" href="/vendor/laracms/dark/front.css" />
+    <link rel="stylesheet" media="screen" href="/vendor/laracms/dark/front.css" /> -->
     @stack('css')
     <!--[if lt IE 9]>
     <script src="https://cdn.bootcdn.net/ajax/libs/html5shiv/3.6.2/html5shiv.js"></script>

@@ -97,7 +97,6 @@
         &:hover{
             text-decoration: none;
             background: #fff;
-            box-shadow: 0 20px 20px #f1f1f1 inset;
          }
         &.cur{
             background: #fff;
@@ -106,6 +105,7 @@
             border-right: 1px solid #e4e7ed;
             border-top-left-radius: 3px;
             border-top-right-radius: 3px;
+            box-shadow: 0 20px 20px #f8f8f8 inset;
         }
     }
 

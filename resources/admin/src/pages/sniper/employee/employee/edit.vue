@@ -37,7 +37,7 @@
                                 <el-input v-model="form.id_card"></el-input>
                             </el-form-item>
                             <el-form-item label="公司邮箱*">
-                                <el-input v-model="form.email"></el-input>
+                                <el-input v-model="form.email" auto-complete="new-password"></el-input>
                             </el-form-item>
                             <el-form-item label="登录密码">
                                 <el-input type="password" v-model="form.password" auto-complete="new-password" :placeholder="passwordHolder"></el-input>
@@ -73,7 +73,7 @@
                             <el-form-item label="生日">
                                 <el-input v-model="form.birthday"></el-input>
                             </el-form-item>
-                            <el-form-item label="标签">
+                            <el-form-item label="备注">
                             <el-input v-model="form.tag"></el-input>
                             </el-form-item>
                             <el-form-item label="工作地点">
@@ -83,7 +83,7 @@
                     </el-tab-pane>
                     <el-tab-pane label="教育经历" name="education">
                         <div class="l-flex">
-                            <div><i>从最高学历开始填写</i></div>
+                            <!--<div><i>从最高学历开始填写</i></div>-->
                             <el-button type="primary" icon="el-icon-plus" circle style="margin-bottom: 10px;" @click="addEducation"></el-button>
                         </div>
                         <div style="overflow-y: visible;">
@@ -118,10 +118,31 @@
                                     </template>
                                 </el-table-column>
                                 <el-table-column
+                                        label="毕业类型">
+                                    <template slot-scope="scope">
+                                        {{scope.row.graduateType == 1 ? '毕业':'肄业'}}
+                                    </template>
+                                </el-table-column>
+                                <el-table-column
+                                        label="最高学历">
+                                    <template slot-scope="scope">
+                                        {{scope.row.isHigh == 1 ? '是':'否'}}
+                                    </template>
+                                </el-table-column>
+                                <el-table-column
+                                        label="第一学历">
+                                    <template slot-scope="scope">
+                                        {{scope.row.isFirst == 1 ? '是':'否'}}
+                                    </template>
+                                </el-table-column>
+                                <el-table-column
+                                        width="280"
                                         label="操作">
                                     <template slot-scope="scope">
-                                        <el-button type="text" @click="editEducation(scope.row)">编辑</el-button>
-                                        <el-button type="text" @click="delEducation(scope.row)">删除</el-button>
+                                        <el-button type="primary" size="mini" @click="editEducation(scope.row)">编辑</el-button>
+                                        <el-button type="danger" size="mini" @click="delEducation(scope.row)">删除</el-button>
+                                        <el-button type="warning" size="mini" @click="upEducation(scope.row)"><i class="if">&#xe75d;</i></el-button>
+                                        <el-button type="warning" size="mini" @click="downEducation(scope.row)"><i class="if">&#xe767;</i></el-button>
                                     </template>
                                 </el-table-column>
                             </el-table>
@@ -312,6 +333,9 @@
                 this.education.specialize = education.specialize
                 this.education.degree = education.degree
                 this.education.unified = education.unified
+                this.education.graduateType = education.graduateType
+                this.education.isHigh = education.isHigh
+                this.education.isFirst = education.isFirst
             },
             assignJobForm(job){
                 this.job.id = job.id
@@ -375,6 +399,38 @@
                     }
                 })
             },
+            upEducation(row){
+                let index = 0;
+                let tmp = this.form.educationHistory
+                for(let i = 0; i < tmp.length; i++){
+                    if(tmp[i].id == row.id){
+                        index = i
+                        break
+                    }
+                }
+                if(index == 0){
+                    this.$message.warning('到顶了')
+                }else{
+                    const [main] = tmp.splice(index, 1)
+                    tmp.splice(index-1, 0, main)
+                }
+            },
+            downEducation(row){
+                let index = 0;
+                let tmp = this.form.educationHistory
+                for(let i = 0; i < tmp.length; i++){
+                    if(tmp[i].id == row.id){
+                        index = i
+                        break
+                    }
+                }
+                if(index == tmp.length - 1){
+                    this.$message.warning('到底了')
+                }else{
+                    const [main] = tmp.splice(index, 1)
+                    tmp.splice(index+1, 0, main)
+                }
+            },
             delJob(row){
                 this.$confirm('确定删除本条工作经历?', '提示', {
                     confirmButtonText: '确定',
@@ -410,6 +466,9 @@
                         theOne.specialize = education.specialize
                         theOne.degree = education.degree
                         theOne.unified = education.unified
+                        theOne.graduateType = education.graduateType
+                        theOne.isHigh = education.isHigh
+                        theOne.isFirst = education.isFirst
                         found = true
                         break
                     }

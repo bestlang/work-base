@@ -1,6 +1,6 @@
 <template>
     <el-card class="box-card" shadow="hover">
-        <el-form :model="form" label-width="80px">
+        <el-form :model="form" label-width="120px">
             <el-form-item label="起止日期*">
                 <el-date-picker
                         :editable="false"
@@ -31,6 +31,24 @@
                 <div>
                     <el-radio v-model="form.unified" :label="1" border>是</el-radio>
                     <el-radio v-model="form.unified" :label="0" border>否</el-radio>
+                </div>
+            </el-form-item>
+            <el-form-item label="毕业类型">
+                <div>
+                    <el-radio v-model="form.graduateType" :label="1" border>毕业</el-radio>
+                    <el-radio v-model="form.graduateType" :label="2" border>肄业</el-radio>
+                </div>
+            </el-form-item>
+            <el-form-item label="是否最高学历">
+                <div>
+                    <el-radio v-model="form.isHigh" :label="1" border>是</el-radio>
+                    <el-radio v-model="form.isHigh" :label="0" border>否</el-radio>
+                </div>
+            </el-form-item>
+            <el-form-item label="是否第一学历">
+                <div>
+                    <el-radio v-model="form.isFirst" :label="1" border>是</el-radio>
+                    <el-radio v-model="form.isFirst" :label="0" border>否</el-radio>
                 </div>
             </el-form-item>
             <el-form-item>
@@ -69,7 +87,10 @@
                     school: null,
                     specialize: null,
                     degree: null,
-                    unified: 1
+                    unified: 1,
+                    graduateType: 1,
+                    isHigh: 0,
+                    isFirst: 0
                 }
             }
         },
@@ -82,6 +103,9 @@
                 this.form.specialize = data.specialize
                 this.form.degree = data.degree
                 this.form.unified = data.unified
+                this.form.graduateType = data.graduateType
+                this.form.isHigh = data.isHigh
+                this.form.isFirst = data.isFirst
             },
             cancel(){
                 this.$emit('cancel')

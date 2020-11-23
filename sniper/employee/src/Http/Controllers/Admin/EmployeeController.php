@@ -61,6 +61,9 @@ class EmployeeController
             'educationHistory.*.end_time' => 'required|after:educationHistory.*.start_time',
             'educationHistory.*.school' => 'required',
             'educationHistory.*.unified' => 'required',
+            'educationHistory.*.graduateType' => 'required|in:1,2',
+            'educationHistory.*.isHigh' => 'required|in:0,1',
+            'educationHistory.*.isFirst' => 'required|in:0,1',
             //工作信息
             'jobHistory.*.start_time' => 'required',
             'jobHistory.*.end_time' => 'required|after:jobHistory.*.start_time',
@@ -87,6 +90,9 @@ class EmployeeController
             'educationHistory.*.end_time.after' => '教育经历结束日期不得小于开始日期',
             'educationHistory.*.school.required' => '教育经历学校必填',
             'educationHistory.*.unified.required' => '',
+            'educationHistory.*.graduateType.in' => '请选择毕业类型',
+            'educationHistory.*.isHigh.in' => '请选择是否最高学历',
+            'educationHistory.*.isFirst.in' => '请选择是否第一学历',
 
             'jobHistory.*.start_time.required' => '工作经历开始日期必填',
             'jobHistory.*.end_time.required' => '工作经历结束日期必填',
@@ -151,8 +157,9 @@ class EmployeeController
             $user->push();
             ///存储教育经历
             $educationHistory = $request->input('educationHistory');
-            foreach ($educationHistory as $education){
+            foreach ($educationHistory as $k => $education){
                 $data = Arr::except($education, ['id']);
+                $data['orderFactor'] = $k;
                 $model = $user->employee->education()->find($education['id']);
                 if($model){
                     $model->update($data);

@@ -29,7 +29,7 @@ class Employee extends Model
 
     public function education()
     {
-        return $this->hasMany(Education::class, 'user_id', 'user_id');
+        return $this->hasMany(Education::class, 'user_id', 'user_id')->orderBy('orderFactor', 'asc');
     }
 
     public function job()
