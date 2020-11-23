@@ -5,6 +5,7 @@ use Illuminate\Http\Request;
 use Alipay\EasySDK\Kernel\Factory;
 use Alipay\EasySDK\Kernel\Config;
 use BestLang\LaraCms\Models\Cms\Order;
+use BestLang\WxPay\Events\PayNotify;
 
 class AliPayController
 {
@@ -67,6 +68,8 @@ class AliPayController
 
     public function returnUrl(Request $request)
     {
+        //@todo 验证签名
+        event(new PayNotify($request->input('out_trade_no')));
         echo '支付成功!';
         /*
          * {"charset":"UTF-8","out_trade_no":"20201101224821508781","method":"alipay.trade.page.pay.return","total_amount":"0.01","sign":"a/k030g2dlMCSDF+EzKQyUbl+4PJzzvkm0LkOvbajBY7bWih6mC60T/sDh5+jIuzVSLfvhXLkigr3DQlKNf3L+lGDw0aLN1C4WZH3Fz8a0tCRlt3pkWkZcL5ZGDP9+NFQk+ia5gOAAg8JJxBywQCa5mbhcYh8d2crhZD4vfxErDnISr8xfb1osDm+rxOEQarDxkOhc4ss+Bvm9r8G8ggdibYcOGYqVzOy55wgQ16TfC/4z4raJoSarv16tQ35wvr7olJmQwU5d0GIEASlYG2llm3KzQl9SKAFZzXNPhKi0UITVEEDyZuTgDq7sa4pxWHPYFNw4gq4WvxfWh63EweAA==","trade_no":"2020110122001495931413754480","auth_app_id":"2021001165602449","version":"1.0","app_id":"2021001165602449","sign_type":"RSA2","seller_id":"2088831621177204","timestamp":"2020-11-01 22:49:18"}
