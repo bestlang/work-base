@@ -19,6 +19,9 @@ class EmployeeController
         $employee->physical = json_decode($employee->physical)??[];
         $employee->certificate = json_decode($employee->certificate)??[];
         $employee->interview = json_decode($employee->interview)??[];
+        $employee->contract = json_decode($employee->contract)??[];
+        $employee->employment = json_decode($employee->employment)??[];
+        $employee->other = json_decode($employee->other)??[];
         return response()->ajax($employee);
     }
     public function departmentEmployee(Request $request)
@@ -142,6 +145,9 @@ class EmployeeController
             $user->employee->physical = json_encode($request->input('physical',[]));
             $user->employee->certificate = json_encode($request->input('certificate', []));
             $user->employee->interview = json_encode($request->input('interview',[]));
+            $user->employee->contract = json_encode($request->input('contract',[]));
+            $user->employee->employment = json_encode($request->input('employment',[]));
+            $user->employee->other = json_encode($request->input('other',[]));
 
             $user->push();
              $attr = [

@@ -5,7 +5,7 @@
             <div class="l-block-header">
                 <div class="l-flex">
                     <span>人力资源 / <router-link to="/sniper/employee/employee/list">员工列表</router-link>  / {{bread_title}}</span>
-                    <el-button type="primary" @click="save" size="small">保存</el-button>
+                    <el-button type="primary" @click="save" size="mini">保存</el-button>
                 </div>
             </div>
             <div class="l-block-body">
@@ -151,7 +151,7 @@
                     </el-tab-pane>
                     <el-tab-pane label="工作经历" name="jobs">
                         <div class="l-flex">
-                            <div><i>从最近工作经历开始填写</i></div>
+                            <!--<div><i>从最近工作经历开始填写</i></div>-->
                             <el-button type="primary" icon="el-icon-plus" circle style="margin-bottom: 10px;" @click="addJob"></el-button>
                         </div>
                             <el-table
@@ -200,21 +200,27 @@
                         <job style="margin-top: 20px;" v-show="showJobFlag" :default-data="job" @cancel="hideJobForm" @submit="restoreJob"></job>
                     </el-tab-pane>
                     <el-tab-pane label="入职材料" name="materials">
-                        <el-form ref="form" :model="form" label-width="130px" style="width: 50%;overflow-y: visible;padding-top: 20px;">
-                            <!--leaving: '',-->
-                            <!--physical: '',-->
-                            <!--certificate: ''-->
+                        <el-form ref="form" :model="form" label-width="130px" style="width: 40%;overflow-y: visible;padding-top: 20px;">
                             <el-form-item label="离职证明">
                                 <attachment v-model="form.leaving" @onPreview="onPreview"></attachment>
                             </el-form-item>
                             <el-form-item label="体检证明">
-                                <attachment v-model="form.physical"@onPreview="onPreview"></attachment>
+                                <attachment v-model="form.physical" @onPreview="onPreview"></attachment>
                             </el-form-item>
                             <el-form-item label="学历证明">
-                                <attachment v-model="form.certificate"@onPreview="onPreview"></attachment>
+                                <attachment v-model="form.certificate" @onPreview="onPreview"></attachment>
                             </el-form-item>
                             <el-form-item label="面试记录">
-                                <attachment v-model="form.interview "@onPreview="onPreview"></attachment>
+                                <attachment v-model="form.interview" @onPreview="onPreview"></attachment>
+                            </el-form-item>
+                            <el-form-item label="劳动合同">
+                                <attachment v-model="form.contract" @onPreview="onPreview"></attachment>
+                            </el-form-item>
+                            <el-form-item label="录用通知书">
+                                <attachment v-model="form.employment" @onPreview="onPreview"></attachment>
+                            </el-form-item>
+                            <el-form-item label="其他">
+                                <attachment v-model="form.other" @onPreview="onPreview"></attachment>
                             </el-form-item>
                         </el-form>
                     </el-tab-pane>
@@ -289,8 +295,10 @@
                     leaving: [],
                     physical: [],
                     certificate: [],
-                    interview: []
-
+                    interview: [],
+                    contract:[],
+                    employment: [],
+                    other: []
                 },
                 departments: [],
                 positions: [],
@@ -587,7 +595,9 @@
                     this.form.physical = employee.physical
                     this.form.certificate = employee.certificate
                     this.form.interview = employee.interview
-
+                    this.form.contract = employee.contract
+                    this.form.employment = employee.employment
+                    this.form.other = employee.other
             },
             async getEmployeeDetail(id){
                 let {data} = await api.sniperGetEmployeeDetail({id})
