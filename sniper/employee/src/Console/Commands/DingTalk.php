@@ -177,7 +177,7 @@ class DingTalk extends Command
                 $userIdsAll = DB::connection('proxy')->table('sniper_employee_ding_users')->pluck('userid')->toArray();
                 $userIdsChunk = array_chunk($userIdsAll, 30);
                 foreach ($userIdsChunk as $userIds){
-                    for($days = 0; $days<90; $days++){
+                    for($days = 0; $days<170; $days++){
                         $workDateFrom = date('Y-m-d H:i:s',strtotime($dateBegin) - $days * 86400);
                         $workDateTo = date('Y-m-d H:i:s',strtotime($workDateFrom) + 86400);
                         echo "\n--------------------------query {$workDateFrom}-------------------------:\n";
@@ -186,6 +186,9 @@ class DingTalk extends Command
                         while($attendances = $ding->_getUserAttendance($userIds, $workDateFrom, $workDateTo, $offset, $limit)){
                             foreach ($attendances as $att){
                                 echo json_encode($att),"\n";
+                                if(!$att->userId){
+                                    throw new \Exception('拉取出勤信息出错！');
+                                }
                                 Attendance::updateOrCreate(
                                     ['userId' => $att->userId,"workDate" => $att->workDate, "ymd" => date('Y-m-d',$att->baseCheckTime / 1000), "checkType" => $att->checkType],
                                     [
