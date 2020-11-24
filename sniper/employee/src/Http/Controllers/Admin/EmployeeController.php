@@ -170,8 +170,9 @@ class EmployeeController
             ///
             ///存储工作经历
             $jobHistory = $request->input('jobHistory');
-            foreach ($jobHistory as $job){
+            foreach ($jobHistory as $k => $job){
                 $data = Arr::except($job, ['id']);
+                $data['orderFactor'] = $k;
                 $model = $user->employee->job()->find($job['id']);
                 if($model){
                     $model->update($data);

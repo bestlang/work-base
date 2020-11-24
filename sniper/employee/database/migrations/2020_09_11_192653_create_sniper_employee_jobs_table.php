@@ -23,6 +23,7 @@ class CreateSniperEmployeeJobsTable extends Migration
             $table->decimal('salary', 10, 2)->comment('工资')->nullable();
             $table->text('reason')->comment('离职原因')->nullable();
             $table->string('witness_phone')->comment('证明人电话')->nullable();
+            $table->smallInteger('orderFactor')->comment('排序值:越小越靠前')->default(0);
             $table->nullableTimestamps();
         });
     }
