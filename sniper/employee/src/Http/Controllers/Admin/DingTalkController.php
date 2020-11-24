@@ -81,7 +81,11 @@ class DingTalkController
             $department = DingDepartment::with('subs')->where('id', $id)->first();
             $this->_getUnder($department, $departmentIdArr);
         }
-        $users = DB::connection('proxy')->table('sniper_employee_ding_users')->whereIn('department', $departmentIdArr)->get();
+        $query = DB::connection('proxy')->table('sniper_employee_ding_users')->whereIn('department', $departmentIdArr);
+        if(!$request->input('all', 1)){
+            $query->where('onJob', 1);
+        }
+        $users = $query->get();
         $departmentsMap = [];
         $dingDepartments = DingDepartment::all();
         $dingDepartments->each(function($dd)use(&$departmentsMap){
@@ -90,6 +94,13 @@ class DingTalkController
         $users->map(function($user)use($departmentsMap){
             $user->department_info = $departmentsMap[$user->department];
         });
+        if($month = $request->input('month')){
+            $userIds = DB::connection('proxy')->table('sniper_employee_ding_attendance')->where('ymd', 'like', "${month}%")->selectRaw('distinct(userId)')->pluck('userId')->toArray();
+            $tmp = $users->filter(function($user)use($userIds){
+                return in_array($user->userid, $userIds, true);
+            });
+            $users = array_values($tmp->all());
+        }
         return response()->ajax($users);
     }
 

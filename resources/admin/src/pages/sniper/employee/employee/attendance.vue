@@ -140,8 +140,9 @@
                 this.department = department
             },
             async getDepartmentUsers({id}){
+                let month = this.month
                 let startLoad = Loading.service({ fullscreen: true, text: '获取中...', background: 'rgba(255,255,255,0.8)' })
-                let res = await api.sniperDingGetDepartmentUsers({id})
+                let res = await api.sniperDingGetDepartmentUsers({id, month})
                 let userIds = res.data.map(function(user){
                     return user.userid
                 })

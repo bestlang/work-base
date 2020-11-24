@@ -436,7 +436,7 @@
                 }
             },
             async getDepartmentUsers(){
-                let res = await api.sniperDingGetDepartmentUsers()
+                let res = await api.sniperDingGetDepartmentUsers({all: 0})
                 if(res && res.data){
                     this.users = res.data
                 }
