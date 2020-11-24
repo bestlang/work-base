@@ -54,7 +54,8 @@
 	"extra": {
 		"laravel": {
 			"providers": [
-				"Alipay\\EasySDK\\Providers\\AlipayServiceProvider"
+				"Alipay\\EasySDK\\Providers\\AlipayServiceProvider",
+				"Alipay\\EasySDK\\Providers\\EventServiceProvider"
 			]
 		}
 	}
