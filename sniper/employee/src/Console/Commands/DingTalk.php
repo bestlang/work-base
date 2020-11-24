@@ -174,7 +174,7 @@ class DingTalk extends Command
                 }
             }else if($act == 'attendance'){
                 $dateBegin = date('Y-m-d 00:00:00');
-                for($days = 0; $days<80; $days++){
+                for($days = 0; $days<30; $days++){
                     $workDateFrom = date('Y-m-d H:i:s',strtotime($dateBegin) - $days * 86400);
                     $workDateTo = date('Y-m-d H:i:s',strtotime($workDateFrom) + 86400);
                     $userIds = DB::connection('proxy')->table('sniper_employee_ding_users')->pluck('userid')->toArray();
