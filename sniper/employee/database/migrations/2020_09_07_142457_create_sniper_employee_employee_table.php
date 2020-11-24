@@ -42,6 +42,13 @@ class CreateSniperEmployeeEmployeeTable extends Migration
             $table->string('emergency_phone')->comment('紧急联系人电话')->nullable();
             $table->string('avatar')->comment('头像')->nullable();
 
+            $table->text('leaving')->comment('离职证明');
+            $table->text('physical')->comment('体检证明');
+            $table->text('certificate')->comment('学历证明');
+            $table->text('interview')->comment('面试记录');
+            $table->text('contract')->comment('劳动合同');
+            $table->text('employment')->comment('录用通知书');
+            $table->text('other')->comment('其他');
             $table->nullableTimestamps();
             $table->softDeletes();
         });

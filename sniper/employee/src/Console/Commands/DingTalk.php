@@ -174,36 +174,43 @@ class DingTalk extends Command
                 }
             }else if($act == 'attendance'){
                 $dateBegin = date('Y-m-d 00:00:00');
-                for($days = 0; $days<90; $days++){
-                    $workDateFrom = date('Y-m-d H:i:s',strtotime($dateBegin) - $days * 86400);
-                    $workDateTo = date('Y-m-d H:i:s',strtotime($workDateFrom) + 86400);
-                    $userIds = DB::connection('proxy')->table('sniper_employee_ding_users')->pluck('userid')->toArray();
-                    echo "\n--------------------------query {$workDateFrom}-------------------------:\n";
-                    $offset = 0;
-                    $limit = 50;
-                    while($attendances = $ding->_getUserAttendance($userIds, $workDateFrom, $workDateTo, $offset, $limit)){
-                        foreach ($attendances as $att){
-                            echo json_encode($att),"\n";
-                            Attendance::updateOrCreate(
-                                ['userId' => $att->userId,"workDate" => $att->workDate, "ymd" => date('Y-m-d',$att->baseCheckTime / 1000), "checkType" => $att->checkType],
-                                [
-                                    'id' => $att->id,
-                                    "baseCheckTime" => $att->baseCheckTime,
-                                    "corpId" => $att->corpId,
-                                    "groupId" => $att->groupId,
-                                    "locationResult" => $att->locationResult,
-                                    "planId" => $att->planId,
-                                    "recordId" => isset($att->recordId) ? $att->recordId : '',
-                                    "timeResult" => $att->timeResult,
-                                    "userCheckTime" => $att->userCheckTime,
-                                    "workDate" => $att->workDate,
-                                    "procInstId" => isset($att->procInstId) ? $att->procInstId : '',
-                                    "approveId" => isset($att->approveId) ? $att->approveId : ''
-                                ]);
+                $userIdsAll = DB::connection('proxy')->table('sniper_employee_ding_users')->pluck('userid')->toArray();
+                $userIdsChunk = array_chunk($userIdsAll, 30);
+                foreach ($userIdsChunk as $userIds){
+                    for($days = 0; $days<170; $days++){
+                        $workDateFrom = date('Y-m-d H:i:s',strtotime($dateBegin) - $days * 86400);
+                        $workDateTo = date('Y-m-d H:i:s',strtotime($workDateFrom) + 86400);
+                        echo "\n--------------------------query {$workDateFrom}-------------------------:\n";
+                        $offset = 0;
+                        $limit = 50;
+                        while($attendances = $ding->_getUserAttendance($userIds, $workDateFrom, $workDateTo, $offset, $limit)){
+                            foreach ($attendances as $att){
+                                echo json_encode($att),"\n";
+                                if(!$att->userId){
+                                    throw new \Exception('拉取出勤信息出错！');
+                                }
+                                Attendance::updateOrCreate(
+                                    ['userId' => $att->userId,"workDate" => $att->workDate, "ymd" => date('Y-m-d',$att->baseCheckTime / 1000), "checkType" => $att->checkType],
+                                    [
+                                        'id' => $att->id,
+                                        "baseCheckTime" => $att->baseCheckTime,
+                                        "corpId" => $att->corpId,
+                                        "groupId" => $att->groupId,
+                                        "locationResult" => $att->locationResult,
+                                        "planId" => $att->planId,
+                                        "recordId" => isset($att->recordId) ? $att->recordId : '',
+                                        "timeResult" => $att->timeResult,
+                                        "userCheckTime" => $att->userCheckTime,
+                                        "workDate" => $att->workDate,
+                                        "procInstId" => isset($att->procInstId) ? $att->procInstId : '',
+                                        "approveId" => isset($att->approveId) ? $att->approveId : ''
+                                    ]);
+                            }
+                            $offset += $limit;
                         }
-                        $offset += $limit;
                     }
                 }
+
 
             }else if($act == 'process'){
                 $time = time();

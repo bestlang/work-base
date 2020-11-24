@@ -1,7 +1,6 @@
 <template>
     <el-upload
             class=""
-            :on-preview="handlePreview"
             :action="uploadUrl"
             :on-remove="handleRemove"
             :before-remove="beforeRemove"
@@ -11,8 +10,9 @@
             name="file"
             :show-file-list="true"
             :headers="headers"
+            :on-preview="onPreview"
     >
-        <el-button size="small" type="primary">点击上传</el-button>
+        <el-button size="mini" type="primary">点击上传</el-button>
         <div slot="tip" class="el-upload__tip"></div>
     </el-upload>
 </template>
@@ -33,8 +33,12 @@
                 fileList: []
             }
         },
+        watch:{
+            value(){
+                this.fileList = [...this.value]
+            }
+        },
         methods:{
-            handlePreview(){},
             beforeRemove(file, fl) {
                 return this.$confirm(`确定移除 ${ file.name }？`);
             },
@@ -49,6 +53,9 @@
                 const item = {name: file.name, url: file.response.data.file}
                 this.fileList = [...this.fileList, item]
                 this.$emit('input', this.fileList)
+            },
+            onPreview(file){
+                this.$emit('onPreview', file)
             }
         },
         mounted: function () {

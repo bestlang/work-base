@@ -34,7 +34,7 @@ class Employee extends Model
 
     public function job()
     {
-        return $this->hasMany(Job::class, 'user_id', 'user_id');
+        return $this->hasMany(Job::class, 'user_id', 'user_id')->orderBy('orderFactor', 'asc');
     }
 
 }

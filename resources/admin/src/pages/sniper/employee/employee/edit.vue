@@ -5,7 +5,7 @@
             <div class="l-block-header">
                 <div class="l-flex">
                     <span>人力资源 / <router-link to="/sniper/employee/employee/list">员工列表</router-link>  / {{bread_title}}</span>
-                    <el-button type="primary" @click="save" size="small">保存</el-button>
+                    <el-button type="primary" @click="save" size="mini">保存</el-button>
                 </div>
             </div>
             <div class="l-block-body">
@@ -139,10 +139,10 @@
                                         width="280"
                                         label="操作">
                                     <template slot-scope="scope">
+                                        <el-button type="default" size="mini" @click="upEducation(scope.row)" title="上移"><i class="if">&#xe75d;</i></el-button>
+                                        <el-button type="default" size="mini" @click="downEducation(scope.row)" title="下移"><i class="if">&#xe767;</i></el-button>
                                         <el-button type="primary" size="mini" @click="editEducation(scope.row)">编辑</el-button>
                                         <el-button type="danger" size="mini" @click="delEducation(scope.row)">删除</el-button>
-                                        <el-button type="warning" size="mini" @click="upEducation(scope.row)"><i class="if">&#xe75d;</i></el-button>
-                                        <el-button type="warning" size="mini" @click="downEducation(scope.row)"><i class="if">&#xe767;</i></el-button>
                                     </template>
                                 </el-table-column>
                             </el-table>
@@ -151,7 +151,7 @@
                     </el-tab-pane>
                     <el-tab-pane label="工作经历" name="jobs">
                         <div class="l-flex">
-                            <div><i>从最近工作经历开始填写</i></div>
+                            <!--<div><i>从最近工作经历开始填写</i></div>-->
                             <el-button type="primary" icon="el-icon-plus" circle style="margin-bottom: 10px;" @click="addJob"></el-button>
                         </div>
                             <el-table
@@ -187,31 +187,40 @@
                                         label="证明人电话">
                                 </el-table-column>
                                 <el-table-column
+                                        width="280"
                                         label="操作">
                                     <template slot-scope="scope">
-                                        <el-button type="text" @click="editJob(scope.row)">编辑</el-button>
-                                        <el-button type="text" @click="delJob(scope.row)">删除</el-button>
+                                        <el-button type="default" size="mini" @click="upJob(scope.row)" title="上移"><i class="if">&#xe75d;</i></el-button>
+                                        <el-button type="default" size="mini" @click="downJob(scope.row)" title="下移"><i class="if">&#xe767;</i></el-button>
+                                        <el-button type="primary" size="mini" @click="editJob(scope.row)">编辑</el-button>
+                                        <el-button type="danger" size="mini" @click="delJob(scope.row)">删除</el-button>
                                     </template>
                                 </el-table-column>
                             </el-table>
                         <job style="margin-top: 20px;" v-show="showJobFlag" :default-data="job" @cancel="hideJobForm" @submit="restoreJob"></job>
                     </el-tab-pane>
                     <el-tab-pane label="入职材料" name="materials">
-                        <el-form ref="form" :model="form" label-width="130px" style="width: 50%;overflow-y: visible;padding-top: 20px;">
-                            <!--leaving: '',-->
-                            <!--physical: '',-->
-                            <!--certificate: ''-->
+                        <el-form ref="form" :model="form" label-width="130px" style="width: 40%;overflow-y: visible;padding-top: 20px;">
                             <el-form-item label="离职证明">
-                                <multiple-image-upload v-model="form.leaving"></multiple-image-upload>
+                                <attachment v-model="form.leaving" @onPreview="onPreview"></attachment>
                             </el-form-item>
                             <el-form-item label="体检证明">
-                                <multiple-image-upload v-model="form.physical"></multiple-image-upload>
+                                <attachment v-model="form.physical" @onPreview="onPreview"></attachment>
                             </el-form-item>
                             <el-form-item label="学历证明">
-                                <multiple-image-upload v-model="form.certificate"></multiple-image-upload>
+                                <attachment v-model="form.certificate" @onPreview="onPreview"></attachment>
                             </el-form-item>
                             <el-form-item label="面试记录">
-                                <multiple-image-upload v-model="form.interview"></multiple-image-upload>
+                                <attachment v-model="form.interview" @onPreview="onPreview"></attachment>
+                            </el-form-item>
+                            <el-form-item label="劳动合同">
+                                <attachment v-model="form.contract" @onPreview="onPreview"></attachment>
+                            </el-form-item>
+                            <el-form-item label="录用通知书">
+                                <attachment v-model="form.employment" @onPreview="onPreview"></attachment>
+                            </el-form-item>
+                            <el-form-item label="其他">
+                                <attachment v-model="form.other" @onPreview="onPreview"></attachment>
                             </el-form-item>
                         </el-form>
                     </el-tab-pane>
@@ -227,6 +236,7 @@
     import '@riophae/vue-treeselect/dist/vue-treeselect.css'
     import imageUpload from "@/components/imageUpload"
     import multipleImageUpload from "@/components/multipleImageUpload"
+    import attachment from "@/components/attachment"
     import Education from '../components/Education'
     import Job from '../components/Job'
 
@@ -242,7 +252,14 @@
 
     export default {
         name: 'sniperEmployeeEdit',
-        components: { TreeSelect, imageUpload, Education, Job, multipleImageUpload },
+        components: {
+            TreeSelect,
+            imageUpload,
+            Education,
+            Job,
+            multipleImageUpload,
+            attachment
+        },
         data(){
             return {
                 activeName: 'basic',
@@ -278,8 +295,10 @@
                     leaving: [],
                     physical: [],
                     certificate: [],
-                    interview: []
-
+                    interview: [],
+                    contract:[],
+                    employment: [],
+                    other: []
                 },
                 departments: [],
                 positions: [],
@@ -312,6 +331,9 @@
             }
         },
         methods:{
+            onPreview(file){
+                window.open(file.url, '_blank')
+            },
             showEducationForm(){
                 this.showEducationFlag =  true
             },
@@ -415,9 +437,41 @@
                     tmp.splice(index-1, 0, main)
                 }
             },
+            upJob(row){
+                let index = 0;
+                let tmp = this.form.jobHistory
+                for(let i = 0; i < tmp.length; i++){
+                    if(tmp[i].id == row.id){
+                        index = i
+                        break
+                    }
+                }
+                if(index == 0){
+                    this.$message.warning('到顶了')
+                }else{
+                    const [main] = tmp.splice(index, 1)
+                    tmp.splice(index-1, 0, main)
+                }
+            },
             downEducation(row){
                 let index = 0;
                 let tmp = this.form.educationHistory
+                for(let i = 0; i < tmp.length; i++){
+                    if(tmp[i].id == row.id){
+                        index = i
+                        break
+                    }
+                }
+                if(index == tmp.length - 1){
+                    this.$message.warning('到底了')
+                }else{
+                    const [main] = tmp.splice(index, 1)
+                    tmp.splice(index+1, 0, main)
+                }
+            },
+            downJob(row){
+                let index = 0;
+                let tmp = this.form.jobHistory
                 for(let i = 0; i < tmp.length; i++){
                     if(tmp[i].id == row.id){
                         index = i
@@ -474,7 +528,8 @@
                     }
                 }
                 if(!found){//没找到
-                    this.form.educationHistory.push(education)
+                    let _copy = Object.assign({}, education)
+                    this.form.educationHistory.push(_copy)
                 }
 
                 this.hideEducationForm()
@@ -497,7 +552,8 @@
                     }
                 }
                 if(!found){//没找到
-                    this.form.jobHistory.push(job)
+                    let _copy = Object.assign({}, job)
+                    this.form.jobHistory.push(_copy)
                 }
 
                 this.hideJobForm()
@@ -539,7 +595,9 @@
                     this.form.physical = employee.physical
                     this.form.certificate = employee.certificate
                     this.form.interview = employee.interview
-
+                    this.form.contract = employee.contract
+                    this.form.employment = employee.employment
+                    this.form.other = employee.other
             },
             async getEmployeeDetail(id){
                 let {data} = await api.sniperGetEmployeeDetail({id})
@@ -561,7 +619,7 @@
                 if(!res.hasError){
                     let msg = !this.form.user_id ? '添加成功' : '更新成功'
                     this.$message.success(msg)
-                    this.$router.push('/sniper/employee/employee/list')
+                    setTimeout( () => this.$router.push('/sniper/employee/employee/list'), 1500)
                 }else{
                     this.$message.error(res.error)
                 }
