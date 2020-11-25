@@ -75,10 +75,12 @@ class AliPayController
         if(!$verifyRes){
             return;
         }
-        event(new PayNotify($request->input('out_trade_no')));
-        echo '支付成功!';
-        print_r($request->all());
-        info('***** alipay return *****', [$request->all()]);
+        $orderNo = $request->input('out_trade_no');
+        event(new PayNotify($orderNo));
+        return response()->redirectTo(route('orderDetail', $orderNo));
+        //echo '支付成功!';
+        //print_r($request->all());
+        //info('***** alipay return *****', [$request->all()]);
     }
 
     public function asyncNotify(Request $request)

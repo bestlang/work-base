@@ -9,12 +9,15 @@ Route::get('/single/{id}', 'ChannelController@single')->name('single');
 Route::any('/comment/save', 'CommentController@save');
 Route::get('/tag/{name}', 'TagController@contents')->name('tag');
 Route::get('/search/{keyword}', 'SearchController@contents')->name('search');
-Route::get('/ucenter', 'UCenterController@index');
-Route::get('/ucenter/orders', 'OrderController@orders');
-Route::get('/ucenter/password/modify', 'UCenterController@passwordModifyForm');
-Route::get('/ucenter/order/detail/{order_no}', 'OrderController@detail')->name('orderDetail');
-Route::any('/order/generate', 'OrderController@generate');
-Route::any('/order/pay/{order_no}', 'OrderController@orderPay')->name('orderPay');
+Route::group(['middleware' => 'auth'], function(){
+    Route::get('/ucenter', 'UCenterController@index');
+    Route::get('/ucenter/orders', 'OrderController@orders');
+    Route::get('/ucenter/password/modify', 'UCenterController@passwordModifyForm');
+    Route::get('/ucenter/order/detail/{order_no}', 'OrderController@detail')->name('orderDetail');
+    Route::any('/order/generate', 'OrderController@generate');
+    Route::any('/order/pay/{order_no}', 'OrderController@orderPay')->name('orderPay');
+});
+
 
 //进入商户平台-->产品中心-->开发配置 填写此地址
 Route::any('/notify/wechat/native', 'WxPayController@wechatNativeNotify');
