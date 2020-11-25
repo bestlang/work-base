@@ -21,9 +21,10 @@ axios.interceptors.request.use(config => {
     Promise.reject(error);// 错误提示
 })
 
+const loginPath = '/login'
 /**响应拦截器 */
 axios.interceptors.response.use(response => {
-        const loginPath = '/login'
+
         let res = response.data
         let code = parseInt(res.code)
         app.$message.closeAll()

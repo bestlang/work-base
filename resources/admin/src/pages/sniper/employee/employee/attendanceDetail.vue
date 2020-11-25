@@ -8,7 +8,7 @@
             </div>
         </div>
         <el-card shadow="hover">
-            <el-calendar @input="dateChange">
+            <el-calendar @input="dateChange" :value="month">
                 <template
                         slot="dateCell"
                         slot-scope="{date, data}">
@@ -72,7 +72,7 @@
 <script>
     import Vue from 'vue'
     import ECharts from 'vue-echarts' // refers to components/ECharts.vue in webpack
-
+    import fancyCalendar  from "@/components/fancyCalendar"
     // import ECharts modules manually to reduce bundle size
     import 'echarts/lib/chart/line'
     import 'echarts/lib/chart/bar'
@@ -224,6 +224,9 @@
                 str += '-' + m
                 return str
             }
+        },
+        components:{
+            fancyCalendar
         },
         watch:{
             async '$route'(to, from){
@@ -454,9 +457,9 @@
         async created(){
             let month = this.$route.query.month || null
             let userId = this.$route.query.userId || null
-            // if(month){
-            //     this.month = month
-            // }
+            if(month){
+                this.month = month
+            }
             if(userId){
                 this.userId = userId
                 await this.getUserAttendance(userId, this.month)

@@ -70,6 +70,16 @@ export default [
                 }
             },
             {
+                path: "/sniper/employee/position/change",
+                component: () => import("../pages/sniper/employee/employee/positionChange.vue"),
+                meta: {
+                    can: 'hr employee',
+                    show: true,
+                    name: '人事变动',
+                    font: '&#xe614;'
+                }
+            },
+            {
                 path: "/sniper/employee/employee/edit",
                 component: () => import("../pages/sniper/employee/employee/edit.vue"),
                 meta: {

@@ -130,7 +130,7 @@
                     str = this.month
                 }
                 //+`&month=`+str
-                this.$router.push(`/sniper/employee/employee/attendance/detail?userId=`+user.userid)
+                this.$router.push(`/sniper/employee/employee/attendance/detail?userId=`+user.userid+`&month=`+str)
             },
             handleNodeClick(node){
                 this.department = node

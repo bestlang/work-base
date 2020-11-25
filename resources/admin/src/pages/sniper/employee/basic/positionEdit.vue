@@ -5,7 +5,7 @@
             <div class="l-block-header">
                 <div class="l-flex">
                     <span>人力资源 / <span @click="viewPositions" style="cursor: pointer;">职位管理</span> / 添加职位</span>
-                    <el-button type="primary" @click="save">保存</el-button>
+                    <el-button type="primary" size="mini" @click="save">保存</el-button>
                 </div>
             </div>
             <div class="l-block-body">

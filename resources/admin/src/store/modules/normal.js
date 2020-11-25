@@ -4,7 +4,7 @@ import { getPrefix } from 'sysApi/util'
 
 const normalConfig = {
     state: {
-        appName: '思纳福',
+        appName: '思纳福内部系统',
         appShortName: 'SN',
         user: {},
         isCollapse: false,

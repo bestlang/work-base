@@ -4,7 +4,7 @@
         <div class="l-block">
             <div class="l-block-header">
                 <div class="l-flex">
-                    <span>人力资源 / <router-link to="/sniper/employee/employee/list">员工列表</router-link>  / {{bread_title}}</span>
+                    <span>人力资源 / <router-link to="/sniper/employee/employee/list" style="color:#409EFF;">员工列表</router-link>  / {{bread_title}}</span>
                     <el-button type="primary" @click="save" size="mini">保存</el-button>
                 </div>
             </div>
