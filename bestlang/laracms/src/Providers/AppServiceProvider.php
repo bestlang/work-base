@@ -11,6 +11,7 @@ use BestLang\LaraCms\Models\Cms\Order;
 use BestLang\LaraCms\Observers\Cms\OrderObserver;
 use Blade;
 use BestLang\WxPay\Pay\Contracts\OrderInterface;
+use Alipay\EasySDK\Contracts\OrderInterface as AlipayOrderInterface;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -24,6 +25,10 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind('laracms', 'BestLang\LaraCms\LaraCms');
         $this->app->singleton(
             OrderInterface::class,
+            Order::class
+        );
+        $this->app->singleton(
+            AlipayOrderInterface::class,
             Order::class
         );
     }
