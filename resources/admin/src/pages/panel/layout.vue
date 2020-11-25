@@ -8,9 +8,9 @@
                 <el-dropdown @command="commandHandler">
                     <div class="logout"><i class="iconfont">&#xe60d; </i>{{user.name}}</div>
                     <el-dropdown-menu slot="dropdown">
-                        <el-dropdown-item command="logout"><div><i class="iconfont">&#xe84b; </i>登出</div></el-dropdown-item>
                         <el-dropdown-item v-if="user.type" command="admin"><i class="iconfont">&#xe60a;</i> 管理后台</el-dropdown-item>
                         <el-dropdown-item command="passwordModify"><i class="iconfont">&#xe618; </i>修改密码</el-dropdown-item>
+                        <el-dropdown-item command="logout"><div><i class="iconfont">&#xe84b; </i>退出登录</div></el-dropdown-item>
                     </el-dropdown-menu>
                 </el-dropdown>
             </el-menu-item>

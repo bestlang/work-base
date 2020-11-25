@@ -222,7 +222,7 @@ class DingTalk extends Command
                         echo $attendance->procInstId, ":",  json_encode($result),"\n";
                     }
                 }
-            }else if($act == 'leavestatus'){
+            }else if($act == 'leaveStatus'){
                 $userIds = DB::connection('proxy')->table('sniper_employee_ding_users')->pluck('userid')->toArray();
                 $userid_list = implode(',', $userIds);
                 $end_time = time() * 1000;

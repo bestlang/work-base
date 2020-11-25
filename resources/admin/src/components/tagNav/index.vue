@@ -100,12 +100,12 @@
          }
         &.cur{
             background: #fff;
-            border-top: 1px solid #e4e7ed;
+            border-top: 1px solid #efefef;
             border-left: 1px solid #e4e7ed;
             border-right: 1px solid #e4e7ed;
-            border-top-left-radius: 3px;
-            border-top-right-radius: 3px;
-            box-shadow: 0 20px 20px #f8f8f8 inset;
+            border-top-left-radius: 5px;
+            border-top-right-radius: 5px;
+            box-shadow: 0 20px 20px #f9f9f9 inset;
         }
     }
 

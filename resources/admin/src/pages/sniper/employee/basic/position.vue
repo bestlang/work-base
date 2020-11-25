@@ -4,77 +4,88 @@
 		<position-tree class="l-tree" :selectedKey="2" @nodeClick="handleNodeClick" @treeLoaded="performTreeLoaded"></position-tree>
 		<div class="l-tree-content">
 			<div class="l-block">
-				<div class="l-block-header" style="padding-right: 20px;width: 100%;">
-					<div class="l-flex">
-						<!--<span>员工系统 / 职位管理</span>-->
-						<span><i class="iconfont">&#xe611;</i> 职位-{{position.name ? position.name : ''}}</span>
-						<el-button-group>
-							<el-button type="primary" size="small" @click="edit"><i class="iconfont">&#xe618;</i>编辑</el-button>
-							<el-button type="success" size="small" @click="add"><i class="iconfont">&#xe663;</i>新增</el-button>
-						</el-button-group>
-					</div>
-				</div>
+				<!--<div class="l-block-header" style="padding-right: 20px;width: 100%;">-->
+					<!--<div class="l-flex">-->
+						<!--&lt;!&ndash;<span>员工系统 / 职位管理</span>&ndash;&gt;-->
+						<!--<span><i class="iconfont">&#xe611;</i> 职位-{{position.name ? position.name : ''}}</span>-->
+						<!--<el-button-group>-->
+							<!--<el-button type="primary" size="small" @click="edit"><i class="iconfont">&#xe618;</i>编辑</el-button>-->
+							<!--<el-button type="success" size="small" @click="add"><i class="iconfont">&#xe663;</i>新增</el-button>-->
+						<!--</el-button-group>-->
+					<!--</div>-->
+				<!--</div>-->
 				<div class="l-block-body l-lighter">
-					<p class="l-position-meta">职位名称：{{position.name ? position.name : ''}}</p>
-					<p class="l-position-meta">上级职位：{{position.parent ? position.parent.name : '-'}}</p>
-					<p class="l-position-meta">所属部门：{{position.department ? position.department.name : ''}}</p>
-					<p class="l-position-meta">职位人员：</p>
-					<el-table
-							v-show="employee"
-							:data="employee"
-							empty-text="暂无职位人员"
-							border
-							style="width: 100%">
-						<!--<el-table-column-->
-								<!--prop="user_id"-->
-								<!--label="ID"-->
-								<!--width="80">-->
-						<!--</el-table-column>-->
-						<el-table-column
-								prop="real_name"
-								label="姓名">
-						</el-table-column>
-						<el-table-column
-								prop="department.name"
-								label="所属部门">
-						</el-table-column>
-						<el-table-column
-								label="操作">
-							<template slot-scope="scope">
-								<el-button type="primary" size="mini" @click="viewUser(scope.row)">查看</el-button>
-							</template>
-						</el-table-column>
-					</el-table>
-					<p class="l-position-meta" style="padding-top: 10px;">下属职位：</p>
-					<el-table
-							v-show="position"
-							v-loading="loading"
-							:data="position.children"
-							empty-text="暂无下属职位"
-							border
-							style="width: 100%">
-						<!--<el-table-column-->
-								<!--prop="id"-->
-								<!--label="ID"-->
-								<!--width="80">-->
-						<!--</el-table-column>-->
-						<el-table-column
-								prop="name"
-								label="职位名">
-						</el-table-column>
-						<el-table-column
-								prop="department.name"
-								label="所属部门">
-						</el-table-column>
-						<el-table-column
-								label="操作">
-							<template slot-scope="scope">
-								<el-button class="l-lighter" size="mini" type="primary" @click="editPosition(scope.row)">编辑</el-button>
-								<el-button class="l-lighter" size="mini" type="danger" @click="deletePosition(scope.row)">删除</el-button>
-							</template>
-						</el-table-column>
-					</el-table>
-
+                    <el-tabs v-model="activeName">
+                        <el-tab-pane label="职位信息" name="first">
+                            <div class="text-right pb-15">
+                                <el-button type="primary" size="small" @click="edit"><i class="iconfont">&#xe618;</i>编辑</el-button>
+                            </div>
+                            <p class="l-position-meta">职位名称：{{position.name ? position.name : ''}}</p>
+                            <p class="l-position-meta">上级职位：{{position.parent ? position.parent.name : '-'}}</p>
+                            <p class="l-position-meta">所属部门：{{position.department ? position.department.name : ''}}</p>
+                        </el-tab-pane>
+                        <el-tab-pane label="职位人员" name="second">
+                            <el-table
+                                    v-show="employee"
+                                    :data="employee"
+                                    empty-text="暂无职位人员"
+                                    border
+                                    style="width: 100%">
+                                <!--<el-table-column-->
+                                <!--prop="user_id"-->
+                                <!--label="ID"-->
+                                <!--width="80">-->
+                                <!--</el-table-column>-->
+                                <el-table-column
+                                        prop="real_name"
+                                        label="姓名">
+                                </el-table-column>
+                                <el-table-column
+                                        prop="department.name"
+                                        label="所属部门">
+                                </el-table-column>
+                                <el-table-column
+                                        label="操作">
+                                    <template slot-scope="scope">
+                                        <el-button type="primary" size="mini" @click="viewUser(scope.row)">查看</el-button>
+                                    </template>
+                                </el-table-column>
+                            </el-table>
+                        </el-tab-pane>
+                        <el-tab-pane label="下属职位" name="third">
+                            <div class="text-right pb-15">
+                                    <el-button type="success" size="small" @click="add"><i class="iconfont">&#xe663;</i>新增</el-button>
+                            </div>
+                            <el-table
+                                    v-show="position"
+                                    v-loading="loading"
+                                    :data="position.children"
+                                    empty-text="暂无下属职位"
+                                    border
+                                    style="width: 100%">
+                                <!--<el-table-column-->
+                                <!--prop="id"-->
+                                <!--label="ID"-->
+                                <!--width="80">-->
+                                <!--</el-table-column>-->
+                                <el-table-column
+                                        prop="name"
+                                        label="职位名">
+                                </el-table-column>
+                                <el-table-column
+                                        prop="department.name"
+                                        label="所属部门">
+                                </el-table-column>
+                                <el-table-column
+                                        label="操作">
+                                    <template slot-scope="scope">
+                                        <el-button class="l-lighter" size="mini" type="primary" @click="editPosition(scope.row)">编辑</el-button>
+                                        <el-button class="l-lighter" size="mini" type="danger" @click="deletePosition(scope.row)">删除</el-button>
+                                    </template>
+                                </el-table-column>
+                            </el-table>
+                        </el-tab-pane>
+                    </el-tabs>
 				</div>
 			</div>
 		</div>
@@ -101,6 +112,7 @@
         components: { PositionTree },
 	    data(){
 	        return {
+                activeName: 'first',
 	            drawer: false,
 				id: 0,
 				position:{},
@@ -170,6 +182,9 @@
 </script>
 
 <style scoped lang="less">
+	.el-table th, .el-table tr{
+		background: transparent;
+	}
 	.l-position-meta{
 		color:#606266;
 		padding-bottom: 10px;

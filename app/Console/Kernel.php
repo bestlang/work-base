@@ -31,19 +31,24 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        try{$schedule->command('sniper:dingTalk attendance')->dailyAt('09:00');}catch (\Exception $e){}
-        try{$schedule->command('sniper:dingTalk attendance')->dailyAt('09:15');}catch (\Exception $e){}
-        try{$schedule->command('sniper:dingTalk attendance')->dailyAt('10:00');}catch (\Exception $e){}
-        try{$schedule->command('sniper:dingTalk attendance')->dailyAt('11:50');}catch (\Exception $e){}
-        try{$schedule->command('sniper:dingTalk attendance')->dailyAt('18:30');}catch (\Exception $e){}
-        try{$schedule->command('sniper:dingTalk attendance')->dailyAt('20:00');}catch (\Exception $e){}
-        try{$schedule->command('sniper:dingTalk users')->dailyAt('22:00');}catch (\Exception $e){}
-        try{$schedule->command('sniper:dingTalk leavestatus')->dailyAt('22:00');}catch (\Exception $e){}
-        try{$schedule->command('sniper:dingTalk syncUsers')->dailyAt('22:20');}catch (\Exception $e){}
-        try{$schedule->command('sniper:dingTalk departments')->dailyAt('22:30');}catch (\Exception $e){}
-        try{$schedule->command('sniper:dingTalk syncDepartments')->dailyAt('22:40');}catch (\Exception $e){}
-        try{$schedule->command('sniper:dingTalk workType')->dailyAt('23:00');}catch (\Exception $e){}
-        try{$schedule->command('sniper:dingTalk workTime')->dailyAt('23:50');}catch (\Exception $e){}
+            $exception = '';
+            try{$schedule->command('sniper:dingTalk attendance')->dailyAt('09:00');}catch (\Exception $e){$exception .= $e->getMessage();}
+            try{$schedule->command('sniper:dingTalk attendance')->dailyAt('09:30');}catch (\Exception $e){$exception .= $e->getMessage();}
+            try{$schedule->command('sniper:dingTalk attendance')->dailyAt('10:00');}catch (\Exception $e){$exception .= $e->getMessage();}
+            try{$schedule->command('sniper:dingTalk attendance')->dailyAt('11:50');}catch (\Exception $e){$exception .= $e->getMessage();}
+            try{$schedule->command('sniper:dingTalk attendance')->dailyAt('18:30');}catch (\Exception $e){$exception .= $e->getMessage();}
+            try{$schedule->command('sniper:dingTalk attendance')->dailyAt('20:00');}catch (\Exception $e){$exception .= $e->getMessage();}
+            try{$schedule->command('sniper:dingTalk users')->dailyAt('22:00');}catch (\Exception $e){$exception .= $e->getMessage();}
+            try{$schedule->command('sniper:dingTalk leaveStatus')->dailyAt('22:00');}catch (\Exception $e){$exception .= $e->getMessage();}
+            try{$schedule->command('sniper:dingTalk syncUsers')->dailyAt('22:20');}catch (\Exception $e){$exception .= $e->getMessage();}
+            try{$schedule->command('sniper:dingTalk departments')->dailyAt('22:30');}catch (\Exception $e){$exception .= $e->getMessage();}
+            try{$schedule->command('sniper:dingTalk syncDepartments')->dailyAt('22:40');}catch (\Exception $e){$exception .= $e->getMessage();}
+            try{$schedule->command('sniper:dingTalk workType')->dailyAt('23:00');}catch (\Exception $e){$exception .= $e->getMessage();}
+            try{$schedule->command('sniper:dingTalk workTime')->dailyAt('23:50');}catch (\Exception $e){$exception .= $e->getMessage();}
+            if($exception){
+                throw new \Exception($exception);
+            }
+
 //        ///////////////////////////////////////////////////
 //        // 抓取成交的订单
 //        $schedule->call(function () {

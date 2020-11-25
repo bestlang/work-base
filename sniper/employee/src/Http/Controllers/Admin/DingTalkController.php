@@ -96,10 +96,10 @@ class DingTalkController
         });
         if($month = $request->input('month')){
             $userIds = DB::connection('proxy')->table('sniper_employee_ding_attendance')->where('ymd', 'like', "${month}%")->selectRaw('distinct(userId)')->pluck('userId')->toArray();
-            $tmp = $users->filter(function($user)use($userIds){
-                return in_array($user->userid, $userIds, true);
+            $users = $users->reject(function($user)use($userIds){
+                return !in_array($user->userid, $userIds, true);
             });
-            $users = array_values($tmp->all());
+            $users = array_values($users->all());
         }
         return response()->ajax($users);
     }
