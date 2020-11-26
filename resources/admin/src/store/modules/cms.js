@@ -9,6 +9,7 @@ const cmsConfig = {
       parentChannel: null,
       channelChildren: [],
       currentChannel: null,
+      contentCurrentChannel: null,
       currentModel: null,
       currentChannelPosition: null,
       currentPosition: null,
@@ -31,6 +32,9 @@ const cmsConfig = {
       },
       currentChannel(state){
         return state.currentChannel
+      },
+      contentCurrentChannel(state){
+        return state.contentCurrentChannel
       },
       currentModel(state){
         return state.currentModel
@@ -61,6 +65,9 @@ const cmsConfig = {
       [types.cmsCurrentChannel] (state, payload) {
         state.currentChannel = payload
       },
+      [types.cmsContentCurrentChannel] (state, payload) {
+          state.contentCurrentChannel = payload
+      },
       [types.cmsCurrentModel] (state, payload) {
         state.currentModel = payload
       },
@@ -83,18 +90,18 @@ const cmsConfig = {
        payload = [parent, except_single_page]
        */
       async [types.cmsChannels]({commit, dispatch}, payload=[null, 0]){
-        commit(types.loading, true)
+        //commit(types.loading, true)
         let res = await api.getCmsChannelTree({disabled: true, has_contents: payload[1]});
         let node = res.data[Object.keys(res.data)[0]]
         commit(types.cmsChannels, [node])
         let parentId = payload[0]||node.id
         // 设置父栏目 以及 父栏目的子栏目列表
         commit(types.cmsParentChannel, parentId)
-        dispatch(types.cmsChannelChildren, parentId);
+        dispatch(types.cmsChannelChildren, parentId)
         if(!payload[0]){
             commit(types.cmsCurrentChannel, node)
         }
-        commit(types.loading, false);
+        //commit(types.loading, false);
       },
       async [types.cmsChannelChildren]({commit}, payload){
         commit(types.loading, true)
@@ -107,6 +114,9 @@ const cmsConfig = {
       },
       [types.cmsCurrentChannel]({commit}, node){
         commit(types.cmsCurrentChannel, node);
+      },
+      [types.cmsContentCurrentChannel]({commit}, node){
+          commit(types.cmsContentCurrentChannel, node);
       },
       [types.cmsCurrentModel]({commit}, node){
         commit(types.cmsCurrentModel, node);

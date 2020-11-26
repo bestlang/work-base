@@ -34,7 +34,7 @@
                 </template>
             </el-table-column>
         </el-table>
-        <el-dialog title="新增广告位" :visible.sync="formVisible" :close-on-click-modal="false">
+        <el-dialog :title="title" :visible.sync="formVisible" :close-on-click-modal="false">
             <el-form :model="form" size="small">
                 <el-form-item label="名称" :label-width="w">
                     <el-input v-model="form.name" autocomplete="off"></el-input>
@@ -50,8 +50,8 @@
                 </el-form-item>
             </el-form>
             <div slot="footer" class="dialog-footer">
-                <el-button @click="formVisible = false">取 消</el-button>
-                <el-button type="primary" @click="submit">确 定</el-button>
+                <el-button @click="formVisible = false" size="small">取 消</el-button>
+                <el-button type="primary" @click="submit" size="small">确 定</el-button>
             </div>
         </el-dialog>
     </div>
@@ -63,6 +63,7 @@
         name: 'cmsOperationAdPositions',
         data(){
             return {
+                title: '新增广告位',
                 w: '80px',
                 loading: true,
                 tableData: [],
@@ -77,6 +78,7 @@
         },
         methods:{
             handleEdit(row){
+                this.title = '编辑广告位'
                 this.formVisible = true;
                 Object.assign(this.form, row);
             },
@@ -97,6 +99,7 @@
                 })
             },
             add(){
+                this.title = '新增广告位'
                 this.formVisible = true;
                 Object.assign(this.form, {
                     id: '',

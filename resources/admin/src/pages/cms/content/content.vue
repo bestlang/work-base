@@ -23,7 +23,7 @@
         <div class="l-block" v-if="!showForm">
           <div class="l-block-header" v-if="parentChannel">
             <div>
-              <i class="iconfont">&#xe64c;</i> {{parentChannel.hasOwnProperty('name') ? parentChannel.name : ''}} <span style="color: #fff;">{{parentChannel.id}}</span>
+              <i class="iconfont">&#xe64c;</i> {{contentCurrentChannel && contentCurrentChannel.hasOwnProperty('name') ? contentCurrentChannel.name : ''}} <span style="color: #fff;"></span>
             </div>
           </div>
           <div class="l-block-body">
@@ -112,6 +112,7 @@
     computed:{
       ...mapGetters([
           'parentChannel',
+          'contentCurrentChannel',
           'currentChannel',
           'currentModel',
           'channels'
@@ -125,6 +126,11 @@
           }
       },
       currentChannel(val){
+        if(val && !this.channel_id){
+            this.channel_id = val.id
+        }
+      },
+      contentCurrentChannel(val){
           if(val && Object.keys(val).length){
               this.loadContents()
           }
@@ -132,13 +138,13 @@
       showForm(){
         //this.$store.dispatch('collapse')
       },
-      async channel_id(val){
+      async channel_id(val, old){
           if(val){
               this.page = 1
               this.form.keyword = ''
               let {data} = await api.getCmsChannelWhole({id: val})
-              this.$store.dispatch(this.$types.cmsCurrentChannel, data)
-              this.$store.dispatch(this.$types.cmsParentChannel, data)
+              this.$store.dispatch(this.$types.cmsContentCurrentChannel, data)
+              //this.$store.dispatch(this.$types.cmsParentChannel, data)
           }
       }
     },
@@ -167,8 +173,8 @@
           this.channel_id = channel.id
       },
       async addContent(){
-          let channel_id = this.currentChannel.id || this.channel_id
-          this.$router.push('/cms/content/add?channel_id='+this.currentChannel.id)
+          let channel_id = this.channel_id || this.contentCurrentChannel.id
+          this.$router.push('/cms/content/add?channel_id='+channel_id)
       },
       async loadContents({...params}){
           let queryData = {channel_id: this.channel_id, page: this.page, page_size: this.page_size, ...params}
@@ -187,9 +193,7 @@
     },
     async created() {
       this.channel_id = parseInt(this.$route.query.channel_id) || 0;
-
       await this.loadContents()
-      // this.$store.dispatch('collapse');
     }
   }
 </script>

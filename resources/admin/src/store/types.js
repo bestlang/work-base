@@ -11,6 +11,7 @@ export const cmsChannels = 'cmsChannels'
 export const cmsChannelChildren = 'cmsChannelChildren'
 export const cmsParentChannel = 'cmsParentChannel'
 export const cmsCurrentChannel = 'cmsCurrentChannel'
+export const cmsContentCurrentChannel = 'cmsContentCurrentChannel'
 export const cmsCurrentModel = 'cmsCurrentModel'
 export const cmsContents = 'cmsContents'
 export const cmsCurrentChannelPosition = 'cmsCurrentChannelPosition'
@@ -29,6 +30,7 @@ export default {
     cmsChannelChildren,
     cmsParentChannel,
     cmsCurrentChannel,
+    cmsContentCurrentChannel,
     cmsCurrentModel,
     cmsContents,
     cmsCurrentChannelPosition,

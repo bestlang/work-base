@@ -27,7 +27,6 @@ axios.interceptors.response.use(response => {
 
         let res = response.data
         let code = parseInt(res.code)
-        app.$message.closeAll()
         if(code === 0){
 
             if(res.error === 'Unauthenticated.'){

@@ -15,7 +15,7 @@
     <div class="l-block-body">
           <div class="l-block" v-if="type=='channel'">
             <div class="l-block-header">
-              <el-button type="primary" @click="add(type)">添加</el-button>
+              <el-button type="primary" @click="add(type)" size="small">添加</el-button>
             </div>
             <div class="l-block-body">
               <el-table
@@ -54,7 +54,7 @@
             </el-table>
             </div>
             <div class="l-block-bottom">
-              <el-button @click="saveOrderFactor">保存排序</el-button>
+              <el-button @click="saveOrderFactor" size="small">保存排序</el-button>
             </div>
           </div>
           <div class="l-block" v-if="type=='content'">
@@ -98,7 +98,7 @@
               </el-table>
             </div>
             <div class="l-block-bottom">
-              <el-button @click="saveOrderFactor">保存排序</el-button>
+              <el-button @click="saveOrderFactor" size="small">保存排序</el-button>
             </div>
           </div>
     </div>
@@ -127,8 +127,8 @@
         </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
-        <el-button type="primary" @click="fieldVisible = false">取消</el-button>
-        <el-button type="primary" @click="doSaveField">确定</el-button>
+        <el-button type="primary" @click="fieldVisible = false" size="small">取消</el-button>
+        <el-button type="primary" @click="doSaveField" size="small">确定</el-button>
       </div>
     </el-dialog>
   </div>
