@@ -51,7 +51,7 @@
       </div>
     </div>
     <el-dialog :title="title" :visible.sync="formVisible"  :close-on-click-modal="false">
-      <el-form :model="form" label-width="100px">
+      <el-form size="small" :model="form" label-width="100px">
         <el-form-item label="权限">
           <el-input v-model="form.show_name" autocomplete="off"></el-input>
         </el-form-item>

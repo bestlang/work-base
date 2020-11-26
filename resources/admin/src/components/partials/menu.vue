@@ -119,6 +119,7 @@
             background: #293c55;
             .el-menu-item{
                 color: #f1f1f1;
+                font-weight: lighter;
                 &.is-active, &:hover{
                     color: #2d2d2d;
                     background: #8c939d;
@@ -130,6 +131,7 @@
             .el-submenu{
                 .el-submenu__title{
                     color: #f1f1f1;
+                    font-weight: lighter;
                     &:hover{
                         color: #2d2d2d;
                         i{

@@ -63,7 +63,7 @@
         </div>
         <div class="l-delimiter"></div>
         <el-dialog :title="formTitle" :visible.sync="formVisible" :close-on-click-modal="false">
-            <el-form :model="form" label-width="80px">
+            <el-form :model="form" label-width="80px" size="small">
                 <el-form-item label="昵称">
                     <el-input v-model="form.name" autocomplete="off"></el-input>
                 </el-form-item>
@@ -89,8 +89,8 @@
                 </el-form-item>
             </el-form>
             <div slot="footer" class="dialog-footer">
-                <el-button @click="formVisible = false">取 消</el-button>
-                <el-button type="primary" @click="handleSubmit">确 定</el-button>
+                <el-button @click="formVisible = false" size="small">取 消</el-button>
+                <el-button type="primary" @click="handleSubmit" size="small">确 定</el-button>
             </div>
         </el-dialog>
     </div>

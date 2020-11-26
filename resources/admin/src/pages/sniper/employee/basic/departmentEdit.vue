@@ -10,7 +10,7 @@
             </div>
             <div class="l-block-body">
 
-                <el-form ref="form" :model="form" label-width="80px" style="width: 50%;overflow-y: visible">
+                <el-form size="small" ref="form" :model="form" label-width="80px" style="width: 50%;overflow-y: visible">
                     <el-form-item label="部门名称">
                         <el-input v-model="form.name"></el-input>
                     </el-form-item>

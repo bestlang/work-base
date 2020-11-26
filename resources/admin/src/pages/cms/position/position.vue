@@ -45,7 +45,7 @@
             </div>
         </div>
         <el-dialog title="添加类型" :visible.sync="formVisible" :close-on-click-modal="false">
-            <el-form :model="form">
+            <el-form size="small" :model="form">
                 <el-form-item label="名称" label-width="100px">
                     <el-input v-model="form.name" autocomplete="off"></el-input>
                 </el-form-item>

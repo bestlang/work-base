@@ -123,7 +123,7 @@
 			width: 200px;
 			height: 140px;
 			margin: 20px 20px 0 0;
-			border-radius: 5px;
+			border-radius: 3px;
 			cursor: pointer;
 			background: #F2F8FE;
 			img{

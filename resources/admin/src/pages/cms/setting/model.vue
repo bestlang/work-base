@@ -62,7 +62,7 @@
     </div>
     </div>
     <el-dialog title="添加模型" :visible.sync="dialogFormVisible">
-      <el-form :model="modelForm">
+      <el-form :model="modelForm" size="small">
         <el-form-item label="模型名" label-width="100px">
           <el-input v-model="modelForm.name" autocomplete="off"></el-input>
         </el-form-item>

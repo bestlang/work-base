@@ -107,7 +107,7 @@
               </el-button-group>
           </div>
           <div class="l-block-body">
-            <el-form :model="channelForm" label-width="100px">
+            <el-form :model="channelForm" label-width="100px" size="small">
                 <el-form-item label="上级栏目">
                     <tree-select v-model="channelForm.parent_id" :multiple="false" :options="channelsTree"  :default-expand-level="10" :normalizer="normalizer" />
                 </el-form-item>

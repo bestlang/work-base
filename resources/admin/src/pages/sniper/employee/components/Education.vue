@@ -1,6 +1,6 @@
 <template>
     <el-card class="box-card" shadow="hover">
-        <el-form :model="form" label-width="120px">
+        <el-form size="small" :model="form" label-width="120px">
             <el-form-item label="起止日期*">
                 <el-date-picker
                         :editable="false"

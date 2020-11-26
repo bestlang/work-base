@@ -24,17 +24,19 @@
           <div class="l-block-header" v-if="parentChannel">
             <div>
               <i class="iconfont">&#xe64c;</i> {{parentChannel.hasOwnProperty('name') ? parentChannel.name : ''}} <span style="color: #fff;">{{parentChannel.id}}</span>
-              <el-button type="primary" size="small" @click="addContent">+新增</el-button>
             </div>
           </div>
           <div class="l-block-body">
             <div class="l-search-area" style="border-bottom: 1px solid #EBEEF5;">
-              <el-form ref="form" :model="form" :inline="true">
+              <el-form ref="form" :model="form" :inline="true" size="small">
                 <el-form-item label="标题">
                   <el-input v-model="form.keyword" style="width: 200px;"></el-input>
                 </el-form-item>
                 <el-form-item>
-                  <el-button type="default" size="small" @click="search">搜索</el-button>
+                  <el-button type="default" @click="search"><i class="if">&#xe604;</i> 搜索</el-button>
+                </el-form-item>
+                <el-form-item>
+                  <el-button type="primary" size="small" @click="addContent"><i class="if">&#xe663;</i> 新增</el-button>
                 </el-form-item>
               </el-form>
             </div>
@@ -55,9 +57,11 @@
               </el-table-column>
               <el-table-column
                 prop="channel.name"
+                width="120"
                 label="栏目">
               </el-table-column>
               <el-table-column
+                width="180"
                 label="操作">
                 <template slot-scope="scope">
                   <el-button type="primary" @click="editContent(scope.row)" size="mini">编辑</el-button>
@@ -169,7 +173,7 @@
       async loadContents({...params}){
           let queryData = {channel_id: this.channel_id, page: this.page, page_size: this.page_size, ...params}
           let {data} = await api.getChannelContents(queryData)
-          if(data.contents && data.contents.length){
+          if(data.contents){
               this.contents = data.contents;
           }
           if(data.total){

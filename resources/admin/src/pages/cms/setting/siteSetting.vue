@@ -8,7 +8,7 @@
 			</div>
 			<div class="l-block-body">
 				<div style="width: 70%">
-					<el-form label-width="120px">
+					<el-form label-width="120px" size="small">
 						<el-form-item label="网站标题">
 							<el-input v-model="site.title"></el-input>
 						</el-form-item>

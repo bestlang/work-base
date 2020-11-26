@@ -28,7 +28,7 @@
                     </div>
                 </div>
                 <div class="l-block-body">
-                    <el-form label-width="100px">
+                    <el-form label-width="100px" size="small">
                         <el-form-item label="广告名称" :label-width="w">
                             <el-input name="name" v-model="form.name"></el-input>
                         </el-form-item>

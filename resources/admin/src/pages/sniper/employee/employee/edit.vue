@@ -11,7 +11,7 @@
             <div class="l-block-body">
                 <el-tabs v-model="activeName" @tab-click="handleClick" type="border-card">
                     <el-tab-pane label="基本信息" name="basic">
-                        <el-form ref="form" :model="form" label-width="130px" style="width: 80%;overflow-y: visible;padding-top: 20px;">
+                        <el-form  size="small" ref="form" :model="form" label-width="130px" style="width: 80%;overflow-y: visible;padding-top: 20px;">
                             <el-form-item label="所属部门*">
                                 <tree-select v-model="form.department_id" :multiple="false" :options="departments"  :default-expand-level="10" :normalizer="normalizer" />
                             </el-form-item>
@@ -51,7 +51,7 @@
                         </el-form>
                     </el-tab-pane>
                     <el-tab-pane label="扩展信息" name="extend">
-                        <el-form ref="form" :model="form" label-width="130px" style="width: 80%;overflow-y: visible;padding-top: 20px;">
+                        <el-form size="small" ref="form" :model="form" label-width="130px" style="width: 80%;overflow-y: visible;padding-top: 20px;">
                             <el-form-item label="婚姻状况">
                                 <el-radio-group v-model="form.marital">
                                     <el-radio :label="3" border>单身</el-radio>
@@ -200,7 +200,7 @@
                         <job style="margin-top: 20px;" v-show="showJobFlag" :default-data="job" @cancel="hideJobForm" @submit="restoreJob"></job>
                     </el-tab-pane>
                     <el-tab-pane label="入职材料" name="materials">
-                        <el-form ref="form" :model="form" label-width="130px" style="width: 40%;overflow-y: visible;padding-top: 20px;">
+                        <el-form size="small" ref="form" :model="form" label-width="130px" style="width: 40%;overflow-y: visible;padding-top: 20px;">
                             <el-form-item label="离职证明">
                                 <attachment v-model="form.leaving" @onPreview="onPreview"></attachment>
                             </el-form-item>

@@ -33,7 +33,7 @@
                     </div>
                 </div>
                 <div class="l-block-body">
-                    <el-form label-width="100px">
+                    <el-form label-width="100px" size="small">
                         <template v-for="(item, index) in currentModel.fields">
 
                             <el-form-item v-if="item.type=='text'" :label="item.label">

@@ -7,7 +7,7 @@
                 <el-button type="primary" @click="save">提交</el-button>
             </div>
             <div class="l-block-body">
-                <el-form ref="form" :model="form" label-width="100px" style="width: 50%;overflow-y: visible;">
+                <el-form size="small" ref="form" :model="form" label-width="100px" style="width: 50%;overflow-y: visible;">
                     <el-form-item label="当前密码">
                         <el-input v-model="form.password" type="password"></el-input>
                     </el-form-item>
