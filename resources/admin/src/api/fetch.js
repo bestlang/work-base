@@ -30,6 +30,7 @@ axios.interceptors.response.use(response => {
         if(code === 0){
 
             if(res.error === 'Unauthenticated.'){
+                app.$message.closeAll()
                 app.$message.info('登录信息过期，请重新登录')
                 if(getPrefix() == 'api'){
                     localStorage.removeItem('accessToken')
@@ -41,6 +42,7 @@ axios.interceptors.response.use(response => {
                 app.$message.info(res.error || '出错了')
             }
         }else if(code === 401){
+            app.$message.closeAll()
             app.$message.info(res.error || '登录超时，请重新登录！')
             if(getPrefix() == 'api'){
                 localStorage.removeItem('accessToken')

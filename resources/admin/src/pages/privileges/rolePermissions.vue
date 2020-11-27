@@ -7,7 +7,7 @@
                     <el-divider direction="vertical"></el-divider>
                     <span><span v-if="currentRole">「{{currentRole.name}}」</span>权限</span>
                 </div>
-                <div><el-button @click="saveRolePermissions" type="primary">保存</el-button></div>
+                <div><el-button @click="saveRolePermissions" type="primary" size="small">保存</el-button></div>
             </div>
             <div class="l-block-body">
                 <div>

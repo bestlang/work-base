@@ -29,10 +29,10 @@
             <el-table-column
                     label="操作">
                 <template slot-scope="scope">
-                      <el-button @click="editRole(scope.row)" type="primary" size="mini"><i class="iconfont">&#xe618;</i>编辑</el-button>
-                      <el-button type="danger" size="mini" @click="handleDelete(scope.row)"><i class="iconfont">&#xe620;</i>删除</el-button>
-                      <el-button type="warning" size="mini" @click="editRolePermissions(scope.row)"><i class="iconfont">&#xe64a;</i>权限</el-button>
-                      <el-button @click="viewRoleUsers(scope.row)" type="success" size="mini"><i class="iconfont">&#xe6b0;</i>成员</el-button>
+                      <el-button @click="editRole(scope.row)" type="primary" size="mini"><i class="if">&#xe618;</i>编辑</el-button>
+                      <el-button type="danger" size="mini" @click="handleDelete(scope.row)"><i class="if">&#xe620;</i>删除</el-button>
+                      <el-button type="warning" size="mini" @click="editRolePermissions(scope.row)"><i class="if">&#xe64a;</i>权限</el-button>
+                      <el-button @click="viewRoleUsers(scope.row)" type="success" size="mini"><i class="if">&#xe6b0;</i>成员</el-button>
                 </template>
             </el-table-column>
         </el-table>
@@ -45,8 +45,8 @@
                 </el-form-item>
             </el-form>
             <div slot="footer" class="dialog-footer">
-                <el-button @click="formVisible = false">取 消</el-button>
-                <el-button type="primary" @click="handleSubmit">确 定</el-button>
+                <el-button size="small" @click="formVisible = false">取 消</el-button>
+                <el-button size="small" type="primary" @click="handleSubmit">确 定</el-button>
             </div>
         </el-dialog>
     </div>
@@ -95,11 +95,11 @@
                 }
             },
             viewRoleUsers(row){
-              this.$store.dispatch(this.$types.privilegeCurrentRole, row)
+              this.$store.dispatch(this.$types.currentRole, row)
               this.$router.push('/privileges/roles/users?role_id='+row.id)
             },
             editRolePermissions(row){
-              this.$store.dispatch(this.$types.privilegeCurrentRole, row)
+              this.$store.dispatch(this.$types.currentRole, row)
               this.$router.push('/privileges/roles/permissions?role_id='+row.id)
             },
             handleDelete(row){

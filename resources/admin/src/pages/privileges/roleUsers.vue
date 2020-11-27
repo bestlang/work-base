@@ -7,7 +7,7 @@
                 <span>「{{roleName}}」用户列表</span>
           </div>
           <div>
-            <el-button type="primary" @click="addNewUser"><i class="iconfont">&#xe641;</i> 添加</el-button>
+            <el-button type="primary" @click="addNewUser" size="small"><i class="iconfont">&#xe641;</i> 添加</el-button>
           </div>
         </div>
         <el-table

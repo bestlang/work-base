@@ -3,7 +3,7 @@
         <div class="l-block">
             <div class="l-block-header">
                 <div class="l-flex">
-                    <span>人力资源 / <router-link to="/sniper/employee/employee/attendance">考勤记录</router-link>  / {{user.name ? user.name:''}}考勤详情</span>
+                    <span>人力资源 / <router-link to="/sniper/employee/employee/attendance" class="l-active">考勤记录</router-link>  / {{user.name ? user.name:''}}考勤详情</span>
                 </div>
             </div>
         </div>

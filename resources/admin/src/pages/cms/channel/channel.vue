@@ -62,12 +62,12 @@
             <div class="l-block-header" v-if="parentChannel && parentChannel.id">
                 <span><i class="iconfont">&#xe64c;</i> {{parentChannel.name ? parentChannel.name : ''}}</span>
                 <el-button-group>
-                  <el-button style="padding: 3px 10px" type="text" @click="editChannel(parentChannel)">编辑</el-button>
-                  <el-button style="padding: 3px 10px" type="text" @click="addChannel(parentChannel)">新增栏目</el-button>
+                  <el-button size="small" type="primary" @click="editChannel(parentChannel)">编辑</el-button>
+                  <el-button size="small" type="success" @click="addChannel(parentChannel)">新增栏目</el-button>
                 </el-button-group>
             </div>
             <div class="l-block-header" v-if="!channels.length">
-              <el-button style="padding: 3px 10px" type="text" @click="addChannel({id: 0})">新增栏目</el-button>
+              <el-button size="small" type="primary" @click="addChannel({id: 0})">新增栏目</el-button>
             </div>
             <div class="l-block-body">
               <el-table
@@ -102,8 +102,8 @@
                 <span v-if="channelForm.id"><i class="iconfont">&#xe64c;</i> {{channelForm.name}}</span>
                 </span>
               <el-button-group>
-                <el-button style="padding: 3px 10px" type="text" @click="addChannel(channelForm)">新增栏目</el-button>
-                <el-button style="padding: 3px 10px" type="text" @click="deleteChannel(channelForm)">删除</el-button>
+                <el-button size="small" type="success" @click="addChannel(channelForm)">新增栏目</el-button>
+                <el-button size="small" type="danger" @click="deleteChannel(channelForm)">删除</el-button>
               </el-button-group>
           </div>
           <div class="l-block-body">

@@ -9,7 +9,7 @@
       <div>
         <router-link to="/cms/setting/model" tag="span"><span class="iconfont">&#xe601;</span>返回</router-link>
         <el-divider direction="vertical"></el-divider>
-        <span v-if="currentModel"><span style="font-weight: 700">“{{currentModel.name}}”</span>{{type=='content'?'内容':'栏目'}}字段管理</span>
+        <span v-if="currentModel"><span>“{{currentModel.name}}”</span>{{type=='content'?'内容':'栏目'}}字段管理</span>
       </div>
     </div>
     <div class="l-block-body">
@@ -35,9 +35,10 @@
                 label="标签">
               </el-table-column>
               <el-table-column
+                width="150"
                 label="排序值(升序)">
                 <template slot-scope="scope">
-                  <el-input v-model="scope.row.order_factor" class="l-w-60"></el-input>
+                  <el-input v-model="scope.row.order_factor"  size="small"></el-input>
                 </template>
               </el-table-column>
               <el-table-column
@@ -59,7 +60,7 @@
           </div>
           <div class="l-block" v-if="type=='content'">
             <div class="l-block-header">
-              <el-button type="primary" @click="add(type)">添加</el-button>
+              <el-button type="primary" @click="add(type)" size="small">添加</el-button>
             </div>
             <div class="l-block-body">
               <el-table
@@ -79,9 +80,10 @@
                   label="标签">
                 </el-table-column>
                 <el-table-column
+                  width="150"
                   label="排序值(升序)">
                   <template slot-scope="scope">
-                    <el-input v-model="scope.row.order_factor" class="l-w-60"></el-input>
+                    <el-input v-model="scope.row.order_factor" size="small"></el-input>
                   </template>
                 </el-table-column>
                 <el-table-column

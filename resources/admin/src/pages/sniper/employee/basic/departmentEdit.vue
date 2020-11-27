@@ -5,7 +5,7 @@
             <div class="l-block-header">
                 <div class="l-flex">
                     <span>员工系统 / <span @click="viewDepartments" style="cursor: pointer;">部门管理</span> / 新增部门</span>
-                    <el-button type="primary" @click="save">保存</el-button>
+                    <el-button type="primary" @click="save" size="small">保存</el-button>
                 </div>
             </div>
             <div class="l-block-body">
