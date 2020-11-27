@@ -5,7 +5,7 @@
             <div class="l-block-header">
                 <div class="l-flex">
                     <span>人力资源 / <router-link to="/sniper/employee/employee/list" style="color:#409EFF;">员工列表</router-link>  / {{bread_title}}</span>
-                    <el-button type="primary" @click="save" size="mini">保存</el-button>
+                    <el-button type="primary" @click="save" size="mini"><i class="if">&#xe9d3;</i> 保存</el-button>
                 </div>
             </div>
             <div class="l-block-body">
@@ -84,7 +84,7 @@
                     <el-tab-pane label="教育经历" name="education">
                         <div class="l-flex">
                             <!--<div><i>从最高学历开始填写</i></div>-->
-                            <el-button type="primary" icon="el-icon-plus" circle style="margin-bottom: 10px;" @click="addEducation"></el-button>
+                            <el-button type="primary" icon="el-icon-plus" size="small" circle style="margin-bottom: 10px;" @click="addEducation"></el-button>
                         </div>
                         <div style="overflow-y: visible;">
                             <el-table
@@ -152,7 +152,7 @@
                     <el-tab-pane label="工作经历" name="jobs">
                         <div class="l-flex">
                             <!--<div><i>从最近工作经历开始填写</i></div>-->
-                            <el-button type="primary" icon="el-icon-plus" circle style="margin-bottom: 10px;" @click="addJob"></el-button>
+                            <el-button type="primary" size="small" icon="el-icon-plus" circle style="margin-bottom: 10px;" @click="addJob"></el-button>
                         </div>
                             <el-table
                                     border
