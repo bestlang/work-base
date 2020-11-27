@@ -96,7 +96,6 @@
                                     closable
                                     :disable-transitions="false"
                                     @close="handleTagClose(tag)"
-                                    v-if="tag.name"
                             >
                                 {{tag.name}}
                             </el-tag>
