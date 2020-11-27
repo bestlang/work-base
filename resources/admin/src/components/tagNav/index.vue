@@ -82,15 +82,16 @@
 </script>
 <style lang="less" scoped>
     .tag-nav-li{
-        font-size: 14px;
+        font-size: 15px;
         height: 40px;
         line-height: 40px;
         display: inline-block;
         padding: 0 10px;
         box-sizing: border-box;
         /*margin-right: 5px;*/
-        font-weight: lighter;
+        font-weight: normal;
         background: transparent;
+        color: #888;
         /*+.tag-nav-li{*/
             /*border-left: none;*/
         /*}*/

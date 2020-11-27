@@ -665,4 +665,7 @@
     .el-form-item__content  /deep/  .vue-treeselect__menu-container{
         z-index: 9999;
     }
+    /deep/ .el-tabs__item{
+        font-size: 15px;
+    }
 </style>
