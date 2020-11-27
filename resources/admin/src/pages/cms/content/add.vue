@@ -181,7 +181,7 @@
         },
         methods: {
             handleTagClose(tag) {
-                this.form.tags.splice(this.form.tags.indexOf(tag), 1);
+                this.form.tags = this.form.tags.filter(item => item.name != tag.name)
             },
             showTagInput() {
                 this.tagInputVisible = true;
