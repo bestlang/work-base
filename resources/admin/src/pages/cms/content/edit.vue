@@ -234,7 +234,7 @@
                     let tags = content.tags.filter(tag => {return tag.name})
                     this.$set(this.form, 'tags', tags)
                 }else{
-                    this.$set(this.form, 'tags', [{id: 1, name: ''}])
+                    this.$set(this.form, 'tags', [])
                 }
 
                 this.$store.dispatch(this.$types.cmsCurrentModel, currentModel)
