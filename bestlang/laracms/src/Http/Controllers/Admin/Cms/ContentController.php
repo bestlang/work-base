@@ -131,7 +131,21 @@ class ContentController extends Controller
                 $content->positions()->sync($positions);
             }
         }
-
+        // tags标签
+        if($tags){
+            try{
+                $tagIds = collect($tags)->map(function($tag){
+                    if($tag['name']){
+                        $tagModel = Tag::firstOrCreate(['name' => $tag['name']]);
+                        return $tagModel->id;
+                    }
+                })->toArray();
+                $tagIds = array_filter($tagIds);
+                $content->tags()->sync($tagIds);
+            }catch (\Exception $e){
+                return response()->error($e->getMessage());
+            }
+        }
         return response()->ajax();
     }
 

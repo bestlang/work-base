@@ -50,7 +50,7 @@ export default {
         height: 40px;
         background: #fff;
         width: 100%;
-        border-bottom: 1px solid #f2f2f2;
+        border-bottom: 1px solid #eee;
     }
     .ls-content{
         width: 100%;

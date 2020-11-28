@@ -17,6 +17,21 @@
     .price{
         width: 200px;
     }
+    .el-tag + .el-tag {
+        margin-left: 10px;
+    }
+    .button-new-tag {
+        margin-left: 10px;
+        height: 32px;
+        line-height: 30px;
+        padding-top: 0;
+        padding-bottom: 0;
+    }
+    .input-new-tag {
+        width: 90px;
+        margin-left: 10px;
+        vertical-align: bottom;
+    }
 </style>
 <template>
     <div class="l-content-list">
@@ -75,7 +90,26 @@
                             </el-form-item>
                         </template>
                         <el-form-item label="标签">
-                            <tag v-model="form.tags"></tag>
+                            <el-tag
+                                    :key="index"
+                                    v-for="(tag, index) in form.tags"
+                                    closable
+                                    :disable-transitions="false"
+                                    @close="handleTagClose(tag)"
+                            >
+                                {{tag.name}}
+                            </el-tag>
+                            <el-input
+                                    class="input-new-tag"
+                                    v-if="tagInputVisible"
+                                    v-model="tagInputValue"
+                                    ref="saveTagInput"
+                                    size="small"
+                                    @keyup.enter.native="handleTagInputConfirm"
+                                    @blur="handleTagInputConfirm"
+                            >
+                            </el-input>
+                            <el-button v-else class="button-new-tag" size="small" @click="showTagInput"><i class="if">&#xe663;</i>加标签</el-button>
                         </el-form-item>
                         <el-form-item label="编辑推荐位" v-if="contentPositions && contentPositions.length">
                             <el-checkbox-group  v-model="form.positions">
@@ -108,6 +142,8 @@
             return {
                 checkList:[],
                 showSwitch: false,
+                tagInputVisible: false,
+                tagInputValue: '',
                 contents: [],
                 formTitle: '编辑内容',
                 form:{
@@ -145,6 +181,23 @@
             }
         },
         methods: {
+            handleTagClose(tag) {
+                this.form.tags = this.form.tags.filter(item => item.name != tag.name)
+            },
+            showTagInput() {
+                this.tagInputVisible = true;
+                this.$nextTick(_ => {
+                    this.$refs.saveTagInput.$refs.input.focus();
+                });
+            },
+            handleTagInputConfirm() {
+                let tagInputValue = this.tagInputValue;
+                if (tagInputValue) {
+                    this.form.tags.push({name: tagInputValue});
+                }
+                this.tagInputVisible = false;
+                this.tagInputValue = '';
+            },
             goBack(){
                 this.$router.push('/cms/content?channel_id='+this.currentChannel.id)
             },
@@ -178,7 +231,8 @@
                 }
 
                 if(content.tags.length){
-                    this.$set(this.form, 'tags', content.tags)
+                    let tags = content.tags.filter(tag => {return tag.name})
+                    this.$set(this.form, 'tags', tags)
                 }else{
                     this.$set(this.form, 'tags', [{id: 1, name: ''}])
                 }

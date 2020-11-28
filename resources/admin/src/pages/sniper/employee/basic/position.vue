@@ -96,7 +96,7 @@
 					<div>身份证号：{{user.id_card}}</div>
 					<div>手机号：{{user.phone}}</div>
 					<div>公司邮箱：{{user.user && user.user.email}}</div>
-					<div><a  target="_blank" :href="`/#/sniper/employee/employee/edit?employee_id=`+user.user_id"><i class="if">&#xe603;</i>查看详情</a></div>
+					<div><a  target="_blank" :href="`/#/sniper/employee/employee/edit?employee_id=`+user.user_id" class="l-active"><i class="if">&#xe603;</i>查看详情</a></div>
 				</div>
 			</div>
 		</el-dialog>

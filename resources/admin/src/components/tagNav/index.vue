@@ -82,15 +82,16 @@
 </script>
 <style lang="less" scoped>
     .tag-nav-li{
-        font-size: 14px;
+        font-size: 15px;
         height: 40px;
         line-height: 40px;
         display: inline-block;
         padding: 0 10px;
         box-sizing: border-box;
         /*margin-right: 5px;*/
-        font-weight: lighter;
+        font-weight: normal;
         background: transparent;
+        color: #888;
         /*+.tag-nav-li{*/
             /*border-left: none;*/
         /*}*/
@@ -100,9 +101,9 @@
          }
         &.cur{
             background: #fff;
-            border-top: 1px solid #f2f2f2;
-            border-left: 1px solid #f2f2f2;
-            border-right: 1px solid #f2f2f2;
+            border-top: 1px solid #eee;
+            border-left: 1px solid #eee;
+            border-right: 1px solid #eee;
             box-shadow: 0 20px 20px #f9f9f9 inset;
         }
     }
