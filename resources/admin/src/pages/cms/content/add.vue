@@ -29,7 +29,7 @@
                         <span class="l-go-back" @click="goBack"><span class="iconfont">&#xe601;</span>返回</span>
                         <el-divider direction="vertical"></el-divider>
                         <!--<i class="iconfont">&#xe64c;</i>「」-->
-                        <span>在<span style="font-weight: 700">“{{currentChannel.name}}”</span>下{{formTitle}}</span>
+                        <span>在<span style="font-weight: 700">“{{contentCurrentChannel.name}}”</span>下{{formTitle}}</span>
                     </div>
                 </div>
                 <div class="l-block-body">
@@ -130,6 +130,7 @@
             ...mapGetters([
                 'parentChannel',
                 'currentChannel',
+                'contentCurrentChannel',
                 'currentModel',
             ]),
         },
@@ -137,7 +138,7 @@
             async channel_id(val){
                 if(val){
                     let {data} = await api.getCmsChannelWhole({id: val})
-                    this.$store.dispatch(this.$types.cmsCurrentChannel, data);
+                    this.$store.dispatch(this.$types.cmsContentCurrentChannel, data);
                     await this.loadModel(data.model_id)
                 }
             }
@@ -152,7 +153,7 @@
             async saveContent(){
                 if(!this.form.channel_id && !this.form.model_id){
                     this.$set(this.form, 'model_id', this.currentModel.id);
-                    this.$set(this.form, 'channel_id', this.currentChannel.id)
+                    this.$set(this.form, 'channel_id', this.contentCurrentChannel.id)
                 }
                 let res = await api.saveContent(this.form)
                 if(res.success){
@@ -164,8 +165,8 @@
             async handleNodeClick(node, ...params){
                 let channel = node[0]
                 this.channel_id = channel.id
-                this.$store.dispatch(this.$types.cmsCurrentChannel, channel);
-                this.$store.dispatch(this.$types.cmsParentChannel, channel);
+                this.$store.dispatch(this.$types.cmsContentCurrentChannel, channel);
+                //this.$store.dispatch(this.$types.cmsParentChannel, channel);
                 await this.loadModel(channel.model.id)
                 await this.loadContentPositions()
             },
@@ -187,8 +188,8 @@
             },
             async loadContentPositions(channel_id=0){
                 if(!channel_id){
-                    if(this.currentChannel && this.currentChannel.id){
-                        channel_id = this.currentChannel.id;
+                    if(this.contentCurrentChannel && this.contentCurrentChannel.id){
+                        channel_id = this.contentCurrentChannel.id;
                     }
                 }
                 // 没有选定的栏目, 不进行[可选推荐位]的加载
