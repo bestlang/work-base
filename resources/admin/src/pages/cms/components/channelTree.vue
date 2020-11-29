@@ -33,7 +33,7 @@
       :highlight-current="true"
       :expand-on-click-node="false">
             <span class="custom-tree-node" slot-scope="{ node, data }">
-              <span><span v-if="!data.children.length" class="iconfont">&#xe92a;</span>{{ node.label }}</span>
+              <span><span v-if="!data.children.length" class="iconfont">&#xe61d; </span>{{ node.label }}</span>
             </span>
         </el-tree>
   </div>

@@ -94,33 +94,33 @@
                         <a href="" class="dropdown-toggle" data-toggle="dropdown">
                             会员<span class="hidden-sm">中心</span> <b class="caret"></b>
                         </a>
-                        <ul class="dropdown-menu">
-                            @guest
+                        <ul class="dropdown-menu" id="user-menu">
+                            {{--@guest--}}
                             <li><a href="{{route('login')}}"><i class="fa fa-sign-in fa-fw"></i>登录</a></li>
                             @if (Route::has('register'))
                                 <li><a href="{{route('register')}}"><i class="fa fa-user-o fa-fw"></i>注册</a></li>
                             @endif
-                            @else
-                                <li>
-                                    <a href="/ucenter">个人中心</a>
-                                </li>
-                                @if(auth()->user()->type == 1)
-                                    <li><a class="dropdown-item" href="/admin/#/">
-                                            管理后台
-                                        </a></li>
-                                @endif
-                                <li><a href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        登出
-                                    </a>
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                        @csrf
-                                    </form>
-                                </li>
-                             @endguest
+                            {{--@else--}}
+                                {{--<li>--}}
+                                    {{--<a href="/ucenter">个人中心</a>--}}
+                                {{--</li>--}}
+                                {{--@if(auth()->user()->type == 1)--}}
+                                    {{--<li><a class="dropdown-item" href="/admin/#/">--}}
+                                            {{--管理后台--}}
+                                        {{--</a></li>--}}
+                                {{--@endif--}}
+                                {{--<li><a href="{{ route('logout') }}" onclick="event.preventDefault();--}}
+                                                     {{--document.getElementById('logout-form').submit();">--}}
+                                        {{--登出--}}
+                                    {{--</a>--}}
+                                {{--</li>--}}
+                             {{--@endguest--}}
                         </ul>
                     </li>
                 </ul>
+                {{--<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">--}}
+                    {{--@csrf--}}
+                {{--</form>--}}
             </div>
 
         </div>

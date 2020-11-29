@@ -23,7 +23,7 @@
         <div class="l-block" v-if="!showForm">
           <div class="l-block-header" v-if="parentChannel">
             <div>
-              <i class="iconfont">&#xe64c;</i> {{contentCurrentChannel && contentCurrentChannel.hasOwnProperty('name') ? contentCurrentChannel.name : ''}} <span style="color: #fff;"></span>
+              <i class="iconfont">&#xe632;</i> {{contentCurrentChannel && contentCurrentChannel.hasOwnProperty('name') ? contentCurrentChannel.name : ''}} <span style="color: #fff;"></span>
             </div>
           </div>
           <div class="l-block-body">

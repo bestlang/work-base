@@ -69,7 +69,7 @@
                 <ul class="nav navbar-nav navbar-right">
                     <li class="dropdown">
                         <a href="" class="dropdown-toggle" data-toggle="dropdown">
-                            会员<span class="hidden-sm">中心</span> <b class="caret"></b>
+                            个人<span class="hidden-sm">中心</span> <b class="caret"></b>
                         </a>
                         <ul class="dropdown-menu">
                             @guest
@@ -90,10 +90,9 @@
                                         @csrf
                                     </form>
                                 </li>
-                                @if(1)
-                                    {{--{{ Gate::allows('system') }}--}}
-                                    <li><a class="dropdown-item" href="/admin">
-                                            {{ __('Management') }}
+                                @if(auth()->user()->type == 1)
+                                    <li><a class="dropdown-item" href="/admin/#/">
+                                            管理后台
                                         </a></li>
                                 @endif
                              @endguest

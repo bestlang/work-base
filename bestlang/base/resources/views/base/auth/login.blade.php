@@ -57,7 +57,7 @@
 
                         <div class="form-group row mb-0">
                             <div class="col-md-12">
-                                <button type="submit" class="btn btn-primary btn-block">
+                                <button type="button" class="btn btn-primary btn-block" id="btn-ajax-submit">
                                     {{ __('登录') }}
                                 </button>
 
@@ -75,3 +75,29 @@
     </div>
 </div>
 @endsection
+@push('script')
+<script>
+    $(function(){
+        $('#btn-ajax-submit').click(function(){
+            //var token = $("[name='_token']").val()
+            var email = $("[name='email']").val()
+            var password = $("[name='password']").val()
+            axios.post('/login', {email: email, password: password}).then(response => {
+            var res = response.data
+            if(res.success){
+                var user = res.data.user
+                var name = user.name
+                var type = user.type
+                var token = res.data.csrf
+                localStorage.setItem('name', name)
+                localStorage.setItem('type', type)
+                localStorage.setItem('token', token)
+                location.href = '/';
+            }else{
+                alert(Object.values(res.error).join(''))
+            }
+            })
+        })
+    })
+</script>
+@endpush

@@ -2,9 +2,9 @@
 
 namespace BestLang\Base\Http\Controllers\Auth;
 
-use BestLang\Base\Events\HistoryEvent;
+//use BestLang\Base\Events\HistoryEvent;
 use BestLang\Base\Http\Controllers\Controller;
-use BestLang\Base\Models\History;
+//use BestLang\Base\Models\History;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -12,6 +12,7 @@ use Illuminate\Validation\ValidationException;
 use BestLang\Base\Models\User;
 use BestLang\Base\Factory\HistoryEventFactory;
 use BestLang\Base\Http\Traits\PasswordModifyTrait;
+use Validator;
 
 class LoginController extends Controller
 {
@@ -60,7 +61,7 @@ class LoginController extends Controller
     {
         //目前web前台使用email管理后台使用手机
         if(request()->ajax()){
-            return 'mobile';
+            return 'email';//mobile
         }else{
             return 'email';
         }
@@ -87,7 +88,7 @@ class LoginController extends Controller
         $this->clearLoginAttempts($request);
         event(HistoryEventFactory::loginEvent());
         if($request->ajax()){
-            return response()->ajax(['user' => User::find(auth()->user()->id)]);
+            return response()->ajax(['user' => User::find(auth()->user()->id), 'csrf' => csrf_token()]);
         }else{
             return $this->authenticated($request, $this->guard()->user())
                 ?: redirect()->intended($this->redirectPath());
@@ -109,7 +110,12 @@ class LoginController extends Controller
         event(HistoryEventFactory::logoutEvent());
         $this->guard()->logout();
         $request->session()->invalidate();
-        return $this->loggedOut($request) ?: redirect('/');
+        if($request->ajax()){
+            return response()->ajax(['lalala']);
+        }else{
+            return $this->loggedOut($request) ?: redirect('/');
+        }
+
     }
 
     protected function loggedOut(Request $request)
@@ -117,6 +123,17 @@ class LoginController extends Controller
         if($request->ajax()) {
             return response()->ajax('登出成功!');
         }
+    }
+
+    protected function validateLogin(Request $request)
+    {
+        $request->validate([
+            $this->username() => 'required|string',
+            'password' => 'required|string',
+        ],[
+            $this->username().'.required' => $this->username().'不能为空',
+            'password.required' => '密码不能为空',
+        ]);
     }
 
 }
