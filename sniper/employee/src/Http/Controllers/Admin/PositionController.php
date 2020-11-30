@@ -2,11 +2,79 @@
 namespace Sniper\Employee\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
+use Sniper\Employee\Models\Employee;
 use Sniper\Employee\Models\Position;
+use Sniper\Employee\Models\PositionChange;
+use Sniper\Employee\Models\User;
 use Validator;
 
 class PositionController
 {
+    public function histories(Request $request)
+    {
+        $page = $request->input('page', 0);
+        $keyword = $request->input('keyword', null);
+        $pageSize = $request->input('page_size', 10);
+        $query = PositionChange::query();
+        if($keyword){
+            $query->where('name', 'like', "%{$keyword}%");
+        }
+        $items = $query->orderBy('id', 'desc')
+        ->limit($pageSize)
+        ->offset(($page-1)*$pageSize)
+        ->get();
+        return response()->ajax($items);
+    }
+    public function change(Request $request)
+    {
+        $params = $request->all();
+        $rules = [
+            'date' => 'string|required',
+            'employee' => 'string|required',
+            'positionBefore' => 'string|required',
+            'positionAfter' => 'numeric|required'
+        ];
+        $info = [
+            'date.required' => '请选择变动日期',
+            'employee.required' => '请选择人员',
+            'positionBefore.required' => '当前职位不能为空',
+            'positionAfter.required' => '最新职位不能为空',
+        ];
+        $validator = Validator::make($params, $rules , $info);
+        if($validator->fails()){
+            return response()->error($validator->errors()->first());
+        }
+        $position = Position::where('id', $params['positionAfter'])->first();
+        if(!$position){
+            return response()->error('最新职位不存在');
+        }
+        try {
+            list($name, $email) = explode('-',  $params['employee'], 2);
+            $user = User::where('email', $email)->first();
+            if(!$user){
+                throw new \Exception('人员不存在');
+            }
+            //验证职位是否无变化
+            $employee = Employee::where('user_id', $user->id)->first();
+            if($employee->position_id == $params['positionAfter']){
+                throw new \Exception('职位无变化');
+            }
+            $position = Position::where('id', $params['positionAfter'])->first();
+            if(!$position){
+                throw new \Exception('最新职位不存在');
+            }
+            $positionChange = new PositionChange();
+            $positionChange->date = $params['date'];
+            $positionChange->user_id = $user->id;
+            $positionChange->name = $user->name;
+            $positionChange->positionBefore = $params['positionBefore'];
+            $positionChange->positionAfter = $position->name;
+            $positionChange->save();
+        }catch (\Exception $e){
+            return response()->error($e->getMessage());
+        }
+        return response()->ajax();
+    }
     public function delete(Request $request)
     {
         if(!auth()->user()->can('hr delete positions')){

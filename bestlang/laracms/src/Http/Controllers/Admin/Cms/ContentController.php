@@ -18,7 +18,7 @@ class ContentController extends Controller
             return response()->error('没有读取文章权限!', 4012);
         }
         $channelId = $request->input('channel_id', 0);
-        $page = $request->input('page', 0);
+        $page = $request->input('page', 1);
         $keyword = $request->input('keyword', null);
         $pageSize = $request->input('page_size', 10);
         $res = ContentService::contents($channelId, $page, $pageSize, $keyword);

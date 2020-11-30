@@ -4,6 +4,7 @@ namespace Sniper\Employee\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use Sniper\Employee\Jobs\ProcessEditUser;
 use Sniper\Employee\Models\Department;
+use Sniper\Employee\Models\Position;
 use Sniper\Employee\Models\User;
 use Sniper\Employee\Models\Employee;
 use Validator;
@@ -14,7 +15,17 @@ class EmployeeController
     public function detail(Request $request)
     {
         $id = $request->input('id');
-        $employee = Employee::with(['user', 'education', 'job'])->find($id);
+        $email = $request->input('email');
+        if($email){
+            $user = User::where('email', $email)->first();
+            if($user){
+                $id = $user->id;
+            }
+        }
+        if(!$id){
+            return response()->error('参数错误');
+        }
+        $employee = Employee::with(['user', 'education', 'job', 'position'])->find($id);
         $employee->leaving = json_decode($employee->leaving)??[];
         $employee->physical = json_decode($employee->physical)??[];
         $employee->certificate = json_decode($employee->certificate)??[];

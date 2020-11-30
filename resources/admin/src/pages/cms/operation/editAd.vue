@@ -105,7 +105,7 @@
     import imageUpload from "@/components/imageUpload"
     import attachment from "@/components/attachment"
     import api from 'sysApi'
-    import {formatDateTime} from "../../../api/util"
+    import {formatDateTime} from "sysApi/util"
 
     export default {
         name: 'cmsOperationEditAd',

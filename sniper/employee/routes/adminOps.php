@@ -13,6 +13,8 @@ Route::group(['prefix'=>'admin/sniper/employee', 'namespace'=>'Admin'], function
         Route::any('/get/position/descendants', 'PositionController@getDescendants');
         Route::post('/save/position', 'PositionController@save');
         Route::post('/delete/position', 'PositionController@delete');
+        Route::post('/position/change', 'PositionController@change');
+        Route::get('/position/change/histories', 'PositionController@histories');
 
         Route::post('/save/employee', 'EmployeeController@save');
         Route::any('/department/employee', 'EmployeeController@departmentEmployee');
