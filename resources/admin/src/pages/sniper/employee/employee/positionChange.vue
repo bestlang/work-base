@@ -49,6 +49,7 @@
                             label="更新时间">
                     </el-table-column>
                 </el-table>
+                <pager :total="params.total" :page-size="params.page_size" @current-change="currentChange"></pager>
             </div>
         </div>
         <el-dialog :title="title" :visible.sync="formVisible" :close-on-click-modal="false">
@@ -91,6 +92,7 @@
     import {formatDateTime} from "sysApi/util"
     import TreeSelect from '@riophae/vue-treeselect'
     import '@riophae/vue-treeselect/dist/vue-treeselect.css'
+    import pager from "@/components/pager"
 
     const removeEmptyChildren = function(data){
         if(!data.children.length){
@@ -122,6 +124,11 @@
                     positionBefore: '',
                     positionAfter: ''
                 },
+                params:{
+                    page: 1,
+                    page_size: 10,
+                    total: 0
+                },
                 pickerOptions: {
                     shortcuts: [{
                         text: '今天',
@@ -148,12 +155,15 @@
             }
         },
         methods:{
-            async getHistories(params){
-                params = params || {}
-                params.page = params.page || 1
-                params.page_size = params.page_size || 10
+            async currentChange(page){
+                this.params.page = page
+            },
+            async getHistories(){
+                let params = this.params
                 let {data} = await api.sniperEmployeePositionChangeHistories(params)
-                this.tableData = data
+                const {total, items} = data
+                this.tableData = items
+                this.params.total = total || this.params.total
             },
             async getEmployeeInfo(email){
                 let employee = await api.sniperGetEmployeeDetail({email})
@@ -203,7 +213,7 @@
                     cb(results);
                 }, 800 * Math.random());
             },
-            createStateFilter(queryString) {
+            createStateFilter(queryString) {1
                 return (state) => {
                     return (state.value.toLowerCase().indexOf(queryString.toLowerCase()) !== -1);
                 };
@@ -212,8 +222,8 @@
                 console.log(item);
             },
             async search(){
-                let params = {page: 1, page_size:10, keyword: this.keyword}
-                await this.getHistories(params)
+                this.params = {page: 1, page_size:10, keyword: this.keyword}
+                await this.getHistories()
             },
             addChange(){
                 for(let key in this.form){
@@ -243,11 +253,16 @@
                 }
             }
         },
-        components: { TreeSelect },
+        components: { TreeSelect, pager },
         async mounted() {
             await this.getPositions();
             this.employee = await this.getEmployee();
             await this.getHistories()
+        },
+        watch:{
+            async ['params.page'](val){
+                await this.getHistories()
+            }
         }
     }
 </script>

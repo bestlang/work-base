@@ -19,11 +19,12 @@ class PositionController
         if($keyword){
             $query->where('name', 'like', "%{$keyword}%");
         }
+        $total = $query->count();
         $items = $query->orderBy('id', 'desc')
         ->limit($pageSize)
         ->offset(($page-1)*$pageSize)
         ->get();
-        return response()->ajax($items);
+        return response()->ajax(['total' => $total, 'items' => $items]);
     }
     public function change(Request $request)
     {

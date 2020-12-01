@@ -18,9 +18,7 @@
                             <el-form-item label="职位">
                                 <span v-if="employee && employee.position">{{employee.position.name}}</span>
                                 <span v-else>-</span>
-                                <span><small style="color: #ccc;">修改职位请到人事变动处</small></span>
-
-                                <!--<tree-select v-model="form.position_id" :multiple="false" :options="positions"  :default-expand-level="10" :normalizer="normalizer" />-->
+                                <span><small style="color: #ccc;">修改职位请到人事变动</small></span>
                             </el-form-item>
                             <el-form-item label="真实姓名*">
                                 <el-input v-model="form.real_name"></el-input>
