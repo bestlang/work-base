@@ -15,6 +15,7 @@ Route::group(['prefix'=>'admin/sniper/employee', 'namespace'=>'Admin'], function
         Route::post('/delete/position', 'PositionController@delete');
         Route::post('/position/change', 'PositionController@change');
         Route::get('/position/change/histories', 'PositionController@histories');
+        Route::get('/employee', 'EmployeeController@employee');
 
         Route::post('/save/employee', 'EmployeeController@save');
         Route::any('/department/employee', 'EmployeeController@departmentEmployee');

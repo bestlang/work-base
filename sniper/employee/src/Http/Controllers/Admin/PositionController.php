@@ -31,14 +31,14 @@ class PositionController
         $rules = [
             'date' => 'string|required',
             'employee' => 'string|required',
-            'positionBefore' => 'string|required',
+            'positionBefore' => 'string|nullable',
             'positionAfter' => 'numeric|required'
         ];
         $info = [
             'date.required' => '请选择变动日期',
             'employee.required' => '请选择人员',
-            'positionBefore.required' => '当前职位不能为空',
             'positionAfter.required' => '最新职位不能为空',
+            'positionAfter.numeric' => '请选择最新职位',
         ];
         $validator = Validator::make($params, $rules , $info);
         if($validator->fails()){
@@ -63,6 +63,8 @@ class PositionController
             if(!$position){
                 throw new \Exception('最新职位不存在');
             }
+            $employee->position_id = $position->id;
+            $employee->save();
             $positionChange = new PositionChange();
             $positionChange->date = $params['date'];
             $positionChange->user_id = $user->id;

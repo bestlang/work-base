@@ -12,6 +12,21 @@ use Arr;
 
 class EmployeeController
 {
+    public function employee(Request $request)
+    {
+        $page =  $request->input('page', 1);
+        $pageSize = $request->input('page_size', 9999);
+        $employee = Employee::with('user')->orderBy('user_id', 'desc')
+        ->limit($pageSize)
+        ->offset(($page-1)*$pageSize)
+        ->get();
+        $users = [];
+        $employee->each(function($e)use(&$users){
+            if($e->user)
+                $users[] = ['name'=>$e->user->name, 'email' => $e->user->email];
+        });
+        return response()->ajax($users);
+    }
     public function detail(Request $request)
     {
         $id = $request->input('id');
@@ -63,7 +78,7 @@ class EmployeeController
         $msg = '参数不合法';
         $rules = [
             'department_id' => 'required|numeric',
-            'position_id' => 'required|numeric',
+            //'position_id' => 'required|numeric',
             'real_name' => 'required',
             'gender' => 'numeric|required',
             'phone' => 'required|phone',
@@ -88,8 +103,8 @@ class EmployeeController
         $info = [
             'department_id.required' => '请选择部门',
             'department_id.numeric' => $msg,
-            'position_id.required' => '请选择职位',
-            'position_id.numeric' => $msg,
+            /*'position_id.required' => '请选择职位',
+            'position_id.numeric' => $msg,*/
             'real_name.required' => '请录入真实姓名',
             'gender.numeric' => $msg,
             'gender.required' => '请选择性别',
@@ -138,7 +153,7 @@ class EmployeeController
             $user->update($userData);
             $user->employee->real_name = $params['real_name'];
             $user->employee->department_id = $params['department_id'];
-            $user->employee->position_id = $params['position_id'];
+            //$user->employee->position_id = $params['position_id'];
             $user->employee->phone = $params['phone'];
             $user->employee->gender = $params['gender'];
             $user->employee->id_card = $params['id_card'];

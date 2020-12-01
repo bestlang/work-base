@@ -35,8 +35,10 @@
                             width="180">
                     </el-table-column>
                     <el-table-column
-                            prop="positionBefore"
                             label="变更前职位">
+                        <template slot-scope="scope">
+                            <span>{{scope.row.positionBefore?scope.row.positionBefore:'-'}}</span>
+                        </template>
                     </el-table-column>
                     <el-table-column
                             prop="positionAfter"
@@ -67,10 +69,11 @@
                             :fetch-suggestions="querySearchAsync"
                             placeholder="请输入内容"
                             @select="handleSelect"
+                            :disabled="!form.date"
                     ></el-autocomplete>
                 </el-form-item>
-                <el-form-item label="当前职位" :label-width="w">
-                    <div v-html="form.positionBefore?form.positionBefore:'<span style=\'color:#ccc\'>未设置</span>'"></div>
+                <el-form-item label="变更前职位" :label-width="w">
+                    <div v-html="form.positionBefore?form.positionBefore:'<span style=\'color:#ccc\'>-</span>'"></div>
                 </el-form-item>
                 <el-form-item label="最新职位" :label-width="w">
                     <tree-select v-model="form.positionAfter" :multiple="false" :options="positions"  :default-expand-level="10" :normalizer="normalizer" />
@@ -103,11 +106,11 @@
         data(){
             return {
                 title: '人事变动',
-                w: '80px',
+                w: '100px',
                 formVisible: false,
                 keyword: '',
 
-                restaurants: [],
+                employee: [],
                 state: '',
                 timeout:  null,
 
@@ -162,14 +165,19 @@
                 if(!res.hasError){
                     this.$message.success('添加成功')
                     this.formVisible = false
+                    this.getHistories()
                 }else{
                     this.$message.error(res.error)
                 }
             },
-            loadAll() {
-                return [
-                    { "value": "路章-luzhang@sniper-tech.com" },
-                ];
+            async getEmployee() {
+                let {data} = await  api.sniperGetEmployeeList()
+                let employee = []
+                for(let idx in data){
+                    let e = data[idx]
+                    employee.push({value: e.name + '-' + e.email})
+                }
+                return employee
             },
             //tree select 节点数据适应
             normalizer(node) {
@@ -187,13 +195,13 @@
                 this.positions = [root]
             },
             querySearchAsync(queryString, cb) {
-                var restaurants = this.restaurants;
-                var results = queryString ? restaurants.filter(this.createStateFilter(queryString)) : restaurants;
+                var employee = this.employee;
+                var results = queryString ? employee.filter(this.createStateFilter(queryString)) : employee;
 
                 clearTimeout(this.timeout);
                 this.timeout = setTimeout(() => {
                     cb(results);
-                }, 3000 * Math.random());
+                }, 800 * Math.random());
             },
             createStateFilter(queryString) {
                 return (state) => {
@@ -238,7 +246,7 @@
         components: { TreeSelect },
         async mounted() {
             await this.getPositions();
-            this.restaurants = this.loadAll();
+            this.employee = await this.getEmployee();
             await this.getHistories()
         }
     }

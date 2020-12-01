@@ -15,8 +15,12 @@
                             <el-form-item label="所属部门*">
                                 <tree-select v-model="form.department_id" :multiple="false" :options="departments"  :default-expand-level="10" :normalizer="normalizer" />
                             </el-form-item>
-                            <el-form-item label="职位*">
-                                <tree-select v-model="form.position_id" :multiple="false" :options="positions"  :default-expand-level="10" :normalizer="normalizer" />
+                            <el-form-item label="职位">
+                                <span v-if="employee && employee.position">{{employee.position.name}}</span>
+                                <span v-else>-</span>
+                                <span><small style="color: #ccc;">修改职位请到人事变动处</small></span>
+
+                                <!--<tree-select v-model="form.position_id" :multiple="false" :options="positions"  :default-expand-level="10" :normalizer="normalizer" />-->
                             </el-form-item>
                             <el-form-item label="真实姓名*">
                                 <el-input v-model="form.real_name"></el-input>
@@ -323,6 +327,7 @@
                 },
                 showEducationFlag: false,
                 showJobFlag: false,
+                employee: null
             }
         },
         watch:{
@@ -601,6 +606,7 @@
             },
             async getEmployeeDetail(id){
                 let {data} = await api.sniperGetEmployeeDetail({id})
+                this.employee = data
                 this.assignForm(data)
             },
             //tree select 节点数据适应
