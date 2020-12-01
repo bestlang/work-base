@@ -249,6 +249,8 @@
                     let employee = await this.getEmployeeInfo(email);
                     if(employee.data && employee.data.position){
                         this.form.positionBefore = employee.data.position.name
+                    }else{
+                        this.form.positionBefore = ''
                     }
                 }
             },
