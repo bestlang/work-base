@@ -251,6 +251,9 @@
                         this.form.positionBefore = employee.data.position.name
                     }
                 }
+            },
+            async ['params.page'](val){
+                await this.getHistories()
             }
         },
         components: { TreeSelect, pager },
@@ -258,11 +261,6 @@
             await this.getPositions();
             this.employee = await this.getEmployee();
             await this.getHistories()
-        },
-        watch:{
-            async ['params.page'](val){
-                await this.getHistories()
-            }
         }
     }
 </script>
