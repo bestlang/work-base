@@ -40,3 +40,7 @@ Route::group(['prefix' => 'ajax'], function($router){
 
     Route::any('/pay/alipay/page', 'AliPayController@page');
 });
+
+Route::fallback(function(){
+    return redirect('/');
+});
