@@ -51,7 +51,7 @@ class PositionController
         }
         try {
             list($name, $email) = explode('-',  $params['employee'], 2);
-            $user = User::where('email', $email)->first();
+            $user = User::where('email', $email)->where('name', $name)->first();
             if(!$user){
                 throw new \Exception('人员不存在');
             }

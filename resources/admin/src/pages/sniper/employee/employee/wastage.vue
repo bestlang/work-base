@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div v-title="'人事变动'"></div>
+        <div v-title="'离职管理'"></div>
         <div class="l-block">
             <div class="l-block-header">
                 <div class="l-flex">
@@ -26,7 +26,7 @@
                         style="width: 100%">
                     <el-table-column
                             prop="date"
-                            label="日期"
+                            label="离职日期"
                             width="180">
                     </el-table-column>
                     <el-table-column
@@ -35,14 +35,28 @@
                             width="180">
                     </el-table-column>
                     <el-table-column
-                            label="变更前职位">
+                            label="离职申请表">
                         <template slot-scope="scope">
-                            <span>{{scope.row.positionBefore?scope.row.positionBefore:'-'}}</span>
+                            <span v-for="item in JSON.parse(scope.row.apply)"><a :href="item.url" target="_blank" style="color: #00a2d4;">{{item.name}}</a></span>
                         </template>
                     </el-table-column>
                     <el-table-column
-                            prop="positionAfter"
-                            label="变更后职位">
+                            label="交接单">
+                        <template slot-scope="scope">
+                            <span v-for="item in JSON.parse(scope.row.handover)"><a :href="item.url" target="_blank" style="color: #00a2d4;">{{item.name}}</a></span>
+                        </template>
+                    </el-table-column>
+                    <el-table-column
+                            label="退工手续备案表">
+                        <template slot-scope="scope">
+                            <span v-for="item in JSON.parse(scope.row.record)"><a :href="item.url" target="_blank" style="color: #00a2d4;">{{item.name}}</a></span>
+                        </template>
+                    </el-table-column>
+                    <el-table-column
+                            label="其他文件">
+                        <template slot-scope="scope">
+                            <span v-for="item in JSON.parse(scope.row.other)"><a :href="item.url" target="_blank" style="color: #00a2d4;">{{item.name}}</a></span>
+                        </template>
                     </el-table-column>
                     <el-table-column
                             prop="updated_at"
@@ -54,7 +68,7 @@
         </div>
         <el-dialog :title="title" :visible.sync="formVisible" :close-on-click-modal="false">
             <el-form :model="form" size="small">
-                <el-form-item label="变动日期" :label-width="w">
+                <el-form-item label="离职日期" :label-width="w">
                     <el-date-picker
                             v-model="form.date"
                             type="datetime"
@@ -73,11 +87,17 @@
                             :disabled="!form.date"
                     ></el-autocomplete>
                 </el-form-item>
-                <el-form-item label="变更前职位" :label-width="w">
-                    <div v-html="form.positionBefore?form.positionBefore:'<span style=\'color:#ccc\'>-</span>'"></div>
+                <el-form-item label="离职申请表" :label-width="w">
+                    <attachment v-model="form.apply" @onPreview="onPreview"></attachment>
                 </el-form-item>
-                <el-form-item label="最新职位" :label-width="w">
-                    <tree-select v-model="form.positionAfter" :multiple="false" :options="positions"  :default-expand-level="10" :normalizer="normalizer" />
+                <el-form-item label="交接单" :label-width="w">
+                    <attachment v-model="form.handover" @onPreview="onPreview"></attachment>
+                </el-form-item>
+                <el-form-item label="退工手续备案表" :label-width="w">
+                    <attachment v-model="form.record" @onPreview="onPreview"></attachment>
+                </el-form-item>
+                <el-form-item label="其他单据" :label-width="w">
+                    <attachment v-model="form.other" @onPreview="onPreview"></attachment>
                 </el-form-item>
             </el-form>
             <div slot="footer" class="dialog-footer">
@@ -93,6 +113,7 @@
     import TreeSelect from '@riophae/vue-treeselect'
     import '@riophae/vue-treeselect/dist/vue-treeselect.css'
     import pager from "@/components/pager"
+    import attachment from "@/components/attachment"
 
     const removeEmptyChildren = function(data){
         if(!data.children.length){
@@ -105,11 +126,11 @@
     }
 
     export default {
-        name: 'sniperEmployeePositionChange',
+        name: 'sniperEmployeeWastage',
         data(){
             return {
-                title: '人事变动',
-                w: '100px',
+                title: '离职管理',
+                w: '110px',
                 formVisible: false,
                 keyword: '',
 
@@ -122,8 +143,10 @@
                 form:{
                     date: '',
                     employee: '',
-                    positionBefore: '',
-                    positionAfter: ''
+                    apply: [],
+                    handover: [],
+                    record: [],
+                    other: []
                 },
                 params:{
                     page: 1,
@@ -156,12 +179,15 @@
             }
         },
         methods:{
+            onPreview(file){
+                window.open(file.url, '_blank')
+            },
             async currentChange(page){
                 this.params.page = page
             },
             async getHistories(){
                 let params = this.params
-                let {data} = await api.sniperEmployeePositionChangeHistories(params)
+                let {data} = await api.sniperEmployeeWastageHistories(params)
                 const {total, items} = data
                 this.tableData = items
                 this.params.total = total || this.params.total
@@ -172,11 +198,12 @@
             },
             async savePositionChange(){
                 let data = this.form
-                let res = await api.sniperEmployeePositionChange(data)
+                let res = await api.sniperSaveEmployeeWastage(data)
+                alert(JSON.stringify(res))
                 if(!res.hasError){
                     this.$message.success('添加成功')
                     this.formVisible = false
-                    this.getHistories()
+                    //this.getHistories()
                 }else{
                     this.$message.error(res.error)
                 }
@@ -228,12 +255,15 @@
             },
             addChange(){
                 // for(let key in this.form){
-                //     this.form[key] = null
+                //     this.form[key] = ''
                 // }
-                this.form.date=null,
-                this.form.employee='',
-                this.form.positionBefore='',
-                this.form.positionAfter=''
+                this.form.date = ''
+                this.form.employee = ''
+
+                this.form.apply = []
+                this.form.handover = []
+                this.form.record = []
+                this.form.other = []
 
                 this.formVisible = true
             },
@@ -265,7 +295,7 @@
                 await this.getHistories()
             }
         },
-        components: { TreeSelect, pager },
+        components: { TreeSelect, pager, attachment },
         async mounted() {
             await this.getPositions();
             this.employee = await this.getEmployee();

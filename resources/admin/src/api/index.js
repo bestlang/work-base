@@ -81,8 +81,9 @@ export default {
     sniperGetPositionDescendants(data){ return fetch('/admin/sniper/employee/get/position/descendants', data) },
     sniperDeletePosition(data){ return fetch('/admin/sniper/employee/delete/position', data, 'post') },
     sniperEmployeePositionChange(data){ return fetch('/admin/sniper/employee/position/change', data, 'post') },
-
     sniperEmployeePositionChangeHistories(data){ return fetch('/admin/sniper/employee/position/change/histories', data) },
+    sniperSaveEmployeeWastage(data){ return fetch('/admin/sniper/employee/save/wastage', data, 'post') },
+    sniperEmployeeWastageHistories(data){ return fetch('/admin/sniper/employee/wastage/histories', data) },
     sniperGetEmployeeList(data){ return fetch('/admin/sniper/employee/employee', data) },
     sniperSaveEmployee(data){ return fetch('/admin/sniper/employee/save/employee', data, 'post') },
     sniperGetDepartmentEmployee(data){ return fetch('/admin/sniper/employee/department/employee', data) },

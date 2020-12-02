@@ -25,6 +25,7 @@
 <script>
     import api from "sysApi"
     export default {
+        name: 'passwordModify',
         data(){
             return {
                 form: {

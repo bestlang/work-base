@@ -80,6 +80,16 @@ export default [
                 }
             },
             {
+                path: "/sniper/employee/wastage",
+                component: () => import("../pages/sniper/employee/employee/wastage.vue"),
+                meta: {
+                    can: 'hr employee',
+                    show: true,
+                    name: '离职管理',
+                    font: '&#xe614;'
+                }
+            },
+            {
                 path: "/sniper/employee/employee/edit",
                 component: () => import("../pages/sniper/employee/employee/edit.vue"),
                 meta: {
