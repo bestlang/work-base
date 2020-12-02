@@ -1,5 +1,6 @@
 <template>
 	<div>
+		<div v-title="'站点设置'"></div>
 		<div class="l-block">
 			<div class="l-block-header">
 				<div>
