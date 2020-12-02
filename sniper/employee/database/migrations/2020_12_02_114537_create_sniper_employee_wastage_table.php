@@ -18,10 +18,10 @@ class CreateSniperEmployeeWastageTable extends Migration
             $table->unsignedBigInteger('user_id')->comment('用户ID');
             $table->string('name')->comment('姓名')->nullable();
             $table->dateTime('date')->comment('日期')->nullable();
-            $table->string('apply')->comment('离职申请表')->nullable();
-            $table->string('handover')->comment('交接单')->nullable();
-            $table->string('record')->comment('退工手续备案表')->nullable();
-            $table->string('other')->comment('其他单据')->nullable();
+            $table->text('apply')->comment('离职申请表')->nullable();
+            $table->text('handover')->comment('交接单')->nullable();
+            $table->text('record')->comment('退工手续备案表')->nullable();
+            $table->text('other')->comment('其他单据')->nullable();
             $table->nullableTimestamps();
         });
     }

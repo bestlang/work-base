@@ -27,7 +27,7 @@ fastcgi_pass unix:/run/php-fpm/www.sock;
 
 单页-特殊的栏目
 
-php artisan migrate --path=packages/bestlang/laracms/database/migrations/2020_06_14_153336_create_cms_tags_table.php
+php artisan migrate --path=sniper/employee/database/migrations/2020_06_14_153336_create_cms_tags_table.php
 php -d memory_limit=-1 /usr/local/bin/composer update
 php -d memory_limit=-1 C:\composer\composer.phar
 
