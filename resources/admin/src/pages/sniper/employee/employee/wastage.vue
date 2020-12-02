@@ -37,25 +37,25 @@
                     <el-table-column
                             label="离职申请表">
                         <template slot-scope="scope">
-                            <span v-for="item in JSON.parse(scope.row.apply)"><a :href="item.url" target="_blank" style="color: #00a2d4;">{{item.name}}</a></span>
+                            <span v-for="item in JSON.parse(scope.row.apply)"><a :href="item.url" target="_blank" style="color: #00a2d4;margin-right: 20px;display: inline-block;">{{item.name}}</a></span>
                         </template>
                     </el-table-column>
                     <el-table-column
                             label="交接单">
                         <template slot-scope="scope">
-                            <span v-for="item in JSON.parse(scope.row.handover)"><a :href="item.url" target="_blank" style="color: #00a2d4;">{{item.name}}</a></span>
+                            <span v-for="item in JSON.parse(scope.row.handover)"><a :href="item.url" target="_blank" style="color: #00a2d4;margin-right: 20px;display: inline-block;">{{item.name}}</a></span>
                         </template>
                     </el-table-column>
                     <el-table-column
                             label="退工手续备案表">
                         <template slot-scope="scope">
-                            <span v-for="item in JSON.parse(scope.row.record)"><a :href="item.url" target="_blank" style="color: #00a2d4;">{{item.name}}</a></span>
+                            <span v-for="item in JSON.parse(scope.row.record)"><a :href="item.url" target="_blank" style="color: #00a2d4;margin-right: 20px;display: inline-block;">{{item.name}}</a></span>
                         </template>
                     </el-table-column>
                     <el-table-column
                             label="其他文件">
                         <template slot-scope="scope">
-                            <span v-for="item in JSON.parse(scope.row.other)"><a :href="item.url" target="_blank" style="color: #00a2d4;">{{item.name}}</a></span>
+                            <span v-for="item in JSON.parse(scope.row.other)"><a :href="item.url" target="_blank" style="color: #00a2d4;margin-right: 20px;display: inline-block;">{{item.name}}</a></span>
                         </template>
                     </el-table-column>
                     <el-table-column
@@ -199,7 +199,6 @@
             async savePositionChange(){
                 let data = this.form
                 let res = await api.sniperSaveEmployeeWastage(data)
-                alert(JSON.stringify(res))
                 if(!res.hasError){
                     this.$message.success('添加成功')
                     this.formVisible = false
