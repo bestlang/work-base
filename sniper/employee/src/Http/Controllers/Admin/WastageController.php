@@ -70,15 +70,25 @@ class WastageController
         if($id){//更新逻辑
             $wastage = Wastage::find($id);
             if($wastage){
-                $wastage->date = $params['date'];
-                $wastage->user_id = $user->id;
-                $wastage->name = $user->name;
-                $wastage->apply = json_encode(Arr::get($params, 'apply',[]));
-                $wastage->handover = json_encode(Arr::get($params, 'handover',[]));
-                $wastage->record = json_encode(Arr::get($params, 'record',[]));
-                $wastage->other = json_encode(Arr::get($params, 'other',[]));
-                $wastage->note = Arr::get($params, 'note', '');
-                $wastage->save();
+                try{
+                    $wastage->date = $params['date'];
+                    $wastage->user_id = $user->id;
+                    $wastage->name = $user->name;
+                    $wastage->apply = json_encode(Arr::get($params, 'apply',[]));
+                    $wastage->handover = json_encode(Arr::get($params, 'handover',[]));
+                    $wastage->record = json_encode(Arr::get($params, 'record',[]));
+                    $wastage->other = json_encode(Arr::get($params, 'other',[]));
+                    $wastage->note = Arr::get($params, 'note', '');
+                    $wastage->save();
+                    if($user->employee){
+                        $user->employee->onJob = 0;
+                        $user->push();
+                    }else{
+                        throw new \Exception('员工信息不存在');
+                    }
+                }catch (\Exception $e){
+                    return response()->error($e->getMessage());
+                }
             }else{
                 return response()->error('记录不存在');
             }
@@ -94,6 +104,12 @@ class WastageController
                 $wastage->other = json_encode(Arr::get($params, 'other',[]));
                 $wastage->note = Arr::get($params, 'note', '');
                 $wastage->save();
+                if($user->employee){
+                    $user->employee->onJob = 0;
+                    $user->push();
+                }else{
+                    throw new \Exception('员工信息不存在');
+                }
             }catch (\Exception $e){
                 return response()->error($e->getMessage());
             }
