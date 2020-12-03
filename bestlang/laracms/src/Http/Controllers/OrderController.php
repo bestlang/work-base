@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use BestLang\LaraCms\Models\Cms\Order;
 
 use BestLang\LaraCms\Services\OrderGenerator;
-
+use HashConfig;
 
 
 class OrderController
@@ -26,7 +26,7 @@ class OrderController
 
     public function detail($order_no, Request $request)
     {
-        $order = Order::where('order_no', $order_no)->first();
+        $order = Order::where('order_no', $order_no)->firstOrFail();
         return view("laracms::{$this->theme}.order.orderDetail", ['order' => $order]);
     }
 
@@ -41,7 +41,7 @@ class OrderController
 
     public function orderPay($order_no, Request $request)
     {
-        $order = Order::where('order_no', $order_no)->first();
+        $order = Order::where('order_no', $order_no)->firstOrFail();
         return view("laracms::{$this->theme}.order.pay", ['order' => $order]);
     }
 }

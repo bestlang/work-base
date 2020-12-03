@@ -37,7 +37,7 @@ class LaraCms
 
     public function positionAds($positionName, $count=5)
     {
-        $position = AdPosition::where('name', $positionName)->first();
+        $position = AdPosition::where('name', $positionName)->firstOrFail();
         return $position->ads()->where('enabled', 1)->where('start_time', '<=', now())->where('end_time', '>=', now())->limit($count)->get();
     }
 
@@ -70,7 +70,7 @@ class LaraCms
         if(!$position){
             return [];
         }
-        $contents = Position::where('name', $name)->first()->contents()->with(['metas', 'contents'])->limit($count)->get();
+        $contents = $position->contents()->with(['metas', 'contents'])->limit($count)->get();
         return $contents;
     }
 

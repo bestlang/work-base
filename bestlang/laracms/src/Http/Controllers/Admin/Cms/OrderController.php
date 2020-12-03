@@ -32,7 +32,12 @@ class OrderController extends Controller
     public function detail(Request $request)
     {
         $order_no = $request->input('order_no');
-        $order = Order::with('user')->where('order_no', $order_no)->first();
+        $order = null;
+        try{
+            $order = Order::with('user')->where('order_no', $order_no)->firstOrFail();
+        }catch (\Exception $e){
+            return response()->error($e->getMessage());
+        }
         return response()->ajax($order);
     }
 
@@ -40,14 +45,16 @@ class OrderController extends Controller
     {
         $order_no = $request->input('order_no');
         $params = $request->all();
-        $order = Order::where('order_no', $order_no)->first();
-        if($order){
+        try{
+            $order = Order::where('order_no', $order_no)->firstOrFail();
             $status = Arr::get($params, 'status', 0);
             if($status != $order->status && $order->status == 0){
                 $order->status = $status;
             }
+            $order->save();
+        }catch (\Exception $e){
+            return response()->error($e->getMessage());
         }
-        $order->save();
         return response()->ajax();
     }
 }

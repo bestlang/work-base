@@ -9,7 +9,7 @@ class ContentController extends Controller
 {
     public function index(Request $request, $id)
     {
-        $content = Content::with(['contents', 'metas', 'channel', 'model'])->find($id);
+        $content = Content::with(['contents', 'metas', 'channel', 'model'])->findOrFail($id);
         //获取评论 @TODO 改为异步获取
         $comments = $content->comments;
 

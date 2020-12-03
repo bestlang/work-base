@@ -9,7 +9,7 @@ class TagController extends Controller{
 
     public function contents($name, Request $request)
     {
-        $tag = Tag::where('name', $name)->first();
+        $tag = Tag::where('name', $name)->firstOrFail();
         $contents = $tag->contents()->with(['metas', 'tags'])->get();
         return render('tag.tag', ['tag' => $tag, 'contents'=> $contents]);
     }

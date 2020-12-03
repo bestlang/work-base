@@ -15,7 +15,7 @@ class AliPayController
         //1. 设置参数（全局只需设置一次）
         Factory::setOptions(self::getOptions());
         $order_no = $request->input('order_no');
-        $order = Order::where('order_no', $order_no)->first();
+        $order = Order::where('order_no', $order_no)->firstOrFail();
 
         $result = null;
         try {

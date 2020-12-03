@@ -33,8 +33,11 @@ class WxPayController
     public function native2(Request $request)
     {
         $order_no = $request->input('order_no');
-
-        $order = Order::where('order_no', $order_no)->first();
+        try{
+            $order = Order::where('order_no', $order_no)->firstOrFail();
+        }catch (\Exception $e){
+            return response()->error($e->getMessage());
+        }
         $url = app()['wxPay']->native2($order);
 
         return response()->ajax($url);
