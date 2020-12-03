@@ -12,6 +12,11 @@ class UCenterController extends Controller
     {
         $this->theme = HashConfig::get('site', 'theme');
     }
+
+    public function user()
+    {
+        return response()->ajax(auth()->user());
+    }
     public function index(Request $request)
     {
         if(!auth()->user()){

@@ -22,7 +22,9 @@ class CreateSniperEmployeeWastageTable extends Migration
             $table->text('handover')->comment('交接单')->nullable();
             $table->text('record')->comment('退工手续备案表')->nullable();
             $table->text('other')->comment('其他单据')->nullable();
+            $table->text('note')->comment('备注')->nullable();
             $table->nullableTimestamps();
+            $table->softDeletes();
         });
     }
 

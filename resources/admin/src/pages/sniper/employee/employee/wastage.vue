@@ -14,7 +14,7 @@
                     </el-form>
                     <el-form size="small">
                         <el-form-item>
-                            <el-button type="primary" size="small" @click="addChange"><i class="if">&#xe663;</i> 新增</el-button>
+                            <el-button type="primary" size="small" @click="handleAdd"><i class="if">&#xe663;</i> 新增</el-button>
                         </el-form-item>
                     </el-form>
                 </div>
@@ -37,30 +37,41 @@
                     <el-table-column
                             label="离职申请表">
                         <template slot-scope="scope">
-                            <span v-for="item in JSON.parse(scope.row.apply)"><a :href="item.url" target="_blank" style="color: #00a2d4;margin-right: 20px;display: inline-block;">{{item.name}}</a></span>
+                            <span v-for="item in scope.row.apply"><a :href="item.url" target="_blank" style="color: #00a2d4;margin-right: 20px;display: inline-block;">{{item.name}}</a></span>
                         </template>
                     </el-table-column>
                     <el-table-column
                             label="交接单">
                         <template slot-scope="scope">
-                            <span v-for="item in JSON.parse(scope.row.handover)"><a :href="item.url" target="_blank" style="color: #00a2d4;margin-right: 20px;display: inline-block;">{{item.name}}</a></span>
+                            <span v-for="item in scope.row.handover"><a :href="item.url" target="_blank" style="color: #00a2d4;margin-right: 20px;display: inline-block;">{{item.name}}</a></span>
                         </template>
                     </el-table-column>
                     <el-table-column
                             label="退工手续备案表">
                         <template slot-scope="scope">
-                            <span v-for="item in JSON.parse(scope.row.record)"><a :href="item.url" target="_blank" style="color: #00a2d4;margin-right: 20px;display: inline-block;">{{item.name}}</a></span>
+                            <span v-for="item in scope.row.record"><a :href="item.url" target="_blank" style="color: #00a2d4;margin-right: 20px;display: inline-block;">{{item.name}}</a></span>
                         </template>
                     </el-table-column>
                     <el-table-column
                             label="其他文件">
                         <template slot-scope="scope">
-                            <span v-for="item in JSON.parse(scope.row.other)"><a :href="item.url" target="_blank" style="color: #00a2d4;margin-right: 20px;display: inline-block;">{{item.name}}</a></span>
+                            <span v-for="item in scope.row.other"><a :href="item.url" target="_blank" style="color: #00a2d4;margin-right: 20px;display: inline-block;">{{item.name}}</a></span>
                         </template>
                     </el-table-column>
                     <el-table-column
                             prop="updated_at"
                             label="更新时间">
+                    </el-table-column>
+                    <el-table-column
+                            prop="note"
+                            label="备注">
+                    </el-table-column>
+                    <el-table-column
+                    label="操作">
+                        <template slot-scope="scope">
+                            <el-button type="primary" @click="handleEdit(scope.row)" size="mini">编辑</el-button>
+                            <el-button type="danger" @click="handleDelete(scope.row)" size="mini">删除</el-button>
+                        </template>
                     </el-table-column>
                 </el-table>
                 <pager :total="params.total" :page-size="params.page_size" @current-change="currentChange"></pager>
@@ -98,6 +109,9 @@
                 </el-form-item>
                 <el-form-item label="其他单据" :label-width="w">
                     <attachment v-model="form.other" @onPreview="onPreview"></attachment>
+                </el-form-item>
+                <el-form-item label="备注" :label-width="w">
+                    <el-input type="textarea" v-model="form.note"></el-input>
                 </el-form-item>
             </el-form>
             <div slot="footer" class="dialog-footer">
@@ -137,16 +151,15 @@
                 employee: [],
                 state: '',
                 timeout:  null,
-
-                positions: [],
-
                 form:{
+                    id: '',
                     date: '',
                     employee: '',
                     apply: [],
                     handover: [],
                     record: [],
-                    other: []
+                    other: [],
+                    note: ''
                 },
                 params:{
                     page: 1,
@@ -179,6 +192,26 @@
             }
         },
         methods:{
+            handleEdit(row){
+                let employee = row.user.name + '-' + row.user.email
+                this.form = Object.assign({}, {employee}, row)
+                this.formVisible = true
+            },
+            async handleDelete(row){
+                this.$confirm('确定删除记录?', '提示', {
+                    confirmButtonText: '确定',
+                    cancelButtonText: '取消',
+                    type: 'warning'
+                }).then(async () => {
+                    let {id} = row
+                    let res = await api.sniperDeleteEmployeeWastage({id})
+                    if(!res.hasError){
+                        this.$message.success('删除成功')
+                    }
+                    await this.getHistories()
+                });
+
+            },
             onPreview(file){
                 window.open(file.url, '_blank')
             },
@@ -189,14 +222,15 @@
                 let params = this.params
                 let {data} = await api.sniperEmployeeWastageHistories(params)
                 const {total, items} = data
+                for(let idx in items){
+                    ['apply', 'handover', 'record', 'other'].forEach(key => {
+                        items[idx][key] = JSON.parse(items[idx][key])
+                    });
+                }
                 this.tableData = items
                 this.params.total = total || this.params.total
             },
-            async getEmployeeInfo(email){
-                let employee = await api.sniperGetEmployeeDetail({email})
-                return employee
-            },
-            async savePositionChange(){
+            async saveWastage(){
                 let data = this.form
                 let res = await api.sniperSaveEmployeeWastage(data)
                 if(!res.hasError){
@@ -224,13 +258,6 @@
                     children: node.children,
                 }
             },
-            async getPositions(){
-                let res = await api.sniperGetPositionsTreeSelect({})
-                let root = Object.values(res.data)[0]
-                //处理数据 适应TreeSelect组件
-                removeEmptyChildren(root)
-                this.positions = [root]
-            },
             querySearchAsync(queryString, cb) {
                 var employee = this.employee;
                 var results = queryString ? employee.filter(this.createStateFilter(queryString)) : employee;
@@ -252,22 +279,18 @@
                 this.params = {page: 1, page_size:10, keyword: this.keyword}
                 await this.getHistories()
             },
-            addChange(){
-                // for(let key in this.form){
-                //     this.form[key] = ''
-                // }
-                this.form.date = ''
-                this.form.employee = ''
-
-                this.form.apply = []
-                this.form.handover = []
-                this.form.record = []
-                this.form.other = []
-
+            handleAdd(){
+                ['id', 'date', 'employee', 'note'].forEach(key => {
+                    this.$set(this.form, key, '')
+                });
+                ['apply', 'handover', 'record', 'other'].forEach(key => {
+                    this.$set(this.form, key, [])
+                })
                 this.formVisible = true
             },
             async submit(){
-                await this.savePositionChange()
+                await this.saveWastage()
+                await  this.getHistories()
             }
         },
         watch:{
@@ -278,25 +301,12 @@
                     }
                 }
             },
-            async ['form.employee'](val){
-                if(val){
-                    let index = val.indexOf('-')
-                    let email = val.substr(index+1)
-                    let employee = await this.getEmployeeInfo(email);
-                    if(employee.data && employee.data.position){
-                        this.form.positionBefore = employee.data.position.name
-                    }else{
-                        this.form.positionBefore = ''
-                    }
-                }
-            },
             async ['params.page'](val){
                 await this.getHistories()
             }
         },
         components: { TreeSelect, pager, attachment },
         async mounted() {
-            await this.getPositions();
             this.employee = await this.getEmployee();
             await this.getHistories()
         }

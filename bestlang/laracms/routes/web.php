@@ -10,6 +10,7 @@ Route::any('/comment/save', 'CommentController@save');
 Route::get('/tag/{name}', 'TagController@contents')->name('tag');
 Route::get('/search/{keyword}', 'SearchController@contents')->name('search');
 Route::group(['middleware' => 'auth'], function(){
+    Route::any('user', 'UCenterController@user');
     Route::get('/ucenter', 'UCenterController@index');
     Route::get('/ucenter/orders', 'OrderController@orders');
     Route::get('/ucenter/password/modify', 'UCenterController@passwordModifyForm');

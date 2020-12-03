@@ -91,28 +91,32 @@
 
     $(function(){
         $('#pay_btn').click(function(){
-            //生成订单并跳转到订单详情
-            var decision = confirm("确定购买?")
-            var user_id = $("#user_id").val()
-            if(!user_id){
-                alert('需要登录')
-                top.location.href = '/login';
-            }
-            if (decision){
-                var content_id = $('#content_id').val();
-                var num = $('#num').val();
-                axios.post('/order/generate', {content_id: content_id, num: num}).then(response => {
-                    let res = response.data;
-                    if(res.success){
-                        location.href = '/order/pay/'+res.data.order_no;
-                    }else{
-                        if(res.code == 401){
-                            alert(res.error);
-                            top.location.href = '/login';
-                        }
+            axios.get('/user').then(response => {
+                let res = response.data;
+                if(res.hasError && res.error == 'Unauthenticated.'){
+                    alert('需要登录')
+                    top.location.href = '/login';
+                }else{
+                    //生成订单并跳转到订单详情
+                    var decision = confirm("确定购买?")
+                    if (decision){
+                        var content_id = $('#content_id').val();
+                        var num = $('#num').val();
+                        axios.post('/order/generate', {content_id: content_id, num: num}).then(response => {
+                            let res = response.data;
+                            if(res.success){
+                                location.href = '/order/pay/'+res.data.order_no;
+                            }else{
+                                if(res.code == 401){
+                                    alert(res.error);
+                                    top.location.href = '/login';
+                                }
+                            }
+                        })
                     }
-                })
-            }
+                }
+            });
+
         });
 //        $('#pay_btn').click(function(){
 //            let content_id = $('#content_id').val();

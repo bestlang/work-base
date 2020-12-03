@@ -34,8 +34,8 @@
             <div style="color: #555;font-style: italic">{{user.department_info?user.department_info.name:''}}</div>
         </div>
         <el-card v-if="graph" shadow="hover">
-            <el-button @click="filterRest">-法休</el-button>
-            <el-button @click="plusRest">+法休</el-button>
+            <el-button @click="filterRest" size="mini">-法休</el-button>
+            <el-button @click="plusRest" size="mini">+法休</el-button>
             <v-chart :options="options" style="width: 100%;height: 600px;"/>
         </el-card>
         <div class="l-choose-employee" title="选人查看" @click="chooseEmployee"><i class="iconfont">&#xe602;</i></div>
