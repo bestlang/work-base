@@ -48,6 +48,12 @@
                             prop="updated_at"
                             label="更新时间">
                     </el-table-column>
+                    <el-table-column
+                            label="操作">
+                        <template slot-scope="scope">
+                            <el-button type="primary" @click="handleEdit(scope.row)" size="mini">编辑</el-button>
+                        </template>
+                    </el-table-column>
                 </el-table>
                 <pager :total="params.total" :page-size="params.page_size" @current-change="currentChange"></pager>
             </div>
@@ -70,14 +76,15 @@
                             :fetch-suggestions="querySearchAsync"
                             placeholder="请输入内容"
                             @select="handleSelect"
-                            :disabled="!form.date"
+                            :disabled="form.id?true:false"
                     ></el-autocomplete>
                 </el-form-item>
                 <el-form-item label="变更前职位" :label-width="w">
                     <div v-html="form.positionBefore?form.positionBefore:'<span style=\'color:#ccc\'>-</span>'"></div>
                 </el-form-item>
-                <el-form-item label="最新职位" :label-width="w">
-                    <tree-select v-model="form.positionAfter" :multiple="false" :options="positions"  :default-expand-level="10" :normalizer="normalizer" />
+                <el-form-item label="变更后职位" :label-width="w">
+                    <tree-select v-if="!form.id" v-model="form.positionAfter" :multiple="false" :options="positions"  :default-expand-level="10" :normalizer="normalizer" />
+                    <div v-else>{{form.positionAfter}}</div>
                 </el-form-item>
             </el-form>
             <div slot="footer" class="dialog-footer">
@@ -120,6 +127,7 @@
                 positions: [],
 
                 form:{
+                    id: '',
                     date: '',
                     employee: '',
                     positionBefore: '',
@@ -156,6 +164,11 @@
             }
         },
         methods:{
+            handleEdit(row){
+                let employee = row.user.name + '-' + row.user.email
+                this.form = Object.assign({}, {employee}, row)
+                this.formVisible = true
+            },
             async currentChange(page){
                 this.params.page = page
             },
@@ -227,14 +240,9 @@
                 await this.getHistories()
             },
             addChange(){
-                // for(let key in this.form){
-                //     this.form[key] = null
-                // }
-                this.form.date=null,
-                this.form.employee='',
-                this.form.positionBefore='',
-                this.form.positionAfter=''
-
+                for(let key in this.form){
+                    this.form[key] = ''
+                }
                 this.formVisible = true
             },
             async submit(){
@@ -254,7 +262,7 @@
                     let index = val.indexOf('-')
                     let email = val.substr(index+1)
                     let employee = await this.getEmployeeInfo(email);
-                    if(employee.data && employee.data.position){
+                    if(employee.data && employee.data.position && !this.form.id){
                         this.form.positionBefore = employee.data.position.name
                     }else{
                         this.form.positionBefore = ''

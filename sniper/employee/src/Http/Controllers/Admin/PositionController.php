@@ -15,7 +15,7 @@ class PositionController
         $page = $request->input('page', 0);
         $keyword = $request->input('keyword', null);
         $pageSize = $request->input('page_size', 10);
-        $query = PositionChange::query();
+        $query = PositionChange::with('user');
         if($keyword){
             $query->where('name', 'like', "%{$keyword}%");
         }
