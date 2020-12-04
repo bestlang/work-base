@@ -43,3 +43,24 @@ export const formatDateTime = function(str){
     }
     return date.getFullYear() + '-' + month + '-' + strDate +' '+ hour + ':' + minute + ':' + second;
 }
+
+export  const genYm = function(){
+    let d = new Date();
+    let yyyy = d.getFullYear();
+    let m = d.getMonth() + 1;
+    let arr = [];
+    for(let i = m; i>0; i--){
+        if(String(i).length == 1){
+            i = '0' + i
+        }
+        arr.push(yyyy+'-'+i)
+    }
+    yyyy--;
+    for(let i = m; i>0; i--){
+        if(String(i).length == 1){
+            i = '0' + i
+        }
+        arr.push(yyyy+'-'+i)
+    }
+    return arr;
+}

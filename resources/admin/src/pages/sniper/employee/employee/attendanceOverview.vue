@@ -70,6 +70,8 @@
   import 'echarts/lib/component/angleAxis'
   import 'echarts/lib/component/legend'
 
+  import {genYm} from 'sysApi/util'
+
     /*
     // If you want to use ECharts extensions, just import the extension package, and it will work
     // Taking ECharts-GL as an example:
@@ -89,8 +91,8 @@
               todayLate:[],
               NotSigned:[]
             },
-            months:['2020-03', '2020-04', '2020-05', '2020-06', '2020-07', '2020-08', '2020-09', '2020-10', '2020-11', '2020-12'],
-            month: '2020-12',
+            months:null,//['2020-03', '2020-04', '2020-05', '2020-06', '2020-07', '2020-08', '2020-09', '2020-10', '2020-11', '2020-12'],
+            month: null,//'2020-12',
             options2:{
                 color:[
                     '#348498',
@@ -232,6 +234,10 @@
         }
     },
     async created(){
+        let allMonths = genYm()
+        this.months = Array.reverse(allMonths.splice(0, 12))
+        this.month = this.months[this.months.length - 1]
+
         await this.getDepartmentWeekAvgAttendance()
         await this.getToday()
         await this.getMonthAvgAttendance()

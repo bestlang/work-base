@@ -42,6 +42,7 @@
     import api from "sysApi"
     import DingDepartmentTree from "../components/DingDepartmentTree"
     import { Loading } from 'element-ui'
+    import {genYm} from 'sysApi/util'
 
     export default {
         name: 'sniperEmployeeAttendance',
@@ -50,8 +51,8 @@
         },
         data(){
             return {
-                months:['2020-03', '2020-04', '2020-05', '2020-06', '2020-07', '2020-08', '2020-09', '2020-10', '2020-11', '2020-12'],
-                month: '2020-12',
+                months:null,
+                month: null,//'2020-12',
                 eventCats: ['所有', '迟到', '请假', '缺卡', '早退'],
                 eventCat: '所有',
                 updated: 0,
@@ -210,6 +211,11 @@
                 this.assignUsers(this.eventCat)
                 //console.log("lastArr:"+JSON.stringify(lateUsers))
             },
+        },
+        created(){
+            let allMonths = genYm()
+            this.months = Array.reverse(allMonths.splice(0, 12))
+            this.month = this.months[this.months.length - 1]
         }
     }
 </script>

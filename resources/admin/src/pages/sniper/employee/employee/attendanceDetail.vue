@@ -4,6 +4,17 @@
             <div class="l-block-header">
                 <div class="l-flex">
                     <span>人力资源 / <router-link to="/sniper/employee/employee/attendance" class="l-active">考勤记录</router-link>  / {{user.name ? user.name:''}}考勤详情</span>
+                    <div>选择年月
+                            <el-select v-model="monthSelect" placeholder="选择年月" size="small">
+                                <el-option
+                                        v-for="item in months"
+                                        :key="item"
+                                        :label="item"
+                                        :value="item"
+                                        >
+                                </el-option>
+                            </el-select>
+                    </div>
                 </div>
             </div>
         </div>
@@ -87,6 +98,7 @@
     Vue.component('v-chart', ECharts)
 
     import api from "sysApi"
+    import {genYm} from 'sysApi/util'
 
     export default {
         name: 'sniperEmployeeAttendanceDetail',
@@ -210,7 +222,9 @@
                         },
 
                     ]
-                }
+                },
+                monthSelect: null,
+                months: []
             }
         },
         computed:{
@@ -229,6 +243,11 @@
             fancyCalendar
         },
         watch:{
+            monthSelect(val){
+                if(val){
+                    this.month = val
+                }
+            },
             async '$route'(to, from){
                 if(to.path == '/sniper/employee/employee/attendance/detail'){
                     this.erase()
@@ -455,6 +474,7 @@
             }
         },
         async created(){
+            this.months = genYm()
             let month = this.$route.query.month || null
             let userId = this.$route.query.userId || null
             if(month){
