@@ -49,7 +49,6 @@ export default [
                     font: '&#xe764;'
                 }
             },
-            /*
             {
                 path: "/cms/position",
                 component:  {template:`<router-view></router-view>`},
@@ -92,8 +91,6 @@ export default [
                     }
                 ]
             },
-            */
-            /*
             {
                 path: "/cms/comment",
                 component: () => import("../pages/cms/comment/comment.vue"),
@@ -103,7 +100,7 @@ export default [
                     name: '评论管理',
                     font: '&#xe764;'
                 }
-            },*/
+            },
             {
                 path: "/cms/comment/content",
                 component: () => import("../pages/cms/comment/content.vue"),

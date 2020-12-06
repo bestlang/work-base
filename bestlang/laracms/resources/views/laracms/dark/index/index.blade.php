@@ -9,10 +9,10 @@
                 <div class="swiper-container">
                     <div class="swiper-wrapper">
                         @foreach(laracms::channelContents(32, 4) as $index => $content)
-                            <div class="swiper-slide">
+                            <div class="swiper-slide" title="{{$content->title}}">
                                 <a href="{{$content->url}}">
                                     @if($content->image)
-                                    <div style="height: 100%;background:url('{{$content->image}}') scroll center/cover;"></div>
+                                    <div style="height: 100%;background:url('{{$content->image}}')no-repeat scroll center/contain;"></div>
                                     @endif
                                     {{--<div class="carousel-caption hidden-xs"><h3>{{$content->title}}</h3></div>--}}
                                 </a>

@@ -43,7 +43,7 @@ class LaraCms
 
     public function channelContents($channelId, $count=5)
     {
-        $contents = Content::where('channel_id', $channelId)->with(['metas', 'contents'])->limit($count)->get();
+        $contents = Content::where('channel_id', $channelId)->with(['metas', 'contents'])->orderBy('id', 'asc')->limit($count)->get();
         return $contents;
     }
 

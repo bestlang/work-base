@@ -27,12 +27,12 @@
                     <el-table-column
                             prop="date"
                             label="离职日期"
-                            width="180">
+                            width="170">
                     </el-table-column>
                     <el-table-column
                             prop="name"
                             label="姓名"
-                            width="180">
+                            width="80">
                     </el-table-column>
                     <el-table-column
                             label="离职申请表">
