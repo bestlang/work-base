@@ -147,6 +147,9 @@ class DingTalk extends Command
                 );
                 $dingSubs = $dingDepartment->subs;
                 $this->_syncDepartments($parent, $dingSubs);
+                //去掉被删除的部门
+                $date = date('Y-m-d H:00:00');
+                Department::where('updated_at', '<', $date)->delete();
             }else if($act == 'syncUsers'){
                 $dingUsers = DingUser::all();
                 foreach ($dingUsers as $dingUser){
