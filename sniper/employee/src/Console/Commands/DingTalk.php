@@ -133,6 +133,9 @@ class DingTalk extends Command
                             'ext' => isset($dep->ext) ? $dep->ext : ''
                         ]);
                 }
+                //去掉被删除的部门
+                $date = date('Y-m-d H:00:00');
+                DingDepartment::where('', '<', $date)->delete();
             }else if ($act == 'syncDepartments'){
                 $dingDepartment = DingDepartment::whereNull('parentid')->first();
                 $parent = Department::updateOrCreate(
