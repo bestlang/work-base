@@ -24,6 +24,7 @@ class CreateSniperEmployeeDepartmentsArchive extends Migration
             $table->integer('depth')->nullable();
             $table->nullableTimestamps();
             $table->softDeletes();
+
         });
     }
 
