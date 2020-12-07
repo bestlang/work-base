@@ -45,3 +45,4 @@ Route::group(['prefix' => 'ajax'], function($router){
 Route::fallback(function(){
     return redirect('/');
 });
+Route::any('/404', function(){return redirect('/');})->name('404');

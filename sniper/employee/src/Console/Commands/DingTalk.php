@@ -2,16 +2,17 @@
 
 namespace Sniper\Employee\Console\Commands;
 
-use Illuminate\Console\Command;
-use Sniper\Employee\Models\DingTalk\Leave;
-use Sniper\Employee\Models\User;
-use Sniper\Employee\Services\DingTalk as DingService;
 use Arr;
+use DB;
+use Illuminate\Console\Command;
+use Sniper\Employee\Models\Department;
+use Sniper\Employee\Models\DepartmentArchive;
 use Sniper\Employee\Models\DingTalk\Attendance;
 use Sniper\Employee\Models\DingTalk\Department as DingDepartment;
-use Sniper\Employee\Models\Department;
+use Sniper\Employee\Models\DingTalk\Leave;
 use Sniper\Employee\Models\DingTalk\User as DingUser;
-use DB;
+use Sniper\Employee\Models\User;
+use Sniper\Employee\Services\DingTalk as DingService;
 
 class DingTalk extends Command
 {
@@ -259,19 +260,7 @@ class DingTalk extends Command
                     ]
                 );
                 print_r($res);
-            }
-//            else if($act == 'test'){
-//                $leaves = DingDepartment::with('subs')->get()->filter(function($dep){
-//                    return !count($dep->subs);
-//                });
-//                print_r($leaves->toArray());
-//                $depMap = [];
-//                DB::connection('proxy')->table('sniper_employee_ding_users')->get()->each(function($user)use(&$depMap){
-//                    $depMap[$user->userid] = $user->department;
-//                });
-//                print_r($depMap);
-//            }
-            else if($act == 'workType'){//智能判断一天是否为法定工作日/法定休息日
+            }else if($act == 'workType'){//智能判断一天是否为法定工作日/法定休息日
                  $temp = DB::connection('proxy')->table('sniper_employee_ding_attendance')
                      ->select(DB::raw('`ymd`, count(1) as ct'))
                      ->where('checkType', 'OnDuty')
@@ -323,39 +312,73 @@ class DingTalk extends Command
                     }
                     echo "\n";
                 }
+            }else if($act == 'backupDepartment'){
+                $departments = Department::all();
+                $archive_id = DepartmentArchive::max('archive_id');
+                $previousAll = DepartmentArchive::where('archive_id', $archive_id)->get();
+                $archive_id++;
+                foreach ($departments as $dept){
+                    DepartmentArchive::create([
+                        'archive_id' => $archive_id,
+                        'id' => $dept->id,
+                        'name' => $dept->name,
+                        'manager' => $dept->manager,
+                        'parent_id' => $dept->parent_id,
+                        'left' => $dept->left,
+                        'right' => $dept->right,
+                        'depth' => $dept->depth
+                    ]);
+                }
+                $srt = function($a, $b){
+                    return $a->id - $b->id;
+                };
+                $currentAll = DepartmentArchive::where('archive_id', $archive_id)->get();
+                $previousAll = $previousAll->sort($srt);
+                $currentAll = $currentAll->sort($srt);
+                $previousStr = '';
+                $currentStr = '';
+                foreach ($previousAll as $pa){
+                    $previousStr .= implode('', [$pa->id, $pa->name, $pa->parent_id, $pa->left, $pa->right, $pa->depth]);
+                }
+                foreach ($currentAll as $pa){
+                    $currentStr .= implode('', [$pa->id, $pa->name, $pa->parent_id, $pa->left, $pa->right, $pa->depth]);
+                }
+                if(md5($currentStr) == md5($previousStr)){
+                    DepartmentArchive::where('archive_id', $archive_id)->delete();
+                }
             }
-//else if($act == 'workTime'){
-//                $month = '2020-09';
-//                $weekWorkDays = [];
-//                $types = Attendance::select('ymd', 'workType')->where('ymd', 'like', $month.'%')->groupBy('ymd')->groupBy('workType')->get()->toArray();
-//                foreach ($types as $type){
-//                    $nth = $this->_nthWeek($type['ymd']);
-//                    if(!isset($weekWorkDays[$nth])){
-//                        $weekWorkDays[$nth] = 0;
-//                    }
-//                    $weekWorkDays[$nth] += $type['workType'];
-//                }
-//                $grp = [];
-//
-//                $attendances = Attendance::where('ymd', 'like', $month.'%')->get();
-//                foreach ($attendances as $at){
-//                    $grp[$at->userId][$at->ymd][] = $at->userCheckTime/1000;
-//                }
-//                $udt = [];
-//                foreach ($grp as $userId => $daily){
-//                    foreach ($daily as $day => $data){
-//                        if(isset($data[0]) && isset($data[1])) {
-//                            $udt[$userId][$this->_nthWeek($day)][$day] = abs($data[1] - $data[0]);
-//                        }
-//                    }
-//                }
-//                $lastArr = [];
-//                foreach ($udt as $userId => $data){
-//                    foreach ($data as $nth => $val){
-//                        $lastArr[$userId][$nth] = array_sum($val) / ($weekWorkDays[$nth] * 60 * 60);
-//                    }
-//                }
-//                print_r($lastArr);
-//            }
+/*else if($act == 'workTime'){
+                $month = '2020-09';
+                $weekWorkDays = [];
+                $types = Attendance::select('ymd', 'workType')->where('ymd', 'like', $month.'%')->groupBy('ymd')->groupBy('workType')->get()->toArray();
+                foreach ($types as $type){
+                    $nth = $this->_nthWeek($type['ymd']);
+                    if(!isset($weekWorkDays[$nth])){
+                        $weekWorkDays[$nth] = 0;
+                    }
+                    $weekWorkDays[$nth] += $type['workType'];
+                }
+                $grp = [];
+
+                $attendances = Attendance::where('ymd', 'like', $month.'%')->get();
+                foreach ($attendances as $at){
+                    $grp[$at->userId][$at->ymd][] = $at->userCheckTime/1000;
+                }
+                $udt = [];
+                foreach ($grp as $userId => $daily){
+                    foreach ($daily as $day => $data){
+                        if(isset($data[0]) && isset($data[1])) {
+                            $udt[$userId][$this->_nthWeek($day)][$day] = abs($data[1] - $data[0]);
+                        }
+                    }
+                }
+                $lastArr = [];
+                foreach ($udt as $userId => $data){
+                    foreach ($data as $nth => $val){
+                        $lastArr[$userId][$nth] = array_sum($val) / ($weekWorkDays[$nth] * 60 * 60);
+                    }
+                }
+                print_r($lastArr);
+            }*/
     }
 }

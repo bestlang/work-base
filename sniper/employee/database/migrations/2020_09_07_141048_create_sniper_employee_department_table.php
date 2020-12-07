@@ -16,7 +16,6 @@ class CreateSniperEmployeeDepartmentTable extends Migration
         Schema::create('sniper_employee_departments', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name')->comment('部门名称');
-//            $table->unsignedBigInteger('parent_id')->nullable()->comment('上级部门');
             $table->string('manager')->comment('部门经理')->nullable();
             $table->nestedSet();
             $table->nullableTimestamps();

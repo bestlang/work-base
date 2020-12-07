@@ -74,6 +74,9 @@
                     <li>
                         <a href="{{route('channel', 33)}}">会员充值</a>
                     </li>
+                    <li>
+                        <a href="javascript:;" title="Hire Me">Hire Me</a>
+                    </li>
                 </ul>
                 <ul class="nav navbar-right hidden">
                     <ul class="nav navbar-nav">
