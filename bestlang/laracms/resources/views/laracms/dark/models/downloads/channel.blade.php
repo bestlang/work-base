@@ -24,7 +24,7 @@
                                     <span>列表</span>
                                 </h3>
                             </div>
-                            <div class="panel-body">
+                            <div class="panel-body article-list">
                             @if(count($contents))
                                 @foreach($contents as $content)
                                     <article class="article-item" style="padding: 20px 0;border-bottom: 1px solid #efefef;">
@@ -45,7 +45,7 @@
                                                 <div class="article-intro hidden-xs" style="line-height: 22px;">
                                                     {{$content->description}}
                                                 </div>
-                                                <div class="articlee-tag">
+                                                <div class="article-tag">
                                                     @foreach($content->tags as $tag)
                                                         <a href="{{route('tag', $tag->name)}}" class="tag tag-primary">{{$tag->name}}</a>
                                                     @endforeach

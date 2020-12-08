@@ -53,14 +53,7 @@
                         </ul>
                     </li>
                     <li class="dropdown">
-                        <a href="javascript:;" data-toggle="dropdown">新闻中心 <b class="caret"></b></a>
-                        <ul class="dropdown-menu" role="menu">
-                            <li><a href="{{route('channel', 7)}}">抖音攻略</a></li>
-                            <li><a href="{{route('channel', 17)}}">防疫指南</a></li>
-                            <li><a href="{{route('channel', 15)}}">五花八门</a></li>
-                            <li><a href="{{route('channel', 18)}}">YYYY</a></li>
-                            <li><a href="{{route('channel', 24)}}">苏州频道</a></li>
-                        </ul>
+                        <a href="{{route('channel', 6)}}">技术专栏</a>
                     </li>
                     {{--<li class="dropdown">--}}
                         {{--<a href="javascript:" data-toggle="dropdown" >更多 <b class="caret"></b></a>--}}
@@ -73,9 +66,6 @@
                     </li>
                     <li>
                         <a href="{{route('channel', 33)}}">会员充值</a>
-                    </li>
-                    <li>
-                        <a href="javascript:;" title="Hire Me">Hire Me</a>
                     </li>
                 </ul>
                 <ul class="nav navbar-right hidden">
