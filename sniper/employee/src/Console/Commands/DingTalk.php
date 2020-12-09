@@ -13,6 +13,10 @@ use Sniper\Employee\Models\DingTalk\Leave;
 use Sniper\Employee\Models\DingTalk\User as DingUser;
 use Sniper\Employee\Models\User;
 use Sniper\Employee\Services\DingTalk as DingService;
+use Sniper\Employee\Mail\LateNotice;
+use Sniper\Employee\Mail\LateNoticeLeader;
+use Mail;
+use Log;
 
 class DingTalk extends Command
 {
@@ -352,6 +356,65 @@ class DingTalk extends Command
                 if(md5($currentStr) == md5($previousStr)){
                     DepartmentArchive::where('archive_id', $archive_id)->delete();
                 }
+            }else if($act == 'lateNotice'){
+                $month = date('Y-m');
+                $yesterday = date('Y-m-d', strtotime('-1days'));
+                $monthYesterday = date('Y-m', strtotime('-1days'));
+                //忽略跨月份的情况
+                if($month !== $monthYesterday){
+                        return;
+                }
+                $allUsers = DB::connection('proxy')
+                    ->table('sniper_employee_ding_users')
+                    ->get();
+                $userMap = [];
+                foreach ($allUsers as &$user){
+                    $user->email = $user->orgEmail;
+                    $userMap[$user->userid] = $user;
+                }
+                $hitYesterdayUserIds = DB::connection('proxy')
+                    ->table('sniper_employee_ding_attendance')
+                    ->where('ymd', $yesterday)
+                    ->where('timeResult', 'Late')
+                    ->pluck('userid')
+                    ->toArray();
+                $hitThreeTimesUsers = DB::connection('proxy')
+                    ->table('sniper_employee_ding_attendance')
+                    ->where('ymd', 'like', "{$month}%")
+                    ->where('timeResult', 'Late')
+                    ->selectRaw('userId,count(1) as ct')
+                    ->groupBy('userId')
+                    ->having('ct', '>', 1)
+                    ->get();
+                foreach ($hitThreeTimesUsers as $user){
+                    //$user->email = 'luzhang@sniper-tech.com';///
+                    if(in_array($user->userId, $hitYesterdayUserIds)){
+                        $user->name = $userMap[$user->userId]->name;
+                        $lateNotice = new LateNotice($user);
+                        Mail::to($user)->send($lateNotice);
+
+                        try{
+                            $employee = User::where('email', $user->email)->first()->employee()->first()->position()->first()->parent()->first()->employee()->with('user')->get();
+                            foreach($employee as $e){
+                                $leader = new \stdClass();
+                                $leader->name = $e->user->name;
+                                $leader->email = $e->user->email;
+
+                                $leader->memberName = $user->name;
+                                $leader->memberCt = $user->ct;
+                                $lateNoticeLeader = new LateNoticeLeader($leader);
+                                Mail::to($user)->send($lateNoticeLeader);
+                            }
+                        }catch (\Exception $e){
+                            Log::info('invoke php artisan sniper:dingTalk lateNotice: '.$e->getMessage());
+                            continue;
+                        }
+
+                    }
+                }
+                //查看每个人今天是否有迟到
+                //如果有迟到 计算是否达到三次
+                //达到三次给领导和本人发送提醒邮件
             }
 /*else if($act == 'workTime'){
                 $month = '2020-09';
