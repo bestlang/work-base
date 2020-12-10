@@ -46,7 +46,7 @@ export default [
                     can: 'hr positions',
                     show: true,
                     name: '职位管理',
-                    font: '&#xe611;'
+                    font: '&#xe621;'
                 }
             },
             {
@@ -76,7 +76,7 @@ export default [
                     can: 'hr employee',
                     show: true,
                     name: '人事变动',
-                    font: '&#xe614;'
+                    font: '&#xe605;'
                 }
             },
             {
@@ -86,7 +86,7 @@ export default [
                     can: 'hr employee',
                     show: true,
                     name: '离职管理',
-                    font: '&#xe614;'
+                    font: '&#xe6d0;'
                 }
             },
             {
@@ -106,7 +106,7 @@ export default [
                     can: 'hr attendance overview',
                     show: true,
                     name: '考勤概况',
-                    font: '&#xe92a;'
+                    font: '&#xe61b;'
                 }
             },
             {
@@ -116,7 +116,7 @@ export default [
                     can: 'hr attendance',
                     show: true,
                     name: '考勤记录',
-                    font: '&#xe629;'
+                    font: '&#xe63f;'
                 }
             },
             {

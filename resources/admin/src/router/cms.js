@@ -16,7 +16,7 @@ export default [
                     can: 'cms list contents',
                     show: true,
                     name: '内容管理',
-                    font: '&#xe764;'
+                    font: '&#xe61d;'
                 },
             },
             {
@@ -46,7 +46,7 @@ export default [
                     can: 'cms list channels',
                     show: true,
                     name: '栏目管理',
-                    font: '&#xe764;'
+                    font: '&#xe711;'
                 }
             },
             {
@@ -56,7 +56,7 @@ export default [
                     can: 'cms list contents',
                     show: true,
                     name: '推荐管理',
-                    font: '&#xe764;'
+                    font: '&#xe610;'
                 },
                 children:[
                     {
@@ -98,7 +98,7 @@ export default [
                     can: 'cms list contents',
                     show: true,
                     name: '评论管理',
-                    font: '&#xe764;'
+                    font: '&#xe60f;'
                 }
             },
             {
@@ -118,7 +118,7 @@ export default [
                     can: 'cms setting',
                     show: true,
                     name: '设置',
-                    font: '&#xe764;'
+                    font: '&#xe619;'
                 },
                 children: [
                     {
@@ -128,7 +128,7 @@ export default [
                             can: 'cms setting site',
                             show: true,
                             name: '站点设置',
-                            font: '&#xe764;'
+                            font: '&#xe623;'
                         }
                     },
                     {
@@ -138,7 +138,7 @@ export default [
                             can: 'cms setting model',
                             show: true,
                             name: '模型管理',
-                            font: '&#xe764;'
+                            font: '&#xe60c;'
                         },
                     },
                     {
@@ -148,7 +148,7 @@ export default [
                             can: 'cms setting model',
                             show: false,
                             name: '添加模型',
-                            font: '&#xe764;'
+                            font: '&#xe60c;'
                         }
                     },
                     {
@@ -158,7 +158,7 @@ export default [
                             can: 'cms setting model',
                             show: false,
                             name: '编辑模型',
-                            font: '&#xe764;'
+                            font: '&#xe60c;'
                         }
                     },
                     {
@@ -168,7 +168,7 @@ export default [
                             can: 'cms setting fields',
                             show: true,
                             name: '字段类型',
-                            font: '&#xe764;'
+                            font: '&#xe624;'
                         }
                     }
                 ]
@@ -180,7 +180,7 @@ export default [
                     can: 'cms operations',
                     show: true,
                     name: '运营管理',
-                    font: '&#xe764;'
+                    font: '&#xe669;'
                 },
                 children: [
                     {
@@ -190,7 +190,7 @@ export default [
                             can: 'cms operations',
                             show: true,
                             name: '订单管理',
-                            font: '&#xe764;'
+                            font: '&#xe62b;'
                         }
                     },
                     {
@@ -200,7 +200,7 @@ export default [
                             can: 'cms operations',
                             show: false,
                             name: '订单详情',
-                            font: '&#xe764;'
+                            font: '&#xe62b;'
                         }
                     },
                     {
@@ -210,7 +210,7 @@ export default [
                             can: 'cms ad operations',
                             show: true,
                             name: '广告管理',
-                            font: '&#xe764;'
+                            font: '&#xe608;'
                         }
                     },
                     {
@@ -220,7 +220,7 @@ export default [
                             can: 'cms ad operations',
                             show: true,
                             name: '广告位',
-                            font: '&#xe764;'
+                            font: '&#xe622;'
                         }
                     },
                     {
@@ -230,7 +230,7 @@ export default [
                             can: 'cms ad operations',
                             show: false,
                             name: '新增/编辑广告位',
-                            font: '&#xe764;'
+                            font: '&#xe622;'
                         }
                     }
                 ]

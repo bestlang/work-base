@@ -36,7 +36,7 @@ export default [
                     can: 'privileges list permissions',
                     show: true,
                     name: '用户管理',
-                    font: '&#xe70b;'
+                    font: '&#xe61c;'
                 },
             },
             {
