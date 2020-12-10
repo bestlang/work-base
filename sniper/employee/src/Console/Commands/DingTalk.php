@@ -399,11 +399,12 @@ class DingTalk extends Command
                                 $leader = new \stdClass();
                                 $leader->name = $e->user->name;
                                 $leader->email = $e->user->email;
+                                //$leader->email = 'luzhang@sniper-tech.com';///
 
                                 $leader->memberName = $user->name;
                                 $leader->memberCt = $user->ct;
                                 $lateNoticeLeader = new LateNoticeLeader($leader);
-                                Mail::to($user)->send($lateNoticeLeader);
+                                Mail::to($leader)->send($lateNoticeLeader);
                             }
                         }catch (\Exception $e){
                             Log::info('invoke php artisan sniper:dingTalk lateNotice: '.$e->getMessage());

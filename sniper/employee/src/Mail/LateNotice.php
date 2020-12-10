@@ -29,7 +29,8 @@ class LateNotice extends Mailable
      */
     public function build()
     {
-        return $this->from('luzhang@sniper-tech.com')
+        $from = env('MAIL_USERNAME');
+        return $this->from($from,'考勤报告')
                             ->subject('迟到提醒')
                             ->view('sniper::emails.lateNotice');
     }
