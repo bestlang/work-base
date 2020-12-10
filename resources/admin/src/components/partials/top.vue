@@ -93,7 +93,6 @@ export default {
         flex-flow: row nowrap;
         justify-content: space-between;
         padding: 0;
-        background: #f8f8f8;
         height: 100%;
     }
     .ls-top-left{

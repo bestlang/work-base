@@ -101,9 +101,9 @@
          }
         &.cur{
             background: #fff;
-            border-top: 1px solid #eee;
-            border-left: 1px solid #eee;
-            border-right: 1px solid #eee;
+            border-top: 1px solid #E4E7ED;
+            border-left: 1px solid #E4E7ED;
+            border-right: 1px solid #E4E7ED;
             box-shadow: 0 20px 20px #f9f9f9 inset;
         }
     }

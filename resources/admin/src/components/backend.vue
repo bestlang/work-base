@@ -48,9 +48,9 @@ export default {
     }
     .ls-top{
         height: 40px;
-        background: #fff;
+        background: #F5F7FA;
         width: 100%;
-        border-bottom: 1px solid #eee;
+        border-bottom: 1px solid #E4E7ED;
     }
     .ls-content{
         width: 100%;
