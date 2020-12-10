@@ -94,7 +94,6 @@
                     }else{
                         this.$message.error(res.error);
                     }
-                    this.$message.success(JSON.stringify(res));
                     this.getAdPositions();
                 })
             },
