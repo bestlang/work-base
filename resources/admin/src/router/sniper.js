@@ -129,14 +129,34 @@ export default [
                     font: '&#xe629;'
                 }
             },
+            // {
+            //     path: "/graph",
+            //     component: () => import("../pages/sniper/employee/employee/graph.vue"),
+            //     meta: {
+            //         can: 'hr attendance',
+            //         show: true,
+            //         name: '组织架构',
+            //         font: '&#xe629;'
+            //     }
+            // },
             {
-                path: "/graph",
-                component: () => import("../pages/sniper/employee/employee/graph.vue"),
+                path: "/train",
+                component: () => import("../pages/sniper/employee/employee/train.vue"),
                 meta: {
                     can: 'hr attendance',
                     show: true,
-                    name: '组织架构',
-                    font: '&#xe629;'
+                    name: '培训记录',
+                    font: '&#xe61e;'
+                }
+            },
+            {
+                path: "/train/edit",
+                component: () => import("../pages/sniper/employee/employee/trainEdit.vue"),
+                meta: {
+                    can: 'hr attendance',
+                    show: false,
+                    name: '新增/编辑培训',
+                    font: '&#xe61e;'
                 }
             },
         ]

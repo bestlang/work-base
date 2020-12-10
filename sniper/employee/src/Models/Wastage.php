@@ -3,7 +3,7 @@
 namespace Sniper\Employee\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Sniper\Employee\Models\User;
+use Sniper\Employee\Models\User as User;
 
 class Wastage extends Model
 {
