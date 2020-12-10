@@ -15,7 +15,7 @@
 					<!--</div>-->
 				<!--</div>-->
 				<div class="l-block-body l-lighter">
-                    <el-tabs v-model="activeName">
+                    <el-tabs v-model="activeName" type="border-card">
                         <el-tab-pane label="职位信息" name="first">
                             <div class="text-right pb-15">
                                 <el-button type="primary" size="small" @click="edit"><i class="iconfont">&#xe618;</i>编辑</el-button>
