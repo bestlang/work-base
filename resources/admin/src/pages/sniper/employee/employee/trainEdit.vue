@@ -61,7 +61,13 @@
                         <div>
                             <el-button type="primary" icon="el-icon-plus" size="small" circle style="margin-bottom: 10px;" @click="handleAddParticipant"></el-button>
                         </div>
-                        <div class="l-participant-item" v-for="u in selectedUserIds">{{u.split('-')[1]}} <small style="color: #ccc;">- {{u.split('-')[2]}}</small> </div>
+                        <div class="l-participant-item" v-for="u in selectedUserIds">
+                            <div class="l-flex" style="line-height: 30px;">
+                                {{u.split('-')[1]}}
+                                <!--<small style="color: #ccc;">- {{u.split('-')[2]}}</small>-->
+                                <span @click.stop="" class="hover-remove">移除</span>
+                            </div>
+                        </div>
                     </el-tab-pane>
                 </el-tabs>
             </div>
@@ -221,13 +227,21 @@
         display: inline-block;
         background: #fcf8e3;
         border:1px solid #e6db74;
-        padding: 5px 15px;
+        padding: 0 15px;
+        line-height: 30px;
         margin-right: 20px;
         margin-bottom: 20px;
+        .hover-remove{
+            letter-spacing: 2px;font-size: 80%;cursor: pointer;
+            display: none;
+        }
         &:hover{
             box-shadow: 3px 3px 6px #f1f1f1;
             background: #F5F7FA;
             border: 1px solid #E4E7ED;
+            .hover-remove{
+                display: block;
+            }
         }
     }
     .l-add-buttons{
