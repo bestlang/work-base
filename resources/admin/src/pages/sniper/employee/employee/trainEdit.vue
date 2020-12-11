@@ -61,10 +61,35 @@
                         <div>
                             <el-button type="primary" icon="el-icon-plus" size="small" circle style="margin-bottom: 10px;" @click="handleAddParticipant"></el-button>
                         </div>
+                        <div class="l-participant-item" v-for="u in selectedUserIds">{{u.split('-')[1]}} <small style="color: #ccc;">- {{u.split('-')[2]}}</small> </div>
                     </el-tab-pane>
                 </el-tabs>
             </div>
         </div>
+        <el-drawer
+                title="人员选择"
+                :visible.sync="drawer"
+                :with-header="false"
+                :append-to-body="true"
+                :show-close="true"
+                size="80%">
+            <div class="user-wrap">
+                <div v-for="(gu, dept) in groupedUser">
+                    <h4 style="color: #5d5d5d;padding: 5px 0;">{{dept}}</h4>
+                    <p>
+                        <span @click="selectThisUser(u, dept)" class="user-to-select" :class="{active: selectedUserIds.indexOf(u.userid+'-'+u.name+'-'+dept) !== -1}" v-for="u in gu">
+                            {{u.name}}
+                            <!-- -{{u.userid}}-->
+                            <div class="tri"><i class="if">&#xe6bd;</i></div>
+                        </span>
+                    </p>
+                </div>
+                <div class="l-add-buttons">
+                    <el-button type="primary" size="small" @click="handleConfirmAdd">确定</el-button>
+                    <!--<el-button type="default" size="small"><i class="if">&#xe625;</i></el-button>-->
+                </div>
+            </div>
+        </el-drawer>
     </div>
 </template>
 <script>
@@ -75,6 +100,10 @@
         name: 'sniperEmployeeTrainEdit',
         data(){
             return {
+                drawer: false,
+                groupedUser: {},
+                users: [],
+                selectedUserIds:[],
                 activeName: 'lesson',
                 keyword: '',
                 form:{
@@ -119,10 +148,36 @@
         methods:{
             handleSearch(){},
             handleAdd(){},
-            handleSave(){
-                alert(JSON.stringify(this.form))
+            async handleSave(){
+                let res = await api.sniperSaveEmployeeTrain(this.form)
+                if(res.hasError){
+                    this.$message.error(res.error)
+                }else{
+                    this.$message.success('操作成功！')
+                }
             },
-            handleAddParticipant(){}
+            handleAddParticipant(){
+                this.drawer = true;
+            },
+            handleConfirmAdd(){
+                this.drawer = false;
+            },
+            async getDepartmentUsers(){
+                let res = await api.sniperDingGetDepartmentUsers({all: 0})
+                if(res && res.data){
+                    this.users = res.data
+                }
+            },
+            selectThisUser(u, dept){
+                let userId = u.userid + '-' + u.name + '-' + dept;
+                if(this.selectedUserIds.indexOf(userId) === -1){
+                    this.selectedUserIds.push(userId);
+                }else{
+                    let idx = this.selectedUserIds.indexOf(userId)
+                    this.selectedUserIds.splice(idx, 1)
+                }
+                console.log(JSON.stringify(this.selectedUserIds))
+            }
         },
         watch:{
             ['form.start_time'](val){
@@ -138,11 +193,20 @@
                         this.form.end_time = formatDateTime(val)
                     }
                 }
-            }
+            },
+            users(val){
+                let groupedUser = {}
+                val.forEach((user) => {
+                    groupedUser[user.department_info] = groupedUser[user.department_info] || []
+                    groupedUser[user.department_info].push(user)
+                });
+                this.groupedUser = groupedUser
+                console.log(groupedUser)
+            },
         },
         components: {},
-        async mounted() {
-
+        async created() {
+            await this.getDepartmentUsers()
         }
     }
 </script>
@@ -150,4 +214,57 @@
 /deep/ .el-form--inline .el-form-item{
     margin-bottom: 0;
 }
+</style>
+<style lang="less" scoped>
+    .l-participant-item{
+        width: 280px;
+        display: inline-block;
+        background: #fcf8e3;
+        border:1px solid #e6db74;
+        padding: 5px 15px;
+        margin-right: 20px;
+        margin-bottom: 20px;
+        &:hover{
+            box-shadow: 3px 3px 6px #f1f1f1;
+            background: #F5F7FA;
+            border: 1px solid #E4E7ED;
+        }
+    }
+    .l-add-buttons{
+        position: absolute;right: 20px;top:10px;
+    }
+    .user-wrap{
+        padding: 0 20px;overflow-y: scroll;height: 100%;
+        position: relative;
+    }
+    .user-to-select {
+        box-sizing: border-box;cursor:pointer;display: inline-block;margin-right: 20px;padding: 3px 20px;background-color: #efefef;border: 2px solid #f1f1f1;
+        position: relative;
+        &.active{
+            border: 2px solid #1b4b72!important;
+            .tri{
+                display: block;
+            }
+        }
+        .tri{
+            width: 8px;
+            height: 8px;
+            position: absolute;
+            border-bottom: 8px solid #1b4b72;
+            border-right: 8px solid #1b4b72;
+            border-top: 8px solid transparent;
+            border-left: 8px solid transparent;
+            right: 0;
+            bottom: 0;
+            display: none;
+            .if{
+                font-size: 8px;
+                background: transparent;
+                color: #f1f1f1;
+                position: absolute;
+                top: -2px;
+                left: -2px;
+            }
+        }
+    }
 </style>

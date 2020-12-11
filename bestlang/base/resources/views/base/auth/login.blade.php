@@ -66,6 +66,7 @@
                                         {{ __('忘记了您的密码?') }}
                                     </a>
                                 @endif
+                                <p><small>使用第三方登录：</small><img src="https://static.laracms.com/qqLogin/qq_login.png" alt=""></p>
                             </div>
                         </div>
                     </form>

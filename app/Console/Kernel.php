@@ -33,7 +33,7 @@ class Kernel extends ConsoleKernel
     {
             $msg = '';
             try{$schedule->command('sniper:dingTalk attendance')->dailyAt('09:00');}catch (\Exception $e){$msg .= $e->getMessage();}
-            try{$schedule->command('sniper:dingTalk attendance')->dailyAt('09:15');}catch (\Exception $e){$msg .= $e->getMessage();}
+            try{$schedule->command('sniper:dingTalk attendance')->dailyAt('09:07');}catch (\Exception $e){$msg .= $e->getMessage();}
             try{$schedule->command('sniper:dingTalk attendance')->dailyAt('09:30');}catch (\Exception $e){$msg .= $e->getMessage();}
             try{$schedule->command('sniper:dingTalk attendance')->dailyAt('10:00');}catch (\Exception $e){$msg .= $e->getMessage();}
             try{$schedule->command('sniper:dingTalk attendance')->dailyAt('11:50');}catch (\Exception $e){$msg .= $e->getMessage();}

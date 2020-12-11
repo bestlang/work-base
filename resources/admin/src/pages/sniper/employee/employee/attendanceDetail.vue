@@ -61,7 +61,7 @@
                 <div v-for="(gu, dept) in groupedUser">
                     <h4 style="color: #5d5d5d;padding: 5px 0;">{{dept}}</h4>
                     <p>
-                        <span @click="viewUser(u.userid)" style="cursor:pointer;display: inline-block;margin-right: 20px;padding: 5px 20px;background-color: #efefef;border: 1px solid #f1f1f1" v-for="u in gu">
+                        <span @click="viewUser(u.userid)" class="user-to-select" v-for="u in gu">
                             {{u.name}}
                             <!-- -{{u.userid}}-->
                         </span>
@@ -260,7 +260,7 @@
             users(val){
                 let groupedUser = {}
                 val.forEach((user) => {
-                    groupedUser[user.department_info] || (groupedUser[user.department_info] = [])
+                    groupedUser[user.department_info] = groupedUser[user.department_info] || []
                     groupedUser[user.department_info].push(user)
                 });
                 this.groupedUser = groupedUser
@@ -490,6 +490,9 @@
     }
 </script>
 <style  lang="less" scoped>
+    .user-to-select {
+        box-sizing: border-box;cursor:pointer;display: inline-block;margin-right: 20px;padding: 3px 20px;background-color: #efefef;border: 2px solid #f1f1f1;
+    }
     .l-my-drawer{
         padding-left: 20px;
     }
