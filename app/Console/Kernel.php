@@ -40,6 +40,7 @@ class Kernel extends ConsoleKernel
             //try{$schedule->command('sniper:dingTalk lateNotice')->dailyAt('12:00');}catch (\Exception $e){$msg .= $e->getMessage();}
             try{$schedule->command('sniper:dingTalk attendance')->dailyAt('18:30');}catch (\Exception $e){$msg .= $e->getMessage();}
             try{$schedule->command('sniper:dingTalk attendance')->dailyAt('20:00');}catch (\Exception $e){$msg .= $e->getMessage();}
+            try{$schedule->command('sniper:dingTalk attendance')->dailyAt('23:00');}catch (\Exception $e){$msg .= $e->getMessage();}
             try{$schedule->command('sniper:dingTalk users')->dailyAt('22:00');}catch (\Exception $e){$msg .= $e->getMessage();}
             try{$schedule->command('sniper:dingTalk leaveStatus')->dailyAt('22:00');}catch (\Exception $e){$msg .= $e->getMessage();}
             try{$schedule->command('sniper:dingTalk syncUsers')->dailyAt('22:20');}catch (\Exception $e){$msg .= $e->getMessage();}
