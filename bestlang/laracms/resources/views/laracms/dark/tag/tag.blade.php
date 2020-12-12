@@ -12,15 +12,8 @@
                             <div class="panel-heading">
                                 <h3 class="panel-title">
                                     <span>列表</span>
-                                    <div class="more">
-                                        <ul class="list-unstyled list-inline category-order clearfix">
-                                            <!-- S 排序 -->
-                                            <li><a href="?filter%5B0%5D=&amp;orderby=default&amp;orderway=asc" class="active">默认</a></li>
-                                            <li><a href="?filter%5B0%5D=&amp;orderby=views&amp;orderway=desc" class="">浏览次数</a></li>
-                                            <li><a href="?filter%5B0%5D=&amp;orderby=id&amp;orderway=desc" class="">发布日期</a></li>
-                                            <!-- E 排序 -->
-                                        </ul>
-                                    </div>
+                                    {{--<div class="more">--}}
+                                    {{--</div>--}}
                                 </h3>
                             </div>
                             <div class="panel-body">

@@ -85,21 +85,6 @@
                                 @endforeach
                             </div>
                         </div>
-                        {{----}}
-                        <div class="panel panel-default">
-                            <div class="panel-heading"><h3 class="panel-title">文章推荐</h3></div>
-                            <div class="panel-body">
-                                @foreach(laracms::position('文章详情右侧推荐一') as $key => $content)
-                                    <div class="media">
-                                        <div class="media-left">{{$key+1}}</div>
-                                        <div class="media-body">
-                                            <div><a target="_self" href="{{route('content', $content->id)}}">{{$content->title}}</a></div>
-                                            {{--<p>{{$content->created_at}}</p>--}}
-                                        </div>
-                                    </div>
-                                @endforeach
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
