@@ -39,7 +39,7 @@
             return {
                 content: {},
                 total: 0,
-                per_page: 4,
+                page_size: 4,
                 page: 1,
                 content_id: 0
             }
@@ -61,9 +61,9 @@
             },
             async getComments(){
                 let page = this.page
-                let per_page = this.per_page
+                let page_size = this.page_size
                 let content_id = this.content_id
-                const {data} = await api.getContentComments({page, per_page, content_id})
+                const {data} = await api.getContentComments({page, page_size, content_id})
                 console.log(`特定文章`, JSON.stringify(data))
                 this.content = data;
             },

@@ -48,7 +48,7 @@
                 let {data} = await api.getExternalContents(params)
 
                 this.contents = data.contents
-                this.total = data.total
+                this.total = data.total || 0
             },
             async currentChange(page){
                 this.page = page

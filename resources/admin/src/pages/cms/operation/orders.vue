@@ -112,7 +112,7 @@
                 let {total, orders} = res.data;
                 this.loading = false;
                 this.orders = orders;
-                this.total = total;
+                this.total = total || 0;
             },
             async currentChange(page){
                 this.page = page

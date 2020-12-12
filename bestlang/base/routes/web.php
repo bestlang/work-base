@@ -33,3 +33,6 @@ Route::group(['namespace'=>'Auth'], function(){
     Route::get('email/verify/{id}', 'VerificationController@verify')->name('verification.verify');
     Route::get('email/resend', 'VerificationController@resend')->name('verification.resend');
 });
+
+Route::any('/socialite/qq', 'SocialiteController@qq');
+Route::any('/open3rd/qq', 'SocialiteController@qq');

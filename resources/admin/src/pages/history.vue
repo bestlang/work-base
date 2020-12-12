@@ -56,7 +56,7 @@
                 let queryData = {page: this.page, page_size: this.page_size}
                 let {data} = await api.getHistories(queryData)
                 this.histories = data.histories;
-                this.total = data.total;
+                this.total = data.total || 0;
             },
             async currentChange(page){
                 this.page = page

@@ -19,7 +19,7 @@
                 </div>
             </div>
         </div>
-       <pager :total="total" :page-size="per_page" @current-change="currentChange"></pager>
+       <pager :total="total" :page-size="page_size" @current-change="currentChange"></pager>
     </div>
 </template>
 <script>
@@ -32,7 +32,7 @@
             return {
                 comments: [],
                 total: 0,
-                per_page: 3,
+                page_size: 3,
                 page: 1
             }
         },
@@ -42,11 +42,11 @@
         methods:{
             async loadComments(){
                 let page = this.page;
-                let per_page = this.per_page;
-                const {data} = await api.getComments({page, per_page})
+                let page_size = this.page_size;
+                const {data} = await api.getComments({page, page_size})
                 this.comments = data.data;
-                this.total = parseInt(data.total);
-                this.per_page = parseInt(data.per_page);
+                this.total = data.total || 0;
+                this.page_size = data.page_size || 10;
             },
             async currentChange(page){
                 this.page = page

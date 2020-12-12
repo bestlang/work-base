@@ -179,7 +179,7 @@
             async loadUsers(){
                 let {data} = await api.getUsers(this.params)
                 this.tableData = data.users
-                this.total = data.total
+                this.total = data.total || 0
             },
             async currentChange(page){
                 this.params.page = page

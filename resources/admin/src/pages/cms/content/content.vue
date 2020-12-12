@@ -182,9 +182,7 @@
           if(data.contents){
               this.contents = data.contents;
           }
-          if(data.total){
-              this.total = data.total;
-          }
+          this.total = data.total || 0;
       },
       async currentChange(page){
           this.page = page
@@ -192,7 +190,8 @@
       }
     },
     async created() {
-      this.channel_id = parseInt(this.$route.query.channel_id) || 0;
+      let channel_id = this.$route.query.channel_id || 0;
+      this.channel_id = channel_id;
       await this.loadContents()
     }
   }

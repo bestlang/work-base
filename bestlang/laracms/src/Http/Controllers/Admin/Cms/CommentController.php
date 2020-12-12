@@ -9,8 +9,8 @@ use BestLang\LaraCms\Models\Cms\Comment;
 class CommentController extends Controller{
 
     public function index(Request $request){
-        $per_page = $request->input('per_page', 10);
-        $comments = Comment::with(['ref','ref.channel', 'user'])->paginate($per_page);
+        $pageSize = $request->input('page_size', 10);
+        $comments = Comment::with(['ref','ref.channel', 'user'])->paginate($pageSize);
         $comments->map(function($comment){
             if($comment->ref){
                 $comment->ref->link = route('content', $comment->ref->id);
