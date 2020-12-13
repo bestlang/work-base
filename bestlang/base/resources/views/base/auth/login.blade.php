@@ -1,5 +1,10 @@
 @extends('base::layouts.app')
 
+
+@section('title')
+    登录 - {{HashConfig::get('site','title')}}
+@endsection
+
 @section('content')
 <div class="container">
     <div class="row">

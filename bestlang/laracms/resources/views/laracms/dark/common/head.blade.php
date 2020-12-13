@@ -7,17 +7,12 @@
     <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
     <meta name="renderer" content="webkit">
     <title>@yield('title',HashConfig::get('site','title'))</title>
-    <meta name="keywords" content="laraCms"/>
-    <meta name="generator" content="laraCms"/>
-    <meta name="description" content="laraCms"/>
+    <meta name="keywords" content="laraCMS"/>
+    <meta name="generator" content="laraCMS"/>
+    <meta name="description" content="laraCMS"/>
     <meta name="csrf-token" content="{{csrf_token()}}">
 
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon"/>
-    <!--
-    <link href="https://unpkg.zhimg.com/normalize.css@8.0.1/normalize.css" rel="stylesheet">
-    <link href="https://unpkg.zhimg.com/bootstrap@3.4.1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://unpkg.zhimg.com/swiper/swiper-bundle.min.css">
-    -->
     <link href="https://static.laracms.com/unpkg/normalize.css" rel="stylesheet">
     <link href="https://static.laracms.com/unpkg/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://static.laracms.com/unpkg/swiper-bundle.min.css">
