@@ -6,6 +6,7 @@ use Sniper\Employee\Models\DingTalk\Department as DingDepartment;
 use Sniper\Employee\Models\DingTalk\User as DingUser;
 use Sniper\Employee\Models\DingTalk\Attendance as DingAttendance;
 use Sniper\Employee\Models\DingTalk\Leave;
+use Sniper\Employee\Models\User;
 use DB;
 
 class DingTalkController
@@ -85,23 +86,29 @@ class DingTalkController
         if(!$request->input('all', 1)){
             $query->where('onJob', 1);
         }
-        $users = $query->get();
+        $dingUsers = $query->get();
         $departmentsMap = [];
         $dingDepartments = DingDepartment::all();
+        $sniperUsers = User::all();
+        $sniperUserMap = [];
+        foreach ($sniperUsers as $user){
+            $sniperUserMap[$user->email] = $user;
+        }
         $dingDepartments->each(function($dd)use(&$departmentsMap){
             $departmentsMap[$dd->id] = $dd->name;
         });
-        $users->map(function($user)use($departmentsMap){
+        $dingUsers->map(function($user)use($departmentsMap, $sniperUserMap){
             $user->department_info = $departmentsMap[$user->department];
+            $user->sniperUser = $sniperUserMap[$user->orgEmail]??new \stdClass();
         });
         if($month = $request->input('month')){
             $userIds = DB::connection('proxy')->table('sniper_employee_ding_attendance')->where('ymd', 'like', "${month}%")->selectRaw('distinct(userId)')->pluck('userId')->toArray();
-            $users = $users->reject(function($user)use($userIds){
+            $dingUsers = $dingUsers->reject(function($user)use($userIds){
                 return !in_array($user->userid, $userIds, true);
             });
-            $users = array_values($users->all());
+            $dingUsers = array_values($dingUsers->all());
         }
-        return response()->ajax($users);
+        return response()->ajax($dingUsers);
     }
 
     public function _getUnder($department, &$departmentIdArr)

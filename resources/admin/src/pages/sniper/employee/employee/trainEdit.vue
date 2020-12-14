@@ -61,11 +61,14 @@
                         <div>
                             <el-button type="primary" icon="el-icon-plus" size="small" circle style="margin-bottom: 10px;" @click="handleAddParticipant"></el-button>
                         </div>
-                        <div class="l-participant-item" v-for="u in selectedUserIds">
+                        <div class="l-participant-item" v-for="u in form.participants">
                             <div class="l-flex" style="line-height: 30px;">
-                                {{u.split('-')[1]}}
+                                <div>
+                                    <p>{{u}}{{u.split('-')[1]}}</p>
+                                    <p class="l-dept">{{u.split('-')[2]}}</p>
+                                </div>
                                 <!--<small style="color: #ccc;">- {{u.split('-')[2]}}</small>-->
-                                <span @click.stop="" class="hover-remove">移除</span>
+                                <span @click.stop="handleRemoveParticipant(u)" class="hover-show-remove">移除</span>
                             </div>
                         </div>
                     </el-tab-pane>
@@ -83,9 +86,8 @@
                 <div v-for="(gu, dept) in groupedUser">
                     <h4 style="color: #5d5d5d;padding: 5px 0;">{{dept}}</h4>
                     <p>
-                        <span @click="selectThisUser(u, dept)" class="user-to-select" :class="{active: selectedUserIds.indexOf(u.userid+'-'+u.name+'-'+dept) !== -1}" v-for="u in gu">
+                        <span @click="selectThisUser(u, dept)" class="user-to-select" :class="{active: form.participants.indexOf(u.sniperUser.id+'-'+u.name+'-'+dept) !== -1}" v-for="u in gu">
                             {{u.name}}
-                            <!-- -{{u.userid}}-->
                             <div class="tri"><i class="if">&#xe6bd;</i></div>
                         </span>
                     </p>
@@ -109,7 +111,6 @@
                 drawer: false,
                 groupedUser: {},
                 users: [],
-                selectedUserIds:[],
                 activeName: 'lesson',
                 keyword: '',
                 form:{
@@ -152,6 +153,15 @@
             }
         },
         methods:{
+            handleRemoveParticipant(u){
+                let name = u.split('-')[1];
+                this.$confirm('确定移除'+name+'?').then(() => {
+                    let idx = this.form.participants.indexOf(u)
+                    this.form.participants.splice(idx, 1)
+                }).catch(() => {
+
+                });
+            },
             handleSearch(){},
             handleAdd(){},
             async handleSave(){
@@ -175,14 +185,14 @@
                 }
             },
             selectThisUser(u, dept){
-                let userId = u.userid + '-' + u.name + '-' + dept;
-                if(this.selectedUserIds.indexOf(userId) === -1){
-                    this.selectedUserIds.push(userId);
+                let userId = u.sniperUser.id + '-' + u.name + '-' + dept;
+                if(this.form.participants.indexOf(userId) === -1){
+                    this.form.participants.push(userId);
                 }else{
-                    let idx = this.selectedUserIds.indexOf(userId)
-                    this.selectedUserIds.splice(idx, 1)
+                    let idx = this.form.participants.indexOf(userId)
+                    this.form.participants.splice(idx, 1)
                 }
-                console.log(JSON.stringify(this.selectedUserIds))
+                console.log(JSON.stringify(this.form.participants))
             }
         },
         watch:{
@@ -223,6 +233,7 @@
 </style>
 <style lang="less" scoped>
     .l-participant-item{
+        min-height: 60px;
         width: 280px;
         display: inline-block;
         background: #fcf8e3;
@@ -231,15 +242,20 @@
         line-height: 30px;
         margin-right: 20px;
         margin-bottom: 20px;
-        .hover-remove{
+        .hover-show-remove{
             letter-spacing: 2px;font-size: 80%;cursor: pointer;
             display: none;
         }
+        .l-dept{
+            font-size: 80%;
+            color: orange;
+        }
+
         &:hover{
             box-shadow: 3px 3px 6px #f1f1f1;
             background: #F5F7FA;
             border: 1px solid #E4E7ED;
-            .hover-remove{
+            .hover-show-remove{
                 display: block;
             }
         }

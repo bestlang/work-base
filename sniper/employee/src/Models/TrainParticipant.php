@@ -9,6 +9,7 @@ class TrainParticipant extends Model
 {
     protected $table = 'sniper_employee_train_participants';
     protected $guarded = [];
+    public $incrementing = true;
 
     public function train()
     {

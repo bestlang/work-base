@@ -4,6 +4,7 @@ namespace Sniper\Employee\Models;
 
 use App\Sniper\Employee\Models\TrainParticipant;
 use Illuminate\Database\Eloquent\Model;
+use Sniper\Employee\Models\User;
 
 class Train extends Model
 {
@@ -12,6 +13,7 @@ class Train extends Model
 
     public function participants()
     {
-        return $this->hasMany(TrainParticipant::class);
+        return $this->belongsToMany(User::class, 'sniper_employee_train_participants', 'train_id', 'user_id')
+            ->using(TrainParticipant::class);
     }
 }
