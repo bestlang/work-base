@@ -100,21 +100,35 @@
         data(){
             return {
                 total: 0,
-                page_size: 10,
+                page: 1,
+                page_size: 2,
                 keyword: '',
                 histories: []
             }
         },
         methods:{
-            editTrain(){},
-            deleteTrain(){},
-            currentChange(){},
-            handleSearch(){},
+            editTrain({id}){
+                alert(id)
+            },
+            deleteTrain({id}){
+                alert(id)
+            },
+            currentChange(page){
+                this.page = page
+                this.getHistories()
+            },
+            handleSearch(){
+                this.page = 1
+                this.getHistories()
+            },
             handleAdd(){
                 this.$router.push('/train/edit')
             },
             async getHistories(){
-                let {data} = await api.sniperEmployeeTrainHistories()
+                let page = this.page;
+                let page_size = this.page_size;
+                let keyword = this.keyword;
+                let {data} = await api.sniperEmployeeTrainHistories({page, page_size, keyword})
                 this.histories = data.histories
                 this.total = data.total
                 this.page_size = data.page_size

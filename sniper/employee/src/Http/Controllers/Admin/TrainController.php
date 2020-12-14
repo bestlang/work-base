@@ -89,6 +89,9 @@ class TrainController
         $query = Train::query();
         $page = $request->input('page', 1);
         $page_size = $request->input('page_size', 10);
+        if($keyword = $request->input('keyword', '')){
+            $query->where('title', 'like', "%{$keyword}%");
+        }
         $total = $query->count();
         $histories = $query->orderBy('id', 'desc')->limit($page_size)->offset(($page - 1) * $page_size)->get();
         return response()->ajax(compact(['total', 'histories', 'page_size']));

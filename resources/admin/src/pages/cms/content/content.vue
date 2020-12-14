@@ -185,8 +185,8 @@
           this.total = data.total || 0;
       },
       async currentChange(page){
-          this.page = page
-          this.loadContents()
+
+
       }
     },
     async created() {
