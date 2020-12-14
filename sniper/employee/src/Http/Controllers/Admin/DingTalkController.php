@@ -101,10 +101,13 @@ class DingTalkController
             $user->department_info = $departmentsMap[$user->department];
             $user->sniperUser = $sniperUserMap[$user->orgEmail]??null;
         });
+        $dingUsers = $dingUsers->reject(function($user){
+            return !$user->sniperUser;
+        });
         if($month = $request->input('month')){
             $userIds = DB::connection('proxy')->table('sniper_employee_ding_attendance')->where('ymd', 'like', "${month}%")->selectRaw('distinct(userId)')->pluck('userId')->toArray();
             $dingUsers = $dingUsers->reject(function($user)use($userIds){
-                return !in_array($user->userid, $userIds, true) || !$user->sniperUser;
+                return !in_array($user->userid, $userIds, true);
             });
             $dingUsers = array_values($dingUsers->all());
         }
