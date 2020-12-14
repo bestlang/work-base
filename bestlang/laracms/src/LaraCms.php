@@ -51,7 +51,7 @@ class LaraCms
     {
         $contents = Content::when($channelName, function($q) use ($channelName) {
             $q->where('channel.name','=',$channelName);
-        })->with(['metas', 'contents'])->limit($count)->get();
+        })->whereHas('channel', function($query){ $query->where('content_template', '!=', '');})->with(['metas', 'contents'])->limit($count)->get();
         return $contents;
     }
 
