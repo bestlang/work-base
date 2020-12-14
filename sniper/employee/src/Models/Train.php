@@ -2,7 +2,7 @@
 
 namespace Sniper\Employee\Models;
 
-use App\Sniper\Employee\Models\TrainParticipant;
+use Sniper\Employee\Models\TrainParticipant;
 use Illuminate\Database\Eloquent\Model;
 use Sniper\Employee\Models\User;
 

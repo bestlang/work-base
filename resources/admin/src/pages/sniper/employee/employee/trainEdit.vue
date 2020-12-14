@@ -114,6 +114,7 @@
                 activeName: 'lesson',
                 keyword: '',
                 form:{
+                        id: '',
                         title: '',
                         content: '',
                         start_time: null,
@@ -193,6 +194,22 @@
                     this.form.participants.splice(idx, 1)
                 }
                 console.log(JSON.stringify(this.form.participants))
+            },
+            async getTrainDetail(id){
+                let {data} = await api.sniperEmployeeTrainDetail({id});
+                for(let key in data){
+                    if(key != 'participants'){
+                        this.form[key] = data[key]
+                    }else if(key == 'participants'){
+                        let participants = []
+                        let p = data[key]
+                        for(let idx in p){
+                            let item = p[idx].id + '-' + p[idx].name + '-' + p[idx].employee.department.name;
+                            participants.push(item)
+                        }
+                        this.form['participants'] = participants
+                    }
+                }
             }
         },
         watch:{
@@ -222,6 +239,7 @@
         },
         components: {},
         async created() {
+            //await this.getTrainDetail(1)
             await this.getDepartmentUsers()
         }
     }

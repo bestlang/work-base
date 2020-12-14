@@ -1,9 +1,10 @@
 <?php
 namespace Sniper\Employee\Models;
 
-use App\Sniper\Employee\Models\TrainParticipant;
+use Sniper\Employee\Models\TrainParticipant;
 use BestLang\Base\Models\User as BaseUser;
 use Sniper\Employee\Models\Employee;
+use Sniper\Employee\Models\DingTalk\User as DingUser;
 
 class User extends BaseUser
 {
@@ -14,7 +15,7 @@ class User extends BaseUser
 
     public function dingUser()
     {
-        return $this->hasOne(\Sniper\Employee\Models\DingTalk\User::class, 'orgEmail', 'email');
+        return $this->hasOne(DingUser::class, 'orgEmail', 'email');
     }
 
     public function trains()

@@ -1,18 +1,12 @@
 <?php
 
-namespace App\Sniper\Employee\Models;
+namespace Sniper\Employee\Models;
 
-use Illuminate\Database\Eloquent\Model;
-use Sniper\Employee\Models\Train;
+use Illuminate\Database\Eloquent\Relations\Pivot;
 
-class TrainParticipant extends Model
+class TrainParticipant extends Pivot
 {
     protected $table = 'sniper_employee_train_participants';
     protected $guarded = [];
     public $incrementing = true;
-
-    public function train()
-    {
-        return $this->belongsTo(Train::class);
-    }
 }
