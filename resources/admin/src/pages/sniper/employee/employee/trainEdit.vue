@@ -64,7 +64,7 @@
                         <div class="l-participant-item" v-for="u in form.participants">
                             <div class="l-flex" style="line-height: 30px;">
                                 <div>
-                                    <p>{{u}}{{u.split('-')[1]}}</p>
+                                    <p>{{u.split('-')[1]}}</p>
                                     <p class="l-dept">{{u.split('-')[2]}}</p>
                                 </div>
                                 <!--<small style="color: #ccc;">- {{u.split('-')[2]}}</small>-->
