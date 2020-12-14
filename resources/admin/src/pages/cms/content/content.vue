@@ -182,7 +182,7 @@
           if(data.contents){
               this.contents = data.contents;
           }
-          this.total = data.total || 0;
+          this.total = parseInt(data.total) || 0;
       },
       async currentChange(page){
 

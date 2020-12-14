@@ -26,7 +26,7 @@
                     <el-table-column
                             prop="id"
                             label="ID"
-                            width="80">
+                            width="50">
                     </el-table-column>
                     <el-table-column
                             prop="title"
@@ -45,16 +45,11 @@
                             label="结束时间">
                     </el-table-column>
                     <el-table-column
-                            prop="last_days"
+                            width="120"
                             label="持续时间(天)">
-                    </el-table-column>
-                    <el-table-column
-                            prop="last_hours"
-                            label="持续时间(时)">
-                    </el-table-column>
-                    <el-table-column
-                            prop="last_minutes"
-                            label="持续时间(分)">
+                        <template slot-scope="scope">
+                            {{scope.row.last_days}}天{{scope.row.last_hours}}小时{{scope.row.last_minutes}}分
+                        </template>
                     </el-table-column>
                     <el-table-column
                             prop="teacher"
@@ -130,8 +125,8 @@
                 let keyword = this.keyword;
                 let {data} = await api.sniperEmployeeTrainHistories({page, page_size, keyword})
                 this.histories = data.histories
-                this.total = data.total
-                this.page_size = data.page_size
+                this.total = parseInt(data.total)
+                this.page_size = parseInt(data.page_size)
             }
         },
         watch:{
