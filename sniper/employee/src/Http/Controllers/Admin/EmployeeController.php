@@ -40,7 +40,7 @@ class EmployeeController
         if(!$id){
             return response()->error('参数错误');
         }
-        $employee = Employee::with(['user', 'education', 'job', 'position'])->find($id);
+        $employee = Employee::with(['user.trains', 'education', 'job', 'position'])->find($id);
         $employee->leaving = json_decode($employee->leaving)??[];
         $employee->physical = json_decode($employee->physical)??[];
         $employee->certificate = json_decode($employee->certificate)??[];

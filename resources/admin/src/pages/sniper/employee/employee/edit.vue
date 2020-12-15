@@ -226,6 +226,38 @@
                             </el-form-item>
                         </el-form>
                     </el-tab-pane>
+                    <el-tab-pane label="培训记录" name="training">
+                        <el-table
+                                :data="trains"
+                                style="width: 100%">
+                            <el-table-column
+                                    prop="title"
+                                    label="课程名称">
+                            </el-table-column>
+                            <el-table-column
+                                    prop="teacher"
+                                    label="讲师">
+                            </el-table-column>
+                            <el-table-column
+                                    prop="location"
+                                    label="培训地址">
+                            </el-table-column>
+                            <el-table-column
+                                    prop="start_time"
+                                    label="开始日期">
+                            </el-table-column>
+                            <el-table-column
+                                    prop="end_time"
+                                    label="结束日期">
+                            </el-table-column>
+                            <el-table-column
+                                    label="持续时间">
+                                <template slot-scope="scope">
+                                    {{scope.row.last_days}}天{{scope.row.last_hours}}小时{{scope.row.last_minutes}}分钟
+                                </template>
+                            </el-table-column>
+                        </el-table>
+                    </el-tab-pane>
                 </el-tabs>
             </div>
         </div>
@@ -325,7 +357,8 @@
                 },
                 showEducationFlag: false,
                 showJobFlag: false,
-                employee: null
+                employee: null,
+                trains: []
             }
         },
         watch:{
@@ -605,6 +638,7 @@
             async getEmployeeDetail(id){
                 let {data} = await api.sniperGetEmployeeDetail({id})
                 this.employee = data
+                this.trains  = data.user.trains
                 this.assignForm(data)
             },
             //tree select 节点数据适应
