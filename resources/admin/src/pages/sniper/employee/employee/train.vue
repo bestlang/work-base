@@ -96,17 +96,27 @@
             return {
                 total: 0,
                 page: 1,
-                page_size: 2,
+                page_size: 10,
                 keyword: '',
                 histories: []
             }
         },
         methods:{
             editTrain({id}){
-                alert(id)
+                this.$router.push('/train/edit?id='+id)
             },
             deleteTrain({id}){
-                alert(id)
+                this.$confirm('确定删除培训记录?', '提示', {
+                    confirmButtonText: '确定',
+                    cancelButtonText: '取消',
+                    type: 'warning'
+                }).then(async () => {
+                    let res = await api.sniperDeleteEmployeeTrain({id})
+                    if(!res.hasError){
+                        this.$message.success('删除成功')
+                    }
+                    await this.getHistories()
+                });
             },
             currentChange(page){
                 this.page = page

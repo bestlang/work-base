@@ -81,7 +81,13 @@ class TrainController
 
     public function delete(Request $request)
     {
-
+            $id = $request->input('id', 0);
+            if($id){
+                $train = Train::where('id', $id)->first();
+                $train->participants()->sync([]);
+                $train->delete();
+            }
+            return response()->ajax();
     }
 
     public function histories(Request $request)

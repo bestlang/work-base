@@ -4,7 +4,12 @@
         <div class="l-block">
             <div class="l-block-header">
                 <div class="l-flex">
-                    <span>新增培训记录</span>
+                    <div>
+                        <span class="l-go-back" @click="goBack"><span class="iconfont">&#xe601;</span>返回</span>
+                        <el-divider direction="vertical"></el-divider>
+                        <span>新增培训记录</span>
+                    </div>
+
                     <el-button size="small" type="primary" @click="handleSave"><i class="if">&#xe9d3;</i> 保存</el-button>
                 </div>
             </div>
@@ -114,7 +119,7 @@
                 activeName: 'lesson',
                 keyword: '',
                 form:{
-                        id: '',
+                        id: 0,
                         title: '',
                         content: '',
                         start_time: null,
@@ -154,6 +159,9 @@
             }
         },
         methods:{
+            goBack(){
+                this.$router.push('/train');
+            },
             handleRemoveParticipant(u){
                 let name = u.split('-')[1];
                 this.$confirm('确定移除'+name+'?').then(() => {
@@ -213,6 +221,9 @@
             }
         },
         watch:{
+            async ['form.id'](val){
+                await this.getTrainDetail(val)
+            },
             ['form.start_time'](val){
                 if(val){
                     if(!/\d{4}\-\d{2}\-\d{2}/.test(val)){
@@ -239,8 +250,10 @@
         },
         components: {},
         async created() {
-            //await this.getTrainDetail(1)
+            let id = this.$route.query.id || 0;
+            this.form.id = parseInt(id)
             await this.getDepartmentUsers()
+
         }
     }
 </script>
