@@ -127,7 +127,7 @@
       },
       currentChannel(val){
         if(val && !this.channel_id){
-            this.channel_id = val.id
+            this.channel_id = parse(val.id)
         }
       },
       contentCurrentChannel(val){
@@ -170,7 +170,7 @@
       async handleNodeClick(node, ...params){
           this.showForm = false
           let channel = node[0]
-          this.channel_id = channel.id
+          this.channel_id = parseInt(channel.id)
       },
       async addContent(){
           let channel_id = this.channel_id || this.contentCurrentChannel.id
@@ -190,8 +190,8 @@
       }
     },
     async created() {
-      let channel_id = this.$route.query.channel_id || 0;
-      this.channel_id = channel_id;
+      let channel_id = this.$route.query.channel_id;
+      this.channel_id = parseInt(channel_id);
       await this.loadContents()
     }
   }

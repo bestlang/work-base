@@ -26,6 +26,7 @@ const mutations = {
             state.cachedPageName.push(data.name)
         }
     },
+
     removeTagNav(state, data){
         if(data){
             for(let [i, v] of state.openedPageList.entries()){
@@ -47,9 +48,20 @@ const mutations = {
     }
 }
 
+const actions = {
+    removeCurrentTagNav({commit,state}, path){
+        let existing = state.openedPageList.filter(v => v.path === path)
+        if(existing.length){
+            let matched = existing[0]
+            commit('removeTagNav', matched)
+        }
+    },
+}
+
 
 export default {
     namespaced: true,
     state,
-    mutations
+    mutations,
+    actions
 }

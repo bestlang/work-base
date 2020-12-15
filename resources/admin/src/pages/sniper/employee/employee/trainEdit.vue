@@ -10,7 +10,7 @@
                         <span>新增培训记录</span>
                     </div>
 
-                    <el-button size="small" type="primary" @click="handleSave"><i class="if">&#xe9d3;</i> 保存</el-button>
+                    <el-button size="small" type="primary" @click="handleSubmit"><i class="if">&#xe9d3;</i> 保存</el-button>
                 </div>
             </div>
             <div class="l-block-body">
@@ -160,6 +160,7 @@
         },
         methods:{
             goBack(){
+                this.$store.dispatch("tagNav/removeCurrentTagNav", this.$route.path)
                 this.$router.push('/train');
             },
             handleRemoveParticipant(u){
@@ -173,12 +174,13 @@
             },
             handleSearch(){},
             handleAdd(){},
-            async handleSave(){
+            async handleSubmit(){
                 let res = await api.sniperSaveEmployeeTrain(this.form)
                 if(res.hasError){
                     this.$message.error(res.error)
                 }else{
                     this.$message.success('操作成功！')
+                    this.goBack()
                 }
             },
             handleAddParticipant(){
@@ -221,9 +223,9 @@
             }
         },
         watch:{
-            async ['form.id'](val){
-                await this.getTrainDetail(val)
-            },
+            // async ['form.id'](val){
+            //     await this.getTrainDetail(val)
+            // },
             ['form.start_time'](val){
                 if(val){
                     if(!/\d{4}\-\d{2}\-\d{2}/.test(val)){
@@ -252,6 +254,9 @@
         async created() {
             let id = this.$route.query.id || 0;
             this.form.id = parseInt(id)
+            if(id){
+                await this.getTrainDetail(id)
+            }
             await this.getDepartmentUsers()
 
         }

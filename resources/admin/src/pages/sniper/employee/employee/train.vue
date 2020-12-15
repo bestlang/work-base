@@ -45,7 +45,7 @@
                             label="结束时间">
                     </el-table-column>
                     <el-table-column
-                            width="120"
+                            width="140"
                             label="持续时间(天)">
                         <template slot-scope="scope">
                             {{scope.row.last_days}}天{{scope.row.last_hours}}小时{{scope.row.last_minutes}}分

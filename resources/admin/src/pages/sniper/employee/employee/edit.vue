@@ -618,12 +618,17 @@
             viewPositions(){
                 this.$router.push('/sniper/employee/position')
             },
+            goBack(){
+                this.$store.dispatch("tagNav/removeCurrentTagNav", this.$route.path);
+                this.$router.push('/sniper/employee/employee/list');
+            },
             async save(){
                 let res = await api.sniperSaveEmployee(this.form)
                 if(!res.hasError){
                     let msg = !this.form.user_id ? '添加成功' : '更新成功'
                     this.$message.success(msg)
-                    setTimeout( () => this.$router.push('/sniper/employee/employee/list'), 1500)
+                    this.goBack()
+                    //setTimeout( () => this.$router.push('/sniper/employee/employee/list'), 1500)
                 }else{
                     this.$message.error(res.error)
                 }

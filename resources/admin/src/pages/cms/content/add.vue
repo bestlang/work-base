@@ -198,6 +198,7 @@
                 this.tagInputValue = '';
             },
             goBack(){
+                this.$store.dispatch("tagNav/removeCurrentTagNav", this.$route.path)
                 this.$router.push('/cms/content?channel_id='+this.channel_id)
             },
             async saveContent(){

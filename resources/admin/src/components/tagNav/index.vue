@@ -35,6 +35,9 @@
             }
         },
         methods: {
+            closeSpecifyRoute(url){
+                alert(url)
+            },
             addTagNav(){
                 let mcs = this.$router.getMatchedComponents()
                 let path = this.$route.path
@@ -52,6 +55,7 @@
                 return item.path === this.$route.path
             },
             closeTheTag(item, index){
+                console.log(JSON.stringify(item)+'**'+index)
                 // 当关闭当前页面的Tag时，则自动加载前一个Tag所属的页面
                 // 如果没有前一个Tag，则加载默认页面
                 this.$store.commit("tagNav/removeTagNav", item)
