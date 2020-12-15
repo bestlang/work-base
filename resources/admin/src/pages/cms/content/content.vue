@@ -57,7 +57,7 @@
               </el-table-column>
               <el-table-column
                 prop="channel.name"
-                width="120"
+                width="160"
                 label="栏目">
               </el-table-column>
               <el-table-column

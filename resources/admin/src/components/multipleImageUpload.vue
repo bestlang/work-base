@@ -5,6 +5,7 @@
             :action="uploadUrl"
             :on-remove="uploadRemove"
             :on-success="uploadSuccess"
+            :on-error="uploadError"
             list-type="picture-card"
             :multiple="true"
             :file-list="vals"
@@ -22,17 +23,20 @@
     export default {
         props:['value'],
         data(){
-            let accessToken = localStorage.getItem('accessToken');
-
             return {
                 uploadUrl: this.SITE_URL + '/' + getPrefix() + '/admin/file/upload',
-                headers: {
-                    'Authorization': 'Bearer ' + accessToken,
-                    'X-CSRF-TOKEN': this.$store.getters[this.$types.csrf]
-                },
                 disabled: false,
                 vals: [],
                 updated: []
+            }
+        },
+        computed:{
+            headers(){
+                let getters = this.$store.getters
+                return {
+                    'Authorization': 'Bearer ' + getters['accessToken'],
+                    'X-CSRF-TOKEN': getters['csrf']
+                }
             }
         },
         methods:{
@@ -47,6 +51,10 @@
                 const item = {description: '', url: response.data.file}
                 this.updated = [...this.updated, item]
                 this.$emit('input', this.updated)
+            },
+            async uploadError(){
+                this.$message.error('上传出错请重试！');
+                await this.$store.dispatch(this.$types.csrf)
             }
         },
         watch:{

@@ -88,7 +88,7 @@
 @push('script')
 <script type="text/javascript" charset="utf-8"
         src="//connect.qq.com/qc_jssdk.js"
-        data-appid="101918951"
+        data-appid="101919469"
         data-redirecturi="https://www.laracms.com/socialite/qq"
 ></script>
 <script type="text/javascript">

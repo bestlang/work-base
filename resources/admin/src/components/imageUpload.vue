@@ -3,6 +3,7 @@
             class="avatar-uploader"
             :action="uploadUrl"
             :on-success="uploadSuccess"
+            :on-error="uploadError"
             list-type="picture-card"
             :show-file-list="false"
             name="file"
@@ -15,23 +16,31 @@
 </template>
 <script>
     import { getPrefix } from 'sysApi/util'
+    import {mapGetters} from 'vuex'
 
     export default {
         props:['value'],
         data(){
-            let accessToken = localStorage.getItem('accessToken');
-
             return {
-                uploadUrl: this.SITE_URL + '/' + getPrefix() + '/admin/file/upload',
-                headers: {
-                    'Authorization': 'Bearer ' + accessToken,
-                    'X-CSRF-TOKEN': this.$store.getters[this.$types.csrf]
-                },
+                uploadUrl: this.SITE_URL + '/' + getPrefix() + '/admin/file/upload'
+            }
+        },
+        computed:{
+            headers(){
+                let getters = this.$store.getters
+                return {
+                    'Authorization': 'Bearer ' + getters['accessToken'],
+                    'X-CSRF-TOKEN': getters['csrf']
+                }
             }
         },
         methods:{
             uploadSuccess(response, file, fileList){
                 this.$emit('input', response.data.file)
+            },
+            async uploadError(){
+                this.$message.error('上传出错请重试！');
+                await this.$store.dispatch(this.$types.csrf)
             }
         }
     }
