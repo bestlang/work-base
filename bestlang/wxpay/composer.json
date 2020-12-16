@@ -1,12 +1,14 @@
 {
     "name": "bestlang/wxpay",
     "description": ":package_description",
-    "license": "license",
+    "type": "library",
+    "license": "Apache-2.0",
+    "minimum-stability":"dev",
     "authors": [
         {
-            "name": "author name",
-            "email": "author email",
-            "homepage": "author homepage"
+            "name": "bestLang",
+            "email": "295322133@qq.com",
+            "homepage": "https://github.com/bestlang/wxpay"
         }
     ],
     "homepage": "https://github.com/bestlang/wxpay",

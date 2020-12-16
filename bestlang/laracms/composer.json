@@ -1,7 +1,9 @@
 {
   "name": "bestlang/laracms",
   "description": "a cms package for laravel",
-  "license": "MIT",
+  "type": "library",
+  "license": "Apache-2.0",
+  "minimum-stability":"dev",
   "authors": [
     {
       "name": "bestlang",

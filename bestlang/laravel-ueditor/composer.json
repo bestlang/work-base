@@ -1,10 +1,12 @@
 {
     "name": "bestlang/laravel-ueditor",
     "description": "UEditor integration for Laravel.",
-    "license": "MIT",
+    "type": "library",
+    "license": "Apache-2.0",
+    "minimum-stability":"dev",
     "authors": [
         {
-            "name": "bestlang",
+            "name": "bestLang",
             "email": "295322133@qq.com"
         }
     ],
