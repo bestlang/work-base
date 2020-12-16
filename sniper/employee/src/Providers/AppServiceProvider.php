@@ -24,10 +24,6 @@ class AppServiceProvider extends ServiceProvider
             $this->publishes([
                 __DIR__.'/../../config/ding.php' => config_path('ding.php'),
             ], 'sniper-config');
-            // seeder
-            $this->publishes([
-                __DIR__ . '/../../database/seeds' => database_path('seeds/')
-            ], 'sniper-seeds');
             // static file
             $this->publishes([
                 __DIR__ . '/../../resources/assets/front.css' => public_path('vendor/sniper/front.css'),

@@ -1,7 +1,7 @@
 拷贝bestlang和sniper目录
 编辑composer.json的repositories
+composer require bestlang/laracms     or
 php -d memory_limit=-1 /usr/local/bin/composer require bestlang/laracms
-##composer dump-autoload
 修改.env
 	-DB
 

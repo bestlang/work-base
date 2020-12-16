@@ -74,10 +74,6 @@ class AppServiceProvider extends ServiceProvider
                 __DIR__ . '/../../resources/assets/logo.png' => public_path('vendor/base/logo.png')
             ], 'base-assets');
         }
-        // seeder
-        $this->publishes([
-            __DIR__ . '/../../database/seeds' => database_path('seeds/')
-        ], 'base-seeds');
 
         $this->loadViewsFrom(__DIR__.'/../../resources/views/base', 'base');
 

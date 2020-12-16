@@ -51,10 +51,6 @@ class AppServiceProvider extends ServiceProvider
             ], 'laracms-config');
             // migrations
             $this->loadMigrationsFrom(__DIR__.'/../../database/migrations');
-            // seeder
-            $this->publishes([
-                __DIR__ . '/../../database/seeds' => database_path('seeds/')
-            ], 'laracms-seeds');
             // static file
             $this->publishes([
                 __DIR__ . '/../../resources/assets/dark/front.css' => public_path('vendor/laracms/dark/front.css'),

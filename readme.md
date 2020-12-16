@@ -89,3 +89,7 @@ mysql> SELECT * FROM `ware_item`;
 注册模板directive控制页面内容显示是否全面
 directive里面包含判断是否处于会员期内
 
+----------------------
+关于composer repositories path
+https://getcomposer.org/doc/05-repositories.md#path
+

@@ -74,30 +74,30 @@
             "@php artisan key:generate --ansi"
         ]
     },
-    "repositories": {
-        "bestlang/base": {
+    "repositories": [
+        {
             "type": "path",
             "url": "./bestlang/base"
         },
-        "bestlang/laracms": {
+        {
             "type": "path",
             "url": "./bestlang/laracms"
         },
-        "sniper/employee": {
+        {
             "type": "path",
             "url": "./sniper/employee"
         },
-        "bestlang/wxpay": {
+        {
             "type": "path",
             "url": "./bestlang/wxpay"
         },
-        "bestlang/laravel-ueditor": {
+        {
             "type": "path",
             "url": "./bestlang/laravel-ueditor"
         },
-        "bestlang/alipay-easysdk": {
+       {
             "type": "path",
             "url": "./bestlang/alipay-easysdk"
         }
-    }
+    ]
 }
