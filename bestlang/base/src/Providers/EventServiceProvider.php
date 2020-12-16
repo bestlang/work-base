@@ -15,6 +15,9 @@ class EventServiceProvider extends ServiceProvider{
         HistoryEvent::class => [
             HistoryEventListener::class,
         ],
+        \SocialiteProviders\Manager\SocialiteWasCalled::class => [
+            'SocialiteProviders\QQ\QqExtendSocialite@handle',
+        ]
     ];
 
     /**

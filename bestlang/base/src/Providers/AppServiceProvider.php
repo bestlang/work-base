@@ -22,6 +22,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
+        $this->mergeConfigFrom(__DIR__.'/../../config/services.php', 'services');
         $this->app->bind('HashConfig', 'BestLang\Base\Models\HashConfig');
 //        $this->app['router']->aliasMiddleware('auth.jwt', Authenticate::class);
         $this->app->singleton(
