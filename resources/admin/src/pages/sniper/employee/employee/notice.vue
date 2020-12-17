@@ -80,7 +80,7 @@
     }
 
     export default {
-        name: 'sniperEmployeeTrain',
+        name: 'sniperEmployeeNotice',
         data(){
             return {
                 total: 0,
@@ -116,7 +116,7 @@
                 this.getHistories()
             },
             handleAdd(){
-                this.$router.push('/train/edit')
+                this.$router.push('/notice/edit')
             },
             async getHistories(){
                 let page = this.page;

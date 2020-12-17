@@ -5,12 +5,12 @@
             :on-remove="handleRemove"
             :before-remove="beforeRemove"
             :on-success="uploadSuccess"
+            :on-preview="handlePreview"
             multiple
             :file-list="fileList"
             name="file"
             :show-file-list="true"
             :headers="headers"
-            :on-preview="onPreview"
     >
         <el-button size="mini" type="primary">点击上传</el-button>
         <div slot="tip" class="el-upload__tip"></div>
@@ -42,20 +42,17 @@
             beforeRemove(file, fl) {
                 return this.$confirm(`确定移除 ${ file.name }？`);
             },
-            preview(file){
-                window.open(file.response.data.file)
-            },
             handleRemove(file, fl){
                 this.fileList = this.fileList.filter( item => { return item.url != file.url} )
                 this.$emit('input', this.fileList)
+            },
+            handlePreview(file){
+                this.$emit('preview', file)
             },
             uploadSuccess(response, file, fl){
                 const item = {name: file.name, url: file.response.data.file}
                 this.fileList = [...this.fileList, item]
                 this.$emit('input', this.fileList)
-            },
-            onPreview(file){
-                this.$emit('onPreview', file)
             }
         },
         mounted: function () {

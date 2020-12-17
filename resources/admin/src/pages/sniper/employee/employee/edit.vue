@@ -204,25 +204,25 @@
                     <el-tab-pane label="入职材料" name="materials">
                         <el-form size="small" ref="form" :model="form" label-width="130px" style="width: 40%;overflow-y: visible;padding-top: 20px;">
                             <el-form-item label="离职证明">
-                                <attachment v-model="form.leaving" @onPreview="onPreview"></attachment>
+                                <attachment v-model="form.leaving" @preview="onPreview"></attachment>
                             </el-form-item>
                             <el-form-item label="体检证明">
-                                <attachment v-model="form.physical" @onPreview="onPreview"></attachment>
+                                <attachment v-model="form.physical" @preview="onPreview"></attachment>
                             </el-form-item>
                             <el-form-item label="学历证明">
-                                <attachment v-model="form.certificate" @onPreview="onPreview"></attachment>
+                                <attachment v-model="form.certificate" @preview="onPreview"></attachment>
                             </el-form-item>
                             <el-form-item label="面试记录">
-                                <attachment v-model="form.interview" @onPreview="onPreview"></attachment>
+                                <attachment v-model="form.interview" @preview="onPreview"></attachment>
                             </el-form-item>
                             <el-form-item label="劳动合同">
-                                <attachment v-model="form.contract" @onPreview="onPreview"></attachment>
+                                <attachment v-model="form.contract" @preview="onPreview"></attachment>
                             </el-form-item>
                             <el-form-item label="录用通知书">
-                                <attachment v-model="form.employment" @onPreview="onPreview"></attachment>
+                                <attachment v-model="form.employment" @preview="onPreview"></attachment>
                             </el-form-item>
                             <el-form-item label="其他">
-                                <attachment v-model="form.other" @onPreview="onPreview"></attachment>
+                                <attachment v-model="form.other" @preview="onPreview"></attachment>
                             </el-form-item>
                         </el-form>
                     </el-tab-pane>

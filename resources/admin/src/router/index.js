@@ -14,7 +14,7 @@ let children = [];
 let allowed = pkg.allowModules;
 let allModules = {sniper, panel, cms, base, privileges}
 for(let key in allModules){
-    if(allModules.hasOwnProperty(key) && allowed.indexOf(key) !== -1){
+    if(allowed.indexOf(key) !== -1){
         children = children.concat(allModules[key])
     }
 }

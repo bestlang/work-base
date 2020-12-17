@@ -99,16 +99,16 @@
                     ></el-autocomplete>
                 </el-form-item>
                 <el-form-item label="离职申请表" :label-width="w">
-                    <attachment v-model="form.apply" @onPreview="onPreview"></attachment>
+                    <attachment v-model="form.apply" @preview="onPreview"></attachment>
                 </el-form-item>
                 <el-form-item label="交接单" :label-width="w">
-                    <attachment v-model="form.handover" @onPreview="onPreview"></attachment>
+                    <attachment v-model="form.handover" @preview="onPreview"></attachment>
                 </el-form-item>
                 <el-form-item label="退工手续备案表" :label-width="w">
-                    <attachment v-model="form.record" @onPreview="onPreview"></attachment>
+                    <attachment v-model="form.record" @preview="onPreview"></attachment>
                 </el-form-item>
                 <el-form-item label="其他单据" :label-width="w">
-                    <attachment v-model="form.other" @onPreview="onPreview"></attachment>
+                    <attachment v-model="form.other" @preview="onPreview"></attachment>
                 </el-form-item>
                 <el-form-item label="备注" :label-width="w">
                     <el-input type="textarea" v-model="form.note"></el-input>

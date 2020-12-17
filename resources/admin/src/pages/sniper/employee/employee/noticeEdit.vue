@@ -1,13 +1,13 @@
 <template>
     <div>
-        <div v-title="'新增/编辑培训'"></div>
+        <div v-title="'新增/编辑公告'"></div>
         <div class="l-block">
             <div class="l-block-header">
                 <div class="l-flex">
                     <div>
                         <span class="l-go-back" @click="goBack"><span class="iconfont">&#xe601;</span>返回</span>
                         <el-divider direction="vertical"></el-divider>
-                        <span>新增/编辑培训</span>
+                        <span>新增/编辑公告</span>
                     </div>
 
                     <el-button size="small" type="primary" @click="handleSubmit"><i class="if">&#xe9d3;</i> 保存</el-button>
@@ -15,58 +15,27 @@
             </div>
             <div class="l-block-body">
                 <el-tabs type="border-card" v-model="activeName">
-                    <el-tab-pane label="课程信息" name="lesson">
+                    <el-tab-pane label="公告信息" name="content">
                         <el-form ref="form" :model="form" label-width="80px" size="small">
-                            <el-form-item label="课程名称">
+                            <el-form-item label="公告名称">
                                 <el-input v-model="form.title"></el-input>
                             </el-form-item>
-                            <el-form-item label="课程内容">
+                            <el-form-item label="公告内容">
                                 <el-input v-model="form.content"></el-input>
                             </el-form-item>
-                            <el-form-item label="开始日期">
-                                <el-date-picker
-                                        v-model="form.start_time"
-                                        type="datetime"
-                                        placeholder="选择开始日期"
-                                        align="right"
-                                        :picker-options="pickerOptions">
-                                </el-date-picker>
+                            <el-form-item label="备注">
+                                <el-input v-model="form.note"></el-input>
                             </el-form-item>
-                            <el-form-item label="结束日期">
-                                <el-date-picker
-                                        v-model="form.end_time"
-                                        type="datetime"
-                                        placeholder="选择结束日期"
-                                        align="right"
-                                        :picker-options="pickerOptions">
-                                </el-date-picker>
-                            </el-form-item>
-                            <el-form-item label="持续时间">
-                                <el-form :inline="true"  class="demo-form-inline" size="small">
-                                    <el-form-item>
-                                        <el-input v-model="form.last_days" type="number"><template slot="append">天</template></el-input>
-                                    </el-form-item>
-                                    <el-form-item>
-                                        <el-input v-model="form.last_hours" type="number"><template slot="append">小时</template></el-input>
-                                    </el-form-item>
-                                    <el-form-item>
-                                        <el-input v-model="form.last_minutes" type="number"><template slot="append">分钟</template></el-input>
-                                    </el-form-item>
-                                </el-form>
-                            </el-form-item>
-                            <el-form-item label="讲师">
-                                <el-input v-model="form.teacher"></el-input>
-                            </el-form-item>
-                            <el-form-item label="培训地点">
-                                <el-input v-model="form.location"></el-input>
+                            <el-form-item label="附件">
+                                <attachment v-model="form.attachments" @preview="handlePreview"></attachment>
                             </el-form-item>
                         </el-form>
                     </el-tab-pane>
-                    <el-tab-pane label="参会人员" name="member">
+                    <el-tab-pane label="通知对象" name="member">
                         <div>
                             <el-button type="primary" icon="el-icon-plus" size="small" circle style="margin-bottom: 10px;" @click="handleAddParticipant"></el-button>
                         </div>
-                        <div class="l-participant-item" v-for="u in form.participants">
+                        <div class="l-participant-item" v-for="u in form.audiences">
                             <div class="l-flex" style="line-height: 30px;">
                                 <div>
                                     <p>{{u.split('-')[1]}}</p>
@@ -91,7 +60,7 @@
                 <div v-for="(gu, dept) in groupedUser">
                     <h4 style="color: #5d5d5d;padding: 5px 0;">{{dept}}</h4>
                     <p>
-                        <span @click="selectThisUser(u, dept)" class="user-to-select" :class="{active: form.participants.indexOf(u.sniperUser.id+'-'+u.name+'-'+dept) !== -1}" v-for="u in gu">
+                        <span @click="selectThisUser(u, dept)" class="user-to-select" :class="{active: form.audiences.indexOf(u.sniperUser.id+'-'+u.name+'-'+dept) !== -1}" v-for="u in gu">
                             {{u.name}}
                             <div class="tri"><i class="if">&#xe6bd;</i></div>
                         </span>
@@ -108,28 +77,24 @@
 <script>
     import api from 'sysApi'
     import {formatDateTime} from "sysApi/util"
+    import attachment from "@/components/attachment"
 
     export default {
-        name: 'sniperEmployeeTrainEdit',
+        name: 'sniperEmployeeNoticeEdit',
         data(){
             return {
                 drawer: false,
                 groupedUser: {},
                 users: [],
-                activeName: 'lesson',
+                activeName: 'content',
                 keyword: '',
                 form:{
-                        id: 0,
-                        title: '',
-                        content: '',
-                        start_time: null,
-                        end_time: null,
-                        last_days: 0,
-                        last_hours: 0,
-                        last_minutes: 0,
-                        teacher: '',
-                        location: '',
-                        participants:[]
+                    id: 0,
+                    title: '',
+                    content: '',
+                    note: '',
+                    attachments: '',
+                    audiences:[]
                 },
                 pickerOptions: {
                     shortcuts: [{
@@ -163,13 +128,16 @@
             handleRemoveParticipant(u){
                 let name = u.split('-')[1];
                 this.$confirm('确定移除'+name+'?').then(() => {
-                    let idx = this.form.participants.indexOf(u)
-                    this.form.participants.splice(idx, 1)
+                    let idx = this.form.audiences.indexOf(u)
+                    this.form.audiences.splice(idx, 1)
                 }).catch(() => {
 
                 });
             },
             handleSearch(){},
+            handlePreview(file){
+                window.open(file.url, '_blank')
+            },
             handleAdd(){},
             async handleSubmit(){
                 let res = await api.sniperSaveEmployeeTrain(this.form)
@@ -194,27 +162,27 @@
             },
             selectThisUser(u, dept){
                 let userId = u.sniperUser.id + '-' + u.name + '-' + dept;
-                if(this.form.participants.indexOf(userId) === -1){
-                    this.form.participants.push(userId);
+                if(this.form.audiences.indexOf(userId) === -1){
+                    this.form.audiences.push(userId);
                 }else{
-                    let idx = this.form.participants.indexOf(userId)
-                    this.form.participants.splice(idx, 1)
+                    let idx = this.form.audiences.indexOf(userId)
+                    this.form.audiences.splice(idx, 1)
                 }
-                console.log(JSON.stringify(this.form.participants))
+                console.log(JSON.stringify(this.form.audiences))
             },
             async getTrainDetail(id){
                 let {data} = await api.sniperEmployeeTrainDetail({id});
                 for(let key in data){
-                    if(key != 'participants'){
+                    if(key != 'audiences'){
                         this.form[key] = data[key]
-                    }else if(key == 'participants'){
-                        let participants = []
+                    }else if(key == 'audiences'){
+                        let audiences = []
                         let p = data[key]
                         for(let idx in p){
                             let item = p[idx].id + '-' + p[idx].name + '-' + p[idx].employee.department.name;
-                            participants.push(item)
+                            audiences.push(item)
                         }
-                        this.form['participants'] = participants
+                        this.form['audiences'] = audiences
                     }
                 }
             }
@@ -247,7 +215,7 @@
                 console.log(groupedUser)
             },
         },
-        components: {},
+        components: {attachment},
         async created() {
             let id = this.$route.query.id || 0;
             this.form.id = parseInt(id)
@@ -260,9 +228,9 @@
     }
 </script>
 <style scoped>
-/deep/ .el-form--inline .el-form-item{
-    margin-bottom: 0;
-}
+    /deep/ .el-form--inline .el-form-item{
+        margin-bottom: 0;
+    }
 </style>
 <style lang="less" scoped>
     .l-participant-item{

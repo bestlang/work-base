@@ -169,6 +169,16 @@ export default [
                     font: '&#xe61e;'
                 }
             },
+            {
+                path: "/notice/edit",
+                component: () => import("../pages/sniper/employee/employee/noticeEdit.vue"),
+                meta: {
+                    can: 'hr attendance',
+                    show: true,
+                    name: '新增/编辑公告',
+                    font: '&#xe61e;'
+                }
+            },
         ]
     }
 ]
