@@ -99,16 +99,16 @@
                     ></el-autocomplete>
                 </el-form-item>
                 <el-form-item label="离职申请表" :label-width="w">
-                    <attachment v-model="form.apply" @preview="onPreview"></attachment>
+                    <attachment v-model="form.apply" @preview="handlePreview"></attachment>
                 </el-form-item>
                 <el-form-item label="交接单" :label-width="w">
-                    <attachment v-model="form.handover" @preview="onPreview"></attachment>
+                    <attachment v-model="form.handover" @preview="handlePreview"></attachment>
                 </el-form-item>
                 <el-form-item label="退工手续备案表" :label-width="w">
-                    <attachment v-model="form.record" @preview="onPreview"></attachment>
+                    <attachment v-model="form.record" @preview="handlePreview"></attachment>
                 </el-form-item>
                 <el-form-item label="其他单据" :label-width="w">
-                    <attachment v-model="form.other" @preview="onPreview"></attachment>
+                    <attachment v-model="form.other" @preview="handlePreview"></attachment>
                 </el-form-item>
                 <el-form-item label="备注" :label-width="w">
                     <el-input type="textarea" v-model="form.note"></el-input>
@@ -212,7 +212,7 @@
                 });
 
             },
-            onPreview(file){
+            handlePreview(file){
                 window.open(file.url, '_blank')
             },
             async currentChange(page){

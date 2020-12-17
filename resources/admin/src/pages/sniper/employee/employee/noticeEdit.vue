@@ -21,7 +21,7 @@
                                 <el-input v-model="form.title"></el-input>
                             </el-form-item>
                             <el-form-item label="公告内容">
-                                <el-input v-model="form.content"></el-input>
+                                <vue-ueditor-wrap v-model="form.content" :config="ueditorConfig"></vue-ueditor-wrap>
                             </el-form-item>
                             <el-form-item label="备注">
                                 <el-input v-model="form.note"></el-input>
@@ -78,6 +78,8 @@
     import api from 'sysApi'
     import {formatDateTime} from "sysApi/util"
     import attachment from "@/components/attachment"
+    import VueUeditorWrap from 'vue-ueditor-wrap';
+    import ueditorConfig from "sysStore/ueditor"
 
     export default {
         name: 'sniperEmployeeNoticeEdit',
@@ -88,6 +90,7 @@
                 users: [],
                 activeName: 'content',
                 keyword: '',
+                ueditorConfig: ueditorConfig,
                 form:{
                     id: 0,
                     title: '',
@@ -215,7 +218,10 @@
                 console.log(groupedUser)
             },
         },
-        components: {attachment},
+        components: {
+            attachment,
+            VueUeditorWrap
+        },
         async created() {
             let id = this.$route.query.id || 0;
             this.form.id = parseInt(id)

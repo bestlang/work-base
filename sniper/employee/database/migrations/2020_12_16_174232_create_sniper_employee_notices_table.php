@@ -17,6 +17,7 @@ class CreateSniperEmployeeNoticesTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('user_id');
             $table->string('title')->comment('公告主题');
+            $table->dateTime('send_at')->comment('发送时间');
             $table->dateTime('published_at')->comment('发布时间');
             $table->text('note')->comment('备注')->nullable();
             $table->text('content')->comment('公告正文');
