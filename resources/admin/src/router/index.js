@@ -7,6 +7,17 @@ import cms from './cms'
 import sniper from './sniper'
 import panel from './panel'
 import privileges from './privileges'
+let pkg = require('../../package')
+
+
+let children = [];
+let allowed = pkg.allowModules;
+let allModules = {sniper, panel, cms, base, privileges}
+for(let key in allModules){
+    if(allModules.hasOwnProperty(key) && allowed.indexOf(key) !== -1){
+        children = children.concat(allModules[key])
+    }
+}
 
 const originalPush = VueRouter.prototype.push
 VueRouter.prototype.push = function push(location) {
@@ -27,12 +38,7 @@ export default new VueRouter({
         name: '系统菜单',
         font: '&#xe764;'
       },
-      children:[
-        ...sniper,
-        ...privileges,
-        ...cms,
-        ...base
-      ]
+      children,
     },
       ...panel,
     {

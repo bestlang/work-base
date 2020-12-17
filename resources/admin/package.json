@@ -1,5 +1,7 @@
 {
-  "name": "admin",
+  "name": "思纳福内部系统",
+  "shortName": "MP",
+  "allowModules": ["base","cms", "sniper", "panel", "privileges"],
   "version": "1.0.0",
   "description": "admin",
   "author": "luzhang <295322133@qq.com>",

@@ -1,11 +1,13 @@
 import types from 'sysStore/types'
 import api from 'sysApi'
 import { getPrefix } from 'sysApi/util'
+let pkg = require('../../../package')
+
 
 const normalConfig = {
     state: {
-        appName: '思纳福内部系统',
-        appShortName: 'SN',
+        appName: pkg.name || '后台',
+        appShortName: pkg.shortName || 'SN',
         user: {},
         isCollapse: false,
         csrf: null,
