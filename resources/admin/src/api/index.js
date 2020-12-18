@@ -88,8 +88,12 @@ export default {
 
     sniperSaveEmployeeTrain(data){ return fetch('/admin/sniper/employee/save/train', data, 'post') },
     sniperDeleteEmployeeTrain(data){ return fetch('/admin/sniper/employee/delete/train', data, 'post') },
-    sniperEmployeeTrainHistories(data){ return fetch('/admin/sniper/employee/train/histories', data) },
     sniperEmployeeTrainDetail(data){ return fetch('/admin/sniper/employee/train/detail', data) },
+
+    sniperSaveEmployeeNotice(data){ return fetch('/admin/sniper/employee/save/notice', data, 'post') },
+    sniperEmployeeNoticeHistories(data){ return fetch('/admin/sniper/employee/notice/histories', data) },
+    sniperEmployeeNoticeDetail(data){ return fetch('/admin/sniper/employee/notice/detail', data) },
+
 
     sniperGetEmployeeList(data){ return fetch('/admin/sniper/employee/employee', data) },
     sniperSaveEmployee(data){ return fetch('/admin/sniper/employee/save/employee', data, 'post') },

@@ -9,6 +9,10 @@ class Notice extends Model
     protected $table = 'sniper_employee_notices';
     protected $guarded = [];
 
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
     public function audiences()
     {
         return $this->belongsToMany(User::class, 'sniper_employee_notice_audiences', 'notice_id', 'user_id')

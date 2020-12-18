@@ -32,13 +32,18 @@
                             prop="title"
                             label="公告主题">
                     </el-table-column>
-                    <el-table-column
-                            prop="content"
-                            label="公告内容">
+                    <el-table-column label="发送状态">
+                        <template slot-scope="scope">
+                            {{scope.row.sent ? '已发送' : '未发送'}}
+                        </template>
                     </el-table-column>
                     <el-table-column
-                            prop="publish_time"
+                            prop="send_at"
                             label="发送时间">
+                    </el-table-column>
+                    <el-table-column
+                            prop="notice_date"
+                            label="公告日期">
                     </el-table-column>
                     <el-table-column
                             prop="user.name"
@@ -49,11 +54,12 @@
                             label="备注">
                     </el-table-column>
                     <el-table-column
-                            width="180"
+                            width="220"
                             label="操作">
                         <template slot-scope="scope">
-                            <el-button type="primary" @click="editTrain(scope.row)" size="mini">编辑</el-button>
-                            <el-button type="danger" @click="deleteTrain(scope.row)" size="mini">删除</el-button>
+                            <el-button type="primary" @click="editNotice(scope.row)" size="mini">编辑</el-button>
+                            <el-button type="danger" @click="deleteNotice(scope.row)" size="mini">删除</el-button>
+                            <el-button type="success" @click="sendNotice(scope.row)" size="mini" v-if="!scope.row.sent">发送</el-button>
                         </template>
                     </el-table-column>
                 </el-table>
@@ -91,11 +97,11 @@
             }
         },
         methods:{
-            editTrain({id}){
-                this.$router.push('/train/edit?id='+id)
+            editNotice({id}){
+                this.$router.push('/notice/edit?id='+id)
             },
-            deleteTrain({id}){
-                this.$confirm('确定删除培训记录?', '提示', {
+            deleteNotice({id}){
+                this.$confirm('确定删除公告?', '提示', {
                     confirmButtonText: '确定',
                     cancelButtonText: '取消',
                     type: 'warning'
@@ -106,6 +112,9 @@
                     }
                     await this.getHistories()
                 });
+            },
+            sendNotice({id}){
+
             },
             currentChange(page){
                 this.page = page
@@ -122,7 +131,7 @@
                 let page = this.page;
                 let page_size = this.page_size;
                 let keyword = this.keyword;
-                let {data} = await api.sniperEmployeeTrainHistories({page, page_size, keyword})
+                let {data} = await api.sniperEmployeeNoticeHistories({page, page_size, keyword})
                 this.histories = data.histories
                 this.total = parseInt(data.total)
                 this.page_size = parseInt(data.page_size)

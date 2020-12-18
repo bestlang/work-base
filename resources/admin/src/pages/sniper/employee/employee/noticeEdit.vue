@@ -17,7 +17,7 @@
                 <el-tabs type="border-card" v-model="activeName">
                     <el-tab-pane label="公告信息" name="content">
                         <el-form ref="form" :model="form" label-width="80px" size="small">
-                            <el-form-item label="公告名称">
+                            <el-form-item label="公告主题">
                                 <el-input v-model="form.title"></el-input>
                             </el-form-item>
                             <el-form-item label="公告日期">
@@ -129,7 +129,7 @@
         methods:{
             goBack(){
                 this.$store.dispatch("tagNav/removeCurrentTagNav", this.$route.path)
-                this.$router.push('/train');
+                this.$router.push('/notice');
             },
             handleRemoveParticipant(u){
                 let name = u.split('-')[1];
@@ -147,15 +147,13 @@
             handleAdd(){},
             async handleSubmit(){
                 console.log(JSON.stringify(this.form))
-                /**
-                 * let res = await api.sniperSaveEmployeeTrain(this.form)
+                 let res = await api.sniperSaveEmployeeNotice(this.form)
                  if(res.hasError){
                     this.$message.error(res.error)
                 }else{
                     this.$message.success('操作成功！')
                     this.goBack()
                 }
-                 */
             },
             handleAddParticipant(){
                 this.drawer = true;
@@ -178,8 +176,8 @@
                     this.form.audiences.splice(idx, 1)
                 }
             },
-            async getTrainDetail(id){
-                let {data} = await api.sniperEmployeeTrainDetail({id});
+            async getNoticeDetail(id){
+                let {data} = await api.sniperEmployeeNoticeDetail({id});
                 for(let key in data){
                     if(key != 'audiences'){
                         this.form[key] = data[key]
@@ -214,7 +212,7 @@
             let id = this.$route.query.id || 0;
             this.form.id = parseInt(id)
             if(id){
-                await this.getTrainDetail(id)
+                await this.getNoticeDetail(id)
             }
             await this.getDepartmentUsers()
 

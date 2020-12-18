@@ -23,6 +23,10 @@ Route::group(['prefix'=>'admin/sniper/employee', 'namespace'=>'Admin'], function
         Route::post('/delete/train', 'TrainController@delete');
         Route::get('/train/histories', 'TrainController@histories');
         Route::get('/train/detail', 'TrainController@detail');
+        Route::post('/save/notice', 'NoticeController@save');
+        Route::get('/notice/histories', 'NoticeController@histories');
+        Route::get('/notice/detail', 'NoticeController@detail');
+        Route::post('/notice/send', 'NoticeController@send');
 
         Route::post('/save/employee', 'EmployeeController@save');
         Route::any('/department/employee', 'EmployeeController@departmentEmployee');

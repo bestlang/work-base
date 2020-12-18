@@ -2,7 +2,7 @@
     <el-card class="box-card">
         <div slot="header" class="clearfix">
             <!--™-->
-            <h3>{{appName}}</h3>
+            <h3 class="l-x-large">{{appName}}</h3>
         </div>
         <el-form :model="params" status-icon :rules="rules" ref="ruleForm" label-width="0" class="demo-ruleForm">
             <el-form-item prop="mobile">
@@ -110,6 +110,9 @@ export default {
 </script>
 
 <style lang="less" scoped>
+    .l-x-large{
+        font-size: x-large;
+    }
     label{
         font-weight: 700;
     }

@@ -17,7 +17,8 @@ class CreateSniperEmployeeNoticeAudiencesTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('notice_id')->comment('通知ID')->nullable();
             $table->unsignedBigInteger('user_id')->comment('用户ID')->nullable();
-            $table->tinyInteger('sent')->comment('已发送标志0未送1已发送');
+            $table->tinyInteger('sent')->comment('已发送标志0未送1已发送')->default(0);
+            $table->timestamp('send_at')->comment('发送时间')->nullable();
             $table->nullableTimestamps();
         });
     }
