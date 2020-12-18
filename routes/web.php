@@ -31,10 +31,6 @@ Route::get('/test/permission/guard', 'IndexController@testPermissionGuard');
 
 //Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/qq', function(){
-    return Socialite::driver('qq')->redirect();
-
-});
 //
 //Route::get('wechat/order/native1', 'IndexController@native1');
 //

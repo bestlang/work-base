@@ -72,9 +72,8 @@
                                     </a>
                                 @endif
                                 <p>
-                                    {{--<small>使用第三方登录：</small>--}}
-                                    {{--<img src="https://static.laracms.com/qqLogin/qq_login.png" alt="">--}}
-                                    <span id="qqLoginBtn"></span>
+                                    <small>使用第三方账号登录：</small>
+                                    <a href="/qq"><img src="https://static.laracms.com/qqLogin/qq_login.png" alt=""></a>
                                 </p>
                             </div>
                         </div>
@@ -86,16 +85,16 @@
 </div>
 @endsection
 @push('script')
-<script type="text/javascript" charset="utf-8"
-        src="//connect.qq.com/qc_jssdk.js"
-        data-appid="101919469"
-        data-redirecturi="https://www.laracms.com/socialite/qq"
-></script>
-<script type="text/javascript">
-    QC.Login({
-        btnId:"qqLoginBtn"	//插入按钮的节点id
-    });
-</script>
+{{--<script type="text/javascript" charset="utf-8"--}}
+        {{--src="//connect.qq.com/qc_jssdk.js"--}}
+        {{--data-appid="101919469"--}}
+        {{--data-redirecturi="https://www.laracms.com/socialite/qq"--}}
+{{--></script>--}}
+{{--<script type="text/javascript">--}}
+    {{--QC.Login({--}}
+        {{--btnId:"qqLoginBtn"	//插入按钮的节点id--}}
+    {{--});--}}
+{{--</script>--}}
 <script>
     $(function(){
         $('#btn-ajax-submit').click(function(){

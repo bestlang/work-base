@@ -7,10 +7,7 @@ class SocialiteController extends Controller
 {
     public function qq(Request $request)
     {
-        foreach($request->all() as $key => $val){
-            echo "<p>{$key} = {$val}</p>";
-        }
-        echo "<p>回调成功</p>";
+        print_r(\Socialite::driver('qq')->user());
         return view('base::socialite.qq');
     }
 }
