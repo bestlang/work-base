@@ -85,6 +85,7 @@
                             type="datetime"
                             placeholder="选择日期时间"
                             align="right"
+                            value-format="yyyy-MM-dd HH:mm:ss"
                             :picker-options="pickerOptions">
                     </el-date-picker>
                 </el-form-item>
@@ -123,7 +124,6 @@
 </template>
 <script>
     import api from 'sysApi'
-    import {formatDateTime} from "sysApi/util"
     import TreeSelect from '@riophae/vue-treeselect'
     import '@riophae/vue-treeselect/dist/vue-treeselect.css'
     import pager from "@/components/pager"
@@ -294,13 +294,6 @@
             }
         },
         watch:{
-            ['form.date'](val){
-                if(val){
-                    if(!/\d{4}\-\d{2}\-\d{2}/.test(val)){
-                        this.form.date = formatDateTime(val)
-                    }
-                }
-            },
             async ['params.page'](val){
                 await this.getHistories()
             }

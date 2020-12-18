@@ -174,7 +174,7 @@ export default [
                 component: () => import("../pages/sniper/employee/employee/noticeEdit.vue"),
                 meta: {
                     can: 'hr attendance',
-                    show: true,
+                    show: false,
                     name: '新增/编辑公告',
                     font: '&#xe61e;'
                 }

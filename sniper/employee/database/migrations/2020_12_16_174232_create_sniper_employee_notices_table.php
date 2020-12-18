@@ -17,13 +17,13 @@ class CreateSniperEmployeeNoticesTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('user_id');
             $table->string('title')->comment('公告主题');
-            $table->dateTime('send_at')->comment('发送时间');
-            $table->dateTime('published_at')->comment('发布时间');
+            $table->date('notice_date')->comment('发布日期');
             $table->text('note')->comment('备注')->nullable();
             $table->text('content')->comment('公告正文');
             $table->text('attachments')->comment('附件列表');
             $table->tinyInteger('sent')->comment('发布标志0未发布1已发布');
             $table->nullableTimestamps();
+            $table->dateTime('send_at')->comment('发送时间');
             $table->softDeletes();
         });
     }

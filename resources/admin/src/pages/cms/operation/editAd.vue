@@ -55,6 +55,7 @@
                                     v-model="form.time_range"
                                     type="datetimerange"
                                     range-separator="至"
+                                    value-format="yyyy-MM-dd HH:mm:ss"
                                     start-placeholder="开始日期"
                                     end-placeholder="结束日期">
                             </el-date-picker>
@@ -105,7 +106,6 @@
     import imageUpload from "@/components/imageUpload"
     import attachment from "@/components/attachment"
     import api from 'sysApi'
-    import {formatDateTime} from "sysApi/util"
 
     export default {
         name: 'cmsOperationEditAd',
@@ -141,8 +141,6 @@
                 this.$router.push('/cms/operation/ads')
             },
             async saveAd(){
-                this.form.start_time = formatDateTime(this.form.time_range[0])
-                this.form.end_time = formatDateTime(this.form.time_range[1])
                 let res = await api.saveAd(this.form)
                 if(res.success){
                     let msg = '修改成功!';

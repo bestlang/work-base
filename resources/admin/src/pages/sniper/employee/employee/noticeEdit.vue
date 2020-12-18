@@ -20,18 +20,21 @@
                             <el-form-item label="公告名称">
                                 <el-input v-model="form.title"></el-input>
                             </el-form-item>
+                            <el-form-item label="公告日期">
+                                <el-date-picker value-format="yyyy-MM-dd" type="date" v-model="form.notice_date"></el-date-picker>
+                            </el-form-item>
                             <el-form-item label="公告内容">
                                 <vue-ueditor-wrap v-model="form.content" :config="ueditorConfig"></vue-ueditor-wrap>
                             </el-form-item>
-                            <el-form-item label="备注">
+                            <el-form-item label="公告备注">
                                 <el-input v-model="form.note"></el-input>
                             </el-form-item>
-                            <el-form-item label="附件">
+                            <el-form-item label="公告附件">
                                 <attachment v-model="form.attachments" @preview="handlePreview"></attachment>
                             </el-form-item>
                         </el-form>
                     </el-tab-pane>
-                    <el-tab-pane label="通知对象" name="member">
+                    <el-tab-pane label="发送对象" name="member">
                         <div>
                             <el-button type="primary" icon="el-icon-plus" size="small" circle style="margin-bottom: 10px;" @click="handleAddParticipant"></el-button>
                         </div>
@@ -76,7 +79,6 @@
 </template>
 <script>
     import api from 'sysApi'
-    import {formatDateTime} from "sysApi/util"
     import attachment from "@/components/attachment"
     import VueUeditorWrap from 'vue-ueditor-wrap';
     import ueditorConfig from "sysStore/ueditor"
@@ -95,8 +97,9 @@
                     id: 0,
                     title: '',
                     content: '',
+                    notice_date: null,
                     note: '',
-                    attachments: '',
+                    attachments: [],
                     audiences:[]
                 },
                 pickerOptions: {
@@ -143,13 +146,16 @@
             },
             handleAdd(){},
             async handleSubmit(){
-                let res = await api.sniperSaveEmployeeTrain(this.form)
-                if(res.hasError){
+                console.log(JSON.stringify(this.form))
+                /**
+                 * let res = await api.sniperSaveEmployeeTrain(this.form)
+                 if(res.hasError){
                     this.$message.error(res.error)
                 }else{
                     this.$message.success('操作成功！')
                     this.goBack()
                 }
+                 */
             },
             handleAddParticipant(){
                 this.drawer = true;
@@ -171,7 +177,6 @@
                     let idx = this.form.audiences.indexOf(userId)
                     this.form.audiences.splice(idx, 1)
                 }
-                console.log(JSON.stringify(this.form.audiences))
             },
             async getTrainDetail(id){
                 let {data} = await api.sniperEmployeeTrainDetail({id});
@@ -191,23 +196,6 @@
             }
         },
         watch:{
-            // async ['form.id'](val){
-            //     await this.getTrainDetail(val)
-            // },
-            ['form.start_time'](val){
-                if(val){
-                    if(!/\d{4}\-\d{2}\-\d{2}/.test(val)){
-                        this.form.start_time = formatDateTime(val)
-                    }
-                }
-            },
-            ['form.end_time'](val){
-                if(val){
-                    if(!/\d{4}\-\d{2}\-\d{2}/.test(val)){
-                        this.form.end_time = formatDateTime(val)
-                    }
-                }
-            },
             users(val){
                 let groupedUser = {}
                 val.forEach((user) => {

@@ -29,6 +29,7 @@
                                         type="datetime"
                                         placeholder="选择开始日期"
                                         align="right"
+                                        value-format="yyyy-MM-dd HH:mm:ss"
                                         :picker-options="pickerOptions">
                                 </el-date-picker>
                             </el-form-item>
@@ -38,6 +39,7 @@
                                         type="datetime"
                                         placeholder="选择结束日期"
                                         align="right"
+                                        value-format="yyyy-MM-dd HH:mm:ss"
                                         :picker-options="pickerOptions">
                                 </el-date-picker>
                             </el-form-item>
@@ -107,7 +109,6 @@
 </template>
 <script>
     import api from 'sysApi'
-    import {formatDateTime} from "sysApi/util"
 
     export default {
         name: 'sniperEmployeeTrainEdit',
@@ -200,7 +201,6 @@
                     let idx = this.form.participants.indexOf(userId)
                     this.form.participants.splice(idx, 1)
                 }
-                console.log(JSON.stringify(this.form.participants))
             },
             async getTrainDetail(id){
                 let {data} = await api.sniperEmployeeTrainDetail({id});
@@ -220,23 +220,6 @@
             }
         },
         watch:{
-            // async ['form.id'](val){
-            //     await this.getTrainDetail(val)
-            // },
-            ['form.start_time'](val){
-                if(val){
-                    if(!/\d{4}\-\d{2}\-\d{2}/.test(val)){
-                        this.form.start_time = formatDateTime(val)
-                    }
-                }
-            },
-            ['form.end_time'](val){
-                if(val){
-                    if(!/\d{4}\-\d{2}\-\d{2}/.test(val)){
-                        this.form.end_time = formatDateTime(val)
-                    }
-                }
-            },
             users(val){
                 let groupedUser = {}
                 val.forEach((user) => {

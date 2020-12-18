@@ -49,10 +49,17 @@
             handlePreview(file){
                 this.$emit('preview', file)
             },
-            uploadSuccess(response, file, fl){
+            uploadSuccess(response, file){
                 const item = {name: file.name, url: file.response.data.file}
-                this.fileList = [...this.fileList, item]
-                this.$emit('input', this.fileList)
+                //this.fileList = [...this.fileList, item]
+                this.fileList.push(item)
+                let simpleFileList = []
+                this.fileList.forEach((file) => {
+                    let {name, url} = file;
+                    simpleFileList.push({name, url});
+                })
+                console.log(JSON.stringify(simpleFileList))
+                this.$emit('input', simpleFileList)
             }
         },
         mounted: function () {

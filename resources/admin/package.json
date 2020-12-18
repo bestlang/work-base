@@ -1,6 +1,6 @@
 {
-  "name": "思纳福内部系统",
-  "shortName": "MP",
+  "name": "SNIPER",
+  "shortName": "SN",
   "allowModules": ["base","cms", "sniper", "panel", "privileges"],
   "version": "1.0.0",
   "description": "admin",

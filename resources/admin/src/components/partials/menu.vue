@@ -99,10 +99,11 @@
 <style scoped lang="less">
     .ls-top-logo{
         font-size: 18px;
+        font-weight: 700;
     }
     .ls-top-logo, .ls-top-logo-narrow{
         letter-spacing: 1px;
-        font-weight: lighter;
+
         color: #aaa;
         height: 50px;
         line-height: 50px;
