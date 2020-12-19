@@ -5,6 +5,7 @@ Route::any('/', function(){
 Route::group(['prefix' => 'ajax'], function($router){
 
     Route::any('/csrf', 'IndexController@csrf');
+    Route::any('/user', 'IndexController@user');
     Route::group(['namespace'=>'Auth', 'prefix'=>'auth'], function(){
         Route::any('login', 'LoginController@login');
         Route::any('logout', 'LoginController@logout');
@@ -33,8 +34,5 @@ Route::group(['namespace'=>'Auth'], function(){
     Route::get('email/verify/{id}', 'VerificationController@verify')->name('verification.verify');
     Route::get('email/resend', 'VerificationController@resend')->name('verification.resend');
 });
-Route::get('/qq', function(){
-    return Socialite::driver('qq')->redirect();
-});
-Route::any('/socialite/qq', 'SocialiteController@qq');
-Route::any('/open3rd/qq', 'SocialiteController@qq');
+Route::get('/qq', 'SocialiteController@qq');
+Route::any('/socialite/qq', 'SocialiteController@qqCallback');

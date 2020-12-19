@@ -85,16 +85,6 @@
 </div>
 @endsection
 @push('script')
-{{--<script type="text/javascript" charset="utf-8"--}}
-        {{--src="//connect.qq.com/qc_jssdk.js"--}}
-        {{--data-appid="101919469"--}}
-        {{--data-redirecturi="https://www.laracms.com/socialite/qq"--}}
-{{--></script>--}}
-{{--<script type="text/javascript">--}}
-    {{--QC.Login({--}}
-        {{--btnId:"qqLoginBtn"	//插入按钮的节点id--}}
-    {{--});--}}
-{{--</script>--}}
 <script>
     $(function(){
         $('#btn-ajax-submit').click(function(){
