@@ -12,7 +12,7 @@ let pkg = require('../../package')
 
 let children = [];
 let allowed = pkg.allowModules;
-let allModules = {sniper, cms, base, privileges}
+let allModules = {sniper, cms, privileges, base}
 for(let key in allModules){
     if(allowed.indexOf(key) !== -1){
         children = children.concat(allModules[key])
