@@ -57,8 +57,8 @@
                             width="220"
                             label="操作">
                         <template slot-scope="scope">
-                            <el-button type="primary" @click="editNotice(scope.row)" size="mini">编辑</el-button>
-                            <el-button type="danger" @click="deleteNotice(scope.row)" size="mini">删除</el-button>
+                            <el-button type="primary" @click="editNotice(scope.row)" size="mini"  v-if="!scope.row.sent">编辑</el-button>
+                            <el-button type="danger" @click="deleteNotice(scope.row)" size="mini" v-if="!scope.row.sent">删除</el-button>
                             <el-button type="success" @click="sendNotice(scope.row)" size="mini" v-if="!scope.row.sent">发送</el-button>
                         </template>
                     </el-table-column>
@@ -113,7 +113,18 @@
                     await this.getHistories()
                 });
             },
-            sendNotice({id}){
+            async sendNotice({id}){
+                this.$confirm('确定发送公告?', '提示', {
+                    confirmButtonText: '确定',
+                    cancelButtonText: '取消',
+                    type: 'warning'
+                }).then(async () => {
+                    let res = await api.sniperEmployeeNoticeSend({id})
+                    if(!res.hasError){
+                        this.$message.success('发送成功！')
+                        await this.getHistories()
+                    }
+                });
 
             },
             currentChange(page){

@@ -25,7 +25,7 @@ class User extends BaseUser
 
     public function notices()
     {
-        return $this->belongsToMany(Train::class, 'sniper_employee_notice_audiences', 'user_id', 'notice_id')
-            ->using(NoticeAudience::class);
+        return $this->belongsToMany(Notice::class, 'sniper_employee_notice_audiences', 'user_id', 'notice_id')->with('user')
+            ->using(NoticeAudience::class)->wherePivot('sent', 1);
     }
 }

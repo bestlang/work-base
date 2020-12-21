@@ -5,6 +5,7 @@ namespace Sniper\Employee\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use Sniper\Employee\Models\Notice;
 use Arr;
+use Sniper\Employee\Models\User;
 use Validator;
 
 class NoticeController
@@ -59,10 +60,11 @@ class NoticeController
         return response()->ajax();
     }
 
+    //不做权限验证 panel也要调用
     public function detail(Request $request)
     {
         $id = $request->input('id');
-        $notice = Notice::where('id', $id)->with('audiences.employee.department')->first();
+        $notice = Notice::where('id', $id)->with(['audiences.employee.department', 'user'])->first();
         $notice->attachments = json_decode($notice->attachments);
         return response()->ajax($notice);
     }
@@ -103,8 +105,28 @@ class NoticeController
         }catch (\Exception $e){
             return response()->error($e->getMessage());
         }
+        $send_at = now();
         $notice->sent = 1;
-        $notice->audiences()->update(['sent' => 1, 'send_at' => now()]);
+        $notice->send_at = $send_at;
+        $notice->audiences()->update(['sent' => 1, 'send_at' => $send_at]);
+        $notice->save();
         return response()->ajax();
+    }
+
+    // personal notices
+    public function notices(Request $request)
+    {
+        $userId = auth()->user()->id;
+        $user = User::find($userId);
+        $query = $user->notices();
+        $page = $request->input('page', 1);
+        $page_size = $request->input('page_size', 10);
+        if($keyword = $request->input('keyword', '')){
+            $query->where('title', 'like', "%{$keyword}%");
+        }
+        $total = $query->count();
+        $notices = $query->orderBy('id', 'desc')->limit($page_size)->offset(($page - 1) * $page_size)->get();
+
+        return response()->ajax(compact(['notices', 'total']));
     }
 }

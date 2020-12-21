@@ -93,6 +93,8 @@ export default {
     sniperSaveEmployeeNotice(data){ return fetch('/admin/sniper/employee/save/notice', data, 'post') },
     sniperEmployeeNoticeHistories(data){ return fetch('/admin/sniper/employee/notice/histories', data) },
     sniperEmployeeNoticeDetail(data){ return fetch('/admin/sniper/employee/notice/detail', data) },
+    sniperEmployeeNoticeSend(data){ return fetch('/admin/sniper/employee/notice/send', data, 'post') },
+    sniperEmployeePersonalNotices(data){ return fetch('/admin/sniper/employee/personal/notices', data) },
 
 
     sniperGetEmployeeList(data){ return fetch('/admin/sniper/employee/employee', data) },

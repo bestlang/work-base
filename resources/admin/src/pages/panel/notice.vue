@@ -4,7 +4,7 @@
             <!--<div class="l-block-header"></div>-->
             <div class="l-block-body">
                 <el-table
-                        :data="contents"
+                        :data="notices"
                         style="width: 100%">
                     <el-table-column
                             label="人事公告">
@@ -12,8 +12,8 @@
                             <a @click="viewContentDetail(scope.row)" target="_blank" class="l-cursor">{{scope.row.title}}</a>
                         </template>
                     </el-table-column>
-                    <el-table-column label="" prop="created_at" width="180">
-                    </el-table-column>
+                    <el-table-column label="发布人" prop="user.name" width="100"></el-table-column>
+                    <el-table-column label="发布时间" prop="send_at" width="180"></el-table-column>
                 </el-table>
                 <pager :total="total" :page-size="page_size" @current-change="currentChange"></pager>
             </div>
@@ -31,7 +31,7 @@
         data(){
             return {
                 total: 0,
-                contents:[],
+                notices:[],
                 page: 1,
                 page_size: 10,
                 channel_id: 37,//人事公告
@@ -45,9 +45,9 @@
                     page_size: this.page_size,
                     channel_id: this.channel_id
                 }
-                let {data} = await api.getExternalContents(params)
+                let {data} = await api.sniperEmployeePersonalNotices(params)
 
-                this.contents = data.contents
+                this.notices = data.notices
                 this.total = data.total || 0
             },
             async currentChange(page){

@@ -6,9 +6,9 @@
             <li>正文</li>
         </ol>
         <div class="l-notice-content">
-            <div class="l-text-center" style="margin-bottom: 30px;"><h3>{{content?content.title:''}}</h3></div>
-            <div class="l-text-center l-small" style="margin-bottom: 20px;font-style: italic;">发布人:{{author}} 发布日期: {{date}}</div>
-            <div v-html="contentContent"></div>
+            <div class="l-text-center" style="margin-bottom: 30px;"><h3>{{notice?notice.title:''}}</h3></div>
+            <div class="l-text-center l-small" style="margin-bottom: 20px;font-style: italic;">发布人:{{author}} 发布日期: {{notice?notice.send_at:''}}</div>
+            <div v-html="notice?notice.content:''"></div>
         </div>
     </div>
 
@@ -19,45 +19,35 @@
     export default {
         data(){
             return {
-                content_id: 0,
-                content: null
+                notice_id: 0,
+                notice: null
             }
         },
         computed:{
-            date(){
-                if(this.content){
-                    return this.content.created_at
-                }
-            },
             author(){
-                if(this.content && this.content.user){
-                    return this.content.user.name
-                }
-            },
-            contentContent(){
-                if(this.content){
-                    return this.content.contents.map((c) => { return c.value}).join('')
+                if(this.notice && this.notice.user){
+                    return this.notice.user.name
                 }
             }
         },
         watch:{
-            async content_id(newVal){
+            async notice_id(newVal){
                 if(newVal){
-                    await this.getContent()
+                    await this.getNotice()
                 }
             }
         },
         methods:{
-            async getContent(){
+            async getNotice(){
                 let params = {
-                        content_id: this.content_id
+                        id: this.notice_id
                 }
-                let {data} = await api.getExternalContent(params)
-                this.content = data
+                let {data} = await api.sniperEmployeeNoticeDetail(params)
+                this.notice = data
             }
         },
         mounted(){
-            this.content_id = parseInt(this.$route.query.id) || 0;
+            this.notice_id = parseInt(this.$route.query.id) || 0;
         }
     }
 </script>

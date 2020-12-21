@@ -384,7 +384,7 @@ class DingTalk extends Command
                     ->where('timeResult', 'Late')
                     ->selectRaw('userId,count(1) as ct')
                     ->groupBy('userId')
-                    ->having('ct', '>', 1)
+                    ->having('ct', '>', 2)
                     ->get();
                 foreach ($hitThreeTimesUsers as $user){
                     //$user->email = 'luzhang@sniper-tech.com';///
@@ -394,6 +394,7 @@ class DingTalk extends Command
                         Mail::to($user)->send($lateNotice);
 
                         try{
+                            //with('employee.position.parent.employee.user')
                             $employee = User::where('email', $user->email)->first()->employee()->first()->position()->first()->parent()->first()->employee()->with('user')->get();
                             foreach($employee as $e){
                                 $leader = new \stdClass();
