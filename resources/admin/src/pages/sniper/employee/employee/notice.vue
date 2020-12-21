@@ -59,7 +59,7 @@
                         <template slot-scope="scope">
                             <el-button type="primary" @click="editNotice(scope.row)" size="mini"  v-if="!scope.row.sent">编辑</el-button>
                             <el-button type="danger" @click="deleteNotice(scope.row)" size="mini" v-if="!scope.row.sent">删除</el-button>
-                            <el-button type="success" @click="sendNotice(scope.row)" size="mini" v-if="!scope.row.sent">发送</el-button>
+                            <el-button type="success" @click="sendNotice(scope.row)" size="mini" v-if="true || !scope.row.sent">发送</el-button>
                         </template>
                     </el-table-column>
                 </el-table>

@@ -13,10 +13,10 @@ class ProcessNotice implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
     protected $notice;
+
     /**
-     * Create a new job instance.
-     *
-     * @return void
+     * ProcessNotice constructor.
+     * @param Notice $notice
      */
     public function __construct(Notice $notice)
     {
@@ -30,6 +30,10 @@ class ProcessNotice implements ShouldQueue
      */
     public function handle()
     {
-        print_r(json_encode($this->notice));
+        $notice = $this->notice;
+        foreach ($notice->audiences as $audience){
+            $n = new Notice($audience);
+            Mail::to($audience)->send($n);
+        }
     }
 }
