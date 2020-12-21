@@ -9,6 +9,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Sniper\Employee\Models\Notice;
 use Sniper\Employee\Mail\Notice as NoticeMailable;
+use Mail;
 
 class ProcessNotice implements ShouldQueue
 {
