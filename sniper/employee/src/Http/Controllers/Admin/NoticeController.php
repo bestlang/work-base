@@ -3,6 +3,7 @@
 namespace Sniper\Employee\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
+use Sniper\Employee\Jobs\ProcessNotice;
 use Sniper\Employee\Models\Notice;
 use Arr;
 use Sniper\Employee\Models\User;
@@ -110,6 +111,8 @@ class NoticeController
         $notice->send_at = $send_at;
         $notice->audiences()->update(['sent' => 1, 'send_at' => $send_at]);
         $notice->save();
+
+        ProcessNotice::dispatch($notice);
         return response()->ajax();
     }
 
