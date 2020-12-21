@@ -33,7 +33,7 @@ class Notice extends Mailable
        $this->from($from,'公告');
         $this->subject($this->notice->title);
         foreach (json_decode($this->notice->attachments) as $at){
-            $this->attach($at);
+            $this->attach($at->url);
         }
         $this->view('sniper::emails.notice');
         return $this;
