@@ -39,6 +39,9 @@ class NoticeController
             if($existing){
                 $notice = $existing;
             }
+            if($existing->sent){
+                return response()->error('已发送无法再次编辑！');
+            }
         }
         $notice->user_id = auth()->user()->id;
         $notice->title = Arr::get($params, 'title');
