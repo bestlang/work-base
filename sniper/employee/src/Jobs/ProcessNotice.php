@@ -8,6 +8,7 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Sniper\Employee\Models\Notice;
+use Sniper\Employee\Mail\Notice as NoticeMailable;
 
 class ProcessNotice implements ShouldQueue
 {
@@ -32,7 +33,7 @@ class ProcessNotice implements ShouldQueue
     {
         $notice = $this->notice;
         foreach ($notice->audiences as $audience){
-            $n = new Notice($audience);
+            $n = new NoticeMailable($audience);
             Mail::to($audience)->send($n);
         }
     }
