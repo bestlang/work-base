@@ -32,12 +32,10 @@ class ProcessNotice implements ShouldQueue
      */
     public function handle()
     {
-        $notice = $this->notice;
-        foreach ($notice->audiences as $audience){
-            print_r([$notice->toArray(),  $audience->toArray()]);
-            $n = new NoticeMailable($notice);
-            Mail::to($audience)->send($n);
-            break;
-        }
+//        $notice = $this->notice;
+//        foreach ($notice->audiences as $audience){
+//            $n = new NoticeMailable($notice);
+//            Mail::to($audience)->send($n);
+//        }
     }
 }
