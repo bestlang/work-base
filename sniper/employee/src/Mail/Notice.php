@@ -30,11 +30,12 @@ class Notice extends Mailable
     public function build()
     {
         $from = env('MAIL_USERNAME');
-       $this->from($from,'公告');
-        $this->subject($this->notice->title);
         foreach (json_decode($this->notice->attachments) as $at){
             $this->attach($at->url);
         }
-        return $this->view('sniper::emails.notice');
+       return $this->from($from,'公告')
+           ->subject($this->notice->title)
+           ->view('sniper::emails.notice');
+
     }
 }
