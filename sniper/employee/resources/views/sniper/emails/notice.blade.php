@@ -10,6 +10,7 @@
         {{$notice->content}}
     </div>
     <div style="width: 100%;border-bottom: 1px dotted #ccc"></div>
-    <p><i>本邮件由后台程序自动发送，请勿回复。</i></p>
+    <p><i>本邮件由后台程序自动发送，请勿回
+            复。</i></p>
 </body>
 </html>
