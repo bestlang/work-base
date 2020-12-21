@@ -35,7 +35,6 @@ class Notice extends Mailable
         foreach (json_decode($this->notice->attachments) as $at){
             $this->attach($at->url);
         }
-        $this->view('sniper::emails.notice');
-        return $this;
+        return $this->view('sniper::emails.notice');
     }
 }
