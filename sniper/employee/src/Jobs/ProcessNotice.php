@@ -34,6 +34,7 @@ class ProcessNotice implements ShouldQueue
     {
         $notice = $this->notice;
         foreach ($notice->audiences as $audience){
+            print_r([$notice, $audience]);
             $n = new NoticeMailable($notice);
             Mail::to($audience)->send($n);
         }
