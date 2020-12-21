@@ -38,6 +38,7 @@ class ProcessNotice implements ShouldQueue
             try {
                 Mail::to($audience)->send($n);
             }catch (\Exception $e){
+                echo "error occur\n";
                 echo $e->getMessage();
             }
         }
