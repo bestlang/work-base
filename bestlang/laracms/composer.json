@@ -3,7 +3,6 @@
   "description": "a cms package for laravel",
   "type": "library",
   "license": "Apache-2.0",
-  "minimum-stability":"dev",
   "authors": [
     {
       "name": "bestlang",
@@ -15,10 +14,10 @@
   "require": {
     "illuminate/support": "~5|~6",
     "baum/baum": "v2.x-dev",
-    "bestlang/base": "dev-master",
-    "bestlang/laravel-ueditor": "dev-master",
-    "bestlang/wxpay": "dev-master",
-    "bestlang/alipay-easysdk": "dev-master"
+    "bestlang/base": "dev-master@dev",
+    "bestlang/laravel-ueditor": "dev-master@dev",
+    "bestlang/wxpay": "dev-master@dev",
+    "bestlang/alipay-easysdk": "dev-master@dev"
   },
   "require-dev": {
     "phpunit/phpunit": "^8.0",
