@@ -1,7 +1,8 @@
 {
   "name": "sniper/employee",
   "description": "employee related module",
-  "license": "MIT",
+  "license": "Apache-2.0",
+  "minimum-stability":"stable",
   "authors": [
     {
       "name": "luzhang",

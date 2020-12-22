@@ -3,6 +3,7 @@
   "description": "a cms package for laravel",
   "type": "library",
   "license": "Apache-2.0",
+  "minimum-stability":"stable",
   "authors": [
     {
       "name": "bestlang",
@@ -10,7 +11,7 @@
     }
   ],
   "homepage": "https://github.com/bestlang/laracms",
-  "keywords": ["Laravel", "laraCms"],
+  "keywords": ["Laravel", "laraCMS"],
   "require": {
     "illuminate/support": "~5|~6",
     "baum/baum": "v2.x-dev",
