@@ -43,3 +43,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 //Route::group(['prefix' => 'ajax'], function($router){
 //    Route::any('pay/native2', 'PayController@native2');
 //});
+Route::get('mailable', function(){
+    $notice = Sniper\Employee\Models\Notice::find(4);
+    return new \Sniper\Employee\Mail\Notice($notice);
+});
