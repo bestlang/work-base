@@ -64,7 +64,7 @@
                     <h4 style="color: #5d5d5d;padding: 5px 0;">{{dept}}</h4>
                     <p>
                         <span @click="selectThisUser(u, dept)" class="user-to-select" :class="{active: form.audiences.indexOf(u.sniperUser.id+'-'+u.name+'-'+dept) !== -1}" v-for="u in gu">
-                            {{u.name}}*{{u.sniperUser.id+'-'+u.name+'-'+dept}}
+                            {{u.name}}
                             <div class="tri"><i class="if">&#xe6bd;</i></div>
                         </span>
                     </p>
