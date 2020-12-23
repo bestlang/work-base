@@ -118,7 +118,7 @@ a {
     }
 }
 .navbar-brand {
-    padding: 8px 15px;
+    padding: 8px 15px !important;
 }
 
 .navbar-brand img{
