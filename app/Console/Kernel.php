@@ -5,9 +5,6 @@ namespace App\Console;
 use App\Console\Commands\GenSql;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
-use App\Apis\Pdd;
-use App\Pdd\PddOrder;
-use App\Console\Commands\PddCats;
 use App\Apis\Mp;
 use Illuminate\Support\Facades\Cache;
 
@@ -24,10 +21,8 @@ class Kernel extends ConsoleKernel
     ];
 
     /**
-     * Define the application's command schedule.
-     *
-     * @param  \Illuminate\Console\Scheduling\Schedule  $schedule
-     * @return void
+     * @param Schedule $schedule
+     * @throws \Exception
      */
     protected function schedule(Schedule $schedule)
     {
@@ -37,7 +32,7 @@ class Kernel extends ConsoleKernel
             try{$schedule->command('sniper:dingTalk attendance')->dailyAt('09:30');}catch (\Exception $e){$msg .= $e->getMessage();}
             try{$schedule->command('sniper:dingTalk attendance')->dailyAt('10:00');}catch (\Exception $e){$msg .= $e->getMessage();}
             try{$schedule->command('sniper:dingTalk attendance')->dailyAt('11:50');}catch (\Exception $e){$msg .= $e->getMessage();}
-            //try{$schedule->command('sniper:dingTalk lateNotice')->dailyAt('12:00');}catch (\Exception $e){$msg .= $e->getMessage();}
+            try{$schedule->command('sniper:dingTalk lateNotice')->dailyAt('12:00');}catch (\Exception $e){$msg .= $e->getMessage();}
             try{$schedule->command('sniper:dingTalk attendance')->dailyAt('18:30');}catch (\Exception $e){$msg .= $e->getMessage();}
             try{$schedule->command('sniper:dingTalk attendance')->dailyAt('20:00');}catch (\Exception $e){$msg .= $e->getMessage();}
             try{$schedule->command('sniper:dingTalk attendance')->dailyAt('23:00');}catch (\Exception $e){$msg .= $e->getMessage();}
