@@ -15,6 +15,7 @@ class ModifyUsersTable extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->string('mobile', 255)->nullable()->after('password');
+            $table->string('avatar')->comment('头像')->nullable()->after('mobile');
             $table->tinyInteger('white')->nullable()->default(0)->comment('是否白名单0否1是');
         });
     }

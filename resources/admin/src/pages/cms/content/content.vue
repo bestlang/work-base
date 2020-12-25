@@ -30,7 +30,7 @@
             <div class="l-search-area" style="border-bottom: 1px solid #EBEEF5;">
               <el-form ref="form" :model="form" :inline="true" size="small">
                 <el-form-item label="标题">
-                  <el-input v-model="form.keyword" style="width: 200px;"></el-input>
+                  <el-input v-model="keyword" style="width: 200px;"></el-input>
                 </el-form-item>
                 <el-form-item>
                   <el-button type="default" @click="search"><i class="if">&#xe604;</i> 搜索</el-button>
@@ -92,14 +92,11 @@
         contents: [],
         showForm: false,
         formTitle: '添加文章',
-        form:{
-//          positions:[]
-            keyword: ''
-        },
 //        contentPositions: [],
         channel_id: 0,
         page:1,
         page_size: 8,
+        keyword: '',
         total: 0
       }
     },
@@ -127,7 +124,7 @@
       },
       currentChannel(val){
         if(val && !this.channel_id){
-            this.channel_id = parse(val.id)
+            this.channel_id = parseInt(val.id)
         }
       },
       contentCurrentChannel(val){
@@ -141,7 +138,6 @@
       async channel_id(val, old){
           if(val){
               this.page = 1
-              this.form.keyword = ''
               let {data} = await api.getCmsChannelWhole({id: val})
               this.$store.dispatch(this.$types.cmsContentCurrentChannel, data)
               //this.$store.dispatch(this.$types.cmsParentChannel, data)
@@ -150,8 +146,7 @@
     },
     methods: {
       search(){
-        let keyword = this.form.keyword
-        this.loadContents({keyword})
+        this.loadContents()
       },
       async editContent(row){
           this.$router.push('/cms/content/edit?content_id='+row.id);
@@ -176,8 +171,8 @@
           let channel_id = this.channel_id || this.contentCurrentChannel.id
           this.$router.push('/cms/content/add?channel_id='+channel_id)
       },
-      async loadContents({...params}){
-          let queryData = {channel_id: this.channel_id, page: this.page, page_size: this.page_size, ...params}
+      async loadContents(){
+          let queryData = {channel_id: this.channel_id, page: this.page, page_size: this.page_size, keyword: this.keyword}
           let {data} = await api.getChannelContents(queryData)
           if(data.contents){
               this.contents = data.contents;
@@ -185,8 +180,8 @@
           this.total = parseInt(data.total) || 0;
       },
       async currentChange(page){
-
-
+        this.page = page;
+        this.loadContents()
       }
     },
     async created() {

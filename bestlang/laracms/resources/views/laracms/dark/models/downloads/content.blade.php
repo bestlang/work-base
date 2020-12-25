@@ -34,11 +34,11 @@
                             <h3 class="panel-title">评论列表</h3>
                         </div>
                         <div class="panel-body">
-                            <div>
-                                @foreach($comments as $comment)
-                                    <p>{{$comment->user?$comment->user->name:''}} says:{{$comment->content}}</p>
-                                @endforeach
-                            </div>
+                            {{--<div>--}}
+                                {{--@foreach($comments as $comment)--}}
+                                    {{--<p>{{$comment->user?$comment->user->name:''}} says:{{$comment->content}}</p>--}}
+                                {{--@endforeach--}}
+                            {{--</div>--}}
                             @guest
                             @if(Route::has('login'))
                                 <a href="{{ route('login') }}" class="l-a">登录</a>之后发表评论

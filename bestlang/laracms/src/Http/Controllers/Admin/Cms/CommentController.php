@@ -22,8 +22,12 @@ class CommentController extends Controller{
     public function content(Request $request)
     {
         $content_id = $request->input('content_id', 0);
-        $content = Content::where('id', $content_id)->with(['comments','channel'])->firstOrFail();
-        $content->link = route('content', $content_id);
-        return response()->ajax($content);
+        try {
+            $content = Content::where('id', $content_id)->with(['comments', 'channel'])->firstOrFail();
+            $content->link = route('content', $content_id);
+            return response()->ajax($content);
+        }catch (\Exception $e){
+            return response()->ajax([]);
+        }
     }
 }

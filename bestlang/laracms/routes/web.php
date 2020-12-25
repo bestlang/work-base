@@ -32,6 +32,8 @@ Route::any('/pay/alipay', 'PayController@alipay');
 
 Route::group(['prefix' => 'ajax'], function($router){
 
+    Route::get('/content/comments', 'CommentController@contentComments');
+    Route::any('/comment/save', 'CommentController@save');
     Route::group(['middleware' => 'auth'], function(){
         include('adminOps.php');
     });

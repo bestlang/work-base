@@ -5,6 +5,7 @@ namespace BestLang\LaraCms\Http\Controllers;
 use BestLang\LaraCms\Models\Cms\Comment;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use BestLang\LaraCms\Models\Cms\Content;
 use Arr;
 
 class CommentController extends Controller
@@ -28,5 +29,12 @@ class CommentController extends Controller
         $comment->content = $params['content'];
         $comment->save();
         return response()->ajax([]);
+    }
+
+    public function contentComments(Request $request)
+    {
+        $content_id = $request->input('content_id', null);
+        $content = Content::with('comments.user')->where('id', $content_id)->first();
+        return response()->ajax($content->comments);
     }
 }
