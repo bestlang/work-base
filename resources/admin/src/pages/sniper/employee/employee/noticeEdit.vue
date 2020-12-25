@@ -70,6 +70,11 @@
                     </p>
                 </div>
                 <div class="l-add-buttons">
+                    <el-switch
+                            style="vertical-align: bottom"
+                            v-model="checked"
+                            active-text="全员">
+                    </el-switch>
                     <el-button type="primary" size="small" @click="handleConfirmAdd">确定</el-button>
                     <!--<el-button type="default" size="small"><i class="if">&#xe625;</i></el-button>-->
                 </div>
@@ -87,6 +92,7 @@
         name: 'sniperEmployeeNoticeEdit',
         data(){
             return {
+                checked: false,//发送对象 全员
                 drawer: false,
                 groupedUser: {},
                 users: [],
@@ -194,6 +200,24 @@
             }
         },
         watch:{
+            checked(val){
+                if(val){
+                    let audiences = [];
+                    for(let dept in this.groupedUser){
+                        let deptUsers = this.groupedUser[dept]
+                        for(let idx in deptUsers){
+                            let p = deptUsers[idx]
+                            console.log(JSON.stringify(p))
+                            let item = p.sniperUser.id + '-' + p.name + '-' + dept;
+                            audiences.push(item)
+                        }
+                    }
+                    console.log(JSON.stringify(audiences))
+                    this.form['audiences'] = audiences
+                }else{
+                    this.form['audiences'] = []
+                }
+            },
             users(val){
                 let groupedUser = {}
                 val.forEach((user) => {

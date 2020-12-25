@@ -15,12 +15,12 @@
             </div>
             <div class="l-block-body">
                 <el-tabs type="border-card" v-model="activeName">
-                    <el-tab-pane label="课程信息" name="lesson">
+                    <el-tab-pane label="培训信息" name="lesson">
                         <el-form ref="form" :model="form" label-width="80px" size="small">
-                            <el-form-item label="课程名称">
+                            <el-form-item label="培训名称">
                                 <el-input v-model="form.title"></el-input>
                             </el-form-item>
-                            <el-form-item label="课程内容">
+                            <el-form-item label="培训内容">
                                 <el-input v-model="form.content"></el-input>
                             </el-form-item>
                             <el-form-item label="开始日期">
@@ -64,7 +64,7 @@
                             </el-form-item>
                         </el-form>
                     </el-tab-pane>
-                    <el-tab-pane label="参会人员" name="member">
+                    <el-tab-pane label="参与人员" name="member">
                         <div>
                             <el-button type="primary" icon="el-icon-plus" size="small" circle style="margin-bottom: 10px;" @click="handleAddParticipant"></el-button>
                         </div>

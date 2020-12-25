@@ -231,8 +231,10 @@
                                 :data="trains"
                                 style="width: 100%">
                             <el-table-column
-                                    prop="title"
-                                    label="课程名称">
+                                    label="培训名称">
+                                <template slot-scope="scope">
+                                    <a href="javascript:;" style="color: rgb(64, 158, 255);" @click="showTrainDetailDialog(scope.row)">{{scope.row.title}}</a>
+                                </template>
                             </el-table-column>
                             <el-table-column
                                     prop="teacher"
@@ -261,6 +263,21 @@
                 </el-tabs>
             </div>
         </div>
+        <el-dialog title="培训信息" :visible.sync="showTrainDetail">
+            <div style="padding: 0 20px;overflow-y: scroll;height: 100%;">
+                <div class="l-position-meta" v-if="currentTrain">
+                    <div>培训名称：{{currentTrain.title}}</div>
+                    <div>培训内容：{{currentTrain.content}}</div>
+                    <div>开始日期：{{currentTrain.start_time}}</div>
+                    <div>结束日期：{{currentTrain.end_time}}</div>
+                    <div>持续时间：{{currentTrain.last_days}}天{{currentTrain.last_hours}}小时{{currentTrain.last_minutes}}分钟</div>
+                    <div>讲师：{{currentTrain.teacher}}</div>
+                    <div>地点：{{currentTrain.location}}</div>
+                    <div>参与人员：{{currentTrain.participants.map(p => { return p.name}).join()}}</div>
+                    <div></div>
+                </div>
+            </div>
+        </el-dialog>
     </div>
 </template>
 
@@ -296,6 +313,8 @@
         },
         data(){
             return {
+                currentTrain: null,
+                showTrainDetail: false,
                 activeName: 'basic',
                 bread_title: '新增员工',
                 value: null,
@@ -367,6 +386,10 @@
             }
         },
         methods:{
+            showTrainDetailDialog(train){
+                this.showTrainDetail = true;
+                this.currentTrain = train;
+            },
             handlePreview(file){
                 window.open(file.url, '_blank')
             },
