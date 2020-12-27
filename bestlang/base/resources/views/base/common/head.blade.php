@@ -13,7 +13,6 @@
     <script src="https://static.laracms.com/unpkg/jquery.min.js"></script>
     <script src="https://static.laracms.com/unpkg/bootstrap.min.js"></script>
     <link href="https://static.laracms.com/unpkg/bootstrap.min.css" rel="stylesheet">
-    {{--<script src="/vendor/base/app.js"></script>--}}
     <script src="https://static.laracms.com/unpkg/axios.min.js"></script>
     <script>
         if(window.axios){
@@ -26,6 +25,7 @@
     </script>
     <link href="https://static.laracms.com/unpkg/normalize.css" rel="stylesheet">
     <link href="https://static.laracms.com/unpkg/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://static.laracms.com/unpkg/swiper-bundle.min.css">
     <link rel="stylesheet" media="screen" href="/vendor/base/front.css" />
     @stack('css')
     <!--[if lt IE 9]>

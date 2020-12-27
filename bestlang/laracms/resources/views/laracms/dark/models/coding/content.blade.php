@@ -88,7 +88,9 @@
                 var html = '';
                 res.data.forEach((comment) => {
                     html += "<p>" + comment.user.name + ": " + comment.content + "</p>";
-                })
+                });
+                $('#comment').val('');
+                $('#l-display-comments').html('');
                 $(html).appendTo('#l-display-comments');
             });
         };
@@ -126,7 +128,7 @@
                 let res = response.data;
                 if(res.success){
                     alert('评论成功')
-                    location.reload()
+                    loadComments()
                 }else{
                     alert(JSON.stringify(res.error))
                 }

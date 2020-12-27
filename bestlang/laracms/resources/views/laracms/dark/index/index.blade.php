@@ -112,7 +112,7 @@
                                         <div class="media-left">
                                             <a href="{{route('content', $content->id)}}">
                                                 <div class="embed-responsive embed-responsive-4by3 img-zoom">
-                                                    @if($content->thumb)
+                                                    @if($content->thumb || $content->thumb = env('CMS_DEFAULT_IMAGE'))
                                                     <img src="{{$content->thumb}}" alt="{{$content->title}}"  />
                                                     @endif
                                                 </div>
