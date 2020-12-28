@@ -91,16 +91,16 @@ export default [
             //         }
             //     ]
             // },
-            {
-                path: "/cms/comment",
-                component: () => import("../pages/cms/comment/comment.vue"),
-                meta: {
-                    can: 'cms list contents',
-                    show: true,
-                    name: '评论管理',
-                    font: '&#xe60f;'
-                }
-            },
+            // {
+            //     path: "/cms/comment",
+            //     component: () => import("../pages/cms/comment/comment.vue"),
+            //     meta: {
+            //         can: 'cms list contents',
+            //         show: true,
+            //         name: '评论管理',
+            //         font: '&#xe60f;'
+            //     }
+            // },
             {
                 path: "/cms/comment/content",
                 component: () => import("../pages/cms/comment/content.vue"),
@@ -121,16 +121,16 @@ export default [
                     font: '&#xe619;'
                 },
                 children: [
-                    {
-                        path: "/cms/setting/siteSetting",
-                        component: () => import("../pages/cms/setting/siteSetting.vue"),
-                        meta: {
-                            can: 'cms setting site',
-                            show: true,
-                            name: '站点设置',
-                            font: '&#xe623;'
-                        }
-                    },
+                    // {
+                    //     path: "/cms/setting/siteSetting",
+                    //     component: () => import("../pages/cms/setting/siteSetting.vue"),
+                    //     meta: {
+                    //         can: 'cms setting site',
+                    //         show: true,
+                    //         name: '站点设置',
+                    //         font: '&#xe623;'
+                    //     }
+                    // },
                     {
                         path: "/cms/setting/model",
                         component: () => import("../pages/cms/setting/model.vue"),
