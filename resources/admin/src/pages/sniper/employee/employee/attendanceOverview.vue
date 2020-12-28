@@ -256,7 +256,7 @@
     margin-bottom: 10px;
     ul{
       display: flex;
-      flex-flow: row nowrap;
+      flex-flow: row wrap;
       justify-content: flex-start;
       li{
         float: left;
@@ -265,6 +265,7 @@
         border-radius: 3px;
         padding: 3px 8px;
         margin-right: 10px;
+        margin-bottom: 10px;
         &.active{
           color: #fff;
           border-color: #293c55;
