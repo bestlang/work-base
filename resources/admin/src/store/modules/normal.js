@@ -35,11 +35,11 @@ const normalConfig = {
             return user
         },
         [types.csrf](state){
-            return state.csrf || sessionStorage.getItem(types.csrf)
+            //state.csrf ||
+            return sessionStorage.getItem(types.csrf)
         },
         accessToken(state){
-            //state.accessToken ||
-            return localStorage.getItem('accessToken')
+            return state.accessToken || localStorage.getItem('accessToken')
         },
         currentRole(state){
             return state.currentRole
