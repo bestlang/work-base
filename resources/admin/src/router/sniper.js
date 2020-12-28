@@ -73,7 +73,7 @@ export default [
                 path: "/sniper/employee/position/change",
                 component: () => import("../pages/sniper/employee/employee/positionChange.vue"),
                 meta: {
-                    can: 'hr employee',
+                    can: 'hr position change',
                     show: true,
                     name: '人事变动',
                     font: '&#xe605;'
@@ -83,7 +83,7 @@ export default [
                 path: "/sniper/employee/wastage",
                 component: () => import("../pages/sniper/employee/employee/wastage.vue"),
                 meta: {
-                    can: 'hr employee',
+                    can: 'hr wastage',
                     show: true,
                     name: '离职管理',
                     font: '&#xe6d0;'
@@ -143,9 +143,9 @@ export default [
                 path: "/train",
                 component: () => import("../pages/sniper/employee/employee/train.vue"),
                 meta: {
-                    can: 'hr attendance',
+                    can: 'hr training',
                     show: true,
-                    name: '培训记录',
+                    name: '培训管理',
                     font: '&#xe61e;'
                 }
             },
@@ -153,7 +153,7 @@ export default [
                 path: "/train/edit",
                 component: () => import("../pages/sniper/employee/employee/trainEdit.vue"),
                 meta: {
-                    can: 'hr attendance',
+                    can: 'hr add training',
                     show: false,
                     name: '新增/编辑培训',
                     font: '&#xe61e;'
@@ -163,7 +163,7 @@ export default [
                 path: "/notice",
                 component: () => import("../pages/sniper/employee/employee/notice.vue"),
                 meta: {
-                    can: 'hr attendance',
+                    can: 'hr notice',
                     show: true,
                     name: '公告管理',
                     font: '&#xe61e;'
@@ -173,7 +173,7 @@ export default [
                 path: "/notice/edit",
                 component: () => import("../pages/sniper/employee/employee/noticeEdit.vue"),
                 meta: {
-                    can: 'hr attendance',
+                    can: 'hr add notice',
                     show: false,
                     name: '新增/编辑公告',
                     font: '&#xe61e;'
