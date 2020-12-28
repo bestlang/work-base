@@ -38,7 +38,8 @@ const normalConfig = {
             return state.csrf || sessionStorage.getItem(types.csrf)
         },
         accessToken(state){
-            return state.accessToken || localStorage.getItem('accessToken')
+            //state.accessToken ||
+            return localStorage.getItem('accessToken')
         },
         currentRole(state){
             return state.currentRole
