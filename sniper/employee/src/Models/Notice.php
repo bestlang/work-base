@@ -3,9 +3,11 @@
 namespace Sniper\Employee\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Notice extends Model
 {
+    use SoftDeletes;
     protected $table = 'sniper_employee_notices';
     protected $guarded = [];
 
