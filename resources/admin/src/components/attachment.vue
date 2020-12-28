@@ -6,6 +6,7 @@
             :before-remove="beforeRemove"
             :on-success="uploadSuccess"
             :on-preview="handlePreview"
+            :on-error="uploadError"
             multiple
             :file-list="fileList"
             name="file"
@@ -61,6 +62,10 @@
                     return {name, url}
                 });
                 this.$emit('input', this.fileList)
+            },
+            async uploadError(){
+                this.$message.error('上传出错请重试！');
+                await this.$store.dispatch(this.$types.csrf)
             }
         },
         mounted: function () {
