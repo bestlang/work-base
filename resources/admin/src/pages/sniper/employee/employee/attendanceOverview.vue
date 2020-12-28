@@ -51,7 +51,7 @@
       <v-chart :options="options2" style="width: 100%;height: 600px;"/>
     </el-card>
     <el-card style="margin-top: 20px;">
-      <div><b>月份日平均工时</b></div>
+      <div><b>{{ month && month}}日平均工时</b></div>
       <v-chart :options="options3" style="width: 100%;height: 800px;"/>
     </el-card>
   </div>
