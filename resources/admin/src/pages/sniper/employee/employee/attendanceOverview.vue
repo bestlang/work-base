@@ -47,9 +47,11 @@
           <li v-for="m in months" @click="viewMonth" :class="{active: month == m}">{{m}}</li>
         </ul>
       </div>
+      <div><b>小组平均出勤时间</b></div>
       <v-chart :options="options2" style="width: 100%;height: 600px;"/>
     </el-card>
     <el-card style="margin-top: 20px;">
+      <div><b>月份日平均工时</b></div>
       <v-chart :options="options3" style="width: 100%;height: 800px;"/>
     </el-card>
   </div>
@@ -91,8 +93,8 @@
               todayLate:[],
               NotSigned:[]
             },
-            months:null,//['2020-03', '2020-04', '2020-05', '2020-06', '2020-07', '2020-08', '2020-09', '2020-10', '2020-11', '2020-12'],
-            month: null,//'2020-12',
+            months:null,
+            month: null,
             options2:{
                 color:[
                     '#348498',
@@ -137,10 +139,10 @@
             },
             options3 : {
                 color: ['#293c55'],
-                title: {
-                    text: '月份日平均工时',
-                    subtext: ''
-                },
+                // title: {
+                //     text: '月份日平均工时',
+                //     subtext: ''
+                // },
                 tooltip: {
                     trigger: 'axis',
                     axisPointer: {
@@ -166,14 +168,14 @@
                         interval:0,
                         // rotate:20
                     },
-                    data: []//['巴西', '印尼', '美国', '印度', '中国', '世界人口(万)']
+                    data: []
                 },
 
                 series: [
                     {
                         name: '月平均工时',
                         type: 'bar',
-                        data: []//[19325, 23438, 31000, 121594, 134141, 681807]
+                        data: []
                     }
                 ]
             }
