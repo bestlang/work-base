@@ -69,7 +69,7 @@
                 this.$emit('input', this.fileList)
             },
             async uploadError(){
-                this.$message.error('上传出错请重试！');
+                this.$message.error('本次上传出错请重新上传');
                 await this.$store.dispatch(this.$types.csrf)
             }
         },
