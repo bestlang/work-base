@@ -25,22 +25,22 @@
                             <div>{!!  laracms::content($content, 'content') !!}</div>
                         </div>
                     </div>
-                    <div class="panel panel-default">
-                        <div class="panel-heading" id="comments">
-                            <h3 class="panel-title">评论列表</h3>
-                        </div>
-                        <div class="panel-body">
-                            <div>
-                                @foreach($comments as $comment)
-                                    <p>{{$comment->user ? $comment->user->name: ''}} says:{{$comment->content}}</p>
-                                @endforeach
-                            </div>
-                            @guest
-                            @if(Route::has('login'))
-                                <a href="{{ route('login') }}" class="l-a">登录</a>之后发表评论
-                            @endif
-                            @endguest
-                            @auth
+                    {{--<div class="panel panel-default">--}}
+                        {{--<div class="panel-heading" id="comments">--}}
+                            {{--<h3 class="panel-title">评论列表</h3>--}}
+                        {{--</div>--}}
+                        {{--<div class="panel-body">--}}
+                            {{--<div>--}}
+                                {{--@foreach($comments as $comment)--}}
+                                    {{--<p>{{$comment->user ? $comment->user->name: ''}} says:{{$comment->content}}</p>--}}
+                                {{--@endforeach--}}
+                            {{--</div>--}}
+                            {{--@guest--}}
+                            {{--@if(Route::has('login'))--}}
+                                {{--<a href="{{ route('login') }}" class="l-a">登录</a>之后发表评论--}}
+                            {{--@endif--}}
+                            {{--@endguest--}}
+                            {{--@auth--}}
                             {{--<form>--}}
                                 {{--<div class="form-group">--}}
                                     {{--<label for="comment">评论:</label>--}}
@@ -49,9 +49,9 @@
                                     {{--<button type="button" class="btn btn-primary" id="comment_submit">提交</button>--}}
                                 {{--</div>--}}
                             {{--</form>--}}
-                            @endauth
-                        </div>
-                    </div>
+                            {{--@endauth--}}
+                        {{--</div>--}}
+                    {{--</div>--}}
                 </div>
                 {{--<div class="col-md-4">--}}
                     {{--<div class="panel panel-default">--}}
