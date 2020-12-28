@@ -734,4 +734,7 @@
     /deep/ .el-tabs__item{
         font-size: 15px;
     }
+    .l-position-meta {
+        >div{line-height: 30px;}
+    }
 </style>
