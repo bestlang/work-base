@@ -35,8 +35,7 @@ const normalConfig = {
             return user
         },
         [types.csrf](state){
-            //state.csrf ||
-            return sessionStorage.getItem(types.csrf)
+            return state.csrf || sessionStorage.getItem(types.csrf)
         },
         accessToken(state){
             return state.accessToken || localStorage.getItem('accessToken')

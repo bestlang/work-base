@@ -26,12 +26,17 @@
             let accessToken = localStorage.getItem('accessToken')
             return {
                 uploadUrl: this.SITE_URL + '/' + getPrefix() + '/admin/file/upload',
-                headers: {
-                    'Authorization': 'Bearer ' + accessToken,
-                    'X-CSRF-TOKEN': this.$store.getters[this.$types.csrf]
-                },
                 disabled: false,
                 fileList: []
+            }
+        },
+        computed:{
+            headers(){
+                let getters = this.$store.getters
+                return {
+                    'Authorization': 'Bearer ' + getters['accessToken'],
+                    'X-CSRF-TOKEN': getters['csrf']
+                }
             }
         },
         watch:{
