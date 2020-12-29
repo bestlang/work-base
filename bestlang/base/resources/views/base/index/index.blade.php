@@ -2,24 +2,22 @@
 
 
 @section('title')
-    LaraCMS
+    首页
 @endsection
 
 @section('content')
     <div class="swiper-container" id="bannerSwiper" style="padding-top: 30px;">
         <div class="swiper-wrapper">
             <div class="swiper-slide">
-                <div class="l-swiper-one">
+                <div style="min-height: 600px;background: #b02d2d;color: #fff;padding-top: 50px;">
                     <div class="container">
-                        <div><h1>LaraCMS</h1></div>
-                        <div class="l-swiper-sub">
-                            <p>开源、免费、强大的PHP内容管理系统</p>
-                            <p>
-                                <p>基于Laravel的内容管理系统</p>
-                            </p>
-                            <p class="mainbtn" data-swiper-parallax="-4500">
-                                <p>开始使用 LaraCMS</p>
-                            </p>
+                        <div id="mainTheme" ><h1>LaraCMS</h1></div>
+                        <p>开源、免费、强大的PHP内容管理系统</p>
+                        <div class="subbtn">
+                            <p>基于Laravel的内容管理系统</p>
+                        </div>
+                        <div class="mainbtn" data-swiper-parallax="-4500">
+                            <p>开始使用 LaraCMS</p>
                         </div>
                     </div>
                     <div class="l-intro">
@@ -58,8 +56,8 @@
 @endpush
 @push('script')
 <script>
-    var mySwiper = new Swiper('#bannerSwiper',{
-        loop: false,
+    var mySwiper = new Swiper('#bannerSwiper', {
+        loop: true,
         speed:600,
         grabCursor : true,
         parallax:true,

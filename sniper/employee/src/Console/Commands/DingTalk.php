@@ -98,7 +98,7 @@ class DingTalk extends Command
                             'userid' => $user->userid,
                             'errcode' => $user->errcode,
                             'remark' => isset($user->remark) ? $user->remark : '',
-                            'isLeaderInDepts' => $user->isLeaderInDepts,
+                            'isLeaderInDepts' => explode(':', substr($user->isLeaderInDepts, 1, -1))[1] == 'true' ? 1 : 0,
                             'isBoss' => $user->isBoss,
                             'hiredDate' => isset($user->hiredDate) ? $user->hiredDate : '',
                             'isSenior' => $user->isSenior,
@@ -107,7 +107,7 @@ class DingTalk extends Command
                             'workPlace' => isset($user->workPlace) ? $user->workPlace : '',
                             'email' => isset($user->email) ? $user->email : '',
                             'orgEmail' => isset($user->orgEmail) ? $user->orgEmail : '',
-                            'orderInDepts' => $user->orderInDepts,
+                            'orderInDepts' => explode(':', substr($user->orderInDepts, 1, -1))[1],
                             'mobile' => isset($user->mobile) ? $user->mobile : '',
                             'errmsg' => $user->errmsg,
                             'active' => $user->active,
@@ -412,9 +412,13 @@ class DingTalk extends Command
 
                     }
                 }
-                //查看每个人今天是否有迟到
-                //如果有迟到 计算是否达到三次
-                //达到三次给领导和本人发送提醒邮件
+            }else if($act == 'getUserAndDeptWeeklyAvgAttendanceForCache'){
+                $months = [];
+                for($i = 0; $i <= 9; $i++){
+                    $months[] = date('Y-m', strtotime("-{$i} months"));
+                }
+                $userIds = DB::connection('proxy')->table('sniper_employee_ding_users')->pluck('userid')->toArray();
+                print_r($userIds);
             }
 /*else if($act == 'workTime'){
                 $month = '2020-09';

@@ -86,6 +86,9 @@ class DingTalkController
         if(!$request->input('all', 1)){
             $query->where('onJob', 1);
         }
+        if($id != 1){
+            $query->orderBy('isLeaderInDepts', 'desc');
+        }
         $dingUsers = $query->get();
         $departmentsMap = [];
         $dingDepartments = DingDepartment::all();
@@ -220,9 +223,10 @@ class DingTalkController
         $user = DingUser::where('userid', $userId)->first();
         $department = $user->department;
         $userIds = [];
-        DingUser::where('department', $department)->get()->each(function($user)use(&$userIds){
-            $userIds[] = $user->userid;
-        });
+//        DingUser::where('department', $department)->get()->each(function($user)use(&$userIds){
+//            $userIds[] = $user->userid;
+//        });
+        $userIds = DB::connection('proxy')->table('sniper_employee_ding_users')->where('department', $department)->pluck('userid')->toArray();
         $weekWorkDays = $this->_weekWorkDay($month);
         $grp = [];
 

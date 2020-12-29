@@ -7,6 +7,7 @@ use Sniper\Employee\Models\Position;
 use Sniper\Employee\Models\PositionChange;
 use Sniper\Employee\Models\User;
 use Validator;
+use Arr;
 
 class PositionController
 {
@@ -72,6 +73,7 @@ class PositionController
             $positionChange->name = $user->name;
             $positionChange->positionBefore = $params['positionBefore'];
             $positionChange->positionAfter = $position->name;
+            $positionChange->attachment = json_encode(Arr::get($params, 'attachment',[]));
             $positionChange->save();
         }catch (\Exception $e){
             return response()->error($e->getMessage());

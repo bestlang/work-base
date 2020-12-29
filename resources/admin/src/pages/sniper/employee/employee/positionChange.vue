@@ -87,6 +87,9 @@
                     <tree-select v-if="!form.id" v-model="form.positionAfter" :multiple="false" :options="positions"  :default-expand-level="10" :normalizer="normalizer" />
                     <div v-else>{{form.positionAfter}}</div>
                 </el-form-item>
+                <el-form-item label="执行依据文件" :label-width="w">
+                    <attachment v-model="form.attachment" @preview="handlePreview"></attachment>
+                </el-form-item>
             </el-form>
             <div slot="footer" class="dialog-footer">
                 <el-button @click="formVisible = false" size="small">取 消</el-button>
@@ -100,6 +103,7 @@
     import TreeSelect from '@riophae/vue-treeselect'
     import '@riophae/vue-treeselect/dist/vue-treeselect.css'
     import pager from "@/components/pager"
+    import attachment from "@/components/attachment"
 
     const removeEmptyChildren = function(data){
         if(!data.children.length){
@@ -119,19 +123,17 @@
                 w: '100px',
                 formVisible: false,
                 keyword: '',
-
                 employee: [],
                 state: '',
                 timeout:  null,
-
                 positions: [],
-
                 form:{
                     id: '',
                     date: '',
                     employee: '',
                     positionBefore: '',
-                    positionAfter: ''
+                    positionAfter: '',
+                    attachment: []
                 },
                 params:{
                     page: 1,
@@ -165,8 +167,12 @@
         },
         methods:{
             handleEdit(row){
+                this.form.positionBefore = row.positionBefore
+                this.form.positionAfter = row.positionAfter
                 let employee = row.user.name + '-' + row.user.email
                 this.form = Object.assign({}, {employee}, row)
+                this.form.attachment = JSON.parse(row.attachment)
+                console.log(JSON.stringify(this.form))
                 this.formVisible = true
             },
             async currentChange(page){
@@ -247,6 +253,9 @@
             },
             async submit(){
                 await this.savePositionChange()
+            },
+            handlePreview(file){
+                window.open(file.url, '_blank')
             }
         },
         watch:{
@@ -257,8 +266,6 @@
                     let employee = await this.getEmployeeInfo(email);
                     if(employee.data && employee.data.position && !this.form.id){
                         this.form.positionBefore = employee.data.position.name
-                    }else{
-                        this.form.positionBefore = ''
                     }
                 }
             },
@@ -266,7 +273,7 @@
                 await this.getHistories()
             }
         },
-        components: { TreeSelect, pager },
+        components: { TreeSelect, pager, attachment },
         async mounted() {
             await this.getPositions();
             this.employee = await this.getEmployee();
