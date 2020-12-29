@@ -87,7 +87,7 @@
                     }
 				    let f = parseInt(a.user.ding_user.isLeaderInDepts);
 				    let e = parseInt(b.user.ding_user.isLeaderInDepts);
-				    return f - e;
+				    return e - f;
 				});
 				this.showEmployee = true
 			}
