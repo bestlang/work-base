@@ -223,9 +223,10 @@ class DingTalkController
         $user = DingUser::where('userid', $userId)->first();
         $department = $user->department;
         $userIds = [];
-        DingUser::where('department', $department)->get()->each(function($user)use(&$userIds){
-            $userIds[] = $user->userid;
-        });
+//        DingUser::where('department', $department)->get()->each(function($user)use(&$userIds){
+//            $userIds[] = $user->userid;
+//        });
+        $userIds = DB::connection('proxy')->table('sniper_employee_ding_users')->where('department', $department)->pluck('userid')->toArray();
         $weekWorkDays = $this->_weekWorkDay($month);
         $grp = [];
 

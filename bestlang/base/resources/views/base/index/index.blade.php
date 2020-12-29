@@ -28,7 +28,7 @@
 @endsection
 @push('script')
 <script>
-    var mySwiper = new Swiper('#bannerSwiper',{
+    var mySwiper = new Swiper('#bannerSwiper', {
         loop: true,
         speed:600,
         grabCursor : true,

@@ -412,9 +412,13 @@ class DingTalk extends Command
 
                     }
                 }
-                //查看每个人今天是否有迟到
-                //如果有迟到 计算是否达到三次
-                //达到三次给领导和本人发送提醒邮件
+            }else if($act == 'getUserAndDeptWeeklyAvgAttendanceForCache'){
+                $months = [];
+                for($i = 0; $i <= 9; $i++){
+                    $months[] = date('Y-m', strtotime("-{$i} months"));
+                }
+                $userIds = DB::connection('proxy')->table('sniper_employee_ding_users')->pluck('userid')->toArray();
+                print_r($userIds);
             }
 /*else if($act == 'workTime'){
                 $month = '2020-09';
