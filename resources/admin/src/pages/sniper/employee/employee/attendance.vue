@@ -70,7 +70,9 @@
                 await this.getDepartmentUsers({id})
             },
             async month(val){
-                await this.getDepartmentUsers(this.department)
+                if(this.department){
+                    await this.getDepartmentUsers(this.department)
+                }
             },
             eventCat(val){
                 this.assignUsers(val)

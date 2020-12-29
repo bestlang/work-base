@@ -107,7 +107,7 @@ class DingTalk extends Command
                             'workPlace' => isset($user->workPlace) ? $user->workPlace : '',
                             'email' => isset($user->email) ? $user->email : '',
                             'orgEmail' => isset($user->orgEmail) ? $user->orgEmail : '',
-                            'orderInDepts' => $user->orderInDepts,
+                            'orderInDepts' => explode(':', substr($user->orderInDepts, 1, -1))[1],
                             'mobile' => isset($user->mobile) ? $user->mobile : '',
                             'errmsg' => $user->errmsg,
                             'active' => $user->active,
