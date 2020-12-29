@@ -98,7 +98,7 @@ class DingTalk extends Command
                             'userid' => $user->userid,
                             'errcode' => $user->errcode,
                             'remark' => isset($user->remark) ? $user->remark : '',
-                            'isLeaderInDepts' => $user->isLeaderInDepts,
+                            'isLeaderInDepts' => explode(':', substr($user->isLeaderInDepts, 1, -1))[1] == 'true' ? 1 : 0,
                             'isBoss' => $user->isBoss,
                             'hiredDate' => isset($user->hiredDate) ? $user->hiredDate : '',
                             'isSenior' => $user->isSenior,
