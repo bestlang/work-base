@@ -68,7 +68,7 @@ class EmployeeController
         if(count($departmentIdArr)){
             array_push($departmentIdArr, ...$departmentIdArr);
         }
-        $employee = Employee::with(['user.dingUser', 'position', 'department'])->whereIn('department_id', $departmentIdArr)->orderBy('user.dingUser.isLeaderInDepts', 'desc')->get();
+        $employee = Employee::with(['user.dingUser', 'position', 'department'])->whereIn('department_id', $departmentIdArr)->orderBy('department_id', 'asc')->get();
         return response()->ajax($employee);
     }
     public function save(Request $request)
