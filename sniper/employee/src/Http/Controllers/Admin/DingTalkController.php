@@ -86,8 +86,8 @@ class DingTalkController
         if(!$request->input('all', 1)){
             $query->where('onJob', 1);
         }
-        if($id){
-            $query->orderBy('orderInDepts');
+        if($id != 1){
+            $query->orderBy('orderInDepts', 'desc');
         }
         $dingUsers = $query->get();
         $departmentsMap = [];
