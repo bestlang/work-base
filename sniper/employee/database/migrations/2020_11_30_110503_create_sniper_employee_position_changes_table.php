@@ -20,6 +20,7 @@ class CreateSniperEmployeePositionChangeSTable extends Migration
             $table->string('name')->comment('姓名')->nullable();
             $table->string('positionBefore')->comment('变更前职位')->nullable();
             $table->string('positionAfter')->comment('变更后职位')->nullable();
+            $table->text('attachment')->comment('执行依据文件')->nullable();
             $table->nullableTimestamps();
         });
     }

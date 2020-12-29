@@ -220,11 +220,28 @@
             console.log(JSON.stringify(data))
             let names = []
             let hours = []
+            let avgCt = 0;
+            let avgAmt = 0;
+            let pairs = []
             data.forEach((row) => {
-                names.push(row.name)
-                hours.push(row.hour)
+                pairs.push({name: row.name, hour: row.hour})
+                //刨除不正常的 比如保洁每天2小时
+                if(row.hour > 7){
+                    avgCt++;
+                    avgAmt += row.hour;
+                }
             });
-
+            let avg = (avgAmt/avgCt).toFixed(2)
+            pairs.push({name: '┈┈┈┈┈┈┈┈┈┈平均'+avg, hour: avg});
+            pairs = pairs.sort(function(a, b){
+                return a.hour - b.hour
+            });
+            names = pairs.map((p) => {
+                return p.name;
+            });
+            hours = pairs.map((p) => {
+                return p.hour;
+            })
             this.options3.yAxis.data.splice(0,1000, ...names)
             this.options3.series[0].data.splice(0,1000, ...hours)
 
