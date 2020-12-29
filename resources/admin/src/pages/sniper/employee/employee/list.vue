@@ -77,8 +77,16 @@
 			    let departmentId = this.department.id
 			    let {data} = await api.sniperGetDepartmentEmployee({departmentId})
 				this.employee = data.sort(function(a, b){
-				    let f = a.user.ding_user.isLeaderInDepts;
-				    let e = b.user.ding_user.isLeaderInDepts;
+				    if(!a.user.ding_user){
+				        a.user.ding_user = {}
+                        a.user.ding_user.isLeaderInDepts = 0;
+                    }
+                    if(!b.user.ding_user){
+                        b.user.ding_user = {}
+                        b.user.ding_user.isLeaderInDepts = 0;
+                    }
+				    let f = parseInt(a.user.ding_user.isLeaderInDepts);
+				    let e = parseInt(b.user.ding_user.isLeaderInDepts);
 				    return f - e;
 				});
 				this.showEmployee = true
