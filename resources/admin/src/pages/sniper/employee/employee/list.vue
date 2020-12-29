@@ -87,6 +87,12 @@
                     }
 				    let f = parseInt(a.user.ding_user.isLeaderInDepts);
 				    let e = parseInt(b.user.ding_user.isLeaderInDepts);
+				    if(isNaN(f)){
+				        f = 0;
+					}
+					if(isNaN(e)){
+				        e = 0;
+					}
 				    return e - f;
 				});
 				this.showEmployee = true
