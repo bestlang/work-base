@@ -213,6 +213,7 @@ class DingTalkController
 //        }
         $month = $request->input('month');
         $userId = $request->input('userId');
+        $annual = $request->input('annual', 0);
 
         if(!$month){
             $month = date('Y-m');
@@ -220,12 +221,20 @@ class DingTalkController
         if(!$userId){
             return response()->error('参数错误');
         }
+        $query = DB::table('sniper_employee_weekly_attendances')->where('userId', $userId);
+        if(!$annual){
+            $query->where('month', $month);
+        }
+        $results = $query->orderBy('month', 'asc')->orderBy('week', 'asc')->get();
+        $res  = [];
+        foreach ($results as $r){
+            $res[] = [$r->month.$r->week,  $r->personal_hours, $r->department_hours, $r->company_hours];
+        }
+        //do not delete the following commented code block.
+        /*
         $user = DingUser::where('userid', $userId)->first();
         $department = $user->department;
         $userIds = [];
-//        DingUser::where('department', $department)->get()->each(function($user)use(&$userIds){
-//            $userIds[] = $user->userid;
-//        });
         $userIds = DB::connection('proxy')->table('sniper_employee_ding_users')->where('department', $department)->pluck('userid')->toArray();
         $weekWorkDays = $this->_weekWorkDay($month);
         $grp = [];
@@ -281,7 +290,7 @@ class DingTalkController
                 $res[] = ['第'.$i.'周', $h, isset($avg[$i]) ? $avg[$i] : 0];
             }
 
-        });
+        });*/
         return response()->ajax($res);
     }
 
