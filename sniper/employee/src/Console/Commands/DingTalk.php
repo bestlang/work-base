@@ -464,7 +464,7 @@ class DingTalk extends Command
                     $monthArr[] = date('Y-m', strtotime("-{$i} months"));
                 }
                 $userIdArr = DB::connection('proxy')->table('sniper_employee_ding_users')->pluck('userid')->toArray();
-                /*
+
                 foreach ($userIdArr as $userId){
                     $user = DingUser::where('userid', $userId)->first();
                     if(!$user->hiredDate){
@@ -557,7 +557,7 @@ class DingTalk extends Command
                             }
                         }
                 }
-                */
+
                 // select sum(personal_hours) as tt, count(1) as ct from sniper_employee_weekly_attendances where month = '2020-08' and week = '第2周' and personal_hours > 0;
                 foreach ($monthArr as $month){
                     $weeks = DB::table('sniper_employee_weekly_attendances')->selectRaw('DISTINCT(`week`)')->where('month', $month)->pluck('week')->toArray();
