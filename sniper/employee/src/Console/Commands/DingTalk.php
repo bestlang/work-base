@@ -17,6 +17,8 @@ use Sniper\Employee\Mail\LateNotice;
 use Sniper\Employee\Mail\LateNoticeLeader;
 use Mail;
 use Log;
+use Sniper\Employee\Models\DingTalk\Attendance as DingAttendance;
+use Sniper\Employee\Models\WeeklyAttendance;
 
 class DingTalk extends Command
 {
@@ -413,12 +415,161 @@ class DingTalk extends Command
                     }
                 }
             }else if($act == 'getUserAndDeptWeeklyAvgAttendanceForCache'){
-                $months = [];
+                $_nthWeek = function ($day)
+                {
+                    $time = strtotime($day);
+                    $wk_day = date('w', strtotime(date('Y-m-1 00:00:00', $time))) ? : 7; //今天周几
+                    $d = date('d', $time) - (8 - $wk_day); //今天几号
+                    return $d <= 0 ? 1 : ceil($d / 7) + 1;
+                };
+
+                $_weekWorkDay = function ($month)use($_nthWeek)
+                {
+                    $weekWorkDays = [];
+                    $types = DingAttendance::select('ymd', 'workType')->where('ymd', 'like', $month.'%')->where('checkType', 'OffDuty')->groupBy('ymd')->groupBy('workType')->get()->toArray();
+                    foreach ($types as $type){
+                        $nth = $_nthWeek($type['ymd']);
+                        if(!isset($weekWorkDays[$nth])){
+                            $weekWorkDays[$nth] = 0;
+                        }
+                        $weekWorkDays[$nth] += $type['workType'];
+                    }
+                    return $weekWorkDays;
+                };
+
+                $_getLeaves = function ($userIds, $month)
+                {
+                    if(!is_array($userIds)){
+                        $userIds = [$userIds];
+                    }
+                    //未指定 本月
+                    $start = strtotime(date('Y-m-01')) * 1000;
+                    $end = ( strtotime(date('Y-m-t')) + 86400 ) * 1000;
+                    //指定了月份
+                    if($month){
+                        $start = strtotime(date($month.'-01')) * 1000;
+                        $end = ( strtotime(date($month.'-t')) + 86400 ) * 1000;
+                    }
+                    $query = Leave::query();
+                    if(count($userIds)){
+                        $query = $query->whereIn('userId', $userIds);
+                    }
+                    $leaves = $query->where(function ($query)use($start, $end){
+                        $query->where([['end_time', '>', $start], ['end_time', '<=', $end]])->orWhere([['start_time', '>=', $start], ['start_time', '<', $end]]);
+                    })->get();
+                    return $leaves;
+                };
+                $monthArr = [];
                 for($i = 0; $i <= 9; $i++){
-                    $months[] = date('Y-m', strtotime("-{$i} months"));
+                    $monthArr[] = date('Y-m', strtotime("-{$i} months"));
                 }
-                $userIds = DB::connection('proxy')->table('sniper_employee_ding_users')->pluck('userid')->toArray();
-                print_r($userIds);
+                $userIdArr = DB::connection('proxy')->table('sniper_employee_ding_users')->pluck('userid')->toArray();
+
+                foreach ($userIdArr as $userId){
+                    $user = DingUser::where('userid', $userId)->first();
+                    if(!$user->hiredDate){
+                        continue;
+                    }
+                    foreach ($monthArr as $month){
+                            echo $user->department, ",";
+                            echo $user->name, ",";
+                            echo $month,",";
+                            echo $userId, "\n";
+                            if($user){
+                                $hiredDate = intval($user->hiredDate / 1000);
+                                if((strtotime($month) < $hiredDate) && date('Y-m', $hiredDate) !== $month){
+                                    echo "雇佣日期：".date('Y-m-d', $hiredDate).",";
+                                    echo "雇佣日期晚于本月,换人\n";
+                                    break;
+                                }
+                            }
+                            $department = $user->department;
+                            $userIds = DB::connection('proxy')->table('sniper_employee_ding_users')->where('department', $department)->pluck('userid')->toArray();
+                            $weekWorkDays = $_weekWorkDay($month);
+                            $grp = [];
+
+                            $attendances = DB::connection('proxy')->table('sniper_employee_ding_attendance')->where('ymd', 'like', $month.'%')->whereIn('userId', $userIds)->get();
+                            foreach ($attendances as $at){
+                                $grp[$at->userId][$at->ymd][] = $at->userCheckTime/1000;
+                            }
+                            $udt = [];
+                            $leaves = $_getLeaves($userIds, $month);
+                            $hit = [];
+                            foreach ($leaves as $leave){
+                                $hit[$leave->userid][date('Y-m-d', $leave['start_time']/1000)] = 1;
+                            }
+                            foreach ($grp as $_userId => $daily){
+                                foreach ($daily as $day => $data){
+                                    if(isset($hit[$_userId][$day])){//关联了请假
+                                        $udt[$_userId][$this->_nthWeek($day)][$day]  = 9 * 60 * 60;
+                                    }else if(isset($data[0]) && isset($data[1])) {
+                                        $udt[$_userId][$this->_nthWeek($day)][$day] = abs($data[1] - $data[0]);
+                                    }
+                                }
+                            }
+                            $temp = [];
+                            foreach ($udt as $_userId => $data){
+                                foreach ($data as $nth => $val){
+                                    $b = min(count($val),$weekWorkDays[$nth]);
+                                    $h = $b ? round(array_sum($val) / ($b * 60 * 60) - 1, 2) : 0;
+                                    $temp[$_userId][$nth] = $h;
+                                }
+                            }
+                            $avg = [];
+                            collect([1,2,3,4,5,6])->each(function($i)use($temp, &$avg){
+                                $sum = 0;
+                                $count = 0;
+                                foreach ($temp as $id => $v){
+                                    $sum += isset($v[$i]) ? $v[$i] : 0;
+                                    if(isset($v[$i]) && $v[$i]){
+                                        $count += 1;
+                                    }
+                                }
+
+                                $avg[$i] = $count ? round($sum / $count, 2) : 0;
+                            });
+
+                            $res = [];
+                            collect([1,2,3,4,5,6])->each(function($i)use(&$res,$avg, $userId, $temp){
+                                $h = 0;
+                                if(isset($temp[$userId]) && isset($temp[$userId][$i])){
+                                    $h = $temp[$userId][$i];
+                                }
+                                if($h || isset($avg[$i]) && $avg[$i]){
+                                    $res[] = ['第'.$i.'周', $h, isset($avg[$i]) ? $avg[$i] : 0];
+                                }
+
+                            });
+                            foreach ($res as $r){
+                                $weeklyAttendance = [
+                                    'userId' => $userId,
+                                    'name' => $user->name,
+                                    'month' => $month,
+                                    'week' => $r[0],
+                                    'personal_hours' => $r[1],
+                                    'department_hours' => $r[2],
+                                    'department' => $user->department
+                                ];
+                                print_r($weeklyAttendance);
+                                WeeklyAttendance::create($weeklyAttendance);
+                                echo implode('--', $r);
+                                echo "\n";
+                            }
+                        }
+                }
+
+                // select sum(personal_hours) as tt, count(1) as ct from sniper_employee_weekly_attendances where month = '2020-08' and week = '第2周' and personal_hours > 0;
+                foreach ($monthArr as $month){
+                    $weeks = DB::table('sniper_employee_weekly_attendances')->selectRaw('DISTINCT(`week`)')->where('month', $month)->pluck('week')->toArray();
+                    foreach ($weeks as $week){
+                        $total = DB::table('sniper_employee_weekly_attendances')->selectRaw('sum(`personal_hours`) as tt, count(1) as ct')->where('month', $month)->where('week', $week)->where('personal_hours', '>', 0)->first();
+                        echo "{$month}-{$week}\n";
+                        $avg = sprintf('%.2f', $total->tt / $total->ct);
+                        print_r($avg);
+                        echo "\n";
+                        DB::table('sniper_employee_weekly_attendances')->where('month', $month)->where('week', $week)->update(['company_hours' => $avg]);
+                    }
+                }
             }
 /*else if($act == 'workTime'){
                 $month = '2020-09';
