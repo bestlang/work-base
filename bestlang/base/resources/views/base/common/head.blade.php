@@ -56,45 +56,45 @@
 
             <div class="collapse navbar-collapse" id="navbar-collapse">
                 <ul class="nav navbar-nav" data-current="0">
-                    <li class="">
-                        <a href="/cms">演示</a>
-                        <ul class="dropdown-menu" role="menu">
-                        </ul>
-                    </li>
+                    {{--<li class="">--}}
+                        {{--<a href="/cms">演示</a>--}}
+                        {{--<ul class="dropdown-menu" role="menu">--}}
+                        {{--</ul>--}}
+                    {{--</li>--}}
                 </ul>
-                <ul class="nav navbar-nav navbar-right">
-                    <li class="dropdown">
-                        <a href="" class="dropdown-toggle" data-toggle="dropdown">
-                            个人<span class="hidden-sm">中心</span> <b class="caret"></b>
-                        </a>
-                        <ul class="dropdown-menu">
-                            @guest
-                            <li><a href="{{route('login')}}"><i class="fa fa-sign-in fa-fw"></i>登录</a></li>
-                            @if (Route::has('register'))
-                                <li><a href="{{route('register')}}"><i class="fa fa-user-o fa-fw"></i>注册</a></li>
-                            @endif
-                            @else
-                                <li>
-                                    <a href="/ucenter">个人中心</a>
-                                </li>
-                                <li>
-                                    <a href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                        @csrf
-                                    </form>
-                                </li>
-                                @if(auth()->user()->type == 1)
-                                    <li><a class="dropdown-item" href="/admin/#/">
-                                            管理后台
-                                        </a></li>
-                                @endif
-                             @endguest
-                        </ul>
-                    </li>
-                </ul>
+                {{--<ul class="nav navbar-nav navbar-right">--}}
+                    {{--<li class="dropdown">--}}
+                        {{--<a href="" class="dropdown-toggle" data-toggle="dropdown">--}}
+                            {{--个人<span class="hidden-sm">中心</span> <b class="caret"></b>--}}
+                        {{--</a>--}}
+                        {{--<ul class="dropdown-menu">--}}
+                            {{--@guest--}}
+                            {{--<li><a href="{{route('login')}}"><i class="fa fa-sign-in fa-fw"></i>登录</a></li>--}}
+                            {{--@if (Route::has('register'))--}}
+                                {{--<li><a href="{{route('register')}}"><i class="fa fa-user-o fa-fw"></i>注册</a></li>--}}
+                            {{--@endif--}}
+                            {{--@else--}}
+                                {{--<li>--}}
+                                    {{--<a href="/ucenter">个人中心</a>--}}
+                                {{--</li>--}}
+                                {{--<li>--}}
+                                    {{--<a href="{{ route('logout') }}" onclick="event.preventDefault();--}}
+                                                     {{--document.getElementById('logout-form').submit();">--}}
+                                        {{--{{ __('Logout') }}--}}
+                                    {{--</a>--}}
+                                    {{--<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">--}}
+                                        {{--@csrf--}}
+                                    {{--</form>--}}
+                                {{--</li>--}}
+                                {{--@if(auth()->user()->type == 1)--}}
+                                    {{--<li><a class="dropdown-item" href="/admin/#/">--}}
+                                            {{--管理后台--}}
+                                        {{--</a></li>--}}
+                                {{--@endif--}}
+                             {{--@endguest--}}
+                        {{--</ul>--}}
+                    {{--</li>--}}
+                {{--</ul>--}}
             </div>
 
         </div>
