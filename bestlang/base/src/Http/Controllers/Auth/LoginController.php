@@ -111,7 +111,7 @@ class LoginController extends Controller
         $this->guard()->logout();
         $request->session()->invalidate();
         if($request->ajax()){
-            return response()->ajax(['lalala']);
+            return response()->ajax([]);
         }else{
             return $this->loggedOut($request) ?: redirect('/');
         }

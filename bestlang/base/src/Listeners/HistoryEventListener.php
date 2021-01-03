@@ -5,10 +5,6 @@ use BestLang\Base\Events\HistoryEvent;
 
 class HistoryEventListener
 {
-
-    /**
-     * PayNotifyProcess constructor.
-     */
     public function __construct()
     {
         //

@@ -17,6 +17,7 @@ class CreateHistoriesTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('user_id')->comment('操作人ID');
             $table->string('action')->nullable()->comment('操作内容');
+            $table->text('detail')->comment('操作详情')->nullable();
             $table->string('ip', 20)->comment('操作IP地址');
             $table->nullableTimestamps();
         });
