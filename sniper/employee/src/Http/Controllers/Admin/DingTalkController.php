@@ -329,6 +329,9 @@ class DingTalkController
         $userMonthAvg = [];
         foreach ($udt as $_userId => $data){
                 $daysLaw = min(count($data),array_sum($weekWorkDays));
+                if(!$daysLaw){
+                    $daysLaw = max(count($data),array_sum($weekWorkDays));
+                }
                 $avgHour = $data ? round(array_sum($data) / ($daysLaw * 60 * 60) - 1, 2) : 0;
                 $userMonthAvg[] = ['name' => $userName[$_userId].$avgHour, 'hour' => $avgHour];
         }
