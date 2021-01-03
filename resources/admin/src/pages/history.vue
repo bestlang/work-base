@@ -30,6 +30,7 @@
                     <template slot-scope="scope">
                         <div  :title="scope.row.detail && scope.row.detail.split('|::|')[2]">
                             {{scope.row.detail && scope.row.detail.split('|::|')[0]}}<span v-if="scope.row.detail">.id.</span>{{scope.row.detail && scope.row.detail.split('|::|')[1]}}
+                            <el-button v-if="scope.row.detail" type="text" style="color: rgb(0, 162, 212)" @click.sync="viewHistoryDetail(scope.row)"><small>详情</small></el-button>
                         </div>
                     </template>
                 </el-table-column>
@@ -40,6 +41,16 @@
             </el-table>
         <!--</div>-->
         <pager :total="total" :page-size="page_size" @current-change="currentChange"></pager>
+
+        <el-dialog title="操作详情" :visible.sync="showHistoryDetail">
+            <div style="padding: 0 20px;overflow-y: scroll;height: 100%;">
+                <div class="l-position-meta" v-if="currentDetail">
+                    <div v-for="(item, idx) in currentDetail">{{idx}}:
+                        {{item}}</div>
+                </div>
+            </div>
+        </el-dialog>
+
     </div>
 </template>
 <script>
@@ -53,6 +64,8 @@
         },
         data(){
             return {
+                showHistoryDetail: false,
+                currentDetail: {},
                 page:1,
                 page_size: 15,
                 total: 0,
@@ -60,6 +73,12 @@
             }
         },
         methods:{
+            viewHistoryDetail(row){
+                if(row.detail){
+                    this.showHistoryDetail = true;
+                    this.currentDetail = JSON.parse(row.detail.split('|::|')[2])
+                }
+            },
             async getHistories(){
                 let queryData = {page: this.page, page_size: this.page_size}
                 let {data} = await api.getHistories(queryData)
