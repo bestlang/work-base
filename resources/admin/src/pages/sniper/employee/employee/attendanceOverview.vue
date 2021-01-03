@@ -232,7 +232,8 @@
                 }
             });
             let avg = (avgAmt/avgCt).toFixed(2)
-            pairs.push({name: '┈┈┈┈┈┈┈┈┈┈平均'+avg, hour: avg});
+            //pairs.push({name: '┈┈┈┈┈┈┈┈┈┈平均'+avg, hour: avg});
+            pairs.push({name: '┈┈┈┈┈➤平均'+avg, hour: avg});
             pairs = pairs.sort(function(a, b){
                 return a.hour - b.hour
             });
