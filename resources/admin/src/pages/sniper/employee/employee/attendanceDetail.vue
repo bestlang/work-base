@@ -28,7 +28,7 @@
                     </p>
                     <div v-show="showResult(data.day) && timeLine(data.day)">
                         <el-progress  :percentage="50"  :show-text="false" stroke-linecap="square" :stroke-width="4" color="#ccc"></el-progress>
-                        <el-progress  style="margin-top: 2px" :percentage="timeLine(data.day) * 50"  :show-text="false" stroke-linecap="square" :stroke-width="4" color="#293c55"></el-progress>
+                        <el-progress  style="margin-top: 2px" :percentage="timeLine(data.day) * 50"  :show-text="false" stroke-linecap="square" :stroke-width="4" color="#1794A5"></el-progress>
                     </div>
                     <div v-show="showResult(data.day)" style="font-size: 12px;color: #5a5e66">
                         <p><span v-html="readable(data.day).onDutyTimeResult"></span><span>{{readable(data.day).onDutyTime}}</span></p>
@@ -150,7 +150,7 @@
                     title:{
                         text: '打卡趋势'
                     },
-                    color:  ['#fdc4b6','#fdc4b6','#001871','#001871'],
+                    color:  ['#fdc4b6','#fdc4b6','#001871','#fcebb6'],
                     grid:{
                         x:'2.2%',
                         y:'6%',
