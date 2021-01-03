@@ -49,6 +49,12 @@
                             label="更新时间">
                     </el-table-column>
                     <el-table-column
+                            label="附件">
+                        <template slot-scope="scope">
+                            <span v-for="a in JSON.parse(scope.row.attachment)"><a :href="a.url" target="_blank" style="color: rgb(0, 162, 212);padding-right: 20px;">{{a.name}}</a></span>
+                        </template>
+                    </el-table-column>
+                    <el-table-column
                             label="操作">
                         <template slot-scope="scope">
                             <el-button type="primary" @click="handleEdit(scope.row)" size="mini">编辑</el-button>

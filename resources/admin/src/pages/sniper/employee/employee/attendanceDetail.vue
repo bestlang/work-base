@@ -125,7 +125,7 @@
                     dataset: {
                         source: [['','个人平均出勤（小时）', '部门平均出勤（小时）', '公司平均出勤（小时）']]
                     },
-                    color: ['#293c55', '#348498', '#446dcd'],
+                    color: ['#e42c64', '#1f640a', '#F7B32D'],
                     grid:{
                         x:'2.2%',
                         y:'5%',
@@ -144,7 +144,7 @@
                         type: 'category'
                     },
                     yAxis: {},
-                    series: [{type: 'bar'},{type: 'bar'},{type: 'bar'}]
+                    series: [{type: 'line'},{type: 'line'},{type: 'line'}]
                 },
                 options:{
                     title:{

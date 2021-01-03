@@ -45,7 +45,8 @@
         <el-dialog title="操作详情" :visible.sync="showHistoryDetail">
             <div style="padding: 0 20px;overflow-y: scroll;height: 100%;">
                 <div class="l-position-meta" v-if="currentDetail">
-                    <div v-for="(item, idx) in currentDetail">{{idx}}:
+                    <div v-for="(item, idx) in currentDetail" style="line-height: 24px;">
+                        {{idx}}:
                         {{item}}</div>
                 </div>
             </div>
