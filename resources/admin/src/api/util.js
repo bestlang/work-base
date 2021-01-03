@@ -46,17 +46,17 @@ export const formatDateTime = function(str){
 
 export  const genYm = function(){
     let d = new Date();
-    let yyyy = d.getFullYear();
-    let m = d.getMonth() + 1;
+    let yyyy = d.getFullYear();//2021
+    let m = d.getMonth() + 1;//1
     let arr = [];
     for(let i = m; i>0; i--){
         if(String(i).length == 1){
             i = '0' + i
         }
-        arr.push(yyyy+'-'+i)
+        arr.push(yyyy+'-'+i)//2021-01
     }
-    yyyy--;
-    for(let i = m; i>0; i--){
+    yyyy--;//2020
+    for(let i = 12; i>0; i--){
         if(String(i).length == 1){
             i = '0' + i
         }
