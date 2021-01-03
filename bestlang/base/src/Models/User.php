@@ -5,14 +5,22 @@ namespace BestLang\Base\Models;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Spatie\Permission\Models\Role;
+use BestLang\Base\Models\Role;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 use Spatie\Permission\Traits\HasRoles;
-
+use BestLang\Base\Events\ModelCreatedEvent;
+use BestLang\Base\Events\ModelDeletedEvent;
+use BestLang\Base\Events\ModelUpdatedEvent;
 
 class User extends Authenticatable implements JWTSubject
 {
     use Notifiable,HasRoles;
+
+    protected $dispatchesEvents = [
+        'created' => ModelCreatedEvent::class,
+        'deleted' => ModelDeletedEvent::class,
+        'updated' => ModelUpdatedEvent::class
+    ];
 
     protected $appends = ['type'];
 

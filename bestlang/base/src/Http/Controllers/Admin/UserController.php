@@ -6,7 +6,7 @@ use BestLang\Base\Models\User;
 use Illuminate\Http\Request;
 use BestLang\Base\Http\Controllers\Controller;
 use Validator;
-use Spatie\Permission\Models\Role;
+use BestLang\Base\Models\Role;
 use Arr;
 use Illuminate\Support\Facades\DB;
 

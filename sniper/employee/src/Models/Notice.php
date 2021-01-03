@@ -4,6 +4,9 @@ namespace Sniper\Employee\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use BestLang\Base\Events\ModelCreatedEvent;
+use BestLang\Base\Events\ModelDeletedEvent;
+use BestLang\Base\Events\ModelUpdatedEvent;
 
 class Notice extends Model
 {
@@ -11,6 +14,14 @@ class Notice extends Model
 
     protected $table = 'sniper_employee_notices';
     protected $guarded = [];
+
+    protected $dispatchesEvents = [
+        'created' => ModelCreatedEvent::class,
+        'deleted' => ModelDeletedEvent::class,
+        'updated' => ModelUpdatedEvent::class
+    ];
+
+
 
     public function user()
     {

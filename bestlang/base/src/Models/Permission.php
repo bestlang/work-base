@@ -5,9 +5,19 @@ namespace BestLang\Base\Models;
 use Baum\NestedSet\Node as WorksAsNestedSet;
 use Spatie\Permission\Models\Permission as SpatiePermission;
 
+use BestLang\Base\Events\ModelCreatedEvent;
+use BestLang\Base\Events\ModelDeletedEvent;
+use BestLang\Base\Events\ModelUpdatedEvent;
+
 class Permission extends SpatiePermission
 {
     use WorksAsNestedSet;
+
+    protected $dispatchesEvents = [
+        'created' => ModelCreatedEvent::class,
+        'deleted' => ModelDeletedEvent::class,
+        'updated' => ModelUpdatedEvent::class
+    ];
 
     ////////////////////////////////////////////////////////////////////////////
 

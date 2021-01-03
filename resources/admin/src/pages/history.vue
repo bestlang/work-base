@@ -26,6 +26,14 @@
                         label="操作">
                 </el-table-column>
                 <el-table-column
+                        label="详情">
+                    <template slot-scope="scope">
+                        <div  :title="scope.row.detail && scope.row.detail.split('|::|')[2]">
+                            {{scope.row.detail && scope.row.detail.split('|::|')[0]}}<span v-if="scope.row.detail">.id.</span>{{scope.row.detail && scope.row.detail.split('|::|')[1]}}
+                        </div>
+                    </template>
+                </el-table-column>
+                <el-table-column
                         prop="ip"
                         label="IP地址">
                 </el-table-column>

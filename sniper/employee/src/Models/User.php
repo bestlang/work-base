@@ -4,9 +4,18 @@ namespace Sniper\Employee\Models;
 use BestLang\Base\Models\User as BaseUser;
 use Sniper\Employee\Models\Employee;
 use Sniper\Employee\Models\DingTalk\User as DingUser;
+use BestLang\Base\Events\ModelCreatedEvent;
+use BestLang\Base\Events\ModelDeletedEvent;
+use BestLang\Base\Events\ModelUpdatedEvent;
 
 class User extends BaseUser
 {
+    protected $dispatchesEvents = [
+        'created' => ModelCreatedEvent::class,
+        'deleted' => ModelDeletedEvent::class,
+        'updated' => ModelUpdatedEvent::class
+    ];
+
     public function employee()
     {
         return $this->hasOne(Employee::class, 'user_id', 'id');

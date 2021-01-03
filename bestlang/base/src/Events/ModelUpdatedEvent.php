@@ -5,7 +5,7 @@ namespace BestLang\Base\Events;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Database\Eloquent\Model;
 
-class ModelChangeEvent
+class ModelUpdatedEvent
 {
     public $model;
 

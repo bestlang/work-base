@@ -6,7 +6,7 @@ namespace App\Models;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Spatie\Permission\Models\Role;
+use BestLang\Base\Models\Role;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 use Spatie\Permission\Traits\HasRoles;
 
