@@ -239,7 +239,6 @@ class DingTalk extends Command
                                 }
                                 if($att->checkType == 'OffDuty'){
                                     if($exist){
-                                        echo  "att->userCheckTime: {$att->userCheckTime}  ------ exist->userCheckTime: {$exist->userCheckTime}\n";
                                         if($att->userCheckTime > $exist->userCheckTime){
                                             $exist->userCheckTime = $att->userCheckTime;
                                             $exist->save();
