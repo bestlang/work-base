@@ -242,7 +242,7 @@ class DingTalk extends Command
                                     if($exist){
                                         echo "10";
                                         if($att->userCheckTime > $exist->userCheckTime){
-                                            echo "11";
+                                            echo "11" . ',' . date("Y-m-d H:i:s", $att->userCheckTime);
                                             $exist->update(["userCheckTime" => $att->userCheckTime]);
                                         }
                                     }else{
