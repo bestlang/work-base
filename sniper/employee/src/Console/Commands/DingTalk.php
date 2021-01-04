@@ -193,14 +193,11 @@ class DingTalk extends Command
                     for($days = 0; $days<170; $days++){
                         $workDateFrom = date('Y-m-d H:i:s',strtotime($dateBegin) - $days * 86400);
                         $workDateTo = date('Y-m-d H:i:s',strtotime($workDateFrom) + 86400);
-                        echo "\n--------------------------query {$workDateFrom}-------------------------:\n";
+                        //echo "\n--------------------------query {$workDateFrom}-------------------------:\n";
                         $offset = 0;
                         $limit = 50;
                         while($attendances = $ding->_getUserAttendance($userIds, $workDateFrom, $workDateTo, $offset, $limit)){
                             foreach ($attendances as $att){
-                                if( date("Y-m-d", $att->workDate/1000) == '2021-01-03' && $att->userId == '176906042024312391'){
-                                    echo date("Y-m-d", $att->workDate/1000), "::", date("Y-m-d H:i:s", $att->userCheckTime/1000),  "::", json_encode($att),"\n";
-                                }
                                 if(!$att->userId){
                                     throw new \Exception('拉取出勤信息出错！');
                                 }
@@ -241,18 +238,12 @@ class DingTalk extends Command
                                 }
                                 if($att->checkType == 'OffDuty'){
                                     if($exist){
-                                        echo "10";
                                         if($att->userCheckTime > $exist->userCheckTime){
-                                            echo "11" . ',' . date("Y-m-d H:i:s", ($att->userCheckTime)/1000);
-//                                            $exist->update(["userCheckTime" => $att->userCheckTime]);
                                             $exist->userCheckTime = $att->userCheckTime;
-                                            $exist->save();
                                             print_r($exist->toArray());
-                                            echo '***'.date("Y-m-d H:i:s", $exist->userCheckTime/1000).'***';
-                                            break;//
+                                            $exist->save();
                                         }
                                     }else{
-                                        echo "12";
                                         Attendance::create($record);
                                     }
                                 }
