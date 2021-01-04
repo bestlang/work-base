@@ -226,7 +226,7 @@ class DingTalk extends Command
                                         $offDutyExist =  Attendance::where(['userId' => $att->userId,"workDate" => $att->workDate, "ymd" => date('Y-m-d',$att->baseCheckTime / 1000), "checkType" => 'OffDuty'])->first();
                                          if($offDutyExist){
                                              if($offDutyExist->userCheckTime < $att->userCheckTime){
-                                                 $offDutyExist->userCheckTime = $att->userCheckTime;
+                                                 $offDutyExist->update(["userCheckTime" => $att->userCheckTime]);
                                              }
                                          }
                                     }else{
