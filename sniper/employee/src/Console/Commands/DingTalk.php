@@ -198,7 +198,7 @@ class DingTalk extends Command
                         $limit = 50;
                         while($attendances = $ding->_getUserAttendance($userIds, $workDateFrom, $workDateTo, $offset, $limit)){
                             foreach ($attendances as $att){
-                                echo date("Y-m-d", $att->workDate/1000), "::", json_encode($att),"\n";
+                                echo date("Y-m-d", $att->workDate/1000), "::", date("Y-m-d", $att->userCheckTime/1000),  "::", json_encode($att),"\n";
                                 if(!$att->userId){
                                     throw new \Exception('拉取出勤信息出错！');
                                 }
