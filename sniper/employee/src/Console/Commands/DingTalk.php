@@ -252,7 +252,7 @@ class DingTalk extends Command
                                             $exist->userCheckTime = $att->userCheckTime;
                                             $exist->save();
                                             print_r($exist->toArray());
-                                            echo '***'.date("Y-m-d H:i:s", $exist->userCheckTime).'***';
+                                            echo '***'.date("Y-m-d H:i:s", $exist->userCheckTime/1000).'***';
                                         }
                                     }else{
                                         echo "12";
