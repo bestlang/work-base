@@ -5,7 +5,6 @@ namespace App\Console;
 use App\Console\Commands\GenSql;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
-use App\Apis\Mp;
 use Illuminate\Support\Facades\Cache;
 
 class Kernel extends ConsoleKernel
