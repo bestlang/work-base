@@ -240,14 +240,13 @@ class DingTalk extends Command
                                     if($exist){
                                         if($att->userCheckTime > $exist->userCheckTime){
                                             $exist->userCheckTime = $att->userCheckTime;
-                                            print_r($exist->toArray());
                                             $exist->save();
+                                            print_r($exist->toArray());
                                         }
                                     }else{
                                         Attendance::create($record);
                                     }
                                 }
-                                echo "\n";
 
 //                                Attendance::updateOrCreate(
 //                                    ['userId' => $att->userId,"workDate" => $att->workDate, "ymd" => date('Y-m-d',$att->baseCheckTime / 1000), "checkType" => $att->checkType],
