@@ -193,11 +193,12 @@ class DingTalk extends Command
                     for($days = 0; $days<170; $days++){
                         $workDateFrom = date('Y-m-d H:i:s',strtotime($dateBegin) - $days * 86400);
                         $workDateTo = date('Y-m-d H:i:s',strtotime($workDateFrom) + 86400);
-                        //echo "\n--------------------------query {$workDateFrom}-------------------------:\n";
+                        echo "\n--------------------------query {$workDateFrom}-------------------------:\n";
                         $offset = 0;
                         $limit = 50;
                         while($attendances = $ding->_getUserAttendance($userIds, $workDateFrom, $workDateTo, $offset, $limit)){
                             foreach ($attendances as $att){
+                                echo date("Y-m-d", $att->workDate/1000), "::", date("Y-m-d", $att->userCheckTime/1000),  "::", json_encode($att),"\n";
                                 if(!$att->userId){
                                     throw new \Exception('拉取出勤信息出错！');
                                 }
