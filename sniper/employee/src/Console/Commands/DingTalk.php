@@ -202,22 +202,63 @@ class DingTalk extends Command
                                 if(!$att->userId){
                                     throw new \Exception('拉取出勤信息出错！');
                                 }
-                                Attendance::updateOrCreate(
-                                    ['userId' => $att->userId,"workDate" => $att->workDate, "ymd" => date('Y-m-d',$att->baseCheckTime / 1000), "checkType" => $att->checkType],
-                                    [
-                                        'id' => $att->id,
-                                        "baseCheckTime" => $att->baseCheckTime,
-                                        "corpId" => $att->corpId,
-                                        "groupId" => $att->groupId,
-                                        "locationResult" => $att->locationResult,
-                                        "planId" => $att->planId,
-                                        "recordId" => isset($att->recordId) ? $att->recordId : '',
-                                        "timeResult" => $att->timeResult,
-                                        "userCheckTime" => $att->userCheckTime,
-                                        "workDate" => $att->workDate,
-                                        "procInstId" => isset($att->procInstId) ? $att->procInstId : '',
-                                        "approveId" => isset($att->approveId) ? $att->approveId : ''
-                                    ]);
+                                $record = [
+                                    'id' => $att->id,
+                                    "baseCheckTime" => $att->baseCheckTime,
+                                    "corpId" => $att->corpId,
+                                    "groupId" => $att->groupId,
+                                    "locationResult" => $att->locationResult,
+                                    "planId" => $att->planId,
+                                    "recordId" => isset($att->recordId) ? $att->recordId : '',
+                                    "timeResult" => $att->timeResult,
+                                    "userCheckTime" => $att->userCheckTime,
+                                    "workDate" => $att->workDate,
+                                    "procInstId" => isset($att->procInstId) ? $att->procInstId : '',
+                                    "approveId" => isset($att->approveId) ? $att->approveId : ''
+                                ];
+                                $exist = Attendance::where(['userId' => $att->userId,"workDate" => $att->workDate, "ymd" => date('Y-m-d',$att->baseCheckTime / 1000), "checkType" => $att->checkType])->first();
+                                if($att->checkType == 'OnDuty'){
+                                    if($exist){
+                                        if($att->userCheckTime < $exist->userCheckTime){
+                                                $exist->update(["userCheckTime" => $att->userCheckTime]);
+                                        }
+                                        //如果比现存的下班时间还晚，那么更新本次打卡时间给下班时间
+                                        $offDutyExist =  Attendance::where(['userId' => $att->userId,"workDate" => $att->workDate, "ymd" => date('Y-m-d',$att->baseCheckTime / 1000), "checkType" => 'OffDuty'])->first();
+                                         if($offDutyExist){
+                                             if($offDutyExist->userCheckTime < $att->userCheckTime){
+                                                 $offDutyExist->userCheckTime = $att->userCheckTime;
+                                             }
+                                         }
+                                    }else{
+                                        Attendance::create($record);
+                                    }
+                                }
+                                if($att->checkType == 'OffDuty'){
+                                    if($exist){
+                                        if($att->userCheckTime > $exist->userCheckTime){
+                                            $exist->update(["userCheckTime" => $att->userCheckTime]);
+                                        }
+                                    }else{
+                                        Attendance::create($record);
+                                    }
+                                }
+
+//                                Attendance::updateOrCreate(
+//                                    ['userId' => $att->userId,"workDate" => $att->workDate, "ymd" => date('Y-m-d',$att->baseCheckTime / 1000), "checkType" => $att->checkType],
+//                                    [
+//                                        'id' => $att->id,
+//                                        "baseCheckTime" => $att->baseCheckTime,
+//                                        "corpId" => $att->corpId,
+//                                        "groupId" => $att->groupId,
+//                                        "locationResult" => $att->locationResult,
+//                                        "planId" => $att->planId,
+//                                        "recordId" => isset($att->recordId) ? $att->recordId : '',
+//                                        "timeResult" => $att->timeResult,
+//                                        "userCheckTime" => $att->userCheckTime,
+//                                        "workDate" => $att->workDate,
+//                                        "procInstId" => isset($att->procInstId) ? $att->procInstId : '',
+//                                        "approveId" => isset($att->approveId) ? $att->approveId : ''
+//                                    ]);
                             }
                             $offset += $limit;
                         }
