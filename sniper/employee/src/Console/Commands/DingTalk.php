@@ -221,8 +221,10 @@ class DingTalk extends Command
                                 $exist = Attendance::where(['userId' => $att->userId,"workDate" => $att->workDate, "ymd" => date('Y-m-d',$att->baseCheckTime / 1000), "checkType" => $att->checkType])->first();
                                 if($att->checkType == 'OnDuty'){
                                     if($exist){
+                                        echo "00";
                                         if($att->userCheckTime < $exist->userCheckTime){
                                                 $exist->update(["userCheckTime" => $att->userCheckTime]);
+                                                echo "01";
                                         }
                                         //如果比现存的下班时间还晚，那么更新本次打卡时间给下班时间
                                         $offDutyExist =  Attendance::where(['userId' => $att->userId,"workDate" => $att->workDate, "ymd" => date('Y-m-d',$att->baseCheckTime / 1000), "checkType" => 'OffDuty'])->first();
@@ -232,18 +234,23 @@ class DingTalk extends Command
                                              }
                                          }
                                     }else{
+                                        echo "02";
                                         Attendance::create($record);
                                     }
                                 }
                                 if($att->checkType == 'OffDuty'){
                                     if($exist){
+                                        echo "10";
                                         if($att->userCheckTime > $exist->userCheckTime){
+                                            echo "11";
                                             $exist->update(["userCheckTime" => $att->userCheckTime]);
                                         }
                                     }else{
+                                        echo "12";
                                         Attendance::create($record);
                                     }
                                 }
+                                echo "\n";
 
 //                                Attendance::updateOrCreate(
 //                                    ['userId' => $att->userId,"workDate" => $att->workDate, "ymd" => date('Y-m-d',$att->baseCheckTime / 1000), "checkType" => $att->checkType],
