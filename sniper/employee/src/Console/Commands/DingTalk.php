@@ -201,6 +201,7 @@ class DingTalk extends Command
                                 if(!$att->userId){
                                     throw new \Exception('拉取出勤信息出错！');
                                 }
+
                                 $record = [
                                     'userId' => $att->userId,
                                     "workDate" => $att->workDate,
@@ -238,16 +239,16 @@ class DingTalk extends Command
                                 }
                                 if($att->checkType == 'OffDuty'){
                                     if($exist){
+                                        echo  "att->userCheckTime: {$att->userCheckTime}  ------ exist->userCheckTime: {$exist->userCheckTime}\n";
                                         if($att->userCheckTime > $exist->userCheckTime){
                                             $exist->userCheckTime = $att->userCheckTime;
                                             $exist->save();
-                                            print_r($exist->toArray());
                                         }
                                     }else{
                                         Attendance::create($record);
                                     }
                                 }
-
+                                //为了2021-01-03的调班修改成上面的代码
 //                                Attendance::updateOrCreate(
 //                                    ['userId' => $att->userId,"workDate" => $att->workDate, "ymd" => date('Y-m-d',$att->baseCheckTime / 1000), "checkType" => $att->checkType],
 //                                    [
