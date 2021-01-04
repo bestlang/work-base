@@ -205,6 +205,10 @@ class DingTalk extends Command
                                     throw new \Exception('拉取出勤信息出错！');
                                 }
                                 $record = [
+                                    'userId' => $att->userId,
+                                    "workDate" => $att->workDate,
+                                    "ymd" => date('Y-m-d',$att->baseCheckTime / 1000),
+                                    "checkType" => $att->checkType,
                                     'id' => $att->id,
                                     "baseCheckTime" => $att->baseCheckTime,
                                     "corpId" => $att->corpId,
