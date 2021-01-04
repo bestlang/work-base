@@ -250,6 +250,7 @@ class DingTalk extends Command
 //                                            $exist->update(["userCheckTime" => $att->userCheckTime]);
                                             $exist->userCheckTime = $att->userCheckTime;
                                             $exist->save();
+                                            print_r($exist->toArray());
                                             echo '***'.$exist->userCheckTIme.'***';
                                         }
                                     }else{
