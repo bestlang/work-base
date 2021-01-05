@@ -8,6 +8,9 @@
                 <!--</div>-->
             <!--</div>-->
         <!--</div>-->
+        <el-card>
+            <v-chart :options="optionsArch" style="width: 100%;height: 300px;"/>
+        </el-card>
         <el-card shadow="hover">
             <el-calendar @input="dateChange">
                 <template
@@ -68,6 +71,7 @@
     import 'echarts/lib/component/polar'
     import 'echarts/lib/component/angleAxis'
     import 'echarts/lib/component/legend'
+    import 'echarts/lib/chart/graph'
 
     // register component to use
     Vue.component('v-chart', ECharts)
@@ -91,6 +95,38 @@
                 users: [],
                 groupedUser: {},
                 annual: 0,
+                optionsArch:{
+                    title: {
+                        text: '个人组织架构'
+                    },
+                    tooltip: {},
+                    animationDurationUpdate: 1500,
+                    animationEasingUpdate: 'quinticInOut',
+                    series: [
+                        {
+                            type: 'graph',
+                            layout: 'none',
+                            symbolSize: 50,
+                            roam: true,
+                            label: {
+                                show: true
+                            },
+                            edgeSymbol: ['circle', 'arrow'],
+                            color: ['#293c55'],
+                            edgeSymbolSize: [4, 10],
+                            edgeLabel: {
+                                fontSize: 20
+                            },
+                            data: [],
+                            // links: [],
+                            links: [],
+                            lineStyle: {
+                                opacity: 0.5,
+                                width: 2
+                            }
+                        }
+                    ]
+                },
                 optionsTM:{
                     dataset: {
                         source: [['','个人平均出勤（小时）', '部门平均出勤（小时）', '公司平均出勤（小时）']]
@@ -432,11 +468,21 @@
                 this.userId = data.userid
                 this.dingUser = data
             },
+            async getEmployeeArch(){
+                let {data} = await api.sniperEmployeeArch({ userid: this.userId})
+                this.optionsArch.series[0].data = data.data
+                // {
+                //     source: '苏州思纳福',
+                //         target: '节点4'
+                // }
+                this.optionsArch.series[0].links = data.links
+            },
             async reloadData(){
                 if(this.user.id){
                     await this.getDingUser()
                     await this.getUserAttendance(this.userId, this.month)
                     await this.getWeekAvgAttendance()
+                    await this.getEmployeeArch()
                 }
 
             },

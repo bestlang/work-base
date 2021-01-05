@@ -157,7 +157,7 @@ class DingTalk extends Command
                 $date = date('Y-m-d H:00:00');
                 Department::where('updated_at', '<', $date)->delete();
             }else if($act == 'syncUsers'){
-                $dingUsers = DingUser::all();
+                $dingUsers = DB::connection('proxy')->table('sniper_employee_ding_users')->get();
                 foreach ($dingUsers as $dingUser){
                     if(!$dingUser->orgEmail){
                         $dingUser->orgEmail = substr($dingUser->unionid, 0, 10).'@sniper-tech.com';
@@ -168,7 +168,8 @@ class DingTalk extends Command
                         $user->employee()->create([
                             'real_name' => $dingUser->name,
                             'department_id' => $dingUser->department,//使用dingTalk自带的department编号插入
-                            'avatar' => $dingUser->avatar
+                            'avatar' => $dingUser->avatar,
+                            'userid' => $dingUser->userid
                         ]);
                     }else{
                         if(!$user->employee){
@@ -181,6 +182,7 @@ class DingTalk extends Command
                             $user->employee->real_name = $dingUser->name;
                             $user->employee->department_id = $dingUser->department;
                             $user->employee->avatar = $dingUser->avatar;
+                            $user->employee->userid = $dingUser->userid;
                             $user->push();
                         }
                     }

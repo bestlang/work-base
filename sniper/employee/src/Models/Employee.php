@@ -2,7 +2,6 @@
 
 namespace Sniper\Employee\Models;
 
-use Baum\Node;
 use Illuminate\Database\Eloquent\Model;
 
 class Employee extends Model

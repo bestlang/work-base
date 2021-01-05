@@ -50,6 +50,7 @@ class CreateSniperEmployeeEmployeeTable extends Migration
             $table->text('employment')->comment('录用通知书');
             $table->text('other')->comment('其他');
             $table->tinyInteger('onJob')->default(1)->comment('是否在职1在职0离职');
+            $table->string('userid')->default('')->comment('钉钉用户id');
             $table->nullableTimestamps();
             $table->softDeletes();
         });
