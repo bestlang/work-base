@@ -73,7 +73,7 @@ class UserController extends Controller
 
     public function update(Request $request)
     {
-        if(!auth()->user()->can('privileges edit users')){
+        if(auth()->user()->cant('privileges edit users')){
             return response()->error('无权限！', 4012);
         }
         $params = $request->all();
@@ -124,7 +124,7 @@ class UserController extends Controller
 
     public function createRoleUser(Request $request)
     {
-        if(!auth()->user()->can('privileges add role users')){
+        if(auth()->user()->cant('privileges add role users')){
             return response()->error('无权限！', 4012);
         }
         $params = $request->all();

@@ -3,8 +3,8 @@
     {{$channel->name}}
 @endsection
 @section('content')
-    <div class="">
-        <div class="">
+    <div>
+        <div>
             <div class="container">
                 <h1 class="category-title">
                     {{$channel->name}}

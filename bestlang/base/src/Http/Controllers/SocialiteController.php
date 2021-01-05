@@ -23,7 +23,7 @@ class SocialiteController extends Controller
         if(!$socialiteUser->user_id){
             $user = User::create([
                 'name' => $socialiteUser->nickname,
-                'email' => $socialiteUser->id.'_'.randomStr().'@laracms.com',
+                'email' => $socialiteUser->id.'_'.randomStr().'@sample.com',
                 'password' => bcrypt('111111')
             ]);
             $socialiteUser->user_id = $user->id;
