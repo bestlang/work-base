@@ -8,6 +8,7 @@ use Sniper\Employee\Models\DingTalk\Attendance as DingAttendance;
 use Sniper\Employee\Models\DingTalk\Leave;
 use Sniper\Employee\Models\User;
 use DB;
+use DBLog;
 
 class DingTalkController
 {
@@ -227,6 +228,7 @@ class DingTalkController
         }
         $results = $query->orderBy('month', 'asc')->orderBy('week', 'asc')->get();
         $res  = [];
+        DBLog::write('weekAvg', $results);
         foreach ($results as $r){
             $res[] = [$r->month.$r->week,  $r->personal_hours, $r->department_hours, $r->company_hours];
         }
