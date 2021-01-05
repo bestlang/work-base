@@ -45,6 +45,10 @@
             <div style="color: #555;font-style: italic">{{user.department_info?user.department_info.name:''}}</div>
         </div>
         <el-card shadow="hover">
+            <div class="text-right">
+                <el-button @click="monthlyAvg" size="mini">本月</el-button>
+                <el-button @click="annuallyAvg" size="mini">年度</el-button>
+            </div>
             <!--<div>平均每周工作小时</div>-->
             <v-chart :options="optionsTM" style="width: 100%;height: 600px;"/>
         </el-card>
@@ -86,11 +90,12 @@
                 attendances:{},
                 users: [],
                 groupedUser: {},
+                annual: 0,
                 optionsTM:{
                     dataset: {
                         source: [['','个人平均出勤（小时）', '部门平均出勤（小时）']]
                     },
-                    color: ['#293c55', '#348498'],
+                    color: ['#e42c64', '#1f640a', '#F7B32D'],
                     grid:{
                         x:'2.2%',
                         y:'5%',
@@ -103,13 +108,13 @@
                     },
                     tooltip: {},
                     legend: {
-                        data: ['个人平均出勤（小时）', '部门平均出勤（小时）']
+                        data: ['个人平均出勤（小时）', '部门平均出勤（小时）', '公司平均出勤（小时）']
                     },
                     xAxis: {
                         type: 'category'
                     },
                     yAxis: {},
-                    series: [{type: 'bar'},{type: 'bar'}]
+                    series: [{type: 'line'},{type: 'line'},{type: 'line'}]
                 },
                 options:{
                     title:{
@@ -232,6 +237,14 @@
             }
         },
         methods:{
+            monthlyAvg(){
+                this.annual = 0
+                this.getWeekAvgAttendance()
+            },
+            annuallyAvg(){
+                this.annual = 1
+                this.getWeekAvgAttendance()
+            },
             erase(){
                 [0,1,2,3].forEach((i) =>{
                     this.options.series[i].data = []
@@ -406,7 +419,7 @@
                 }
             },
             async getWeekAvgAttendance(){
-                let res = await api.sniperDingGetWeekAvgAttendance({month: this.month, userId: this.userId})
+                let res = await api.sniperDingGetWeekAvgAttendance({month: this.month, userId: this.userId, annual: this.annual})
                 let formed  = []
                 res.data.forEach(function (item) {
                     formed.push(item)
