@@ -11,6 +11,7 @@ class Log extends Model
 
     public static function write($level, $content)
     {
+        $content = json_encode( collect($content)->toArray() );
         self::create(compact(['level', 'content']));
     }
 }
