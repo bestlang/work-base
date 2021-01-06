@@ -10,9 +10,6 @@
       </div>
     </el-alert>
     <!--<el-button @click="throttledArrowClick">点我</el-button>-->
-    <div style="position: relative;width: 600px;height: 600px;">
-      <process-tree-vue :treeData="treeData"></process-tree-vue>
-    </div>
   </div>
 
 </template>
@@ -34,32 +31,8 @@
                 name: '2',
                 content: 'Tab 2 content'
             }],
-            tabIndex: 2,
-            treeData:[{
-                    name:'节点1',
-                    children:[
-                        {name:'节点5'},
-                        {name:'节点5',isLong:true},
-                        {name:'节点26',children:[
-                                {name:'节点3'},
-                                {name:'节点3'},
-                                {name:'节点33',
-                                    children:[
-                                        {name:'节点3'},
-                                        {name:'节点3'},
-                                        {name:'➤节点3'}
-                                    ]
-                                }
-                            ]},
-                        {name:'节点3',children:[{name:'节点3'},{name:'节点3'}]},
-                        {name:'节点4',children:[{name:'节点3'}]},
-                        {name:'节点5',isLong:true},
-                    ]
-                }]
+            tabIndex: 2
         }
-    },
-    components: {
-        processTreeVue
     },
     watch:{
     },
