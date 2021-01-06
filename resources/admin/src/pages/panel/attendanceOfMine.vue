@@ -1,16 +1,18 @@
 <template>
     <div>
         <div v-title="'我的考勤'"></div>
-        <!--<div class="l-block">-->
-            <!--<div class="l-block-header">-->
-                <!--<div class="l-flex">-->
-                    <!--{{user}}-->
-                <!--</div>-->
-            <!--</div>-->
-        <!--</div>-->
-        <el-card>
-            <v-chart :options="optionsArch" style="width: 100%;height: 300px;"/>
+        <el-card shadow="hover" style="margin-bottom: 20px;">
+            <div>部门 & 岗位</div>
+            <div style="position: relative;width: 100vw;height: 60px;background: #fff;">
+                <process-tree-vue :treeData="treeDataDept"></process-tree-vue>
+            </div>
+            <div style="position: relative;width: 100vw;height: 60px;background: #fff;">
+                <process-tree-vue :treeData="treeDataPosition"></process-tree-vue>
+            </div>
         </el-card>
+        <!--<el-card>-->
+            <!--<v-chart :options="optionsArch" style="width: 100%;height: 300px;"/>-->
+        <!--</el-card>-->
         <el-card shadow="hover">
             <el-calendar @input="dateChange">
                 <template
@@ -72,6 +74,7 @@
     import 'echarts/lib/component/angleAxis'
     import 'echarts/lib/component/legend'
     import 'echarts/lib/chart/graph'
+    import processTreeVue from 'process-tree-vue'
 
     // register component to use
     Vue.component('v-chart', ECharts)
@@ -233,7 +236,9 @@
                         },
 
                     ]
-                }
+                },
+                treeDataDept:[],
+                treeDataPosition:[]
             }
         },
         computed:{
@@ -470,12 +475,21 @@
             },
             async getEmployeeArch(){
                 let {data} = await api.sniperEmployeeArch({ userid: this.userId})
-                this.optionsArch.series[0].data = data.data
-                // {
-                //     source: '苏州思纳福',
-                //         target: '节点4'
-                // }
-                this.optionsArch.series[0].links = data.links
+                let dataDept = data[0]
+                let dataPosition = data[1]
+                const removeEmptyChildren = function(data){
+                    if(!data.children || !data.children.length){
+                        delete data.children
+                    }else{
+                        for(let child of data.children){
+                            removeEmptyChildren(child)
+                        }
+                    }
+                }
+                removeEmptyChildren(dataDept)
+                removeEmptyChildren(dataPosition)
+                this.treeDataDept = [dataDept]
+                this.treeDataPosition = [dataPosition]
             },
             async reloadData(){
                 if(this.user.id){
@@ -486,6 +500,9 @@
                 }
 
             },
+        },
+        components:{
+            processTreeVue
         },
 
         async created(){

@@ -270,25 +270,10 @@ class EmployeeController
         $userid = $request->input('userid');
         $employee = Employee::where('userid', $userid)->first();
         $department = $employee->department;
-        $deptPaths = $department->ancestorsAndSelf()->get();
-        $x = 0;
-        $data = [];
-        $links = [];
-        foreach ($deptPaths as $k => $path){
-            $s = new \stdClass();
-            $s->name = $path->name;
-            $s->x = $x;
-            $s->y = 0;
-            $x += 50;
-            $data[] = $s;
+        $position = $employee->position;
 
-            if($k > 0){
-                $l = new \stdClass();
-                $l->source = $k - 1;
-                $l->target = $k;
-                $links[] = $l;
-            }
-        }
-        return response()->ajax(compact(['data', 'links']));
+        $deptPaths = $department->ancestorsAndSelf()->get()->toHierarchy();
+        $positionPath = $position->ancestorsAndSelf()->get()->toHierarchy();
+        return response()->ajax([$deptPaths[1], $positionPath[1]]);
     }
 }

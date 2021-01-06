@@ -1,7 +1,13 @@
 {
   "name": "SNIPER",
   "shortName": "SN",
-  "allowModules": ["base","cms", "sniper", "panel", "privileges"],
+  "allowModules": [
+    "base",
+    "cms",
+    "sniper",
+    "panel",
+    "privileges"
+  ],
   "version": "1.0.0",
   "description": "admin",
   "author": "luzhang <295322133@qq.com>",
@@ -73,6 +79,7 @@
     "postcss-import": "^11.0.0",
     "postcss-loader": "^2.0.8",
     "postcss-url": "^7.2.1",
+    "process-tree-vue": "^1.0.5",
     "rimraf": "^2.7.1",
     "sass-loader": "^7.3.1",
     "semver": "^5.7.1",

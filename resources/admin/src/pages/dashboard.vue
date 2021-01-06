@@ -10,33 +10,15 @@
       </div>
     </el-alert>
     <!--<el-button @click="throttledArrowClick">点我</el-button>-->
-    <div>
-        <!--
-        <div style="margin-bottom: 20px;">
-            <el-button
-                    size="small"
-                    @click="addTab(editableTabsValue)"
-            >
-              add tab
-            </el-button>
-        </div>
-        <el-tabs v-model="editableTabsValue" type="card" closable @tab-remove="removeTab">
-            <el-tab-pane
-                    v-for="(item, index) in editableTabs"
-                    :key="item.name"
-                    :label="item.title"
-                    :name="item.name"
-            >
-              {{item.content}}
-            </el-tab-pane>
-        </el-tabs>
-        -->
+    <div style="position: relative;width: 600px;height: 600px;">
+      <process-tree-vue :treeData="treeData"></process-tree-vue>
     </div>
   </div>
 
 </template>
 <script>
     import throttle from 'throttle-debounce/throttle';
+    import processTreeVue from 'process-tree-vue'
 
   export default {
     name: 'dashboard',
@@ -52,10 +34,32 @@
                 name: '2',
                 content: 'Tab 2 content'
             }],
-            tabIndex: 2
+            tabIndex: 2,
+            treeData:[{
+                    name:'节点1',
+                    children:[
+                        {name:'节点5'},
+                        {name:'节点5',isLong:true},
+                        {name:'节点26',children:[
+                                {name:'节点3'},
+                                {name:'节点3'},
+                                {name:'节点33',
+                                    children:[
+                                        {name:'节点3'},
+                                        {name:'节点3'},
+                                        {name:'➤节点3'}
+                                    ]
+                                }
+                            ]},
+                        {name:'节点3',children:[{name:'节点3'},{name:'节点3'}]},
+                        {name:'节点4',children:[{name:'节点3'}]},
+                        {name:'节点5',isLong:true},
+                    ]
+                }]
         }
     },
     components: {
+        processTreeVue
     },
     watch:{
     },
