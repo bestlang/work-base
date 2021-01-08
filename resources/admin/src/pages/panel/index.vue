@@ -90,9 +90,12 @@
 
     }
     .l-app{
-        width: 80px;
+        width: 100px;
         cursor: pointer;
         margin-right: 20px;
+        border: 1px solid #dedede;
+        border-radius: 10px;
+        background: #f1f1f1;
     }
     .l-app-icon:hover{
         background-size: 82%;

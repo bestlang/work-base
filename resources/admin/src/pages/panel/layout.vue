@@ -81,8 +81,8 @@
     .ls-el-menu{
         background-color: #222;
         .el-menu-item{
-            height: 50px;
-            line-height: 50px;
+            height: 40px;
+            line-height: 40px;
             &.is-active{
                 border: none;
                 color: #fff;
