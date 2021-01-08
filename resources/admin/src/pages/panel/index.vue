@@ -83,8 +83,8 @@
             font-size: 12px;
             .l-app-icon{
                 margin-top: 10px;
-                width: 50px;
-                height: 50px;
+                width: 40px;
+                height: 40px;
             }
         }
 
@@ -96,6 +96,9 @@
         border: 1px solid #dedede;
         border-radius: 10px;
         background: #f1f1f1;
+        &:hover{
+            background: #fff;
+        }
     }
     .l-app-icon:hover{
         background-size: 82%;
