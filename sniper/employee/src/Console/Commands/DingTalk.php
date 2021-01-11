@@ -258,16 +258,14 @@ class DingTalk extends Command
                 }
                 $leave_status = Arr::flatten($leave_status);
                 foreach ($leave_status as $leave){
-                    print_r([
-                        'userid' => $leave->userid,
-                        'start_time' => $leave->start_time,
-                        'end_time' => $leave->end_time
-                    ]);
+                    $userid = $leave->userid;
+                    $start_time = $leave->start_time;
+                    $end_time = $leave->end_time;
                     Leave::updateOrCreate([
-                        'userid' => $leave->userid,
-                        'start_time' => $leave->start_time
+                        'userid' => $userid,
+                        'start_time' => $start_time
                     ],[
-                        'end_time' => $leave->end_time
+                        'end_time' => $end_time
                     ]);
                 }
 //                echo json_encode(Arr::flatten($leave_status));
