@@ -575,6 +575,7 @@ class DingTalk extends Command
                     }
                 }
             }else if($act == 'deptToPosition'){
+                    Position::truncate();
                     $departments = Department::all();
                     foreach ($departments as $department){
                         if($department->id == 1){
