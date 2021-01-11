@@ -257,16 +257,10 @@ class DingTalk extends Command
                     $leave_status[] = $result->result->leave_status;
                 }
                 $leave_status = Arr::flatten($leave_status);
-                Leave::truncate();
                 foreach ($leave_status as $leave){
                     $exist = Leave::where([['userid', $leave->userid],['start_time', $leave->start_time]])->first();
                     if($exist){
-                        echo json_encode($exist);
-                        $exist->end_time = $leave->end_time;
-                        $exist->save();
-                        echo "{$leave->end_time}-updating...\n";
-                    }else{
-                        echo "-creating...\n";
+                        $exist->delete();
                         Leave::create([
                             'userid' => $leave->userid,
                             'start_time' => $leave->start_time,
