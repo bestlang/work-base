@@ -262,7 +262,7 @@ class DingTalk extends Command
                     if($exist){
                         $exist->end_time = $leave->end_time;
                         $exist->save();
-                        echo "-updating...\n";
+                        echo "{$leave->end_time}-updating...\n";
                     }else{
                         echo "-creating...\n";
                         Leave::create([
