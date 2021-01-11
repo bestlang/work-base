@@ -52,7 +52,7 @@
                                 </el-table-column>
                             </el-table>
                         </el-tab-pane>
-                        <el-tab-pane label="下属职位" name="third">
+                        <el-tab-pane label="下属职位管理" name="third">
                             <div class="text-right pb-15">
                                     <el-button type="success" size="small" @click="add"><i class="iconfont">&#xe663;</i>新增</el-button>
                             </div>

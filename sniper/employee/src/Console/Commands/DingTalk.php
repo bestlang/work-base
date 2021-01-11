@@ -11,6 +11,8 @@ use Sniper\Employee\Models\DingTalk\Attendance;
 use Sniper\Employee\Models\DingTalk\Department as DingDepartment;
 use Sniper\Employee\Models\DingTalk\Leave;
 use Sniper\Employee\Models\DingTalk\User as DingUser;
+use Sniper\Employee\Models\Employee;
+use Sniper\Employee\Models\Position;
 use Sniper\Employee\Models\User;
 use Sniper\Employee\Services\DingTalk as DingService;
 use Sniper\Employee\Mail\LateNotice;
@@ -570,6 +572,37 @@ class DingTalk extends Command
                         print_r($avg);
                         echo "\n";
                         DB::table('sniper_employee_weekly_attendances')->where('month', $month)->where('week', $week)->update(['company_hours' => $avg]);
+                    }
+                }
+            }else if($act == 'deptToPosition'){
+                    $departments = Department::all();
+                    foreach ($departments as $department){
+                        if($department->id == 1){
+                            $positionName = '总经理';
+                        }else{
+                            $positionName = $department->name . '主管';
+                        }
+                        Position::create(['name' => $positionName, 'department_id' => $department->id]);
+                    }
+                    foreach ($departments as $department){
+                        $deptPosition = Position::where('department_id', $department->id)->first();
+                        $existingParentDept = Position::where('department_id', $department->parent_id)->first();
+                        if($existingParentDept){
+                            $deptPosition->makeChildOf($existingParentDept);
+                        }else{
+                            $deptPosition->makeRoot();
+                        }
+                    }
+
+                $dingUsers = DB::connection('proxy')->table('sniper_employee_ding_users')->get();
+                foreach ($dingUsers as $du){
+                    if($du->isLeaderInDepts == 1){
+                        $userid = $du->userid;
+                        $department = $du->department;
+                        $position = Position::where('department_id', $department)->first();
+                        $employee = Employee::where('userid', $userid)->first();
+                        $employee->position_id = $position->id;
+                        $employee->save();
                     }
                 }
             }
