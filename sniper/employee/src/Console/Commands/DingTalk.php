@@ -265,7 +265,19 @@ class DingTalk extends Command
                     if($exist){
                         $exist->end_time = $end_time;
                         $exist->save();
+                        print_r([
+                            'userid' => $userid,
+                            'start_time' => $start_time,
+                            'end_time' => $end_time
+                        ]);
+                        echo "-updating...\n";
                     }else{
+                        print_r([
+                            'userid' => $userid,
+                            'start_time' => $start_time,
+                            'end_time' => $end_time
+                        ]);
+                        echo "-creating...\n";
                         Leave::create([
                             'userid' => $userid,
                             'start_time' => $start_time,
