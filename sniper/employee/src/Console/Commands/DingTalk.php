@@ -258,6 +258,7 @@ class DingTalk extends Command
                 }
                 $leave_status = Arr::flatten($leave_status);
                 foreach ($leave_status as $leave){
+                    sleep(2);
                     $userid = $leave->userid;
                     $start_time = $leave->start_time;
                     $end_time = $leave->end_time;
