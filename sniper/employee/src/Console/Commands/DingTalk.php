@@ -258,39 +258,19 @@ class DingTalk extends Command
                 }
                 $leave_status = Arr::flatten($leave_status);
                 foreach ($leave_status as $leave){
-                    sleep(2);
-                    $userid = $leave->userid;
-                    $start_time = $leave->start_time;
-                    $end_time = $leave->end_time;
-                    $exist = Leave::where('userid', $userid)->where('start_time', $start_time)->first();
+                    $exist = Leave::where('userid', $leave->userid)->where('start_time', $leave->start_time)->first();
                     if($exist){
-                        $exist->end_time = $end_time;
+                        $exist->end_time = $leave->end_time;
                         $exist->save();
-                        print_r([
-                            'userid' => $userid,
-                            'start_time' => $start_time,
-                            'end_time' => $end_time
-                        ]);
                         echo "-updating...\n";
                     }else{
-                        print_r([
-                            'userid' => $userid,
-                            'start_time' => $start_time,
-                            'end_time' => $end_time
-                        ]);
                         echo "-creating...\n";
                         Leave::create([
-                            'userid' => $userid,
-                            'start_time' => $start_time,
-                            'end_time' => $end_time
+                            'userid' => $leave->userid,
+                            'start_time' => $leave->start_time,
+                            'end_time' => $leave->end_time
                         ]);
                     }
-//                    Leave::updateOrCreate([
-//                        'userid' => $userid,
-//                        'start_time' => $start_time
-//                    ],[
-//                        'end_time' => $end_time
-//                    ]);
                 }
 //                echo json_encode(Arr::flatten($leave_status));
             }else if($act == 'offJob'){
