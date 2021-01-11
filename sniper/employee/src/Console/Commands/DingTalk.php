@@ -257,6 +257,7 @@ class DingTalk extends Command
                     $leave_status[] = $result->result->leave_status;
                 }
                 $leave_status = Arr::flatten($leave_status);
+                Leave::truncate();
                 foreach ($leave_status as $leave){
                     $exist = Leave::where([['userid', $leave->userid],['start_time', $leave->start_time]])->first();
                     if($exist){
