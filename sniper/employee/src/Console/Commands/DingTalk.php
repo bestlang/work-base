@@ -257,8 +257,8 @@ class DingTalk extends Command
                     $leave_status[] = $result->result->leave_status;
                 }
                 $leave_status = Arr::flatten($leave_status);
-                print_r($leave_status);
                 foreach ($leave_status as $leave){
+                    print_r($leave->end_time);
                     Leave::updateOrCreate([
                         'userid' => $leave->userid,
                         'start_time' => $leave->start_time
