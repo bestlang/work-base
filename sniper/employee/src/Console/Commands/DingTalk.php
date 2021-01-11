@@ -255,6 +255,7 @@ class DingTalk extends Command
                     echo $offset, "\n";
                     $result = $ding->_getLeaveStatus($userid_list, $start_time, $end_time, $offset, $size);
                     $leave_status[] = $result->result->leave_status;
+                    print_r(json_encode($result->result->leave_status));
                 }
                 $leave_status = Arr::flatten($leave_status);
                 foreach ($leave_status as $leave){
