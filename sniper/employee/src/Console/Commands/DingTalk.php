@@ -258,12 +258,16 @@ class DingTalk extends Command
                 }
                 $leave_status = Arr::flatten($leave_status);
                 foreach ($leave_status as $leave){
-                    Leave::where([['userid', $leave->userid],['start_time', $leave->start_time]])->delete();
-                    Leave::create([
-                        'userid' => $leave->userid,
-                        'start_time' => $leave->start_time,
-                        'end_time' => $leave->end_time
-                    ]);
+                    try {
+                        Leave::where([['userid', $leave->userid], ['start_time', $leave->start_time]])->delete();
+                        Leave::create([
+                            'userid' => $leave->userid,
+                            'start_time' => $leave->start_time,
+                            'end_time' => $leave->end_time
+                        ]);
+                    }catch (\Exception $e){
+
+                    }
                 }
 //                echo json_encode(Arr::flatten($leave_status));
             }else if($act == 'offJob'){
