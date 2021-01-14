@@ -90,6 +90,9 @@ class PositionController
             return response()->error('参数错误');
         }
         $position = Position::find($id);
+        if(!!($position->children()->count())){
+            return response()->error('删除失败！当前职位含有下级职位');
+        }
         $position->delete();
         return response()->ajax();
     }

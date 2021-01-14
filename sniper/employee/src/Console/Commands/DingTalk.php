@@ -579,16 +579,22 @@ class DingTalk extends Command
                     }
                 }
             }else if($act == 'deptToPosition'){
-                    Position::truncate();
+                    //Position::truncate();
+                    //只处理由部门生成的职位
                     $departments = Department::all();
+                    //先全插入
                     foreach ($departments as $department){
                         if($department->id == 1){
                             $positionName = '总经理';
                         }else{
                             $positionName = $department->name . '主管';
                         }
-                        Position::create(['name' => $positionName, 'department_id' => $department->id]);
+                        $existingPosition = Position::where('name', $positionName)->where('department_id', $department->id)->first();
+                        if(!$existingPosition){
+                            Position::create(['name' => $positionName, 'department_id' => $department->id]);
+                        }
                     }
+                    //记录父子关系
                     foreach ($departments as $department){
                         $deptPosition = Position::where('department_id', $department->id)->first();
                         $existingParentDept = Position::where('department_id', $department->parent_id)->first();

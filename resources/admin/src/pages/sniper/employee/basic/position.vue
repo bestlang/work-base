@@ -4,21 +4,12 @@
 		<position-tree class="l-tree" :selectedKey="2" @nodeClick="handleNodeClick" @treeLoaded="performTreeLoaded"></position-tree>
 		<div class="l-tree-content">
 			<div class="l-block">
-				<!--<div class="l-block-header" style="padding-right: 20px;width: 100%;">-->
-					<!--<div class="l-flex">-->
-						<!--&lt;!&ndash;<span>员工系统 / 职位管理</span>&ndash;&gt;-->
-						<!--<span><i class="iconfont">&#xe611;</i> 职位-{{position.name ? position.name : ''}}</span>-->
-						<!--<el-button-group>-->
-							<!--<el-button type="primary" size="small" @click="edit"><i class="iconfont">&#xe618;</i>编辑</el-button>-->
-							<!--<el-button type="success" size="small" @click="add"><i class="iconfont">&#xe663;</i>新增</el-button>-->
-						<!--</el-button-group>-->
-					<!--</div>-->
-				<!--</div>-->
 				<div class="l-block-body l-lighter">
                     <el-tabs v-model="activeName" type="border-card">
                         <el-tab-pane label="职位信息" name="first">
                             <div class="text-right pb-15">
-                                <el-button type="primary" size="small" @click="edit"><i class="iconfont">&#xe618;</i>编辑</el-button>
+                                <el-button type="primary" size="small" @click="edit(position)"><i class="iconfont">&#xe618;</i> 编辑</el-button>
+                                <el-button type="danger" size="small" @click="del(position)"><i class="iconfont">&#xe620;</i> 删除</el-button>
                             </div>
                             <p class="l-position-meta">职位名称：{{position.name ? position.name : ''}}</p>
                             <p class="l-position-meta">上级职位：{{position.parent ? position.parent.name : '-'}}</p>
@@ -31,11 +22,6 @@
                                     empty-text="暂无职位人员"
                                     border
                                     style="width: 100%">
-                                <!--<el-table-column-->
-                                <!--prop="user_id"-->
-                                <!--label="ID"-->
-                                <!--width="80">-->
-                                <!--</el-table-column>-->
                                 <el-table-column
                                         prop="real_name"
                                         label="姓名">
@@ -54,7 +40,7 @@
                         </el-tab-pane>
                         <el-tab-pane label="下属职位管理" name="third">
                             <div class="text-right pb-15">
-                                    <el-button type="success" size="small" @click="add"><i class="iconfont">&#xe663;</i>新增</el-button>
+                                    <el-button type="success" size="small" @click="add(position)"><i class="iconfont">&#xe663;</i>新增</el-button>
                             </div>
                             <el-table
                                     v-show="position"
@@ -63,11 +49,6 @@
                                     empty-text="暂无下属职位"
                                     border
                                     style="width: 100%">
-                                <!--<el-table-column-->
-                                <!--prop="id"-->
-                                <!--label="ID"-->
-                                <!--width="80">-->
-                                <!--</el-table-column>-->
                                 <el-table-column
                                         prop="name"
                                         label="职位名">
@@ -79,8 +60,8 @@
                                 <el-table-column
                                         label="操作">
                                     <template slot-scope="scope">
-                                        <el-button class="l-lighter" size="mini" type="primary" @click="editPosition(scope.row)">编辑</el-button>
-                                        <el-button class="l-lighter" size="mini" type="danger" @click="deletePosition(scope.row)">删除</el-button>
+                                        <el-button class="l-lighter" size="mini" type="primary" @click="edit(scope.row)">编辑</el-button>
+                                        <el-button class="l-lighter" size="mini" type="danger" @click="del(scope.row)">删除</el-button>
                                     </template>
                                 </el-table-column>
                             </el-table>
@@ -145,21 +126,14 @@
 				let position  = node
 				this.position = position
 			},
-			edit(){
-                this.$router.push('/sniper/employee/position/edit?id='+this.position.id)
-			},
-            add(){
-                let {id} = this.position
-                this.$router.push('/sniper/employee/position/edit?parent_id='+id)
-            },
-            editPosition({id}){
+			edit({id}){
                 this.$router.push('/sniper/employee/position/edit?id='+id)
 			},
-            addPosition({id}){
+           add({id}){
                 this.$router.push('/sniper/employee/position/edit?parent_id='+id)
-			},
-            async deletePosition({id}){
-                this.$confirm('确定删除职位?', '提示', {
+            },
+            async del({id, name}){
+                this.$confirm('确定删除`'+name+'`职位?', '提示', {
                     confirmButtonText: '确定',
                     cancelButtonText: '取消',
                     type: 'error'
@@ -170,6 +144,8 @@
 						this.position.children = this.position.children.filter(function(p){
 						    return p.id != id
 						})
+                    }else{
+                        this.$message.error(res.error)
                     }
                 });
 
