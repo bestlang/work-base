@@ -4,21 +4,12 @@
 		<position-tree class="l-tree" :selectedKey="2" @nodeClick="handleNodeClick" @treeLoaded="performTreeLoaded"></position-tree>
 		<div class="l-tree-content">
 			<div class="l-block">
-				<!--<div class="l-block-header" style="padding-right: 20px;width: 100%;">-->
-					<!--<div class="l-flex">-->
-						<!--&lt;!&ndash;<span>员工系统 / 职位管理</span>&ndash;&gt;-->
-						<!--<span><i class="iconfont">&#xe611;</i> 职位-{{position.name ? position.name : ''}}</span>-->
-						<!--<el-button-group>-->
-							<!--<el-button type="primary" size="small" @click="edit"><i class="iconfont">&#xe618;</i>编辑</el-button>-->
-							<!--<el-button type="success" size="small" @click="add"><i class="iconfont">&#xe663;</i>新增</el-button>-->
-						<!--</el-button-group>-->
-					<!--</div>-->
-				<!--</div>-->
 				<div class="l-block-body l-lighter">
                     <el-tabs v-model="activeName" type="border-card">
                         <el-tab-pane label="职位信息" name="first">
                             <div class="text-right pb-15">
-                                <el-button type="primary" size="small" @click="edit"><i class="iconfont">&#xe618;</i>编辑</el-button>
+                                <el-button type="primary" size="small" @click="edit(position)"><i class="iconfont">&#xe618;</i> 编辑</el-button>
+                                <el-button type="danger" size="small" @click="del(position)"><i class="iconfont">&#xe620;</i> 删除</el-button>
                             </div>
                             <p class="l-position-meta">职位名称：{{position.name ? position.name : ''}}</p>
                             <p class="l-position-meta">上级职位：{{position.parent ? position.parent.name : '-'}}</p>
@@ -31,11 +22,6 @@
                                     empty-text="暂无职位人员"
                                     border
                                     style="width: 100%">
-                                <!--<el-table-column-->
-                                <!--prop="user_id"-->
-                                <!--label="ID"-->
-                                <!--width="80">-->
-                                <!--</el-table-column>-->
                                 <el-table-column
                                         prop="real_name"
                                         label="姓名">
@@ -54,7 +40,7 @@
                         </el-tab-pane>
                         <el-tab-pane label="下属职位管理" name="third">
                             <div class="text-right pb-15">
-                                    <el-button type="success" size="small" @click="add"><i class="iconfont">&#xe663;</i>新增</el-button>
+                                    <el-button type="success" size="small" @click="add(position)"><i class="iconfont">&#xe663;</i>新增</el-button>
                             </div>
                             <el-table
                                     v-show="position"
@@ -63,11 +49,6 @@
                                     empty-text="暂无下属职位"
                                     border
                                     style="width: 100%">
-                                <!--<el-table-column-->
-                                <!--prop="id"-->
-                                <!--label="ID"-->
-                                <!--width="80">-->
-                                <!--</el-table-column>-->
                                 <el-table-column
                                         prop="name"
                                         label="职位名">
@@ -79,11 +60,60 @@
                                 <el-table-column
                                         label="操作">
                                     <template slot-scope="scope">
-                                        <el-button class="l-lighter" size="mini" type="primary" @click="editPosition(scope.row)">编辑</el-button>
-                                        <el-button class="l-lighter" size="mini" type="danger" @click="deletePosition(scope.row)">删除</el-button>
+                                        <el-button class="l-lighter" size="mini" type="primary" @click="edit(scope.row)">编辑</el-button>
+                                        <el-button class="l-lighter" size="mini" type="danger" @click="del(scope.row)">删除</el-button>
                                     </template>
                                 </el-table-column>
                             </el-table>
+                        </el-tab-pane>
+                        <el-tab-pane label="岗位胜任力" name="fourth">
+                            <div class="text-left pb-15">
+                                <el-button circle type="primary" size="small" icon="el-icon-plus"></el-button>
+                            </div>
+                            <div>
+                                <el-card class="box-card">
+                                    <div slot="header" class="clearfix">
+                                        <span>技术能力</span>
+                                        <div>
+                                            <el-button-group>
+                                                <el-button size="small" type="primary" style="float: right;">新增</el-button>
+                                                <el-button size="small" type="danger" style="float: right;">删除</el-button>
+                                            </el-button-group>
+                                        </div>
+                                    </div>
+                                    <el-table
+                                            :data="tableData"
+                                            border
+                                            style="width: 100%">
+                                        <el-table-column
+                                                prop="date"
+                                                label="分类"
+                                                width="180">
+                                        </el-table-column>
+                                        <el-table-column
+                                                prop="name"
+                                                label="能力名"
+                                                width="180">
+                                        </el-table-column>
+                                        <el-table-column
+                                                prop="address"
+                                                label="能力详情">
+                                        </el-table-column>
+                                        <el-table-column
+                                                prop="totalScore"
+                                                label="能力分值">
+                                        </el-table-column>
+                                        <el-table-column
+                                                prop="okScore"
+                                                label="达标分值">
+                                        </el-table-column>
+                                        <el-table-column
+                                                label="达标分值">
+
+                                        </el-table-column>
+                                    </el-table>
+                                </el-card>
+                            </div>
                         </el-tab-pane>
                     </el-tabs>
 				</div>
@@ -112,13 +142,42 @@
         components: { PositionTree },
 	    data(){
 	        return {
+                categories: [
+                    {name: '技术能力'},
+                    {name: '沟通能力'}
+                ],
                 activeName: 'first',
 	            drawer: false,
 				id: 0,
 				position:{},
 				employee:[],
 				user:{},
-                loading: false
+                loading: false,
+                tableData: [{
+                    date: '技术能力',
+                    name: '做事情',
+                    address: '能干活',
+                    totalScore: 5,
+                    okScore: 4
+                }, {
+                    date: '技术能力',
+                    name: '做事情',
+                    address: '能干活',
+                    totalScore: 5,
+                    okScore: 4
+                }, {
+                    date: '技术能力',
+                    name: '做事情',
+                    address: '能干活',
+                    totalScore: 5,
+                    okScore: 4
+                }, {
+                    date: '技术能力',
+                    name: '做事情',
+                    address: '能干活',
+                    totalScore: 5,
+                    okScore: 4
+                }]
 			}
 		},
 		watch:{
@@ -145,21 +204,14 @@
 				let position  = node
 				this.position = position
 			},
-			edit(){
-                this.$router.push('/sniper/employee/position/edit?id='+this.position.id)
-			},
-            add(){
-                let {id} = this.position
-                this.$router.push('/sniper/employee/position/edit?parent_id='+id)
-            },
-            editPosition({id}){
+			edit({id}){
                 this.$router.push('/sniper/employee/position/edit?id='+id)
 			},
-            addPosition({id}){
+           add({id}){
                 this.$router.push('/sniper/employee/position/edit?parent_id='+id)
-			},
-            async deletePosition({id}){
-                this.$confirm('确定删除职位?', '提示', {
+            },
+            async del({id, name}){
+                this.$confirm('确定删除`'+name+'`职位?', '提示', {
                     confirmButtonText: '确定',
                     cancelButtonText: '取消',
                     type: 'error'
@@ -170,6 +222,8 @@
 						this.position.children = this.position.children.filter(function(p){
 						    return p.id != id
 						})
+                    }else{
+                        this.$message.error(res.error)
                     }
                 });
 
@@ -182,6 +236,38 @@
 </script>
 
 <style scoped lang="less">
+    .l-category-wrap{
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: flex-start;
+        .l-category{
+            position: relative;
+            box-shadow: #67C23A;
+            height: 30px;
+            line-height: 30px;
+            border:1px solid #f1f1f1;
+            width: 120px;
+            margin: 20px 30px 0 0;
+            border-radius: 2px;
+            cursor: pointer;
+            background: #F2F8FE;
+            padding-left: 10px;
+            &:hover{
+                box-shadow: 3px 3px 6px #FAFAFA;
+                background: #fcf8e3;
+                h1{
+                    color: #888;
+                }
+            }
+            h1{
+                font-size: 14px;
+                color: #888;
+                padding: 10px 0 0 10px;
+                font-weight: bold;
+                font-weight: lighter;
+            }
+        }
+    }
 	.el-table th, .el-table tr{
 		background: transparent;
 	}

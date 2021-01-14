@@ -3,9 +3,6 @@
         <div class="container">
             <div class="row footer-inner">
                 <div class="col-md-3 col-sm-3">
-                    <div class="footer-logo">
-                        <a href="#"><i class="fa fa-bookmark"></i></a>
-                    </div>
                     <p class="copyright"><small>© 2017-2020. All Rights Reserved. <br>
                             LaraCMS
                         </small>
@@ -50,12 +47,6 @@
         </div>
     </div>
 </footer>
-<!--
-<script src="https://unpkg.zhimg.com/jquery@2.2.4/dist/jquery.min.js"></script>
-<script src="https://unpkg.zhimg.com/bootstrap@3.4.1/dist/js/bootstrap.min.js"></script>
-<script src="https://unpkg.zhimg.com/axios/dist/axios.min.js"></script>
-<script src="https://unpkg.zhimg.com/swiper/swiper-bundle.min.js"></script>
--->
 <script src="https://static.laracms.com/unpkg/jquery.min.js"></script>
 <script src="https://static.laracms.com/unpkg/bootstrap.min.js"></script>
 <script src="https://static.laracms.com/unpkg/axios.min.js"></script>
@@ -88,8 +79,6 @@
         }
         $('#user-menu').html(authHtml.join(''))
     }
-
-
 
     $(document).on('click', '#logout-btn', function(){
         //$('#logout-form').submit();
