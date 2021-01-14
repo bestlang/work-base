@@ -1,7 +1,9 @@
 @extends('base::layouts.app')
 
 
-@section('title')LaraCMS@endsection
+@section('title')
+    {{HashConfig::get('site','title')}}
+@endsection
 
 @section('content')
     <script src="//at.alicdn.com/t/font_1296820_cr5tubvbx0l.js"></script>

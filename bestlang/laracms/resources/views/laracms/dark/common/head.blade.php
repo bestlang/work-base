@@ -37,7 +37,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="{{route('cms')}}"><img src="/vendor/laracms/dark/images/logo.png" width="180" alt="LaraCMS"></a>
+                <a class="navbar-brand" href="/"><img src="/vendor/laracms/dark/images/logo.png" width="180" alt="LaraCMS"></a>
             </div>
 
             <div class="collapse navbar-collapse" id="navbar-collapse">
