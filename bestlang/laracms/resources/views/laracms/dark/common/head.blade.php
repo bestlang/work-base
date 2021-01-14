@@ -1,6 +1,5 @@
-
 <!DOCTYPE html>
-<html class="">
+<html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1">
@@ -22,10 +21,8 @@
     <script src="https://cdn.bootcdn.net/ajax/libs/html5shiv/3.6.2/html5shiv.js"></script>
     <script src="https://cdn.bootcdn.net/ajax/libs/respond.js/1.4.0/respond.min.js"></script>
     <![endif]-->
-
-
 </head>
-<body class="group-page">
+<body>
 <header class="header">
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <div class="container">
@@ -42,7 +39,7 @@
 
             <div class="collapse navbar-collapse" id="navbar-collapse">
                 <ul class="nav navbar-nav" data-current="0">
-                    <li class="">
+                    <li>
                         <a href="{{route('cms')}}">首页</a>
                         <ul class="dropdown-menu" role="menu">
                         </ul>
@@ -50,12 +47,6 @@
                     <li class="dropdown">
                         <a href="{{route('channel', 6)}}">技术专栏</a>
                     </li>
-                    {{--<li class="dropdown">--}}
-                        {{--<a href="javascript:" data-toggle="dropdown" >更多 <b class="caret"></b></a>--}}
-                        {{--<ul class="dropdown-menu" role="menu">--}}
-                            {{--<li><a href=""></a></li>--}}
-                        {{--</ul>--}}
-                    {{--</li>--}}
                     <li>
                         <a href="{{route('channel', 25)}}">软件下载</a>
                     </li>
@@ -83,32 +74,9 @@
                             会员<span class="hidden-sm">中心</span> <b class="caret"></b>
                         </a>
                         <ul class="dropdown-menu" id="user-menu">
-                            {{--@guest--}}
-                            <li><a href="{{route('login')}}"><i class="fa fa-sign-in fa-fw"></i>登录</a></li>
-                            @if (Route::has('register'))
-                                <li><a href="{{route('register')}}"><i class="fa fa-user-o fa-fw"></i>注册</a></li>
-                            @endif
-                            {{--@else--}}
-                                {{--<li>--}}
-                                    {{--<a href="/ucenter">个人中心</a>--}}
-                                {{--</li>--}}
-                                {{--@if(auth()->user()->type == 1)--}}
-                                    {{--<li><a class="dropdown-item" href="/admin/#/">--}}
-                                            {{--管理后台--}}
-                                        {{--</a></li>--}}
-                                {{--@endif--}}
-                                {{--<li><a href="{{ route('logout') }}" onclick="event.preventDefault();--}}
-                                                     {{--document.getElementById('logout-form').submit();">--}}
-                                        {{--登出--}}
-                                    {{--</a>--}}
-                                {{--</li>--}}
-                             {{--@endguest--}}
                         </ul>
                     </li>
                 </ul>
-                {{--<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">--}}
-                    {{--@csrf--}}
-                {{--</form>--}}
             </div>
 
         </div>

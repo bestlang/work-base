@@ -6,7 +6,7 @@
 @endsection
 
 @section('content')
-    <script src="//at.alicdn.com/t/font_1296820_cr5tubvbx0l.js"></script>
+    {{--<script src="//at.alicdn.com/t/font_1296820_cr5tubvbx0l.js"></script>--}}
     <div class="swiper-container" id="bannerSwiper">
         <div class="swiper-wrapper">
             <div class="swiper-slide">
@@ -72,23 +72,23 @@
 @endpush
 @push('script')
 <script>
-    var mySwiper = new Swiper('#bannerSwiper', {
-        loop: false,
-        speed:600,
-        grabCursor : true,
-        parallax:true,
-        autoplay:{
-            delay: 3000,
-            //loop无效  stopOnLastSlide: true,
-        },
+//    var mySwiper = new Swiper('#bannerSwiper', {
+//        loop: false,
+//        speed:600,
+//        grabCursor : true,
+//        parallax:true,
+//        autoplay:{
+//            delay: 3000,
+//            //loop无效  stopOnLastSlide: true,
+//        },
 //        pagination: {
 //            el:'#bannerpagination',
 //            clickable :true,
 //        },
-        navigation: {
-            nextEl: '.arrow-right',
-            prevEl: '.arrow-left',
-        },
-    });
+//        navigation: {
+//            nextEl: '.arrow-right',
+//            prevEl: '.arrow-left',
+//        },
+//    });
 </script>
 @endpush

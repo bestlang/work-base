@@ -5,6 +5,32 @@
     登录 - {{HashConfig::get('site','title')}}
 @endsection
 
+@push('css')
+    <style>
+        .l-login-title {
+            line-height: 60px;
+            font-size: 16px
+        }
+
+        .l-login-title>div {
+            background: #f1f1f1
+        }
+
+        .l-login-title>div a {
+            display: block
+        }
+
+        .l-login-title>div a:hover {
+            text-decoration: none
+        }
+
+        .l-login-title>div.active {
+            background: transparent;
+            font-weight: 700
+        }
+    </style>
+@endpush
+
 @section('content')
 <div class="container">
     <div class="row">

@@ -1,6 +1,5 @@
-
 <!DOCTYPE html>
-<html class="">
+<html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1">
@@ -22,10 +21,8 @@
     <script src="https://cdn.bootcdn.net/ajax/libs/html5shiv/3.6.2/html5shiv.js"></script>
     <script src="https://cdn.bootcdn.net/ajax/libs/respond.js/1.4.0/respond.min.js"></script>
     <![endif]-->
-
-
 </head>
-<body class="group-page">
+<body>
 <header class="header">
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <div class="container">
@@ -42,8 +39,8 @@
 
             <div class="collapse navbar-collapse" id="navbar-collapse">
                 <ul class="nav navbar-nav" data-current="0">
-                    <li class="">
-                        <a href="{{route('cms')}}">DEMO</a>
+                    <li>
+                        <a href="{{route('cms')}}">系统演示</a>
                         <ul class="dropdown-menu" role="menu">
                         </ul>
                     </li>
@@ -54,12 +51,6 @@
                             会员<span class="hidden-sm">中心</span> <b class="caret"></b>
                         </a>
                         <ul class="dropdown-menu" id="user-menu">
-                            {{--@guest--}}
-                            <li><a href="{{route('login')}}"><i class="fa fa-sign-in fa-fw"></i>登录</a></li>
-                            @if (Route::has('register'))
-                                <li><a href="{{route('register')}}"><i class="fa fa-user-o fa-fw"></i>注册</a></li>
-                            @endif
-
                         </ul>
                     </li>
                 </ul>
