@@ -66,6 +66,55 @@
                                 </el-table-column>
                             </el-table>
                         </el-tab-pane>
+                        <el-tab-pane label="岗位胜任力" name="fourth">
+                            <div class="text-left pb-15">
+                                <el-button circle type="primary" size="small" icon="el-icon-plus"></el-button>
+                            </div>
+                            <div>
+                                <el-card class="box-card">
+                                    <div slot="header" class="clearfix">
+                                        <span>技术能力</span>
+                                        <div>
+                                            <el-button-group>
+                                                <el-button size="small" type="primary" style="float: right;">新增</el-button>
+                                                <el-button size="small" type="danger" style="float: right;">删除</el-button>
+                                            </el-button-group>
+                                        </div>
+                                    </div>
+                                    <el-table
+                                            :data="tableData"
+                                            border
+                                            style="width: 100%">
+                                        <el-table-column
+                                                prop="date"
+                                                label="分类"
+                                                width="180">
+                                        </el-table-column>
+                                        <el-table-column
+                                                prop="name"
+                                                label="能力名"
+                                                width="180">
+                                        </el-table-column>
+                                        <el-table-column
+                                                prop="address"
+                                                label="能力详情">
+                                        </el-table-column>
+                                        <el-table-column
+                                                prop="totalScore"
+                                                label="能力分值">
+                                        </el-table-column>
+                                        <el-table-column
+                                                prop="okScore"
+                                                label="达标分值">
+                                        </el-table-column>
+                                        <el-table-column
+                                                label="达标分值">
+
+                                        </el-table-column>
+                                    </el-table>
+                                </el-card>
+                            </div>
+                        </el-tab-pane>
                     </el-tabs>
 				</div>
 			</div>
@@ -93,13 +142,42 @@
         components: { PositionTree },
 	    data(){
 	        return {
+                categories: [
+                    {name: '技术能力'},
+                    {name: '沟通能力'}
+                ],
                 activeName: 'first',
 	            drawer: false,
 				id: 0,
 				position:{},
 				employee:[],
 				user:{},
-                loading: false
+                loading: false,
+                tableData: [{
+                    date: '技术能力',
+                    name: '做事情',
+                    address: '能干活',
+                    totalScore: 5,
+                    okScore: 4
+                }, {
+                    date: '技术能力',
+                    name: '做事情',
+                    address: '能干活',
+                    totalScore: 5,
+                    okScore: 4
+                }, {
+                    date: '技术能力',
+                    name: '做事情',
+                    address: '能干活',
+                    totalScore: 5,
+                    okScore: 4
+                }, {
+                    date: '技术能力',
+                    name: '做事情',
+                    address: '能干活',
+                    totalScore: 5,
+                    okScore: 4
+                }]
 			}
 		},
 		watch:{
@@ -158,6 +236,38 @@
 </script>
 
 <style scoped lang="less">
+    .l-category-wrap{
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: flex-start;
+        .l-category{
+            position: relative;
+            box-shadow: #67C23A;
+            height: 30px;
+            line-height: 30px;
+            border:1px solid #f1f1f1;
+            width: 120px;
+            margin: 20px 30px 0 0;
+            border-radius: 2px;
+            cursor: pointer;
+            background: #F2F8FE;
+            padding-left: 10px;
+            &:hover{
+                box-shadow: 3px 3px 6px #FAFAFA;
+                background: #fcf8e3;
+                h1{
+                    color: #888;
+                }
+            }
+            h1{
+                font-size: 14px;
+                color: #888;
+                padding: 10px 0 0 10px;
+                font-weight: bold;
+                font-weight: lighter;
+            }
+        }
+    }
 	.el-table th, .el-table tr{
 		background: transparent;
 	}
