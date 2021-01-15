@@ -68,17 +68,18 @@
                         </el-tab-pane>
                         <el-tab-pane label="岗位胜任力" name="fourth">
                             <div class="text-left pb-15">
-                                <el-button circle type="primary" size="small" icon="el-icon-plus"></el-button>
+                                <el-button circle type="primary" size="small" icon="el-icon-plus" @click="addCategory"></el-button>
                             </div>
                             <div>
-                                <el-card class="box-card">
+                                <el-card class="box-card" v-for="category in categories" style="margin-bottom: 20px;">
                                     <div slot="header" class="clearfix">
                                         <div class="l-flex">
-                                            <div style="line-height: 32px;">技术能力</div>
+                                            <div style="line-height: 32px;">{{category.name}}</div>
                                             <div>
                                                 <el-button-group>
-                                                    <el-button size="small" type="primary">新增</el-button>
-                                                    <el-button size="small" type="danger">删除</el-button>
+                                                    <el-button size="small" type="warning" @click="editCategory(category)">编辑</el-button>
+                                                    <el-button size="small" type="danger" @click="delCategory(category)">删除</el-button>
+                                                    <el-button size="small" type="primary">新增子能力</el-button>
                                                 </el-button-group>
                                             </div>
                                         </div>
@@ -135,6 +136,17 @@
 				</div>
 			</div>
 		</el-dialog>
+        <el-dialog title="添加能力分类" :visible.sync="showCategoryForm" :close-on-click-modal="false">
+            <el-form size="small">
+                <el-form-item label="名称" label-width="100px">
+                    <el-input v-model="categoryForm.name" autocomplete="off"></el-input>
+                </el-form-item>
+            </el-form>
+            <div slot="footer" class="dialog-footer">
+                <el-button @click="showCategoryForm = false">取消</el-button>
+                <el-button type="primary" @click="saveCategory">确定</el-button>
+            </div>
+        </el-dialog>
 	</div>
 </template>
 
@@ -147,10 +159,12 @@
         components: { PositionTree },
 	    data(){
 	        return {
-                categories: [
-                    {name: '技术能力'},
-                    {name: '沟通能力'}
-                ],
+                showCategoryForm: false,
+                categoryForm: {
+                    id: '',
+                    name: ''
+                },
+                categories: [],
                 activeName: 'first',
 	            drawer: false,
 				id: 0,
@@ -158,31 +172,36 @@
 				employee:[],
 				user:{},
                 loading: false,
-                tableData: [{
-                    date: '技术能力',
-                    name: '做事情',
-                    address: '能干活',
-                    totalScore: 5,
-                    okScore: 4
-                }, {
-                    date: '技术能力',
-                    name: '做事情',
-                    address: '能干活',
-                    totalScore: 5,
-                    okScore: 4
-                }, {
-                    date: '技术能力',
-                    name: '做事情',
-                    address: '能干活',
-                    totalScore: 5,
-                    okScore: 4
-                }, {
-                    date: '技术能力',
-                    name: '做事情',
-                    address: '能干活',
-                    totalScore: 5,
-                    okScore: 4
-                }]
+                tableData: [
+                    {
+                        date: '技术能力',
+                        name: '做事情',
+                        address: '能干活',
+                        totalScore: 5,
+                        okScore: 4
+                    },
+                    {
+                        date: '技术能力',
+                        name: '做事情',
+                        address: '能干活',
+                        totalScore: 5,
+                        okScore: 4
+                    },
+                    {
+                        date: '技术能力',
+                        name: '做事情',
+                        address: '能干活',
+                        totalScore: 5,
+                        okScore: 4
+                    },
+                    {
+                        date: '技术能力',
+                        name: '做事情',
+                        address: '能干活',
+                        totalScore: 5,
+                        okScore: 4
+                    }
+                ]
 			}
 		},
 		watch:{
@@ -190,10 +209,38 @@
             	deep: true,
 				async handler(newVal){
             	    await this.getPositionDetail(newVal.id)
+                    await this.competencePosition()
 				}
 			}
 		},
 		methods:{
+            editCategory(category){
+                this.categoryForm.id = category.id;
+                this.categoryForm.name = category.name;
+                this.showCategoryForm = true;
+            },
+            delCategory(category){
+
+            },
+            async competencePosition(){
+                let position_id = this.position.id;
+                let res = await api.sniperPositionCompetence({position_id})
+                this.categories = res.data
+            },
+            addCategory(){
+                this.showCategoryForm = true;
+                this.categoryForm.name = '';
+                this.categoryForm.position_id = null;
+            },
+            async saveCategory(){
+                let params = Object.assign({}, this.categoryForm, {position_id: this.position.id})
+                let res = await api.sniperCompetenceCategoryAdd(params)
+                if(res.success){
+                    this.showCategoryForm = false;
+                    await this.competencePosition();
+
+                }
+            },
             editAbility(row){
                 alert(JSON.stringify(row))
             },

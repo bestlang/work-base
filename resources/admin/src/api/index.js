@@ -116,4 +116,10 @@ export default {
     sniperDingGetUser(data){ return fetch('/admin/sniper/employee/ding/get/user', data)},
     sniperDingGetToday(data){ return fetch('/admin/sniper/employee/ding/get/today', data)},
 
+    sniperPositionCompetence(data){ return fetch('/admin/sniper/employee/position/competence', data)},
+    sniperCompetenceCategoryAdd(data){ return fetch('/admin/sniper/employee/competence/category/add', data, 'post')},
+    sniperCompetenceCategoryDel(data){ return fetch('/admin/sniper/employee/competence/category/del', data, 'post')},
+    sniperCompetenceAbilityAdd(data){ return fetch('/admin/sniper/employee/competence/ability/add', data, 'post')},
+    sniperCompetenceAbilityDel(data){ return fetch('/admin/sniper/employee/competence/ability/del', data, 'post')},
+
 }
