@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateSniperEmployeeAbilityScoreTable extends Migration
+class CreateSniperPositionEmployeeAbilityScoreTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,7 +14,7 @@ class CreateSniperEmployeeAbilityScoreTable extends Migration
     public function up()
     {
         //员工 - 能力得分记录
-        Schema::create('sniper_employee_ability_score', function (Blueprint $table) {
+        Schema::create('sniper_position_employee_ability_score', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('employee_id')->comment('员工ID');
             $table->unsignedBigInteger('ability_category_id')->comment('能力分类ID');
@@ -32,6 +32,6 @@ class CreateSniperEmployeeAbilityScoreTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('sniper_employee_ability_score');
+        Schema::dropIfExists('sniper_position_employee_ability_score');
     }
 }

@@ -6,6 +6,7 @@ use Baum\Node;
 use BestLang\Base\Events\ModelCreatedEvent;
 use BestLang\Base\Events\ModelDeletedEvent;
 use BestLang\Base\Events\ModelUpdatedEvent;
+use Sniper\Employee\Models\Competence\PositionAbilityCategory;
 
 class Position extends Node
 {
@@ -18,11 +19,11 @@ class Position extends Node
         'updated' => ModelUpdatedEvent::class
     ];
 
-
     public function department()
     {
         return $this->belongsTo(Department::class, 'department_id');
     }
+
     public function parent()
     {
         return $this->belongsTo(Position::class, 'parent_id');
@@ -31,5 +32,10 @@ class Position extends Node
     public function employee()
     {
         return $this->hasMany(Employee::class);
+    }
+
+    public function abilityCategories()
+    {
+        return $this->hasMany(PositionAbilityCategory::class, 'position_id', 'id');
     }
 }

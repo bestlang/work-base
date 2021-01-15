@@ -73,12 +73,14 @@
                             <div>
                                 <el-card class="box-card">
                                     <div slot="header" class="clearfix">
-                                        <span>技术能力</span>
-                                        <div>
-                                            <el-button-group>
-                                                <el-button size="small" type="primary" style="float: right;">新增</el-button>
-                                                <el-button size="small" type="danger" style="float: right;">删除</el-button>
-                                            </el-button-group>
+                                        <div class="l-flex">
+                                            <div style="line-height: 32px;">技术能力</div>
+                                            <div>
+                                                <el-button-group>
+                                                    <el-button size="small" type="primary">新增</el-button>
+                                                    <el-button size="small" type="danger">删除</el-button>
+                                                </el-button-group>
+                                            </div>
                                         </div>
                                     </div>
                                     <el-table
@@ -108,8 +110,11 @@
                                                 label="达标分值">
                                         </el-table-column>
                                         <el-table-column
-                                                label="达标分值">
-
+                                                label="操作">
+                                            <template slot-scope="scope">
+                                                <el-button class="l-lighter" size="mini" type="text" @click="editAbility(scope.row)">编辑</el-button>
+                                                <el-button class="l-lighter" size="mini" type="text" @click="delAbility(scope.row)">删除</el-button>
+                                            </template>
                                         </el-table-column>
                                     </el-table>
                                 </el-card>
@@ -189,6 +194,12 @@
 			}
 		},
 		methods:{
+            editAbility(row){
+                alert(JSON.stringify(row))
+            },
+            delAbility(row){
+                alert(JSON.stringify(row))
+            },
             viewUser(user){
                 this.drawer = !this.drawer
                 this.user = user
