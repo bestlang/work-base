@@ -113,6 +113,17 @@
 @push('script')
 <script>
     $(function(){
+        axios.get('/ajax/csrf').then( response => {
+            var token = response.data.data;
+            if(token){
+                localStorage.setItem('token', token);
+                window.axios.defaults.headers.common['X-CSRF-TOKEN'] = token;
+                var el = $("[name='_token']");
+                if(el){
+                    el.val(token);
+                }
+            }
+        });
         $('#btn-ajax-submit').click(function(){
             //var token = $("[name='_token']").val()
             var email = $("[name='email']").val()

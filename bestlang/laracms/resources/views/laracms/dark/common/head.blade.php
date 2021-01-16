@@ -74,6 +74,10 @@
                             会员<span class="hidden-sm">中心</span> <b class="caret"></b>
                         </a>
                         <ul class="dropdown-menu" id="user-menu">
+                            <li><a href="{{route('login')}}"><i class="fa fa-sign-in fa-fw"></i>登录</a></li>
+                            @if (Route::has('register'))
+                                <li><a href="{{route('register')}}"><i class="fa fa-user-o fa-fw"></i>注册</a></li>
+                            @endif
                         </ul>
                     </li>
                 </ul>
