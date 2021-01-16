@@ -12,7 +12,7 @@
                             <div class="swiper-slide" title="{{$content->title}}">
                                 <a href="{{$content->url}}">
                                     @if($content->image)
-                                    <div style="height: 100%;background:url('{{$content->image}}')no-repeat scroll center/contain;"></div>
+                                    <div style="height: 100%;background:url('{{$content->image}}')no-repeat scroll center/cover;"></div>
                                     @endif
                                     {{--<div class="carousel-caption hidden-xs"><h3>{{$content->title}}</h3></div>--}}
                                 </a>
@@ -40,7 +40,7 @@
                                     <div class="col-sm-3 col-xs-6">
                                         <a href="{{route('content', $content->id)}}" class="img-zoom">
                                             <div class="embed-responsive embed-responsive-4by3">
-                                                @if($content->image)
+                                                @if($content->thumb)
                                                 <img src="{{$content->thumb}}" alt="{{$content->title}}" class="embed-responsive-item">
                                                 @endif
                                             </div>
@@ -197,7 +197,7 @@
                         @endforeach
                     </div>
                 </div>
-                @foreach(laracms::positionAds('首页右第一个广告位', 2) as $index => $ad)
+                @foreach(laracms::positionAds('首页右第二个广告位', 2) as $index => $ad)
                 <div class="panel panel-blockimg">
                     <a href="{{$ad->url}}" rel="nofollow" title="{{$ad->name}}" target="{{$ad->target}}">
                         @if($ad->image)
@@ -239,7 +239,7 @@
                         </div>
                     </div>
                 @endforeach
-                @foreach(laracms::positionAds('首页右第一个广告位', 2) as $index => $ad)
+                @foreach(laracms::positionAds('首页右第二个广告位', 2) as $index => $ad)
                 <div class="panel panel-blockimg">
                     <a href="{{$ad->url}}" title="{{$ad->name}}">
                         @if($ad->image)
@@ -254,6 +254,9 @@
 @endsection
 @push('css')
 <style>
+    .index-gallary{
+        margin-top: 20px;
+    }
     .swiper-container {
         width: 100%;
         height: 340px;

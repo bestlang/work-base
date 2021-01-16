@@ -58,10 +58,14 @@
             }
         },
         watch:{
-            value(newVal){
-                this.vals = [...this.value]
-                this.updated = [...this.value]
+            value:{
+                immediate: true,
+                handler: function(newVal){
+                    this.vals = [...this.value]
+                    this.updated = [...this.value]
+                }
             }
+
         }
     }
 </script>

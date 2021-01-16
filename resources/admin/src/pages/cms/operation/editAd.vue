@@ -121,7 +121,7 @@
                     enabled: 1,
                     start_time: null,
                     end_time: null,
-                    time_range:[this.start_time, this.end_time],
+                    time_range:[],
                     type: 1,//形式1.图片2.文字3.代码
                     url: '',
                     text: '',
@@ -135,6 +135,15 @@
         components:{
             imageUpload,
             attachment
+        },
+        watch:{
+            ['form.time_range']:{
+                deep: true,
+                handler(newVal){
+                    this.form.start_time = newVal[0];
+                    this.form.end_time = newVal[1];
+                }
+            }
         },
         methods: {
             goBack(){
