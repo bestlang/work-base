@@ -223,7 +223,6 @@
                 if(content.metas && content.metas.length){
                     content.metas.forEach(
                         item => {
-                            console.log(item.field, '====', item.value, "\n")
                             this.$set(this.form, item.field, item.value);
                         });
                 }

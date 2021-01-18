@@ -1,6 +1,6 @@
 <?php
 Route::any('/', function(){
-    return view('base::index.index');
+    //return view('base::index.index');
     return redirect(config('bestlang.defaultApplicationPath'));
 });
 Route::group(['prefix' => 'ajax'], function($router){
