@@ -3,8 +3,11 @@
 namespace Sniper\Employee\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
+use Sniper\Employee\Models\Competence\Ability;
+use Sniper\Employee\Models\Competence\AbilityCategory;
 use Sniper\Employee\Models\Competence\PositionAbilityCategory as PC;
 use Arr;
+use Sniper\Employee\Models\Competence\PositionAbilityCategory;
 
 class CompetenceController
 {
@@ -12,7 +15,7 @@ class CompetenceController
     {
         $position_id = $request->input('position_id');
         if(!!$position_id){
-            $catAbilities = PC::where('position_id', $position_id)->with('abilities')->get();
+            $catAbilities = PC::where('position_id', $position_id)->with('abilities.category')->get();
             return response()->ajax($catAbilities);
         }
         return response()->error('参数错误');
@@ -42,17 +45,54 @@ class CompetenceController
 
     public function categoryDel(Request $request)
     {
-        
+        $id = $request->input('id');
+        $ac = AbilityCategory::find($id);
+        if($ac){
+            $ac->delete();
+            return response()->ajax();
+        }else{
+            return response()->error('记录不存在！');
+        }
     }
 
-    public function abilityAdd(Request $request)
+    public function abilitySave(Request $request)
     {
+        $params = $request->all();
+        $id = Arr::get($params, 'id', 0);
+        $category_id = Arr::get($params, 'category_id', 0);
+        $name = Arr::get($params, 'name', 0);
+        $detail = Arr::get($params, 'detail', 0);
+        $totalScore = Arr::get($params, 'totalScore', 0);
+        $okScore = Arr::get($params, 'okScore', 0);
 
+        $category = PositionAbilityCategory::find($category_id);
+        if($id){
+            $ability = Ability::find($id);
+            try {
+                $ability->update(['name' => $name, 'detail' => $detail, 'totalScore' => $totalScore, 'okScore' => $okScore]);
+            }catch (\Exception $e){
+                return response()->error($e->getMessage());
+            }
+        }else {
+            try {
+                $category->abilities()->create(['name' => $name, 'detail' => $detail, 'totalScore' => $totalScore, 'okScore' => $okScore]);
+            } catch (\Exception $e) {
+                return response()->error($e->getMessage());
+            }
+        }
+        return response()->ajax([]);
     }
 
     public function abilityDel(Request $request)
     {
-
+        $params = $request->all();
+        $category_id = Arr::get($params, 'category_id', 0);
+        $id = Arr::get($params, 'id', 0);
+        $ability = Ability::where('id', $id)->where('category_id', $category_id)->first();
+        if($ability){
+            $ability->delete();
+        }
+        return response()->ajax([]);
     }
 
 }

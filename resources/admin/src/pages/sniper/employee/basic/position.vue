@@ -79,18 +79,18 @@
                                                 <el-button-group>
                                                     <el-button size="small" type="warning" @click="editCategory(category)">编辑</el-button>
                                                     <el-button size="small" type="danger" @click="delCategory(category)">删除</el-button>
-                                                    <el-button size="small" type="primary">新增子能力</el-button>
+                                                    <el-button size="small" type="primary" @click="addAbility(category)">添加子项</el-button>
                                                 </el-button-group>
                                             </div>
                                         </div>
                                     </div>
                                     <el-table
-                                            :data="tableData"
+                                            :data="category.abilities"
                                             border
                                             style="width: 100%">
                                         <el-table-column
-                                                prop="date"
-                                                label="分类"
+                                                prop="category.name"
+                                                label="能力分类"
                                                 width="180">
                                         </el-table-column>
                                         <el-table-column
@@ -99,7 +99,7 @@
                                                 width="180">
                                         </el-table-column>
                                         <el-table-column
-                                                prop="address"
+                                                prop="detail"
                                                 label="能力详情">
                                         </el-table-column>
                                         <el-table-column
@@ -147,6 +147,26 @@
                 <el-button type="primary" @click="saveCategory">确定</el-button>
             </div>
         </el-dialog>
+        <el-dialog title="添加能力子项" :visible.sync="showAbilityForm" :close-on-click-modal="false">
+            <el-form size="small">
+                <el-form-item label="名称" label-width="100px">
+                    <el-input v-model="abilityForm.name" autocomplete="off"></el-input>
+                </el-form-item>
+                <el-form-item label="能力详情" label-width="100px">
+                    <el-input type="textarea" v-model="abilityForm.detail"></el-input>
+                </el-form-item>
+                <el-form-item label="能力分值" label-width="100px">
+                    <el-input v-model="abilityForm.totalScore" autocomplete="off" placeholder="1~100"></el-input>
+                </el-form-item>
+                <el-form-item label="达标分值" label-width="100px">
+                    <el-input v-model="abilityForm.okScore" autocomplete="off" placeholder="1~100"></el-input>
+                </el-form-item>
+            </el-form>
+            <div slot="footer" class="dialog-footer">
+                <el-button @click="showAbilityForm = false">取消</el-button>
+                <el-button type="primary" @click="saveAbility">确定</el-button>
+            </div>
+        </el-dialog>
 	</div>
 </template>
 
@@ -160,9 +180,18 @@
 	    data(){
 	        return {
                 showCategoryForm: false,
+                showAbilityForm: false,
                 categoryForm: {
                     id: '',
                     name: ''
+                },
+                abilityForm: {
+                    id: null,
+                    category_id: null,
+                    name: '',
+                    detail: '',
+                    totalScore: '',
+                    okScore: ''
                 },
                 categories: [],
                 activeName: 'first',
@@ -174,28 +203,7 @@
                 loading: false,
                 tableData: [
                     {
-                        date: '技术能力',
-                        name: '做事情',
-                        address: '能干活',
-                        totalScore: 5,
-                        okScore: 4
-                    },
-                    {
-                        date: '技术能力',
-                        name: '做事情',
-                        address: '能干活',
-                        totalScore: 5,
-                        okScore: 4
-                    },
-                    {
-                        date: '技术能力',
-                        name: '做事情',
-                        address: '能干活',
-                        totalScore: 5,
-                        okScore: 4
-                    },
-                    {
-                        date: '技术能力',
+                        category: {name: '技术能力'},
                         name: '做事情',
                         address: '能干活',
                         totalScore: 5,
@@ -219,8 +227,20 @@
                 this.categoryForm.name = category.name;
                 this.showCategoryForm = true;
             },
-            delCategory(category){
-
+            async delCategory({id}){
+                this.$confirm('确定删除该分类?', '提示', {
+                    confirmButtonText: '确定',
+                    cancelButtonText: '取消',
+                    type: 'error'
+                }).then(async () => {
+                    let res = await api.sniperCompetenceCategoryDel({id})
+                    if(res.hasError){
+                        this.$message.error(res.error);
+                    }else{
+                        await this.competencePosition();
+                        this.$message.success('删除成功');
+                    }
+                });
             },
             async competencePosition(){
                 let position_id = this.position.id;
@@ -241,11 +261,39 @@
 
                 }
             },
-            editAbility(row){
-                alert(JSON.stringify(row))
+            addAbility({id, name}){
+                this.abilityForm = Object.assign({}, {id: null, category_id: id, name: '', detail: '', totalScore: '', okScore: ''});
+                this.showAbilityForm = true;
             },
-            delAbility(row){
-                alert(JSON.stringify(row))
+            editAbility(row){
+                const {id, category_id, name, detail, totalScore, okScore} = row
+                this.abilityForm = Object.assign({}, {id, category_id, name, detail, totalScore, okScore});
+                this.showAbilityForm = true;
+            },
+            async saveAbility(){
+                let res = await api.sniperCompetenceAbilityAdd(this.abilityForm)
+                if(res.hasError){
+                    this.$message.error(res.error)
+                }else{
+                    await this.competencePosition();
+                    this.showAbilityForm = false;
+                }
+            },
+            async delAbility(row){
+                this.$confirm('确定删除该条目?', '提示', {
+                    confirmButtonText: '确定',
+                    cancelButtonText: '取消',
+                    type: 'error'
+                }).then(async () => {
+                    const {category_id, id} = row;
+                    let res = await api.sniperCompetenceAbilityDel({category_id, id})
+                    if(res.hasError){
+                        this.$message.error(res.error);
+                    }else{
+                        await this.competencePosition();
+                        this.$message.success('删除成功');
+                    }
+                });
             },
             viewUser(user){
                 this.drawer = !this.drawer
