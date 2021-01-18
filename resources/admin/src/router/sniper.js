@@ -67,6 +67,17 @@ export default [
                     show: true,
                     name: '员工列表',
                     font: '&#xe614;'
+
+                }
+            },
+            {
+                path: "/sniper/employee/employee/subordinate",
+                component: () => import("../pages/sniper/employee/employee/subordinate.vue"),
+                meta: {
+                    can: 'hr employee',
+                    show: true,
+                    name: '下级管理',
+                    font: '&#xe628;'
                 }
             },
             {

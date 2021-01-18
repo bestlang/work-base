@@ -35,6 +35,7 @@ Route::group(['prefix'=>'admin/sniper/employee', 'namespace'=>'Admin'], function
         Route::any('/get/employee/detail', 'EmployeeController@detail');
         Route::post('/delete/employee/education', 'EducationController@delete');
         Route::post('/delete/employee/job', 'JobController@delete');
+        Route::any('/subordinate', 'SubordinateController@index');
 
         Route::any('/ding/get/departments', 'DingTalkController@departments');
         Route::any('/ding/get/department/users', 'DingTalkController@departmentUsers');

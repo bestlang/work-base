@@ -97,6 +97,7 @@ export default {
     sniperEmployeeNoticeDetail(data){ return fetch('/admin/sniper/employee/notice/detail', data) },
     sniperEmployeeNoticeSend(data){ return fetch('/admin/sniper/employee/notice/send', data, 'post') },
     sniperEmployeePersonalNotices(data){ return fetch('/admin/sniper/employee/personal/notices', data) },
+    sniperEmployeeSubordinate(data){ return fetch('/admin/sniper/employee/subordinate', data) },
 
 
     sniperGetEmployeeList(data){ return fetch('/admin/sniper/employee/employee', data) },
