@@ -19,7 +19,7 @@
                                 <p>基于Laravel+Vue构建</p>
                             </div>
                             <div>
-                                <a href="/cms" id="l-view-sample">查看演示</a>
+                                <a href="/cms" id="l-view-sample" target="_blank">查看演示</a>
                             </div>
                         </div>
                     </div>
@@ -28,9 +28,9 @@
         </div>
         {{--<div id="bannerpagination" class="text-center"></div>--}}
     </div>
-    <div style="height: 300px">
+    {{--<div style="height: 300px">--}}
 
-    </div>
+    {{--</div>--}}
 
 @endsection
 @push('css')

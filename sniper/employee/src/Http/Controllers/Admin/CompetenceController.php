@@ -5,9 +5,9 @@ namespace Sniper\Employee\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use Sniper\Employee\Models\Competence\Ability;
 use Sniper\Employee\Models\Competence\AbilityCategory;
-use Sniper\Employee\Models\Competence\PositionAbilityCategory as PC;
+use Sniper\Employee\Models\Competence\PositionAbilityCategory as PAC;
+use Sniper\Employee\Models\Position;
 use Arr;
-use Sniper\Employee\Models\Competence\PositionAbilityCategory;
 
 class CompetenceController
 {
@@ -15,9 +15,13 @@ class CompetenceController
     {
         $position_id = $request->input('position_id');
         if(!!$position_id){
-            $catAbilities = PC::where('position_id', $position_id)->with('abilities.category')->get();
-            return response()->ajax($catAbilities);
+            $position = Position::where('id', $position_id)->with('abilityCategories.abilities')->first();
+            return response()->ajax($position);
         }
+//        if(!!$position_id){
+//            $catAbilities = PAC::where('position_id', $position_id)->with('abilities.category')->get();
+//            return response()->ajax($catAbilities);
+//        }
         return response()->error('参数错误');
     }
     public function categoryAdd(Request $request)
@@ -28,11 +32,11 @@ class CompetenceController
         $position_id = Arr::get($params, 'position_id');
         try{
             if(!!$id && $name){
-                $pac = PC::find($id);
+                $pac = PAC::find($id);
                 $pac->name = $name;
                 $pac->save();
             }else{
-                PC::create([
+                PAC::create([
                     'name' => $name,
                     'position_id' => $position_id
                 ]);
@@ -65,7 +69,7 @@ class CompetenceController
         $totalScore = Arr::get($params, 'totalScore', 0);
         $okScore = Arr::get($params, 'okScore', 0);
 
-        $category = PositionAbilityCategory::find($category_id);
+        $category = PAC::find($category_id);
         if($id){
             $ability = Ability::find($id);
             try {

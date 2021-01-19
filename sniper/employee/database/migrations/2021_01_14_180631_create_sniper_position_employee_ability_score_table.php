@@ -21,7 +21,8 @@ class CreateSniperPositionEmployeeAbilityScoreTable extends Migration
             $table->unsignedBigInteger('ability_id')->comment('能力ID');
             $table->smallInteger('totalScore')->comment('能力分值');
             $table->smallInteger('okScore')->comment('达标分值');
-            $table->timestamps();
+            $table->smallInteger('score')->comment('得分值');
+            $table->nullableTimestamps();
         });
     }
 

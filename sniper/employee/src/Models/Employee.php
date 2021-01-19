@@ -36,4 +36,38 @@ class Employee extends Model
         return $this->hasMany(Job::class, 'user_id', 'user_id')->orderBy('orderFactor', 'asc');
     }
 
+    public function getLeavingAttribute($value)
+    {
+        return json_decode($value)??[];
+    }
+
+    public function getPhysicalAttribute($value)
+    {
+        return json_decode($value)??[];
+    }
+
+    public function getCertificateAttribute($value)
+    {
+        return json_decode($value)??[];
+    }
+
+    public function getInterviewAttribute($value)
+    {
+        return json_decode($value)??[];
+    }
+
+    public function getContractAttribute($value)
+    {
+        return json_decode($value)??[];
+    }
+
+    public function getEmploymentAttribute($value)
+    {
+        return json_decode($value)??[];
+    }
+
+    public function getOtherAttribute($value)
+    {
+        return json_decode($value)??[];
+    }
 }

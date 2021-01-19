@@ -40,7 +40,7 @@
             <div class="collapse navbar-collapse" id="navbar-collapse">
                 <ul class="nav navbar-nav" data-current="0">
                     <li>
-                        <a href="{{route('cms')}}">系统演示</a>
+                        <a href="{{route('cms')}}" target="_blank">系统演示</a>
                         <ul class="dropdown-menu" role="menu">
                         </ul>
                     </li>

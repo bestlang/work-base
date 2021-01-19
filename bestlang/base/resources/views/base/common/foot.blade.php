@@ -1,3 +1,4 @@
+<div class="text-center" style="color: #ccc;"><i>contact: </i><a href="mailto:laracms@163.com" style="color: #ccc;"><i>laracms@163.com</i></a></div>
 <script src="https://static.laracms.com/unpkg/jquery.min.js"></script>
 <script src="https://static.laracms.com/unpkg/bootstrap.min.js"></script>
 <script src="https://static.laracms.com/unpkg/axios.min.js"></script>

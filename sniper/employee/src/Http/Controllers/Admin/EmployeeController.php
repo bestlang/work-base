@@ -28,6 +28,7 @@ class EmployeeController
         });
         return response()->ajax($users);
     }
+
     public function detail(Request $request)
     {
         $id = $request->input('id');
@@ -42,13 +43,13 @@ class EmployeeController
             return response()->error('参数错误');
         }
         $employee = Employee::with(['user.trains.participants', 'education', 'job', 'position'])->find($id);
-        $employee->leaving = json_decode($employee->leaving)??[];
-        $employee->physical = json_decode($employee->physical)??[];
-        $employee->certificate = json_decode($employee->certificate)??[];
-        $employee->interview = json_decode($employee->interview)??[];
-        $employee->contract = json_decode($employee->contract)??[];
-        $employee->employment = json_decode($employee->employment)??[];
-        $employee->other = json_decode($employee->other)??[];
+//        $employee->leaving = json_decode($employee->leaving)??[];
+//        $employee->physical = json_decode($employee->physical)??[];
+//        $employee->certificate = json_decode($employee->certificate)??[];
+//        $employee->interview = json_decode($employee->interview)??[];
+//        $employee->contract = json_decode($employee->contract)??[];
+//        $employee->employment = json_decode($employee->employment)??[];
+//        $employee->other = json_decode($employee->other)??[];
         return response()->ajax($employee);
     }
     public function departmentEmployee(Request $request)

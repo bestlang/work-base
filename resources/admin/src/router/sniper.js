@@ -76,7 +76,17 @@ export default [
                 meta: {
                     can: 'hr employee',
                     show: true,
-                    name: '下级管理',
+                    name: '下属管理',
+                    font: '&#xe628;'
+                }
+            },
+            {
+                path: "/sniper/employee/competence",
+                component: () => import("../pages/sniper/employee/employee/competence.vue"),
+                meta: {
+                    can: 'hr employee',
+                    show: false,
+                    name: '胜任力评估',
                     font: '&#xe628;'
                 }
             },

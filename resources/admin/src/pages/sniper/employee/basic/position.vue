@@ -40,7 +40,7 @@
                         </el-tab-pane>
                         <el-tab-pane label="下属职位管理" name="third">
                             <div class="text-right pb-15">
-                                    <el-button type="success" size="small" @click="add(position)"><i class="iconfont">&#xe663;</i>新增</el-button>
+                                    <el-button type="success" size="small" @click="add(position)"><i class="iconfont">&#xe663;</i>新增下属职位</el-button>
                             </div>
                             <el-table
                                     v-show="position"
@@ -89,9 +89,9 @@
                                             border
                                             style="width: 100%">
                                         <el-table-column
-                                                prop="category.name"
                                                 label="能力分类"
                                                 width="180">
+                                            <template>{{category.name}}</template>
                                         </el-table-column>
                                         <el-table-column
                                                 prop="name"
@@ -245,7 +245,8 @@
             async competencePosition(){
                 let position_id = this.position.id;
                 let res = await api.sniperPositionCompetence({position_id})
-                this.categories = res.data
+                console.log(JSON.stringify(res))
+                this.categories = res.data.ability_categories
             },
             addCategory(){
                 this.showCategoryForm = true;
