@@ -12,7 +12,7 @@ class SubordinateController
     public function index(Request $request)
     {
         $user = auth()->user();// instanceof BestLang\Base\Models\User
-        $user = User::where('email', 'shengguangji@sniper-tech.com')->first();
+        //$user = User::where('email', 'shengguangji@sniper-tech.com')->first();
         $currentEmployee = Employee::with('position')->where('user_id', $user->id)->first();
         if($currentEmployee->position){
             $position_id = $currentEmployee->position->id;
