@@ -7,7 +7,7 @@
                     <div>
                         <span class="l-go-back" @click="goBack"><span class="iconfont">&#xe601;</span>返回</span>
                         <el-divider direction="vertical"></el-divider>
-                        <span>{{name}}:{{employee.user && employee.user.name}}:胜任力评估</span>
+                        <span>胜任力评估 > {{name}}:{{employee.user && employee.user.name}}</span>
                     </div>
                     <div><el-button type="primary" size="small" @click="saveScore">保存</el-button></div>
                 </div>
