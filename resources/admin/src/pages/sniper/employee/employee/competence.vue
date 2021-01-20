@@ -4,7 +4,11 @@
         <div class="l-block">
             <div class="l-block-header">
                 <div class="l-flex">
-                    <span>{{name}}-{{employee.user && employee.user.name}}-胜任力评估</span>
+                    <div>
+                        <span class="l-go-back" @click="goBack"><span class="iconfont">&#xe601;</span>返回</span>
+                        <el-divider direction="vertical"></el-divider>
+                        <span>{{name}}:{{employee.user && employee.user.name}}:胜任力评估</span>
+                    </div>
                     <div><el-button type="primary" size="small" @click="saveScore">保存</el-button></div>
                 </div>
             </div>
@@ -81,8 +85,22 @@
             }
         },
         methods:{
+            goBack(){
+                    this.$store.dispatch("tagNav/removeCurrentTagNav", this.$route.path)
+                    this.$router.push('/sniper/employee/employee/subordinate')
+            },
+            async getEmployeeScore({user_id, position_id} ){
+                let res = await api.sniperCompetenceEmployeeScore({user_id, position_id})
+                return res.data;
+            },
             async saveScore(){
-                console.log(JSON.stringify(this.abilities))
+                const {position_id, user_id, abilities} = this;
+                let res = await api.sniperCompetenceEmployee({position_id, user_id, abilities})
+                if(res.hasError){
+                    this.$message.error(res.error);
+                }else{
+                    this.$message.success('评估成功！');
+                }
             },
             async getEmployeeDetail(id){
                 let res = await api.sniperGetEmployeeDetail({id});
@@ -94,9 +112,15 @@
                 const {ability_categories, name, department_id} = res.data;
                 this.ability_categories = ability_categories;
                 this.name = name;
+                const {user_id} = this;
+                let scores = await this.getEmployeeScore({user_id, position_id});
+                const scoreMaps = [];
+                for(let i=0; i< scores.length; i++){
+                    scoreMaps[`${scores[i].ability_category_id}_${scores[i].ability_id}`] = scores[i].score;
+                }
                 ability_categories.forEach((category) => {
                     category.abilities.forEach((ability) => {
-                        this.$set(this.abilities, `category_${category.id}_ability_${ability.id}`, '');
+                        this.$set(this.abilities, `category_${category.id}_ability_${ability.id}`, scoreMaps[`${category.id}_${ability.id}`]);
                     });
                 });
                 console.log(JSON.stringify(this.abilities))
@@ -108,7 +132,6 @@
             const user_id = parseInt(this.$route.query.user_id) || 0;
             this.position_id = position_id;
             this.user_id = user_id;
-            console.log({position_id, user_id})
         }
     }
 </script>

@@ -51,4 +51,6 @@ Route::group(['prefix'=>'admin/sniper/employee', 'namespace'=>'Admin'], function
         Route::any('/competence/category/del', 'CompetenceController@categoryDel');
         Route::any('/competence/ability/add', 'CompetenceController@abilitySave');
         Route::any('/competence/ability/del', 'CompetenceController@abilityDel');
+        Route::any('/competence/employee', 'CompetenceController@employee');
+        Route::any('/competence/employee/score', 'CompetenceController@employeeScore');
 });

@@ -122,5 +122,7 @@ export default {
     sniperCompetenceCategoryDel(data){ return fetch('/admin/sniper/employee/competence/category/del', data, 'post')},
     sniperCompetenceAbilityAdd(data){ return fetch('/admin/sniper/employee/competence/ability/add', data, 'post')},
     sniperCompetenceAbilityDel(data){ return fetch('/admin/sniper/employee/competence/ability/del', data, 'post')},
+    sniperCompetenceEmployee(data){ return fetch('/admin/sniper/employee/competence/employee', data, 'post')},
+    sniperCompetenceEmployeeScore(data){ return fetch('/admin/sniper/employee/competence/employee/score', data)},
 
 }

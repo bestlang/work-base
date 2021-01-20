@@ -7,10 +7,62 @@ use Sniper\Employee\Models\Competence\Ability;
 use Sniper\Employee\Models\Competence\AbilityCategory;
 use Sniper\Employee\Models\Competence\PositionAbilityCategory as PAC;
 use Sniper\Employee\Models\Position;
+use Sniper\Employee\Models\Competence\EmployeeAbilityScore;
+
 use Arr;
 
 class CompetenceController
 {
+    public function employeeScore(Request $request)
+    {
+        $params = $request->all();
+        $user_id = Arr::get($params, 'user_id', 0);
+        $position_id = Arr::get($params, 'position_id', 0);
+        $scores = EmployeeAbilityScore::where([['user_id', $user_id],['position_id', $position_id]])->get();
+        return response()->ajax($scores);
+    }
+    //员工胜任力
+    public function employee(Request $request)
+    {
+        $params = $request->all();
+        $user_id = Arr::get($params, 'user_id', 0);
+        $position_id = Arr::get($params, 'position_id', 0);
+        $abilities = Arr::get($params, 'abilities', 0);
+        $condition = ['user_id' => $user_id, 'position_id' => $position_id];
+        $pattern = "/category_(\d+)_ability_(\d+)/";
+        $tmpAbilities = Ability::all();
+        $abilityMap = [];
+        foreach ($tmpAbilities as $ta){
+            $abilityMap[$ta->category_id][$ta->id] = $ta;
+        }
+        try {
+            foreach ($abilities as $key => $score) {
+                if (preg_match($pattern, $key, $matches)) {
+                    if (($category_id = $matches[1]) && ($ability_id = $matches[2])) {
+                        $condition['ability_category_id'] = $category_id;
+                        $condition['ability_id'] = $ability_id;
+                        $arr = [];
+                        $arr['score'] = intval($score);
+                        $arr['name'] = $abilityMap[$category_id][$ability_id]->name;
+                        $arr['detail'] = $abilityMap[$category_id][$ability_id]->detail;
+                        $arr['totalScore'] = $abilityMap[$category_id][$ability_id]->totalScore;
+                        $arr['okScore'] = $abilityMap[$category_id][$ability_id]->okScore;
+                        if($arr['totalScore'] < $arr['score']){
+                            throw new \Exception('得分不能大于总分值');
+                        }
+                        if($arr['score'] <=0){
+                            throw new \Exception('得分必须大于0');
+                        }
+                        EmployeeAbilityScore::updateOrCreate(['user_id' => $user_id, 'position_id' => $position_id, 'ability_category_id' => $category_id, 'ability_id' => $ability_id], $arr);
+                    }
+                }
+            }
+        }catch (\Exception $e){
+            return response()->error($e->getMessage());
+        }
+        return response()->ajax([]);
+    }
+
     public function index(Request $request)
     {
         $position_id = $request->input('position_id');
@@ -18,12 +70,9 @@ class CompetenceController
             $position = Position::where('id', $position_id)->with('abilityCategories.abilities')->first();
             return response()->ajax($position);
         }
-//        if(!!$position_id){
-//            $catAbilities = PAC::where('position_id', $position_id)->with('abilities.category')->get();
-//            return response()->ajax($catAbilities);
-//        }
         return response()->error('参数错误');
     }
+
     public function categoryAdd(Request $request)
     {
         $params = $request->all();
