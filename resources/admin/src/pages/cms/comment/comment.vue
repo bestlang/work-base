@@ -43,10 +43,10 @@
             async loadComments(){
                 let page = this.page;
                 let page_size = this.page_size;
-                const {data} = await api.getComments({page, page_size})
-                this.comments = data.data;
-                this.total = data.total || 0;
-                this.page_size = data.page_size || 10;
+                const res = await api.getComments({page, page_size})
+                const {total, comments} = res.data;
+                this.comments = comments;
+                this.total = total || 0;
             },
             async currentChange(page){
                 this.page = page
