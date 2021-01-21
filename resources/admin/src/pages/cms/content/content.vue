@@ -28,7 +28,7 @@
           </div>
           <div class="l-block-body">
             <div class="l-search-area" style="border-bottom: 1px solid #EBEEF5;">
-              <el-form ref="form" :model="form" :inline="true" size="small">
+              <el-form ref="form" :inline="true" size="small">
                 <el-form-item label="标题">
                   <el-input v-model="keyword" style="width: 200px;"></el-input>
                 </el-form-item>
