@@ -12,7 +12,7 @@ if(!function_exists('render')){
             mkdir($expectDir, 0777, true);
         }
 
-        $content = view("laracms::{$theme}.{$viewPath}", $data)->__toString();
+        $content = view("laracms::themes.{$theme}.{$viewPath}", $data)->__toString();
         file_put_contents($fullPath, $content);
         return $content;
     }

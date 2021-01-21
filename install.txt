@@ -25,7 +25,6 @@ php artisan LaraCms:install
 #php artisan db:seed --class=LaraCmsSeeder
 #php artisan db:seed --class=SniperSeeder
 .env
-AUTH_VIEW_NAMESPACE='base'
 DEFAULT_APPLICATION_PATH='/cms'
 base login.blade.php
  admin login.vue

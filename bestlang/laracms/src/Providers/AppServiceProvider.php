@@ -59,6 +59,8 @@ class AppServiceProvider extends ServiceProvider
         }
         $this->loadViewsFrom(__DIR__.'/../../resources/views/laracms', 'laracms');
 
+        //session(['authPrefix' => 'laracms::themes.dark']);
+
         Blade::directive('channelLink', function ($expression) {
             $expression = strval($expression);
             @list($channelName, $channelId, $as) = explode('-', $expression);
