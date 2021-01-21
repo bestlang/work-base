@@ -128,7 +128,7 @@
     }
     .l-app-icon:hover{
         background-size: 120%;
-        transition: all 0.8s;
+        transition: all 5s;
     }
     .l-app-title{
         font-size: 14px;
