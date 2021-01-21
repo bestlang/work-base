@@ -558,8 +558,12 @@ class DingTalk extends Command
                                     'department_hours' => $r[2],
                                     'department' => $user->department
                                 ];
-                                print_r($weeklyAttendance);
-                                WeeklyAttendance::create($weeklyAttendance);
+                                //print_r($weeklyAttendance);
+                                WeeklyAttendance::updateOrCreate([
+                                    'userId' => $userId,
+                                    'month' => $month,
+                                    'week' => $r[0]
+                                ], $weeklyAttendance);
                                 echo implode('--', $r);
                                 echo "\n";
                             }
