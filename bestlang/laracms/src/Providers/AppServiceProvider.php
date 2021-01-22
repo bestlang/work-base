@@ -57,9 +57,9 @@ class AppServiceProvider extends ServiceProvider
                 __DIR__ . '/../../resources/assets/dark/images/' => public_path('vendor/laracms/dark/images/')
             ], 'laracms-assets');
         }
-        $this->loadViewsFrom(__DIR__.'/../../resources/views/laracms', 'laracms');
+        $this->loadViewsFrom(__DIR__.'/../../resources/views/laraCMS', 'laraCMS');
 
-        //session(['authPrefix' => 'laracms::themes.dark']);
+        //session(['authPrefix' => 'laraCMS::themes.dark']);
 
         Blade::directive('channelLink', function ($expression) {
             $expression = strval($expression);
