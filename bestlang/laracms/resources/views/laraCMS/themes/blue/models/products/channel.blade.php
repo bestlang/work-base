@@ -1,4 +1,4 @@
-@extends('laracms::themes.dark.layouts.app')
+@extends('laraCMS::themes.dark.layouts.app')
 @section('title')
     {{$channel->name}}
 @endsection

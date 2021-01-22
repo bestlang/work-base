@@ -1,4 +1,4 @@
-@extends('laracms::themes.dark.layouts.ucenter')
+@extends('laraCMS::themes.dark.layouts.ucenter')
 @section('css')
     <style>
         .btn{

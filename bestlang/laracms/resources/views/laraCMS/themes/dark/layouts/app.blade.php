@@ -1,3 +1,3 @@
-@include('laracms::themes.dark.common.head')
+@include('laraCMS::themes.dark.common.head')
 @yield('content')
-@include('laracms::themes.dark.common.foot')
+@include('laraCMS::themes.dark.common.foot')
