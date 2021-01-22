@@ -30,7 +30,7 @@ class AppServiceProvider extends ServiceProvider
                 __DIR__ . '/../../resources/assets/images/' => public_path('vendor/sniper/images/')
             ], 'sniper-assets');
         }
-        session(['authPrefix' => 'sniper::']);
+        //session(['authPrefix' => 'sniper::']);
         $this->loadViewsFrom(__DIR__.'/../../resources/views/sniper', 'sniper');
     }
 }

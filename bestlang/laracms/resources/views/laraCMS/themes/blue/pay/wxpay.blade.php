@@ -1,4 +1,4 @@
-@extends('laraCMS::themes.dark.layouts.app')
+@extends('laraCMS::themes.blue.layouts.app')
 @section('content')
     <div style="margin: 50px auto;text-align: center">
         <div>打开微信扫一扫完成付款</div>

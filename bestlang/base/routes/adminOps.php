@@ -21,4 +21,8 @@ Route::group(['prefix'=>'admin', 'namespace'=>'Admin'], function(){
     //Route::post('/user/create', 'UserController@create');
     Route::post('/user/create/role/user', 'UserController@createRoleUser');
     Route::any('/histories', 'HistoryController@index');
+
+    Route::any('/apps', 'AppController@index');
+    Route::any('/save/app', 'AppController@save');
+    Route::any('/del/app', 'AppController@del');
 });

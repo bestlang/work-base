@@ -1,8 +1,5 @@
 <?php
-Route::any('/', function(){
-    return view('base::index.index');
-    return redirect(config('bestlang.defaultApplicationPath'));
-});
+Route::any('/', 'IndexController@index');
 Route::group(['prefix' => 'ajax'], function($router){
 
     Route::any('/csrf', 'IndexController@csrf');

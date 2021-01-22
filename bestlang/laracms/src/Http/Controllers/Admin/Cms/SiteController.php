@@ -41,7 +41,7 @@ class SiteController extends Controller
 
     public function themes(Request $request)
     {
-        $path = base_path().'/bestlang/laracms/resources/views/laracms/';
+        $path = base_path().'/bestlang/laracms/resources/views/laraCMS/themes/';
         $resource = opendir($path);
         $themes = [];
         while($file = readdir($resource)){

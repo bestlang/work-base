@@ -2,6 +2,7 @@
 
 namespace BestLang\LaraCms\Providers;
 
+use BestLang\Base\Models\HashConfig;
 use Illuminate\Support\ServiceProvider;
 use BestLang\LaraCms\Console\Commands\LaraCms;
 //use Illuminate\Support\Facades\Gate;
@@ -58,8 +59,7 @@ class AppServiceProvider extends ServiceProvider
             ], 'laracms-assets');
         }
         $this->loadViewsFrom(__DIR__.'/../../resources/views/laraCMS', 'laraCMS');
-
-        //session(['authPrefix' => 'laraCMS::themes.dark']);
+        session(['authPrefix' => 'laraCMS::themes.'.HashConfig::get('site', 'theme')]);
 
         Blade::directive('channelLink', function ($expression) {
             $expression = strval($expression);

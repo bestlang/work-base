@@ -1,4 +1,4 @@
-@extends('laraCMS::themes.dark.layouts.app')
+@extends('laraCMS::themes.blue.layouts.app')
 
 @section('content')
     <div class="l-content">

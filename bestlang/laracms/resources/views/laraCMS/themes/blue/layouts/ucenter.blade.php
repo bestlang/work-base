@@ -1,4 +1,4 @@
-@include('laraCMS::themes.dark.common.head')
+@include('laraCMS::themes.blue.common.head')
 <style>
     .sidenav {
         padding: 20px 20px 10px 20px;

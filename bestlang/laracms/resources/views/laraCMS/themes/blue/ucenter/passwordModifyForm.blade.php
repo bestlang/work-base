@@ -1,4 +1,4 @@
-@extends('laraCMS::themes.dark.layouts.ucenter')
+@extends('laraCMS::themes.blue.layouts.ucenter')
 @section('css')
     <style>
         .form-control{

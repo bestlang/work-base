@@ -26,5 +26,15 @@ export default [
             name: '历史痕迹',
             font: '&#xe74d;'
         }
+    },
+    {
+        path: "/apps",
+        component:  () => import("../pages/apps.vue"),
+        meta: {
+            can: 'dashboard',
+            show:true,
+            name: '模块管理',
+            font: '&#xe60e;;'
+        }
     }
 ]

@@ -1,8 +1,10 @@
 <template>
-    <div class="l-block">
-        <div class="l-block-header">
-        </div>
-        <!--<div class="l-block-body">-->
+    <div>
+        <div v-title="'历史痕迹'"></div>
+        <div class="l-block">
+            <div class="l-block-header">
+            </div>
+            <!--<div class="l-block-body">-->
             <el-table
                     :data="histories"
                     style="width: 100%">
@@ -39,19 +41,20 @@
                         label="IP地址">
                 </el-table-column>
             </el-table>
-        <!--</div>-->
-        <pager :total="total" :page-size="page_size" @current-change="currentChange"></pager>
+            <!--</div>-->
+            <pager :total="total" :page-size="page_size" @current-change="currentChange"></pager>
 
-        <el-dialog title="操作详情" :visible.sync="showHistoryDetail">
-            <div style="padding: 0 20px;overflow-y: scroll;height: 100%;">
-                <div class="l-position-meta" v-if="currentDetail">
-                    <div v-for="(item, idx) in currentDetail" style="line-height: 24px;">
-                        {{idx}}:
-                        {{item}}</div>
+            <el-dialog title="操作详情" :visible.sync="showHistoryDetail">
+                <div style="padding: 0 20px;overflow-y: scroll;height: 100%;">
+                    <div class="l-position-meta" v-if="currentDetail">
+                        <div v-for="(item, idx) in currentDetail" style="line-height: 24px;">
+                            {{idx}}:
+                            {{item}}</div>
+                    </div>
                 </div>
-            </div>
-        </el-dialog>
+            </el-dialog>
 
+        </div>
     </div>
 </template>
 <script>
@@ -81,8 +84,8 @@
                 }
             },
             async getHistories(){
-                let queryData = {page: this.page, page_size: this.page_size}
-                let {data} = await api.getHistories(queryData)
+                const {page, page_size} = this;
+                let {data} = await api.getHistories({page, page_size})
                 this.histories = data.histories;
                 this.total = data.total || 0;
             },

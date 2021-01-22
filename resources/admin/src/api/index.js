@@ -67,6 +67,9 @@ export default {
     saveSiteSetting(data){ return fetch('/admin/cms/save/site/setting', data, 'post') },
     getSiteSetting(data){ return fetch('/admin/cms/get/site/setting', data) },
     getHistories(data){return fetch('/admin/histories', data) },
+    getApps(data){return fetch('/admin/apps', data) },
+    saveApp(data){return fetch('/admin/save/app', data)},
+    delApp(data){return fetch('/admin/del/app', data)},
     getExternalContents(data){return fetch('/admin/cms/external/contents', data)},
     getExternalContent(data){return fetch('/admin/cms/external/content', data)},
 

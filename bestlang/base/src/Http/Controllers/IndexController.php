@@ -3,6 +3,10 @@ namespace BestLang\Base\Http\Controllers;
 
 class IndexController extends Controller
 {
+    public function index()
+    {
+
+    }
     public function csrf()
     {
         return response()->ajax(csrf_token());
