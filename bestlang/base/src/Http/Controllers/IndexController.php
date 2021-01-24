@@ -12,10 +12,7 @@ class IndexController extends Controller
         }
         if($defaultModule){
             return redirect($defaultModule->uri);
-        }else{
-            return redirect('/sniper');
         }
-
     }
 
     public function csrf()
