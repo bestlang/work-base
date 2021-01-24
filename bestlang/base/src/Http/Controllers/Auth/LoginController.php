@@ -14,6 +14,7 @@ use BestLang\Base\Factory\HistoryEventFactory;
 use BestLang\Base\Http\Traits\PasswordModifyTrait;
 use Validator;
 use Lang;
+use Response;
 
 class LoginController extends Controller
 {

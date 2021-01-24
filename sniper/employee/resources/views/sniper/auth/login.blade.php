@@ -55,7 +55,7 @@
 
                         <div class="form-group row mb-0">
                             <div class="col-md-12">
-                                <button type="submit" class="btn btn-primary btn-block">
+                                <button type="submit" class="btn btn-primary btn-block" id="btn-ajax-submit">
                                     {{ __('登录') }}
                                 </button>
 
@@ -73,3 +73,39 @@
     </div>
 </div>
 @endsection
+@push('script')
+<script>
+    $(function(){
+        axios.get('/ajax/csrf').then( response => {
+            var token = response.data.data;
+            if(token){
+                localStorage.setItem('token', token);
+                window.axios.defaults.headers.common['X-CSRF-TOKEN'] = token;
+                var el = $("[name='_token']");
+                if(el){
+                    el.val(token);
+                }
+            }
+        });
+        $('#btn-ajax-submit').click(function(){
+            var email = $("[name='email']").val()
+            var password = $("[name='password']").val()
+            axios.post('/login', {email: email, password: password}).then(response => {
+                var res = response.data
+                if(res.success){
+                    var user = res.data.user
+                    var name = user.name
+                    var type = user.type
+                    var token = res.data.csrf
+                    localStorage.setItem('name', name)
+                    localStorage.setItem('type', type)
+                    localStorage.setItem('token', token)
+                    location.href = '/';
+                }else{
+                    alert(Object.values(res.error).join(''))
+                }
+            })
+        })
+    })
+</script>
+@endpush
