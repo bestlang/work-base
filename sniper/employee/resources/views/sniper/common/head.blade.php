@@ -39,7 +39,7 @@
                 </button>
                 <a class="navbar-brand" href="/">
                     <span class="text-logo">Sniper</span>
-                    <img src="/vendor/sniper/images/logo.png" alt="Sniper">
+                    <img src="/vendor/sniper/images/logo.png" alt="Sniper" style="width: 116px;">
                 </a>
             </div>
             <div class="collapse navbar-collapse" id="navbar-collapse">

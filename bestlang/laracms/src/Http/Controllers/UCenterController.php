@@ -17,16 +17,17 @@ class UCenterController extends Controller
     {
         return response()->ajax(auth()->user());
     }
+
     public function index(Request $request)
     {
         if(!auth()->user()){
             return redirect('/login');
         }
-        return view("laracms::{$this->theme}.ucenter.index");
+        return view("laraCMS::themes.{$this->theme}.ucenter.index");
     }
 
     public function passwordModifyForm(Request $request)
     {
-        return view("laracms::{$this->theme}.ucenter.passwordModifyForm");
+        return view("laraCMS::themes.{$this->theme}.ucenter.passwordModifyForm");
     }
 }

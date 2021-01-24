@@ -4,8 +4,8 @@ namespace BestLang\Base\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class App extends Model
+class Module extends Model
 {
-    protected $table = 'apps';
+    protected $table = 'modules';
     public $guarded = [];
 }

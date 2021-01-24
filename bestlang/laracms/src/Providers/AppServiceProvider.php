@@ -59,7 +59,6 @@ class AppServiceProvider extends ServiceProvider
             ], 'laracms-assets');
         }
         $this->loadViewsFrom(__DIR__.'/../../resources/views/laraCMS', 'laraCMS');
-        session(['authPrefix' => 'laraCMS::themes.'.HashConfig::get('site', 'theme')]);
 
         Blade::directive('channelLink', function ($expression) {
             $expression = strval($expression);
@@ -69,6 +68,5 @@ class AppServiceProvider extends ServiceProvider
             }
             return "<a href=\"".route('channel', $channelId)."\">".$channelName."</a>";
         });
-
     }
 }

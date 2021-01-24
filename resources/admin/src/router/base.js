@@ -28,8 +28,8 @@ export default [
         }
     },
     {
-        path: "/apps",
-        component:  () => import("../pages/apps.vue"),
+        path: "/modules",
+        component:  () => import("../pages/modules.vue"),
         meta: {
             can: 'dashboard',
             show:true,

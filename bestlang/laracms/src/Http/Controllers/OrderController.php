@@ -21,13 +21,13 @@ class OrderController
     {
         $user = auth()->user();
         $orders = Order::where('user_id', $user->id)->orderBy('id', 'desc')->paginate(6);
-        return view("laracms::{$this->theme}.order.orders", ['orders' => $orders]);
+        return view("laraCMS::themes.{$this->theme}.order.orders", ['orders' => $orders]);
     }
 
     public function detail($order_no, Request $request)
     {
         $order = Order::where('order_no', $order_no)->firstOrFail();
-        return view("laracms::{$this->theme}.order.orderDetail", ['order' => $order]);
+        return view("laraCMS::themes.{$this->theme}.order.orderDetail", ['order' => $order]);
     }
 
     public function generate(Request $request)
@@ -42,6 +42,6 @@ class OrderController
     public function orderPay($order_no, Request $request)
     {
         $order = Order::where('order_no', $order_no)->firstOrFail();
-        return view("laracms::{$this->theme}.order.pay", ['order' => $order]);
+        return view("laraCMS::themes.{$this->theme}.order.pay", ['order' => $order]);
     }
 }

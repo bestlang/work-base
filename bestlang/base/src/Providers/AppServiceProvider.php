@@ -12,6 +12,8 @@ use Illuminate\Database\Eloquent\Collection;
 use Validator;
 use BestLang\Base\Models\Permission;
 use Illuminate\Support\Facades\Schema;
+use BestLang\Base\Models\Module;
+use HashConfig;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -79,7 +81,6 @@ class AppServiceProvider extends ServiceProvider
 
         $this->loadViewsFrom(__DIR__.'/../../resources/views/base', 'base');
 
-
         Validator::extend('mobile', function ($attribute, $value, $parameters, $validator) {
             if(preg_match("/^1\d{10}$/",$value)){
                 return true;
@@ -95,5 +96,16 @@ class AppServiceProvider extends ServiceProvider
                 return false;
             }
         });
+
+        $defaultModule = Module::where('is_default', 1)->first();
+        if(!$defaultModule){
+            $defaultModule = Module::where('type', '1')->first();
+        }
+        if($defaultModule->name == 'laraCMS'){
+            $authPrefix = $defaultModule->tplNs.'::themes.'.HashConfig::get('site', 'theme');
+        }else if($defaultModule->name == 'sniper'){
+            $authPrefix = $defaultModule->tplNs.'::';
+        }
+        session(['authPrefix' => $authPrefix]);
     }
 }

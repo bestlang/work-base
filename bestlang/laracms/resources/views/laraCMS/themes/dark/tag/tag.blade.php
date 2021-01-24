@@ -1,7 +1,7 @@
 @extends('laraCMS::themes.dark.layouts.app')
 @section('content')
-    <div class="">
-        <div class="">
+    <div>
+        <div>
             <div class="container">
                 <h1 class="category-title">
                     “{{$tag->name}}”相关的内容

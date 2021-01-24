@@ -61,11 +61,10 @@
         </div>
     </div>
 </div>
-@include('laracms::dark.common.foot')
+@include('laraCMS::themes.dark.common.foot')
 <script>
     $(function(){
         $('.l-logout').click(function(){
-
             document.getElementById('logout-form').submit();
         })
     })

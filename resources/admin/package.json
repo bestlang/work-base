@@ -1,11 +1,16 @@
 {
   "name": "SNIPER",
   "shortName": "SN",
-  "allowModules": [
+  "avaliableModules":[
     "base",
     "cms",
     "sniper",
     "panel",
+    "privileges"
+  ],
+  "allowModules": [
+    "base",
+    "cms",
     "privileges"
   ],
   "version": "1.0.0",

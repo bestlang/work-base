@@ -5,10 +5,10 @@
             <div class="l-block-header"></div>
             <div class="l-block-body">
                 <div class="text-right">
-                    <el-button type="primary" size="small" @click="addApp"><i class="if">&#xe663;</i> 新增</el-button>
+                    <el-button type="primary" size="small" @click="addModule"><i class="if">&#xe663;</i> 新增</el-button>
                 </div>
                 <el-table
-                        :data="apps"
+                        :data="modules"
                         style="width: 100%">
                     <el-table-column
                             prop="name"
@@ -27,10 +27,22 @@
                             label="模块URI路径">
                     </el-table-column>
                     <el-table-column
+                            label="是否默认">
+                        <template slot-scope="scope">
+                            <span :class="['if',scope.row.is_default ? 'is_default' : 'is_normal']">{{scope.row.is_default ? '&#xe6bd;' : ''}}</span>
+                        </template>
+                    </el-table-column>
+                    <el-table-column
+                            label="应用类型">
+                        <template slot-scope="scope" :class="{}">
+                            {{scope.row.type == 0 ? '基础' : '应用'}}
+                        </template>
+                    </el-table-column>
+                    <el-table-column
                             label="操作">
                         <template slot-scope="scope">
-                            <el-button type="primary" @click="editApp(scope.row)" size="mini">编辑</el-button>
-                            <el-button type="danger" @click="delApp(scope.row)" size="mini">删除</el-button>
+                            <el-button type="primary" @click="editModule(scope.row)" size="mini">编辑</el-button>
+                            <el-button type="danger" @click="delModule(scope.row)" size="mini">删除</el-button>
                         </template>
                     </el-table-column>
                 </el-table>
@@ -50,6 +62,18 @@
                 <el-form-item label="模块URI路径">
                     <el-input v-model="form.uri" autocomplete="off"></el-input>
                 </el-form-item>
+                <el-form-item label="是否默认">
+                    <el-radio-group v-model="form.is_default">
+                        <el-radio :label="1">是</el-radio>
+                        <el-radio :label="0">否</el-radio>
+                    </el-radio-group>
+                </el-form-item>
+                <el-form-item label="模块类型">
+                    <el-radio-group v-model="form.type">
+                        <el-radio :label="0">基础</el-radio>
+                        <el-radio :label="1">应用</el-radio>
+                    </el-radio-group>
+                </el-form-item>
             </el-form>
             <div slot="footer" class="dialog-footer">
                 <el-button @click="formVisible = false">取 消</el-button>
@@ -58,7 +82,14 @@
         </el-dialog>
     </div>
 </template>
-
+<style scoped>
+    .is_default{
+        color: green;
+    }
+    .is_normal{
+        color: #888;
+    }
+</style>
 <script>
     import api from 'sysApi'
 
@@ -68,7 +99,7 @@
                 page:1,
                 page_size: 15,
                 total: 0,
-                apps: [],
+                modules: [],
                 title: '新增模块',
                 formVisible: false,
                 form: {
@@ -76,34 +107,36 @@
                     name: '',
                     version: '',
                     tplNs: '',
-                    uri: ''
+                    uri: '',
+                    is_default: 0,
+                    type: 0
                 }
             }
         },
         methods: {
-            async getApps(){
+            async getModules(){
                 const {page, page_size} = this;
-                let {data} = await api.getApps({page, page_size})
-                this.apps = data.apps;
+                let {data} = await api.getModules({page, page_size})
+                this.modules = data.modules;
                 this.total = data.total || 0;
             },
-            editApp(row){
+            editModule(row){
                 this.title = '编辑模块'
                 Object.assign(this.form, {}, row)
                 this.formVisible = true;
             },
-            delApp(row){
+            delModule(row){
                 this.$confirm('确定删除模块?', '提示', {
                     confirmButtonText: '确定',
                     cancelButtonText: '取消',
                     type: 'warning'
                 }).then(async () => {
-                    let res = await api.delApp({id: row.id})
+                    let res = await api.delModule({id: row.id})
                     this.$message.success('删除成功!');
-                    await this.getApps()
+                    await this.getModules()
                 });
             },
-            addApp(){
+            addModule(){
                 this.title = '新增模块'
                 this.formVisible = true;
                 this.form = {
@@ -111,22 +144,24 @@
                     name: '',
                     version: '',
                     tplNs: '',
-                    uri: ''
+                    uri: '',
+                    is_default: 0,
+                    type: 0
                 }
             },
             async doSubmit(){
-                let res = await api.saveApp(this.form);
+                let res = await api.saveModule(this.form);
                 if(res.hasError){
                     this.$message.error(res.error);
                 }else{
                     this.formVisible = false;
-                    this.$message.success('新增成功！');
-                    await this.getApps()
+                    this.$message.success(this.form.id ? '编辑成功！':'新增成功！');
+                    await this.getModules()
                 }
             }
         },
         async created(){
-            await this.getApps()
+            await this.getModules()
         }
     }
 </script>

@@ -13,6 +13,7 @@ use BestLang\Base\Models\User;
 use BestLang\Base\Factory\HistoryEventFactory;
 use BestLang\Base\Http\Traits\PasswordModifyTrait;
 use Validator;
+use Lang;
 
 class LoginController extends Controller
 {

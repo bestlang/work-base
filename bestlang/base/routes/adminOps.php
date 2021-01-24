@@ -22,7 +22,7 @@ Route::group(['prefix'=>'admin', 'namespace'=>'Admin'], function(){
     Route::post('/user/create/role/user', 'UserController@createRoleUser');
     Route::any('/histories', 'HistoryController@index');
 
-    Route::any('/apps', 'AppController@index');
-    Route::any('/save/app', 'AppController@save');
-    Route::any('/del/app', 'AppController@del');
+    Route::any('/modules', 'ModuleController@index');
+    Route::any('/save/module', 'ModuleController@save');
+    Route::any('/del/module', 'ModuleController@del');
 });
