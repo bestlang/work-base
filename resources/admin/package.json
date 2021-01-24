@@ -11,6 +11,8 @@
   "allowModules": [
     "base",
     "cms",
+    "sniper",
+    "panel",
     "privileges"
   ],
   "version": "1.0.0",
