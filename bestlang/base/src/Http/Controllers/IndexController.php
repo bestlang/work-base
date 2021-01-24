@@ -10,7 +10,12 @@ class IndexController extends Controller
         if(!$defaultModule){
             $defaultModule = Module::where('type', 1)->first();
         }
-        return redirect($defaultModule->uri);
+        if($defaultModule){
+            return redirect($defaultModule->uri);
+        }else{
+            return redirect('/sniper');
+        }
+
     }
 
     public function csrf()
