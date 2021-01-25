@@ -6,7 +6,7 @@ class IndexController extends Controller
 {
     public function index()
     {
-        return view('base::index.index');
+        //return view('base::index.index');
         $defaultModule = Module::where('is_default', 1)->first();
         if(!$defaultModule){
             $defaultModule = Module::where('type', 1)->first();
