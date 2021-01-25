@@ -351,7 +351,7 @@
             "dist": {
                 "type": "path",
                 "url": "./bestlang/alipay-easysdk",
-                "reference": "4df402ff972ef5fc848cb0a41796f01d052ecd1a"
+                "reference": "89ef9740d134895fa0dd1b608099b64c850a5c23"
             },
             "require": {
                 "adbario/php-dot-notation": "^2.2",
@@ -422,7 +422,7 @@
             "dist": {
                 "type": "path",
                 "url": "./bestlang/base",
-                "reference": "10c188c8a739b62bdfd7969c3595cd823332d958"
+                "reference": "fad46d7d32dbcb2ccb9e4093ec9903dc37d44375"
             },
             "require": {
                 "baum/baum": "v2.x-dev",
@@ -490,7 +490,7 @@
             "dist": {
                 "type": "path",
                 "url": "./bestlang/laracms",
-                "reference": "13c8142908e46664a31c3eea6d1156dc94a4f8c2"
+                "reference": "05fb76e0820f96aa72985757bb42885e4bfa70aa"
             },
             "require": {
                 "baum/baum": "v2.x-dev",
@@ -510,17 +510,17 @@
             "extra": {
                 "laravel": {
                     "providers": [
-                        "BestLang\\LaraCms\\Providers\\AppServiceProvider",
-                        "BestLang\\LaraCms\\Providers\\RouteServiceProvider"
+                        "BestLang\\LaraCMS\\Providers\\AppServiceProvider",
+                        "BestLang\\LaraCMS\\Providers\\RouteServiceProvider"
                     ],
                     "aliases": {
-                        "laracms": "BestLang\\LaraCms\\Facades\\LaraCms"
+                        "laracms": "BestLang\\LaraCMS\\Facades\\LaraCMS"
                     }
                 }
             },
             "autoload": {
                 "psr-4": {
-                    "BestLang\\LaraCms\\": "src/"
+                    "BestLang\\LaraCMS\\": "src/"
                 },
                 "files": [
                     "src/helpers.php"
@@ -542,8 +542,8 @@
             "description": "a cms package for laravel",
             "homepage": "https://github.com/bestlang/laracms",
             "keywords": [
-                "Laravel",
-                "laraCMS"
+                "LaraCMS",
+                "Laravel"
             ],
             "transport-options": {
                 "relative": true
@@ -555,7 +555,7 @@
             "dist": {
                 "type": "path",
                 "url": "./bestlang/laravel-ueditor",
-                "reference": "a1aa3ef743a4159bb2b06ae22f095579fd2e8b19"
+                "reference": "4e5a9e43146c436595d7533fd77e08ce2fe81057"
             },
             "type": "library",
             "extra": {
@@ -590,7 +590,7 @@
             "dist": {
                 "type": "path",
                 "url": "./bestlang/wxpay",
-                "reference": "01b4cf92cb8059ed06b0ec4b22550802f8539abb"
+                "reference": "1b7e426186a5999a27f7a3d1bb6f4d36bd48f3f0"
             },
             "require": {
                 "endroid/qr-code": "^3.5",
@@ -878,20 +878,6 @@
                 "redis",
                 "xcache"
             ],
-            "funding": [
-                {
-                    "url": "https://www.doctrine-project.org/sponsorship.html",
-                    "type": "custom"
-                },
-                {
-                    "url": "https://www.patreon.com/phpdoctrine",
-                    "type": "patreon"
-                },
-                {
-                    "url": "https://tidelift.com/funding/github/packagist/doctrine%2Fcache",
-                    "type": "tidelift"
-                }
-            ],
             "time": "2020-07-07T18:54:01+00:00"
         },
         {
@@ -1061,20 +1047,6 @@
                 "event manager",
                 "event system",
                 "events"
-            ],
-            "funding": [
-                {
-                    "url": "https://www.doctrine-project.org/sponsorship.html",
-                    "type": "custom"
-                },
-                {
-                    "url": "https://www.patreon.com/phpdoctrine",
-                    "type": "patreon"
-                },
-                {
-                    "url": "https://tidelift.com/funding/github/packagist/doctrine%2Fevent-manager",
-                    "type": "tidelift"
-                }
             ],
             "time": "2020-05-29T18:28:51+00:00"
         },
@@ -2426,16 +2398,6 @@
                 "JWS",
                 "jwt"
             ],
-            "funding": [
-                {
-                    "url": "https://github.com/lcobucci",
-                    "type": "github"
-                },
-                {
-                    "url": "https://www.patreon.com/lcobucci",
-                    "type": "patreon"
-                }
-            ],
             "time": "2020-08-20T13:22:28+00:00"
         },
         {
@@ -2525,12 +2487,6 @@
                 "s3",
                 "sftp",
                 "storage"
-            ],
-            "funding": [
-                {
-                    "url": "https://offset.earth/frankdejonge",
-                    "type": "other"
-                }
             ],
             "time": "2020-07-26T07:20:36+00:00"
         },
@@ -3288,16 +3244,6 @@
                 "php",
                 "type"
             ],
-            "funding": [
-                {
-                    "url": "https://github.com/GrahamCampbell",
-                    "type": "github"
-                },
-                {
-                    "url": "https://tidelift.com/funding/github/packagist/phpoption/phpoption",
-                    "type": "tidelift"
-                }
-            ],
             "time": "2020-07-20T17:29:33+00:00"
         },
         {
@@ -3880,7 +3826,7 @@
             "dist": {
                 "type": "path",
                 "url": "./sniper/employee",
-                "reference": "8e5054022ade52caa2acded0a54943609a5d9ba5"
+                "reference": "f444cb3c3dff83d20ffc726bb2c207683b487fd0"
             },
             "require": {
                 "bestlang/base": "dev-master@dev",
@@ -4710,20 +4656,6 @@
                 "interfaces",
                 "interoperability",
                 "standards"
-            ],
-            "funding": [
-                {
-                    "url": "https://symfony.com/sponsor",
-                    "type": "custom"
-                },
-                {
-                    "url": "https://github.com/fabpot",
-                    "type": "github"
-                },
-                {
-                    "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
-                    "type": "tidelift"
-                }
             ],
             "time": "2020-07-06T13:19:58+00:00"
         },
@@ -6315,20 +6247,6 @@
                 "interoperability",
                 "standards"
             ],
-            "funding": [
-                {
-                    "url": "https://symfony.com/sponsor",
-                    "type": "custom"
-                },
-                {
-                    "url": "https://github.com/fabpot",
-                    "type": "github"
-                },
-                {
-                    "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
-                    "type": "tidelift"
-                }
-            ],
             "time": "2020-07-06T13:19:58+00:00"
         },
         {
@@ -7030,16 +6948,16 @@
         },
         {
             "name": "filp/whoops",
-            "version": "2.9.1",
+            "version": "2.9.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/filp/whoops.git",
-                "reference": "307fb34a5ab697461ec4c9db865b20ff2fd40771"
+                "reference": "df7933820090489623ce0be5e85c7e693638e536"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/filp/whoops/zipball/307fb34a5ab697461ec4c9db865b20ff2fd40771",
-                "reference": "307fb34a5ab697461ec4c9db865b20ff2fd40771",
+                "url": "https://api.github.com/repos/filp/whoops/zipball/df7933820090489623ce0be5e85c7e693638e536",
+                "reference": "df7933820090489623ce0be5e85c7e693638e536",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -7093,7 +7011,13 @@
                 "throwable",
                 "whoops"
             ],
-            "time": "2020-11-01T12:00:00+00:00"
+            "funding": [
+                {
+                    "url": "https://github.com/denis-sokolov",
+                    "type": "github"
+                }
+            ],
+            "time": "2021-01-24T12:00:00+00:00"
         },
         {
             "name": "hamcrest/hamcrest-php",

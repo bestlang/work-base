@@ -1,13 +1,13 @@
 <?php
 
-namespace BestLang\LaraCms\Http\Controllers\Admin\Cms;
+namespace BestLang\LaraCMS\Http\Controllers\Admin\Cms;
 
-use BestLang\LaraCms\Models\Cms\ChannelContent;
-use BestLang\LaraCms\Models\Cms\ChannelMeta;
-use BestLang\LaraCms\Models\Cms\Model;
+use BestLang\LaraCMS\Models\Cms\ChannelContent;
+use BestLang\LaraCMS\Models\Cms\ChannelMeta;
+use BestLang\LaraCMS\Models\Cms\Model;
 use Illuminate\Http\Request;
-use BestLang\LaraCms\Http\Controllers\Controller;
-use BestLang\LaraCms\Models\Cms\Channel;
+use BestLang\LaraCMS\Http\Controllers\Controller;
+use BestLang\LaraCMS\Models\Cms\Channel;
 use Illuminate\Support\Arr;
 use Validator;
 

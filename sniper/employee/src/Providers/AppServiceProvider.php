@@ -12,6 +12,7 @@ class AppServiceProvider extends ServiceProvider
         $this->mergeConfigFrom(
             __DIR__.'/../../config/database.php', 'database.connections'
         );
+        $this->app->bind('sniper', 'Sniper\Employee\SniperEmployee');
     }
 
     public function boot()

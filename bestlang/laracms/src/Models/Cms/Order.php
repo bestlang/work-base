@@ -1,8 +1,8 @@
 <?php
 
-namespace BestLang\LaraCms\Models\Cms;
+namespace BestLang\LaraCMS\Models\Cms;
 
-use BestLang\LaraCms\Models\User;
+use BestLang\LaraCMS\Models\User;
 use Illuminate\Database\Eloquent\Model;
 use BestLang\WxPay\Pay\Contracts\OrderInterface;
 use \Exception;

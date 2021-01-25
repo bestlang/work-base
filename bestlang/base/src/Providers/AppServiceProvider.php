@@ -12,8 +12,8 @@ use Illuminate\Database\Eloquent\Collection;
 use Validator;
 use BestLang\Base\Models\Permission;
 use Illuminate\Support\Facades\Schema;
-use BestLang\Base\Models\Module;
 use HashConfig;
+use DBLog;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -35,9 +35,7 @@ class AppServiceProvider extends ServiceProvider
     }
 
     /**
-     * Bootstrap any application services.
-     *
-     * @return void
+     * @throws \Illuminate\Contracts\Container\BindingResolutionException
      */
     public function boot()
     {
@@ -95,19 +93,11 @@ class AppServiceProvider extends ServiceProvider
                 return false;
             }
         });
-
-        if (!$this->app->runningInConsole()){
-            $defaultModule = Module::where('is_default', 1)->first();
-            if(!$defaultModule){
-                $defaultModule = Module::where('type', '1')->first();
-            }
-            if($defaultModule->name == 'laraCMS'){
-                $authPrefix = $defaultModule->tplNs.'::themes.'.HashConfig::get('site', 'theme');
-            }else{
-                $authPrefix = $defaultModule->tplNs.'::';
-            }
-            session(['authPrefix' => $authPrefix]);
-        }
-
+        //所有模块都被注册之后
+        $defaultModule = env('DEFAULT_MODULE', 'base');
+        $lowCaseName = strtolower($defaultModule);
+        $m = app()->make($lowCaseName);
+        $authPrefix = $m->getAuthPrefix();
+        app()['authPrefix'] = $authPrefix;
     }
 }

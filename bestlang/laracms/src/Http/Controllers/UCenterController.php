@@ -1,6 +1,6 @@
 <?php
 
-namespace BestLang\LaraCms\Http\Controllers;
+namespace BestLang\LaraCMS\Http\Controllers;
 
 use Illuminate\Http\Request;
 use HashConfig;
@@ -23,11 +23,11 @@ class UCenterController extends Controller
         if(!auth()->user()){
             return redirect('/login');
         }
-        return view("laraCMS::themes.{$this->theme}.ucenter.index");
+        return view("LaraCMS::themes.{$this->theme}.ucenter.index");
     }
 
     public function passwordModifyForm(Request $request)
     {
-        return view("laraCMS::themes.{$this->theme}.ucenter.passwordModifyForm");
+        return view("LaraCMS::themes.{$this->theme}.ucenter.passwordModifyForm");
     }
 }

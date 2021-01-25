@@ -1,10 +1,10 @@
 <?php
-namespace BestLang\LaraCms\Http\Controllers\Admin\Cms;
+namespace BestLang\LaraCMS\Http\Controllers\Admin\Cms;
 
-use BestLang\LaraCms\Models\Cms\Model;
-use BestLang\LaraCms\Models\Cms\ModelField;
+use BestLang\LaraCMS\Models\Cms\Model;
+use BestLang\LaraCMS\Models\Cms\ModelField;
 use Illuminate\Http\Request;
-use BestLang\LaraCms\Http\Controllers\Controller;
+use BestLang\LaraCMS\Http\Controllers\Controller;
 use Illuminate\Support\Arr;
 
 class ModelController extends Controller

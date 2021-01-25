@@ -84,6 +84,6 @@ class RegisterController extends Controller
      */
     public function showRegistrationForm()
     {
-        return view(session('authPrefix').'.auth.register');
+        return view(app()['authPrefix'].'auth.register');
     }
 }

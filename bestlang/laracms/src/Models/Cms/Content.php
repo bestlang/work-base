@@ -1,10 +1,10 @@
 <?php
 
-namespace BestLang\LaraCms\Models\Cms;
+namespace BestLang\LaraCMS\Models\Cms;
 
-use BestLang\LaraCms\Models\User;
+use BestLang\LaraCMS\Models\User;
 use Illuminate\Database\Eloquent\Model;
-use BestLang\LaraCms\Models\Cms\Model as CmsModel;
+use BestLang\LaraCMS\Models\Cms\Model as CmsModel;
 
 class Content extends Model
 {

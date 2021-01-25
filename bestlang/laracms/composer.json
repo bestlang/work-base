@@ -11,7 +11,7 @@
     }
   ],
   "homepage": "https://github.com/bestlang/laracms",
-  "keywords": ["Laravel", "laraCMS"],
+  "keywords": ["Laravel", "LaraCMS"],
   "require": {
     "illuminate/support": "~5|~6",
     "baum/baum": "v2.x-dev",
@@ -28,7 +28,7 @@
   },
   "autoload": {
     "psr-4": {
-      "BestLang\\LaraCms\\": "src/"
+      "BestLang\\LaraCMS\\": "src/"
     },
     "files": [
       "src/helpers.php"
@@ -41,11 +41,11 @@
   "extra": {
     "laravel": {
       "providers": [
-        "BestLang\\LaraCms\\Providers\\AppServiceProvider",
-        "BestLang\\LaraCms\\Providers\\RouteServiceProvider"
+        "BestLang\\LaraCMS\\Providers\\AppServiceProvider",
+        "BestLang\\LaraCMS\\Providers\\RouteServiceProvider"
       ],
       "aliases": {
-        "laracms": "BestLang\\LaraCms\\Facades\\LaraCms"
+        "LaraCMS": "BestLang\\LaraCMS\\Facades\\LaraCMS"
       }
     }
   }

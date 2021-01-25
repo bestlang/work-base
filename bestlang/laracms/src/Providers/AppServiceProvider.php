@@ -1,15 +1,15 @@
 <?php
 
-namespace BestLang\LaraCms\Providers;
+namespace BestLang\LaraCMS\Providers;
 
 use BestLang\Base\Models\HashConfig;
 use Illuminate\Support\ServiceProvider;
-use BestLang\LaraCms\Console\Commands\LaraCms;
+use BestLang\LaraCMS\Console\Commands\LaraCMS;
 //use Illuminate\Support\Facades\Gate;
-//use BestLang\LaraCms\Models\Permission;
+//use BestLang\LaraCMS\Models\Permission;
 
-use BestLang\LaraCms\Models\Cms\Order;
-use BestLang\LaraCms\Observers\Cms\OrderObserver;
+use BestLang\LaraCMS\Models\Cms\Order;
+use BestLang\LaraCMS\Observers\Cms\OrderObserver;
 use Blade;
 use BestLang\WxPay\Pay\Contracts\OrderInterface as WxPayOrderInterface;
 use Alipay\EasySDK\Contracts\OrderInterface as AlipayOrderInterface;
@@ -23,7 +23,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->bind('laracms', 'BestLang\LaraCms\LaraCms');
+        $this->app->bind('laracms', 'BestLang\LaraCMS\LaraCMS');
         $this->app->singleton(
             WxPayOrderInterface::class,
             Order::class
@@ -44,7 +44,7 @@ class AppServiceProvider extends ServiceProvider
         Order::observe(OrderObserver::class);
         if ($this->app->runningInConsole()) {
             $this->commands([
-                LaraCms::class
+                LaraCMS::class
             ]);
             // config
             $this->publishes([
@@ -58,7 +58,7 @@ class AppServiceProvider extends ServiceProvider
                 __DIR__ . '/../../resources/assets/dark/images/' => public_path('vendor/laracms/dark/images/')
             ], 'laracms-assets');
         }
-        $this->loadViewsFrom(__DIR__.'/../../resources/views/laraCMS', 'laraCMS');
+        $this->loadViewsFrom(__DIR__.'/../../resources/views/laracms', 'LaraCMS');
 
         Blade::directive('channelLink', function ($expression) {
             $expression = strval($expression);

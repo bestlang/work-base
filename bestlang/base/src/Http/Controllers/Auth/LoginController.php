@@ -56,7 +56,7 @@ class LoginController extends Controller
 
     public function showLoginForm()
     {
-        return view(session('authPrefix').'.auth.login');
+        return view(app()['authPrefix'].'auth.login');
     }
 
     public function username()
@@ -107,6 +107,7 @@ class LoginController extends Controller
             ]);
         }
     }
+
     public function logout(Request $request)
     {
         event(HistoryEventFactory::logoutEvent());
@@ -117,7 +118,6 @@ class LoginController extends Controller
         }else{
             return $this->loggedOut($request) ?: redirect('/');
         }
-
     }
 
     protected function loggedOut(Request $request)

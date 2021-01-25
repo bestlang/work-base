@@ -1,10 +1,10 @@
 <?php
-namespace BestLang\LaraCms\Http\Controllers;
+namespace BestLang\LaraCMS\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Alipay\EasySDK\Kernel\Factory;
 use Alipay\EasySDK\Kernel\Config;
-use BestLang\LaraCms\Models\Cms\Order;
+use BestLang\LaraCMS\Models\Cms\Order;
 use Alipay\EasySDK\Events\PayNotify;
 
 

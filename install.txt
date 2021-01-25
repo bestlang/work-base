@@ -25,7 +25,7 @@ php artisan LaraCms:install
 #php artisan db:seed --class=LaraCmsSeeder
 #php artisan db:seed --class=SniperSeeder
 .env
-DEFAULT_APPLICATION_PATH='/cms'
+DEFAULT_MODULE='LaraCMS'
 base login.blade.php
  admin login.vue
  admin router/index modules/normal

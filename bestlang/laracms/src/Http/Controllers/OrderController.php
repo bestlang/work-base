@@ -1,11 +1,11 @@
 <?php
-namespace BestLang\LaraCms\Http\Controllers;
+namespace BestLang\LaraCMS\Http\Controllers;
 
 
 use Illuminate\Http\Request;
-use BestLang\LaraCms\Models\Cms\Order;
+use BestLang\LaraCMS\Models\Cms\Order;
 
-use BestLang\LaraCms\Services\OrderGenerator;
+use BestLang\LaraCMS\Services\OrderGenerator;
 use HashConfig;
 
 
@@ -21,13 +21,13 @@ class OrderController
     {
         $user = auth()->user();
         $orders = Order::where('user_id', $user->id)->orderBy('id', 'desc')->paginate(6);
-        return view("laraCMS::themes.{$this->theme}.order.orders", ['orders' => $orders]);
+        return view("LaraCMS::themes.{$this->theme}.order.orders", ['orders' => $orders]);
     }
 
     public function detail($order_no, Request $request)
     {
         $order = Order::where('order_no', $order_no)->firstOrFail();
-        return view("laraCMS::themes.{$this->theme}.order.orderDetail", ['order' => $order]);
+        return view("LaraCMS::themes.{$this->theme}.order.orderDetail", ['order' => $order]);
     }
 
     public function generate(Request $request)
@@ -42,6 +42,6 @@ class OrderController
     public function orderPay($order_no, Request $request)
     {
         $order = Order::where('order_no', $order_no)->firstOrFail();
-        return view("laraCMS::themes.{$this->theme}.order.pay", ['order' => $order]);
+        return view("LaraCMS::themes.{$this->theme}.order.pay", ['order' => $order]);
     }
 }

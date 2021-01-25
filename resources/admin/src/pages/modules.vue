@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div v-title="'应用管理'"></div>
+        <div v-title="'模块管理'"></div>
         <div class="l-block">
             <div class="l-block-header"></div>
             <div class="l-block-body">
@@ -17,14 +17,6 @@
                     <el-table-column
                             prop="version"
                             label="版本">
-                    </el-table-column>
-                    <el-table-column
-                            prop="tplNs"
-                            label="模板前缀">
-                    </el-table-column>
-                    <el-table-column
-                            prop="uri"
-                            label="模块URI路径">
                     </el-table-column>
                     <el-table-column
                             label="是否默认">
@@ -55,12 +47,6 @@
                 </el-form-item>
                 <el-form-item label="版本">
                     <el-input v-model="form.version" autocomplete="off"></el-input>
-                </el-form-item>
-                <el-form-item label="模板前缀">
-                    <el-input v-model="form.tplNs" autocomplete="off"></el-input>
-                </el-form-item>
-                <el-form-item label="模块URI路径">
-                    <el-input v-model="form.uri" autocomplete="off"></el-input>
                 </el-form-item>
                 <el-form-item label="是否默认">
                     <el-radio-group v-model="form.is_default">
@@ -106,8 +92,6 @@
                     id: null,
                     name: '',
                     version: '',
-                    tplNs: '',
-                    uri: '',
                     is_default: 0,
                     type: 0
                 }
@@ -143,8 +127,6 @@
                     id: null,
                     name: '',
                     version: '',
-                    tplNs: '',
-                    uri: '',
                     is_default: 0,
                     type: 0
                 }

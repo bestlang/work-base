@@ -1,8 +1,8 @@
 <?php
-namespace BestLang\LaraCms\Http\Controllers\Admin\Cms;
+namespace BestLang\LaraCMS\Http\Controllers\Admin\Cms;
 
-use BestLang\LaraCms\Http\Controllers\Controller;
-use BestLang\LaraCms\Services\ContentService;
+use BestLang\LaraCMS\Http\Controllers\Controller;
+use BestLang\LaraCMS\Services\ContentService;
 use Illuminate\Http\Request;
 
 class ExternalController extends Controller

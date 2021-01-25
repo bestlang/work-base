@@ -1,19 +1,14 @@
 <?php
 namespace BestLang\Base\Http\Controllers;
-use BestLang\Base\Models\Module;
 
 class IndexController extends Controller
 {
     public function index()
     {
-        //return view('base::index.index');
-        $defaultModule = Module::where('is_default', 1)->first();
-        if(!$defaultModule){
-            $defaultModule = Module::where('type', 1)->first();
-        }
-        if($defaultModule){
-            return redirect($defaultModule->uri);
-        }
+        $defaultModule = env('DEFAULT_MODULE', 'base');
+        $lowCaseName = strtolower($defaultModule);
+        $m = app()->make($lowCaseName);
+        return $m->homePage();
     }
 
     public function csrf()
