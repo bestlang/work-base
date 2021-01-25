@@ -94,7 +94,7 @@ class AppServiceProvider extends ServiceProvider
             }
         });
         //所有模块都被注册之后
-        $defaultModule = env('DEFAULT_MODULE', 'base');
+        $defaultModule = env('DEFAULT_MODULE', 'LaraCMS');
         $lowCaseName = strtolower($defaultModule);
         $m = app()->make($lowCaseName);
         $authPrefix = $m->getAuthPrefix();

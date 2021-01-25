@@ -5,7 +5,7 @@ class IndexController extends Controller
 {
     public function index()
     {
-        $defaultModule = env('DEFAULT_MODULE', 'base');
+        $defaultModule = env('DEFAULT_MODULE', 'LaraCMS');
         $lowCaseName = strtolower($defaultModule);
         $m = app()->make($lowCaseName);
         return $m->homePage();
