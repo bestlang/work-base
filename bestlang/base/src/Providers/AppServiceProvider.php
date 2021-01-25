@@ -67,7 +67,6 @@ class AppServiceProvider extends ServiceProvider
             $this->loadMigrationsFrom(__DIR__.'/../../database/migrations');
             // config
             $this->publishes([
-                __DIR__.'/../../config/bestlang.php' => config_path('bestlang.php'),
                 __DIR__.'/../../config/auth.php' => config_path('auth.php'),
                 __DIR__.'/../../config/jwt.php' => config_path('jwt.php'),
                 __DIR__.'/../../config/permission.php' => config_path('permission.php'),
