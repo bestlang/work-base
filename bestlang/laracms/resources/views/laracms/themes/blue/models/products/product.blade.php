@@ -11,7 +11,7 @@
                     <div class="panel panel-default article-content">
                         <div class="panel-heading">
                             <ol class="breadcrumb">
-                                @foreach(laracms::breadcrumbs($content->channel) as $b)
+                                @foreach(LaraCMS::breadcrumbs($content->channel) as $b)
                                     <li><a href="{{$b->url}}">{{$b->name}}</a></li>
                                 @endforeach
                                 <li>{{$content->title}}</li>
@@ -36,7 +36,7 @@
                                 </div>
                             </div>
                             <div style="padding: 15px 0;border-top: 1px solid #f1f1f1;">
-                                <div>{!!  laracms::content($content, 'content') !!}</div>
+                                <div>{!!  LaraCMS::content($content, 'content') !!}</div>
                             </div>
                         </div>
                     </div>
@@ -45,7 +45,7 @@
                     <div class="panel panel-default">
                         <div class="panel-heading"><h3 class="panel-title">文章推荐</h3></div>
                         <div class="panel-body">
-                            @foreach(laracms::position('文章详情右侧推荐一') as $key => $content)
+                            @foreach(LaraCMS::position('文章详情右侧推荐一') as $key => $content)
                                 <div class="media">
                                     <div class="media-left">{{$key+1}}</div>
                                     <div class="media-body">
@@ -60,7 +60,7 @@
                     <div class="panel panel-default">
                         <div class="panel-heading"><h3 class="panel-title">文章推荐</h3></div>
                         <div class="panel-body">
-                            @foreach(laracms::position('文章详情右侧推荐一') as $key => $content)
+                            @foreach(LaraCMS::position('文章详情右侧推荐一') as $key => $content)
                                 <div class="media">
                                     <div class="media-left">{{$key+1}}</div>
                                     <div class="media-body">

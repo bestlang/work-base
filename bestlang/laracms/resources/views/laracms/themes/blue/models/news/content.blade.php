@@ -14,7 +14,7 @@
                     <div class="panel panel-default article-content">
                         <div class="panel-heading">
                             <ol class="breadcrumb">
-                                @foreach(laracms::breadcrumbs($content->channel) as $b)
+                                @foreach(LaraCMS::breadcrumbs($content->channel) as $b)
                                 <li><a href="{{$b->url}}">{{$b->name}}</a></li>
                                 @endforeach
                                 <li>正文</li>
@@ -22,7 +22,7 @@
                         </div>
                         <div class="l-article-body">
                             <h1 class="l-content-title">{{$content->title}}</h1>
-                            <div>{!!  laracms::content($content, 'content') !!}</div>
+                            <div>{!!  LaraCMS::content($content, 'content') !!}</div>
                         </div>
                     </div>
                 </div>

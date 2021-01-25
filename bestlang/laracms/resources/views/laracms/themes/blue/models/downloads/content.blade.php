@@ -11,7 +11,7 @@
                     <div class="panel panel-default article-content">
                         <div class="panel-heading">
                             <ol class="breadcrumb">
-                                @foreach(laracms::breadcrumbs($content->channel) as $b)
+                                @foreach(LaraCMS::breadcrumbs($content->channel) as $b)
                                 <li><a href="{{$b->url}}">{{$b->name}}</a></li>
                                 @endforeach
                                 <li>正文</li>
@@ -19,7 +19,7 @@
                         </div>
                         <div class="l-article-body">
                             <h1 class="l-content-title">{{$content->title}}</h1>
-                            <div>{!! laracms::content($content, 'content') !!}</div>
+                            <div>{!! LaraCMS::content($content, 'content') !!}</div>
                             @if(count($content->attachment))
                             <ul>
                                 @foreach($content->attachment as $att)
@@ -61,7 +61,7 @@
                     <div class="panel panel-default">
                         <div class="panel-heading"><h3 class="panel-title">文章推荐</h3></div>
                         <div class="panel-body">
-                            @foreach(laracms::position('文章详情右侧推荐一') as $key => $content)
+                            @foreach(LaraCMS::position('文章详情右侧推荐一') as $key => $content)
                                 <div class="media">
                                     <div class="media-left">{{$key+1}}</div>
                                     <div class="media-body">
@@ -76,7 +76,7 @@
                     <div class="panel panel-default">
                         <div class="panel-heading"><h3 class="panel-title">文章推荐</h3></div>
                         <div class="panel-body">
-                            @foreach(laracms::position('文章详情右侧推荐一') as $key => $content)
+                            @foreach(LaraCMS::position('文章详情右侧推荐一') as $key => $content)
                                 <div class="media">
                                     <div class="media-left">{{$key+1}}</div>
                                     <div class="media-body">
@@ -136,13 +136,13 @@
     {{--<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/highlight.min.js"></script>--}}
 {{--</head>--}}
 {{--<body>--}}
-{{--@include('laracms::dark.common.head')--}}
+{{--@include('LaraCMS::dark.common.head')--}}
 {{--<div class="l-content">--}}
     {{--<div class="l-content-inner l-min-height">--}}
         {{--<div class="l-row">--}}
             {{--<div class="col-md-12 l-block-content">--}}
                 {{--<h1 class="l-content-title">{{$content->title}}</h1>--}}
-                {{--<div>{!!  laracms::content($content, 'content') !!}</div>--}}
+                {{--<div>{!!  LaraCMS::content($content, 'content') !!}</div>--}}
             {{--</div>--}}
             {{--<div><h2>评论区:</h2></div>--}}
             {{--<div>--}}
@@ -168,7 +168,7 @@
         {{--</div>--}}
     {{--</div>--}}
 {{--</div>--}}
-{{--@include('laracms::dark.common.foot')--}}
+{{--@include('LaraCMS::dark.common.foot')--}}
 {{--<script type="text/javascript">--}}
     {{--$(function(){--}}
         {{--$('#comment_submit').click(function(){--}}

@@ -29,7 +29,7 @@
                             </div>
                         </div>
                     @endif
-                    <div>{!!  laracms::content($content, 'content') !!}</div>
+                    <div>{!!  LaraCMS::content($content, 'content') !!}</div>
                 </div>
                 <div class="panel panel-default">
                     <div class="panel-heading" id="comments">
