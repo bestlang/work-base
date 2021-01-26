@@ -4,17 +4,17 @@ use Arr;
 
 class Base
 {
-    public function moduleName()
+    public function getName()
     {
         return 'Base';
     }
 
-    public function modulePath()
+    public function getPath()
     {
         return base_path().'/bestlang/base/';
     }
 
-    public function homePage()
+    public function home()
     {
         return view('base::index.index');
     }

@@ -12,17 +12,17 @@ use HashConfig;
 
 class LaraCMS
 {
-    public function moduleName()
+    public function getName()
     {
         return 'LaraCMS';
     }
 
-    public function modulePath()
+    public function getPath()
     {
         return base_path().'/bestlang/laracms/';
     }
 
-    public function homePage()
+    public function home()
     {
         return render('index.index');
     }

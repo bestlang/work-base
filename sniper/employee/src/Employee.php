@@ -3,17 +3,17 @@ namespace Sniper\Employee;
 
 class Employee
 {
-    public function moduleName()
+    public function getName()
     {
         return 'employee';
     }
 
-    public function modulePath()
+    public function getPath()
     {
         return base_path().'/sniper/employee/';
     }
 
-    public function homePage()
+    public function home()
     {
         if(auth()->user()){
             return redirect('/admin/#/panel');
