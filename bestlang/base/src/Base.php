@@ -9,6 +9,11 @@ class Base
         return 'Base';
     }
 
+    public function modulePath()
+    {
+        return base_path().'/bestlang/base/';
+    }
+
     public function homePage()
     {
         return view('base::index.index');

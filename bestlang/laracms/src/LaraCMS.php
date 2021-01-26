@@ -17,6 +17,11 @@ class LaraCMS
         return 'LaraCMS';
     }
 
+    public function modulePath()
+    {
+        return base_path().'/bestlang/laracms/';
+    }
+
     public function homePage()
     {
         return render('index.index');

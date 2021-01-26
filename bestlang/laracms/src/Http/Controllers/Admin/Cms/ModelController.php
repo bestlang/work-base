@@ -6,6 +6,7 @@ use BestLang\LaraCMS\Models\Cms\ModelField;
 use Illuminate\Http\Request;
 use BestLang\LaraCMS\Http\Controllers\Controller;
 use Illuminate\Support\Arr;
+use HashConfig;
 
 class ModelController extends Controller
 {
@@ -117,7 +118,8 @@ class ModelController extends Controller
 
     public function templatePrefix(Request $request)
     {
-        $path = base_path().'/bestlang/laracms/resources/views/laracms/dark/models/';
+        $theme = HashConfig::get('theme');
+        $path = base_path().'/bestlang/laracms/resources/views/laracms/themes/'.$theme.'/models/';
         $resource = opendir($path);
         $dirNameArr = [];
         while($file = readdir($resource)){
@@ -130,7 +132,8 @@ class ModelController extends Controller
 
     public function templatePath(Request $request)
     {
-        $base = base_path().'/bestlang/laracms/resources/views/laracms/dark/';
+        $theme = HashConfig::get('theme');
+        $base = base_path().'/bestlang/laracms/resources/views/laracms/themes/'.$theme.'/';
         $model_id = $request->input('model_id');
         $model = Model::find($model_id);
         if(!$model){

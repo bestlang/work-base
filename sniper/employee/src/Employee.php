@@ -8,6 +8,11 @@ class Employee
         return 'employee';
     }
 
+    public function modulePath()
+    {
+        return base_path().'/sniper/employee/';
+    }
+
     public function homePage()
     {
         if(auth()->user()){
