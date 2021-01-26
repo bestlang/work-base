@@ -26,6 +26,7 @@ class CreateCmsContentsTable extends Migration
             $table->string('author')->nullable()->comment('作者');
             $table->string('origin')->nullable()->comment('来源');
             $table->string('origin_url')->nullable()->comment('来源链接');
+            $table->bigInteger('views')->default(0)->comment('阅读数');
             $table->timestamps();
         });
     }

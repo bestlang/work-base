@@ -18,4 +18,21 @@ class ContentController extends Controller
             return $e->getMessage();//redirect(route('404'));
         }
     }
+
+    //文章阅读数增加
+    public function view(Request $request)
+    {
+        $content_id = $request->input('content_id');
+        $content = Content::find($content_id);
+        if($content){
+            try{
+                $content->increment('views');
+            }catch (\Exception $e){
+                $content->views = 1;
+                $content->save();
+            }
+            return response()->ajax();
+        }
+        return response()->error('出错了');
+    }
 }

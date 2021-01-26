@@ -87,7 +87,12 @@
                 $(html).appendTo('#l-display-comments');
             });
         };
+        function reportView(){
+                var content_id = $('#content_id').val();
+                axios.post('/ajax/content/view', {content_id: content_id});
+        }
         setTimeout(function(){loadComments()}, 1000);
+        setTimeout(function(){reportView()}, 1000);
         var allPreTags = document.getElementsByTagName("pre");
         for(var i = 0; i < allPreTags.length; i++)
         {

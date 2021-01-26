@@ -21,7 +21,7 @@
     if(name != 'null'){
         var type = parseInt(localStorage.getItem('type'));
         var authHtml = [
-            '<li><a href="/ucenter">个人中心</a></li>',
+            //'<li><a href="/ucenter">个人中心</a></li>',
             '<li><a href="javascript:;" id="logout-btn">登出</a></li>'
         ];
         if(type === 1){
