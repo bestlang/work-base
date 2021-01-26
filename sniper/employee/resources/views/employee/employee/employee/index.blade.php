@@ -1,4 +1,4 @@
-@extends('sniper::layouts.app')
+@extends('employee::layouts.app')
 @push('css')
     <style>
         .l-app-wrap{

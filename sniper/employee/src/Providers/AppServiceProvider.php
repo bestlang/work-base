@@ -12,7 +12,7 @@ class AppServiceProvider extends ServiceProvider
         $this->mergeConfigFrom(
             __DIR__.'/../../config/database.php', 'database.connections'
         );
-        $this->app->bind('sniper', 'Sniper\Employee\SniperEmployee');
+        $this->app->bind('employee', 'Sniper\Employee\Employee');
     }
 
     public function boot()
@@ -31,6 +31,6 @@ class AppServiceProvider extends ServiceProvider
                 __DIR__ . '/../../resources/assets/images/' => public_path('vendor/sniper/images/')
             ], 'sniper-assets');
         }
-        $this->loadViewsFrom(__DIR__.'/../../resources/views/sniper', 'sniper');
+        $this->loadViewsFrom(__DIR__.'/../../resources/views/employee', 'employee');
     }
 }

@@ -23,6 +23,6 @@ class User extends BaseUser
     //喜欢的文章
     public function likes()
     {
-        return $this->belongsToMany(Content::class, 'cms_content_likes', 'user_id', 'content_id')->withPivot(['created_at', 'updated_at']);
+        return $this->belongsToMany(Content::class, 'cms_content_likes', 'user_id', 'content_id')->withPivot(['created_at']);
     }
 }

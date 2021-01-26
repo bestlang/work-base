@@ -22,7 +22,7 @@ class LaraCMS
         return render('index.index');
     }
 
-    public function getAuthPrefix()
+    public function authPrefix()
     {
         $theme = HashConfig::get('site', 'theme');
         return "LaraCMS::themes.{$theme}.";

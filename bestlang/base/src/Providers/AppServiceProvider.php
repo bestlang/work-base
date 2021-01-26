@@ -25,8 +25,9 @@ class AppServiceProvider extends ServiceProvider
     public function register()
     {
         $this->mergeConfigFrom(__DIR__.'/../../config/services.php', 'services');
-        $this->app->bind('HashConfig', 'BestLang\Base\Models\HashConfig');
-        $this->app->bind('DBLog', 'BestLang\Base\Models\Log');
+        $this->app->bind('hashconfig', 'BestLang\Base\Models\HashConfig');
+        $this->app->bind('dblog', 'BestLang\Base\Models\Log');
+        $this->app->bind('base', 'BestLang\Base\Base');
 //        $this->app['router']->aliasMiddleware('auth.jwt', Authenticate::class);
         $this->app->singleton(
             ExceptionHandler::class,
@@ -97,7 +98,7 @@ class AppServiceProvider extends ServiceProvider
         $defaultModule = env('DEFAULT_MODULE', 'LaraCMS');
         $lowCaseName = strtolower($defaultModule);
         $m = app()->make($lowCaseName);
-        $authPrefix = $m->getAuthPrefix();
+        $authPrefix = $m->authPrefix();
         app()['authPrefix'] = $authPrefix;
     }
 }

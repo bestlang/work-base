@@ -31,6 +31,6 @@ class LateNoticeLeader extends Mailable
         $from = env('MAIL_USERNAME');
         return $this->from($from,'组员考勤报告')
             ->subject('组员迟到提醒')
-            ->view('sniper::emails.lateNoticeLeader');
+            ->view('employee::emails.lateNoticeLeader');
     }
 }

@@ -1,9 +1,9 @@
 <?php
-namespace BestLang\Base\Facades;
+namespace Sniper\Employee\Facades;
 
 use Illuminate\Support\Facades\Facade;
 
-class DBLog extends Facade
+class Employee extends Facade
 {
     /**
      * Get the registered name of the component.
@@ -12,6 +12,6 @@ class DBLog extends Facade
      */
     protected static function getFacadeAccessor()
     {
-        return 'dblog';
+        return 'employee';
     }
 }

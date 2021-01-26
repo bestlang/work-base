@@ -10,7 +10,7 @@ class EmployeeController extends Controller
         if(auth()->user()){
             return redirect('/admin/#/panel');
         }else{
-            return view('sniper::auth.login');
+            return view('employee::auth.login');
         }
     }
 }

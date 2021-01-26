@@ -13,6 +13,6 @@ class HashConfig extends Facade
      */
     protected static function getFacadeAccessor()
     {
-        return 'HashConfig';
+        return 'hashconfig';
     }
 }

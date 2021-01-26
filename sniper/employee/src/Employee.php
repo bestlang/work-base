@@ -1,11 +1,11 @@
 <?php
 namespace Sniper\Employee;
 
-class SniperEmployee
+class Employee
 {
     public function moduleName()
     {
-        return 'sniper';
+        return 'employee';
     }
 
     public function homePage()
@@ -13,12 +13,12 @@ class SniperEmployee
         if(auth()->user()){
             return redirect('/admin/#/panel');
         }else{
-            return view('sniper::auth.login');
+            return view('employee::auth.login');
         }
     }
 
-    public function getAuthPrefix()
+    public function authPrefix()
     {
-        return 'sniper::';
+        return 'employee::';
     }
 }

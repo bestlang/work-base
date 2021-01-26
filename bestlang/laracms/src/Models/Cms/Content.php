@@ -64,7 +64,7 @@ class Content extends Model
 
     public function likers()
     {
-        return $this->belongsToMany(User::class, 'cms_content_likes', 'content_id', 'user_id')->withPivot(['created_at', 'updated_at']);
+        return $this->belongsToMany(User::class, 'cms_content_likes', 'content_id', 'user_id')->withPivot(['created_at']);
     }
 
     public function __get($key)

@@ -35,7 +35,7 @@ class Notice extends Mailable
         }
        $this->from($from,'公告');
         $this->subject($this->notice->title);
-        $this->view('sniper::emails.notice');
+        $this->view('employee::emails.notice');
         return $this;
     }
 }
