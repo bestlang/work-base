@@ -44,6 +44,10 @@ Route::group(['prefix' => 'ajax'], function($router){
     Route::any('/pay/alipay/page', 'AliPayController@page');
 
     Route::any('/content/view', 'ContentController@view');
+    Route::any('/content/like', 'ContentController@like');
+    Route::any('/content/unlike', 'ContentController@unlike');
+
+
 });
 
 Route::fallback(function(){

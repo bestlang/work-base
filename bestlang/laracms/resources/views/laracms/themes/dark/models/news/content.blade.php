@@ -24,6 +24,10 @@
                         <h1 class="l-content-title">{{$content->title}}</h1>
                         <div>{!!  LaraCMS::content($content, 'content') !!}</div>
                     </div>
+                    <div class="l-functions text-center">
+                        <button type="button" class="btn btn-primary" id="l-like">赞</button>
+                        <button type="button" class="btn btn-default" id="l-unlike">取消赞</button>
+                    </div>
                 </div>
                 <input type="hidden" name="content_id" id="content_id" value="{{$content->id}}" />
                 <div class="panel panel-default">
@@ -91,6 +95,16 @@
                 var content_id = $('#content_id').val();
                 axios.post('/ajax/content/view', {content_id: content_id});
         }
+        function like(){
+            var content_id = $('#content_id').val();
+            axios.post('/ajax/content/like', {content_id: content_id});
+        };
+        function unlike(){
+            var content_id = $('#content_id').val();
+            axios.post('/ajax/content/unlike', {content_id: content_id});
+        };
+        $('#l-like').click(like)
+        $('#l-unlike').click(unlike)
         setTimeout(function(){loadComments()}, 1000);
         setTimeout(function(){reportView()}, 1000);
         var allPreTags = document.getElementsByTagName("pre");
@@ -133,6 +147,9 @@
     }
     #comment_submit{
         margin-top: 10px;
+    }
+    .l-functions{
+        margin: 20px auto;
     }
 </style>
 @endpush

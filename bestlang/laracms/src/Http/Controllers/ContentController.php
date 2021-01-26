@@ -2,8 +2,10 @@
 
 namespace BestLang\LaraCMS\Http\Controllers;
 
+use BestLang\LaraCMS\Models\User;
 use Illuminate\Http\Request;
 use BestLang\LaraCMS\Models\Cms\Content;
+use Arr;
 
 class ContentController extends Controller
 {
@@ -34,5 +36,25 @@ class ContentController extends Controller
             return response()->ajax();
         }
         return response()->error('出错了');
+    }
+    //喜欢
+    public function like(Request $request)
+    {
+        $params = $request->all();
+        $content_id = Arr::get($params, 'content_id', 0);
+        $user = auth()->user();
+        $user = User::find($user->id);
+        $user->likes()->attach([$content_id]);
+        return response()->ajax();
+    }
+    //取消喜欢
+    public function unlike(Request $request)
+    {
+        $params = $request->all();
+        $content_id = Arr::get($params, 'content_id', 0);
+        $user = auth()->user();
+        $user = User::find($user->id);
+        $user->likes()->detach([$content_id]);
+        return response()->ajax();
     }
 }
