@@ -118,7 +118,7 @@ class ModelController extends Controller
 
     public function templatePrefix(Request $request)
     {
-        $theme = HashConfig::get('theme');
+        $theme = HashConfig::get('site', 'theme');
         $path = base_path().'/bestlang/laracms/resources/views/laracms/themes/'.$theme.'/models/';
         $resource = opendir($path);
         $dirNameArr = [];
@@ -132,7 +132,7 @@ class ModelController extends Controller
 
     public function templatePath(Request $request)
     {
-        $theme = HashConfig::get('theme');
+        $theme = HashConfig::get('site', 'theme');
         $base = base_path().'/bestlang/laracms/resources/views/laracms/themes/'.$theme.'/';
         $model_id = $request->input('model_id');
         $model = Model::find($model_id);
