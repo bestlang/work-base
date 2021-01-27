@@ -1,6 +1,6 @@
 <?php
 
-namespace BestLang\LaraCMS\Models\Cms;
+namespace BestLang\LaraCMS\Models\CMS;
 
 use BestLang\LaraCMS\Models\User;
 use Illuminate\Database\Eloquent\Model;

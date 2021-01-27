@@ -1,10 +1,10 @@
 <?php
 
-namespace BestLang\LaraCMS\Models\Cms;
+namespace BestLang\LaraCMS\Models\CMS;
 
 use BestLang\LaraCMS\Models\User;
 use Illuminate\Database\Eloquent\Model;
-use BestLang\LaraCMS\Models\Cms\Model as CmsModel;
+use BestLang\LaraCMS\Models\CMS\Model as CMSModel;
 
 class Content extends Model
 {
@@ -29,7 +29,7 @@ class Content extends Model
 
     public function model()
     {
-        return $this->belongsTo(CmsModel::class);
+        return $this->belongsTo(CMSModel::class);
     }
 
     public function positions()

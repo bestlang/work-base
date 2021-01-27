@@ -1,10 +1,10 @@
 <?php
 
-namespace BestLang\LaraCMS\Models\Cms;
+namespace BestLang\LaraCMS\Models\CMS;
 
 use Baum\Node;
-use BestLang\LaraCMS\Models\Cms\Content;
-use BestLang\LaraCMS\Models\Cms\ChannelMeta;
+use BestLang\LaraCMS\Models\CMS\Content;
+use BestLang\LaraCMS\Models\CMS\ChannelMeta;
 
 class Channel extends Node
 {

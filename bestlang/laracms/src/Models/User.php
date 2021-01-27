@@ -4,9 +4,9 @@ namespace BestLang\LaraCMS\Models;
 
 use BestLang\Base\Models\User as BaseUser;
 
-use BestLang\LaraCMS\Models\Cms\Comment;
-use BestLang\LaraCMS\Models\Cms\Content;
-use BestLang\LaraCMS\Models\Cms\Order;
+use BestLang\LaraCMS\Models\CMS\Comment;
+use BestLang\LaraCMS\Models\CMS\Content;
+use BestLang\LaraCMS\Models\CMS\Order;
 
 class User extends BaseUser
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace BestLang\LaraCMS\Models\Cms;
+namespace BestLang\LaraCMS\Models\CMS;
 
 use Illuminate\Database\Eloquent\Model as BaseModel;
 

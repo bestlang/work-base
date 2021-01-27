@@ -1,6 +1,6 @@
 <?php
 Route::group(['prefix'=>'admin', 'namespace'=>'Admin'], function(){
-    Route::group(['namespace'=>'Cms'], function(){
+    Route::group(['namespace'=>'CMS'], function(){
         Route::any('/cms/channel/tree', 'ChannelController@tree');
         Route::any('/cms/channel/add', 'ChannelController@add');
         Route::any('/cms/channel/save', 'ChannelController@save');

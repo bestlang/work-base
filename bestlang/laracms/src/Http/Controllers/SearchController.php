@@ -2,7 +2,7 @@
 
 namespace BestLang\LaraCMS\Http\Controllers;
 
-use BestLang\LaraCMS\Models\Cms\Content;
+use BestLang\LaraCMS\Models\CMS\Content;
 use Illuminate\Http\Request;
 
 class SearchController extends Controller{

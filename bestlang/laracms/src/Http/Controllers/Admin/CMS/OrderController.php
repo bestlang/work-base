@@ -1,8 +1,8 @@
 <?php
-namespace BestLang\LaraCMS\Http\Controllers\Admin\Cms;
+namespace BestLang\LaraCMS\Http\Controllers\Admin\CMS;
 
 use BestLang\LaraCMS\Http\Controllers\Controller;
-use BestLang\LaraCMS\Models\Cms\Order;
+use BestLang\LaraCMS\Models\CMS\Order;
 use Illuminate\Http\Request;
 use Arr;
 

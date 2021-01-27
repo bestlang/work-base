@@ -2,7 +2,7 @@
 
 namespace BestLang\LaraCMS\Http\Controllers;
 
-use BestLang\LaraCMS\Models\Cms\Tag;
+use BestLang\LaraCMS\Models\CMS\Tag;
 use Illuminate\Http\Request;
 
 class TagController extends Controller{

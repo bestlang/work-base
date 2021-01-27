@@ -8,8 +8,8 @@ use BestLang\LaraCMS\Console\Commands\LaraCMS;
 //use Illuminate\Support\Facades\Gate;
 //use BestLang\LaraCMS\Models\Permission;
 
-use BestLang\LaraCMS\Models\Cms\Order;
-use BestLang\LaraCMS\Observers\Cms\OrderObserver;
+use BestLang\LaraCMS\Models\CMS\Order;
+use BestLang\LaraCMS\Observers\CMS\OrderObserver;
 use Blade;
 use BestLang\WxPay\Pay\Contracts\OrderInterface as WxPayOrderInterface;
 use Alipay\EasySDK\Contracts\OrderInterface as AlipayOrderInterface;

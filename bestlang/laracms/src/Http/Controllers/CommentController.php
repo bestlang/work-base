@@ -2,10 +2,10 @@
 
 namespace BestLang\LaraCMS\Http\Controllers;
 
-use BestLang\LaraCMS\Models\Cms\Comment;
+use BestLang\LaraCMS\Models\CMS\Comment;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use BestLang\LaraCMS\Models\Cms\Content;
+use BestLang\LaraCMS\Models\CMS\Content;
 use Arr;
 
 class CommentController extends Controller

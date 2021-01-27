@@ -1,8 +1,8 @@
 <?php
 
-namespace BestLang\LaraCMS\Http\Controllers\Admin\Cms;
+namespace BestLang\LaraCMS\Http\Controllers\Admin\CMS;
 
-use BestLang\LaraCMS\Models\Cms\FieldType;
+use BestLang\LaraCMS\Models\CMS\FieldType;
 use Illuminate\Http\Request;
 use BestLang\LaraCMS\Http\Controllers\Controller;
 use Validator;

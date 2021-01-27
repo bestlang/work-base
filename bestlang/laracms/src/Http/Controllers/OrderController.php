@@ -3,7 +3,7 @@ namespace BestLang\LaraCMS\Http\Controllers;
 
 
 use Illuminate\Http\Request;
-use BestLang\LaraCMS\Models\Cms\Order;
+use BestLang\LaraCMS\Models\CMS\Order;
 
 use BestLang\LaraCMS\Services\OrderGenerator;
 use HashConfig;

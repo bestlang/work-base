@@ -1,5 +1,5 @@
 <?php
-namespace BestLang\LaraCMS\Http\Controllers\Admin\Cms;
+namespace BestLang\LaraCMS\Http\Controllers\Admin\CMS;
 
 use BestLang\LaraCMS\Http\Controllers\Controller;
 use BestLang\Base\Models\HashConfig as Config;

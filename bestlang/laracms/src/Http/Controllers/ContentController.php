@@ -4,7 +4,7 @@ namespace BestLang\LaraCMS\Http\Controllers;
 
 use BestLang\LaraCMS\Models\User;
 use Illuminate\Http\Request;
-use BestLang\LaraCMS\Models\Cms\Content;
+use BestLang\LaraCMS\Models\CMS\Content;
 use Arr;
 
 class ContentController extends Controller

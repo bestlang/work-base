@@ -1,10 +1,10 @@
 <?php
 
-namespace BestLang\LaraCMS\Http\Controllers\Admin\Cms;
+namespace BestLang\LaraCMS\Http\Controllers\Admin\CMS;
 
-use BestLang\LaraCMS\Models\Cms\Channel;
-use BestLang\LaraCMS\Models\Cms\Position;
-use BestLang\LaraCMS\Models\Cms\PositionContent;
+use BestLang\LaraCMS\Models\CMS\Channel;
+use BestLang\LaraCMS\Models\CMS\Position;
+use BestLang\LaraCMS\Models\CMS\PositionContent;
 use function foo\func;
 use Illuminate\Http\Request;
 use BestLang\LaraCMS\Http\Controllers\Controller;

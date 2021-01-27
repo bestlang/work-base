@@ -1,12 +1,12 @@
 <?php
 namespace BestLang\LaraCMS;
 
-use BestLang\LaraCMS\Models\Cms\Channel;
-use BestLang\LaraCMS\Models\Cms\Content;
-use BestLang\LaraCMS\Models\Cms\Position;
-use BestLang\LaraCMS\Models\Cms\Ad;
-use BestLang\LaraCMS\Models\Cms\AdPosition;
-use BestLang\LaraCMS\Models\Cms\Tag;
+use BestLang\LaraCMS\Models\CMS\Channel;
+use BestLang\LaraCMS\Models\CMS\Content;
+use BestLang\LaraCMS\Models\CMS\Position;
+use BestLang\LaraCMS\Models\CMS\Ad;
+use BestLang\LaraCMS\Models\CMS\AdPosition;
+use BestLang\LaraCMS\Models\CMS\Tag;
 use Arr;
 use HashConfig;
 
