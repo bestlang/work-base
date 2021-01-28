@@ -1,0 +1,15 @@
+[submodule "bestlang/base"]
+	path = bestlang/base
+	url = git@github.com:bestlang/base.git
+[submodule "bestlang/alipay"]
+	path = bestlang/alipay
+	url = git@github.com:bestlang/alipay.git
+[submodule "bestlang/wxpay"]
+	path = bestlang/wxpay
+	url = git@github.com:bestlang/wxpay.git
+[submodule "bestlang/laracms"]
+	path = bestlang/laracms
+	url = git@github.com:bestlang/laracms.git
+[submodule "bestlang/laravel-ueditor"]
+	path = bestlang/laravel-ueditor
+	url = git@github.com:bestlang/laravel-ueditor.git
