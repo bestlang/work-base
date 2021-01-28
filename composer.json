@@ -13,6 +13,7 @@
         "baum/baum": "v2.x-dev",
         "bestlang/base": "dev-main",
         "bestlang/laracms": "dev-main",
+        "bestlang/wxpay": "dev-main",
         "bestlang/laravel-ueditor": "dev-master",
         "bestlang/alipay": "dev-master",
         "doctrine/dbal": "^2.9",
