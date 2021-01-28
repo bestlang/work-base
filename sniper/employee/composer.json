@@ -13,7 +13,7 @@
   "keywords": ["sniper", "employee"],
   "require": {
     "illuminate/support": "~5|~6",
-    "bestlang/base": "dev-master@dev"
+    "bestlang/base": "dev-main@dev"
   },
   "require-dev": {
   },
