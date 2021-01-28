@@ -13,7 +13,7 @@ npm run dev
 npm run build
 
 发布资源
-php artisan LaraCms:install
+php artisan LaraCMS:install
 #php artisan vendor:publish --provider="BestLang\Base\Providers\AppServiceProvider" --force
 #php artisan vendor:publish --provider="BestLang\LaraCms\Providers\AppServiceProvider"
 #php artisan vendor:publish --provider="BestLang\LaravelUEditor\UEditorServiceProvider"
@@ -22,8 +22,6 @@ php artisan LaraCms:install
 
 #php artisan migrate
 #php artisan db:seed --class=BestLangBaseSeeder
-#php artisan db:seed --class=LaraCmsSeeder
-#php artisan db:seed --class=SniperSeeder
 .env
 DEFAULT_MODULE='LaraCMS'
 base login.blade.php
@@ -34,3 +32,5 @@ base login.blade.php
 'notify/wechat/native',
 'notify/wechat/async',
 'notify/alipay'
+
+注释掉web.php里面path of "/"

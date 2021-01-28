@@ -48,7 +48,7 @@ app\Http\Middleware\VerifyCsrfToken.php 加入微信支付宝回调排除
 php artisan queue:work --queue=updateDingTalkUser
 
 逆向 Seed 生成器 orangehill/iseed
-php artisan iseed hash_config,histories,model_has_permissions,model_has_roles,permissions,role_has_permissions,roles,socialite,users --classnameprefix=BestLangBase
+php artisan iseed hash_config,histories,users,permissions,roles,model_has_permissions,model_has_roles,role_has_permissions,socialite --classnameprefix=BestLangBase
 php artisan iseed cms_ad_positions,cms_ads,cms_channel_contents,cms_channel_metas,cms_channels,cms_comments,cms_content_contents,cms_content_metas,cms_content_tags,cms_contents,cms_field_types,cms_model_fields,cms_models,cms_orders,cms_position_channels,cms_position_contents,cms_positions,cms_tags,cms_content_likes --classnameprefix=BestLangLaraCMS
 
 
